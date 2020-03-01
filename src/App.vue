@@ -1,32 +1,46 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <the-left-nav id="left-nav"/>
+    <the-mobile-nav id="mobile-nav"/>    
+    <div class="view-container">
+       <router-view/>
+    </div>  
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import TheLeftNav from '@/components/TheLeftNav'
+import TheMobileNav from '@/components/TheMobileNav'
+export default {
+  components: {
+    TheLeftNav,
+    TheMobileNav
   }
 }
+</script>
+
+<style lang="sass" scoped>
+.view-container
+  width: 80vw
+  padding: 1.5em
+  margin-left: 20vw
+  box-sizing: border-box
+  minimum-height: 100vh
+
+#mobile-nav
+  display: none
+
+@media screen and (max-width: 1096px)
+  .view-container
+    width: 100%
+    margin-left: 0
+  #left-nav
+    display: none
+  #mobile-nav
+    display: flex
+
+
+
+
+
+
 </style>
