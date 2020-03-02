@@ -33,9 +33,8 @@
         <td>Otter</td>
       </tr>
     </table>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-      Voluptates totam praesentium, qui, et eveniet iure repellendus quisquam aliquam consectetur 
-      quibusdam animi repudiandae rerum laboriosam est perspiciatis dolores officia quaerat sequi.</p>
+    <p>This website is in the process of being updated and connected together. 
+    It runs on <a href="https://pages.github.com/">github pages</a> in <a href="https://vuejs.org/">Vue.js</a></p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
     Voluptates totam praesentium, qui, et eveniet iure repellendus quisquam aliquam consectetur 
     quibusdam animi repudiandae rerum laboriosam est perspiciatis dolores officia quaerat sequi.</p>
