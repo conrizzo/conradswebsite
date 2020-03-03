@@ -8,6 +8,7 @@
         <li class="nav-list-item">About me</li>
         <li class="nav-list-item">More Stuff</li>
       </ul>
+   
     </div>
   </section>
 </template>
@@ -40,12 +41,11 @@ export default{
     li
       width: 50%
       text-align: center
-      background: #555
+      background-color: #696969
       padding: 10px 0
       cursor: pointer
-      transition: background 300ms ease-in-out
+      transition: background 100ms ease-in-out
       &:hover
-        background: #333
-      &:first-of-type
-        border-bottom: 5px solid #222
+        background: #808080
+      
 </style>

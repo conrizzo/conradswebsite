@@ -1,5 +1,7 @@
 <template>
+  
   <section class="nav">
+    
     <div class="nav-logo">
       <!-- put image logo here -->
     </div>
@@ -9,7 +11,9 @@
         <li class="nav-list-item">More Stuff</li>
       </ul>
     </div>
+    
   </section>
+  
 </template>
 
 <script>
@@ -39,13 +43,16 @@ export default {
   list-style: none
   padding: 0
   .nav-list-item
-    background #222
+    background-color: #696969
     padding: 10px 20px
     text-align: center
     margin: 10px auto
     cursor: pointer
+    transition: background 100ms ease-in-out
+    
+    border-radius: 10px 10px;
     &:hover
-      width: 100%
+      background-color: #808080
 
 
 </style>

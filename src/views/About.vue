@@ -1,43 +1,68 @@
 <template>
   <div class="about-card">
     <div class="card-title">
-      <!--<img src="https://media.giphy.com/media/3o751SMzZ5TjLWInoQ/giphy.gif" alt="Rad Dog" width="460" height="345">-->
+      
       <div class="title-text-content">
-        <p>About me</p>
-        <h2> Conrad Lundberg </h2>
+        <p>About me:</p>
+        <h2>Conrad Lundberg </h2>
 
 
       </div>
     </div>
   <div class="card-content">
-    <p>March 1st 2020 - This is a new website project being built from scratch in Vue.js</p>
-    <table>
+    
+    <p>This website project was added to <a href="https://pages.github.com/">Github Pages</a> March 1st, 2020. It is being built from scratch in <a href="https://vuejs.org/">Vue.js</a></p>
+    
+    
+    
+    <table>      
       <tr>
-        <th>Row 0</th>
-        <th>Type of amphibious mammal</th>
+        <th>0 Row</th>
+        <th>Amphibious mammal</th>
+        <th>Mammal</th>
+        <th>Amphibious mammal</th>
       </tr>
       <tr>
-        <td>Row 1</td>
+        <td>R1</td>
+        <td>Walrus</td>
+        <td>Squirrel</td>
         <td>Walrus</td>
       </tr>
       <tr>
-        <td>Row 2</td>
+        <td>R2</td>
+        <td>Seal</td>
+        <td>Parrot</td>
         <td>Seal</td>
       </tr>
       <tr>
-        <td>Row 3</td>
+        <td>R3</td>
+        <td>Platypus</td>
+        <td>Horse</td>
         <td>Platypus</td>
       </tr>
       <tr>
-        <td>Row 4</td>
+        <td>R4</td>
+        <td>Otter</td>
+        <td>Cat</td>
         <td>Otter</td>
       </tr>
     </table>
-    <p>This website is in the process of being updated and connected together. 
-    It runs on <a href="https://pages.github.com/">github pages</a> in <a href="https://vuejs.org/">Vue.js</a></p>
+
+    <p>More features are being connected together. 
+    </p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
     Voluptates totam praesentium, qui, et eveniet iure repellendus quisquam aliquam consectetur 
+    quibusdam animi repudiandae rerum laboriosam est perspiciatis dolores officia quaerat sequi.
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+    Voluptates totam praesentium, qui, et eveniet iure repellendus quisquam aliquam consectetur 
     quibusdam animi repudiandae rerum laboriosam est perspiciatis dolores officia quaerat sequi.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+    Voluptates totam praesentium, qui, et eveniet iure repellendus quisquam aliquam consectetur 
+    quibusdam animi repudiandae rerum laboriosam est perspiciatis dolores officia quaerat sequi.
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+    Voluptates totam praesentium, qui, et eveniet iure repellendus quisquam aliquam consectetur 
+    quibusdam animi repudiandae rerum laboriosam est perspiciatis dolores officia quaerat sequi.</p>
+   
 
 
 
@@ -51,35 +76,36 @@
 <style lang="sass" scoped>
 .about-card
   background: #333
-  padding: 2em
-  border-radius: 10px
+  padding: 3em
+  border-radius: 7px
   color: #ffffff
   
   .card-title
     display: flex
     align-items: center
     background: #222
-    border-radius: 10px
+    border-radius: 7px
     .avatar
       border: 1px solid rgba(255,255,255,0.4)
       border-radius: 50%
       margin: 0 30px
   .title-text-content
-    p
+    p      
       margin-bottom: 0
       margin-left: 1.55em
       color: rgb(210,210,210)
-    h2      
+    h2            
       margin-left: 1em
       margin-top: 0.8em  
 
 
 .card-content p
   line-height: 1.5
-  margin: 30px auto
+  margin: 25px auto
+  
   
 
-table
+table  
   border-spacing: 0px
   margin: 50px auto
   tr th, tr td
@@ -91,6 +117,17 @@ table
       border-left: none
     &:nth-of-type(2)
       border-right: none
+</style>
 
-
+<style lang="css" scoped>
+  a {
+    color: #6699FF;
+    text-decoration: none;
+  }
+  a:visited {
+    color: #9966FF;
+  }
+  a:hover, a:active, a:focus {
+    color:#9900FF;
+  }
 </style>
