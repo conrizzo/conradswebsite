@@ -1,4 +1,7 @@
+
+
 <template>
+
   <div class="about-card">
     <div class="card-title">
       
@@ -18,37 +21,37 @@
     <table>      
       <tr>
         <th>0 Row</th>
-        <th>Amphibious mammal</th>
+        <th>Amphibious Mammal</th>
         <th>Mammal</th>
-        <th>Amphibious mammal</th>
+        
       </tr>
       <tr>
         <td>R1</td>
         <td>Walrus</td>
         <td>Squirrel</td>
-        <td>Walrus</td>
+        
       </tr>
       <tr>
         <td>R2</td>
-        <td>Seal</td>
+        <td>Seal of approval</td>
         <td>Parrot</td>
-        <td>Seal</td>
+       
       </tr>
       <tr>
         <td>R3</td>
         <td>Platypus</td>
         <td>Horse</td>
-        <td>Platypus</td>
+       
       </tr>
       <tr>
         <td>R4</td>
         <td>Otter</td>
         <td>Cat</td>
-        <td>Otter</td>
+      
       </tr>
     </table>
 
-    <p>More features are being connected together. 
+    <p>More features are being connected together! 
     </p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
     Voluptates totam praesentium, qui, et eveniet iure repellendus quisquam aliquam consectetur 
@@ -78,8 +81,7 @@
   background: #333
   padding: 3em
   border-radius: 7px
-  color: #ffffff
-  
+  color: white  
   .card-title
     display: flex
     align-items: center
@@ -101,11 +103,10 @@
 
 .card-content p
   line-height: 1.5
-  margin: 25px auto
-  
-  
+  margin: 25px auto 
 
 table  
+  width: 100%
   border-spacing: 0px
   margin: 50px auto
   tr th, tr td

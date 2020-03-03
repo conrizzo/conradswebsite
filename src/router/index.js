@@ -5,10 +5,12 @@ import About from '../views/About.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
+  {   
     path: '/',
-    name: 'about',
+    name: 'about',    
     component: About
+    
+    
   }
   
 ]
@@ -16,5 +18,7 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+
 
 export default router
