@@ -19,9 +19,8 @@ const routes = [
 
 const router = new VueRouter({
   
-  /* Removes the '#' after the URL */
-  mode: 'history',
-  base: process.env.BASE_URL,
+  /* Removes the '#' after the URL 
+  mode: 'history', */  
   routes
   
 })
