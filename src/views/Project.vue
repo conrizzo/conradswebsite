@@ -14,15 +14,18 @@
       <p>
         This is the project page. I'll integrate some kind of 1337 coded application here.
       </p>      
-
+     
       
       
         
     </div> 
     
+
+    
   </div>
   
 </template>
+
 
 
 

@@ -23,10 +23,11 @@
 
     <p>Updating the actual webpage takes a few minutes since the 'npm run build' needs to generate a new 'dist' file
        and convert the code to a running Vue.js build. This 'dist' folder then needs to be pushed into a branch that Github Pages 
-       hosts the Vue.js build in, and then the custom web domain <a href="conradswebsite.com">conradswebsite.com</a> needs to be selected.
+       hosts the Vue.js build in, and then the custom web domain <a href="https://conradswebsite.com">conradswebsite.com</a> needs to be selected.
        This domain is already redirected for Githubs servers to use with the proper addresses.    
     </p>
-
+    <div id="app2">
+    </div>
     
 
     <p>For reference the necessary commands to do this are:<br>

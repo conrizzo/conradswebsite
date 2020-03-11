@@ -17,8 +17,7 @@
         </router-link>         
       </ul>   
     </div>
-    <div id="app">
-    </div>
+    
   </section>
 </template>
 
