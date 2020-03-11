@@ -1,14 +1,23 @@
-<template>
-  
+<template>  
   <section class="nav">
     
     <div class="nav-logo">
-      <!-- put image logo here -->
+      
     </div>
     <div class="nav-menu">
       <ul class="nav-menu-list">
-        <li class="nav-list-item">About me</li>
-        <li class="nav-list-item">More Stuff</li>
+        <router-link to="/">
+          <li class="nav-list-item">
+            Home      
+          </li>
+        </router-link>    
+        <router-link to="/project">
+          <li class="nav-list-item">
+            Project
+          </li>       
+        </router-link> 
+                
+        
       </ul>
     </div>
     
@@ -40,12 +49,13 @@ export default {
   .nav-menu
     color: white
 .nav-menu-list
-  list-style: none
+  list-style: none  
   padding: 0
   .nav-list-item
     background-color: #696969
     padding: 10px 20px
     text-align: center
+    text-decoration: none
     margin: 10px auto
     cursor: pointer
     transition: background 100ms ease-in-out
@@ -54,6 +64,12 @@ export default {
     &:hover
       background-color: #808080
 
-
 </style>
-
+<style lang="css" scoped>
+ /* This removes the text decoration since the router defaults to a hyperlink */
+ a {
+   text-decoration: none;
+   color: #ffffff;   
+ }
+ 
+</style>

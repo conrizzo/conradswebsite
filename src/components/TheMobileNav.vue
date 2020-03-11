@@ -5,10 +5,19 @@
     </div>
     <div class="nav-menu">
       <ul class="nav-menu-list">
-        <li class="nav-list-item">About me</li>
-        <li class="nav-list-item">More Stuff</li>
-      </ul>
-   
+        <router-link to="/">
+          <li class="nav-list-item">
+            Home
+          </li>
+        </router-link>
+        <router-link to="/project">
+          <li class="nav-list-item">
+            Project
+          </li>     
+        </router-link>         
+      </ul>   
+    </div>
+    <div id="app">
     </div>
   </section>
 </template>
@@ -16,7 +25,13 @@
 
 
 <script>
+
+
 export default{
+  name: 'app',
+  components:{
+    
+  }
     
 }
 </script>
@@ -39,7 +54,7 @@ export default{
     margin: 0
     color: white
     li
-      width: 50%
+      
       text-align: center
       background-color: #696969
       padding: 10px 0
@@ -48,4 +63,20 @@ export default{
       &:hover
         background: #808080
       
+</style>
+
+<style lang="css" scoped>
+ /* This removes the text decoration since the router defaults to a hyperlink */
+ a {
+   text-decoration: none;
+   color: #ffffff;   
+   width: 50%;
+ }
+ 
+ li:hover,
+ li.router-link-active,
+ li.router-link-exact-active {          
+   
+   cursor: pointer;
+ }
 </style>
