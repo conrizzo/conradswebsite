@@ -14,15 +14,20 @@
     </div>
   <div class="card-content">
     
-    <p>This website was started March 1st, 2020 and is hosted with <a href="https://pages.github.com/">Github Pages</a>. 
-       It is being built from scratch in <a href="https://vuejs.org/">Vue.js</a> 
-       Multiple pages link with Vue Router and all the resizing works at a basic level.
-       Now working to connect in a vue app to do some basic things with inputs and code.</p> 
+    <p>This website was started March 1st, 2020 and the hosting service is <a href="https://pages.github.com/">Github Pages</a>. 
+       It is being built from scratch in <a href="https://vuejs.org/">Vue.js</a><br> 
+       Multiple pages link with Vue.js Router and all the page resizing works at a basic level.
+       Now working to connect in a custom Vue app to do some basic things with inputs and code.</p> 
+
+    <hr>
 
     <p>Updating the actual webpage takes a few minutes since the 'npm run build' needs to generate a new 'dist' file
-       and convert the code to a running Vue.js app. This 'dist' folder then needs to be pushed into a branch that Github Pages 
-       hosts the Vue.js build in and then the custom web domain needs to be selected.    
+       and convert the code to a running Vue.js build. This 'dist' folder then needs to be pushed into a branch that Github Pages 
+       hosts the Vue.js build in, and then the custom web domain <a href="conradswebsite.com">conradswebsite.com</a> needs to be selected.
+       This domain is already redirected for Githubs servers to use with the proper addresses.    
     </p>
+
+    
 
     <p>For reference the necessary commands to do this are:<br>
        1. npm run build<br>

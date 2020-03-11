@@ -75,6 +75,8 @@ table
 </style>
 
 <style lang="css" scoped>
+
+  
  
   a {
     color: #6699FF;
