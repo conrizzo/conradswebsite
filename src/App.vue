@@ -20,9 +20,9 @@ export default {
 
 <style lang="sass" scoped>
 .view-container
-  width: 80vw
-  padding: 1.5em
-  margin-left: 20vw
+  width: 90vw
+  padding: 1em
+  margin-left: 10vw
   box-sizing: border-box
   minimum-height: 100vh
 

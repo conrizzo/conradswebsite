@@ -12,9 +12,11 @@
     </div>
     <div class="card-content">      
       <p>
-        This is the project page. I'll integrate some kind of 1337 coded application here.
+        This is the project page. Going to write a connected Vue app with code here.
       </p>      
-     
+
+      
+      
       
       
         
@@ -61,6 +63,7 @@
 .card-content p
   line-height: 1.5
   margin: 25px auto 
+  color: #DCDCDC
 
 table  
   width: 100%

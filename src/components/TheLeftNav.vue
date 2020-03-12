@@ -43,20 +43,21 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
-  width: 20vw
+  width: 10vw
   .nav-logo
-    margin: 100px auto
+    margin: 23% auto
   .nav-menu
     color: white
+    width: 80%
 .nav-menu-list
   list-style: none  
   padding: 0
   .nav-list-item
     background-color: #696969
-    padding: 10px 20px
+    padding: 10px 0px
     text-align: center
     text-decoration: none
-    margin: 10px auto
+    margin: 7px auto
     cursor: pointer
     transition: background 100ms ease-in-out
     

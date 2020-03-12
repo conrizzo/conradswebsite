@@ -14,20 +14,19 @@
     </div>
   <div class="card-content">
     
-    <p>This website was started March 1st, 2020 and the hosting service is <a href="https://pages.github.com/">Github Pages</a>. 
-       It is being built from scratch in <a href="https://vuejs.org/">Vue.js</a><br> 
-       Multiple pages link with Vue.js Router and all the page resizing works at a basic level.
-       Now working to connect in a custom Vue app to do some basic things with inputs and code.</p> 
+    <p>This website project was started March 1st, 2020 and is hosted via <a href="https://pages.github.com/">Github Pages</a>. 
+       It is being built from scratch in the <a href="https://vuejs.org/">Vue.js</a> JavaScript framework.<br> 
+       Pages link with Vue.js router and all the page resizing works at a basic level.
+       Now working to connect in a custom Vue app to do some basic things with inputs + code.</p> 
 
     <hr>
 
-    <p>Updating the actual webpage takes a few minutes since the 'npm run build' needs to generate a new 'dist' file
+    <p>To update the actual webpage it takes a few minutes since the 'npm run build' needs to generate a new 'dist' file
        and convert the code to a running Vue.js build. This 'dist' folder then needs to be pushed into a branch that Github Pages 
-       hosts the Vue.js build in, and then the custom web domain <a href="https://conradswebsite.com">conradswebsite.com</a> needs to be selected.
+       hosts the Vue.js build in. The custom web domain <a href="https://conradswebsite.com">conradswebsite.com</a> needs to be selected.
        This domain is already redirected for Githubs servers to use with the proper addresses.    
     </p>
-    <div id="app2">
-    </div>
+    
     
 
     <p>For reference the necessary commands to do this are:<br>
@@ -91,7 +90,8 @@
 <style lang="sass" scoped>
 .about-card
   background: #333
-  padding: 3em
+  padding: 4em
+  margin-right: 1em
   border-radius: 7px
   color: white  
   .card-title
@@ -116,13 +116,14 @@
 .card-content p
   line-height: 1.5
   margin: 25px auto 
+  color: #DCDCDC
 
 table  
   width: 100%
   border-spacing: 0px
   margin: 50px auto
   tr th, tr td
-    border: 1px solid white
+    border: 1px solid #DCDCDC
     border-top: none
     padding: 10px
     text-align: center

@@ -6,14 +6,8 @@ import Project from '@/views/Project.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {   
-    path: '/', name: 'about', component: About     
-    
-  },
-  {   
-    path: '/project', name: 'project', component: Project        
-    
-  }
+  {path: '/', name: 'about', component: About},
+  {path: '/project', name: 'project', component: Project}
   
 ]
 
@@ -27,6 +21,8 @@ const router = new VueRouter({
 
 
 
-
 export default router
+
+
+
 
