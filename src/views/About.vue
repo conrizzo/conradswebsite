@@ -1,7 +1,14 @@
 
 
+
+
 <!-- npm run build --- runs this but need to
  https://stackoverflow.com/questions/42308879/how-to-solve-npm-error-npm-err-code-elifecycle
+
+ 1. npm run build
+2. git add dist -f
+3. git commit dist -m 'gh-pages'
+4. git subtree push --prefix dist origin gh-pages
 
  -->
 
