@@ -43,7 +43,7 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
-  width: 10vw
+  width: 11vw
   .nav-logo
     margin: 23% auto
   .nav-menu

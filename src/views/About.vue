@@ -1,5 +1,10 @@
 
 
+<!-- npm run build --- runs this but need to
+ https://stackoverflow.com/questions/42308879/how-to-solve-npm-error-npm-err-code-elifecycle
+
+ -->
+
 <template>
 
   <div class="about-card">
@@ -13,6 +18,8 @@
       </div>
     </div>
   <div class="card-content">
+
+    <p>September 2nd 2020 now starting to really customize this</p>
     
     <p>This website project was started March 1st, 2020 and is hosted via <a href="https://pages.github.com/">Github Pages</a>. 
        It is being built from scratch in the <a href="https://vuejs.org/">Vue.js</a> JavaScript framework.<br> 
@@ -91,7 +98,8 @@
 .about-card
   background: #333
   padding: 4em
-  margin-right: 1em
+  margin-right: 0em
+  
   border-radius: 7px
   color: white  
   .card-title
