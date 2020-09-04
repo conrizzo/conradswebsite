@@ -23,17 +23,7 @@
 
 
 
-<script>
 
-
-export default{
-  name: 'app',
-  components:{
-    
-  }
-    
-}
-</script>
 
 <style lang="sass" scoped>
 .nav

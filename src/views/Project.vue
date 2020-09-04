@@ -2,9 +2,9 @@
 
 
 <template>
-
+  
   <div class="about-card">
-    
+     
     <div class="card-title">      
       <div class="title-text-content">        
         <h2>Project Page</h2>  
@@ -12,22 +12,64 @@
     </div>
     <div class="card-content">      
       <p>
-        This is the project page. Going to write a connected Vue app with code here.
-      </p>      
+        This is the project page. Going to write a connected Vue app with code here. Setting up some basic interactions now for practice.
+      </p> 
+      
+      <span>Message is: {{ message }}</span>
+      <br>
+      <input type="text" v-model="message" placeholder="">
+      <button @click="status = !status">change status</button> 
+      {{status}}
 
+      <div>
+        <button v-on:click="counter += 1">Add 1</button>
+        <br>
+        <button v-on:click="counter += 2">Add 2</button>
+        <br>
+        <button v-on:click="counter += counter**1.2">current total<sup>1.25</sup></button>
+        <br>
+        <button v-on:click="counter += (message **2)">if you enter a number in the box string converted to integer with Number() but was parseInt()<sup>2</sup></button>
+        <br>
+        <button v-on:click="counter = 0, message = 0">reset</button>
+        <p>The button above has been clicked {{ counter }} times.</p>
+      </div>
       
       
-      
-      
+  <button v-on:click="say('hi')">Say hi</button>
+  <button v-on:click="say('what')">Say what</button>
+
         
     </div> 
     
-
+  
     
   </div>
   
+  
 </template>
 
+<!-- working ! amazing! -->
+
+<script>
+export default {
+  data: function () {
+    
+      return {
+          status: false,
+          counter: 0,
+          message: Number(),
+          
+      }
+    },
+  methods: {
+    say: function (message) {
+      alert(message)
+    }
+  }
+    
+    
+  }
+</script>
 
 
 
@@ -39,7 +81,7 @@
 .about-card
   background: #333
   padding: 3em
-  border-radius: 7px
+  border-radius: 0px
   color: white  
   .card-title
     display: flex

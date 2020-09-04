@@ -25,13 +25,9 @@
   
 </template>
 
-<script>
 
-export default {
-  
-  
-}
-</script>
+
+
 
 <style lang="sass" scoped>
 .nav
@@ -43,9 +39,9 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
-  width: 11vw
+  width: 15vw
   .nav-logo
-    margin: 23% auto
+    margin: 1.12em auto
   .nav-menu
     color: white
     width: 80%

@@ -26,7 +26,21 @@
     </div>
   <div class="card-content">
 
-    <p>September 2nd 2020 now starting to really customize this</p>
+    <p>3rd of September, 2020. Developing this now on a regular basis. 
+
+       <a href="https://vuejs.org/">vuejs.org</a> links to the vue GitHub below.
+    </p>
+   
+
+    <div id="app" style="padding-bottom: 3em">
+		
+		<gh-btns-star
+			slug="vuejs/vue"
+			show-count
+		/>
+		
+	</div>
+
     
     <p>This website project was started March 1st, 2020 and is hosted via <a href="https://pages.github.com/">Github Pages</a>. 
        It is being built from scratch in the <a href="https://vuejs.org/">Vue.js</a> JavaScript framework.<br> 
@@ -40,7 +54,7 @@
        hosts the Vue.js build in. The custom web domain <a href="https://conradswebsite.com">conradswebsite.com</a> needs to be selected.
        This domain is already redirected for Githubs servers to use with the proper addresses.    
     </p>
-    
+    <p>As a note to self, always delete the 'dist' folder in the local file to prevent git push errors.</p>
     
 
     <p>For reference the necessary commands to do this are:<br>
@@ -48,6 +62,9 @@
        2. git add dist -f<br>
        3. git commit dist -m 'gh-pages'<br>
        4. git subtree push --prefix dist origin gh-pages<br>
+
+    
+	
     
     
     
@@ -79,7 +96,7 @@
       <tr>
         <td>R4</td>
         <td>Otter</td>
-        <td>Cat</td>
+        <td>Sharks with lasers</td>
       
       </tr>
     </table>
@@ -94,8 +111,8 @@
 
   </div>
    <footer>
-          <p>Text to use for the footer.</p>
-     </footer>
+      <p>Text to use for the footer.</p>
+   </footer>
 
   </div>
 </template>
@@ -104,10 +121,10 @@
 <style lang="sass" scoped>
 .about-card
   background: #333
-  padding: 4em
+  padding: 3em
   margin-right: 0em
   
-  border-radius: 7px
+  border-radius: 0px
   color: white  
   .card-title
     display: flex

@@ -1,28 +1,53 @@
 <template>
-  <div id="app">
-    <the-left-nav id="left-nav"/>
+
+  <div id="app">    
+    
+    
+    <!-- <the-my-component id="my-component"/> -->
+    <the-left-nav id="left-nav"/>   
     <the-mobile-nav id="mobile-nav"/>    
-    <div class="view-container">
+    <app-status />
+    <div class="view-container">      
        <router-view/>
     </div>  
+
+    
+     
   </div>
 </template>
+
+
+   
+ 
+
 <script>
 import TheLeftNav from '@/components/TheLeftNav'
 import TheMobileNav from '@/components/TheMobileNav'
+import Status from '@/components/Status.vue'
+
+
 export default {
   components: {
     TheLeftNav,
-    TheMobileNav
+    TheMobileNav,
+    Status
   }
+    
+ 
+    
+  
 }
+
+
+
 </script>
+
 
 <style lang="sass" scoped>
 .view-container
-  width: 90vw
+  width: 84vw
   padding: 0em
-  margin-left: 9.97vw
+  margin-left: 14.97vw
   box-sizing: border-box
   minimum-height: 100vh
 
