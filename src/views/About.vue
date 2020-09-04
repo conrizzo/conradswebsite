@@ -54,7 +54,10 @@
        hosts the Vue.js build in. The custom web domain <a href="https://conradswebsite.com">conradswebsite.com</a> needs to be selected.
        This domain is already redirected for Githubs servers to use with the proper addresses.    
     </p>
-    <p>As a note to self, always delete the 'dist' folder in the local file to prevent git push errors.</p>
+    <p>As a note to self, always delete the 'dist' folder in the local file to prevent git push errors. For the quick fix right now
+       to gh-pages (non-fast-forward).
+       Go to branches, then delete the branch gh-pages.
+    </p>
     
 
     <p>For reference the necessary commands to do this are:<br>
