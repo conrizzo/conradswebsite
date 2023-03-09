@@ -77,8 +77,13 @@ const greetings = [
       return {
         showMessage: true,
         message: randomLocation(greetings) + ", today " + randomLocation(fictionalCharacters) + " will be " + randomLocation(kindWords) + " to you in the " + randomLocation(places) + ".",
+        parentMessage: 'Greeting:',
+        parentMessageTwo: 'Person:',
+        parentMessageThree: 'Kind:',
         items: [
-          { greeting: randomLocation(greetings), person: randomLocation(fictionalCharacters)  },
+          { greeting: randomLocation(greetings), person: randomLocation(fictionalCharacters), kind: randomLocation(kindWords)  },
+          { greeting: randomLocation(greetings), person: randomLocation(fictionalCharacters), kind: randomLocation(kindWords)  },
+          { greeting: randomLocation(greetings), person: randomLocation(fictionalCharacters), kind: randomLocation(kindWords)  },
         ],
         x: 0,
         y: 0,
@@ -122,7 +127,11 @@ const greetings = [
       handleCursorClick(event){
         this.x = event.offsetX
         this.y = event.offsetY
+      },
+      changeGreeting() {
+        this.items.splice(1, 1, { greeting: randomLocation(greetings), person: randomLocation(fictionalCharacters), kind: randomLocation(kindWords) });
       }
+      
   
     
   }

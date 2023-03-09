@@ -1,17 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <h1>{{ title }}</h1>
+  <SiteMain :header="header" :text="text"/>
+  <!--
+    <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
+  -->
+  <input type="text" ref="name" />
+  <button @click="handleClick">click</button>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
 
+<!-- optional below -->
+
+<script>
+
+import SiteMain from './components/SiteMain.vue'
+/* import HelloWorld from './components/HelloWorld.vue' */
+
+/* generally will use a component object */
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { SiteMain },
+  data() {
+    return {
+      title: "Vue App :)",
+      header: 'Here is the header',
+      text: 'Health decision tree'
+    };
+  },
+
+  methods: {
+    handleClick() {
+      console.log(this.$refs.name);
+      this.$refs.name.classList.add('active')
+      this.$refs.name.focus()
+    },
+  },
+};
 </script>
 
 <style>
