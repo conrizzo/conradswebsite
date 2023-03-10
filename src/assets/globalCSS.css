@@ -1,0 +1,89 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+  
+
+  /* Set height and background color of header and footer */
+header, footer {
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Set height and overflow for body */
+  body {
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    background-color: #f2f2f2;
+  }
+  
+  /* Set minimum width for body content */
+  main {
+    min-width: 400px;
+  }
+  
+  /* Set font size for body content */
+  main p {
+    font-size: 30px;
+    padding: 20px;
+  }
+
+  /* buttons and stuff */
+
+  h1 {
+    color: purple;
+  }
+
+  
+
+
+
+  /* CSS */
+  .button-35 {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    
+    box-sizing: border-box;
+    color: #121212;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 1 1 auto;
+    font-family: Inter, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1;
+    /* margin: 0; */
+    
+    /* --- */
+    outline: none;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s, -webkit-box-shadow .2s;
+    white-space: nowrap;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .button-35:hover {
+    box-shadow: #121212 0 0 0 2px, transparent 0 0 0 0;
+  }
+
+  .box {
+    padding: 80px 0;
+    width: 300px;
+    text-align: center;
+    background: #808080;
+    margin: 20px;
+    display: inline-block;
+  }
