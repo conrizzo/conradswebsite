@@ -1,17 +1,60 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  
+  <!--
+    <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
+  -->
+  <h1>{{ title }} a </h1>
+  <p>Simple Vue.JS</p>
+  <div v-if="showSiteMain">
+    <SiteMain
+      :title="title"
+      :header="header"
+      :text="text"
+      @close="toggleSiteMain"
+    />
+    
+  </div>
+  
+  <UseCalc></UseCalc>
+  <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="handleClick">click</button>
+  <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="toggleSiteMain">open modal</button>
+  
+  <input type="text" ref="name" v-model="name" />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
 
+<!-- optional below -->
+
+<script>
+import SiteMain from "./components/SiteMain.vue";
+/* import HelloWorld from './components/HelloWorld.vue' */
+import UseCalc from "./components/UseCalc.vue";
+
+/* generally will use a component object */
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: { SiteMain , UseCalc },
+  data() {
+    return {
+      title: "Welcome to a simple Cow-culator",
+      header: "Here is the header",
+      text: "Click anywhere on the screen outside this modal to exit!",
+      showSiteMain: false,
+    };
+  },
+
+  methods: {
+    handleClick() {
+      console.log(this.$refs.name);
+      this.$refs.name.classList.add("active");
+      this.$refs.name.focus();
+    },
+    toggleSiteMain() {
+      this.showSiteMain = !this.showSiteMain;
+    },
+  },
+};
 </script>
 
 <style>
