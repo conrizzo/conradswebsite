@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ title }}</h1>
+  <h1>{{ title }} a </h1>
   <p>Simple Vue.JS</p>
   <div v-if="showSiteMain">
     <SiteMain
