@@ -3,8 +3,12 @@
 //  transpileDependencies: true
 //})
 
+//module.exports = {
+//  publicPath: process.env.NODE_ENV === 'production'
+//   ? '/conradswebsite/'
+//    : '/'
+//}
+
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/conradswebsite/'
-    : '/'
+  publicPath: '/'
 }
