@@ -1,4 +1,9 @@
 <template>
+  
+  <!--
+    <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  -->
   <h1>{{ title }} a </h1>
   <p>Simple Vue.JS</p>
   <div v-if="showSiteMain">
@@ -11,15 +16,11 @@
     
   </div>
   
-  <!--
-    <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  -->
-  <input type="text" ref="name" v-model="name" />
   <UseCalc></UseCalc>
   <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="handleClick">click</button>
   <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="toggleSiteMain">open modal</button>
   
+  <input type="text" ref="name" v-model="name" />
 </template>
 
 
