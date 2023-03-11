@@ -22,7 +22,7 @@
     
   
     <input
-      style="margin-left: 10px"
+      style="margin-left: 10px; width: 250px;"
       v-model="displayNumbers"
       @input="updateNumbers"
       type="text"
@@ -101,9 +101,20 @@ export default {
           the multiplication, and right of the multiplication */
           leftOperand = this.numbers.slice(0, i).join("");
           rightOperand = this.numbers.slice(i + 1).join("");
+          /* Remove the Moo's from the calculator but count them for user using the "Moo" button */
+          
+          const countMoo = (leftOperand.match(/Moo/gi) || []).length + (rightOperand.match(/Moo/gi) || []).length;// Count occurrences
+          console.log(countMoo); 
+
+          const leftNoMoo = leftOperand.replace(/Moo/gi, "") 
+          const rightNoMoo = rightOperand.replace(/Moo/gi, ""); // Remove all occurrences of "Moo"
+          
+
+
+
           /* multiply these together */
-          result = Number(leftOperand) * Number(rightOperand);
-          this.numbers = [result];
+          result = Number(leftNoMoo) * Number(rightNoMoo);
+          this.numbers = ["Result: " + result + " Moo's: " + countMoo];
           break;
         }
       }
@@ -129,6 +140,10 @@ export default {
   background-color: #fff;
   padding: 10px;
   max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-bottom: 10px;
 }
 .grid-item {
   

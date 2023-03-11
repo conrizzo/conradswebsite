@@ -4,8 +4,10 @@
     <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
   -->
-  <h1>{{ title }} a </h1>
-  <p>Simple Vue.JS</p>
+  <h1>{{ title }}</h1>
+  <p>Enter numbers into the input field below by typing or using the keypad.
+     The Cow-culator will do math operations on the numbers, and count the number of Moo's!
+  </p>
   <div v-if="showSiteMain">
     <SiteMain
       :title="title"
@@ -17,10 +19,12 @@
   </div>
   
   <UseCalc></UseCalc>
-  <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="handleClick">click</button>
-  <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="toggleSiteMain">open modal</button>
+  <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="handleClick">Event Listener</button>
+  <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="toggleSiteMain">About the Cowculator</button>
+  <div>
+    <input style="margin-top: 100px;" type="text" ref="name" v-model="name" />
+  </div>
   
-  <input type="text" ref="name" v-model="name" />
 </template>
 
 
@@ -37,9 +41,9 @@ export default {
   components: { SiteMain , UseCalc },
   data() {
     return {
-      title: "Welcome to a simple Cow-culator",
-      header: "Here is the header",
-      text: "Click anywhere on the screen outside this modal to exit!",
+      title: "Cow-culator",
+      header: "Alpha-Build-1.0",
+      text: "Currently not set up to handle more than one multiplication operation. Click anywhere on the screen outside this modal to exit!",
       showSiteMain: false,
     };
   },
