@@ -1,6 +1,9 @@
+
+
 <template>
 
-<div class="grid-container">
+<div class="grid-container cow-image">
+  
   <button class="grid-item" @click="addNumber">1</button>
   <button class="grid-item" @click="addNumberTwo">2</button>
   <button class="grid-item" @click="addNumberThree">3</button>
@@ -110,12 +113,17 @@ export default {
           const rightNoMoo = rightOperand.replace(/Moo/gi, ""); // Remove all occurrences of "Moo"
           
 
-
+          
 
           /* multiply these together */
           result = Number(leftNoMoo) * Number(rightNoMoo);
-          this.numbers = ["Result: " + result + " Moo's: " + countMoo];
+          if(countMoo > 2){
+            this.numbers = ["That's a lot of Moo's!" + " Result: " + result + " Moo's: " + countMoo];
+          }else{
+
+            this.numbers = ["Result: " + result + " Moo's: " + countMoo];
           break;
+          }
         }
       }
     },
@@ -131,6 +139,10 @@ export default {
     },
   },
 };
+
+    
+
+
 </script>
 
 <style scoped>
@@ -158,5 +170,9 @@ export default {
 .grid-item:hover{
   background-color: rgba(186, 186, 186, 0.318);
 }
+
+
+
+
 
 </style>

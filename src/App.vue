@@ -1,3 +1,5 @@
+
+
 <template>
   
   <!--
@@ -5,8 +7,10 @@
   <HelloWorld msg="Welcome to Your Vue.js App"/>
   -->
   <h1>{{ title }}</h1>
-  <p>Enter numbers into the input field below by typing or using the keypad.
-     The Cow-culator will do math operations on the numbers, and count the number of Moo's!
+  <p style="display: inline-block; max-width: 500px; text-align: left; padding-bottom: 10px; padding-top: 10px;">
+     Enter numbers into the input field below by typing or using the keypad. The Cow-culator 
+     will do math operations on the numbers, and count the number of Moo's! For example, with
+     input Moo2*Moo7 will output: "Result: 14 Moo's: 2" since there are two "Moo" and 2*7=14
   </p>
   <div v-if="showSiteMain">
     <SiteMain
@@ -19,12 +23,12 @@
   </div>
   
   <UseCalc></UseCalc>
-  <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="handleClick">Event Listener</button>
+  
   <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="toggleSiteMain">About the Cowculator</button>
   <div>
     <input style="margin-top: 100px;" type="text" ref="name" v-model="name" />
   </div>
-  
+  <button class="button-35" style="margin-top: 20px; margin-left: 10px;"  @click="handleClick">Event Listener</button>
 </template>
 
 
@@ -70,4 +74,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
+
+
+
 </style>

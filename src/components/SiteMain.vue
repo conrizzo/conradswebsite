@@ -30,7 +30,7 @@ h1 {
 }
 
 .siteMain {
-  width: 500px;
+  width: 80%;
   padding: 25px;
   margin: 80px auto;
   background: rgb(255, 255, 255);

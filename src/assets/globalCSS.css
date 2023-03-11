@@ -25,7 +25,7 @@ header, footer {
   
   /* Set minimum width for body content */
   main {
-    min-width: 400px;
+    
   }
   
   /* Set font size for body content */
@@ -37,7 +37,7 @@ header, footer {
   /* buttons and stuff */
 
   h1 {
-    color: purple;
+    color: rgba(100, 89, 48, 0.873);
   }
 
   
@@ -87,3 +87,11 @@ header, footer {
     margin: 20px;
     display: inline-block;
   }
+
+
+  .cow-image{
+    background-image: url(../images/highland-cow.jpeg);
+  }
+  
+  
+  
