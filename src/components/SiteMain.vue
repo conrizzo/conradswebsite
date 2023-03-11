@@ -4,14 +4,16 @@
     <div class="siteMain">
       <h1>{{ title }}</h1>
       <h2>{{ header }}</h2>
-      <p>{{ text }}</p>
+      <p style="text-align: left">{{ text }}</p>
+      <img :src="imagePath" alt="Image" />
+      
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title", "header", "text"],
+  props: ["title", "header", "text", "imagePath"],
   methods: {
     closeModal() {
       this.$emit("close");

@@ -13,12 +13,16 @@
      input Moo2*Moo7 will output: "Result: 14 Moo's: 2" since there are two "Moo" and 2*7=14
   </p>
   <div v-if="showSiteMain">
+    
     <SiteMain
       :title="title"
       :header="header"
       :text="text"
+      :imagePath="imagePath"
       @close="toggleSiteMain"
+      
     />
+    
     
   </div>
   
@@ -45,10 +49,11 @@ export default {
   components: { SiteMain , UseCalc },
   data() {
     return {
-      title: "Cow-culator",
+      title: "Cow-culator built in Vue.js",
       header: "Alpha-Build-1.0",
-      text: "Currently not set up to handle more than one multiplication operation. Click anywhere on the screen outside this modal to exit!",
+      text: "Currently not set up to handle more than one multiplication operation. Click anywhere on the screen outside this modal to exit! Here is a rough aproximaton of programming languages used to build this: ",
       showSiteMain: false,
+      imagePath: require("./images/languages.jpg") // Add the image path to the data object
     };
   },
 
