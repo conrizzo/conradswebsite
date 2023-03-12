@@ -2,18 +2,18 @@
   <!-- click.self means only this item will activate this function-->
   <div class="backdrop" @click.self="closeModal">
     <div class="siteMain">
-      <h1>{{ title }}</h1>
-      <h2>{{ header }}</h2>
-      <p style="text-align: left">{{ text }}</p>
-      <img :src="imagePath" alt="Image" />
-      
+      <h1 style="padding-bottom: 5px">{{ title }}</h1>
+      <h2 style="padding-bottom: 5px">{{ header }}</h2>
+      <p style="padding-bottom: 5px; text-align: left">{{ text }}</p>
+      <img style="max-width: 15em" :src="imagePath" alt="Image" />
+      <a style="display: block; margin-left: auto; margin-right: auto; text-decoration: none;" :href="url">Conrad's GitHub</a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title", "header", "text", "imagePath"],
+  props: ["title", "header", "text", "imagePath","url"],
   methods: {
     closeModal() {
       this.$emit("close");

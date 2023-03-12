@@ -1,31 +1,30 @@
 
 
 <template>
-
-<div class="grid-container cow-image">
+  <div class="grid-container cow-image">
+    <button class="grid-item" @click="addNumber">1</button>
+    <button class="grid-item" @click="addNumberTwo">2</button>
+    <button class="grid-item" @click="addNumberThree">3</button>
+    <button class="grid-item" @click="addNumberFour">4</button>
+    <button class="grid-item" @click="addNumberFive">5</button>
+    <button class="grid-item" @click="addNumberSix">6</button>
+    <button class="grid-item" @click="addNumberSeven">7</button>
+    <button class="grid-item" @click="addNumberEight">8</button>
+    <button class="grid-item" @click="addNumberNine">9</button>
+    <button class="grid-item" @click="addMultiplication">*</button>
+    <button class="grid-item" @click="addNumberZero">0</button>
+    
+    <!-- override styling to fit in more text for the element below -->
+    <button class="grid-item" style="padding: 2px;" @click="addMoo(); mooDialogue()">Moo</button>
+    
+  </div>
   
-  <button class="grid-item" @click="addNumber">1</button>
-  <button class="grid-item" @click="addNumberTwo">2</button>
-  <button class="grid-item" @click="addNumberThree">3</button>
-  <button class="grid-item" @click="addNumberFour">4</button>
-  <button class="grid-item" @click="addNumberFive">5</button>
-  <button class="grid-item" @click="addNumberSix">6</button>
-  <button class="grid-item" @click="addNumberSeven">7</button>
-  <button class="grid-item" @click="addNumberEight">8</button>
-  <button class="grid-item" @click="addNumberNine">9</button>
-  <button class="grid-item" @click="addMultiplication">*</button>
-  <button class="grid-item" @click="addNumberZero">0</button>
-  <!-- override styling to fit in more text for the element below -->
-  <button class="grid-item" style="padding:2px;" @click="addMoo">Moo</button>
-
   
-</div>
+  
 
   <div>
-    
-  
     <input
-      style="margin-left: 10px; width: 250px;"
+      style="margin-left: 10px; width: 250px"
       v-model="displayNumbers"
       @input="updateNumbers"
       type="text"
@@ -36,11 +35,11 @@
     <button class="button-35" style="margin-left: 10px" @click="clearField">
       Reset
     </button>
+    <!-- Make the Moo button generate random x,y moos on the screen -->
+    <h2 style="font-size: 40px" :style="{position: 'absolute', top: textTop + 'px', left: textLeft + 'px' }" v-if="showText"> {{ text }}</h2>
     
-      
     
   </div>
-  
 </template>
 <script>
 export default {
@@ -48,8 +47,13 @@ export default {
     return {
       numbers: [],
       currentOperation: null,
+      showText: false,
+      text: "Moo!",
+      buttonX: 0,
+      buttonY: 0,
     };
   },
+  
   methods: {
     addNumber() {
       this.numbers.push(1);
@@ -84,6 +88,11 @@ export default {
     addMoo() {
       this.numbers.push("Moo");
     },
+    mooDialogue(){
+      this.showText = true;
+      this.textTop = Math.random() * (window.innerHeight - 50); // 50 is an arbitrary value to account for the height of the text element
+      this.textLeft = Math.random() * (window.innerWidth - 200); // 200 is an arbitrary value to account for the width of the text element
+    },
     addMultiplication() {
       this.currentOperation = "*";
       this.numbers.push("*");
@@ -105,24 +114,28 @@ export default {
           leftOperand = this.numbers.slice(0, i).join("");
           rightOperand = this.numbers.slice(i + 1).join("");
           /* Remove the Moo's from the calculator but count them for user using the "Moo" button */
-          
-          const countMoo = (leftOperand.match(/Moo/gi) || []).length + (rightOperand.match(/Moo/gi) || []).length;// Count occurrences
-          console.log(countMoo); 
 
-          const leftNoMoo = leftOperand.replace(/Moo/gi, "") 
+          const countMoo =
+            (leftOperand.match(/Moo/gi) || []).length +
+            (rightOperand.match(/Moo/gi) || []).length; // Count occurrences
+          console.log(countMoo);
+
+          const leftNoMoo = leftOperand.replace(/Moo/gi, "");
           const rightNoMoo = rightOperand.replace(/Moo/gi, ""); // Remove all occurrences of "Moo"
-          
-
-          
 
           /* multiply these together */
           result = Number(leftNoMoo) * Number(rightNoMoo);
-          if(countMoo > 2){
-            this.numbers = ["That's a lot of Moo's!" + " Result: " + result + " Moo's: " + countMoo];
-          }else{
-
+          if (countMoo > 2) {
+            this.numbers = [
+              "That's a lot of Moo's!" +
+                " Result: " +
+                result +
+                " Moo's: " +
+                countMoo,
+            ];
+          } else {
             this.numbers = ["Result: " + result + " Moo's: " + countMoo];
-          break;
+            break;
           }
         }
       }
@@ -137,12 +150,8 @@ export default {
         this.numbers = value.split("");
       },
     },
-  },
+  }
 };
-
-    
-
-
 </script>
 
 <style scoped>
@@ -158,7 +167,6 @@ export default {
   margin-bottom: 10px;
 }
 .grid-item {
-  
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
@@ -167,12 +175,7 @@ export default {
   margin: 2px;
   border-radius: 12px;
 }
-.grid-item:hover{
+.grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
-
-
-
-
-
 </style>
