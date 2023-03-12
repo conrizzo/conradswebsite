@@ -18,15 +18,11 @@ header, footer {
   
   /* Set height and overflow for body */
   body {
-    height: calc(100vh - 100px);
+    
     overflow-y: auto;
-    background-color: #f2f2f2;
+    background: rgb(222, 222, 222);
   }
   
-  /* Set minimum width for body content */
-  main {
-    
-  }
   
   /* Set font size for body content */
   main p {
@@ -37,7 +33,7 @@ header, footer {
   /* buttons and stuff */
 
   h1 {
-    color: rgba(100, 89, 48, 0.873);
+    color: rgba(58, 61, 61, 0.873);
   }
 
   
