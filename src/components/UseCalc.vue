@@ -20,7 +20,7 @@
     
   </div>
   <input
-      style="margin-left: 10px; width: 250px; margin-bottom: 7px;"
+      style="width: 268px; margin-bottom: 7px;"
       v-model="displayNumbers"
       @input="updateNumbers, mooDialogue();"
       type="text"
@@ -30,14 +30,14 @@
 
   <div>
     
-    <button class="button-35" style="margin-left: 10px" @click="cowculate">
+    <button class="button-35"  @click="cowculate">
       Cowculate
     </button>
-    <button class="button-35" style="margin-left: 10px" @click="clearField">
+    <button class="button-35" style="margin-left: 5px" @click="clearField">
       Reset
     </button>
     <!-- Make the Moo button generate random x,y moos on the screen -->
-    <h2  v-if="showText" style="font-size: 40px; color: #c4b7a6;" :style="{position: 'absolute', top: textTop + 'px', left: textLeft + 'px' }"> {{ numbers }}</h2>
+    <h2  v-if="showText" style="margin-right:20%; font-size: 20px; color: #c4b7a6;" :style="{position: 'absolute', top: textTop + 'px', left: textLeft + 'px' }"> {{ numbers }}</h2>
     
     
   </div>
@@ -90,8 +90,8 @@ export default {
     },
     mooDialogue(){
       this.showText = true;
-      this.textTop = (window.innerHeight)
-      this.textLeft = ((window.innerWidth)/4)
+      this.textTop = (window.innerHeight-20)
+      this.textLeft = ((window.innerWidth-200)/4)
       
       /* (innerheight / 3.5) will keep it to the top section of the screen area */
       /* this.textTop = Math.random() * (window.innerHeight / 3.5); */

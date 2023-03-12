@@ -40,7 +40,7 @@
 
   <button
     class="button-35"
-    style="margin-top: 20px; margin-left: 10px"
+    style="margin-top: 5px; margin-left: 10px"
     @click="toggleSiteMain"
   >
     About the Cowculator
