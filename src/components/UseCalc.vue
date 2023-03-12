@@ -204,21 +204,30 @@ export default {
     cowculate() {
   let moos = 0;
   let result = 1;
-  
+  let temp = '';
+
   for (let i = 0; i < this.numbers.length; i++) {
     const item = this.numbers[i];
-    
+
     if (typeof item === 'number') {
-      result *= item;
+      temp += item;
     } else if (item === 'Moo') {
       moos++;
     } else if (item === '*') {
-      // do nothing
+      // multiply the current value of temp by result
+      result *= parseInt(temp);
+      // reset temp
+      temp = '';
     } else {
       console.log(`Unexpected item in array: ${item}`);
     }
   }
-  
+
+  // handle the final value of temp (if there is one)
+  if (temp !== '') {
+    result *= parseInt(temp);
+  }
+
   console.log(`${moos} Moos`);
   console.log(result);
   this.numbers = ["Result: " + result + " Moo's: " + moos];
