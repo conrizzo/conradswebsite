@@ -20,7 +20,8 @@
   Please enter numbers into the input field below using the keypad or by typing. 
   The Cow-culator will perform mathematical operations on the numbers and count the number of Moo's! 
   For instance, if you input Moo2*Moo7, the Cow-culator will display the result as: 'Result: 14 Moo's: 2', which means that there are two 'Moo's and 2 multiplied by 7 equals 14. 
-  Additionally, pressing the 'Moo' button will generate a 'Moo' at random x and y coordinates on the screen.
+  Additionally, each input will show up in the array it's used in. Any input field entry or button press will update the array 
+  by pushing the value into it and showing it on the screen.
   
   </p>
   <hr style="padding-top: 5px; padding-bottom: 5px;">

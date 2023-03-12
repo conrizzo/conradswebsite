@@ -1,34 +1,35 @@
 
 
 <template>
+  
   <div class="grid-container cow-image">
-    <button class="grid-item" @click="addNumber">1</button>
-    <button class="grid-item" @click="addNumberTwo">2</button>
-    <button class="grid-item" @click="addNumberThree">3</button>
-    <button class="grid-item" @click="addNumberFour">4</button>
-    <button class="grid-item" @click="addNumberFive">5</button>
-    <button class="grid-item" @click="addNumberSix">6</button>
-    <button class="grid-item" @click="addNumberSeven">7</button>
-    <button class="grid-item" @click="addNumberEight">8</button>
-    <button class="grid-item" @click="addNumberNine">9</button>
-    <button class="grid-item" @click="addMultiplication">*</button>
-    <button class="grid-item" @click="addNumberZero">0</button>
+    <button class="grid-item" @click="addNumber(); mooDialogue();">1</button>
+    <button class="grid-item" @click="addNumberTwo(); mooDialogue();">2</button>
+    <button class="grid-item" @click="addNumberThree(); mooDialogue();">3</button>
+    <button class="grid-item" @click="addNumberFour(); mooDialogue();">4</button>
+    <button class="grid-item" @click="addNumberFive(); mooDialogue();">5</button>
+    <button class="grid-item" @click="addNumberSix(); mooDialogue();">6</button>
+    <button class="grid-item" @click="addNumberSeven(); mooDialogue();">7</button>
+    <button class="grid-item" @click="addNumberEight(); mooDialogue();">8</button>
+    <button class="grid-item" @click="addNumberNine(); mooDialogue();">9</button>
+    <button class="grid-item" @click="addMultiplication(); mooDialogue();">*</button>
+    <button class="grid-item" @click="addNumberZero(), mooDialogue();">0</button>
     
     <!-- override styling to fit in more text for the element below -->
-    <button class="grid-item" style="padding: 2px;" @click="addMoo(); mooDialogue()">Moo</button>
+    <button class="grid-item" style="padding: 2px;" @click="addMoo(); mooDialogue();">Moo</button>
     
   </div>
-  
+  <input
+      style="margin-left: 10px; width: 250px; margin-bottom: 7px;"
+      v-model="displayNumbers"
+      @input="updateNumbers, mooDialogue();"
+      type="text"
+    />
   
   
 
   <div>
-    <input
-      style="margin-left: 10px; width: 250px"
-      v-model="displayNumbers"
-      @input="updateNumbers"
-      type="text"
-    />
+    
     <button class="button-35" style="margin-left: 10px" @click="cowculate">
       Cowculate
     </button>
@@ -36,7 +37,7 @@
       Reset
     </button>
     <!-- Make the Moo button generate random x,y moos on the screen -->
-    <h2 style="font-size: 40px" :style="{position: 'absolute', top: textTop + 'px', left: textLeft + 'px' }" v-if="showText"> {{ text }}</h2>
+    <h2  v-if="showText" style="font-size: 40px; color: #c4b7a6;" :style="{position: 'absolute', top: textTop + 'px', left: textLeft + 'px' }"> {{ numbers }}</h2>
     
     
   </div>
@@ -48,7 +49,6 @@ export default {
       numbers: [],
       currentOperation: null,
       showText: false,
-      text: "Moo!",
       buttonX: 0,
       buttonY: 0,
     };
@@ -90,8 +90,14 @@ export default {
     },
     mooDialogue(){
       this.showText = true;
-      this.textTop = Math.random() * (window.innerHeight - 50); // 50 is an arbitrary value to account for the height of the text element
-      this.textLeft = Math.random() * (window.innerWidth - 200); // 200 is an arbitrary value to account for the width of the text element
+      this.textTop = (window.innerHeight)
+      this.textLeft = ((window.innerWidth)/4)
+      
+      /* (innerheight / 3.5) will keep it to the top section of the screen area */
+      /* this.textTop = Math.random() * (window.innerHeight / 3.5); */
+      /* ((window.innerWidth - 75)/1.3) this keeps the text 75 px from the left and makes sure it generates a number
+         slightly larger than the right side of the screen so it doesnt overflow off the screen */
+      /* this.textLeft = Math.random() * ((window.innerWidth - 75)/1.1); */
     },
     addMultiplication() {
       this.currentOperation = "*";
@@ -100,6 +106,9 @@ export default {
     /* Reset the array - if some error happens or want to restart */
     clearField() {
       this.numbers = [];
+
+      this.texts = [];
+      this.showText = false;
     },
 
     cowculate() {
