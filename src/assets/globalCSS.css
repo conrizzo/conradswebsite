@@ -87,6 +87,7 @@ header, footer {
 
   .cow-image{
     background-image: url(../images/highland-cow.jpeg);
+    border-radius: 12px;
   }
   
   

@@ -5,27 +5,18 @@
     <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
   -->
+  
+    <div v-if="showHelpGuide">
+    
+     <HelpGuide :helptitle="helpTitle" 
+                :helptext="helpText" 
+                @close="toggleHelpGuide"/>
+    </div>
+
     <h1>{{ title }}</h1>
     
-    <p
-      style="
-        display: inline-block;
-        max-width: 500px;
-        text-align: left;
-
-        padding: 10px;
-      "
-    >
-      Please enter numbers into the input field below using the keypad or by
-      typing. The Cow-culator will perform mathematical operations on the
-      numbers and count the number of Moo's! For instance, if you input
-      Moo2*Moo2*2Moo, the Cow-culator will display the result as: 'Result: 8 Moo's:
-      3', which means that there are three 'Moo's and 2 multiplied by 2 multiplied by 2 equals 8.
-      Additionally, each input will show up in the array it's used in. Any input
-      field entry or button press will update the array by pushing the value
-      into it and showing it on the screen.
-    </p>
-   
+    
+    
     <div v-if="showSiteMain">
       <SiteMain
         :title="title"
@@ -38,7 +29,7 @@
     </div>
 
     <UseCalc></UseCalc>
-
+  <div>
     <button
       class="button-35"
       style="margin-top: 5px; margin-left: 10px"
@@ -46,7 +37,14 @@
     >
       About the Cowculator
     </button>
-    
+    <button
+      class="button-35"
+      style="margin-top: 5px; margin-left: 10px"
+      @click="toggleHelpGuide"
+    >
+      Help Guide
+    </button>
+  </div>
   </div>
 </template>
 
@@ -56,10 +54,12 @@ import SiteMain from "./components/SiteMain.vue";
 
 import UseCalc from "./components/UseCalc.vue";
 
+import HelpGuide from "./components/HelpGuide.vue";
+
 /* generally will use a component object */
 export default {
   name: "App",
-  components: { SiteMain, UseCalc },
+  components: { SiteMain, UseCalc, HelpGuide },
   data() {
     return {
       title: "Cow-culator built in Vue.js",
@@ -69,6 +69,9 @@ export default {
         "From top to bottom they are props: title, header, text, imagePath, and url. This is a rough approximation of programming languages used to build this: ",
       url: "https://github.com/conrizzo/conradswebsite",
       showSiteMain: false,
+      helpTitle: "How to use:",
+      helpText: "",
+      showHelpGuide: false,
       imagePath: require("./images/languages.jpg"), // Add the image path to the data object
     };
   },
@@ -77,6 +80,9 @@ export default {
     
     toggleSiteMain() {
       this.showSiteMain = !this.showSiteMain;
+    },
+    toggleHelpGuide() {
+      this.showHelpGuide = !this.showHelpGuide;
     },
   },
 };

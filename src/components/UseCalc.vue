@@ -2,6 +2,8 @@
 
 <template>
   
+      
+     
   <div class="grid-container cow-image">
     
     <button
@@ -87,19 +89,19 @@
     <button
       class="grid-item"
       @click="
-        addMoo();
+        addSubtraction();
         
       "
     >
-      Moo
+      -
     </button>
     <button
       class="grid-item"
       @click="
-        addMoo();      
+        addAddition();      
       "
     >
-      Moo
+     +
     </button>
     <button
       class="grid-item"
@@ -110,22 +112,31 @@
       Moo
     </button>
   </div>
-  <input style="width: 268px; margin-bottom: 7px" v-model="expression" type="text"/>
+  
+  <div style="margin-bottom:5px;">   
+        <button class="button-35"  @click="clearField">
+  Reset
+</button>   
+      <button class="button-35" style="margin-left: 5px" @click="cowculate(), mooDialogue()">Cowculate</button>
 
-  <div>
-    <button class="button-35" @click="cowculate(), mooDialogue()">Cowculate</button>
 
-    <button class="button-35" style="margin-left: 5px" @click="clearField">
-      Reset
-    </button>
-    
+</div>
+  <div style="padding:20px; margin-bottom: 50px;">
+   
     <h2  style="padding-top: 5px;
         padding-bottom: 3px;
-        margin-right: 20%;
-        margin-left: 20%;
+        margin-top: 20px;
+        
         font-size: 20px;
+        position: absolute;
+        left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
         color: #000;">
       {{ expression }}<span v-if="showText"> = {{result}} <br> Number of Moos: {{ moos }} </span></h2>
+      <input style="width: 268px; margin-bottom: 7px" v-model="expression" type="text"/>
+    
     
   </div>
 </template>
@@ -198,6 +209,12 @@ export default {
     mooDialogue() {
       this.showText = true;
     },
+    addAddition() {
+      this.expression+="+";
+    },
+    addSubtraction() {
+      this.expression-="-";
+    },
     addMultiplication() {
       this.expression+="*";
     },
@@ -227,6 +244,9 @@ export default {
   margin-right: auto;
 
   margin-bottom: 10px;
+
+
+  
 }
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
@@ -236,6 +256,10 @@ export default {
   text-align: center;
   margin: 2px;
   border-radius: 12px;
+  width:80px;
+  
+  
+  
 }
 .grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
