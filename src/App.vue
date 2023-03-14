@@ -46,16 +46,7 @@
     >
       About the Cowculator
     </button>
-    <div>
-      <input style="margin-top: 100px" type="text" ref="name" v-model="name" />
-    </div>
-    <button
-      class="button-35"
-      style="margin-top: 20px; margin-left: 10px"
-      @click="handleClick"
-    >
-      Event Listener
-    </button>
+    
   </div>
 </template>
 
@@ -83,11 +74,7 @@ export default {
   },
 
   methods: {
-    handleClick() {
-      console.log(this.$refs.name);
-      this.$refs.name.classList.add("active");
-      this.$refs.name.focus();
-    },
+    
     toggleSiteMain() {
       this.showSiteMain = !this.showSiteMain;
     },
