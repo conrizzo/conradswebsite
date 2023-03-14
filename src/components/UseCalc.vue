@@ -81,7 +81,7 @@
     >
       ÷
     </button>
-    <button class="grid-item" @click="addNumberZero(), mooDialogue()">0</button>
+    <button class="grid-item" @click="addNumberZero()">0</button>
 
     <!-- override styling to fit in more text for the element below -->
     <button
