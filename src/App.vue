@@ -1,19 +1,14 @@
 
 <template>
-  <div style="">
+  <div>
     <!--
     <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
   -->
   
-    <div v-if="showHelpGuide">
-    
-     <HelpGuide :helptitle="helpTitle" 
-                :helptext="helpText" 
-                @close="toggleHelpGuide"/>
-    </div>
+  
 
-    <h1>{{ title }}</h1>
+    <h1 style="margin-bottom:15px;">{{ title }}</h1>
     
     
     
@@ -46,6 +41,12 @@
     </button>
   </div>
   </div>
+  <div v-if="showHelpGuide">
+    
+    <HelpGuide :helptitle="helpTitle" 
+               :helptext="helpText" 
+               @close="toggleHelpGuide"/>
+   </div>
 </template>
 
 
@@ -95,6 +96,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 15px;
 }
 </style>
