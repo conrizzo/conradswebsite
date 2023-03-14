@@ -128,12 +128,13 @@
         margin-top: 20px;
         
         font-size: 20px;
+        
         position: absolute;
         left: 0; 
   right: 0; 
   margin-left: auto; 
   margin-right: auto; 
-        color: #000;">
+        color: rgb(70,70,70)">
       {{ expression }}<span v-if="showText"> = {{result}} <br> Number of Moos: {{ moos }} </span></h2>
       <input style="width: 268px; margin-bottom: 7px" v-model="expression" type="text"/>
     
@@ -213,7 +214,7 @@ export default {
       this.expression+="+";
     },
     addSubtraction() {
-      this.expression-="-";
+      this.expression+="-";
     },
     addMultiplication() {
       this.expression+="*";
@@ -249,7 +250,7 @@ export default {
   
 }
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(186, 186, 186, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 20px;
