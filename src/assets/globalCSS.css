@@ -28,9 +28,23 @@ header, footer {
 
   h1 {
     color: rgba(255, 255, 255, 0.873);
+    margin-bottom: 10px;
   }
 
-  
+  .paragraph-text {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .paragraph-text {
+      max-width: 100%;
+      margin-left: 20px;
+      margin-right: 20px;
+      
+      text-align: left;
+    }
+  }
 
 
 
@@ -84,5 +98,16 @@ header, footer {
     border-radius: 12px;
   }
   
+  
+  .text-links:link {
+    text-decoration: none
+  } 
+
+  .text-links:hover {
+    text-decoration: underline;
+  } 
+  .text-links:visited {
+    color: rgb(181, 0, 181);
+  } 
   
   

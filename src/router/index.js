@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import ProjectsView from  '../views/projects/ProjectsView.vue'
 import CowculatorView from  '../views/projects/CowculatorView.vue'
 
+import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
+
 //import about from '../views/about.vue'
 
 
@@ -31,6 +33,12 @@ const routes = [
     name: 'cowculator',    
     
     component: CowculatorView
+  },
+  {
+    path: '/projects/:id:details',
+    name: 'ProjectDetailsView',   
+    component: ProjectDetailsView,
+    props: true
   }
 ]
 
