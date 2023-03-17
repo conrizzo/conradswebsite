@@ -9,6 +9,7 @@ import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
 
 
 const routes = [
+  
   {
     path: '/',
     name: 'home',
@@ -40,12 +41,17 @@ const routes = [
     component: ProjectDetailsView,
     props: true
   },
+  // Keep this at the end of the array so only unmatched paths go here
+  // This is important, otherwise direct links to pages a user enters will not work on the web!
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/'
+  },
   
 ]
 
 const router = createRouter({
-  mode: 'history',
-  base: '/conradswebsite/',
+  
   
   history: createWebHistory(process.env.BASE_URL),
   routes
