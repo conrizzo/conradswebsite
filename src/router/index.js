@@ -39,12 +39,18 @@ const routes = [
     name: 'ProjectDetailsView',   
     component: ProjectDetailsView,
     props: true
-  }
+  },
+  
 ]
 
 const router = createRouter({
+  mode: 'history',
+  base: '/conradswebsite/',
+  
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+
 
 export default router

@@ -32,18 +32,31 @@ header, footer {
   }
 
   .paragraph-text {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    
   }
 
   @media only screen and (max-width: 600px) {
     .paragraph-text {
       max-width: 100%;
-      margin-left: 20px;
-      margin-right: 20px;
+      margin-left: 2em;
+    margin-right: 2em;
       
       text-align: left;
     }
+  }
+
+  .project-link {
+    color: #fff; /* change link color */
+    font-size: 16px; /* change font size */
+    text-decoration: none; /* remove underline */
+    font-weight: bold; /* add bold style */
+
+    margin-bottom: 0.8em;
+    display: block;
   }
 
 
