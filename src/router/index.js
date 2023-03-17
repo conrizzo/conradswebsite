@@ -51,7 +51,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  
+  // using # hash mode since the site is being hosted on github pages so the links can be directly accessed
   
   history: createWebHistory(process.env.BASE_URL),
   routes
