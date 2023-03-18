@@ -43,6 +43,8 @@ const routes = [
   },
   // Keep this at the end of the array so only unmatched paths go here
   // This is important, otherwise direct links to pages a user enters will not work on the web!
+  // The important fix for the direct links to work on github pages was copying the generated build from the dist
+  // folder and renaming the copy 404.html
   {
     path: '/:catchAll(.*)',
     redirect: '/'
@@ -51,7 +53,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  // using # hash mode since the site is being hosted on github pages so the links can be directly accessed
+  
   
   history: createWebHistory(process.env.BASE_URL),
   routes
