@@ -1,16 +1,17 @@
 
 <template>
   <h1> Cowculator </h1>
-  <p class="paragraph-text"> Step right up and behold the Cow-culator, now with a Moo function built-in! 
+  <p class="paragraph-text"> Behold the Cow-culator, now with a Moo function built-in! 
     Without a doubt, other calculators are simply inadequate. They lack the one essential feature that sets 
     the Cow-culator apart: the Moo function. Can you imagine doing calculations without the ability to 
-    press a Moo button to enhance your results? It's like trying to milk a cow without a bucket. You simply can't do it. 
+    press a Moo button? It's like trying to milk a cow without a bucket. You simply can't do it. 
     The Cow-culator, with its Vue.js-powered Moo function, 
     is the only choice for discerning users who demand the very best from their cow-culations.
-    Made with Vue.js, Don't be square - use the Cow-culator!"
+    Don't be square - use the Cow-culator!"
   </p>
+  <hr class="solid">
   
-    <div>
+    <div class="green-field-image">
       <!--
       <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>

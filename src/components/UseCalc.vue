@@ -59,7 +59,7 @@
       type="text"
     />
 
-    <h2 style="padding-top: 3em; padding-bottom: -1em">
+    <h2 style="padding-top: 3em; padding-bottom: -1em; color: #ffffff">
       <span v-if="mooMessage"> Moo cows go moo, moo, moo!</span>
     </h2>
   </div>

@@ -111,6 +111,19 @@ header, footer {
     background-image: url(../images/highland-cow.jpeg);
     border-radius: 12px;
   }
+
+  .green-field-image {
+    background-image: url(../images/green.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+
+  }
+
+  /* Solid border */
+  hr.solid {
+  border-top: 6px solid #ffffff;
+  }
   
   
   .text-links:link {
