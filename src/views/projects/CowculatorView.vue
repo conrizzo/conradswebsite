@@ -3,10 +3,9 @@
   <h1> Cowculator </h1>
   <p class="paragraph-text"> Behold the Cow-culator, now with a Moo function built-in! 
     Without a doubt, other calculators are simply inadequate. They lack the one essential feature that sets 
-    the Cow-culator apart: the Moo function. Can you imagine doing calculations without the ability to 
-    press a Moo button? It's like trying to milk a cow without a bucket. You simply can't do it. 
+    the Cow-culator apart: the Moo function. All this fancy math to do, but without a Moo button? It's like trying to milk a cow without a bucket. You simply can't do it. 
     The Cow-culator, with its Vue.js-powered Moo function, 
-    is the only choice for discerning users who demand the very best from their cow-culations.
+    is the only choice for discerning users who demand the very best from their cow-culations. 
     Don't be square - use the Cow-culator!"
   </p>
   <hr class="solid">
@@ -19,7 +18,7 @@
     
     
   
-      <h2 style="margin-bottom:15px;">{{ title }}</h2>
+      <h2 style="margin-bottom:15px; padding-top: 0.5em;">{{ title }} - {{ header }}</h2>
       
       
       
@@ -35,7 +34,7 @@
       </div>
   
       <UseCalc></UseCalc>
-    <div style="margin-bottom: 10px;">
+    <div style=" padding-bottom: 1em;">
       <button
         class="button-35"
         style="margin-top: 5px; margin-left: 10px"
@@ -58,6 +57,9 @@
                  :helptext="helpText" 
                  @close="toggleHelpGuide"/>
      </div>
+     <hr class="solid">
+    
+    
   </template>
   
   

@@ -31,21 +31,19 @@
       Cowculate
     </button>
   </div>
-  <div style="padding: 20px; margin-bottom: 50px">
-    <h2
+  <div style="padding: 1em; margin-bottom: 5em;">
+    <h2 class="white-color-text"
       style="
-        padding-top: 5px;
-        padding-bottom: 3px;
-        margin-top: 20px;
-        font-size: 20px;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        margin-top: 1em;
+        font-size: 1.5em;
         position: absolute;
         left: 0;
         right: 0;
         margin-left: auto;
-        margin-right: auto;
-        color: rgb(40, 40, 40);
-      "
-    >
+        margin-right: auto;">
+      
       {{ expression
       }}<span v-if="showText">
         {{ result }} <br />
@@ -54,7 +52,7 @@
     </h2>
 
     <input
-      style="width: 268px; margin-bottom: 7px"
+      style="width: 268px; margin-bottom: 2em; font-size: 1.3em;"
       v-model="expression"
       type="text"
     />

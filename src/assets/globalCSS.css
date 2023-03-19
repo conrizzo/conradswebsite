@@ -39,16 +39,22 @@ header, footer {
     text-align: left;
     
   }
+  .white-color-text{
+    color:rgb(0, 0, 0);
+  }
 
   @media only screen and (max-width: 600px) {
     .paragraph-text {
       max-width: 100%;
       margin-left: 2em;
-      margin-right: 2em;
-      
+      margin-right: 2em;      
       text-align: left;
     }
+    .white-color-text{
+      color:rgba(255, 255, 255);
+    }
   }
+  
 
   .project-link {
     color: #fff; /* change link color */
@@ -119,10 +125,15 @@ header, footer {
     background-size: cover;
 
   }
+  .no-underlines{
+    text-decoration: none;
+  }
 
   /* Solid border */
   hr.solid {
-  border-top: 6px solid #ffffff;
+  border-top: 10px solid #ffffff;
+
+  
   }
   
   

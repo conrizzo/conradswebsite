@@ -1,7 +1,10 @@
 <template>
   <div class="home">
-   <h1>Welcome</h1>
-   <p>This site is built using Vue.js, Vue 3 specifically. The goal is to make some projects with Vue.js, and soon enough data + machine learning.</p>
+   <h1>Howdy there! Welcome to conradswebsite.com</h1>
+   <p class="paragraph-text"> 
+   
+  
+  </p>
   </div>
 </template>
 
