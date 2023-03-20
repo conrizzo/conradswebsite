@@ -51,7 +51,9 @@ header, footer {
       text-align: left;
     }
     .white-color-text{
-      color:rgba(255, 255, 255);
+      color: #d2d2d2;
+      
+      
     }
   }
   
@@ -120,11 +122,22 @@ header, footer {
 
   .green-field-image {
     background-image: url(../images/green.jpg);
-    background-repeat: no-repeat;
-    background-position: 0 0;
+    background-repeat: repeat;
+    /*background-position: 0 0;*/
     background-size: cover;
-
   }
+
+  @media only screen and (max-width: 600px) {
+    .green-field-image {
+      background-image: url(../images/cowculator2.jpg);
+      background-repeat: repeat;
+      /*background-position: 0 0;*/
+      background-size: contain; 
+    }
+    
+  }
+
+
   .no-underlines{
     text-decoration: none;
   }
@@ -136,6 +149,21 @@ header, footer {
   
   }
   
+  .cowculate-result {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 1em;
+    font-size: 1.5em;
+    position: absolute;
+    left: 0.1em;
+    right: 0.05em;    
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0em;
+    background: #515151;
+    max-width:10.54em;
+  }
+
   
   .text-links:link {
     text-decoration: none
