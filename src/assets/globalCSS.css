@@ -40,7 +40,9 @@ header, footer {
     
   }
   .white-color-text{
-    color:rgb(0, 0, 0);
+    color: #d2d2d2;
+    
+    
   }
 
   @media only screen and (max-width: 600px) {
@@ -50,11 +52,7 @@ header, footer {
       margin-right: 2em;      
       text-align: left;
     }
-    .white-color-text{
-      color: #d2d2d2;
-      
-      
-    }
+  
   }
   
 
@@ -119,21 +117,27 @@ header, footer {
     background-image: url(../images/highland-cow.jpeg);
     border-radius: 12px;
   }
-
+  
   .green-field-image {
-    background-image: url(../images/green.jpg);
-    background-repeat: repeat;
-    /*background-position: 0 0;*/
-    background-size: cover;
+    background-image: url(../images/cow_lecture.png); 
+    
+    background-image: url('../images/cow_lecture.png'), url('../images/cow_lecture.png');
+    background-position: center left, center right;
+    background-repeat: no-repeat;
+    background-size: 33% auto, 33% auto;
   }
+  
+  
 
   @media only screen and (max-width: 600px) {
+    /*
     .green-field-image {
-      background-image: url(../images/cowculator2.jpg);
+      ackground-image: url(../images/highland_cow_two.png); 
       background-repeat: repeat;
-      /*background-position: 0 0;*/
+      background-position: 0 0;
       background-size: contain; 
     }
+    */
     
   }
 

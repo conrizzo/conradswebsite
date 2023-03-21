@@ -1,7 +1,7 @@
 
 <template>
   <h1> Cowculator </h1>
-  <p class="paragraph-text">Get cow-culating today! Mobile resolution background cow grass image generated using <a class="text-links" href="https://github.com/CompVis/stable-diffusion">stable diffusion</a>.
+  <p class="paragraph-text">Get cow-culating today! Background cow images generated using <a class="text-links" href="https://github.com/CompVis/stable-diffusion">stable diffusion</a>.
   </p>
   <hr class="solid">
   
