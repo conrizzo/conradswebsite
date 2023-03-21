@@ -31,7 +31,7 @@
      <!-- loads in cowculator -->
       <UseCalc></UseCalc>
     
-
+    <p class="professor-message">I, Professor Maximillian "Cowculus" Corn-elius Cowington, distinguished professor of cowculating, approve of this cowculator!</p>
     <div style="padding-bottom: 1em;" >
       <button
         class="button-35"

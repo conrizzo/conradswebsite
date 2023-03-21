@@ -15,9 +15,12 @@
     <button class="grid-item" @click="addDivision()">÷</button>
     <button class="grid-item" @click="addNumberZero()">0</button>
 
+    
+
     <!-- override styling to fit in more text for the element below -->
     <button class="grid-item" @click="addSubtraction()">-</button>
     <button class="grid-item" @click="addAddition()">+</button>
+    <button class="grid-item" @click="addDecimalPoint()">.</button>
     <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
   </div>
 
@@ -31,16 +34,17 @@
       Cowculate
     </button>
   </div>
-  <div style="padding: 1em; margin-bottom: 5em;">
-    
+  <div style="padding: 1em; margin-bottom: 5em">
     <div>
       <input
-        style="width: 12em; font-size: 1.3em;"
+        style="width: 12em; font-size: 1.3em"
         v-model="expression"
         type="text"
       />
     </div>
-    <h2 class="white-color-text cowculate-result"> {{ expression }}<span v-if="showText">
+    <h2 class="white-color-text cowculate-result">
+      {{ expression
+      }}<span v-if="showText">
         {{ result }} <br />
         Number of Moos: {{ moos }}</span
       >
@@ -148,6 +152,9 @@ export default {
     },
     addDivision() {
       this.expression += "/";
+    },
+    addDecimalPoint() {
+      this.expression += ".";
     },
     /* Reset the array - if some error happens or want to restart */
     clearField() {
