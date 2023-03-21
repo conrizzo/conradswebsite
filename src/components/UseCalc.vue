@@ -32,17 +32,19 @@
     </button>
   </div>
   <div style="padding: 1em; margin-bottom: 5em;">
+    
+    <div>
+      <input
+        style="width: 12em; font-size: 1.3em;"
+        v-model="expression"
+        type="text"
+      />
+    </div>
     <h2 class="white-color-text cowculate-result"> {{ expression }}<span v-if="showText">
         {{ result }} <br />
         Number of Moos: {{ moos }}</span
       >
     </h2>
-
-    <input
-      style="width: 12em; margin-bottom: 2em; font-size: 1.3em;"
-      v-model="expression"
-      type="text"
-    />
 
     <h2 style="padding-top: 3em; padding-bottom: -1em; color: #ffffff">
       <span v-if="mooMessage"> Moo cows go moo, moo, moo!</span>

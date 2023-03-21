@@ -117,7 +117,7 @@ header, footer {
     background-image: url(../images/highland-cow.jpeg);
     border-radius: 12px;
   }
-  
+  /*
   .green-field-image {
     background-image: url(../images/cow_lecture.png); 
     
@@ -126,18 +126,28 @@ header, footer {
     background-repeat: no-repeat;
     background-size: 33% auto, 33% auto;
   }
-  
+  */
+
+  .green-field-image {
+    
+    
+    background-image: url('../images/cow_lecture.png');
+    background-position: center 88%;
+    background-repeat: no-repeat;
+    background-size: 150px auto;
+  }
   
 
-  @media only screen and (max-width: 600px) {
-    /*
+  @media only screen and (max-width: 500px) {
     .green-field-image {
-      ackground-image: url(../images/highland_cow_two.png); 
-      background-repeat: repeat;
-      background-position: 0 0;
-      background-size: contain; 
+      background-image: url(../images/cow_lecture.png); 
+      
+      background-image: url('../images/cow_lecture.png');
+      background-position: center 88%;
+      background-repeat: no-repeat;
+      background-size: 33% auto;
     }
-    */
+   
     
   }
 
@@ -156,11 +166,11 @@ header, footer {
   .cowculate-result {
     padding-top: 1em;
     padding-bottom: 1em;
-    margin-top: 1em;
+    margin-top: 0.01em;
     font-size: 1.5em;
     position: absolute;
-    left: 0.1em;
-    right: 0.05em;    
+    left: 0.14em;
+    right: 0.12em;    
     margin-left: auto;
     margin-right: auto;
     padding: 0em;

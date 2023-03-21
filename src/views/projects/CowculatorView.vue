@@ -1,11 +1,12 @@
 
 <template>
-  <h1> Cowculator </h1>
-  <p class="paragraph-text">Get cow-culating today! Background cow images generated using <a class="text-links" href="https://github.com/CompVis/stable-diffusion">stable diffusion</a>.
-  </p>
-  <hr class="solid">
+  <div class="green-field-image">
+    <h1> Cowculator </h1>
+    <p class="paragraph-text">Get cow-culating today! Background cow math images generated using <a class="text-links" href="https://github.com/CompVis/stable-diffusion">stable diffusion</a>.
+    </p>
+    <hr class="solid">
   
-    <div class="green-field-image">
+    <div>
       <!--
       <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -29,18 +30,19 @@
       </div>
      <!-- loads in cowculator -->
       <UseCalc></UseCalc>
+    
 
-    <div style=" padding-bottom: 1em;">
+    <div style="padding-bottom: 1em;" >
       <button
         class="button-35"
-        style="margin-top: 5px; margin-left: 10px"
+        style="margin-top: 0.25em; margin-left: 0.5em"
         @click="toggleSiteMain"
       >
         About the Cowculator
       </button>
       <button
         class="button-35"
-        style="margin-top: 5px; margin-left: 10px"
+        style="margin-top: 0.25em; margin-left: 0.5em"
         @click="toggleHelpGuide"
       >
         Help Guide
@@ -55,7 +57,7 @@
                  @close="toggleHelpGuide"/>
      </div>
      <hr class="solid">
-    
+  </div>  
     
   </template>
   
