@@ -1,7 +1,7 @@
 
 <template>
   <div class="green-field-image">
-    <h1> Cowculator </h1>
+    <h1> The Cowculator </h1>
     <p class="paragraph-text">Get cow-culating today! Background cow math images generated using <a class="text-links" href="https://github.com/CompVis/stable-diffusion">stable diffusion</a>.
     </p>
     <hr class="solid">
@@ -80,8 +80,8 @@
         title: "Cow-culator",
         header: "Alpha-Build-1.0",
         text:
-          "This is built in Vue 3. Click anywhere on the screen outside this modal to exit! This modal is a component that is an array of 5 props and additional text. " +
-          "From top to bottom they are props: title, header, text, imagePath, and url. This is a rough approximation of programming languages used to build this: ",
+          "Made in Tübingen, Germany, and built using Vue 3. Click anywhere on the screen outside this modal to exit! This modal is a component that is an array of 5 props and additional text. " +
+          "From top to bottom they are props: title, header, text, imagePath, and url. A rough approximation of programming languages used to build this below: ",
         url: "https://github.com/conrizzo/conradswebsite",
         showSiteMain: false,
         helpTitle: "How to use:",

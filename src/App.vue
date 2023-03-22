@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/projects">Projects</router-link> |
+    <router-link to="/">Home</router-link> /
+    <router-link to="/about">About</router-link> /
+    <router-link to="/projects">Projects</router-link> /
     <router-link to="/projects/cowculator">Cowculator</router-link>
     
   </nav>
@@ -22,6 +22,7 @@
 
 nav {
   padding: 30px;
+  background-color: rgb(198, 198, 198);
 }
 
 nav a {

@@ -13,8 +13,8 @@
         means that there are three 'Moo's and 2 multiplied by 2 multiplied by 2
         equals 8. Additionally, each input will show up in the array it's used
         in. Any input field entry or button press will update the values. For 
-        advanced exponential cowculations use two multiplciation symbols consecutively, 
-        such as 5**3 will equal 125.
+        advanced exponential cowculations use two multiplciation symbols consecutively. 
+        For example, 5**3 will equal 125.
       </p>
       <!-- <h1>{{ helptitletwo }}</h1> -->
     </div>

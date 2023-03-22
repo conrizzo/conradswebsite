@@ -3,29 +3,42 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="siteMain">
       <h2>Why use the {{ title }}?</h2>
-      <p class="about-modal-text">Without a doubt, other calculators are simply inadequate.  
-        They lack the one essential feature that sets 
-    the Cow-culator apart: the Moo function. All this fancy math to do, but without a Moo button? It's like trying to milk a cow without a bucket. You simply can't do it. 
-    The Cow-culator, with its Vue.js-powered Moo function, 
-    is the only choice for discerning users who demand the very best from their cow-culations. 
-    Don't be square - use the Cow-culator!</p>
+      <p class="about-modal-text">
+        Without a doubt, other calculators are simply inadequate. They lack the
+        one essential feature that sets the Cow-culator apart: the Moo function.
+        All this fancy math to do, but without a Moo button? It's like trying to
+        milk a cow without a bucket. You simply can't do it. The Cow-culator,
+        with its Vue.js-powered Moo function, is the only choice for discerning
+        users who demand the very best from their cow-culations. Don't be square
+        - use the Cow-culator!
+      </p>
 
-      <hr>
-      <h2 style="padding-top: 0.25em;">{{ header }}</h2>
-      <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">{{ text }}</p>
-      
+      <hr />
+      <h2 style="padding-top: 0.25em">{{ header }}</h2>
+      <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">
+        {{ text }}
+      </p>
 
       <div>
-      <img style="max-width: 15em" :src="imagePath" alt="Image" />
+        <img style="max-width: 15em" :src="imagePath" alt="Image" />
       </div>
-      <a style="display: block; margin-left: auto; margin-right: auto; text-decoration: none;" :href="url">Conrad's GitHub</a>
+      <a
+        style="
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          text-decoration: none;
+        "
+        :href="url"
+        >Conrad's GitHub</a
+      >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title", "header", "text", "imagePath","url"],
+  props: ["title", "header", "text", "imagePath", "url"],
   methods: {
     closeModal() {
       this.$emit("close");
@@ -55,7 +68,6 @@ h1 {
   border-radius: 10px;
 }
 .backdrop {
- 
   top: 0;
   position: fixed;
   background: rgba(0, 0, 0, 0.5);
@@ -66,11 +78,10 @@ h1 {
 }
 
 .about-modal-text {
-        display: inline-block;
-        max-width: 500px;
-        text-align: left;
+  display: inline-block;
+  max-width: 500px;
+  text-align: left;
 
-        padding: 10px;
-
-  }
+  padding: 10px;
+}
 </style>
