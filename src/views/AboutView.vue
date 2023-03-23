@@ -21,15 +21,18 @@
     <!-- Aside area -->
     <AsideContent class="aside"> </AsideContent>
   </div>
+  <FirstFooter></FirstFooter>
 </template>
 
 <script>
 import AsideContent from "@/components/FirstAside.vue";
+import FirstFooter from "@/components/FirstFooter.vue";
 
 export default {
   name: "HomeView",
   components: {
     AsideContent,
+    FirstFooter,
   },
 };
 </script>

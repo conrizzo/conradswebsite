@@ -14,13 +14,21 @@
       class="project-link"
     >
       <h2>{{ project.title }}</h2>
-      
     </router-link>
   </div>
+
+  <div style="height: 500px">
+    <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
+  </div>
+  <FirstFooter></FirstFooter>
 </template>
 
 <script>
+import FirstFooter from "@/components/FirstFooter.vue";
 export default {
+  components: {
+    FirstFooter,
+  },
   data() {
     return {
       projects: [

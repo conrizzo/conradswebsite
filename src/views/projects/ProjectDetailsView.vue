@@ -19,6 +19,8 @@
         >Project 3</router-link
       >
     </div>
+
+    <FirstFooter></FirstFooter>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .router-link-style {
   font-size: 2em;
   font-weight: bold;

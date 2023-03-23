@@ -4,9 +4,8 @@
     <router-link to="/about">About</router-link> /
     <router-link to="/projects">Projects</router-link> /
     <router-link to="/projects/cowculator">Cowculator</router-link>
-    
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
@@ -16,8 +15,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #454545;
-  
-
 }
 
 nav {
@@ -32,18 +29,14 @@ nav a {
 
   border-radius: 5px;
   padding: 4px;
-  
 }
 
 nav a.router-link-exact-active {
   color: #ffffff;
-  
 }
 
-
-
-
-html, body {
+html,
+body {
   background-color: rgb(198, 198, 198);
 }
 </style>
