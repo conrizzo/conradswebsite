@@ -1,47 +1,92 @@
+
+
+
 <template>
-  <div class="container">
+  <div class="container custom-background-home-page" >
     <!-- Main area -->
     <div>
-      <h1>Howdy there! Welcome to conradswebsite.com</h1>
-      <p class="homeview"> Adding some more stuff soon.. in the meantime check out the Cowculator! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus nulla at volutpat diam ut venenatis tellus in. Fermentum iaculis eu non diam phasellus vestibulum lorem sed. Eget egestas purus viverra accumsan in. Amet commodo nulla facilisi nullam vehicula ipsum a arcu. Neque egestas congue quisque egestas diam in. Erat velit scelerisque in dictum. Porttitor eget dolor morbi non arcu risus quis. Orci nulla pellentesque dignissim enim sit amet venenatis. Viverra nam libero justo laoreet sit amet. Tempor id eu nisl nunc mi. Sit amet mauris commodo quis imperdiet massa tincidunt. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere.
+      <h1>Welcome to Conrad's Website</h1>
+      <p class="homeview">
+        Check out the
+        <router-link style="text-decoration: none" to="/projects/cowculator"
+          >Cowculator</router-link
+        >, be sure to press the Moo button.
+      </p>
 
-Lobortis elementum nibh tellus molestie nunc non. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Nisl vel pretium lectus quam id leo in. Gravida neque convallis a cras semper. Amet volutpat consequat mauris nunc congue nisi vitae suscipit tellus. Aliquet eget sit amet tellus cras adipiscing enim. Eu facilisis sed odio morbi quis commodo odio. Morbi tempus iaculis urna id volutpat lacus laoreet non. Mauris pellentesque pulvinar pellentesque habitant. Ultrices neque ornare aenean euismod elementum nisi quis. Tortor vitae purus faucibus ornare suspendisse sed nisi.
-
-Dui nunc mattis enim ut tellus. Risus in hendrerit gravida rutrum quisque non tellus. Montes nascetur ridiculus mus mauris vitae ultricies leo. Platea dictumst quisque sagittis purus sit amet volutpat. Enim eu turpis egestas pretium aenean pharetra magna. Duis ut diam quam nulla porttitor massa id neque aliquam. Lobortis mattis aliquam faucibus purus in massa tempor. Lacus laoreet non curabitur gravida. Aenean et tortor at risus viverra adipiscing at. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Sit amet cursus sit amet dictum sit amet. Sapien pellentesque habitant morbi tristique senectus et. Volutpat diam ut venenatis tellus in metus vulputate eu scelerisque. Proin fermentum leo vel orci porta non pulvinar neque laoreet. Nisl vel pretium lectus quam id leo in vitae.
-
-Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet. Dui ut ornare lectus sit amet est placerat in egestas. Sed lectus vestibulum mattis ullamcorper velit sed. Semper auctor neque vitae tempus. Fames ac turpis egestas integer eget aliquet. Dictum at tempor commodo ullamcorper a. Dictum non consectetur a erat. Et malesuada fames ac turpis. Quisque egestas diam in arcu cursus euismod quis viverra nibh. Mattis rhoncus urna neque viverra justo nec. Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. A iaculis at erat pellentesque adipiscing. Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut.
-
+      <pre v-bind:class="'language-python'" class="hhh">
+<code>DRINK_COFFEE = True
+website_finished = False
+while website_finished is False:
+ print("Is it true that I am drinking coffee? " + "It is " + str(DRINK_COFFEE).lower() + ".")</code>
+      </pre>
+      <p class="homeview">
+        Python doesn't officially syntactically have constants so it's capitalized to show 
+        it should not be modified "DRINK_COFFEE=True", but the code above emphasizes that work
+        continues, and the coffee drinking will always continue.
       </p>
     </div>
+
     <!-- Aside area -->
-    <AsideContent class="aside">
-      
-    </AsideContent>
+    <AsideContent class="aside"> </AsideContent>
   </div>
 </template>
 
+
+
 <script>
-import AsideContent from "@/components/coreAside.vue";
+import Prism from "prismjs";
+import AsideContent from "@/components/FirstAside.vue";
 
 export default {
   name: "HomeView",
   components: {
     AsideContent,
   },
+  mounted() {
+    Prism.highlightAll();
+  },
 };
 </script>
 
-<style scoped>
 
-p.homeview{
+
+<style scoped>
+p.homeview {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
-  width: 90%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 30px;
+  margin-right: 20px;
+  color: #000000;
+  background: #fff;
 }
 
 h1 {
   text-align: center;
+  padding-top: 0.25em;
+  
+}
+
+.hhh {
+
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 14px;
+  margin-left: 30px;
+  margin-right: 20px;
+  overflow: auto;
+  display: block;
+  word-wrap: break-word;
+ 
+ 
+  
+}
+.custom-background-home-page {
+  background-color: rgb(158, 158, 158);;
 }
 
 </style>
