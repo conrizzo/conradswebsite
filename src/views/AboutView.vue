@@ -21,6 +21,9 @@
     <!-- Aside area -->
     <AsideContent class="aside"> </AsideContent>
   </div>
+  <div class="push-footer-low-res">
+    <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
+  </div>
   <FirstFooter></FirstFooter>
 </template>
 
@@ -40,5 +43,11 @@ export default {
 <style scoped>
 h1 {
   text-align: center;
+}
+
+@media only screen and (max-width: 900px){
+  .push-footer-low-res{
+  height: 500px;
+  }
 }
 </style>

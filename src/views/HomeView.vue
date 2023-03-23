@@ -70,6 +70,11 @@ export default {
 
 
 <style scoped>
+
+h1 {
+  text-align: center;
+  padding-top: 0.25em;
+}
 p.homeview {
   padding-top: 0.75em;
   padding-bottom: 0.75em;
@@ -85,10 +90,7 @@ p.homeview {
   border-radius: 5px;
 }
 
-h1 {
-  text-align: center;
-  padding-top: 0.25em;
-}
+
 
 .hhh {
   page-break-inside: avoid;
@@ -103,5 +105,15 @@ h1 {
 }
 .custom-background-home-page {
   background-color: rgb(158, 158, 158);
+}
+
+/* Adjust the padding for mobile resolution for this block */
+@media only screen and (max-width: 900px){
+  p.homeview{
+    margin-left: 20px;
+  }
+  .hhh{
+    margin-left: 20px;
+}
 }
 </style>
