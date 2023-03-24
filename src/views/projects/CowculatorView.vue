@@ -1,13 +1,6 @@
 
 <template>
-  <div class="green-field-image">
-    <h1>The Cowculator</h1>
-    <p class="paragraph-text">
-      Get cow-culating today! Background cow math images generated using
-      <a class="text-links" href="https://github.com/CompVis/stable-diffusion"
-        >stable diffusion</a
-      >.
-    </p>
+  <div>
     <hr class="solid" />
 
     <div>
@@ -33,10 +26,17 @@
       <!-- loads in cowculator -->
       <UseCalc></UseCalc>
 
-      <p class="professor-message">
-        I, Professor Maximillian "Cowculus" Corn-elius Cowington, distinguished
-        professor of cowculating, approve of this cowculator!
-      </p>
+      <figure class="main-cow-figure">
+        <img
+          src="@/images/cow_lecture.png"
+          alt="Professor Cow Image"
+          class="professor-cow-figure"
+        />
+        <figcaption class="professor-cow-figure-text">
+          <strong>"I certify that this Cowculator cowculates!"</strong> - Professor Maximillian "Cowculus" Cornelius Cowington, Distinguished Professor of Cowculating.
+        </figcaption>
+      </figure>
+
       <div style="padding-bottom: 1em">
         <button
           class="button-35"
@@ -62,6 +62,7 @@
         @close="toggleHelpGuide"
       />
     </div>
+
     <hr class="solid" />
   </div>
   <FirstFooter></FirstFooter>
@@ -86,7 +87,7 @@ export default {
   data() {
     return {
       title: "Cow-culator",
-      header: "Alpha-Build-1.0",
+      header: "Alpha-Build-2.0",
       text:
         "Made in Tübingen, Germany, and built using Vue 3. Click anywhere on the screen outside this modal to exit! This modal is a component that is an array of 5 props and additional text. " +
         "From top to bottom they are props: title, header, text, imagePath, and url. A rough approximation of programming languages used to build this below: ",
@@ -111,6 +112,30 @@ export default {
 };
 </script>
   
-  <style>
+  <style scoped>
+.professor-cow-figure {
+  width: 246px;
+  background-color: white;
+  text-align: left;
+  margin-bottom: 0em;
+  padding: 10px;
+  border-radius: 5px;
+  
+}
+.professor-cow-figure-text{
+  background: white;
+  width: 246px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 0.66em;
+}
+
+  
+  
+
+
 </style>
   

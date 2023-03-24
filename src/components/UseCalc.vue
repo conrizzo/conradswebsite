@@ -15,8 +15,6 @@
     <button class="grid-item" @click="addDivision()">÷</button>
     <button class="grid-item" @click="addNumberZero()">0</button>
 
-    
-
     <!-- override styling to fit in more text for the element below -->
     <button class="grid-item" @click="addSubtraction()">-</button>
     <button class="grid-item" @click="addAddition()">+</button>
@@ -44,13 +42,10 @@
     </div>
     <h2 class="white-color-text cowculate-result">
       {{ expression
-      }}<span v-if="showText">
-        {{ result }} <br />
-        Number of Moos: {{ moos }}</span
-      >
+      }}<span v-if="showText">{{ result }}<br/>Number of Moos: {{ moos }}</span>
     </h2>
 
-    <h2 style="padding-top: 3em; padding-bottom: -1em; color: #ffffff">
+    <h2 class="moo-cows-go-moo">
       <span v-if="mooMessage"> Moo cows go moo, moo, moo!</span>
     </h2>
   </div>
@@ -63,12 +58,22 @@ export default {
       showText: false,
       expression: "",
       moos: null,
+      showMoos: null,
       result: null,
       mooMessage: false,
       mooTimer: null,
     };
+  },watch: {
+    expression(newVal) {
+      // Execute some function here whenever the value of `expression` changes
+      console.log(`New expression value: ${newVal}`);
+      const mathOperators = /\d[+\-*/]/g; // regular expression for +, -, /, and * operators
+      if (mathOperators.test(newVal)) {
+       this.showText=true
+       this.cowculate()      
+      }      
+    },
   },
-
   methods: {
     cowculate() {
       /* Cow Moo cowculations */
@@ -162,6 +167,7 @@ export default {
       this.expression = "";
       this.showText = false;
       this.result = null;
+      
     },
   },
 };
@@ -192,5 +198,13 @@ export default {
 }
 .grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
+}
+
+.moo-cows-go-moo {
+  position: fixed;
+  top: 95%;
+  left: 40%;
+  
+  color: rgb(125, 66, 15);
 }
 </style>

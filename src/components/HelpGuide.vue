@@ -12,9 +12,18 @@
         the Cow-culator will display the result as: 'Result: 8 Moo's: 3', which
         means that there are three 'Moo's and 2 multiplied by 2 multiplied by 2
         equals 8. Additionally, each input will show up in the array it's used
-        in. Any input field entry or button press will update the values. For 
-        advanced exponential cowculations use two multiplciation symbols consecutively. 
-        For example, 5**3 will equal 125.
+        in. Any input field entry or button press will update the values. For
+        advanced exponential cowculations use two multiplciation symbols
+        consecutively. For example, 5**3 will equal 125.
+      </p>
+      <p class="help-guide-text">
+        Currently, it is set to automatically perform calculations. The "Moo"
+        button only updates the "Moo" count at the moment! There are a few
+        tricks to this, for example when entering numbers the result will only
+        show when a math operator occurs after a number, and a calculation can
+        be performed with another number! The cowculate button will also override
+        when no calculation can be done, for example enter 300 then hit calculate and
+        the result is 300 = 300.
       </p>
       <!-- <h1>{{ helptitletwo }}</h1> -->
     </div>
@@ -38,7 +47,7 @@ export default {
 h1 {
   color: rgb(144, 0, 255);
   border: none;
-  font-size: 1.60em;  
+  font-size: 1.6em;
   margin-bottom: 0em;
 }
 

@@ -163,7 +163,7 @@ header, footer {
 
 
   /* when media sizes adjust, the non-media needs to come first in parsing the code */
-  .green-field-image {
+  .cow-lecture {
     
     
     background-image: url('../images/cow_lecture.png');
@@ -172,11 +172,7 @@ header, footer {
     background-size: 150px auto;
   }
 
-  .professor-message{
-    font-size: xx-small; max-width: 152px; 
-    text-align: center; margin-left: auto; margin-right: auto; background: white;
-    
-  }
+
   
 
   @media only screen and (max-width: 500px) {

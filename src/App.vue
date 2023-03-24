@@ -18,7 +18,7 @@
 }
 
 nav {
-  padding: 30px;
+  padding: 20px;
   background-color: rgb(198, 198, 198);
 }
 
