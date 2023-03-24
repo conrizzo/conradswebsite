@@ -21,9 +21,7 @@
         button only updates the "Moo" count at the moment! There are a few
         tricks to this, for example when entering numbers the result will only
         show when a math operator occurs after a number, and a calculation can
-        be performed with another number! The cowculate button will also override
-        when no calculation can be done, for example enter 300 then hit calculate and
-        the result is 300 = 300.
+        be performed with another number! 
       </p>
       <!-- <h1>{{ helptitletwo }}</h1> -->
     </div>

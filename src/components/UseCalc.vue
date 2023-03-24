@@ -44,10 +44,11 @@
       {{ expression
       }}<span v-if="showText">{{ result }}<br/>Number of Moos: {{ moos }}</span>
     </h2>
-
+    <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
       <span v-if="mooMessage"> Moo cows go moo, moo, moo!</span>
     </h2>
+    </div>
   </div>
 </template>
 <script>
@@ -201,10 +202,21 @@ export default {
 }
 
 .moo-cows-go-moo {
-  position: fixed;
-  top: 95%;
-  left: 40%;
   
-  color: rgb(125, 66, 15);
+  top: 97%;
+  left: 50%;
+  
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  color: rgb(255, 153, 0);
+  
+}
+@media only screen and (max-width: 900px){
+  .moo-cows-go-moo{
+    top: 145%;
+  }
 }
 </style>
