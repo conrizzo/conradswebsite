@@ -207,20 +207,7 @@ header, footer {
   
   }
   
-  .cowculate-result {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    margin-top: 0.01em;
-    font-size: 1.5em;
-    position: absolute;
-    left: 0.14em;
-    right: 0.12em;    
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0em;
-    background: #515151;
-    max-width:10.54em;
-  }
+  
 
   
 

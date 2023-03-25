@@ -37,10 +37,10 @@
         </figcaption>
       </figure>
 
-      <div style="padding-bottom: 1em">
+      <div style="padding-bottom: 1em; margin-left: 0.2em; margin-right: 0.2em;">
         <button
           class="button-35"
-          style="margin-top: 0.25em; margin-left: 0.5em"
+          style="margin-top: 0.25em;"
           @click="toggleSiteMain"
         >
           About the Cowculator
@@ -114,17 +114,18 @@ export default {
   
   <style scoped>
 .professor-cow-figure {
-  width: 246px;
+  width: 250px;
   background-color: white;
   text-align: left;
   margin-bottom: 0em;
+  
   padding: 10px;
   border-radius: 5px;
   
 }
 .professor-cow-figure-text{
   background: white;
-  width: 246px;
+  width: 250px;
   text-align: left;
   margin-left: auto;
   margin-right: auto;

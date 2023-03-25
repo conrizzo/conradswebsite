@@ -17,8 +17,8 @@
         consecutively. For example, 5**3 will equal 125.
       </p>
       <p class="help-guide-text">
-        Currently, it is set to automatically perform calculations. The "Moo"
-        button only updates the "Moo" count at the moment! There are a few
+        Currently, it is set to automatically perform calculations. The "Cowculate"
+        button only updates the "Moo" count. There are a few
         tricks to this, for example when entering numbers the result will only
         show when a math operator occurs after a number, and a calculation can
         be performed with another number! 

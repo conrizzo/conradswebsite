@@ -34,15 +34,15 @@
   </div>
   <div style="padding: 1em; margin-bottom: 5em">
     <div>
-      <input
-        style="width: 12em; font-size: 1.3em"
+      <input class="input-field"
+        
         v-model="expression"
         type="text"
       />
     </div>
     <h2 class="white-color-text cowculate-result">
-      {{ expression
-      }}<span v-if="showText">{{ result }}<br/>Number of Moos: {{ moos }}</span>
+      {{ expression }}<span v-if="errorMessage"><br/></span><span v-if="showText">{{ result }}<br/>Number of Moos: {{ moos }}</span>
+      
     </h2>
     <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
@@ -63,6 +63,7 @@ export default {
       result: null,
       mooMessage: false,
       mooTimer: null,
+      errorMessage: false,
     };
   },watch: {
     expression(newVal) {
@@ -80,6 +81,8 @@ export default {
       /* Cow Moo cowculations */
       let str = this.expression;
       let count = 0;
+      
+      
 
       while (str.indexOf("Moo") !== -1) {
         count++;
@@ -99,7 +102,10 @@ export default {
       // Doesn't actually need to check for null value OR the " = undefined" but may want to change later on not
       // to include the = sign like this
       if (!this.result || this.result == " = " + undefined) {
-        this.result = "You didn't enter any numbers!";
+        this.errorMessage = true;
+        this.result = " Can't cowculate with this input!";
+        /* reset error message */
+        this.errorMessage = false;
       }
     },
     mooButtonHit() {
@@ -203,7 +209,7 @@ export default {
 
 .moo-cows-go-moo {
   
-  top: 97%;
+  top: 110%;
   left: 50%;
   
   margin-left: auto;
@@ -211,12 +217,34 @@ export default {
   text-align: center;
   transform: translate(-50%, -50%);
   position: absolute;
-  color: rgb(255, 153, 0);
+  color: rgb(0, 229, 255);
   
+}
+
+.input-field{
+  width: 267px; font-size: 1.3em
+
 }
 @media only screen and (max-width: 900px){
   .moo-cows-go-moo{
-    top: 145%;
+    top: 100%;
   }
 }
+
+.cowculate-result {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 0.05em;
+    font-size: 1.5em;
+    position: absolute;
+    left: 0em;
+    right:0em;    
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0em;
+    background: #515151;
+    width: 270px;
+    border-radius: 0 0 4px 4px;
+  }
+
 </style>
