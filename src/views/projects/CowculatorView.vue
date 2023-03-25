@@ -115,7 +115,7 @@ export default {
   <style scoped>
 .professor-cow-figure {
   width: 250px;
-  background-color: white;
+  background-color: black;
   text-align: left;
   margin-bottom: 0em;
   
@@ -124,7 +124,7 @@ export default {
   
 }
 .professor-cow-figure-text{
-  background: white;
+  background: rgb(235, 235, 235);
   width: 250px;
   text-align: left;
   margin-left: auto;

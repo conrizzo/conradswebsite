@@ -67,6 +67,7 @@ export default {
     };
   },watch: {
     expression(newVal) {
+      
       // Execute some function here whenever the value of `expression` changes
       console.log(`New expression value: ${newVal}`);
       const mathOperators = /\d[+\-*/]/g; // regular expression for +, -, /, and * operators
@@ -105,7 +106,7 @@ export default {
         this.errorMessage = true;
         this.result = " Can't cowculate with this input!";
         /* reset error message */
-        this.errorMessage = false;
+        
       }
     },
     mooButtonHit() {
@@ -174,7 +175,7 @@ export default {
       this.expression = "";
       this.showText = false;
       this.result = null;
-      
+      this.errorMessage = false;
     },
   },
 };
