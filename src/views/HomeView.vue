@@ -13,33 +13,7 @@
         >, be sure to press the Moo button.
       </p>
 
-      <pre v-bind:class="'language-python'" class="hhh">
-<code>DRINK_COFFEE = True
-website_finished = False
-while website_finished is False:
- print("Is it true that I am drinking coffee? " + "It is " + str(DRINK_COFFEE).lower() + ".")</code></pre>
-      <p class="homeview">
-        Python doesn't officially syntactically have constants so it's
-        capitalized to show it should not be modified "DRINK_COFFEE=True", but
-        the code above emphasizes that work continues, and the coffee drinking
-        will always continue.
-      </p>
-      <pre v-bind:class="'language-python'" class="hhh">
-<code># Defines a Python function to describe coffee
-def describe_coffee(roast_level, origin, flavor_notes):
-    """
-    This function describes a cup of coffee based on its roast level, origin, and flavor notes.
-
-    :param roast_level: The roast level of the coffee, e.g. light, medium, dark.
-    :param origin: The origin of the coffee, e.g. Ethiopia, Colombia, Kenya.
-    :param flavor_notes: The flavor notes of the coffee, e.g. chocolate, caramel, citrus.
-    :return: A string describing the coffee.
-    """
-    return f"This {roast_level}-roasted coffee from {origin} has flavor notes of {flavor_notes}."
-
-# Example usage of the function
-coffee_description = describe_coffee("medium", "Colombia", "chocolate and caramel")
-print(coffee_description)</code></pre>
+      
     </div>
 
     <!-- Aside area -->

@@ -40,13 +40,22 @@
         type="text"
       />
     </div>
+    <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
+      without any input. Then if there is input it pushes the error message to the line below the incorrect input.
+      As long as a correct number math operator sequence is present a correct output is shown.    
+    -->
     <h2 class="white-color-text cowculate-result">
-      {{ expression }}<span v-if="errorMessage"><br/></span><span v-if="showText">{{ result }}<br/>Number of Moos: {{ moos }}</span>
+      {{ expression }}<span v-if="errorMessage && this.expression==''"></span>
+      <span v-else-if="errorMessage"><br/></span>
+      <span v-if="showText">{{ result }}<br/>Number of Moos: {{ moos }}</span>
       
     </h2>
     <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
-      <span v-if="mooMessage"> Moo cows go moo, moo, moo!</span>
+      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/></span>
+      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/></span>
+      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/></span>
+      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/></span>
     </h2>
     </div>
   </div>
@@ -210,7 +219,7 @@ export default {
 
 .moo-cows-go-moo {
   
-  top: 110%;
+  top: 102%;
   left: 50%;
   
   margin-left: auto;
@@ -218,7 +227,7 @@ export default {
   text-align: center;
   transform: translate(-50%, -50%);
   position: absolute;
-  color: rgb(0, 229, 255);
+  color: rgb(255, 255, 255);
   
 }
 

@@ -35,8 +35,9 @@ const routes = [
     
     component: CowculatorView
   },
+    // this could be solved by looping as well, likely better ways to route the id details title..
   {
-    path: '/projects/:id:details',
+    path: '/projects/:id:details:title',
     name: 'ProjectDetailsView',   
     component: ProjectDetailsView,
     props: true

@@ -33,7 +33,7 @@
           class="professor-cow-figure"
         />
         <figcaption class="professor-cow-figure-text">
-          <strong>"I certify that this Cowculator cowculates!"</strong> - Professor Maximillian "Cowculus" Cornelius Cowington, Distinguished Professor of Cowculating.
+          <strong>"I certify that this Cowculator cowculates!"</strong> - Professor Maximillian "Cowculus" Cowington, Distinguished Professor of Cowculating.
         </figcaption>
       </figure>
 

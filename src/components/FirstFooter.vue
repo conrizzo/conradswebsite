@@ -8,7 +8,7 @@
           href="https://github.com/conrizzo"
           >Conrad</a
         >
-        | © 2023 conradswebsite.com <br />
+        | conradswebsite.com © 2023<br />
         unless mentioned otherwise, licensing is
         <a
           class="footer-links"

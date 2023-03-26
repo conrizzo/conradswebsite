@@ -9,7 +9,9 @@
           title: project.title,
           details: project.details,
           id: project.id,
-        },
+        },props: {
+          title: project.title
+        }
       }"
       class="project-link"
     >
@@ -17,7 +19,7 @@
     </router-link>
   </div>
 
-  <div style="height: 500px">
+  <div style="height: 600px">
     <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
   </div>
   <FirstFooter></FirstFooter>
@@ -37,7 +39,8 @@ export default {
           id: 1,
           details: "Do Cowculations with math and moos!",
         },
-        { title: "item 2", id: 2, details: "list page 2" },
+        { title: "Coffee Python", id: 2, details: "list page 2" },
+
         { title: "item 3", id: 3, details: "list page 3" },
       ],
     };
