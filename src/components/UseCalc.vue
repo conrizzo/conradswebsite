@@ -17,11 +17,11 @@
     <button class="grid-item" @click="addSubtraction()">-</button>
     <button class="grid-item" @click="addAddition()">+</button>
     <button class="grid-item" @click="addDecimalPoint()">.</button>
-
-    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
-  
+    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>  
     <button class="grid-item" @click="removeEntry()">
-      <i style="font-size: 1em">&#129104;</i>
+      <div class="arrow-position">
+        <div class="left-arrow"></div>
+      </div>
     </button>
   </div>
 
@@ -215,7 +215,7 @@ export default {
   margin-bottom: 10px;
 }
 .grid-item {
-  background-color: rgba(30, 30, 30, 0.7);
+  background-color: rgba(30, 30, 30, 0.55);
   border: 1px solid rgba(0, 0, 0, 1);
   padding: 15px;
   font-size: 20px;
@@ -223,7 +223,7 @@ export default {
   margin: 2px;
   border-radius: 12px;
   width: 80px;
-  color: rgb(218, 218, 218, 0.9);
+  color: rgba(255, 255, 255, 1)
   
 }
 .grid-item:hover {
@@ -269,6 +269,31 @@ export default {
     width: 270px;
     border-radius: 0 0 4px 4px;
   }
+
+  .arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.left-arrow {
+  border-right: 15px solid #ffffff;
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+
+  position: absolute;
+  
+}
+.arrow-position{
+  margin-bottom: 1em; margin-left: 0.75em;
+}
+
 
 
 /* back arrow */
