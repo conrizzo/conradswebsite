@@ -11,15 +11,18 @@
     <button class="grid-item" @click="addNumberSeven()">7</button>
     <button class="grid-item" @click="addNumberEight()">8</button>
     <button class="grid-item" @click="addNumberNine()">9</button>
-    <button class="grid-item" @click="addMultiplication()">*</button>
+    <button class="grid-item" @click="addMultiplication()">&#215;</button>
     <button class="grid-item" @click="addDivision()">÷</button>
-    <button class="grid-item" @click="addNumberZero()">0</button>
-
-    <!-- override styling to fit in more text for the element below -->
+    <button class="grid-item" @click="addNumberZero()">0</button>    
     <button class="grid-item" @click="addSubtraction()">-</button>
     <button class="grid-item" @click="addAddition()">+</button>
     <button class="grid-item" @click="addDecimalPoint()">.</button>
+
     <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
+  
+    <button class="grid-item" @click="removeEntry()">
+      <i style="font-size: 1em">&#129104;</i>
+    </button>
   </div>
 
   <div style="margin-bottom: 5px">
@@ -52,10 +55,10 @@
     </h2>
     <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
-      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/></span>
-      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/></span>
-      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/></span>
-      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/></span>
+      <span v-if="mooMessage"> Moo cows go moo, moo, moo!<br/>
+        Moo cows go moo, moo, moo!</span>
+      
+      
     </h2>
     </div>
   </div>
@@ -178,6 +181,15 @@ export default {
     addDecimalPoint() {
       this.expression += ".";
     },
+    removeEntry(){
+      if (this.expression != ""){
+        if (this.expression.slice(-3) == "Moo"){
+          this.expression = this.expression.slice(0,-3); 
+        } else{
+          this.expression = this.expression.slice(0,-1);
+      }
+    }
+    },
     /* Reset the array - if some error happens or want to restart */
     clearField() {
       this.numbers = [];
@@ -199,19 +211,20 @@ export default {
   max-width: 250px;
   margin-left: auto;
   margin-right: auto;
-
+  
   margin-bottom: 10px;
 }
 .grid-item {
   background-color: rgba(30, 30, 30, 0.7);
   border: 1px solid rgba(0, 0, 0, 1);
-  padding: 20px;
+  padding: 15px;
   font-size: 20px;
   text-align: center;
   margin: 2px;
   border-radius: 12px;
   width: 80px;
   color: rgb(218, 218, 218, 0.9);
+  
 }
 .grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
@@ -256,5 +269,9 @@ export default {
     width: 270px;
     border-radius: 0 0 4px 4px;
   }
+
+
+/* back arrow */
+
 
 </style>
