@@ -9,7 +9,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     -->
 
-      <h2 style="margin-bottom: 15px; padding-top: 0.5em; color: white">
+      <h2 style="margin-bottom: 0.25em; padding-top: 0.5em; color: white">
         {{ title }} - {{ header }}
       </h2>
 
@@ -115,7 +115,7 @@ export default {
   <style scoped>
 .professor-cow-figure {
   width: 250px;
-  background-color: black;
+  background-color: #515151;
   text-align: left;
   margin-bottom: 0em;
   
