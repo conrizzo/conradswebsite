@@ -1,34 +1,35 @@
 
 
 <template>
-  <div style="padding: 0.1em;">
-   
-      <input class="input-field" v-model="expression" type="text" />
-   
-    
+  <div style="padding: 0.1em">
+    <input class="input-field" v-model="expression" type="text" />
   </div>
   <div class="grid-container cow-image">
     <button class="grid-item" @click="addNumber()">1</button>
     <button class="grid-item" @click="addNumberTwo()">2</button>
     <button class="grid-item" @click="addNumberThree()">3</button>
+    <button class="grid-item-symbols" @click="addDivision()">÷</button>
+
     <button class="grid-item" @click="addNumberFour()">4</button>
     <button class="grid-item" @click="addNumberFive()">5</button>
     <button class="grid-item" @click="addNumberSix()">6</button>
+    <button class="grid-item-symbols" @click="addSubtraction()">-</button>
     <button class="grid-item" @click="addNumberSeven()">7</button>
     <button class="grid-item" @click="addNumberEight()">8</button>
     <button class="grid-item" @click="addNumberNine()">9</button>
-    <button class="grid-item" @click="addMultiplication()">&#215;</button>
-    <button class="grid-item" @click="addDivision()">÷</button>
-    <button class="grid-item" @click="addNumberZero()">0</button>
-    <button class="grid-item" @click="addSubtraction()">-</button>
-    <button class="grid-item" @click="addAddition()">+</button>
+    <button class="grid-item-symbols" @click="addMultiplication()">
+      &#215;
+    </button>
+
     <button class="grid-item" @click="addDecimalPoint()">.</button>
-    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
+    <button class="grid-item" @click="addNumberZero()">0</button>
     <button class="grid-item" @click="removeEntry()">
       <div class="arrow-position">
         <div class="left-arrow"></div>
       </div>
     </button>
+    <button class="grid-item-symbols" @click="addAddition()">+</button>
+    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
   </div>
 
   <div style="margin-bottom: 5px">
@@ -42,7 +43,6 @@
     </button>
   </div>
   <div style="padding: 0.25em; margin-bottom: 3em">
-    
     <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
       As long as a correct number math operator sequence is present a correct output is shown.    
@@ -204,23 +204,37 @@ export default {
   grid-template-columns: auto auto auto;
   background-color: #fff;
   padding: 10px;
-  max-width: 250px;
+  max-width: 300px;
   margin-left: auto;
   margin-right: auto;
-
+  grid-gap: 0.2em;
   margin-bottom: 10px;
+  grid-template-columns: repeat(4, 1fr);
 }
 .grid-item {
   background-color: rgba(30, 30, 30, 0.55);
   border: 1px solid rgba(0, 0, 0, 1);
-  padding: 15px;
-  font-size: 20px;
+  padding: 0.4em 0.6em 0.4em 0.6em;
+  font-size: 1.2em;
   text-align: center;
-  margin: 2px;
   border-radius: 12px;
-  width: 80px;
   color: rgba(255, 255, 255, 1);
 }
+
+.grid-item-symbols {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 1);
+  padding: 0.4em 0.6em 0.4em 0.6em;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.grid-item-symbols:hover {
+  background-color: rgba(186, 186, 186, 0.318);
+}
+
 .grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
@@ -238,7 +252,7 @@ export default {
 }
 
 .input-field {
-  width: 267px;
+  width: 317px;
   font-size: 1.5em;
 }
 @media only screen and (max-width: 900px) {
@@ -249,6 +263,7 @@ export default {
 .cowculate-result {
   padding-top: 1em;
   padding-bottom: 1em;
+  
   margin-top: 0.05em;
   font-size: 1.5em;
   position: absolute;
@@ -258,7 +273,7 @@ export default {
   margin-right: auto;
   padding: 0em;
   background: #515151;
-  width: 270px;
+  width: 320px;
   border-radius: 4px 4px 4px 4px;
 }
 
