@@ -1,7 +1,7 @@
 
 
 <template>
-  <div style="padding: 0.1em">
+  <div style="padding: 0.15em">
     <input class="input-field" v-model="expression" type="text" />
   </div>
   <div class="grid-container cow-image">
@@ -214,7 +214,7 @@ export default {
 .grid-item {
   background-color: rgba(30, 30, 30, 0.55);
   border: 1px solid rgba(0, 0, 0, 1);
-  padding: 0.4em 0.6em 0.4em 0.6em;
+  padding: 0.6em 0.6em 0.6em 0.6em;
   font-size: 1.2em;
   text-align: center;
   border-radius: 12px;
@@ -224,7 +224,7 @@ export default {
 .grid-item-symbols {
   background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(0, 0, 0, 1);
-  padding: 0.4em 0.6em 0.4em 0.6em;
+  padding: 0.6em 0.6em 0.6em 0.6em;
   font-size: 1.2em;
   text-align: center;
   border-radius: 12px;
@@ -253,7 +253,7 @@ export default {
 
 .input-field {
   width: 317px;
-  font-size: 1.5em;
+  font-size: 1.9em;
 }
 @media only screen and (max-width: 900px) {
   .moo-cows-go-moo {
