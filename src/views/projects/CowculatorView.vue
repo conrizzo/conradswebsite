@@ -1,9 +1,11 @@
 
 <template>
+  <div class="title-section"><h1>Cow-culator</h1></div>
   <div>
+    
     <hr class="solid" />
 
-    <div>
+    <div style="padding-top: 2em;">
       <!--
       <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>

@@ -14,6 +14,11 @@
 }
 
 
+.title-section{
+  padding: 10px 0px 20px 0px;
+}
+
+
 @media only screen and (max-width: 900px) {
   .home {
     display: flex;

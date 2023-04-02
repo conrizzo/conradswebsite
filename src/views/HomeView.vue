@@ -2,18 +2,16 @@
 
 
 <template>
+  <div class="title-section"><h1>Welcome to Conrad's Website</h1></div>
   <div class="container custom-background-home-page">
     <!-- Main area -->
-    <div>
-      <h1>Welcome to Conrad's Website</h1>
+    <div style="padding-top:2em;">      
       <p class="homeview">
         Check out the
         <router-link style="text-decoration: none" to="/projects/cowculator"
           >Cowculator</router-link
-        >, be sure to press the Moo button.
+        >, be sure to press the Moo button!
       </p>
-
-      
     </div>
 
     <!-- Aside area -->
@@ -44,7 +42,6 @@ export default {
 
 
 <style scoped>
-
 h1 {
   text-align: center;
   padding-top: 0.25em;
@@ -64,8 +61,6 @@ p.homeview {
   border-radius: 5px;
 }
 
-
-
 .hhh {
   page-break-inside: avoid;
   font-family: monospace;
@@ -82,12 +77,12 @@ p.homeview {
 }
 
 /* Adjust the padding for mobile resolution for this block */
-@media only screen and (max-width: 900px){
-  p.homeview{
+@media only screen and (max-width: 900px) {
+  p.homeview {
     margin-left: 20px;
   }
-  .hhh{
+  .hhh {
     margin-left: 20px;
-}
+  }
 }
 </style>

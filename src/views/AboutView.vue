@@ -5,18 +5,22 @@
     <!-- Main area -->
     <div>
       <h1>Howdy there! Welcome to conradswebsite.com</h1>
+      <br/>
       <p class="paragraph-text">
         This website is made by Conrad Lundberg using
         <a class="text-links" href="https://github.com/vuejs/core"> Vue 3</a>
         (Vue.js). It is hosted on
         <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
           Conrad's GitHub</a
-        >
-        with
+        > with
         <a class="text-links" href="https://pages.github.com/">
           GitHub pages.</a
-        >
+        > 
       </p>
+    <br/>
+    <p class="paragraph-text">
+      I started learning about Vue.JS when I worked on the Bioinformatics Toolkit at Max Planck in Tübingen, Germany.
+    </p>
     </div>
     <!-- Aside area -->
     <AsideContent class="aside"> </AsideContent>

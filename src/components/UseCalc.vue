@@ -81,7 +81,7 @@ export default {
     expression(newVal) {
       // Execute some function here whenever the value of `expression` changes
       console.log(`New expression value: ${newVal}`);
-      const mathOperators = /\d[+\-*/]/g; // regular expression for +, -, /, and * operators
+      const mathOperators = /\d[+\-*/÷\u00D7]/g; // regular expression for +, -, /, and * operators
       if (mathOperators.test(newVal)) {
         this.showText = true;
         this.cowculate();
@@ -102,6 +102,7 @@ export default {
       console.log("Number of 'Moo' occurrences:", count);
       console.log("String after removing 'Moo':", str);
       try {
+        str = str.replace("÷", "/").replace("\u00D7", "*");
         this.result = " = " + eval(str);
       } catch (error) {
         this.result = null;
@@ -169,10 +170,10 @@ export default {
       this.expression += "-";
     },
     addMultiplication() {
-      this.expression += "*";
+      this.expression += "\u00D7";
     },
     addDivision() {
-      this.expression += "/";
+      this.expression += "\u00F7";
     },
     addDecimalPoint() {
       this.expression += ".";
@@ -214,7 +215,7 @@ export default {
 .grid-item {
   background-color: rgba(30, 30, 30, 0.55);
   border: 1px solid rgba(0, 0, 0, 1);
-  padding: 0.6em 0.6em 0.6em 0.6em;
+  padding: 0.8em 0.8em 0.8em 0.8em;
   font-size: 1.2em;
   text-align: center;
   border-radius: 12px;
@@ -222,13 +223,14 @@ export default {
 }
 
 .grid-item-symbols {
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(0, 0, 0, 1);
-  padding: 0.6em 0.6em 0.6em 0.6em;
+  background-color: rgba(198, 198, 198, 0.6);
+  border: 1px solid rgb(0, 0, 0);
+  padding: 0.8em 0.8em 0.8em 0.8em;
   font-size: 1.2em;
   text-align: center;
   border-radius: 12px;
-  color: rgba(255, 255, 255, 1);
+  font-weight: bold;
+  color: rgba(0, 0, 0, 1);
 }
 
 .grid-item-symbols:hover {
@@ -263,7 +265,7 @@ export default {
 .cowculate-result {
   padding-top: 1em;
   padding-bottom: 1em;
-  
+
   margin-top: 0.05em;
   font-size: 1.5em;
   position: absolute;
@@ -298,7 +300,7 @@ export default {
 }
 .arrow-position {
   margin-bottom: 0.8em;
-  margin-left: 0.9em;
+  margin-left: 0.75em;
 }
 
 /* back arrow */
