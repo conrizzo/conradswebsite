@@ -1,19 +1,19 @@
 
 <template>
-  <div class="title-section"><h1>Cow-culator</h1></div>
-  <div>
+  <div style="background-color:rgb(75,75,75);" class="title-section"><h1 style="color: white">
+        {{ title }} - {{ header }}
+      </h1></div>
+  <div style="background-color:rgb(37,37,37);">
     
-    <hr class="solid" />
 
-    <div style="padding-top: 2em;">
+
+    <div style="padding-top: 5em;">
       <!--
       <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     -->
 
-      <h2 style="margin-bottom: 0.25em; padding-top: 0.5em; color: white">
-        {{ title }} - {{ header }}
-      </h2>
+      
 
       <div v-if="showSiteMain">
         <SiteMain
@@ -65,7 +65,7 @@
       />
     </div>
 
-    <hr class="solid" />
+  
   </div>
   <FirstFooter></FirstFooter>
 </template>
@@ -135,6 +135,8 @@ export default {
   border-radius: 5px;
   margin-bottom: 0.66em;
 }
+
+
 
   
   

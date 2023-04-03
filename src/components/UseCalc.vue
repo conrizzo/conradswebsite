@@ -123,7 +123,7 @@ export default {
           this.isActive[i] = false;
         }
 
-      }, 100);
+      }, 150);
 
 
     },
