@@ -92,17 +92,14 @@ export default {
     cowculate() {
       /* Cow Moo cowculations */
       let str = this.expression;
-      let count = 0;
-
-      while (str.indexOf("Moo") !== -1) {
-        count++;
-        str = str.replace("Moo", "");
-      }
+      let count = 0;      
       this.moos = count;
+      
+      str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*").replaceAll("Moo", "");
+
       console.log("Number of 'Moo' occurrences:", count);
-      console.log("String after removing 'Moo':", str);
+      console.log(str);
       try {
-        str = str.replace("÷", "/").replace("\u00D7", "*");
         this.result = " = " + eval(str);
       } catch (error) {
         this.result = null;
