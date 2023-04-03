@@ -5,26 +5,26 @@
     <input class="input-field" v-model="expression" type="text" @input="checkInput" />
   </div>
   <div class="grid-container cow-image">
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[1] }">{{ buttonList[1] }}</button>
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[2] }">{{ buttonList[2] }}</button>
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[3] }">{{ buttonList[3] }}</button>
+    <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">{{ buttonList[1] }}</button>
+    <button class="grid-item" @click="addNumber(2)" :class="{ active: isActive[2] }">{{ buttonList[2] }}</button>
+    <button class="grid-item" @click="addNumber(3)" :class="{ active: isActive[3] }">{{ buttonList[3] }}</button>
 
     <button class="grid-item-symbols" @click="addDivision()">÷</button>
 
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[4] }">{{ buttonList[4] }}</button>
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[5] }">{{ buttonList[5] }}</button>
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[6] }">{{ buttonList[6] }}</button>
+    <button class="grid-item" @click="addNumber(4)" :class="{ active: isActive[4] }">{{ buttonList[4] }}</button>
+    <button class="grid-item" @click="addNumber(5)" :class="{ active: isActive[5] }">{{ buttonList[5] }}</button>
+    <button class="grid-item" @click="addNumber(6)" :class="{ active: isActive[6] }">{{ buttonList[6] }}</button>
     <button class="grid-item-symbols" @click="addSubtraction()">-</button>
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[7] }">{{ buttonList[7] }}</button>
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[8] }">{{ buttonList[8] }}</button>
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[9] }">{{ buttonList[9] }}</button>
+    <button class="grid-item" @click="addNumber(7)" :class="{ active: isActive[7] }">{{ buttonList[7] }}</button>
+    <button class="grid-item" @click="addNumber(8)" :class="{ active: isActive[8] }">{{ buttonList[8] }}</button>
+    <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">{{ buttonList[9] }}</button>
     <button class="grid-item-symbols" @click="addMultiplication()">
       &#215;
     </button>
 
     <button class="grid-item" @click="addDecimalPoint()">.</button>
-    <button class="grid-item" @click="addNumber()" :class="{ active: isActive[0] }">{{ buttonList[0] }}</button>
-    <button class="grid-item" @click="removeEntry()">
+    <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">{{ buttonList[0] }}</button>
+    <button class="grid-item" @click="removeEntry(), checkInput()">
       <div class="arrow-position">
         <div class="left-arrow"></div>
       </div>
@@ -42,8 +42,8 @@
 <div style="padding: 0.25em; margin-bottom: 3em">
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
-        As long as a correct number math operator sequence is present a correct output is shown.    
-      -->
+          As long as a correct number math operator sequence is present a correct output is shown.    
+        -->
     <h2 class="white-color-text cowculate-result">
       {{ expression }}<span v-if="errorMessage && this.expression == ''"></span>
       <span v-else-if="errorMessage"><br /></span>
@@ -162,36 +162,11 @@ export default {
         this.mooMessage = false;
       }, 1500);
     },
-    addNumber() {
-      this.expression += 1;
+    addNumber(buttonValueToAdd) {
+      this.expression += buttonValueToAdd;
+
     },
-    addNumberTwo() {
-      this.expression += 2;
-    },
-    addNumberThree() {
-      this.expression += 3;
-    },
-    addNumberFour() {
-      this.expression += 4;
-    },
-    addNumberFive() {
-      this.expression += 5;
-    },
-    addNumberSix() {
-      this.expression += 6;
-    },
-    addNumberSeven() {
-      this.expression += 7;
-    },
-    addNumberEight() {
-      this.expression += 8;
-    },
-    addNumberNine() {
-      this.expression += 9;
-    },
-    addNumberZero() {
-      this.expression += 0;
-    },
+
     addMoo() {
       this.expression += "Moo";
     },
