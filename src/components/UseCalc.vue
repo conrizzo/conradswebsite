@@ -5,31 +5,51 @@
     <input class="input-field" v-model="expression" type="text" @input="checkInput" />
   </div>
   <div class="grid-container cow-image">
-    <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">{{ buttonList[1] }}</button>
-    <button class="grid-item" @click="addNumber(2)" :class="{ active: isActive[2] }">{{ buttonList[2] }}</button>
-    <button class="grid-item" @click="addNumber(3)" :class="{ active: isActive[3] }">{{ buttonList[3] }}</button>
+    <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">
+      {{ buttonList[1] }}
+    </button>
+    <button class="grid-item" @click="addNumber(2)" :class="{ active: isActive[2] }">
+      {{ buttonList[2] }}
+    </button>
+    <button class="grid-item" @click="addNumber(3)" :class="{ active: isActive[3] }">
+      {{ buttonList[3] }}
+    </button>
 
-    <button class="grid-item-symbols" @click="addDivision()">÷</button>
+    <button class="grid-item-symbols" @click="addMathOperator('\u00F7')">÷</button>
 
-    <button class="grid-item" @click="addNumber(4)" :class="{ active: isActive[4] }">{{ buttonList[4] }}</button>
-    <button class="grid-item" @click="addNumber(5)" :class="{ active: isActive[5] }">{{ buttonList[5] }}</button>
-    <button class="grid-item" @click="addNumber(6)" :class="{ active: isActive[6] }">{{ buttonList[6] }}</button>
-    <button class="grid-item-symbols" @click="addSubtraction()">-</button>
-    <button class="grid-item" @click="addNumber(7)" :class="{ active: isActive[7] }">{{ buttonList[7] }}</button>
-    <button class="grid-item" @click="addNumber(8)" :class="{ active: isActive[8] }">{{ buttonList[8] }}</button>
-    <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">{{ buttonList[9] }}</button>
-    <button class="grid-item-symbols" @click="addMultiplication()">
+    <button class="grid-item" @click="addNumber(4)" :class="{ active: isActive[4] }">
+      {{ buttonList[4] }}
+    </button>
+    <button class="grid-item" @click="addNumber(5)" :class="{ active: isActive[5] }">
+      {{ buttonList[5] }}
+    </button>
+    <button class="grid-item" @click="addNumber(6)" :class="{ active: isActive[6] }">
+      {{ buttonList[6] }}
+    </button>
+    <button class="grid-item-symbols" @click="addMathOperator('-')">-</button>
+    <button class="grid-item" @click="addNumber(7)" :class="{ active: isActive[7] }">
+      {{ buttonList[7] }}
+    </button>
+    <button class="grid-item" @click="addNumber(8)" :class="{ active: isActive[8] }">
+      {{ buttonList[8] }}
+    </button>
+    <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">
+      {{ buttonList[9] }}
+    </button>
+    <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
       &#215;
     </button>
 
-    <button class="grid-item" @click="addDecimalPoint()">.</button>
-    <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">{{ buttonList[0] }}</button>
+    <button class="grid-item" @click="addMathOperator('.')">.</button>
+    <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
+      {{ buttonList[0] }}
+    </button>
     <button class="grid-item" @click="removeEntry(), checkInput()">
       <div class="arrow-position">
         <div class="left-arrow"></div>
       </div>
     </button>
-    <button class="grid-item-symbols" @click="addAddition()">+</button>
+    <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
     <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
   </div>
 
@@ -42,13 +62,15 @@
 <div style="padding: 0.25em; margin-bottom: 3em">
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
-          As long as a correct number math operator sequence is present a correct output is shown.    
-        -->
-    <h2 class="white-color-text cowculate-result">
+                  As long as a correct number math operator sequence is present a correct output is shown.    
+                -->
+    <div class="white-color-text cowculate-result">
       {{ expression }}<span v-if="errorMessage && this.expression == ''"></span>
       <span v-else-if="errorMessage"><br /></span>
-      <span v-if="showText">{{ result }}<br />Number of Moos: {{ moos }}</span>
-    </h2>
+      <span v-if="showText">{{ result }}</span>
+      <span v-if="mooCounter > 0"> <br />Number of Moos: {{ mooCounter }}</span>
+    </div>
+
     <div style="text-align: center">
       <h2 class="moo-cows-go-moo">
         <span v-if="mooMessage">
@@ -62,83 +84,92 @@
 export default {
   data() {
     return {
-      numbers: [],
       showText: false,
       expression: "",
-      moos: null,
-      showMoos: null,
+      cleanedExpression: "",
       result: null,
       mooMessage: false,
       mooTimer: null,
       errorMessage: false,
+      mooCounter: null,
 
-      buttonList: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-      isActive: [false, false, false, false, false, false, false, false, false, false]
-
+      buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      isActive: [false, false, false,false, false, false,false,false,false,false,],
     };
   },
   watch: {
-    expression(newVal) {
-      // Execute some function here whenever the value of `expression` changes
-      console.log(`New expression value: ${newVal}`);
-      const mathOperators = /\d[+\-*/÷\u00D7]/g; // regular expression for +, -, /, and * operators
-      if (mathOperators.test(newVal)) {
+    expression(userInput) {
+      // This expression(userInput) works by taking whatever the user input is from buttons/text field.
+      // The number of Moo's are counted and saved to mooCounter
+      // the math symbols that are displayed but don't actually work in calculations are replaced, along with
+      // the moos.
+      // If the regular expression of a number followed by a math operator is followed such as 3.45*5 then
+      // calculations will be performed automatically!
+      // mathOperators checks for this regex sequence, then if true the text is shown, a cleanedExpression is
+      // used in the cowculate function to evaluate the result!
+
+      let str = userInput;
+
+      this.mooCounter = (str.match(/Moo/g) || []).length;
+      console.log("Number of 'Moo' occurrences:", this.mooCounter);
+      str = str
+        .replaceAll("÷", "/")
+        .replaceAll("\u00D7", "*")
+        .replaceAll("Moo", "");
+
+      // This decides whether calculatons can actully be done
+      const mathOperators = /^\d+(\.\d+)?[+\-*/÷\u00D7]/g; // regular expression for +, -, /, and * operators
+
+      if (mathOperators.test(str)) {
         this.showText = true;
+        this.cleanedExpression = str;
         this.cowculate();
       }
     },
   },
   methods: {
     checkInput() {
-
-
       let str = this.expression;
       const lastDigitIndex = str.slice(-1);
-      console.log(lastDigitIndex)
-      if (lastDigitIndex === '0') {
+      console.log(lastDigitIndex);
+      if (lastDigitIndex === "0") {
         this.isActive[0] = true;
-      }
-      else if (lastDigitIndex === '1') {
+      } else if (lastDigitIndex === "1") {
         this.isActive[1] = true;
-      } else if (lastDigitIndex === '2') {
+      } else if (lastDigitIndex === "2") {
         this.isActive[2] = true;
-      } else if (lastDigitIndex === '3') {
+      } else if (lastDigitIndex === "3") {
         this.isActive[3] = true;
-      } else if (lastDigitIndex === '4') {
+      } else if (lastDigitIndex === "4") {
         this.isActive[4] = true;
-      } else if (lastDigitIndex === '5') {
+      } else if (lastDigitIndex === "5") {
         this.isActive[5] = true;
-      } else if (lastDigitIndex === '6') {
+      } else if (lastDigitIndex === "6") {
         this.isActive[6] = true;
-      } else if (lastDigitIndex === '7') {
+      } else if (lastDigitIndex === "7") {
         this.isActive[7] = true;
-      } else if (lastDigitIndex === '8') {
+      } else if (lastDigitIndex === "8") {
         this.isActive[8] = true;
-      } else if (lastDigitIndex === '9') {
+      } else if (lastDigitIndex === "9") {
         this.isActive[9] = true;
       }
       setTimeout(() => {
-
         for (let i = 0; i < 10; i++) {
           this.isActive[i] = false;
         }
-
       }, 150);
-
-
     },
     cowculate() {
       /* Cow Moo cowculations */
-      let str = this.expression;
-      let count = 0;
-      this.moos = count;
 
-      str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*").replaceAll("Moo", "");
+      let str = this.cleanedExpression;
 
-      console.log("Number of 'Moo' occurrences:", count);
-      console.log(str);
       try {
-        this.result = " = " + eval(str);
+        if (parseFloat(str) === eval(str)) {
+          this.result = "";
+        } else {
+          this.result = " = " + eval(str);
+        }
       } catch (error) {
         this.result = null;
       }
@@ -164,6 +195,9 @@ export default {
     },
     addNumber(buttonValueToAdd) {
       this.expression += buttonValueToAdd;
+    },
+    addMathOperator(mathOperatorToAdd){
+      this.expression += mathOperatorToAdd
 
     },
 
@@ -173,21 +207,7 @@ export default {
     mooDialogue() {
       this.showText = true;
     },
-    addAddition() {
-      this.expression += "+";
-    },
-    addSubtraction() {
-      this.expression += "-";
-    },
-    addMultiplication() {
-      this.expression += "\u00D7";
-    },
-    addDivision() {
-      this.expression += "\u00F7";
-    },
-    addDecimalPoint() {
-      this.expression += ".";
-    },
+    
     removeEntry() {
       if (this.expression != "") {
         if (this.expression.slice(-3) == "Moo") {
@@ -199,11 +219,12 @@ export default {
     },
     /* Reset the array - if some error happens or want to restart */
     clearField() {
-      this.numbers = [];
-      this.expression = "";
+      this.expression = ""; // am unfiltered raw user input
+      this.cleanedExpression = ""; // a cleaned version of user input
       this.showText = false;
-      this.result = null;
+      this.result = null; // final result
       this.errorMessage = false;
+      this.mooCounter = 0; // count Moo's
     },
   },
 };
