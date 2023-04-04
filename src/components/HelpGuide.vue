@@ -18,7 +18,7 @@
       </p>
       <p class="help-guide-text">
         Currently, it is set to automatically perform calculations. The "Cowculate"
-        button only updates the "Moo" count. There are a few
+        button is sort of an "override" to force any calculation. There are a few
         tricks to this, for example when entering numbers the result will only
         show when a math operator occurs after a number, and a calculation can
         be performed with another number! 

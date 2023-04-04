@@ -217,7 +217,7 @@ export default {
       let str = this.cleanedExpression;
 
       try {
-        if (parseFloat(str) === eval(str)) {
+        if (parseFloat(str) === eval(str) && !(/[+\-*/÷\u00D7]/).test(str)) {
           this.result = "";
         } else {
           this.result = " = " + eval(str);
