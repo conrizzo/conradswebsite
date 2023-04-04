@@ -2,12 +2,11 @@
 <template>
   <div style="background-color:rgb(75,75,75);" class="title-section"><h1 style="color: white">
         {{ title }} - {{ header }}
+        
       </h1></div>
   <div style="background-color:rgb(37,37,37);">
-    
-
-
-    <div style="padding-top: 5em;">
+    <h2> Moo×Moo is a fun expression. Moo×Moo×Moo is even better!</h2>
+    <div style="padding-top: 3em;">
       <!--
       <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -134,6 +133,11 @@ export default {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 0.66em;
+}
+h2{
+  padding-top: 2em;
+  padding-bottom: 0em;
+  color:#d1d1d1;
 }
 
 

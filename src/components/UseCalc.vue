@@ -5,6 +5,10 @@
     <input class="input-field" v-model="expression" type="text" @input="checkInput" />
   </div>
   <div class="grid-container cow-image">
+    <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
+      &#215;
+    </button>
+    
     <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">
       {{ buttonList[1] }}
     </button>
@@ -36,21 +40,22 @@
     <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">
       {{ buttonList[9] }}
     </button>
-    <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
-      &#215;
-    </button>
-
-    <button class="grid-item" @click="addMathOperator('.')">.</button>
-    <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
-      {{ buttonList[0] }}
-    </button>
+    <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
     <button class="grid-item" @click="removeEntry(), checkInput()">
       <div class="arrow-position">
         <div class="left-arrow"></div>
       </div>
     </button>
-    <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
+    
+    <button class="grid-item" @click="addMathOperator('.')">.</button>
+    <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
+      {{ buttonList[0] }}
+    </button>
     <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
+    
+    
+    
+    
   </div>
 
   <div style="margin-bottom: 5px">
@@ -69,6 +74,7 @@
       <span v-else-if="errorMessage"><br /></span>
       <span v-if="showText">{{ result }}</span>
       <span v-if="mooCounter > 0"> <br />Number of Moos: {{ mooCounter }}</span>
+      <span v-if="superMoo"> <br />{{mooPlication}}</span>
     </div>
 
     <div style="text-align: center">
@@ -93,6 +99,9 @@ export default {
       errorMessage: false,
       mooCounter: null,
 
+      superMoo: false,
+      mooPlication: "",
+
       buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
       isActive: [false, false, false,false, false, false,false,false,false,false,],
     };
@@ -112,6 +121,49 @@ export default {
 
       this.mooCounter = (str.match(/Moo/g) || []).length;
       console.log("Number of 'Moo' occurrences:", this.mooCounter);
+
+      if (str.includes("Moo\u00D7Moo") || str.includes("Moo+Moo")){       
+        this.superMoo=true;
+        var mooNumber = 2;
+        let mooString = "M";
+        const mooMultiplication = "Moo\u00D7Moo"; 
+        const mooAddition = "Moo+Moo";
+        const mooSubtraction = "Moo-Moo";
+        
+      if (str.includes(mooMultiplication)) {
+      let count = 0;
+      let index = str.indexOf(mooMultiplication);
+      while (index !== -1) {
+        count++;
+        index = str.indexOf(mooMultiplication, index + 1);
+      }
+      for (let i = 0; i < count; i++){
+        mooNumber*=mooNumber
+      }        
+      for (let i = 0; i < mooNumber; i++){
+        mooString+="o"
+      }
+      console.log(count, mooNumber, mooString);
+        } else if (str.includes(mooAddition)) {
+      let count = (str.match(/Moo/g) || []).length;
+      mooString = "M";
+      for (let i = 0; i < count; i++){
+        mooString += "oo";
+      }
+      } else if (str.includes(mooSubtraction)) {
+      let count = (str.match(/Moo/g) || []).length;
+      mooString = "M";
+      for (let i = 0; i < count-1; i++){
+        mooString += "o";
+      }
+      }
+
+        this.mooPlication = mooString
+
+        // moo addition
+        
+      }
+      
       str = str
         .replaceAll("÷", "/")
         .replaceAll("\u00D7", "*")
@@ -174,6 +226,9 @@ export default {
         this.result = null;
       }
     },
+    factorialize(num) {         
+            return (num * this.factorialize(num - 1));        
+      },
     noEntry() {
       // check if this.result is empty or is only the " = undefined" combined string value
       // Doesn't actually need to check for null value OR the " = undefined" but may want to change later on not
@@ -225,6 +280,7 @@ export default {
       this.result = null; // final result
       this.errorMessage = false;
       this.mooCounter = 0; // count Moo's
+      this.superMoo = false;
     },
   },
 };
