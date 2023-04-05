@@ -4,7 +4,7 @@
         {{ title }} - {{ header }}
         
       </h1></div>
-  <div style="background-color:rgb(37,37,37);">
+  <div style="background-color:rgb(60,60,60);">
     <h2> Moo×Moo is a fun expression. Moo×Moo×Moo is even better!</h2>
     <div style="padding-top: 3em;">
       <!--

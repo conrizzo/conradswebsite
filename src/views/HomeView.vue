@@ -10,7 +10,11 @@
         Check out the
         <router-link style="text-decoration: none" to="/projects/cowculator"
           >Cowculator</router-link
-        >, be sure to press the Moo button!
+        >, be sure to press the Moo button! 
+        <br><br/>
+        This website is now an ongoing project. The main point isn't the styling and 
+        how polished everything looks, though some time has gone into making it presentable. The idea is to design some 
+        applications using vue.js, and after some practice make some useful/fun applications.
       </p>
     </div>
 
