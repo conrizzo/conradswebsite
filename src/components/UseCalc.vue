@@ -330,12 +330,7 @@ export default {
             }
             if (node.value === "/") {
               return left / right;
-            }
-            
-            
-
-        
-    
+      }   
     },setFactorialize(num){
       if (!isNaN(num)){
       var factorializeAnswer = this.factorialize(num) 

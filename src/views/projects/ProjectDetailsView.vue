@@ -114,7 +114,27 @@
         this.result = null;
       }
     },</code>
-</pre>
+</pre><p class="homeview">Here is the evaluate helper function which calculates nodes on the tree data structure:</p>
+<pre v-bind:class="'language-JavaScript'" class="hhh"><code>evaluate(node) {
+      if (node.left === null && node.right === null) {
+        return node.value;
+      }
+      var left = this.evaluate(node.left);
+      var right = this.evaluate(node.right);
+      if (node.value === "+") {
+        return left + right;
+      }
+      if (node.value === "-") {
+        return left - right;
+      }
+      if (node.value === "*") {
+        return left * right;
+      }
+      if (node.value === "/") {
+        return left / right;
+      }
+}</code></pre>
+
 
       
     </div>

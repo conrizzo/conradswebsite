@@ -90,7 +90,7 @@ export default {
       title: "Cow-culator",
       header: "Alpha-Build-2.0",
       text:
-        "Made in Tübingen, Germany, and built using Vue 3. The cowculations use a self-made tree structure, not JavaScript eval() function!" +
+        "Made in Tübingen, Germany, and built using Vue 3. The cowculations use a self-made tree structure, not JavaScript eval() function! " +
         "From top to bottom this modal is made of props: title, header, text, imagePath, and url. A rough approximation of programming languages used to build this below: ",
       url: "https://github.com/conrizzo/conradswebsite",
       showSiteMain: false,
