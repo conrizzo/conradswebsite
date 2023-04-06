@@ -312,31 +312,31 @@ export default {
         this.result = null;
       }
     },
-      // Perform calculations
-      evaluate(node) {
-            if (node.left === null && node.right === null) {
-              return node.value;
-            }
-            var left = this.evaluate(node.left);
-            var right = this.evaluate(node.right);
-            if (node.value === "+") {
-              return left + right;
-            }
-            if (node.value === "-") {
-              return left - right;
-            }
-            if (node.value === "*") {
-              return left * right;
-            }
-            if (node.value === "/") {
-              return left / right;
-      }   
-    },setFactorialize(num){
-      if (!isNaN(num)){
-      var factorializeAnswer = this.factorialize(num) 
-      console.log(factorializeAnswer)
-      this.expression = factorializeAnswer
-      
+    // Perform calculations
+    evaluate(node) {
+      if (node.left === null && node.right === null) {
+        return node.value;
+      }
+      var left = this.evaluate(node.left);
+      var right = this.evaluate(node.right);
+      if (node.value === "+") {
+        return left + right;
+      }
+      if (node.value === "-") {
+        return left - right;
+      }
+      if (node.value === "*") {
+        return left * right;
+      }
+      if (node.value === "/") {
+        return left / right;
+      }
+    }, setFactorialize(num) {
+      if (!isNaN(num)) {
+        var factorializeAnswer = this.factorialize(num)
+        console.log(factorializeAnswer)
+        this.expression = factorializeAnswer
+
       }
 
      
@@ -402,6 +402,8 @@ export default {
       this.errorMessage = false;
       this.mooCounter = 0; // count Moo's
       this.superMoo = false;
+      this.userTokens = [];
+      this.operators = [];
     },
   },
 };
