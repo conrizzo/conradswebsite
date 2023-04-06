@@ -90,8 +90,8 @@ export default {
       title: "Cow-culator",
       header: "Alpha-Build-2.0",
       text:
-        "Made in Tübingen, Germany, and built using Vue 3. Click anywhere on the screen outside this modal to exit! This modal is a component that is an array of 5 props and additional text. " +
-        "From top to bottom they are props: title, header, text, imagePath, and url. A rough approximation of programming languages used to build this below: ",
+        "Made in Tübingen, Germany, and built using Vue 3. The cowculations use a self-made tree structure, not JavaScript eval() function!" +
+        "From top to bottom this modal is made of props: title, header, text, imagePath, and url. A rough approximation of programming languages used to build this below: ",
       url: "https://github.com/conrizzo/conradswebsite",
       showSiteMain: false,
       helpTitle: "How to use:",

@@ -52,6 +52,7 @@
       {{ buttonList[0] }}
     </button>
     <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
+    <button class="grid-item" @click="setFactorialize(this.expression)">n!</button>
     
     
     
@@ -104,6 +105,9 @@ export default {
 
       buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
       isActive: [false, false, false,false, false, false,false,false,false,false,],
+
+      userTokens: [],
+      operators: [],
     };
   },
   watch: {
@@ -164,10 +168,7 @@ export default {
         
       }
       
-      str = str
-        .replaceAll("÷", "/")
-        .replaceAll("\u00D7", "*")
-        .replaceAll("Moo", "");
+      str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*").replaceAll("Moo", "");
 
       // This decides whether calculatons can actully be done
       const mathOperators = /^\d+(\.\d+)?[+\-*/÷\u00D7]/g; // regular expression for +, -, /, and * operators
@@ -215,19 +216,144 @@ export default {
       /* Cow Moo cowculations */
 
       let str = this.cleanedExpression;
-
+      // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
       try {
-        if (parseFloat(str) === eval(str) && !(/[+\-*/÷\u00D7]/).test(str)) {
+        if ( !(/[+\-*/÷\u00D7]/).test(str) ) {
           this.result = "";
-        } else {
-          this.result = " = " + eval(str);
         }
+        else{       
+          
+          class Node {
+            constructor(value, left = null, right = null) {
+              this.value = value;
+              this.left = left;
+              this.right = right;
+            }
+          }
+          //this.cleanedExpression = "2*4+5"
+          console.log(this.cleanedExpression)
+          var input = this.cleanedExpression
+          // Finally!, a neat way to solve this is to remove any invalid operators for calculations instead of modifying the whole tree
+          if ('+-*/'.indexOf(input.slice(-1)) !== -1) {
+            input = input.slice(0, -1);
+          }
+          //console.log(input)
+          let currentNumber = "";
+          for (let i = 0; i < input.length; i++) {
+            const char = input.charAt(i);
+            if (!isNaN(char) || char === ".") {
+              currentNumber += char;
+            } else {
+              if (currentNumber !== "") {
+                this.userTokens.push(new Node(parseFloat(currentNumber)));
+                currentNumber = "";
+              }
+              if (char === "+" || char === "-") {
+                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                this.operators.push(char);
+              }
+              else if (char === "*" || char === "/") {
+                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/")) {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                this.operators.push(char);
+              }
+              else if (char === "(") {
+                this.operators.push(char);
+              }
+              else if (char === ")") {
+                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                if (this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
+                  this.operators.pop();
+                }
+              }
+            }
+          }
+
+          // Add the last number if there is one
+          if (currentNumber !== "") {
+            this.userTokens.push(new Node(parseFloat(currentNumber)));
+          }
+
+          // Perform remaining operations
+          while (this.operators.length > 0) {
+            const op = this.operators.pop();
+            const right = this.userTokens.pop();
+            const left = this.userTokens.pop();
+            const node = new Node(op, left, right);
+            this.userTokens.push(node);
+          }
+
+          const result = this.evaluate(this.userTokens[0]);
+          console.log(result); 
+          this.result = " = " + result
+          this.userTokens = []
+          this.operators = []
+ 
+        }
+
       } catch (error) {
         this.result = null;
       }
     },
-    factorialize(num) {         
-            return (num * this.factorialize(num - 1));        
+      // Perform calculations
+      evaluate(node) {
+            if (node.left === null && node.right === null) {
+              return node.value;
+            }
+            var left = this.evaluate(node.left);
+            var right = this.evaluate(node.right);
+            if (node.value === "+") {
+              return left + right;
+            }
+            if (node.value === "-") {
+              return left - right;
+            }
+            if (node.value === "*") {
+              return left * right;
+            }
+            if (node.value === "/") {
+              return left / right;
+            }
+            
+            
+
+        
+    
+    },setFactorialize(num){
+      if (!isNaN(num)){
+      var factorializeAnswer = this.factorialize(num) 
+      console.log(factorializeAnswer)
+      this.expression = factorializeAnswer
+      
+      }
+
+     
+       },
+      factorialize(num) {         
+      if (num < 0) 
+        return -1;
+      else if (num == 0) 
+        return 1;
+      else {
+        return (num * this.factorialize(num - 1));
+      } 
       },
     noEntry() {
       // check if this.result is empty or is only the " = undefined" combined string value

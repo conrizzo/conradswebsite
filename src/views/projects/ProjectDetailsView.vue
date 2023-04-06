@@ -8,6 +8,115 @@
       <router-link style="text-decoration: none" to="/projects/cowculator"
         >Cowculator</router-link
       >
+      <p class="homeview">Here is how the cowculator cowculates. An additional evaluate function is also used.</p>
+      <pre v-bind:class="'language-JavaScript'" class="hhh">
+<code>cowculate() {
+      /* Cow Moo cowculations */
+
+      let str = this.cleanedExpression;
+      // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
+      try {
+        if ( !(/[+\-*/÷\u00D7]/).test(str) ) {
+          this.result = "";
+        }
+        else{       
+          
+          class Node {
+            constructor(value, left = null, right = null) {
+              this.value = value;
+              this.left = left;
+              this.right = right;
+            }
+          }
+          //this.cleanedExpression = "2*4+5"
+          console.log(this.cleanedExpression)
+          var input = this.cleanedExpression
+          // Finally!, a neat way to solve this is to remove any invalid operators for calculations instead of modifying the whole tree
+          if ('+-*/'.indexOf(input.slice(-1)) !== -1) {
+            input = input.slice(0, -1);
+          }
+
+          //console.log(input)
+
+
+
+          let currentNumber = "";
+          for (let i = 0; i &lt; input.length; i++) {
+            const char = input.charAt(i);
+            if (!isNaN(char) || char === ".") {
+              currentNumber += char;
+            } else {
+              if (currentNumber !== "") {
+                this.userTokens.push(new Node(parseFloat(currentNumber)));
+                currentNumber = "";
+              }
+              if (char === "+" || char === "-") {
+                while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                this.operators.push(char);
+              }
+              else if (char === "*" || char === "/") {
+                while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/")) {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                this.operators.push(char);
+              }
+              else if (char === "(") {
+                this.operators.push(char);
+              }
+              else if (char === ")") {
+                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                if (this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
+                  this.operators.pop();
+                }
+              }
+            }
+          }
+
+          // Add the last number if there is one
+          if (currentNumber !== "") {
+            this.userTokens.push(new Node(parseFloat(currentNumber)));
+          }
+
+          // Perform remaining operations
+          while (this.operators.length > 0) {
+            const op = this.operators.pop();
+            const right = this.userTokens.pop();
+            const left = this.userTokens.pop();
+            const node = new Node(op, left, right);
+            this.userTokens.push(node);
+          }
+
+          const result = this.evaluate(this.userTokens[0]);
+          console.log(result); 
+          this.result = " = " + result
+          this.userTokens = []
+          this.operators = []
+ 
+        }
+
+      } catch (error) {
+        this.result = null;
+      }
+    },</code>
+</pre>
+
+      
     </div>
     <div v-show="id == 2">
       <router-link style="text-decoration: none" to="/projects/cowculator"

@@ -14,7 +14,8 @@
         equals 8. Additionally, each input will show up in the array it's used
         in. Any input field entry or button press will update the values. For
         advanced exponential cowculations use two multiplciation symbols
-        consecutively. For example, 5**3 will equal 125.
+        consecutively. For example, 5**3 will equal 125. Currently, the factorial
+        button only works on individual numbers.
       </p>
       <p class="help-guide-text">
         Currently, it is set to automatically perform calculations. The "Cowculate"
