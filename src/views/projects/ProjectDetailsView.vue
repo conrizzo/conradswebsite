@@ -202,17 +202,20 @@ print(coffee_description)</code></pre>
       >
     </div>
 
-    <FirstFooter></FirstFooter>
+    
   </div>
+  <FirstFooter></FirstFooter>
 </template>
 
 <script>
 import Prism from "prismjs";
+import FirstFooter from "@/components/FirstFooter.vue";
 
 export default {
-  
-  props: ["title", "id", "details"],
-  
+  components: {
+    FirstFooter,
+  },  
+  props: ["title", "id", "details"],  
   mounted() {
     Prism.highlightAll();
   }
