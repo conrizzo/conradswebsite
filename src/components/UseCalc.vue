@@ -214,6 +214,10 @@ export default {
     },
     cowculate() {
       /* Cow Moo cowculations */
+      
+      // clears all number tokens and math operations from previous inputs
+      this.userTokens = []
+      this.operators = []
 
       let str = this.cleanedExpression;
       console.log(this.cleanedExpression)
@@ -331,8 +335,7 @@ export default {
           if (!Number.isNaN(result)) {
             this.result = " = " + result
           }
-          this.userTokens = []
-          this.operators = []
+          
 
         }
 
