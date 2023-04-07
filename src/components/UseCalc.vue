@@ -8,7 +8,7 @@
     <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
       &#215;
     </button>
-    
+
     <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">
       {{ buttonList[1] }}
     </button>
@@ -46,17 +46,17 @@
         <div class="left-arrow"></div>
       </div>
     </button>
-    
+
     <button class="grid-item" @click="addMathOperator('.')">.</button>
     <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
       {{ buttonList[0] }}
     </button>
     <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
     <button class="grid-item" @click="setFactorialize(this.expression)">n!</button>
-    
-    
-    
-    
+
+
+
+
   </div>
 
   <div style="margin-bottom: 5px">
@@ -68,14 +68,14 @@
 <div style="padding: 0.25em; margin-bottom: 3em">
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
-                  As long as a correct number math operator sequence is present a correct output is shown.    
-                -->
+                    As long as a correct number math operator sequence is present a correct output is shown.    
+                  -->
     <div class="white-color-text cowculate-result">
       {{ expression }}<span v-if="errorMessage && this.expression == ''"></span>
       <span v-else-if="errorMessage"><br /></span>
       <span v-if="showText">{{ result }}</span>
       <span v-if="mooCounter > 0"> <br />Number of Moos: {{ mooCounter }}</span>
-      <span v-if="superMoo"> <br />{{mooPlication}}</span>
+      <span v-if="superMoo"> <br />{{ mooPlication }}</span>
     </div>
 
     <div style="text-align: center">
@@ -104,7 +104,7 @@ export default {
       mooPlication: "",
 
       buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-      isActive: [false, false, false,false, false, false,false,false,false,false,],
+      isActive: [false, false, false, false, false, false, false, false, false, false,],
 
       userTokens: [],
       operators: [],
@@ -126,52 +126,52 @@ export default {
       this.mooCounter = (str.match(/Moo/g) || []).length;
       console.log("Number of 'Moo' occurrences:", this.mooCounter);
 
-      if (str.includes("Moo\u00D7Moo") || str.includes("Moo+Moo")){       
-        this.superMoo=true;
+      if (str.includes("Moo\u00D7Moo") || str.includes("Moo+Moo")) {
+        this.superMoo = true;
         var mooNumber = 2;
         let mooString = "M";
-        const mooMultiplication = "Moo\u00D7Moo"; 
+        const mooMultiplication = "Moo\u00D7Moo";
         const mooAddition = "Moo+Moo";
         const mooSubtraction = "Moo-Moo";
-        
-      if (str.includes(mooMultiplication)) {
-      let count = 0;
-      let index = str.indexOf(mooMultiplication);
-      while (index !== -1) {
-        count++;
-        index = str.indexOf(mooMultiplication, index + 1);
-      }
-      for (let i = 0; i < count; i++){
-        mooNumber*=mooNumber
-      }        
-      for (let i = 0; i < mooNumber; i++){
-        mooString+="o"
-      }
-      console.log(count, mooNumber, mooString);
+
+        if (str.includes(mooMultiplication)) {
+          let count = 0;
+          let index = str.indexOf(mooMultiplication);
+          while (index !== -1) {
+            count++;
+            index = str.indexOf(mooMultiplication, index + 1);
+          }
+          for (let i = 0; i < count; i++) {
+            mooNumber *= mooNumber
+          }
+          for (let i = 0; i < mooNumber; i++) {
+            mooString += "o"
+          }
+          console.log(count, mooNumber, mooString);
         } else if (str.includes(mooAddition)) {
-      let count = (str.match(/Moo/g) || []).length;
-      mooString = "M";
-      for (let i = 0; i < count; i++){
-        mooString += "oo";
-      }
-      } else if (str.includes(mooSubtraction)) {
-      let count = (str.match(/Moo/g) || []).length;
-      mooString = "M";
-      for (let i = 0; i < count-1; i++){
-        mooString += "o";
-      }
-      }
+          let count = (str.match(/Moo/g) || []).length;
+          mooString = "M";
+          for (let i = 0; i < count; i++) {
+            mooString += "oo";
+          }
+        } else if (str.includes(mooSubtraction)) {
+          let count = (str.match(/Moo/g) || []).length;
+          mooString = "M";
+          for (let i = 0; i < count - 1; i++) {
+            mooString += "o";
+          }
+        }
 
         this.mooPlication = mooString
 
         // moo addition
-        
+
       }
-      
+
       str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*").replaceAll("Moo", "");
 
       // This decides whether calculatons can actully be done
-      const mathOperators = /^\d+(\.\d+)?[+\-*/÷\u00D7]/g; // regular expression for +, -, /, and * operators
+      const mathOperators = /([-+*/%^()]|\d+(\.\d+)?)/g; // regular expression for +, -, /, and * operators
 
       if (mathOperators.test(str)) {
         this.showText = true;
@@ -216,13 +216,14 @@ export default {
       /* Cow Moo cowculations */
 
       let str = this.cleanedExpression;
+      console.log(this.cleanedExpression)
       // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
       try {
-        if ( !(/[+\-*/÷\u00D7]/).test(str) ) {
+        if (!(/[+\-*/÷\u00D7]/).test(str)) {
           this.result = "";
         }
-        else{       
-          
+        else {
+          console.log("else expression")
           class Node {
             constructor(value, left = null, right = null) {
               this.value = value;
@@ -230,18 +231,40 @@ export default {
               this.right = right;
             }
           }
-          //this.cleanedExpression = "2*4+5"
+
+          //this.cleanedExpression = "-4*-2"
+
           console.log(this.cleanedExpression)
+          //this.cleanedExpression = "4--2+3"
           var input = this.cleanedExpression
-          // Finally!, a neat way to solve this is to remove any invalid operators for calculations instead of modifying the whole tree
-          if ('+-*/'.indexOf(input.slice(-1)) !== -1) {
+          console.log(input)
+          let begin_expression_negative = ""
+          if ((/^-$/).test(input)) {
+            console.log("the input 2: ", input)
             input = input.slice(0, -1);
+
+          } else if ((/^-\d+(\.\d+)?$/).test(input)) {
+            console.log("the input 3: ", input)
+            begin_expression_negative = input
+            input = input.slice(0, -input.length);
+
           }
-          //console.log(input)
+          // Finally!, a neat way to solve this is to remove any invalid operators for calculations instead of modifying the whole tree
+          // Now this checks for an additional operator with a number, no calculations until it's a valid input
+          if ('+-*/'.indexOf(input.slice(-1)) !== -1) {
+            input = input.slice(0, -2);
+            console.log("the input 1: ", input)
+
+          }
+
+          console.log("Final result", begin_expression_negative + input)
+          console.log("Final input", input)
+
+
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
-            if (!isNaN(char) || char === ".") {
+            if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))))) {
               currentNumber += char;
             } else {
               if (currentNumber !== "") {
@@ -301,11 +324,16 @@ export default {
           }
 
           const result = this.evaluate(this.userTokens[0]);
-          console.log(result); 
-          this.result = " = " + result
+          console.log("final result", result); // should output 0 for input "2*2-2*2"
+          // Good article about using NaN in JavaScript. 
+          // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
+          // This method works below, but others could also work.
+          if (!Number.isNaN(result)) {
+            this.result = " = " + result
+          }
           this.userTokens = []
           this.operators = []
- 
+
         }
 
       } catch (error) {
@@ -319,10 +347,12 @@ export default {
       }
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
+      console.log(left, right)
       if (node.value === "+") {
         return left + right;
       }
       if (node.value === "-") {
+
         return left - right;
       }
       if (node.value === "*") {
@@ -332,24 +362,21 @@ export default {
         return left / right;
       }
     }, setFactorialize(num) {
-      if (!isNaN(num)) {
+      if (!Number.isNaN(num)) {
         var factorializeAnswer = this.factorialize(num)
         console.log(factorializeAnswer)
         this.expression = factorializeAnswer
-
       }
-
-     
-       },
-      factorialize(num) {         
-      if (num < 0) 
+    },
+    factorialize(num) {
+      if (num < 0)
         return -1;
-      else if (num == 0) 
+      else if (num == 0)
         return 1;
       else {
         return (num * this.factorialize(num - 1));
-      } 
-      },
+      }
+    },
     noEntry() {
       // check if this.result is empty or is only the " = undefined" combined string value
       // Doesn't actually need to check for null value OR the " = undefined" but may want to change later on not
@@ -372,7 +399,7 @@ export default {
     addNumber(buttonValueToAdd) {
       this.expression += buttonValueToAdd;
     },
-    addMathOperator(mathOperatorToAdd){
+    addMathOperator(mathOperatorToAdd) {
       this.expression += mathOperatorToAdd
 
     },
@@ -383,7 +410,7 @@ export default {
     mooDialogue() {
       this.showText = true;
     },
-    
+
     removeEntry() {
       if (this.expression != "") {
         if (this.expression.slice(-3) == "Moo") {

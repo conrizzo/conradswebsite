@@ -14,13 +14,14 @@
       /* Cow Moo cowculations */
 
       let str = this.cleanedExpression;
+      console.log(this.cleanedExpression)
       // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
       try {
-        if ( !(/[+\-*/÷\u00D7]/).test(str) ) {
-          this.result = "";
+        if (!(/[+\-*/÷\u00D7]/).test(str)) {
+          this.result = "a";
         }
-        else{       
-          
+        else {
+          console.log("else expression")
           class Node {
             constructor(value, left = null, right = null) {
               this.value = value;
@@ -28,22 +29,40 @@
               this.right = right;
             }
           }
-          //this.cleanedExpression = "2*4+5"
+
+          //this.cleanedExpression = "-4*-2"
+
           console.log(this.cleanedExpression)
+          //this.cleanedExpression = "4--2+3"
           var input = this.cleanedExpression
-          // Finally!, a neat way to solve this is to remove any invalid operators for calculations instead of modifying the whole tree
-          if ('+-*/'.indexOf(input.slice(-1)) !== -1) {
+          console.log(input)
+          let begin_expression_negative = ""
+          if ((/^-$/).test(input)) {
+            console.log("the input 2: ", input)
             input = input.slice(0, -1);
+
+          } else if ((/^-\d+(\.\d+)?$/).test(input)) {
+            console.log("the input 3: ", input)
+            begin_expression_negative = input
+            input = input.slice(0, -input.length);
+
+          }
+          // Finally!, a neat way to solve this is to remove any invalid operators for calculations instead of modifying the whole tree
+          // Now this checks for an additional operator with a number, no calculations until it's a valid input
+          if ('+-*/'.indexOf(input.slice(-1)) !== -1) {
+            input = input.slice(0, -2);
+            console.log("the input 1: ", input)
+
           }
 
-          //console.log(input)
-
+          console.log("Final result", begin_expression_negative + input)
+          console.log("Final input", input)
 
 
           let currentNumber = "";
-          for (let i = 0; i &lt; input.length; i++) {
+          for (let i = 0; i &#40; input.length; i++) {
             const char = input.charAt(i);
-            if (!isNaN(char) || char === ".") {
+            if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))))) {
               currentNumber += char;
             } else {
               if (currentNumber !== "") {
@@ -74,14 +93,14 @@
                 this.operators.push(char);
               }
               else if (char === ")") {
-                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+                while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
                   const op = this.operators.pop();
                   const right = this.userTokens.pop();
                   const left = this.userTokens.pop();
                   const node = new Node(op, left, right);
                   this.userTokens.push(node);
                 }
-                if (this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
+                if &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
                   this.operators.pop();
                 }
               }
@@ -103,11 +122,16 @@
           }
 
           const result = this.evaluate(this.userTokens[0]);
-          console.log(result); 
-          this.result = " = " + result
+          console.log("final result", result); // should output 0 for input "2*2-2*2"
+          // Good article about using NaN in JavaScript. 
+          // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
+          // This method works below, but others could also work.
+          if (!Number.isNaN(result)) {
+            this.result = " = " + result
+          }
           this.userTokens = []
           this.operators = []
- 
+
         }
 
       } catch (error) {
