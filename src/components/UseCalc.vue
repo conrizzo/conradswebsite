@@ -362,10 +362,18 @@ export default {
         return left / right;
       }
     }, setFactorialize(num) {
+      // Currently only works for individual numbers, not programmed into the tree structure
       if (!Number.isNaN(num)) {
+        try{
         var factorializeAnswer = this.factorialize(num)
         console.log(factorializeAnswer)
-        this.expression = factorializeAnswer
+        //this.expression = factorializeAnswer
+        this.result = "! = " + factorializeAnswer
+        }catch(error){
+          this.result = ""
+          factorializeAnswer = 0
+
+        }       
       }
     },
     factorialize(num) {
