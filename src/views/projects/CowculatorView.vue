@@ -6,6 +6,7 @@
       </h1></div>
   <div style="background-color:rgb(60,60,60);">
     <h2> Moo×Moo is a fun expression. Moo×Moo×Moo is even better!</h2>
+    <p class="paragraph-text" style="text-align: center; color: #d1d1d1;">The most current node in the tree to perform calculations is shown in real time!</p>
     <div style="padding-top: 3em;">
       <!--
       <img alt="Vue logo" src="./assets/logo.png">
@@ -90,7 +91,8 @@ export default {
       title: "Cow-culator",
       header: "Alpha-Build-2.0",
       text:
-        "Made in Tübingen, Germany, and built using Vue 3. The cowculations use a self-made tree structure, not JavaScript eval() function! " +
+        "Made in Tübingen, Germany, and built using Vue 3. The cowculator uses a self-made tree structure, not JavaScript eval() function! " +
+        "The left node, math operator node, and right node in the tree are also shown while calculations are entered. " +
         "From top to bottom this modal is made of props: title, header, text, imagePath, and url. A rough approximation of programming languages used to build this below: ",
       url: "https://github.com/conrizzo/conradswebsite",
       showSiteMain: false,

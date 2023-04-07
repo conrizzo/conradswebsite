@@ -12,13 +12,14 @@
         users who demand the very best from their cow-culations. Don't be square
         - use the Cow-culator!
       </p>
-
+      
       <hr />
-      <h2 style="padding-top: 0.25em">{{ header }}</h2>
+      <h2 style="padding-top: 0.25em; padding-bottom: 0.25em;">{{ header }}</h2>
+      <router-link style="text-decoration: none;" to ="/projects/1Do%20Cowculations%20with%20math%20and%20moos!Cowculator">Actual code that does the calculations here!</router-link>
       <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">
         {{ text }}
       </p>
-
+      
       <div>
         <img style="max-width: 15em" :src="imagePath" alt="Image" />
       </div>

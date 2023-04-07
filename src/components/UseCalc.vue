@@ -58,7 +58,7 @@
 
 
   </div>
-
+  
   <div style="margin-bottom: 5px">
     <button class="button-35" @click="clearField">Reset</button>
     <button class="button-35" style="margin-left: 5px" @click="cowculate(), mooDialogue(), noEntry()">
@@ -66,6 +66,7 @@
     </button>
   </div>
 <div style="padding: 0.25em; margin-bottom: 3em">
+  <div class="white-color-text" style="font-size: 1em; font-weight: 400;">{{treeNodeCalculations}} </div>
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
                     As long as a correct number math operator sequence is present a correct output is shown.    
@@ -77,13 +78,14 @@
       <span v-if="mooCounter > 0"> <br />Number of Moos: {{ mooCounter }}</span>
       <span v-if="superMoo"> <br />{{ mooPlication }}</span>
     </div>
-
+    
     <div style="text-align: center">
       <h2 class="moo-cows-go-moo">
         <span v-if="mooMessage">
           Moo cows go moo, moo, moo!<br />
           Moo cows go moo, moo, moo!</span>
       </h2>
+      
     </div>
   </div>
 </template>
@@ -108,6 +110,8 @@ export default {
 
       userTokens: [],
       operators: [],
+
+      treeNodeCalculations: null,
     };
   },
   watch: {
@@ -350,7 +354,8 @@ export default {
       }
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
-      console.log(left, right)
+      console.log(left, node.value, right)
+      this.treeNodeCalculations = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]"
       if (node.value === "+") {
         return left + right;
       }
@@ -442,6 +447,7 @@ export default {
       this.superMoo = false;
       this.userTokens = [];
       this.operators = [];
+      this.treeNodeCalculations = null;
     },
   },
 };
