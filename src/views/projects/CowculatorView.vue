@@ -90,10 +90,7 @@ export default {
     return {
       title: "Cow-culator",
       header: "Alpha-Build-2.0",
-      text:
-        "Made in Tübingen, Germany, and built using Vue 3. The cowculator uses a self-made tree structure, not JavaScript eval() function! " +
-        "The left node, math operator node, and right node in the tree are also shown while calculations are entered. " +
-        "From top to bottom this modal is made of props: title, header, text, imagePath, and url. A rough approximation of programming languages used to build this below: ",
+      text:"The Cowculator was made in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered. The modal is comprised of the following props from top to bottom: title, header, text, imagePath, and URL. A rough estimate of the programming languages used to build the Cowculator are:",
       url: "https://github.com/conrizzo/conradswebsite",
       showSiteMain: false,
       helpTitle: "How to use:",

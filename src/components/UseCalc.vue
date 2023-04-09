@@ -65,8 +65,16 @@
       Cowculate
     </button>
   </div>
-<div style="padding: 0.25em; margin-bottom: 3em">
-  <div class="white-color-text" style="font-size: 1em; font-weight: 400;">{{treeNodeCalculations}} </div>
+<div style="padding: 0.25em;">
+  <div class="white-color-text" v-if="resultTester" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
+         
+      <b style="color: #707070;">Cowculator Data Structure:</b><br>   
+      {{ treeNodeCalculations }}<br>
+      <b style="color: #707070;">Current Node Calculations:</b><br>
+      {{ currentNode }}
+    </div>
+  
+  </div>
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
                     As long as a correct number math operator sequence is present a correct output is shown.    
@@ -79,6 +87,7 @@
       <span v-if="superMoo"> <br />{{ mooPlication }}</span>
     </div>
     
+    
     <div style="text-align: center">
       <h2 class="moo-cows-go-moo">
         <span v-if="mooMessage">
@@ -86,7 +95,6 @@
           Moo cows go moo, moo, moo!</span>
       </h2>
       
-    </div>
   </div>
 </template>
 <script>
@@ -112,6 +120,10 @@ export default {
       operators: [],
 
       treeNodeCalculations: null,
+      currentNode: null,     
+      
+      resultTester: false,    
+      
     };
   },
   watch: {
@@ -231,7 +243,7 @@ export default {
           this.result = "";
         }
         else {
-          console.log("else expression")
+          
           class Node {
             constructor(value, left = null, right = null) {
               this.value = value;
@@ -239,36 +251,8 @@ export default {
               this.right = right;
             }
           }
-
-          //this.cleanedExpression = "-4*-2"
-
-          console.log(this.cleanedExpression)
-          //this.cleanedExpression = "4--2+3"
-          var input = this.cleanedExpression
-          console.log(input)
-          let begin_expression_negative = ""
-          if ((/^-$/).test(input)) {
-            console.log("the input 2: ", input)
-            input = input.slice(0, -1);
-
-          } else if ((/^-\d+(\.\d+)?$/).test(input)) {
-            console.log("the input 3: ", input)
-            begin_expression_negative = input
-            input = input.slice(0, -input.length);
-
-          }
-          // Finally!, a neat way to solve this is to remove any invalid operators for calculations instead of modifying the whole tree
-          // Now this checks for an additional operator with a number, no calculations until it's a valid input
-          if ('+-*/'.indexOf(input.slice(-1)) !== -1) {
-            input = input.slice(0, -2);
-            console.log("the input 1: ", input)
-
-          }
-
-          console.log("Final result", begin_expression_negative + input)
-          console.log("Final input", input)
-
-
+          var input = this.cleanedExpression  
+          
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
@@ -330,17 +314,19 @@ export default {
             const node = new Node(op, left, right);
             this.userTokens.push(node);
           }
-
+          
           const result = this.evaluate(this.userTokens[0]);
-          console.log("final result", result); // should output 0 for input "2*2-2*2"
+
+          //this.testArray.push(this.userTokens[0])
+          this.treeNodeCalculations = this.userTokens
+          
           // Good article about using NaN in JavaScript. 
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
           // This method works below, but others could also work.
           if (!Number.isNaN(result)) {
-            this.result = " = " + result
+            this.resultTester = true;
+            this.result = " = " + result;            
           }
-          
-
         }
 
       } catch (error) {
@@ -350,12 +336,17 @@ export default {
     // Perform calculations
     evaluate(node) {
       if (node.left === null && node.right === null) {
+        console.log(this.testArray)
         return node.value;
       }
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
       console.log(left, node.value, right)
-      this.treeNodeCalculations = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]"
+
+      this.currentNode = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]"
+      
+  
+      
       if (node.value === "+") {
         return left + right;
       }
@@ -440,14 +431,17 @@ export default {
     clearField() {
       this.expression = ""; // am unfiltered raw user input
       this.cleanedExpression = ""; // a cleaned version of user input
-      this.showText = false;
+      this.showText = false; // shows main results
       this.result = null; // final result
       this.errorMessage = false;
       this.mooCounter = 0; // count Moo's
-      this.superMoo = false;
-      this.userTokens = [];
-      this.operators = [];
-      this.treeNodeCalculations = null;
+      this.superMoo = false; // turns MooxMoo into Moooo etc.
+      this.userTokens = []; // global array to update numbers - probably doesnt need to be global
+      this.operators = []; // global array to update math operators - probably doesnt need to be global
+
+      this.treeNodeCalculations = null; //show the whole parse tree
+      this.currentNode = null; //show only the current node math operation being done
+      this.resultTester = false;
     },
   },
 };
