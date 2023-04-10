@@ -39,9 +39,9 @@ export default {
           id: 1,
           details: "Do Cowculations with math and moos!",
         },
-        { title: "Coffee Python", id: 2, details: "list page 2" },
+        { title: "Coffee Python", id: 2, details: "2" },
 
-        { title: "item 3", id: 3, details: "list page 3" },
+        { title: "Dialogue Summarization using BART", id: 3, details: "3" },
       ],
     };
   },

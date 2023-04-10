@@ -200,7 +200,7 @@ export default {
     checkInput() {
       let str = this.expression;
       const lastDigitIndex = str.slice(-1);
-      console.log(lastDigitIndex);
+      
       if (lastDigitIndex === "0") {
         this.isActive[0] = true;
       } else if (lastDigitIndex === "1") {
@@ -236,7 +236,7 @@ export default {
       this.operators = []
 
       let str = this.cleanedExpression;
-      console.log(this.cleanedExpression)
+      
       // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
       try {
         if (!(/[+\-*/÷\u00D7]/).test(str)) {
@@ -336,14 +336,14 @@ export default {
     // Perform calculations
     evaluate(node) {
       if (node.left === null && node.right === null) {
-        console.log(this.testArray)
+        
         return node.value;
       }
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
-      console.log(left, node.value, right)
 
-      this.currentNode = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]"
+      console.log(left, node.value, right);
+      this.currentNode = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]";
       
   
       
@@ -365,7 +365,7 @@ export default {
       if (!Number.isNaN(num)) {
         try{
         var factorializeAnswer = this.factorialize(num)
-        console.log(factorializeAnswer)
+        
         //this.expression = factorializeAnswer
         this.result = "! = " + factorializeAnswer
         }catch(error){

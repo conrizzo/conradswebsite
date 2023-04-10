@@ -7,137 +7,105 @@
       <router-link style="text-decoration: none" to="/projects/cowculator">Cowculator</router-link>
       <p class="homeview">Here is how the cowculator cowculates. An additional evaluate function is also used.</p>
       <pre v-bind:class="'language-JavaScript'" class="hhh">
-  <code>cowculate() {
-        /* Cow Moo cowculations */
+  <code>/* Cow Moo cowculations */
       
-        // clears all number tokens and math operations from previous inputs
-        this.userTokens = []
-        this.operators = []
+      // clears all number tokens and math operations from previous inputs
+      this.userTokens = []
+      this.operators = []
 
-        let str = this.cleanedExpression;
-        console.log(this.cleanedExpression)
-        // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
-        try {
-          if (!(/[+\-*/÷\u00D7]/).test(str)) {
-            this.result = "";
-          }
-          else {
-            console.log("else expression")
-            class Node {
-              constructor(value, left = null, right = null) {
-                this.value = value;
-                this.left = left;
-                this.right = right;
-              }
-            }
-
-            //this.cleanedExpression = "-4*-2"
-
-            console.log(this.cleanedExpression)
-            //this.cleanedExpression = "4--2+3"
-            var input = this.cleanedExpression
-            console.log(input)
-            let begin_expression_negative = ""
-            if ((/^-$/).test(input)) {
-              console.log("the input 2: ", input)
-              input = input.slice(0, -1);
-
-            } else if ((/^-\d+(\.\d+)?$/).test(input)) {
-              console.log("the input 3: ", input)
-              begin_expression_negative = input
-              input = input.slice(0, -input.length);
-
-            }
-            // Finally!, a neat way to solve this is to remove any invalid operators for calculations instead of modifying the whole tree
-            // Now this checks for an additional operator with a number, no calculations until it's a valid input
-            if ('+-*/'.indexOf(input.slice(-1)) !== -1) {
-              input = input.slice(0, -2);
-              console.log("the input 1: ", input)
-
-            }
-
-            console.log("Final result", begin_expression_negative + input)
-            console.log("Final input", input)
-
-
-            let currentNumber = "";
-            for (let i = 0; i &lt; input.length; i++) {
-              const char = input.charAt(i);
-              if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))))) {
-                currentNumber += char;
-              } else {
-                if (currentNumber !== "") {
-                  this.userTokens.push(new Node(parseFloat(currentNumber)));
-                  currentNumber = "";
-                }
-                if (char === "+" || char === "-") {
-                  while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
-                    const op = this.operators.pop();
-                    const right = this.userTokens.pop();
-                    const left = this.userTokens.pop();
-                    const node = new Node(op, left, right);
-                    this.userTokens.push(node);
-                  }
-                  this.operators.push(char);
-                }
-                else if (char === "*" || char === "/") {
-                  while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/")) {
-                    const op = this.operators.pop();
-                    const right = this.userTokens.pop();
-                    const left = this.userTokens.pop();
-                    const node = new Node(op, left, right);
-                    this.userTokens.push(node);
-                  }
-                  this.operators.push(char);
-                }
-                else if (char === "(") {
-                  this.operators.push(char);
-                }
-                else if (char === ")") {
-                  while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
-                    const op = this.operators.pop();
-                    const right = this.userTokens.pop();
-                    const left = this.userTokens.pop();
-                    const node = new Node(op, left, right);
-                    this.userTokens.push(node);
-                  }
-                  if &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
-                    this.operators.pop();
-                  }
-                }
-              }
-            }
-
-            // Add the last number if there is one
-            if (currentNumber !== "") {
-              this.userTokens.push(new Node(parseFloat(currentNumber)));
-            }
-
-            // Perform remaining operations
-            while (this.operators.length > 0) {
-              const op = this.operators.pop();
-              const right = this.userTokens.pop();
-              const left = this.userTokens.pop();
-              const node = new Node(op, left, right);
-              this.userTokens.push(node);
-            }
-
-            const result = this.evaluate(this.userTokens[0]);
-            console.log("final result", result); // should output 0 for input "2*2-2*2"
-            // Good article about using NaN in JavaScript. 
-            // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
-            // This method works below, but others could also work.
-            if (!Number.isNaN(result)) {
-              this.result = " = " + result
-            }
-          
-
-          }
-
-        } catch (error) {
-          this.result = null;
+      let str = this.cleanedExpression;
+      
+      // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
+      try {
+        if (!(/[+\-*/÷\u00D7]/).test(str)) {
+          this.result = "";
         }
-      },</code>
+        else {
+          
+          class Node {
+            constructor(value, left = null, right = null) {
+              this.value = value;
+              this.left = left;
+              this.right = right;
+            }
+          }
+          var input = this.cleanedExpression  
+          
+          let currentNumber = "";
+          for (let i = 0; i &lt; input.length; i++) {
+            const char = input.charAt(i);
+            if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))))) {
+              currentNumber += char;
+            } else {
+              if (currentNumber !== "") {
+                this.userTokens.push(new Node(parseFloat(currentNumber)));
+                currentNumber = "";
+              }
+              if (char === "+" || char === "-") {
+                while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                this.operators.push(char);
+              }
+              else if (char === "*" || char === "/") {
+                while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/")) {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                this.operators.push(char);
+              }
+              else if (char === "(") {
+                this.operators.push(char);
+              }
+              else if (char === ")") {
+                while &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+                  const op = this.operators.pop();
+                  const right = this.userTokens.pop();
+                  const left = this.userTokens.pop();
+                  const node = new Node(op, left, right);
+                  this.userTokens.push(node);
+                }
+                if &#40;this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
+                  this.operators.pop();
+                }
+              }
+            }
+          }
+
+          // Add the last number if there is one
+          if (currentNumber !== "") {
+            this.userTokens.push(new Node(parseFloat(currentNumber)));
+          }
+
+          // Perform remaining operations
+          while (this.operators.length > 0) {
+            const op = this.operators.pop();
+            const right = this.userTokens.pop();
+            const left = this.userTokens.pop();
+            const node = new Node(op, left, right);
+            this.userTokens.push(node);
+          }
+          
+          const result = this.evaluate(this.userTokens[0]);
+
+          //this.testArray.push(this.userTokens[0])
+          this.treeNodeCalculations = this.userTokens
+          
+          // Good article about using NaN in JavaScript. 
+          // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
+          // This method works below, but others could also work.
+          if (!Number.isNaN(result)) {
+            this.resultTester = true;
+            this.result = " = " + result;            
+          }
+        }</code>
   </pre>
       <p class="homeview">Here is the evaluate helper function which calculates nodes on the tree data structure:</p>
       <pre v-bind:class="'language-JavaScript'" class="hhh"><code>evaluate(node) {
@@ -196,7 +164,14 @@
 
     </div>
     <div v-show="id == 3">
-      <router-link style="text-decoration: none" to="/projects/cowculator">Project 3</router-link>
+      <h1>{{  title }}</h1>
+      
+      <p style="text-align: center;" class="homeview">Link to
+        <a style="text-decoration: none" href="https://github.com/conrizzo/dialogue_summarization_paper">Dialogue Summarization Paper</a> and 
+        <a style="text-decoration: none" href="https://colab.research.google.com/drive/15CvaaYz2nv_33bPbftM6JwQCuYp3lVm9">Python code</a> for training the model.</p>
+        
+      <p style="text-align: center;" class="homeview">The original BART paper for reference is here: 
+        <a style="text-decoration: none" href="https://arxiv.org/abs/1910.13461#">https://arxiv.org/abs/1910.13461#</a></p>
     </div>
 
 
@@ -240,6 +215,8 @@ p.homeview {
   border-radius: 5px;
   font-size: 16px;
   font-weight: normal;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .hhh {
@@ -254,6 +231,11 @@ p.homeview {
   display: block;
   word-wrap: break-word;
   border-radius: 5px;
+}
+h1{
+  font-size: 1em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
 }
 
 /* Adjust the padding for mobile resolution for this block */
