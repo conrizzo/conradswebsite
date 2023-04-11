@@ -163,15 +163,26 @@
 
 
     </div>
-    <div v-show="id == 3">
+    <div class="smaller-font" v-show="id == 3">
       <h1>{{  title }}</h1>
       
-      <p style="text-align: center;" class="homeview">Link to
-        <a style="text-decoration: none" href="https://github.com/conrizzo/dialogue_summarization_paper">Dialogue Summarization Paper</a> and 
-        <a style="text-decoration: none" href="https://colab.research.google.com/drive/15CvaaYz2nv_33bPbftM6JwQCuYp3lVm9">Python code</a> for training the model.</p>
+      <p class="homeview">
+        Lundberg C,Viñuela LS, Biales S. 2022. Dialogue summarization using BART. Paper presented at: 15th International
+        Natural Language Generation Conference; Colby College,Maine, USA. <a style="text-decoration: none" href="https://inlgmeeting.github.io/">https://inlgmeeting.github.io/</a>
+        <br>This work used machine learning and fine-tuned a BART model on 12,460 dialogue summary pairs in order to summarize
+        dialogues between two people.
+        <br>Our groups ROUGE and BERTSCORE are listed under "UoT" (University of Tübingen)
+        <a style="text-decoration: none" href="https://cylnlp.github.io/dialogsum-challenge/">https://cylnlp.github.io/dialogsum-challenge/</a> for the INLG DialogSum Challenge.
         
-      <p style="text-align: center;" class="homeview">The original BART paper for reference is here: 
+        <br>
+        Link to
+        <a style="text-decoration: none" href="https://github.com/conrizzo/dialogue_summarization_paper">Dialogue Summarization using BART</a> paper, and a copy of the 
+        <a style="text-decoration: none" href="https://colab.research.google.com/drive/15CvaaYz2nv_33bPbftM6JwQCuYp3lVm9">Python code</a> we wrote for fine-tuning the model.</p>
+        
+      <p class="homeview">The original BART paper for reference is here: 
         <a style="text-decoration: none" href="https://arxiv.org/abs/1910.13461#">https://arxiv.org/abs/1910.13461#</a></p>
+
+        <p class="homeview">Will add more machine learning projects soon enough</p>
     </div>
 
 
@@ -213,7 +224,7 @@ p.homeview {
   color: #000000;
   background: #fff;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 0.5em;
   font-weight: normal;
   margin-bottom: 1em;
   margin-top: 1em;
@@ -236,6 +247,9 @@ h1{
   font-size: 1em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
+}
+.smaller-font{
+  font-size: 0.9em;
 }
 
 /* Adjust the padding for mobile resolution for this block */
