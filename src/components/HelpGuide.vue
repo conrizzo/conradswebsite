@@ -8,14 +8,10 @@
       <p class="help-guide-text">
         Enter numbers into the input field below using the keypad or by typing.
         The Cow-culator will perform mathematical operations on the numbers and
-        count the number of Moo's! For instance, if you input Moo2*Moo2*2Moo,
-        the Cow-culator will display the result as: 'Result: 8 Moo's: 3', which
-        means that there are three 'Moo's and 2 multiplied by 2 multiplied by 2
-        equals 8. Additionally, each input will show up in the array it's used
-        in. Any input field entry or button press will update the values. For
-        advanced exponential cowculations use two multiplciation symbols
-        consecutively. For example, 5**3 will equal 125. Currently, the factorial
-        button only works on individual numbers.
+        count the number of Moo's! For instance, Moo2*Moo2*2Moo = 8, and Number of Moos: 3. 
+        Any input field entry or button press will update the values. Additionally,
+        typing numbers into the input field, or hitting the back button will
+        highlight corresponding buttons in the user interface. 
       </p>
       <p class="help-guide-text">
         Currently, it is set to automatically perform calculations. The "Cowculate"

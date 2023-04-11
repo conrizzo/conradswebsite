@@ -53,6 +53,8 @@
     </button>
     <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
     <button class="grid-item" @click="setFactorialize(this.expression)">n!</button>
+    <button class="grid-item" @click="addMathOperator('(')">(</button>
+    <button class="grid-item" @click="addMathOperator(')')">)</button>
 
 
 
