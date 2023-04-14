@@ -1,7 +1,7 @@
 <template>
   <!-- click.self means only this item will activate this function-->
   <div class="backdrop" @click.self="closeModal">
-    <div class="siteMain">
+    <div class="aboutCowculator">
       <h2 style="padding-top: 0.25em; padding-bottom: 0.25em;">{{ header }}</h2>
       <router-link style="text-decoration: none;" to ="/projects/1Do%20Cowculations%20with%20math%20and%20moos!Cowculator">Actual code that does the calculations here!</router-link>
       <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">
@@ -58,7 +58,7 @@ h1 {
   padding: 0;
 }
 
-.siteMain {
+.aboutCowculator {
   width: 80%;
   max-width: 400px;
   padding-top: 0.75em;

@@ -15,14 +15,14 @@
 
       
 
-      <div v-if="showSiteMain">
-        <SiteMain
+      <div v-if="showAboutCalc">
+        <AboutCalc
           :title="title"
           :header="header"
           :text="text"
           :imagePath="imagePath"
           :url="url"
-          @close="toggleSiteMain"
+          @close="toggleAboutCalc"
         />
       </div>
       <!-- loads in cowculator -->
@@ -43,7 +43,7 @@
         <button
           class="button-35"
           style="margin-top: 0.25em;"
-          @click="toggleSiteMain"
+          @click="toggleAboutCalc"
         >
           About the Cowculator
         </button>
@@ -74,7 +74,7 @@
   <script>
 import "@/assets/globalCSS.css";
 
-import SiteMain from "@/components/SiteMain.vue";
+import AboutCalc from "@/components/AboutCalc.vue";
 
 import UseCalc from "@/components/UseCalc.vue";
 
@@ -85,14 +85,14 @@ import FirstFooter from "@/components/FirstFooter.vue";
 /* generally will use a component object */
 export default {
   name: "App",
-  components: { SiteMain, UseCalc, HelpGuide, FirstFooter },
+  components: { AboutCalc, UseCalc, HelpGuide, FirstFooter },
   data() {
     return {
       title: "Cow-culator",
       header: "Alpha-Build-2.0",
-      text:"The Cowculator was made in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered. The modal is comprised of the following props from top to bottom: title, header, text, imagePath, and URL. A rough estimate of the programming languages used to build the Cowculator are:",
+      text:"The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered. The modal is comprised of the following props from top to bottom: title, header, text, imagePath, and URL. A rough estimate of the programming languages used to build the Cowculator are:",
       url: "https://github.com/conrizzo/conradswebsite",
-      showSiteMain: false,
+      showAboutCalc: false,
       helpTitle: "How to use:",
       helpTitleTwo: "Why use the cowculator?",
       helpText: "",
@@ -102,8 +102,8 @@ export default {
   },
 
   methods: {
-    toggleSiteMain() {
-      this.showSiteMain = !this.showSiteMain;
+    toggleAboutCalc() {
+      this.showAboutCalc = !this.showAboutCalc;
     },
     toggleHelpGuide() {
       this.showHelpGuide = !this.showHelpGuide;

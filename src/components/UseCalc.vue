@@ -258,9 +258,20 @@ export default {
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
-            if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))))) {
+            console.log(i[0])
+            // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
+            if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")"   ))) {
               currentNumber += char;
-            } else {
+              if (")" === input.charAt(i - 1)){
+                this.operators.push("*");
+                
+              }
+              if ("(" === input.charAt(i + 1)){
+                this.operators.push("*");
+                
+              }
+              
+             } else {
               if (currentNumber !== "") {
                 this.userTokens.push(new Node(parseFloat(currentNumber)));
                 currentNumber = "";
@@ -285,8 +296,10 @@ export default {
                 }
                 this.operators.push(char);
               }
-              else if (char === "(") {
+              
+              else if (char === "("){
                 this.operators.push(char);
+              // This should work for when something like 2+2+(3*2)2 is entered where a number is multiplied after paranthesis
               }
               else if (char === ")") {
                 while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
