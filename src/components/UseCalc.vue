@@ -238,14 +238,16 @@ export default {
       this.operators = []
 
       let str = this.cleanedExpression;
-      
+
       // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
       try {
-        if (!(/[+\-*/÷\u00D7]/).test(str)) {
+        // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
+        if (!(/[\d()]+[+\-*/÷\u00D7]?[\d()]+/).test(str)) {
           this.result = "";
         }
+        // if it's a valid math expression run it through the parse tree
         else {
-          
+          console.log("test")
           class Node {
             constructor(value, left = null, right = null) {
               this.value = value;
@@ -258,17 +260,19 @@ export default {
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
-            console.log(i[0])
+            
             // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
             if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")"   ))) {
               currentNumber += char;
+
+              // if there is a paranthesis with a number to the right of it add a math operator to the stack
               if (")" === input.charAt(i - 1)){
-                this.operators.push("*");
-                
+                this.operators.push("*");                
               }
+              
+              // if there is a paranthesis with a number to the left of it add a math operator to the stack
               if ("(" === input.charAt(i + 1)){
-                this.operators.push("*");
-                
+                this.operators.push("*");                
               }
               
              } else {
