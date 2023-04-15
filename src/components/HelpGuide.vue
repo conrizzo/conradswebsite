@@ -14,11 +14,12 @@
         highlight corresponding buttons in the user interface. 
       </p>
       <p class="help-guide-text">
-        Currently, it is set to automatically perform calculations. The "Cowculate"
-        button is sort of an "override" to force any calculation. There are a few
+        Currently, it is set to automatically perform calculations. There are a few
         tricks to this, for example when entering numbers the result will only
         show when a math operator occurs after a number, and a calculation can
-        be performed with another number! 
+        be performed with another number! Operations like 2(2)=4, (2)2=4, and (2)(2)=4 function correctly. Currently,
+        the only operations that don't work yet is -(2+2) or 2*-(2+2) where the value inside paranthesis needs to be negated.
+        All other calculations should work!
       </p>
       <!-- <h1>{{ helptitletwo }}</h1> -->
     </div>

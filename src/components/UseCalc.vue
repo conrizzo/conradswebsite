@@ -139,6 +139,8 @@ export default {
       // mathOperators checks for this regex sequence, then if true the text is shown, a cleanedExpression is
       // used in the cowculate function to evaluate the result!
 
+      
+
       let str = userInput;
 
       this.mooCounter = (str.match(/Moo/g) || []).length;
@@ -232,21 +234,38 @@ export default {
     },
     cowculate() {
       /* Cow Moo cowculations */
+
+      /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
+
+      /*
+      if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
+      to the input expression be ")x("
+      */      
+        if (this.cleanedExpression.indexOf(")(") !== -1) {          
+          this.expression = this.cleanedExpression.replace(")(", ")\u00D7(");
+          console.log(this.cleanedExpression);
+        }
+       
+        
       
+      console.log(this.cleanedExpression)
+
+      
+
       // clears all number tokens and math operations from previous inputs
       this.userTokens = []
       this.operators = []
 
       let str = this.cleanedExpression;
-
+      
       // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
       try {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
-        if (!(/[\d()]+[+\-*/÷\u00D7]?[\d()]+/).test(str)) {
-          this.result = "";
+        if (!(/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/).test(str)) {
+          this.result = "a";
         }
         // if it's a valid math expression run it through the parse tree
-        else {
+        else { 
           console.log("test")
           class Node {
             constructor(value, left = null, right = null) {
@@ -260,26 +279,30 @@ export default {
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
-            
+            if (char === "-" && (i === 0 || input.charAt(i + 1) === "(")) {
+              currentNumber += char;
+              continue;
+            }
+                        
             // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
-            if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")"   ))) {
+            if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "("))) {
+              console.log("TESTS")
               currentNumber += char;
 
-              // if there is a paranthesis with a number to the right of it add a math operator to the stack
+              // Does operations like (2)2 = 4
               if (")" === input.charAt(i - 1)){
-                this.operators.push("*");                
+                this.operators.push("*");   
               }
               
-              // if there is a paranthesis with a number to the left of it add a math operator to the stack
+              // Does operations like 2(2) = 4
               if ("(" === input.charAt(i + 1)){
-                this.operators.push("*");                
-              }
-              
+                this.operators.push("*");               
+              }   
              } else {
               if (currentNumber !== "") {
                 this.userTokens.push(new Node(parseFloat(currentNumber)));
                 currentNumber = "";
-              }
+              }               
               if (char === "+" || char === "-") {
                 while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
                   const op = this.operators.pop();
@@ -315,6 +338,7 @@ export default {
                 }
                 if (this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
                   this.operators.pop();
+                  
                 }
               }
             }
@@ -352,6 +376,7 @@ export default {
         this.result = null;
       }
     },
+    
     // Perform calculations
     evaluate(node) {
       if (node.left === null && node.right === null) {
@@ -362,8 +387,7 @@ export default {
       var right = this.evaluate(node.right);
 
       console.log(left, node.value, right);
-      this.currentNode = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]";
-      
+      this.currentNode = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]";     
   
       
       if (node.value === "+") {
@@ -379,6 +403,22 @@ export default {
       if (node.value === "/") {
         return left / right;
       }
+    }
+      ,createNode(){
+
+class Node {
+      constructor(value, left = null, right = null) {
+        this.value = value;
+        this.left = left;
+        this.right = right;
+      }
+    }
+const op = this.operators.pop();
+const right = this.userTokens.pop();
+const left = this.userTokens.pop();
+const node = new Node(op, left, right);
+this.userTokens.push(node);
+
     }, setFactorialize(num) {
       // Currently only works for individual numbers, not programmed into the tree structure
       if (!Number.isNaN(num)) {
