@@ -86,4 +86,8 @@ h1 {
   font-size: 0.9em;
   padding: 10px;
 }
+
+h2{
+  color: #42b883;
+}
 </style>

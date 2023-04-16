@@ -17,9 +17,10 @@
         Currently, it is set to automatically perform calculations. There are a few
         tricks to this, for example when entering numbers the result will only
         show when a math operator occurs after a number, and a calculation can
-        be performed with another number! Operations like 2(2)=4, (2)2=4, and (2)(2)=4 function correctly. Currently,
-        the only operations that don't work yet is -(2+2) or 2*-(2+2) where the value inside paranthesis needs to be negated.
-        All other calculations should work!
+        be performed with another number! Operations like 2(2)=4, (2)2=4, and (2)(2)=4 function correctly.
+        The operations -(2+2) or 2*-(2+2) where the value inside paranthesis needs to be negated also now work!
+        This was solved by pushing a new Node to the stack with the value 0 and performing 0 minus the value in
+        paranthesis. For example, with the expression "2*-(2+2)" the math this calculator performs is 2*(0-(2+2)) = -8
       </p>
       <!-- <h1>{{ helptitletwo }}</h1> -->
     </div>
@@ -41,7 +42,7 @@ export default {
   <!-- scoped applies to only this component -->
   <style scoped>
 h1 {
-  color: rgb(144, 0, 255);
+  color:#42b883;
   border: none;
   font-size: 1.6em;
   margin-bottom: 0em;
@@ -71,7 +72,7 @@ h1 {
   display: inline-block;
   max-width: 500px;
   text-align: left;
-
+  font-size: 0.9em;
   padding: 10px;
 }
 </style>

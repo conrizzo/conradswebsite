@@ -5,14 +5,14 @@
         
       </h1></div>
   <div style="background-color:rgb(60,60,60);">
-    <h2> Moo×Moo is a fun expression. Moo×Moo×Moo is even better!</h2>
-    <p class="paragraph-text" style="text-align: center; color: #d1d1d1;">The most current node in the tree to perform calculations is shown in real time!</p>
+    <h2> Moo&times;Moo is a fun expression. Moo&times;Moo&times;Moo is even better!</h2>
+    <p class="paragraph-text" style="text-align: center; color: #d1d1d1;">The most current node in the tree to perform calculations is shown in real time! 
+    This performs all calculations with self-made parsing, no JavaScript eval() function is used!</p>
     <div style="padding-top: 3em;">
       <!--
       <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     -->
-
       
 
       <div v-if="showAboutCalc">

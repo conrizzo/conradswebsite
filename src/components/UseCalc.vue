@@ -60,43 +60,43 @@
 
 
   </div>
-  
+
   <div style="margin-bottom: 5px">
     <button class="button-35" @click="clearField">Reset</button>
     <button class="button-35" style="margin-left: 5px" @click="cowculate(), mooDialogue(), noEntry()">
       Cowculate
     </button>
   </div>
-<div style="padding: 0.25em;">
-  <div class="white-color-text" v-if="resultTester" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
-         
-      <b style="color: #707070;">Cowculator Data Structure:</b><br>   
+  <div style="padding: 0.25em;">
+    <div class="white-color-text" v-if="resultTester" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
+
+      <b style="color: #707070;">Cowculator Data Structure:</b><br>
       {{ treeNodeCalculations }}<br>
       <b style="color: #707070;">Current Node Calculations:</b><br>
       {{ currentNode }}
     </div>
-  
-  </div>
-  <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
+
+</div>
+<!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
-                    As long as a correct number math operator sequence is present a correct output is shown.    
-                  -->
-    <div class="white-color-text cowculate-result">
-      {{ expression }}<span v-if="errorMessage && this.expression == ''"></span>
-      <span v-else-if="errorMessage"><br /></span>
-      <span v-if="showText">{{ result }}</span>
-      <span v-if="mooCounter > 0"> <br />Number of Moos: {{ mooCounter }}</span>
-      <span v-if="superMoo"> <br />{{ mooPlication }}</span>
-    </div>
-    
-    
-    <div style="text-align: center">
-      <h2 class="moo-cows-go-moo">
-        <span v-if="mooMessage">
-          Moo cows go moo, moo, moo!<br />
-          Moo cows go moo, moo, moo!</span>
-      </h2>
-      
+                        As long as a correct number math operator sequence is present a correct output is shown.    
+                      -->
+  <div class="white-color-text cowculate-result">
+    {{ expression }}<span v-if="errorMessage && this.expression == ''"></span>
+    <span v-else-if="errorMessage"><br /></span>
+    <span v-if="showText">{{ result }}</span>
+    <span v-if="mooCounter > 0"> <br />Number of Moos: {{ mooCounter }}</span>
+    <span v-if="superMoo"> <br />{{ mooPlication }}</span>
+  </div>
+
+
+  <div style="text-align: center">
+    <h2 class="moo-cows-go-moo">
+      <span v-if="mooMessage">
+        Moo cows go moo, moo, moo!<br />
+        Moo cows go moo, moo, moo!</span>
+    </h2>
+
   </div>
 </template>
 <script>
@@ -122,10 +122,10 @@ export default {
       operators: [],
 
       treeNodeCalculations: null,
-      currentNode: null,     
-      
-      resultTester: false,    
-      
+      currentNode: null,
+
+      resultTester: false,
+
     };
   },
   watch: {
@@ -139,7 +139,7 @@ export default {
       // mathOperators checks for this regex sequence, then if true the text is shown, a cleanedExpression is
       // used in the cowculate function to evaluate the result!
 
-      
+
 
       let str = userInput;
 
@@ -191,9 +191,15 @@ export default {
       str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*").replaceAll("Moo", "");
 
       // This decides whether calculatons can actully be done
-      const mathOperators = /([-+*/%^()]|\d+(\.\d+)?)/g; // regular expression for +, -, /, and * operators
+      // regular expression for +, -, /, and * operators before any actual parsing is done.
+      const mathOperators = /([-+*/%^()]|\d+(\.\d+)?)/g;
 
-      if (mathOperators.test(str)) {
+      // This only fixes deleting the last number when the back <- arrow is used
+      if (this.expression === "") {
+        this.result = ""
+      }
+      // This sends a cleaned input to the cowculate function 
+      else if (mathOperators.test(str)) {
         this.showText = true;
         this.cleanedExpression = str;
         this.cowculate();
@@ -204,7 +210,7 @@ export default {
     checkInput() {
       let str = this.expression;
       const lastDigitIndex = str.slice(-1);
-      
+
       if (lastDigitIndex === "0") {
         this.isActive[0] = true;
       } else if (lastDigitIndex === "1") {
@@ -240,33 +246,27 @@ export default {
       /*
       if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
       to the input expression be ")x("
-      */      
-        if (this.cleanedExpression.indexOf(")(") !== -1) {          
-          this.expression = this.cleanedExpression.replace(")(", ")\u00D7(");
-          console.log(this.cleanedExpression);
-        }
-       
-        
-      
-      console.log(this.cleanedExpression)
+      */
+      if (this.cleanedExpression.indexOf(")(") !== -1) {
+        this.expression = this.cleanedExpression.replace(")(", ")\u00D7(");
 
-      
+      }
 
       // clears all number tokens and math operations from previous inputs
       this.userTokens = []
       this.operators = []
 
       let str = this.cleanedExpression;
-      
+
       // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
       try {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
         if (!(/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/).test(str)) {
-          this.result = "a";
+          this.result = "";
         }
         // if it's a valid math expression run it through the parse tree
-        else { 
-          console.log("test")
+        else {
+
           class Node {
             constructor(value, left = null, right = null) {
               this.value = value;
@@ -274,35 +274,40 @@ export default {
               this.right = right;
             }
           }
-          var input = this.cleanedExpression  
-          
+          var input = this.cleanedExpression
+
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
-            if (char === "-" && (i === 0 || input.charAt(i + 1) === "(")) {
-              currentNumber += char;
-              continue;
+
+            // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" paranthesis 
+            // such as "-(" To solve this the expression in paranthesis is subtracted from 0
+            if (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))) && input.charAt(i + 1) === "(") {
+              this.userTokens.push(new Node(0));
+              this.operators.push("-");
             }
-                        
+
             // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
-            if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "("))) {
-              console.log("TESTS")
+            else if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "("))) {
+
               currentNumber += char;
 
               // Does operations like (2)2 = 4
-              if (")" === input.charAt(i - 1)){
-                this.operators.push("*");   
+              if (")" === input.charAt(i - 1)) {
+                this.operators.push("*");
               }
-              
+
               // Does operations like 2(2) = 4
-              if ("(" === input.charAt(i + 1)){
-                this.operators.push("*");               
-              }   
-             } else {
+              if ("(" === input.charAt(i + 1)) {
+                this.operators.push("*");
+              }
+            }
+            else {
               if (currentNumber !== "") {
                 this.userTokens.push(new Node(parseFloat(currentNumber)));
                 currentNumber = "";
-              }               
+              }
+
               if (char === "+" || char === "-") {
                 while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
                   const op = this.operators.pop();
@@ -323,10 +328,10 @@ export default {
                 }
                 this.operators.push(char);
               }
-              
-              else if (char === "("){
+
+              else if (char === "(") {
                 this.operators.push(char);
-              // This should work for when something like 2+2+(3*2)2 is entered where a number is multiplied after paranthesis
+                // This should work for when something like 2+2+(3*2)2 is entered where a number is multiplied after paranthesis
               }
               else if (char === ")") {
                 while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
@@ -338,7 +343,7 @@ export default {
                 }
                 if (this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
                   this.operators.pop();
-                  
+
                 }
               }
             }
@@ -357,81 +362,91 @@ export default {
             const node = new Node(op, left, right);
             this.userTokens.push(node);
           }
-          
-          const result = this.evaluate(this.userTokens[0]);
 
-          //this.testArray.push(this.userTokens[0])
-          this.treeNodeCalculations = this.userTokens
-          
-          // Good article about using NaN in JavaScript. 
+          // calculate the final result
+          var result = this.evaluate(this.userTokens[0]);
+
+
+          // Quick way to make sure output isn't 5555 = 5555 if the user just enters a number
+          // If no calculations are done don't need to show a number is equal to itself.
+          if (result == this.cleanedExpression) {
+            result = ""
+          }
+
+          // This outputs the final answer!
+          else if (!Number.isNaN(result)) {
+            // create the binary tree structure
+            this.treeNodeCalculations = this.userTokens
+            // this outputs the binary parse tree and nodes
+            this.resultTester = true;
+            // this outputs the calculation
+            this.result = " = " + result;
+          }
+          // Good article about using NaN in JavaScript like the function above does ^ 
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
           // This method works below, but others could also work.
-          if (!Number.isNaN(result)) {
-            this.resultTester = true;
-            this.result = " = " + result;            
-          }
         }
 
       } catch (error) {
         this.result = null;
       }
     },
-    
+
     // Perform calculations
     evaluate(node) {
       if (node.left === null && node.right === null) {
-        
+
         return node.value;
       }
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
 
       console.log(left, node.value, right);
-      this.currentNode = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]";     
-  
-      
-      if (node.value === "+") {
-        return left + right;
-      }
-      if (node.value === "-") {
+      this.currentNode = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]";
 
-        return left - right;
-      }
-      if (node.value === "*") {
-        return left * right;
-      }
-      if (node.value === "/") {
-        return left / right;
+      // Switched this to a switch - simpler and more readable for this use case
+      switch (node.value) {
+        case '+':
+          return left + right;
+        case '-':
+          return left - right;
+        case '*':
+          return left * right;
+        case '/':
+          return left / right;
+        default:
+          return null;
       }
     }
-      ,createNode(){
+    // This code createNode isn't currently used, but here for future modularization
+    , createNode() {
 
-class Node {
-      constructor(value, left = null, right = null) {
-        this.value = value;
-        this.left = left;
-        this.right = right;
+      class Node {
+        constructor(value, left = null, right = null) {
+          this.value = value;
+          this.left = left;
+          this.right = right;
+        }
       }
-    }
-const op = this.operators.pop();
-const right = this.userTokens.pop();
-const left = this.userTokens.pop();
-const node = new Node(op, left, right);
-this.userTokens.push(node);
+      const op = this.operators.pop();
+      const right = this.userTokens.pop();
+      const left = this.userTokens.pop();
+      const node = new Node(op, left, right);
+      this.userTokens.push(node);
 
     }, setFactorialize(num) {
       // Currently only works for individual numbers, not programmed into the tree structure
       if (!Number.isNaN(num)) {
-        try{
-        var factorializeAnswer = this.factorialize(num)
-        
-        //this.expression = factorializeAnswer
-        this.result = "! = " + factorializeAnswer
-        }catch(error){
+        try {
+          var factorializeAnswer = this.factorialize(num)
+
+          //this.expression = factorializeAnswer
+          this.result = "! = " + factorializeAnswer
+        } catch (error) {
           this.result = ""
           factorializeAnswer = 0
 
-        }       
+        }
       }
     },
     factorialize(num) {
