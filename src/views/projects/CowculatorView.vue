@@ -27,18 +27,18 @@
       </div>
       <!-- loads in cowculator -->
       <UseCalc></UseCalc>
-
-      <figure class="main-cow-figure">
-        <img
-          src="@/images/cow_lecture.png"
-          alt="Professor Cow Image"
-          class="professor-cow-figure"
-        />
-        <figcaption class="professor-cow-figure-text">
-          <strong>"I certify that this Cowculator cowculates!"</strong> - Professor Maximillian "Cowculus" Cowington, Distinguished Professor of Cowculating.
-        </figcaption>
-      </figure>
-
+      <div class="main-cow-figure">
+        <figure>
+          <img
+            src="@/images/cow_lecture.png"
+            alt="Professor Cow Image"
+            class="professor-cow-figure"
+          />
+          <figcaption class="professor-cow-figure-text">
+            <strong>"I certify that this Cowculator cowculates!"</strong> - Professor Maximillian "Cowculus" Cowington, Distinguished Professor of Cowculating.
+          </figcaption>
+        </figure>
+      </div>
       <div style="padding-bottom: 1em; margin-left: 0.2em; margin-right: 0.2em;">
         <button
           class="button-35"
@@ -113,6 +113,10 @@ export default {
 </script>
   
   <style scoped>
+  .main-cow-figure{
+    margin-top: 1em;
+    
+  }
 .professor-cow-figure {
   width: 300px;
   background-color: #515151;

@@ -29,7 +29,7 @@ export default {
 <style>
 .footer-links:link {
   text-decoration: none;
-  color: #7DF9FF;
+  color: #00ffff;
 }
 
 .footer-links:hover {

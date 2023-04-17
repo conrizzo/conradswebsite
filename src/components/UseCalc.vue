@@ -63,11 +63,20 @@
 
   <div style="margin-bottom: 5px">
     <button class="button-35" @click="clearField">Reset</button>
-    <button class="button-35" style="margin-left: 5px" @click="cowculate(), mooDialogue(), noEntry()">
-      Cowculate
-    </button>
+    
   </div>
-  <div style="padding: 0.25em;">
+  <div style="padding-top: 0.5em;">
+    <div class="white-color-text cowculate-result">
+      
+        {{ expression }}<span v-if="errorMessage && this.expression == ''"></span>
+        <span v-else-if="errorMessage"><br></span>
+        <span v-if="showText">{{ result }}</span>      
+        <span v-if="mooCounter > 0"><br>Number of Moos: <span style="color:#42b883;">{{ mooCounter }}</span></span>
+        <span v-if="superMoo"> <br>{{ mooPlication }}</span>
+      
+    </div>
+  </div>
+  <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
     <div class="white-color-text" v-if="resultTester" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
 
       <b style="color: #707070;">Cowculator Data Structure:</b><br>
@@ -79,16 +88,9 @@
 </div>
 <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
-                        As long as a correct number math operator sequence is present a correct output is shown.    
-                      -->
-  <div class="white-color-text cowculate-result">
-    {{ expression }}<span v-if="errorMessage && this.expression == ''"></span>
-    <span v-else-if="errorMessage"><br /></span>
-    <span v-if="showText">{{ result }}</span>
-    <span v-if="mooCounter > 0"> <br />Number of Moos: {{ mooCounter }}</span>
-    <span v-if="superMoo"> <br />{{ mooPlication }}</span>
-  </div>
-
+                          As long as a correct number math operator sequence is present a correct output is shown.    
+                        -->
+ 
 
   <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
@@ -188,11 +190,22 @@ export default {
 
       }
 
+      // The following is largely pre-processing for the string to go into the cowculate() function
+
       str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*").replaceAll("Moo", "");
 
       // This decides whether calculatons can actully be done
       // regular expression for +, -, /, and * operators before any actual parsing is done.
       const mathOperators = /([-+*/%^()]|\d+(\.\d+)?)/g;
+
+      /*
+      if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
+      to the input expression be ")*("
+      */
+      if (this.cleanedExpression.indexOf(")(") !== -1) {
+        this.expression = this.expression.replace(")(", ")\u00D7(");
+        
+      }
 
       // This only fixes deleting the last number when the back <- arrow is used
       if (this.expression === "") {
@@ -206,51 +219,11 @@ export default {
       }
     },
   },
-  methods: {
-    checkInput() {
-      let str = this.expression;
-      const lastDigitIndex = str.slice(-1);
-
-      if (lastDigitIndex === "0") {
-        this.isActive[0] = true;
-      } else if (lastDigitIndex === "1") {
-        this.isActive[1] = true;
-      } else if (lastDigitIndex === "2") {
-        this.isActive[2] = true;
-      } else if (lastDigitIndex === "3") {
-        this.isActive[3] = true;
-      } else if (lastDigitIndex === "4") {
-        this.isActive[4] = true;
-      } else if (lastDigitIndex === "5") {
-        this.isActive[5] = true;
-      } else if (lastDigitIndex === "6") {
-        this.isActive[6] = true;
-      } else if (lastDigitIndex === "7") {
-        this.isActive[7] = true;
-      } else if (lastDigitIndex === "8") {
-        this.isActive[8] = true;
-      } else if (lastDigitIndex === "9") {
-        this.isActive[9] = true;
-      }
-      setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          this.isActive[i] = false;
-        }
-      }, 150);
-    },
+  methods: {    
     cowculate() {
       /* Cow Moo cowculations */
 
-      /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
-
-      /*
-      if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
-      to the input expression be ")x("
-      */
-      if (this.cleanedExpression.indexOf(")(") !== -1) {
-        this.expression = this.cleanedExpression.replace(")(", ")\u00D7(");
-
-      }
+      /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */      
 
       // clears all number tokens and math operations from previous inputs
       this.userTokens = []
@@ -274,24 +247,21 @@ export default {
               this.right = right;
             }
           }
+
           var input = this.cleanedExpression
 
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
-
             // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" paranthesis 
             // such as "-(" To solve this the expression in paranthesis is subtracted from 0
             if (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))) && input.charAt(i + 1) === "(") {
               this.userTokens.push(new Node(0));
               this.operators.push("-");
             }
-
             // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
             else if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "("))) {
-
               currentNumber += char;
-
               // Does operations like (2)2 = 4
               if (")" === input.charAt(i - 1)) {
                 this.operators.push("*");
@@ -307,7 +277,6 @@ export default {
                 this.userTokens.push(new Node(parseFloat(currentNumber)));
                 currentNumber = "";
               }
-
               if (char === "+" || char === "-") {
                 while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
                   const op = this.operators.pop();
@@ -328,10 +297,8 @@ export default {
                 }
                 this.operators.push(char);
               }
-
               else if (char === "(") {
                 this.operators.push(char);
-                // This should work for when something like 2+2+(3*2)2 is entered where a number is multiplied after paranthesis
               }
               else if (char === ")") {
                 while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
@@ -343,17 +310,14 @@ export default {
                 }
                 if (this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
                   this.operators.pop();
-
                 }
               }
             }
           }
-
           // Add the last number if there is one
           if (currentNumber !== "") {
             this.userTokens.push(new Node(parseFloat(currentNumber)));
           }
-
           // Perform remaining operations
           while (this.operators.length > 0) {
             const op = this.operators.pop();
@@ -362,17 +326,13 @@ export default {
             const node = new Node(op, left, right);
             this.userTokens.push(node);
           }
-
           // calculate the final result
           var result = this.evaluate(this.userTokens[0]);
-
-
           // Quick way to make sure output isn't 5555 = 5555 if the user just enters a number
           // If no calculations are done don't need to show a number is equal to itself.
           if (result == this.cleanedExpression) {
             result = ""
           }
-
           // This outputs the final answer!
           else if (!Number.isNaN(result)) {
             // create the binary tree structure
@@ -395,9 +355,9 @@ export default {
     // Perform calculations
     evaluate(node) {
       if (node.left === null && node.right === null) {
-
         return node.value;
       }
+
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
 
@@ -420,7 +380,6 @@ export default {
     }
     // This code createNode isn't currently used, but here for future modularization
     , createNode() {
-
       class Node {
         constructor(value, left = null, right = null) {
           this.value = value;
@@ -458,15 +417,36 @@ export default {
         return (num * this.factorialize(num - 1));
       }
     },
-    noEntry() {
-      // check if this.result is empty or is only the " = undefined" combined string value
-      // Doesn't actually need to check for null value OR the " = undefined" but may want to change later on not
-      // to include the = sign like this
-      if (!this.result || this.result == " = " + undefined) {
-        this.errorMessage = true;
-        this.result = " Can't cowculate with this input!";
-        /* reset error message */
+    checkInput() {
+      let str = this.expression;
+      const lastDigitIndex = str.slice(-1);
+
+      if (lastDigitIndex === "0") {
+        this.isActive[0] = true;
+      } else if (lastDigitIndex === "1") {
+        this.isActive[1] = true;
+      } else if (lastDigitIndex === "2") {
+        this.isActive[2] = true;
+      } else if (lastDigitIndex === "3") {
+        this.isActive[3] = true;
+      } else if (lastDigitIndex === "4") {
+        this.isActive[4] = true;
+      } else if (lastDigitIndex === "5") {
+        this.isActive[5] = true;
+      } else if (lastDigitIndex === "6") {
+        this.isActive[6] = true;
+      } else if (lastDigitIndex === "7") {
+        this.isActive[7] = true;
+      } else if (lastDigitIndex === "8") {
+        this.isActive[8] = true;
+      } else if (lastDigitIndex === "9") {
+        this.isActive[9] = true;
       }
+      setTimeout(() => {
+        for (let i = 0; i < 10; i++) {
+          this.isActive[i] = false;
+        }
+      }, 150);
     },
     mooButtonHit() {
       this.mooMessage = true;
@@ -488,9 +468,7 @@ export default {
     addMoo() {
       this.expression += "Moo";
     },
-    mooDialogue() {
-      this.showText = true;
-    },
+    
 
     removeEntry() {
       if (this.expression != "") {
