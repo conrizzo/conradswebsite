@@ -23,8 +23,15 @@
           I earned a B.A in Computational Linguistics from the University of Tübingen, Germany, and a B.S in Biology from the University of North Carolina at Wilmington. 
           
           This websites focus is to show some examples of work I've done using code, plus it's fun to have a website made in a framework (Vue.js) and be able to 
-          experiment here.
+          experiment here. For anyone unfamiliar with what a framework is <a class="text-links" href="https://en.wikipedia.org/wiki/Web_framework">https://en.wikipedia.org/wiki/Web_framework</a><br><br>
+
+          Here is an approximation of the languages this website uses. It's mostly Vue.js, JavaScript, some minimal styling.<br>
+          
+            <img style="max-width: 20em; padding-top: 0.5em; text-align: center;" :src="imagePath" alt="Coding Languages used" />
+          
+          
         </p>
+        
     </div>
     <!-- Aside area -->
     <AsideContent class="aside"> </AsideContent>
@@ -45,6 +52,12 @@ export default {
     AsideContent,
     FirstFooter,
   },
+  data() {
+    return {
+  
+     imagePath: require("@/images/website-code.jpg"), // Add the image path to the data object
+    }
+  }
 };
 </script>
 
