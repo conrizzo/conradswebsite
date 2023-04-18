@@ -56,9 +56,6 @@
     <button class="grid-item" @click="addMathOperator('(')">(</button>
     <button class="grid-item" @click="addMathOperator(')')">)</button>
 
-
-
-
   </div>
 
   <div style="margin-bottom: 5px">

@@ -7,7 +7,7 @@
         <h1 style="color: black;">Howdy there! Welcome to conradswebsite.com</h1>
         <br>
         <p class="paragraph-text">
-          This website is made by Conrad using
+          This website is totally self-made by Conrad using
           <a class="text-links" href="https://github.com/vuejs/core"> Vue 3</a>
           (Vue.js). It is hosted on
           <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
@@ -21,7 +21,9 @@
           I started learning about Vue.JS when I worked on the Bioinformatics Toolkit at Max Planck in Tübingen, Germany.<br><br>
       
           I earned a B.A in Computational Linguistics from the University of Tübingen, Germany, and a B.S in Biology from the University of North Carolina at Wilmington. 
-          This websites focus is to show some examples of work I've done using code.
+          
+          This websites focus is to show some examples of work I've done using code, plus it's fun to have a website made in a framework (Vue.js) and be able to 
+          experiment here.
         </p>
     </div>
     <!-- Aside area -->

@@ -5,7 +5,7 @@
     <!-- eslint-disable-next-line vue/valid-v-slot -->
     <h2>Incredible latin Text!</h2>
     <p class="aside" style="margin-top: 1em">
-      I'm not sure what to do with this aside here yet, but I'll figure something out!
+      I haven't decided what to write here yet, but I coded in this aside!
     </p>
   </aside>
 </template>

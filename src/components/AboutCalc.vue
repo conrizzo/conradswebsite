@@ -2,6 +2,7 @@
   <!-- click.self means only this item will activate this function-->
   <div class="backdrop" @click.self="closeModal">
     <div class="aboutCowculator">
+      <button class="close" @click.self="closeModal"></button>
       <h2 style="padding-top: 0.25em; padding-bottom: 0.25em;">{{ header }}</h2>
       <router-link style="text-decoration: none;" to ="/projects/1Do%20Cowculations%20with%20math%20and%20moos!Cowculator">Actual code that does the calculations here!</router-link>
       <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">
@@ -11,7 +12,7 @@
       <div>
         <img style="max-width: 15em" :src="imagePath" alt="Image" />
       </div>
-      <a
+            <a
         style="
           display: block;
           margin-left: auto;
@@ -21,7 +22,8 @@
         :href="url"
         >Conrad's GitHub</a
       >
-      <hr />
+      
+      
       <h2 style = "padding-top: 0.5em;">Why use the {{ title }}?</h2>
       <p class="about-modal-text">
         Without a doubt, other calculators are simply inadequate. They lack the
@@ -68,6 +70,7 @@ h1 {
   margin: 80px auto;
   background: rgb(255, 255, 255);
   border-radius: 10px;
+  position: relative;
 }
 .backdrop {
   top: 0;
@@ -79,6 +82,8 @@ h1 {
   z-index: 1000;
 }
 
+
+
 .about-modal-text {
   display: inline-block;
   max-width: 500px;
@@ -89,5 +94,48 @@ h1 {
 
 h2{
   color: #42b883;
+}
+
+
+
+/* CSS FOR MODAL "X" Close button*/
+.close {
+  position: absolute;
+  top: 0em;
+right: 0em;
+cursor:pointer;
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(171, 171, 171);
+  border-top-right-radius: 10px; /* matches the modal top right corner */
+  border-bottom-left-radius: 10px; /* matches the modal top right corner */
+  
+}
+.close:hover {
+  opacity: 1;
+  
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 28px;
+  width: 2px;
+  background-color: #000000;
+  top: 0.5em;
+  left: 1.4em;
+  
+}
+.close:before {
+  transform: rotate(45deg);
+  
+}
+.close:after {
+  transform: rotate(-45deg);
+  
 }
 </style>

@@ -2,6 +2,7 @@
   <!-- click.self means only this item will activate this function-->
   <div class="backdrop" @click.self="closeModal">
     <div class="helpGuide">
+      <button class="close" @click.self="closeModal"></button>
       <h1>{{ helptitle }}</h1>
 
       <!-- <p style="padding-bottom: 5px; text-align: left">{{ helptext }}</p> -->
@@ -58,6 +59,8 @@ h1 {
   margin: 80px auto;
   background: rgb(255, 255, 255);
   border-radius: 10px;
+
+  position: relative; /* this makes sure the X button is located within this element in the top right */
 }
 .backdrop {
   top: 0;
@@ -74,5 +77,45 @@ h1 {
   text-align: left;
   font-size: 0.9em;
   padding: 10px;
+}
+
+/* CSS FOR MODAL "X" Close button*/
+.close {
+  position: absolute;
+  top: 0em;
+right: 0em;
+cursor:pointer;
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(171, 171, 171);
+  border-top-right-radius: 10px; /* matches the modal top right corner */
+  border-bottom-left-radius: 10px; /* matches the modal top right corner */
+}
+.close:hover {
+  opacity: 1;
+  
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 28px;
+  width: 2px;
+  background-color: #000000;
+  top: 0.5em;
+  left: 1.4em;
+  
+}
+.close:before {
+  transform: rotate(45deg);
+  
+}
+.close:after {
+  transform: rotate(-45deg);
+  
 }
 </style>
