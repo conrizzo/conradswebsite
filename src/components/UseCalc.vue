@@ -63,10 +63,11 @@
     
   </div>
   <div style="padding-top: 0.5em;">
+    <b v-if="showText" style="color:#42b883;">Cowculation</b>
     <div class="white-color-text cowculate-result">
       
-        {{ expression }}<span v-if="errorMessage && this.expression == ''"></span>
-        <span v-else-if="errorMessage"><br></span>
+        {{ expression }}<span v-if="this.expression == ''"></span>
+        
         <span v-if="showText">{{ result }}</span>      
         <span v-if="mooCounter > 0"><br>Number of Moos: <span style="color:#42b883;">{{ mooCounter }}</span></span>
         <span v-if="superMoo"> <br>{{ mooPlication }}</span>
@@ -75,11 +76,10 @@
   </div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
     <div class="white-color-text" v-if="resultTester" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
-
-      <b style="color: #707070;">Cowculator Data Structure:</b><br>
-      {{ treeNodeCalculations }}<br>
-      <b style="color: #707070;">Current Node Calculations:</b><br>
-      {{ currentNode }}
+      <b style="color:#42b883;">Current Node Calculation</b><br>
+      {{ currentNode }}<br>
+      <b style="color:#42b883;">Binary Tree Structure</b><br>
+      {{ treeNodeCalculations }}  
     </div>
 
 </div>
@@ -108,7 +108,7 @@ export default {
       result: null,
       mooMessage: false,
       mooTimer: null,
-      errorMessage: false,
+      
       mooCounter: null,
 
       superMoo: false,
@@ -482,7 +482,7 @@ export default {
       this.cleanedExpression = ""; // a cleaned version of user input
       this.showText = false; // shows main results
       this.result = null; // final result
-      this.errorMessage = false;
+      
       this.mooCounter = 0; // count Moo's
       this.superMoo = false; // turns MooxMoo into Moooo etc.
       this.userTokens = []; // global array to update numbers - probably doesnt need to be global
