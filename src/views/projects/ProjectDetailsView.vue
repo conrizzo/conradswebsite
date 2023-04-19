@@ -5,7 +5,13 @@
   <div class="router-link-style">
     <div v-show="id == 1">
       <router-link style="text-decoration: none" to="/projects/cowculator">Cowculator</router-link>
-      <p class="homeview">As of April 2023, here is how the cowculator cowculates. An additional evaluate function is also used.</p>
+      <p class="homeview">As of April 2023, here is how the cowculator cowculates. An additional evaluate function is also used.
+       There are some tricks to how this works. The user can also type in things like (2)(2) and this will automatically convert 
+       to (2)&#215;(2). Typing in something incorrect like 2-+2 will also automatically convert to 2+2. Some of these
+       functions are pre-processed with the watcher as the user types and are not done in the cowculate() function itself!
+
+
+      </p>
       <pre v-bind:class="'language-JavaScript'" class="hhh">
   <code>cowculate() {
       /* Cow Moo cowculations */

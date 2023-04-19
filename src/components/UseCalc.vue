@@ -199,14 +199,21 @@ export default {
       // regular expression for +, -, /, and * operators before any actual parsing is done.
       const mathOperators = /([-+*/%^()]|\d+(\.\d+)?)/g;
 
+      
+
       /*
       if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
       to the input expression be ")*("
       */
-      if (this.cleanedExpression.indexOf(")(") !== -1) {
-        this.expression = this.expression.replace(")(", ")\u00D7(");
-        
+      if (str.indexOf(")(") !== -1) {
+        this.expression = str.replace(")(", ")\u00D7(");        
       }
+
+      // If someone types 5-+2 this will automatically convert it to 5+2 since the '-' is reversed by the + sign      
+      if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
+        this.expression = str.slice(0, -2) + str.slice(-1); // remove "-" sign
+      }            
+      
 
       // This only fixes deleting the last number when the back button <- arrow is used
       if (this.expression === "") {
