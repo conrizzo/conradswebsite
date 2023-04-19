@@ -1,7 +1,7 @@
 
 
 <template>
-  <div style="padding: 0.15em">
+  <div style="">
     <input class="input-field" v-model="expression" type="text" @input="checkInput" />
   </div>
   <div class="grid-container cow-image">
@@ -56,27 +56,28 @@
     <button class="grid-item" @click="addMathOperator('(')">(</button>
     <button class="grid-item" @click="addMathOperator(')')">)</button>
 
-  </div>
-
-  <div style="margin-bottom: 5px">
-    <button class="button-35" @click="clearField">Reset</button>
-    
+  </div>   
+  
+  <div>     
+      <button style="margin-right: 0.25em;" class="button-35" @click="clearField">Reset</button>      
+      <button class="button-35" @click="copyToClipboard">Copy Result</button>            
   </div>
   <div style="padding-top: 0.5em;">
-    <b v-if="showText" style="color:#42b883;">Cowculation</b>
+    <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
     <div class="white-color-text cowculate-result">
       
         {{ expression }}<span v-if="this.expression == ''"></span>
         
-        <span v-if="showText">{{ result }}</span>      
+        <span v-if="showText"> = {{ result }}</span>      
         <span v-if="mooCounter > 0"><br>Number of Moos: <span style="color:#42b883;">{{ mooCounter }}</span></span>
         <span v-if="superMoo"> <br>{{ mooPlication }}</span>
       
     </div>
   </div>
+  <div v-if="showNotification" class="notification">Result copied to clipboard!</div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
-    <div class="white-color-text" v-if="resultTester" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
-      <b style="color:#42b883;">Current Node Calculation</b><br>
+    <div class="white-color-text" v-if="showDescriptionText" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
+      <b style="color:#42b883;">Final Node Cowculation</b><br>
       {{ currentNode }}<br>
       <b style="color:#42b883;">Binary Tree Structure</b><br>
       {{ treeNodeCalculations }}  
@@ -115,7 +116,7 @@ export default {
       mooPlication: "",
 
       buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-      isActive: [false, false, false, false, false, false, false, false, false, false,],
+      isActive: [false, false, false, false, false, false, false, false, false, false],
 
       userTokens: [],
       operators: [],
@@ -123,7 +124,10 @@ export default {
       treeNodeCalculations: null,
       currentNode: null,
 
-      resultTester: false,
+      showDescriptionText: false,
+
+      message: toString(this.result),
+      showNotification: false,
 
     };
   },
@@ -204,13 +208,17 @@ export default {
         
       }
 
-      // This only fixes deleting the last number when the back <- arrow is used
+      // This only fixes deleting the last number when the back button <- arrow is used
       if (this.expression === "") {
+        this.showText = false;
         this.result = ""
+        this.showDescriptionText = false;
+        this.treeNodeCalculations = null;
+        this.currentNode = null;
       }
       // This sends a cleaned input to the cowculate function 
       else if (mathOperators.test(str)) {
-        this.showText = true;
+        
         this.cleanedExpression = str;
         this.cowculate();
       }
@@ -233,10 +241,8 @@ export default {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
         if (!(/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/).test(str)) {
           this.result = "";
-        }
-        // if it's a valid math expression run it through the parse tree
+        }        
         else {
-
           class Node {
             constructor(value, left = null, right = null) {
               this.value = value;
@@ -284,8 +290,8 @@ export default {
                 }
                 this.operators.push(char);
               }
-              else if (char === "*" || char === "/") {
-                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/")) {
+              else if (char === "*" || char === "/" || char === "!") {
+                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/" )) {
                   const op = this.operators.pop();
                   const right = this.userTokens.pop();
                   const left = this.userTokens.pop();
@@ -330,14 +336,21 @@ export default {
           if (result == this.cleanedExpression) {
             result = ""
           }
-          // This outputs the final answer!
+          // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
           else if (!Number.isNaN(result)) {
+
+            // show equal sign and results
+            this.showText = true;
+
             // create the binary tree structure
             this.treeNodeCalculations = this.userTokens
             // this outputs the binary parse tree and nodes
-            this.resultTester = true;
-            // this outputs the calculation
-            this.result = " = " + result;
+            this.showDescriptionText = true;
+
+            // this puts the final calculation into a variable to be copied from the clipboard
+            this.message = result
+            // this outputs the FINAL calculation
+            this.result = result;
           }
           // Good article about using NaN in JavaScript like the function above does ^ 
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
@@ -476,6 +489,14 @@ export default {
         }
       }
     },
+    copyToClipboard() {
+    navigator.clipboard.writeText(this.result);      
+      this.showNotification = true;
+      setTimeout(() => {
+        this.showNotification = false;
+      }, 1000);
+  
+    },
     /* Reset the array - if some error happens or want to restart */
     clearField() {
       this.expression = ""; // am unfiltered raw user input
@@ -490,7 +511,7 @@ export default {
 
       this.treeNodeCalculations = null; //show the whole parse tree
       this.currentNode = null; //show only the current node math operation being done
-      this.resultTester = false;
+      this.showDescriptionText = false;
     },
   },
 };
@@ -512,6 +533,8 @@ button.active {
   margin-right: auto;
   grid-gap: 0.2em;
   margin-bottom: 10px;
+  border-top-left-radius: 0em;
+  border-top-right-radius: 0em;
   grid-template-columns: repeat(4, 1fr);
 }
 
@@ -610,4 +633,27 @@ button.active {
 }
 
 /* back arrow */
+
+/* notification menu when copy to clipboard */
+.notification {
+  background-color: #f2f2f2;
+  color: #333;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 0.6em;
+  margin-top: 2em;
+  transition: opacity 0.5s ease-in-out;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 1;
+}
+
+.notification.hide {
+  opacity: 0;
+}
 </style>
