@@ -66,9 +66,8 @@
     <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
     <div class="white-color-text cowculate-result">
       
-        {{ expression }}<span v-if="this.expression == ''"></span>
-        
-        <span v-if="showText"> = {{ result }}</span>      
+        {{ expression }}<span v-if="this.expression == ''"></span>        
+        <span v-if="showText"> = <span style="color:#42b883;">{{ result }}</span></span>      
         <span v-if="mooCounter > 0"><br>Number of Moos: <span style="color:#42b883;">{{ mooCounter }}</span></span>
         <span v-if="superMoo"> <br>{{ mooPlication }}</span>
       
@@ -141,9 +140,6 @@ export default {
       // calculations will be performed automatically!
       // mathOperators checks for this regex sequence, then if true the text is shown, a cleanedExpression is
       // used in the cowculate function to evaluate the result!
-
-
-
       let str = userInput;
 
       this.mooCounter = (str.match(/Moo/g) || []).length;
@@ -186,7 +182,7 @@ export default {
         }
 
         this.mooPlication = mooString
-
+        
         // moo addition
 
       }
@@ -209,11 +205,10 @@ export default {
         this.expression = str.replace(")(", ")\u00D7(");        
       }
 
-      // If someone types 5-+2 this will automatically convert it to 5+2 since the '-' is reversed by the + sign      
-      if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
-        this.expression = str.slice(0, -2) + str.slice(-1); // remove "-" sign
-      }            
-      
+      //let minusOne = str[str.length - 1]
+  
+      // invoke function to autocorrect bad entries such as -/ or */ or -+
+      this.autoFixIncorrectInput(str)      
 
       // This only fixes deleting the last number when the back button <- arrow is used
       if (this.expression === "") {
@@ -224,8 +219,7 @@ export default {
         this.currentNode = null;
       }
       // This sends a cleaned input to the cowculate function 
-      else if (mathOperators.test(str)) {
-        
+      else if (mathOperators.test(str)) {        
         this.cleanedExpression = str;
         this.cowculate();
       }
@@ -257,9 +251,7 @@ export default {
               this.right = right;
             }
           }
-
           var input = this.cleanedExpression
-
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
@@ -345,15 +337,12 @@ export default {
           }
           // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
           else if (!Number.isNaN(result)) {
-
             // show equal sign and results
             this.showText = true;
-
             // create the binary tree structure
             this.treeNodeCalculations = this.userTokens
             // this outputs the binary parse tree and nodes
             this.showDescriptionText = true;
-
             // this puts the final calculation into a variable to be copied from the clipboard
             this.message = result
             // this outputs the FINAL calculation
@@ -363,7 +352,6 @@ export default {
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
           // This method works below, but others could also work.
         }
-
       } catch (error) {
         this.result = null;
       }
@@ -374,7 +362,6 @@ export default {
       if (node.left === null && node.right === null) {
         return node.value;
       }
-
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
 
@@ -415,13 +402,11 @@ export default {
       if (!Number.isNaN(num)) {
         try {
           var factorializeAnswer = this.factorialize(num)
-
           //this.expression = factorializeAnswer
           this.result = "! = " + factorializeAnswer
         } catch (error) {
           this.result = ""
           factorializeAnswer = 0
-
         }
       }
     },
@@ -437,7 +422,6 @@ export default {
     checkInput() {
       let str = this.expression;
       const lastDigitIndex = str.slice(-1);
-
       if (lastDigitIndex === "0") {
         this.isActive[0] = true;
       } else if (lastDigitIndex === "1") {
@@ -481,12 +465,47 @@ export default {
       this.expression += mathOperatorToAdd
 
     },
-
     addMoo() {
       this.expression += "Moo";
     },
-    
-
+    autoFixIncorrectInput(str){
+      // If someone types 5-+2 or 5-/2 or 5-*2 this will automatically change it to the last typed character  
+      if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
+        this.expression = str.slice(0, -2) + str.slice(-1); 
+      } else if (str[str.length - 2] === "-" && str[str.length - 1] === "/") {
+        this.expression = str.slice(0, -2) + str.slice(-1); 
+      } else if (str[str.length - 2] === "-" && str[str.length - 1] === "*") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7");        
+      } else if (str[str.length - 3] === "-" && str[str.length - 2] === "-" && str[str.length - 1] === "-") {
+        this.expression = str.slice(0, -2) + str.slice(-1); 
+      }   
+      // If someone types 5++2 or 5+/2 or 5+*2 this will automatically change it to the last typed character  
+      else if (str[str.length - 2] === "+" && str[str.length - 1] === "+") {
+        this.expression = str.slice(0, -2) + str.slice(-1); 
+      } else if (str[str.length - 2] === "+" && str[str.length - 1] === "/") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7");
+      } else if (str[str.length - 2] === "+" && str[str.length - 1] === "*") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7");         
+      } 
+      // If someone types 5*+2 or 5*/2 or 5**2 this will automatically change it to the last typed character  
+      else if (str[str.length - 2] === "*" && str[str.length - 1] === "+") {
+        this.expression = str.slice(0, -2) + str.slice(-1); 
+      } else if (str[str.length - 2] === "*" && str[str.length - 1] === "/") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7");        
+      } else if (str[str.length - 3] === "*" && str[str.length - 2] === "-" && str[str.length - 1] === "-") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7");         
+      } else if (str[str.length - 2] === "*" && str[str.length - 1] === "*") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7");    
+      }  
+      // If someone types 5/+2 or 5//2 or 5/*2 this will automatically change it to the last typed character  
+      else if (str[str.length - 2] === "/" && str[str.length - 1] === "+") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7");  
+      } else if (str[str.length - 2] === "/" && str[str.length - 1] === "/") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7");         
+      } else if (str[str.length - 2] === "/" && str[str.length - 1] === "*") {
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7"); 
+      }
+    },  
     removeEntry() {
       if (this.expression != "") {
         if (this.expression.slice(-3) == "Moo") {
@@ -501,8 +520,7 @@ export default {
       this.showNotification = true;
       setTimeout(() => {
         this.showNotification = false;
-      }, 1000);
-  
+      }, 1000);  
     },
     /* Reset the array - if some error happens or want to restart */
     clearField() {
@@ -523,7 +541,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 button.active {
   box-shadow: #00ffff 0 0 0 2px;
@@ -573,7 +590,6 @@ button.active {
 .grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
-
 .moo-cows-go-moo {
   top: 102%;
   left: 50%;
@@ -596,7 +612,6 @@ button.active {
     top: 100%;
   }
 }
-
 .cowculate-result {
   padding-top: 1em;
   padding-bottom: 1em;
@@ -613,19 +628,17 @@ button.active {
   width: 320px;
   border-radius: 4px 4px 4px 4px;
 }
-
+/* back arrow start */
 .arrow {
   border: solid rgb(255, 255, 255);
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
 }
-
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
-
 .left-arrow {
   border-right: 0.6em solid #ffffff;
   border-bottom: 0.4em solid transparent;
@@ -633,33 +646,30 @@ button.active {
 
   position: absolute;
 }
-
 .arrow-position {
   margin-bottom: 0.8em;
   margin-left: 0.75em;
 }
-
-/* back arrow */
+/* back arrow end */
 
 /* notification menu when copy to clipboard */
 .notification {
-  background-color: #f2f2f2;
-  color: #333;
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 0.6em;
-  margin-top: 2em;
-  transition: opacity 0.5s ease-in-out;
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  opacity: 1;
+background-color: #42b883;
+color: #333;
+position: fixed;
+bottom: 0;
+left: 0;
+transform: translate(0, 0);
+padding: 10px;
+border-radius: 10px;
+margin-bottom: 0.5em;
+margin-left: 0.5em;
+margin-right: auto;
+margin-top: auto;
+transition: opacity 0.5s ease-in-out;
+width: 300px;
+opacity: 1;
 }
-
 .notification.hide {
   opacity: 0;
 }

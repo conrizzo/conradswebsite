@@ -9,7 +9,8 @@
        There are some tricks to how this works. The user can also type in things like (2)(2) and this will automatically convert 
        to (2)&#215;(2). Typing in something incorrect like 2-+2 will also automatically convert to 2+2. Some of these
        functions are pre-processed with the watcher as the user types and are not done in the cowculate() function itself!
-
+       The copy answer to clipboard function doesn't copy answers with exclusively Moo*Moo yet, but will work for all mathmatical operations such
+       as 2Moo*3Moo*2Moo etc.
 
       </p>
       <pre v-bind:class="'language-JavaScript'" class="hhh">
