@@ -481,7 +481,7 @@ export default {
       else if (str[str.length - 2] === "*" && str[str.length - 1] === "+") {
         this.expression = str.slice(0, -2) + str.slice(-1); 
       } else if (str[str.length - 2] === "*" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7");        
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");        
       } else if (str[str.length - 3] === "*" && str[str.length - 2] === "-" && str[str.length - 1] === "-") {
         this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7");         
       } else if (str[str.length - 2] === "*" && str[str.length - 1] === "*") {
@@ -493,7 +493,7 @@ export default {
       } else if (str[str.length - 2] === "/" && str[str.length - 1] === "/") {
         this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7");         
       } else if (str[str.length - 2] === "/" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7"); 
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7").replaceAll("/", "\u00F7"); 
       }
     },  
     removeEntry() {
