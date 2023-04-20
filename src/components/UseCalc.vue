@@ -137,7 +137,7 @@ export default {
       let str = userInput;
 
       this.mooCounter = (str.match(/Moo/g) || []).length;
-      console.log("Number of 'Moo' occurrences:", this.mooCounter);
+    
 
       if (str.includes("Moo\u00D7Moo") || str.includes("Moo+Moo")) {
         this.superMoo = true;
@@ -213,7 +213,7 @@ export default {
   methods: {    
     cowculate() {
       /* Cow Moo cowculations */
-      console.log("COWCULATE")
+      
       /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */      
 
       // clears all number tokens and math operations from previous inputs

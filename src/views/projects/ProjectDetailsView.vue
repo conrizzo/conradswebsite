@@ -5,7 +5,7 @@
   <div class="router-link-style">
     <div v-show="id == 1">
       <router-link style="text-decoration: none" to="/projects/cowculator">Cowculator</router-link>
-      <p class="homeview">As of April 2023, here is how the cowculator cowculates. An additional evaluate function is also used.
+      <p class="homeview paragraph-text">As of April 2023, here is how the cowculator cowculates. An additional evaluate function is also used.
        There are some tricks to how this works. The user can also type in things like (2)(2) and this will automatically convert 
        to (2)&#215;(2). Typing in something incorrect like 2-+2 will also automatically convert to 2+2. Some of these
        functions are pre-processed with the watcher as the user types and are not done in the cowculate() function itself!
@@ -236,7 +236,7 @@
   website_finished = False
   while website_finished is False:
    print("Is it true that I am drinking coffee? " + "It is " + str(DRINK_COFFEE).lower() + ".")</code></pre>
-      <p class="homeview">
+      <p class="homeview paragraph-text">
         Python doesn't officially syntactically have constants so it's
         capitalized to show it should not be modified "DRINK_COFFEE=True", but
         the code above emphasizes that work continues, and the coffee drinking
@@ -264,7 +264,7 @@
     <div class="smaller-font" v-show="id == 3">
       <h1>{{  title }}</h1>
       
-      <p class="homeview">
+      <p class="homeview paragraph-text">
         Lundberg C,Viñuela LS, Biales S. 2022. Dialogue summarization using BART. Paper presented at: 15th International
         Natural Language Generation Conference; Colby College,Maine, USA. <a style="text-decoration: none" href="https://inlgmeeting.github.io/">https://inlgmeeting.github.io/</a>
         <br>This work used machine learning and fine-tuned a BART model on 12,460 dialogue summary pairs in order to summarize
@@ -277,10 +277,10 @@
         <a style="text-decoration: none" href="https://github.com/conrizzo/dialogue_summarization_paper">Dialogue Summarization using BART</a> paper, and a copy of the 
         <a style="text-decoration: none" href="https://colab.research.google.com/drive/15CvaaYz2nv_33bPbftM6JwQCuYp3lVm9">Python code</a> we wrote for fine-tuning the model.</p>
         
-      <p class="homeview">The original BART paper for reference is here: 
+      <p class="homeview paragraph-text">The original BART paper for reference is here: 
         <a style="text-decoration: none" href="https://arxiv.org/abs/1910.13461#">https://arxiv.org/abs/1910.13461#</a></p>
 
-        <p class="homeview">Will add more machine learning projects soon enough</p>
+        <p class="homeview paragraph-text">Will add more machine learning projects soon enough</p>
     </div>
 
 

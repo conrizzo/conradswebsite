@@ -75,8 +75,9 @@ h1 {
   display: inline-block;
   max-width: 500px;
   text-align: left;
-  font-size: 0.9em;
   padding: 10px;
+  font-size: 0.8em;  
+  line-height: 1.7;
 }
 
 /* CSS FOR MODAL "X" Close button*/

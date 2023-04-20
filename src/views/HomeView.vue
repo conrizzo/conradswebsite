@@ -6,7 +6,7 @@
   <div class="container custom-background-home-page">
     <!-- Main area -->
     <div style="padding-top:2em;">      
-      <p class="homeview">
+      <p class="homeview paragraph-text">
         Check out the
         <router-link style="text-decoration: none" to="/projects/cowculator"
           >Cowculator</router-link
