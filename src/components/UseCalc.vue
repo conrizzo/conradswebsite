@@ -2,61 +2,58 @@
 
 <template>
   <div style="">
-    <input class="input-field" v-model="expression" type="text" @input="checkInput" />
-  </div>
-  <div class="grid-container cow-image">
-    <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
-      &#215;
-    </button>
+      <input class="input-field" v-model="expression" type="text" @input="checkInput" />
+    </div>
+    <div class="grid-container cow-image">
+      <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
+        &#215;
+      </button>
 
-    <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">
-      {{ buttonList[1] }}
-    </button>
-    <button class="grid-item" @click="addNumber(2)" :class="{ active: isActive[2] }">
-      {{ buttonList[2] }}
-    </button>
-    <button class="grid-item" @click="addNumber(3)" :class="{ active: isActive[3] }">
-      {{ buttonList[3] }}
-    </button>
+      <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">
+        {{ buttonList[1] }}
+      </button>
+      <button class="grid-item" @click="addNumber(2)" :class="{ active: isActive[2] }">
+        {{ buttonList[2] }}
+      </button>
+      <button class="grid-item" @click="addNumber(3)" :class="{ active: isActive[3] }">
+        {{ buttonList[3] }}
+      </button>
+      <button class="grid-item-symbols" @click="addMathOperator('\u00F7')">÷</button>
+      <button class="grid-item" @click="addNumber(4)" :class="{ active: isActive[4] }">
+        {{ buttonList[4] }}
+      </button>
+      <button class="grid-item" @click="addNumber(5)" :class="{ active: isActive[5] }">
+        {{ buttonList[5] }}
+      </button>
+      <button class="grid-item" @click="addNumber(6)" :class="{ active: isActive[6] }">
+        {{ buttonList[6] }}
+      </button>
+      <button class="grid-item-symbols" @click="addMathOperator('-')">-</button>
+      <button class="grid-item" @click="addNumber(7)" :class="{ active: isActive[7] }">
+        {{ buttonList[7] }}
+      </button>
+      <button class="grid-item" @click="addNumber(8)" :class="{ active: isActive[8] }">
+        {{ buttonList[8] }}
+      </button>
+      <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">
+        {{ buttonList[9] }}
+      </button>
+      <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
+      <button class="grid-item" @click="removeEntry(), checkInput()">
+        <div class="arrow-position">
+          <div class="left-arrow"></div>
+        </div>
+      </button>
+      <button class="grid-item" @click="addMathOperator('.')">.</button>
+      <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
+        {{ buttonList[0] }}
+      </button>
+      <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
+      <button class="grid-item" @click="setFactorialize(this.expression)">n!</button>
+      <button class="grid-item" @click="addMathOperator('(')">(</button>
+      <button class="grid-item" @click="addMathOperator(')')">)</button>
 
-    <button class="grid-item-symbols" @click="addMathOperator('\u00F7')">÷</button>
-
-    <button class="grid-item" @click="addNumber(4)" :class="{ active: isActive[4] }">
-      {{ buttonList[4] }}
-    </button>
-    <button class="grid-item" @click="addNumber(5)" :class="{ active: isActive[5] }">
-      {{ buttonList[5] }}
-    </button>
-    <button class="grid-item" @click="addNumber(6)" :class="{ active: isActive[6] }">
-      {{ buttonList[6] }}
-    </button>
-    <button class="grid-item-symbols" @click="addMathOperator('-')">-</button>
-    <button class="grid-item" @click="addNumber(7)" :class="{ active: isActive[7] }">
-      {{ buttonList[7] }}
-    </button>
-    <button class="grid-item" @click="addNumber(8)" :class="{ active: isActive[8] }">
-      {{ buttonList[8] }}
-    </button>
-    <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">
-      {{ buttonList[9] }}
-    </button>
-    <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
-    <button class="grid-item" @click="removeEntry(), checkInput()">
-      <div class="arrow-position">
-        <div class="left-arrow"></div>
-      </div>
-    </button>
-
-    <button class="grid-item" @click="addMathOperator('.')">.</button>
-    <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
-      {{ buttonList[0] }}
-    </button>
-    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
-    <button class="grid-item" @click="setFactorialize(this.expression)">n!</button>
-    <button class="grid-item" @click="addMathOperator('(')">(</button>
-    <button class="grid-item" @click="addMathOperator(')')">)</button>
-
-  </div>   
+    </div>   
   
   <div>     
       <button style="margin-right: 0.25em;" class="button-35" @click="clearField">Reset</button>      
@@ -64,13 +61,11 @@
   </div>
   <div style="padding-top: 0.5em;">
     <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
-    <div class="white-color-text cowculate-result">
-      
+    <div class="white-color-text cowculate-result">      
         {{ expression }}<span v-if="this.expression == ''"></span>        
-        <span v-if="showText"> = <span style="color:#42b883;">{{ result }}</span></span>      
-        <span v-if="mooCounter > 0"><br>Number of Moos: <span style="color:#42b883;">{{ mooCounter }}</span></span>
-        <span v-if="superMoo"> <br>{{ mooPlication }}</span>
-      
+        <span v-if="showText"> = <span style="font-size: 1.15em;">{{ result }}</span></span>      
+        <span v-if="mooCounter > 0"><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
+        <span v-if="superMoo"> <br>{{ mooPlication }}</span>      
     </div>
   </div>
   <div v-if="showNotification" class="notification">Result copied to clipboard!</div>
@@ -78,7 +73,7 @@
     <div class="white-color-text" v-if="showDescriptionText" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
       <b style="color:#42b883;">Final Node Cowculation</b><br>
       {{ currentNode }}<br>
-      <b style="color:#42b883;">Binary Tree Structure</b><br>
+      <b style="color:#42b883;">Full Binary Tree Structure</b><br>
       {{ treeNodeCalculations }}  
     </div>
 
@@ -86,8 +81,7 @@
 <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
                           As long as a correct number math operator sequence is present a correct output is shown.    
-                        -->
- 
+                        --> 
 
   <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
@@ -180,22 +174,15 @@ export default {
             mooString += "o";
           }
         }
-
-        this.mooPlication = mooString
-        
-        // moo addition
-
+        this.mooPlication = mooString        
       }
 
       // The following is largely pre-processing for the string to go into the cowculate() function
-
       str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*").replaceAll("Moo", "");
 
       // This decides whether calculatons can actully be done
-      // regular expression for +, -, /, and * operators before any actual parsing is done.
-      const mathOperators = /([-+*/%^()]|\d+(\.\d+)?)/g;
-
-      
+      // regular expression for +, -, /, and * operators before any actual parsing is done (saves useless calculations)
+      const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;   
 
       /*
       if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
@@ -204,9 +191,7 @@ export default {
       if (str.indexOf(")(") !== -1) {
         this.expression = str.replace(")(", ")\u00D7(");        
       }
-
-      //let minusOne = str[str.length - 1]
-  
+      
       // invoke function to autocorrect bad entries such as -/ or */ or -+
       this.autoFixIncorrectInput(str)      
 
@@ -228,7 +213,7 @@ export default {
   methods: {    
     cowculate() {
       /* Cow Moo cowculations */
-
+      console.log("COWCULATE")
       /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */      
 
       // clears all number tokens and math operations from previous inputs
@@ -403,7 +388,11 @@ export default {
         try {
           var factorializeAnswer = this.factorialize(num)
           //this.expression = factorializeAnswer
-          this.result = "! = " + factorializeAnswer
+          this.result =  factorializeAnswer
+          
+          this.showText = true;
+          
+          
         } catch (error) {
           this.result = ""
           factorializeAnswer = 0
@@ -419,6 +408,7 @@ export default {
         return (num * this.factorialize(num - 1));
       }
     },
+    // This function will highlight the buttons as a user types input, or as a user hits the back button on their input to delete it
     checkInput() {
       let str = this.expression;
       const lastDigitIndex = str.slice(-1);
@@ -473,7 +463,7 @@ export default {
       if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
         this.expression = str.slice(0, -2) + str.slice(-1); 
       } else if (str[str.length - 2] === "-" && str[str.length - 1] === "/") {
-        this.expression = str.slice(0, -2) + str.slice(-1); 
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7");
       } else if (str[str.length - 2] === "-" && str[str.length - 1] === "*") {
         this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7");        
       } else if (str[str.length - 3] === "-" && str[str.length - 2] === "-" && str[str.length - 1] === "-") {
@@ -542,9 +532,9 @@ export default {
 };
 </script>
 <style scoped>
-button.active {
-  box-shadow: #00ffff 0 0 0 2px;
-  background: rgba(186, 186, 186, 0.318);
+button.active {  
+  
+  background: rgb(66, 184, 131,0.5);
 }
 
 .grid-container {
@@ -570,6 +560,7 @@ button.active {
   text-align: center;
   border-radius: 12px;
   color: rgba(255, 255, 255, 1);
+  cursor: pointer;  
 }
 
 .grid-item-symbols {
@@ -581,13 +572,15 @@ button.active {
   border-radius: 12px;
   font-weight: bold;
   color: rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
-.grid-item-symbols:hover {
+.grid-item-symbols:hover {  
   background-color: rgba(186, 186, 186, 0.318);
 }
 
 .grid-item:hover {
+ 
   background-color: rgba(186, 186, 186, 0.318);
 }
 .moo-cows-go-moo {
@@ -614,7 +607,7 @@ button.active {
 }
 .cowculate-result {
   padding-top: 1em;
-  padding-bottom: 1em;
+  
 
   margin-top: 0.05em;
   font-size: 1.5em;
@@ -624,10 +617,13 @@ button.active {
   margin-left: auto;
   margin-right: auto;
   padding: 0em;
-  background: #515151;
-  width: 320px;
+  /* background: #515151; */
   border-radius: 4px 4px 4px 4px;
 }
+
+
+
+
 /* back arrow start */
 .arrow {
   border: solid rgb(255, 255, 255);
@@ -657,15 +653,14 @@ button.active {
 background-color: #42b883;
 color: #333;
 position: fixed;
-bottom: 0;
+top: 0;
 left: 0;
 transform: translate(0, 0);
 padding: 10px;
 border-radius: 10px;
-margin-bottom: 0.5em;
+margin-top: 0.5em;
 margin-left: 0.5em;
-margin-right: auto;
-margin-top: auto;
+
 transition: opacity 0.5s ease-in-out;
 width: 300px;
 opacity: 1;

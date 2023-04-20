@@ -121,7 +121,7 @@ h1 {
 
   box-sizing: border-box;
   color: #d2d2d2;
-  cursor: pointer;
+  
   display: inline-flex;
   flex: 1 1 auto;
   font-family: Inter, sans-serif;
@@ -146,6 +146,7 @@ h1 {
 
 .button-35:hover {
   box-shadow: #d2d2d2 0 0 0 2px, transparent 0 0 0 0;
+  
 }
 
 .box {
