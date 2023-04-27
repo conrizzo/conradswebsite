@@ -61,7 +61,7 @@
   </div>
   <div style="padding-top: 0.5em;">
     <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
-    <div class="white-color-text cowculate-result">      
+    <div class=".dark-color-text cowculate-result">      
         {{ expression }}<span v-if="this.expression == ''"></span>        
         <span v-if="showText"> = <span style="font-size: 1.15em;">{{ result }}</span></span>      
         <span v-if="mooCounter > 0"><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
@@ -70,7 +70,7 @@
   </div>
   <div v-if="showNotification" class="notification">Result copied to clipboard!</div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
-    <div class="white-color-text" v-if="showDescriptionText" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
+    <div class=".dark-color-text" v-if="showDescriptionText" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
       <b style="color:#42b883;">Final Node Cowculation</b><br>
       {{ currentNode }}<br>
       <b style="color:#42b883;">Full Binary Tree Structure</b><br>
@@ -412,6 +412,7 @@ export default {
     checkInput() {
       let str = this.expression;
       const lastDigitIndex = str.slice(-1);
+      
       if (lastDigitIndex === "0") {
         this.isActive[0] = true;
       } else if (lastDigitIndex === "1") {
@@ -458,7 +459,13 @@ export default {
     addMoo() {
       this.expression += "Moo";
     },
+    
     autoFixIncorrectInput(str){
+    
+    // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
+    
+    if (!this.expression === "MooMoo"){     
+
       // If someone types 5-+2 or 5-/2 or 5-*2 this will automatically change it to the last typed character  
       if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
         this.expression = str.slice(0, -2) + str.slice(-1); 
@@ -495,6 +502,7 @@ export default {
       } else if (str[str.length - 2] === "/" && str[str.length - 1] === "*") {
         this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7").replaceAll("/", "\u00F7"); 
       }
+    }
     },  
     removeEntry() {
       if (this.expression != "") {
@@ -592,12 +600,14 @@ button.active {
   text-align: center;
   transform: translate(-50%, -50%);
   position: absolute;
-  color: rgb(255, 255, 255);
+  color: #42b883;
 }
 
 .input-field {
-  width: 317px;
-  font-size: 1.9em;
+  width: 324px;
+  font-size: 2em;
+  border-width:2px;
+  margin-bottom: 1px;
 }
 
 @media only screen and (max-width: 900px) {

@@ -4,9 +4,11 @@
         {{ title }} - {{ header }}
         
       </h1></div>
-  <div style="background-color:rgb(60,60,60);">
-    <h2> Moo&times;Moo is a fun expression. Moo&times;Moo&times;Moo is even better!</h2>
-    <p class="paragraph-text" style="text-align: center; color: #d1d1d1;">The most current node in the tree to perform calculations is shown in real time! 
+      <!-- change background color of the cowculator main area -->
+      <!--style="background-color:rgb(60,60,60);-->
+  <div style="background-color:rgb(255, 255, 255);">
+    <h2> Moo<span style="color: black;">&times;</span>Moo is a fun expression!</h2>
+    <p class="paragraph-text" style="text-align: center; color: #808080;">The most current node in the tree to perform calculations is shown in real time! 
     This performs all calculations with self-made parsing, no JavaScript eval() function is used!</p>
     <div style="padding-top: 3em;">
       <!--
@@ -140,7 +142,7 @@ export default {
 h2{
   padding-top: 2em;
   padding-bottom: 0em;
-  color:#d1d1d1;
+  color:#808080;
 }
 
 
