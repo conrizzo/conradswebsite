@@ -13,17 +13,17 @@
        as 2Moo*3Moo*2Moo etc.
 
       </p>
-      <figure>
+      
+      <figure class="">
       <img :src="imagePath" alt="Binary Tree example" />
       <figcaption>Binary Tree example showing how the code computes. The left tree result is 14, the right tree is -19, and an expression with paranthesis is shown.
         As shown, the binary tree evaluates each node starting from the bottom.
 
       </figcaption>
       </figure>
-      
+    
       <pre v-bind:class="'language-JavaScript'" class="hhh">
   <code>cowculate() {
-    cowculate() {
       /* Cow Moo cowculations */
       
       /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */      
@@ -311,6 +311,34 @@ h1{
   font-size: 0.9em;
 }
 
+
+
+/* image and figures */
+figure {
+    border: thin #c0c0c0 solid;
+    display: flex;
+    flex-flow: column;
+    padding: 0.5em;
+    padding-bottom: 0em;
+    max-width: 500px;
+    margin: auto;
+    font-size: 0.5em;
+    text-align: left;
+    color: rgb(255, 255, 255);
+    background-color: #999999;    
+    border-radius: 5px;
+    
+}
+
+figcaption{
+  padding: 0.5em;
+}
+
+img {
+    max-width: 500px;
+    max-height: auto;
+}
+
 /* Adjust the padding for mobile resolution for this block */
 @media only screen and (max-width: 900px) {
   p.homeview {
@@ -320,29 +348,12 @@ h1{
   .hhh {
     margin-left: 20px;
   }
-}
 
-/* image and figures */
-figure {
-    border: thin #c0c0c0 solid;
-    display: flex;
-    flex-flow: column;
+  figure {
     
-    max-width: 500px;
-    margin: auto;
-    font-size: 0.5em;
-    text-align: left;
-    color: rgb(255, 255, 255);
-    background-color: #999999;
+    margin-left: 1.2em;
+    margin-right: 1.2em;
     
+  }
 }
-figcaption{
-  padding: 0.25em;
-}
-
-img {
-    max-width: 500px;
-    max-height: auto;
-}
-
 </style>
