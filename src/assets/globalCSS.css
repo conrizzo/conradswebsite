@@ -76,14 +76,13 @@ h1 {
   margin-right: 6em;  
   line-height: 1.7;
   text-align: left;
-
 }
 
 .white-color-text {
   color: #d2d2d2;
 }
 
-.dark.-color-text{
+.dark-color-text{
   color: #303030;
 }
 
@@ -94,7 +93,6 @@ h1 {
     margin-right: 2em;
     text-align: left;
   }
-
 }
 
 
@@ -146,8 +144,7 @@ h1 {
 }
 
 .button-35:hover {
-  box-shadow: #d2d2d2 0 0 0 2px, transparent 0 0 0 0;
-  
+  box-shadow: #d2d2d2 0 0 0 2px, transparent 0 0 0 0;  
 }
 
 .box {
@@ -167,20 +164,14 @@ h1 {
 
 
   .blue-sky-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)),url(../images/blue_sky.jpg); 
-    
-    
-    
-    background-repeat: no-repeat;
-    
+    background-image: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)),url(../images/blue_sky.jpg);    
+    background-repeat: no-repeat;    
   }
   
 
 
 /* when media sizes adjust, the non-media needs to come first in parsing the code */
 .cow-lecture {
-
-
   background-image: url('../images/cow_lecture.png');
   background-position: center 88%;
   background-repeat: no-repeat;
@@ -192,8 +183,6 @@ h1 {
 
 @media only screen and (max-width: 500px) {
   .green-field-image {
-
-
     background-image: url('../images/cow_lecture.png');
     background-position: center 88%;
     background-repeat: no-repeat;

@@ -68,7 +68,7 @@
         <span v-if="superMoo"> <br>{{ mooPlication }}</span>      
     </div>
   </div>
-  <div v-if="showNotification" class="notification">Result copied to clipboard!</div>
+  <div v-if="showNotification" class="notification"><span style="font-weight: bold;">{{ result }}</span> copied to clipboard!</div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
     <div class=".dark-color-text" v-if="showDescriptionText" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
       <b style="color:#42b883;">Final Node Cowculation</b><br>
@@ -178,12 +178,11 @@ export default {
       }
 
       // The following is largely pre-processing for the string to go into the cowculate() function
-      str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*").replaceAll("Moo", "");
+      str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*")
 
       // This decides whether calculatons can actully be done
       // regular expression for +, -, /, and * operators before any actual parsing is done (saves useless calculations)
       const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;   
-
       /*
       if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
       to the input expression be ")*("
@@ -192,8 +191,14 @@ export default {
         this.expression = str.replace(")(", ")\u00D7(");        
       }
       
-      // invoke function to autocorrect bad entries such as -/ or */ or -+
-      this.autoFixIncorrectInput(str)      
+      // invoke function to autocorrect bad entries such as -/ or */ or -+          
+      if (!this.expression.includes("Moo\u00D7Moo") || !this.expression.includes("Moo+Moo")) {
+        // the string contains "Moo×Moo" or "Moo+Moo"        
+          this.autoFixIncorrectInput(str)  
+      }
+
+      // remove Moo's for number calculations
+      str = str.replaceAll("Moo", "");      
 
       // This only fixes deleting the last number when the back button <- arrow is used
       if (this.expression === "") {
@@ -351,7 +356,7 @@ export default {
       var right = this.evaluate(node.right);
 
       console.log(left, node.value, right);
-      this.currentNode = "Left node: [ " + left + " ] Operator: [ " + node.value + " ] Right node: [ " + right + " ]";
+      this.currentNode = "Left node:  " + left + " Operator:  " + node.value + "  Right node:  " + right;
 
       // Switched this to a switch - simpler and more readable for this use case
       switch (node.value) {
@@ -459,13 +464,13 @@ export default {
     addMoo() {
       this.expression += "Moo";
     },
-    
+
     autoFixIncorrectInput(str){
     
     // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
     
-    if (!this.expression === "MooMoo"){     
-
+    //if (!this.expression === "Moo\u00D7Moo"){     
+      
       // If someone types 5-+2 or 5-/2 or 5-*2 this will automatically change it to the last typed character  
       if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
         this.expression = str.slice(0, -2) + str.slice(-1); 
@@ -502,7 +507,7 @@ export default {
       } else if (str[str.length - 2] === "/" && str[str.length - 1] === "*") {
         this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7").replaceAll("/", "\u00F7"); 
       }
-    }
+    
     },  
     removeEntry() {
       if (this.expression != "") {
