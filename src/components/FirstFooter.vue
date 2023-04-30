@@ -29,12 +29,13 @@ export default {
 <style>
 .footer-links:link {
   text-decoration: none;
-  color: #00ffff;
+  color: #d2d2d2;
 }
 
 .footer-links:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
+
 .footer-links:visited {
   color: rgb(181, 0, 181);
 }

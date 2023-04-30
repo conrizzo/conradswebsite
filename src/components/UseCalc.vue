@@ -609,10 +609,25 @@ button.active {
 }
 
 .input-field {
-  width: 324px;
+  width: 9.96em;
   font-size: 2em;
-  border-width:2px;
+  border-width:1px;
   margin-bottom: 1px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+ 
+}
+
+/* doesn't highlight when clicking on input field */
+select:focus,
+button:focus {
+    outline: none;
+}
+/* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
+input:focus{
+  outline: none !important;
+    border:1px solid #42b883;
+    box-shadow: 0 0 10px #42b883;
 }
 
 @media only screen and (max-width: 900px) {

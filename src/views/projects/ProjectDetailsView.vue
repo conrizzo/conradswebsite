@@ -4,7 +4,9 @@
   <!-- This will show the project if the ID matches it in the Projects array -->
   <div class="router-link-style">
     <div v-show="id == 1">
-      <router-link style="text-decoration: none" to="/projects/cowculator">Cowculator</router-link>
+      <div style="padding-top: 0.5em;">
+      <h1><router-link style="text-decoration: none; color: black;" to="/projects/cowculator">Cowculator</router-link></h1>
+      </div>
       <p class="homeview paragraph-text">As of April 2023, here is how the cowculator cowculates. An additional evaluate function is also used.
        There are some tricks to how this works. The user can also type in things like (2)(2) and this will automatically convert 
        to (2)&#215;(2). Typing in something incorrect like 2-+2 will also automatically convert to 2+2. Some of these
@@ -186,7 +188,9 @@
 
     </div>
     <div v-show="id == 2">
-      <router-link style="text-decoration: none" to="/projects/cowculator">{{ title }}</router-link>
+      <div style="padding-top: 0.5em;">
+        <h1><router-link style="text-decoration: none; color: black;" to="/projects/cowculator">{{ title }}</router-link></h1>
+      </div>
       <pre v-bind:class="'language-python'" class="hhh">
   <code>DRINK_COFFEE = True
   website_finished = False
@@ -218,7 +222,7 @@
 
     </div>
     <div class="smaller-font" v-show="id == 3">
-      <h1>{{  title }}</h1>
+      <h1 style="color: black; padding-top: 0.5em;">{{  title }}</h1>
       
       <p class="homeview paragraph-text">
         Lundberg C,Viñuela LS, Biales S. 2022. Dialogue summarization using BART. Paper presented at: 15th International
@@ -267,7 +271,7 @@ export default {
 <style scoped>
 .router-link-style {
   font-size: 2em;
-  font-weight: bold;
+  font-weight: bold; 
 }
 
 p.homeview {
