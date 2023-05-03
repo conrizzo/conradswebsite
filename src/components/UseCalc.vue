@@ -609,7 +609,7 @@ button.active {
 }
 
 .input-field {
-  width: 9.96em;
+  width: 9.95em;
   font-size: 2em;
   border-width:1px;
   margin-bottom: 1px;
@@ -682,6 +682,7 @@ input:focus{
 .notification {
 background-color: #42b883;
 color: #333;
+border: 1px solid;
 position: fixed;
 top: 0;
 left: 0;

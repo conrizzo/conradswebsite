@@ -1,6 +1,6 @@
 
 <template>
-  <div style="background-color:rgb(75,75,75);" class="title-section"><h1 style="color: white">
+  <div style="background-color:#42b883;" class="title-section"><h1 style="color: white">
         {{ title }} - {{ header }}
         
       </h1></div>
@@ -91,7 +91,7 @@ export default {
   data() {
     return {
       title: "Cow-culator",
-      header: "Alpha-Build-2.0",
+      header: "Alpha-Build-3.0 is the third major update!",
       text:"The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered. The modal is comprised of the following props from top to bottom: title, header, text, imagePath, and URL. A rough estimate of the programming languages used to build the Cowculator are:",
       url: "https://github.com/conrizzo/conradswebsite",
       showAboutCalc: false,

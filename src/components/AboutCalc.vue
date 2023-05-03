@@ -70,7 +70,7 @@ h1 {
 .backdrop {
   top: 0;
   position: fixed;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 100%;
   /* bring this in front of all other elements */
@@ -102,7 +102,7 @@ h2 {
   border: none;
   width: 40px;
   height: 40px;
-  background-color: rgb(171, 171, 171);
+  background-color: #42b883;
   border-top-right-radius: 10px;
   /* matches the modal top right corner */
   border-bottom-left-radius: 10px;
