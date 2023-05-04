@@ -136,4 +136,10 @@ h2 {
 li + li {
   margin-top: 0.5em;
 }
+
+@media only screen and (max-width: 600px) {
+  h2 {
+    font-size: 1.1em;
+ }
+}
 </style>

@@ -72,7 +72,7 @@
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
     <div class=".dark-color-text" v-if="showDescriptionText" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
       <b style="color:#42b883;">Final Node Cowculation</b><br>
-      {{ currentNode }}<br>
+      Left node:  <span class="node-display">{{ leftNode }}</span>&nbsp; Operator: <span class="node-display">{{ operator }}</span>&nbsp; Right node:  <span class="node-display">{{ rightNode }}</span><br>
       <b style="color:#42b883;">Full Binary Tree Structure</b><br>
       {{ treeNodeCalculations }}  
     </div>
@@ -116,6 +116,9 @@ export default {
 
       treeNodeCalculations: null,
       currentNode: null,
+      leftNode: null,
+      rightNode: null,
+      operator: null,
 
       showDescriptionText: false,
 
@@ -356,8 +359,18 @@ export default {
       var right = this.evaluate(node.right);
 
       console.log(left, node.value, right);
-      this.currentNode = "Left node:  " + left + " Operator:  " + node.value + "  Right node:  " + right;
 
+      let viewer_symbol_node = ""
+      if (node.value === "*"){
+        viewer_symbol_node = '\u00D7'
+      } else if (node.value === "/"){
+        viewer_symbol_node = '\u00F7'
+      } else
+        viewer_symbol_node = node.value;
+      // this.currentNode = "Left node: " + left +" Operator: " + viewer_symbol_node + " Right node: " + right;
+      this.leftNode = left;
+      this.operator = viewer_symbol_node;
+      this.rightNode = right;
       // Switched this to a switch - simpler and more readable for this use case
       switch (node.value) {
         case '+':
@@ -539,6 +552,10 @@ export default {
 
       this.treeNodeCalculations = null; //show the whole parse tree
       this.currentNode = null; //show only the current node math operation being done
+      this.leftNode = null;
+      this.rightNode = null;
+      this.operator = null;
+
       this.showDescriptionText = false;
     },
   },
@@ -698,5 +715,9 @@ opacity: 1;
 }
 .notification.hide {
   opacity: 0;
+}
+
+.node-display {
+  font-size: 1.3em; background-color: #e3e3e3; padding-right: 0.33em; padding-left: 0.33em
 }
 </style>

@@ -7,10 +7,9 @@
       <!-- change background color of the cowculator main area -->
       <!--style="background-color:rgb(60,60,60);-->
   <div style="background-color:rgb(255, 255, 255);">
-    <h2> Moo<span style="color: black;">&times;</span>Moo is a fun expression!</h2>
-    <p class="paragraph-text" style="text-align: center; color: #808080;">The most current node in the tree to perform calculations is shown in real time! 
-    This performs all calculations with self-made parsing, no JavaScript eval() function is used!
-  
+    <h2>Built in <a style="color: #42b883" class="text-links" href="https://vuejs.org/">Vue.js</a> <br> Moo<span style="color: black;">&times;</span>Moo<span style="color: black;">&times;</span>Moo = Moooooooooooooooo</h2>
+    <p class="paragraph-text" style="text-align: center; color: #808080;">This is a real calculator! The most current node in the tree to perform calculations is shown in real time! 
+    This performs all calculations with self-made parsing, no JavaScript eval() function is used! Next idea is to draw the full tree structure as a graphic.
     </p>
     <div style="padding-top: 3em;">
       <!--
