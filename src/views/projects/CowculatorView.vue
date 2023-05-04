@@ -1,7 +1,7 @@
 
 <template>
   <div style="background-color:#42b883;" class="title-section"><h1 style="color: white">
-        {{ title }} - {{ header }}
+    <span  v-html="title"></span>: <span  v-html="header"></span>
         
       </h1></div>
       <!-- change background color of the cowculator main area -->
@@ -9,7 +9,9 @@
   <div style="background-color:rgb(255, 255, 255);">
     <h2> Moo<span style="color: black;">&times;</span>Moo is a fun expression!</h2>
     <p class="paragraph-text" style="text-align: center; color: #808080;">The most current node in the tree to perform calculations is shown in real time! 
-    This performs all calculations with self-made parsing, no JavaScript eval() function is used!</p>
+    This performs all calculations with self-made parsing, no JavaScript eval() function is used!
+  
+    </p>
     <div style="padding-top: 3em;">
       <!--
       <img alt="Vue logo" src="./assets/logo.png">
@@ -90,8 +92,8 @@ export default {
   components: { AboutCalc, UseCalc, HelpGuide, FirstFooter },
   data() {
     return {
-      title: "Cow-culator",
-      header: "Alpha-Build-3.0 is the third major update!",
+      title: "The <u><i>Cow</i></u>culator",
+      header: "<q>For the <u><i>moo</i></u>st accurate <u><i>cow</i></u>culations!</q>",
       text:"The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered. The modal is comprised of the following props from top to bottom: title, header, text, imagePath, and URL. A rough estimate of the programming languages used to build the Cowculator are:",
       url: "https://github.com/conrizzo/conradswebsite",
       showAboutCalc: false,

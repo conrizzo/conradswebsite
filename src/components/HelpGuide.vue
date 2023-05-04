@@ -88,16 +88,17 @@ right: 0em;
 cursor:pointer;
   width: 15px;
   height: 15px;
-  opacity: 0.5;
+  
   border: none;
   width: 40px;
   height: 40px;
-  background-color: rgb(171, 171, 171);
+  background-color: #42b883;
   border-top-right-radius: 10px; /* matches the modal top right corner */
   border-bottom-left-radius: 10px; /* matches the modal top right corner */
 }
 .close:hover {
-  opacity: 1;
+  
+  background-color: #ff5959;
   
 }
 .close:before, .close:after {

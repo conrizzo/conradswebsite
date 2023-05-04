@@ -3,7 +3,7 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="aboutCowculator">
       <button class="close" @click.self="closeModal"></button>
-      <h2 style="">{{ header }}</h2>
+      <h2 style="padding-top: 0.5em">Why use the <span v-html="title"></span>?</h2>
       
       <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">
         {{ text }}
@@ -20,7 +20,7 @@
       </div>
        -->
 
-      <h2 style="padding-top: 0.5em">Why use the {{ title }}?</h2>
+      
       <p class="about-modal-text">
         Without a doubt, other calculators are simply inadequate. They lack the
         one essential feature that sets the Cow-culator apart: the Moo function.
@@ -98,7 +98,7 @@ h2 {
   cursor: pointer;
   width: 15px;
   height: 15px;
-  opacity: 0.5;
+ 
   border: none;
   width: 40px;
   height: 40px;
@@ -110,7 +110,8 @@ h2 {
 }
 
 .close:hover {
-  opacity: 1;
+  
+  background-color: #ff5959;
 }
 
 .close:before,
