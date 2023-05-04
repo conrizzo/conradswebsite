@@ -3,7 +3,7 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="aboutCowculator">
       <button class="close" @click.self="closeModal"></button>
-      <h2 style="padding-top: 0.5em">Why use the <span v-html="title"></span>?</h2>
+      <h2 style="padding-top: 0.5em"><span v-html="title"></span>, why?</h2>
       
       <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">
         {{ text }}
