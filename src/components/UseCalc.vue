@@ -2,90 +2,97 @@
 
 <template>
   <div style="">
-      <input class="input-field" v-model="expression" type="text" @input="checkInput" />
-    </div>
-    <div class="grid-container cow-image">
-      <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
-        &#215;
-      </button>
+    <input class="input-field" v-model="expression" type="text" @input="checkInput" />
+  </div>
+  <div class="grid-container cow-image">
+    <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
+      &#215;
+    </button>
 
-      <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">
-        {{ buttonList[1] }}
-      </button>
-      <button class="grid-item" @click="addNumber(2)" :class="{ active: isActive[2] }">
-        {{ buttonList[2] }}
-      </button>
-      <button class="grid-item" @click="addNumber(3)" :class="{ active: isActive[3] }">
-        {{ buttonList[3] }}
-      </button>
-      <button class="grid-item-symbols" @click="addMathOperator('\u00F7')">÷</button>
-      <button class="grid-item" @click="addNumber(4)" :class="{ active: isActive[4] }">
-        {{ buttonList[4] }}
-      </button>
-      <button class="grid-item" @click="addNumber(5)" :class="{ active: isActive[5] }">
-        {{ buttonList[5] }}
-      </button>
-      <button class="grid-item" @click="addNumber(6)" :class="{ active: isActive[6] }">
-        {{ buttonList[6] }}
-      </button>
-      <button class="grid-item-symbols" @click="addMathOperator('-')">-</button>
-      <button class="grid-item" @click="addNumber(7)" :class="{ active: isActive[7] }">
-        {{ buttonList[7] }}
-      </button>
-      <button class="grid-item" @click="addNumber(8)" :class="{ active: isActive[8] }">
-        {{ buttonList[8] }}
-      </button>
-      <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">
-        {{ buttonList[9] }}
-      </button>
-      <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
-      <button class="grid-item" @click="removeEntry(), checkInput()">
-        <div class="arrow-position">
-          <div class="left-arrow"></div>
-        </div>
-      </button>
-      <button class="grid-item" @click="addMathOperator('.')">.</button>
-      <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
-        {{ buttonList[0] }}
-      </button>
-      <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
-      <button class="grid-item" @click="setFactorialize(this.expression)">n!</button>
-      <button class="grid-item" @click="addMathOperator('(')">(</button>
-      <button class="grid-item" @click="addMathOperator(')')">)</button>
+    <button class="grid-item" @click=" addNumber(1) " :class=" { active: isActive[1] } ">
+      {{ buttonList[1] }}
+    </button>
+    <button class="grid-item" @click=" addNumber(2) " :class=" { active: isActive[2] } ">
+      {{ buttonList[2] }}
+    </button>
+    <button class="grid-item" @click=" addNumber(3) " :class=" { active: isActive[3] } ">
+      {{ buttonList[3] }}
+    </button>
+    <button class="grid-item-symbols" @click=" addMathOperator('\u00F7') ">÷</button>
+    <button class="grid-item" @click=" addNumber(4) " :class=" { active: isActive[4] } ">
+      {{ buttonList[4] }}
+    </button>
+    <button class="grid-item" @click=" addNumber(5) " :class=" { active: isActive[5] } ">
+      {{ buttonList[5] }}
+    </button>
+    <button class="grid-item" @click=" addNumber(6) " :class=" { active: isActive[6] } ">
+      {{ buttonList[6] }}
+    </button>
+    <button class="grid-item-symbols" @click=" addMathOperator('-') ">-</button>
+    <button class="grid-item" @click=" addNumber(7) " :class=" { active: isActive[7] } ">
+      {{ buttonList[7] }}
+    </button>
+    <button class="grid-item" @click=" addNumber(8) " :class=" { active: isActive[8] } ">
+      {{ buttonList[8] }}
+    </button>
+    <button class="grid-item" @click=" addNumber(9) " :class=" { active: isActive[9] } ">
+      {{ buttonList[9] }}
+    </button>
+    <button class="grid-item-symbols" @click=" addMathOperator('+') ">+</button>
+    <button class="grid-item" @click=" removeEntry(), checkInput() ">
+      <div class="arrow-position">
+        <div class="left-arrow"></div>
+      </div>
+    </button>
+    <button class="grid-item" @click=" addMathOperator('.') ">.</button>
+    <button class="grid-item" @click=" addNumber(0) " :class=" { active: isActive[0] } ">
+      {{ buttonList[0] }}
+    </button>
+    <button class="grid-item" @click=" addMoo(), mooButtonHit() ">Moo</button>
+    <button class="grid-item" @click=" setFactorialize(this.expression) ">n!</button>
+    <button class="grid-item" @click=" addMathOperator('(') ">(</button>
+    <button class="grid-item" @click=" addMathOperator(')') ">)</button>
 
-    </div>   
-  
-  <div>     
-      <button style="margin-right: 0.25em;" class="button-35" @click="clearField">Reset</button>      
-      <button class="button-35" @click="copyToClipboard">Copy Result</button>            
+  </div>
+
+  <div>
+    <button style="margin-right: 0.25em;" class="button-35" @click=" clearField ">Reset</button>
+    <button class="button-35" @click=" copyToClipboard ">Copy Result</button>
   </div>
   <div style="padding-top: 0.5em;">
-    <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
-    <div class=".dark-color-text cowculate-result">      
-        {{ expression }}<span v-if="this.expression == ''"></span>        
-        <span v-if="showText"> = <span style="font-size: 1.15em;">{{ result }}</span></span>      
-        <span v-if="mooCounter > 0"><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
-        <span v-if="superMoo"> <br>{{ mooPlication }}</span>      
+    <b v-if=" showDescriptionText " style="color:#42b883;">Cowculation</b>
+    <div class=".dark-color-text cowculate-result">
+      {{ expression }}<span v-if=" this.expression == '' "></span>
+      <span v-if=" showText "> = <span style="font-size: 1.15em;">{{ result }}</span></span>
+      <span v-if=" mooCounter > 0 "><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
+      <span v-if=" superMoo "> <br>{{ mooPlication }}</span>
     </div>
   </div>
-  <div v-if="showNotification" class="notification"><span style="font-weight: bold;">{{ result }}</span> copied to clipboard!</div>
+  <div v-if=" showNotification " class="notification"><span style="font-weight: bold;">{{ result }}</span> copied to
+    clipboard!</div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
-    <div class=".dark-color-text" v-if="showDescriptionText" style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
+    <div class=".dark-color-text" v-if=" showDescriptionText "
+      style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
       <b style="color:#42b883;">Final Node Cowculation</b><br>
-      Left node:  <span class="node-display">{{ leftNode }}</span>&nbsp; Operator: <span class="node-display">{{ operator }}</span>&nbsp; Right node:  <span class="node-display">{{ rightNode }}</span><br>
+      Left node: <span class="node-display">{{ leftNode }}</span>&nbsp; Operator: <span class="node-display">{{ operator
+        }}</span>&nbsp; Right node: <span class="node-display">{{ rightNode }}</span><br>
       <b style="color:#42b883;">Full Binary Tree Structure</b><br>
-      {{ treeNodeCalculations }}  
-    </div>
+      {{ treeNodeCalculations }}
 
-</div>
-<!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
+    </div>
+    <div>
+    <pre>{{ treeString }}</pre>
+  </div>
+
+  </div>
+  <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
                           As long as a correct number math operator sequence is present a correct output is shown.    
-                        --> 
+                        -->
 
   <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
-      <span v-if="mooMessage">
+      <span v-if=" mooMessage ">
         Moo cows go moo, moo, moo!<br />
         Moo cows go moo, moo, moo!</span>
     </h2>
@@ -93,7 +100,11 @@
   </div>
 </template>
 <script>
+
+
+
 export default {
+
   data() {
     return {
       showText: false,
@@ -102,7 +113,7 @@ export default {
       result: null,
       mooMessage: false,
       mooTimer: null,
-      
+
       mooCounter: null,
 
       superMoo: false,
@@ -124,11 +135,22 @@ export default {
 
       message: toString(this.result),
       showNotification: false,
+      tree: { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } },
+    }
 
-    };
+
+
+  },computed: {
+    treeString() {
+      
+      return this.printTree(this.tree);
+    }
   },
   watch: {
     expression(userInput) {
+
+      
+
       // This expression(userInput) works by taking whatever the user input is from buttons/text field.
       // The number of Moo's are counted and saved to mooCounter
       // the math symbols that are displayed but don't actually work in calculations are replaced, along with
@@ -140,7 +162,7 @@ export default {
       let str = userInput;
 
       this.mooCounter = (str.match(/Moo/g) || []).length;
-    
+
 
       if (str.includes("Moo\u00D7Moo") || str.includes("Moo+Moo")) {
         this.superMoo = true;
@@ -177,7 +199,7 @@ export default {
             mooString += "o";
           }
         }
-        this.mooPlication = mooString        
+        this.mooPlication = mooString
       }
 
       // The following is largely pre-processing for the string to go into the cowculate() function
@@ -185,23 +207,23 @@ export default {
 
       // This decides whether calculatons can actully be done
       // regular expression for +, -, /, and * operators before any actual parsing is done (saves useless calculations)
-      const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;   
+      const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;
       /*
       if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
       to the input expression be ")*("
       */
       if (str.indexOf(")(") !== -1) {
-        this.expression = str.replace(")(", ")\u00D7(");        
+        this.expression = str.replace(")(", ")\u00D7(");
       }
-      
+
       // invoke function to autocorrect bad entries such as -/ or */ or -+          
       if (!this.expression.includes("Moo\u00D7Moo") || !this.expression.includes("Moo+Moo")) {
         // the string contains "Moo×Moo" or "Moo+Moo"        
-          this.autoFixIncorrectInput(str)  
+        this.autoFixIncorrectInput(str)
       }
 
       // remove Moo's for number calculations
-      str = str.replaceAll("Moo", "");      
+      str = str.replaceAll("Moo", "");
 
       // This only fixes deleting the last number when the back button <- arrow is used
       if (this.expression === "") {
@@ -212,17 +234,24 @@ export default {
         this.currentNode = null;
       }
       // This sends a cleaned input to the cowculate function 
-      else if (mathOperators.test(str)) {        
+      else if (mathOperators.test(str)) {
         this.cleanedExpression = str;
         this.cowculate();
       }
     },
   },
-  methods: {    
+  methods: {
+    printTree(node, level = 1) {
+      if (node === null) {
+        return '';
+      }
+      const indent = '  '.repeat(level - 1);
+      return `${indent}${node.value}\n${this.printTree(node.left, level + 1)}${this.printTree(node.right, level + 1)}`;
+    },
     cowculate() {
       /* Cow Moo cowculations */
-      
-      /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */      
+
+      /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
 
       // clears all number tokens and math operations from previous inputs
       this.userTokens = []
@@ -235,7 +264,7 @@ export default {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
         if (!(/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/).test(str)) {
           this.result = "";
-        }        
+        }
         else {
           class Node {
             constructor(value, left = null, right = null) {
@@ -283,7 +312,7 @@ export default {
                 this.operators.push(char);
               }
               else if (char === "*" || char === "/" || char === "!") {
-                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/" )) {
+                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/")) {
                   const op = this.operators.pop();
                   const right = this.userTokens.pop();
                   const left = this.userTokens.pop();
@@ -333,8 +362,17 @@ export default {
             // show equal sign and results
             this.showText = true;
             // create the binary tree structure
-            this.treeNodeCalculations = this.userTokens
-            // this outputs the binary parse tree and nodes
+            this.treeNodeCalculations = this.userTokens[0]
+
+            //console.log(typeof this.treeNodeCalculations)
+            const myJSON = JSON.stringify(this.treeNodeCalculations);
+            console.log(myJSON)
+
+            this.treeData = this.treeNodeCalculations;
+            this.tree = this.treeNodeCalculations;
+            //this.$set(this,'treeData', myJSON);
+            //console.log("test", this.treeData)
+
             this.showDescriptionText = true;
             // this puts the final calculation into a variable to be copied from the clipboard
             this.message = result
@@ -361,9 +399,9 @@ export default {
       console.log(left, node.value, right);
 
       let viewer_symbol_node = ""
-      if (node.value === "*"){
+      if (node.value === "*") {
         viewer_symbol_node = '\u00D7'
-      } else if (node.value === "/"){
+      } else if (node.value === "/") {
         viewer_symbol_node = '\u00F7'
       } else
         viewer_symbol_node = node.value;
@@ -406,11 +444,11 @@ export default {
         try {
           var factorializeAnswer = this.factorialize(num)
           //this.expression = factorializeAnswer
-          this.result =  factorializeAnswer
-          
+          this.result = factorializeAnswer
+
           this.showText = true;
-          
-          
+
+
         } catch (error) {
           this.result = ""
           factorializeAnswer = 0
@@ -430,7 +468,7 @@ export default {
     checkInput() {
       let str = this.expression;
       const lastDigitIndex = str.slice(-1);
-      
+
       if (lastDigitIndex === "0") {
         this.isActive[0] = true;
       } else if (lastDigitIndex === "1") {
@@ -476,52 +514,51 @@ export default {
     },
     addMoo() {
       this.expression += "Moo";
-    },
+    }
+    , autoFixIncorrectInput(str) {
 
-    autoFixIncorrectInput(str){
-    
-    // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
-    
-    //if (!this.expression === "Moo\u00D7Moo"){     
-      
+      // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
+
+      //if (!this.expression === "Moo\u00D7Moo"){     
+
       // If someone types 5-+2 or 5-/2 or 5-*2 this will automatically change it to the last typed character  
       if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7"); 
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "-" && str[str.length - 1] === "/") {
         this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "-" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");        
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 3] === "-" && str[str.length - 2] === "-" && str[str.length - 1] === "-") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7"); 
-      }   
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+      }
       // If someone types 5++2 or 5+/2 or 5+*2 this will automatically change it to the last typed character  
       else if (str[str.length - 2] === "+" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7"); 
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "+" && str[str.length - 1] === "/") {
         this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "+" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");         
-      } 
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+      }
       // If someone types 5*+2 or 5*/2 or 5**2 this will automatically change it to the last typed character  
       else if (str[str.length - 2] === "*" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7"); 
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "*" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");        
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 3] === "*" && str[str.length - 2] === "-" && str[str.length - 1] === "-") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");         
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "*" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");    
-      }  
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+      }
       // If someone types 5/+2 or 5//2 or 5/*2 this will automatically change it to the last typed character  
       else if (str[str.length - 2] === "/" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");  
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "/" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");         
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "/" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7").replaceAll("/", "\u00F7"); 
+        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7").replaceAll("/", "\u00F7");
       }
-    
-    },  
+
+    },
     removeEntry() {
       if (this.expression != "") {
         if (this.expression.slice(-3) == "Moo") {
@@ -532,11 +569,11 @@ export default {
       }
     },
     copyToClipboard() {
-    navigator.clipboard.writeText(this.result);      
+      navigator.clipboard.writeText(this.result);
       this.showNotification = true;
       setTimeout(() => {
         this.showNotification = false;
-      }, 1000);  
+      }, 1000);
     },
     /* Reset the array - if some error happens or want to restart */
     clearField() {
@@ -544,7 +581,7 @@ export default {
       this.cleanedExpression = ""; // a cleaned version of user input
       this.showText = false; // shows main results
       this.result = null; // final result
-      
+
       this.mooCounter = 0; // count Moo's
       this.superMoo = false; // turns MooxMoo into Moooo etc.
       this.userTokens = []; // global array to update numbers - probably doesnt need to be global
@@ -562,9 +599,9 @@ export default {
 };
 </script>
 <style scoped>
-button.active {  
-  
-  background: rgb(66, 184, 131,0.5);
+button.active {
+
+  background: rgb(66, 184, 131, 0.5);
 }
 
 .grid-container {
@@ -590,7 +627,7 @@ button.active {
   text-align: center;
   border-radius: 12px;
   color: rgba(255, 255, 255, 1);
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 .grid-item-symbols {
@@ -605,14 +642,15 @@ button.active {
   cursor: pointer;
 }
 
-.grid-item-symbols:hover {  
+.grid-item-symbols:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
 
 .grid-item:hover {
- 
+
   background-color: rgba(186, 186, 186, 0.318);
 }
+
 .moo-cows-go-moo {
   top: 102%;
   left: 50%;
@@ -628,23 +666,24 @@ button.active {
 .input-field {
   width: 9.95em;
   font-size: 2em;
-  border-width:1px;
+  border-width: 1px;
   margin-bottom: 1px;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
- 
+
 }
 
 /* doesn't highlight when clicking on input field */
 select:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
+
 /* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
-input:focus{
+input:focus {
   outline: none !important;
-    border:1px solid #42b883;
-    box-shadow: 0 0 10px #42b883;
+  border: 1px solid #42b883;
+  box-shadow: 0 0 10px #42b883;
 }
 
 @media only screen and (max-width: 900px) {
@@ -652,9 +691,10 @@ input:focus{
     top: 100%;
   }
 }
+
 .cowculate-result {
   padding-top: 1em;
-  
+
 
   margin-top: 0.05em;
   font-size: 1.5em;
@@ -678,10 +718,12 @@ input:focus{
   display: inline-block;
   padding: 3px;
 }
+
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+
 .left-arrow {
   border-right: 0.6em solid #ffffff;
   border-bottom: 0.4em solid transparent;
@@ -689,35 +731,40 @@ input:focus{
 
   position: absolute;
 }
+
 .arrow-position {
   margin-bottom: 0.8em;
   margin-left: 0.75em;
 }
+
 /* back arrow end */
 
 /* notification menu when copy to clipboard */
 .notification {
-background-color: #42b883;
-color: #333;
-border: 1px solid;
-position: fixed;
-top: 0;
-left: 0;
-transform: translate(0, 0);
-padding: 10px;
-border-radius: 10px;
-margin-top: 0.5em;
-margin-left: 0.5em;
+  background-color: #42b883;
+  color: #333;
+  border: 1px solid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 
-transition: opacity 0.5s ease-in-out;
-width: 300px;
-opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  width: 300px;
+  opacity: 1;
 }
+
 .notification.hide {
   opacity: 0;
 }
 
 .node-display {
-  font-size: 1.3em; background-color: #e3e3e3; padding-right: 0.33em; padding-left: 0.33em
-}
-</style>
+  font-size: 1.3em;
+  background-color: #e3e3e3;
+  padding-right: 0.33em;
+  padding-left: 0.33em
+}</style>

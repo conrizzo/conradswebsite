@@ -18,7 +18,7 @@
       
       <figure class="">
       <img :src="imagePath" alt="Binary Tree example" />
-      <figcaption>Binary Tree example showing how the code computes. The left tree result is 14, the right tree is -19, and an expression with paranthesis is shown.
+      <figcaption>Binary Tree example showing how the cowculator code computes. The left tree result is 14, the right tree is -19, and an expression with paranthesis is shown.
         As shown, the binary tree evaluates each node starting from the bottom.
 
       </figcaption>
