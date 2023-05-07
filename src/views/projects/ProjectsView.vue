@@ -2,20 +2,23 @@
   <h1>Projects</h1>
 
   <div v-for="project in projects" :key="project.id">
-    <router-link
-      :to="{
+    <router-link :to="{
         name: 'ProjectDetailsView',
         params: {
           title: project.title,
-          details: project.details,
           id: project.id,
-        },props: {
-          title: project.title
+          details: project.details,
+
+        }, props: {
+          title: project.title,
+          
+
+
+
         }
-      }"
-      class="project-link"
-    >
-      <h2>{{ project.title }}</h2>
+      }" class="project-link">
+      <!-- inline block makes the background color only as wide as the text -->
+      <h2 style="background-color: black; display: inline-block; padding: 0.25em; border-radius: 0.25em;">{{project.title}} {{project.details }}</h2>
     </router-link>
   </div>
 
@@ -31,22 +34,34 @@ export default {
   components: {
     FirstFooter,
   },
+
+  // Don't use id: 1 for some reason if 1 is an option it loops the first character of details:, not sure why?
   data() {
     return {
       projects: [
         {
           title: "Cowculator",
           id: 1,
-          details: "Do Cowculations with math and moos!",
+          details: ": A working calculator"
         },
-        { title: "Coffee Python", id: 2, details: "2" },
-
-        { title: "Dialogue Summarization using BART", id: 3, details: "3" },
+        {
+          title: "Coffee Python",
+          id: 2,
+          details: ": Python code and coffee"
+        },
+        {
+          title: "Dialogue Summarization using BART",
+          id: 3,
+          details: ": Project using transformer models to summarize dialogues"
+        },
       ],
     };
   },
 };
 </script>
 
-<style>
+<style scoped>
+h1 {
+  margin-top: 5em;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> /
-    <router-link to="/about">About</router-link> /
-    <router-link to="/projects">Projects</router-link> /
+    <router-link to="/">Home</router-link> 
+    <router-link to="/about">About</router-link> 
+    <router-link to="/projects">Projects</router-link> 
     <router-link to="/projects/cowculator">Cowculator</router-link>    
   </nav>
   <router-view />
@@ -27,13 +27,16 @@ nav a {
   font-weight: bold;
   color: #454545;
   text-decoration: none;
-
+  background-color: rgb(255, 255, 255);
+  margin-right: 0.5em;
   border-radius: 5px;
-  padding: 4px;
+  padding: 0.33em;
 }
 
 nav a.router-link-exact-active {
   color: #ffffff;
+  background-color: black;
+  padding: 0.33em;
 }
 
 html,

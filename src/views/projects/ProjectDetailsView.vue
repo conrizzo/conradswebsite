@@ -1,13 +1,14 @@
 <template>
-  <p>Title: {{ title }}&nbsp; ID: {{ id }}&nbsp; Details: {{ details }}</p>
+ 
 
   <!-- This will show the project if the ID matches it in the Projects array -->
   <div class="router-link-style">
     <div v-show="id == 1">
+      
       <div style="padding-top: 0.5em;">
       <h1><router-link style="text-decoration: none; color: black;" to="/projects/cowculator">Cowculator</router-link></h1>
       </div>
-      <p class="homeview paragraph-text">As of April 2023, here is how the cowculator cowculates. An additional evaluate function is also used.
+      <p class="homeview paragraph-text">As of April 2023, here is how the <router-link style="text-decoration: none;" to="/projects/cowculator">Cowculator</router-link> cowculates. An additional evaluate function is also used.
        There are some tricks to how this works. The user can also type in things like (2)(2) and this will automatically convert 
        to (2)&#215;(2). Typing in something incorrect like 2-+2 will also automatically convert to 2+2. Some of these
        functions are pre-processed with the watcher as the user types and are not done in the cowculate() function itself!
@@ -193,6 +194,9 @@
 
 
     </div>
+
+
+
     <div v-show="id == 2">
       <div style="padding-top: 0.5em;">
         <h1><router-link style="text-decoration: none; color: black;" to="/projects/cowculator">{{ title }}</router-link></h1>
@@ -227,6 +231,8 @@
 
 
     </div>
+
+
     <div class="smaller-font" v-show="id == 3">
       <h1 style="color: black; padding-top: 0.5em;">{{  title }}</h1>
       
@@ -262,7 +268,8 @@ export default {
   components: {
     FirstFooter,
   },
-  props: ["title", "id", "details"],
+  props: ['title','details','id'],
+
   mounted() {
     Prism.highlightAll();
   },
