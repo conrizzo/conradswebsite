@@ -81,8 +81,8 @@
 
     </div>
     <div>
-    <pre>{{ treeString }}</pre>
-  </div>
+      <pre v-if=" showText ">{{ treeString }}</pre>
+    </div>
 
   </div>
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
@@ -140,16 +140,16 @@ export default {
 
 
 
-  },computed: {
+  }, computed: {
     treeString() {
-      
+
       return this.printTree(this.tree);
     }
   },
   watch: {
     expression(userInput) {
 
-      
+
 
       // This expression(userInput) works by taking whatever the user input is from buttons/text field.
       // The number of Moo's are counted and saved to mooCounter
@@ -241,12 +241,23 @@ export default {
     },
   },
   methods: {
-    printTree(node, level = 1) {
+    printTree(node, level = 1, isRoot = true) {
       if (node === null) {
         return '';
       }
-      const indent = '  '.repeat(level - 1);
-      return `${indent}${node.value}\n${this.printTree(node.left, level + 1)}${this.printTree(node.right, level + 1)}`;
+
+      let indent;
+      if (isRoot) {
+        indent = '';
+      } else {
+        const levelPrefix = `Tree Level ${level - 1}`;
+        indent = '   '.repeat(level - 2) + levelPrefix + '   ';
+      }
+
+      const value = isRoot ? `Root        (${node.value})` : '(' + node.value + ')';
+      indent += '   '.repeat(level - 1) + '   ';
+
+      return `${indent}${value}\n${this.printTree(node.left, level + 1, false)}${this.printTree(node.right, level + 1, false)}`;
     },
     cowculate() {
       /* Cow Moo cowculations */
@@ -594,6 +605,10 @@ export default {
       this.operator = null;
 
       this.showDescriptionText = false;
+
+      // reset tree
+      this.tree = { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } };
+
     },
   },
 };
@@ -767,4 +782,5 @@ input:focus {
   background-color: #e3e3e3;
   padding-right: 0.33em;
   padding-left: 0.33em
-}</style>
+}
+</style>

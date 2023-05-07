@@ -23,6 +23,12 @@
 
       </figcaption>
       </figure>
+      <figure class="">
+      <img :src="imagePathTwo" alt="Binary Tree example 2" />
+      <figcaption>Binary Tree example of the left-most example above directly from the cowculator output!
+
+      </figcaption>
+      </figure>
     
       <pre v-bind:class="'language-JavaScript'" class="hhh">
   <code>cowculate() {
@@ -263,6 +269,7 @@ export default {
   data() {
    return {
     imagePath: require("@/images/binary_tree.jpg"),
+    imagePathTwo: require("@/images/binary_tree_two.jpg"),
   }
 }
 };
