@@ -37,7 +37,8 @@ const routes = [
   },
     // this could be solved by looping as well, likely better ways to route the id details title..
   {
-    path: '/projects/:id:details:title',
+    // I messed up this formatting before! I had the :id:title:details in the path, but it should be :id/:title/:details
+    path: '/projects/:id/:title/:details',
     name: 'ProjectDetailsView',   
     component: ProjectDetailsView,
     props: true

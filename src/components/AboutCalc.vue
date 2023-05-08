@@ -20,6 +20,9 @@
       </div>
        -->
 
+     
+        
+       
       
       <p class="about-modal-text">
         Without a doubt, other calculators are simply inadequate. They lack the

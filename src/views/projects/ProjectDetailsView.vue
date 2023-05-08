@@ -1,36 +1,39 @@
 <template>
- 
-
-  <!-- This will show the project if the ID matches it in the Projects array -->
+  <!-- PROJECT 1 -->
   <div class="router-link-style">
     <div v-show="id == 1">
-      
       <div style="padding-top: 0.5em;">
-      <h1><router-link style="text-decoration: none; color: black;" to="/projects/cowculator">Cowculator</router-link></h1>
+        <h1><router-link style="text-decoration: none; color: white;" to="/projects/cowculator">{{ title }} :
+            {{ details }}</router-link></h1>
       </div>
-      <p class="homeview paragraph-text">As of April 2023, here is how the <router-link style="text-decoration: none;" to="/projects/cowculator">Cowculator</router-link> cowculates. An additional evaluate function is also used.
-       There are some tricks to how this works. The user can also type in things like (2)(2) and this will automatically convert 
-       to (2)&#215;(2). Typing in something incorrect like 2-+2 will also automatically convert to 2+2. Some of these
-       functions are pre-processed with the watcher as the user types and are not done in the cowculate() function itself!
-       The copy answer to clipboard function doesn't copy answers with exclusively Moo*Moo yet, but will work for all mathmatical operations such
-       as 2Moo*3Moo*2Moo etc.
+      <p class="homeview paragraph-text">As of April 2023, here is how the <router-link style="text-decoration: none;"
+          to="/projects/cowculator">Cowculator</router-link> cowculates. An additional evaluate function is also used.
+        There are some tricks to how this works. The user can also type in things like (2)(2) and this will automatically
+        convert
+        to (2)&#215;(2). Typing in something incorrect like 2-+2 will also automatically convert to 2+2. Some of these
+        functions are pre-processed with the watcher as the user types and are not done in the cowculate() function
+        itself!
+        The copy answer to clipboard function doesn't copy answers with exclusively Moo*Moo yet, but will work for all
+        mathmatical operations such
+        as 2Moo*3Moo*2Moo etc.
 
       </p>
-      
-      <figure class="">
-      <img :src="imagePath" alt="Binary Tree example" />
-      <figcaption>Binary Tree example showing how the cowculator code computes. The left tree result is 14, the right tree is -19, and an expression with paranthesis is shown.
-        As shown, the binary tree evaluates each node starting from the bottom.
 
-      </figcaption>
+      <figure class="">
+        <img :src="imagePath" alt="Binary Tree example" />
+        <figcaption>Binary Tree example showing how the cowculator code computes. The left tree result is 14, the right
+          tree is -19, and an expression with paranthesis is shown.
+          As shown, the binary tree evaluates each node starting from the bottom.
+
+        </figcaption>
       </figure>
       <figure class="">
-      <img :src="imagePathTwo" alt="Binary Tree example 2" />
-      <figcaption>Binary Tree example of the left-most example above directly from the cowculator output!
+        <img :src="imagePathTwo" alt="Binary Tree example 2" />
+        <figcaption>Binary Tree example of the left-most example above directly from the cowculator output!
 
-      </figcaption>
+        </figcaption>
       </figure>
-    
+
       <pre v-bind:class="'language-JavaScript'" class="hhh">
   <code>cowculate() {
       /* Cow Moo cowculations */
@@ -188,18 +191,12 @@
           return null;
       }
     }</code></pre>
-
-
-
-
-
     </div>
 
-
-
+    <!-- PROJECT 2 -->
     <div v-show="id == 2">
       <div style="padding-top: 0.5em;">
-        <h1><router-link style="text-decoration: none; color: black;" to="/projects/cowculator">{{ title }}</router-link></h1>
+        <h1>{{ title }} : {{ details }}</h1>
       </div>
       <pre v-bind:class="'language-python'" class="hhh">
   <code>DRINK_COFFEE = True
@@ -232,27 +229,38 @@
 
     </div>
 
-
+    <!-- PROJECT 3 -->
     <div class="smaller-font" v-show="id == 3">
-      <h1 style="color: black; padding-top: 0.5em;">{{  title }}</h1>
-      
+      <div style="padding-top: 0.5em;">
+        <h1>{{ title }} : {{ details }}</h1>
+      </div>
+
       <p class="homeview paragraph-text">
         Lundberg C,Viñuela LS, Biales S. 2022. Dialogue summarization using BART. Paper presented at: 15th International
-        Natural Language Generation Conference; Colby College,Maine, USA. <a style="text-decoration: none" href="https://inlgmeeting.github.io/">https://inlgmeeting.github.io/</a>
-        <br>This work used machine learning and fine-tuned a BART model on 12,460 dialogue summary pairs in order to summarize
+        Natural Language Generation Conference; Colby College,Maine, USA. <a style="text-decoration: none"
+          href="https://inlgmeeting.github.io/">https://inlgmeeting.github.io/</a>
+        <br>This work used machine learning and fine-tuned a BART model on 12,460 dialogue summary pairs in order to
+        summarize
         dialogues between two people.
         <br>Our groups ROUGE and BERTSCORE are listed under "UoT" (University of Tübingen)
-        <a style="text-decoration: none" href="https://cylnlp.github.io/dialogsum-challenge/">https://cylnlp.github.io/dialogsum-challenge/</a> for the INLG DialogSum Challenge.
-        
+        <a style="text-decoration: none"
+          href="https://cylnlp.github.io/dialogsum-challenge/">https://cylnlp.github.io/dialogsum-challenge/</a> for the
+        INLG DialogSum Challenge.
+
         <br>
         Link to
-        <a style="text-decoration: none" href="https://github.com/conrizzo/dialogue_summarization_paper">Dialogue Summarization using BART</a> paper, and a copy of the 
-        <a style="text-decoration: none" href="https://colab.research.google.com/drive/15CvaaYz2nv_33bPbftM6JwQCuYp3lVm9">Python code</a> we wrote for fine-tuning the model.</p>
-        
-      <p class="homeview paragraph-text">The original BART paper for reference is here: 
-        <a style="text-decoration: none" href="https://arxiv.org/abs/1910.13461#">https://arxiv.org/abs/1910.13461#</a></p>
+        <a style="text-decoration: none" href="https://github.com/conrizzo/dialogue_summarization_paper">Dialogue
+          Summarization using BART</a> paper, and a copy of the
+        <a style="text-decoration: none"
+          href="https://colab.research.google.com/drive/15CvaaYz2nv_33bPbftM6JwQCuYp3lVm9">Python code</a> we wrote for
+        fine-tuning the model.
+      </p>
 
-        <p class="homeview paragraph-text">Will add more machine learning projects soon enough</p>
+      <p class="homeview paragraph-text">The original BART paper for reference is here:
+        <a style="text-decoration: none" href="https://arxiv.org/abs/1910.13461#">https://arxiv.org/abs/1910.13461#</a>
+      </p>
+
+      <p class="homeview paragraph-text">Will add more machine learning projects soon enough</p>
     </div>
 
 
@@ -268,24 +276,28 @@ export default {
   components: {
     FirstFooter,
   },
-  props: ['title','details','id'],
+  props: {
+    title: String,
+    details: String,
+    id: Number,
+  },
 
   mounted() {
     Prism.highlightAll();
   },
   data() {
-   return {
-    imagePath: require("@/images/binary_tree.jpg"),
-    imagePathTwo: require("@/images/binary_tree_two.jpg"),
+    return {
+      imagePath: require("@/images/binary_tree.jpg"),
+      imagePathTwo: require("@/images/binary_tree_two.jpg"),
+    }
   }
-}
 };
 </script>
 
 <style scoped>
 .router-link-style {
   font-size: 2em;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 p.homeview {
@@ -320,12 +332,14 @@ p.homeview {
   word-wrap: break-word;
   border-radius: 5px;
 }
-h1{
+
+h1 {
   font-size: 1em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
 }
-.smaller-font{
+
+.smaller-font {
   font-size: 0.9em;
 }
 
@@ -333,28 +347,28 @@ h1{
 
 /* image and figures */
 figure {
-    border: thin #c0c0c0 solid;
-    display: flex;
-    flex-flow: column;
-    padding: 0.5em;
-    padding-bottom: 0em;
-    max-width: 500px;
-    margin: auto;
-    font-size: 0.5em;
-    text-align: left;
-    color: rgb(255, 255, 255);
-    background-color: #999999;    
-    border-radius: 5px;
-    
+  border: thin #c0c0c0 solid;
+  display: flex;
+  flex-flow: column;
+  padding: 0.5em;
+  padding-bottom: 0em;
+  max-width: 500px;
+  margin: auto;
+  font-size: 0.5em;
+  text-align: left;
+  color: rgb(255, 255, 255);
+  background-color: #999999;
+  border-radius: 5px;
+
 }
 
-figcaption{
+figcaption {
   padding: 0.5em;
 }
 
 img {
-    max-width: 500px;
-    max-height: auto;
+  max-width: 500px;
+  max-height: auto;
 }
 
 /* Adjust the padding for mobile resolution for this block */
@@ -368,10 +382,10 @@ img {
   }
 
   figure {
-    
+
     margin-left: 1.2em;
     margin-right: 1.2em;
-    
+
   }
 }
 </style>

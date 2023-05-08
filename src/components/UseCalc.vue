@@ -9,79 +9,79 @@
       &#215;
     </button>
 
-    <button class="grid-item" @click=" addNumber(1) " :class=" { active: isActive[1] } ">
+    <button class="grid-item" @click=" addNumber(1)" :class="{ active: isActive[1] }">
       {{ buttonList[1] }}
     </button>
-    <button class="grid-item" @click=" addNumber(2) " :class=" { active: isActive[2] } ">
+    <button class="grid-item" @click=" addNumber(2)" :class="{ active: isActive[2] }">
       {{ buttonList[2] }}
     </button>
-    <button class="grid-item" @click=" addNumber(3) " :class=" { active: isActive[3] } ">
+    <button class="grid-item" @click=" addNumber(3)" :class="{ active: isActive[3] }">
       {{ buttonList[3] }}
     </button>
-    <button class="grid-item-symbols" @click=" addMathOperator('\u00F7') ">÷</button>
-    <button class="grid-item" @click=" addNumber(4) " :class=" { active: isActive[4] } ">
+    <button class="grid-item-symbols" @click=" addMathOperator('\u00F7')">÷</button>
+    <button class="grid-item" @click=" addNumber(4)" :class="{ active: isActive[4] }">
       {{ buttonList[4] }}
     </button>
-    <button class="grid-item" @click=" addNumber(5) " :class=" { active: isActive[5] } ">
+    <button class="grid-item" @click=" addNumber(5)" :class="{ active: isActive[5] }">
       {{ buttonList[5] }}
     </button>
-    <button class="grid-item" @click=" addNumber(6) " :class=" { active: isActive[6] } ">
+    <button class="grid-item" @click=" addNumber(6)" :class="{ active: isActive[6] }">
       {{ buttonList[6] }}
     </button>
-    <button class="grid-item-symbols" @click=" addMathOperator('-') ">-</button>
-    <button class="grid-item" @click=" addNumber(7) " :class=" { active: isActive[7] } ">
+    <button class="grid-item-symbols" @click=" addMathOperator('-')">-</button>
+    <button class="grid-item" @click=" addNumber(7)" :class="{ active: isActive[7] }">
       {{ buttonList[7] }}
     </button>
-    <button class="grid-item" @click=" addNumber(8) " :class=" { active: isActive[8] } ">
+    <button class="grid-item" @click=" addNumber(8)" :class="{ active: isActive[8] }">
       {{ buttonList[8] }}
     </button>
-    <button class="grid-item" @click=" addNumber(9) " :class=" { active: isActive[9] } ">
+    <button class="grid-item" @click=" addNumber(9)" :class="{ active: isActive[9] }">
       {{ buttonList[9] }}
     </button>
-    <button class="grid-item-symbols" @click=" addMathOperator('+') ">+</button>
-    <button class="grid-item" @click=" removeEntry(), checkInput() ">
+    <button class="grid-item-symbols" @click=" addMathOperator('+')">+</button>
+    <button class="grid-item" @click=" removeEntry(), checkInput()">
       <div class="arrow-position">
         <div class="left-arrow"></div>
       </div>
     </button>
-    <button class="grid-item" @click=" addMathOperator('.') ">.</button>
-    <button class="grid-item" @click=" addNumber(0) " :class=" { active: isActive[0] } ">
+    <button class="grid-item" @click=" addMathOperator('.')">.</button>
+    <button class="grid-item" @click=" addNumber(0)" :class="{ active: isActive[0] }">
       {{ buttonList[0] }}
     </button>
-    <button class="grid-item" @click=" addMoo(), mooButtonHit() ">Moo</button>
-    <button class="grid-item" @click=" setFactorialize(this.expression) ">n!</button>
-    <button class="grid-item" @click=" addMathOperator('(') ">(</button>
-    <button class="grid-item" @click=" addMathOperator(')') ">)</button>
+    <button class="grid-item" @click=" addMoo(), mooButtonHit()">Moo</button>
+    <button class="grid-item" @click=" setFactorialize(this.expression)">n!</button>
+    <button class="grid-item" @click=" addMathOperator('(')">(</button>
+    <button class="grid-item" @click=" addMathOperator(')')">)</button>
 
   </div>
 
   <div>
-    <button style="margin-right: 0.25em;" class="button-35" @click=" clearField ">Reset</button>
-    <button class="button-35" @click=" copyToClipboard ">Copy Result</button>
+    <button style="margin-right: 0.25em;" class="button-35" @click="clearField">Reset</button>
+    <button class="button-35" @click="copyToClipboard">Copy Result</button>
   </div>
   <div style="padding-top: 0.5em;">
-    <b v-if=" showDescriptionText " style="color:#42b883;">Cowculation</b>
+    <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
-      {{ expression }}<span v-if=" this.expression == '' "></span>
-      <span v-if=" showText "> = <span style="font-size: 1.15em;">{{ result }}</span></span>
-      <span v-if=" mooCounter > 0 "><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
-      <span v-if=" superMoo "> <br>{{ mooPlication }}</span>
+      {{ expression }}<span v-if="this.expression == ''"></span>
+      <span v-if="showText"> = <span style="font-size: 1.15em;">{{ result }}</span></span>
+      <span v-if="mooCounter > 0"><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
+      <span v-if="superMoo"> <br>{{ mooPlication }}</span>
     </div>
   </div>
-  <div v-if=" showNotification " class="notification"><span style="font-weight: bold;">{{ result }}</span> copied to
+  <div v-if="showNotification" class="notification"><span style="font-weight: bold;">{{ result }}</span> copied to
     clipboard!</div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
-    <div class=".dark-color-text" v-if=" showDescriptionText "
+    <div class=".dark-color-text" v-if="showDescriptionText"
       style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
       <b style="color:#42b883;">Final Node Cowculation</b><br>
       Left node: <span class="node-display">{{ leftNode }}</span>&nbsp; Operator: <span class="node-display">{{ operator
-        }}</span>&nbsp; Right node: <span class="node-display">{{ rightNode }}</span><br>
+      }}</span>&nbsp; Right node: <span class="node-display">{{ rightNode }}</span><br>
       <b style="color:#42b883;">Full Binary Tree Structure</b><br>
       {{ treeNodeCalculations }}
 
     </div>
     <div>
-      <pre v-if=" showText ">{{ treeString }}</pre>
+      <pre v-if="showText">{{ treeString }}</pre>
     </div>
 
   </div>
@@ -92,7 +92,7 @@
 
   <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
-      <span v-if=" mooMessage ">
+      <span v-if="mooMessage">
         Moo cows go moo, moo, moo!<br />
         Moo cows go moo, moo, moo!</span>
     </h2>

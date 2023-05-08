@@ -9,16 +9,15 @@
           id: project.id,
           details: project.details,
 
-        }, props: {
-          title: project.title,
+        }
           
 
 
 
-        }
+        
       }" class="project-link">
       <!-- inline block makes the background color only as wide as the text -->
-      <h2 style="background-color: black; display: inline-block; padding: 0.25em; border-radius: 0.25em;">{{project.title}} {{project.details }}</h2>
+      <h2 style="background-color: white; color: black; display: inline-block; padding: 0.25em; border-radius: 0.25em;"> {{project.title}} : {{project.details }}</h2>
     </router-link>
   </div>
 
@@ -42,17 +41,17 @@ export default {
         {
           title: "Cowculator",
           id: 1,
-          details: ": A working calculator"
+          details: "A working calculator"
         },
         {
           title: "Coffee Python",
           id: 2,
-          details: ": Python code and coffee"
+          details: "Python code and coffee"
         },
         {
           title: "Dialogue Summarization using BART",
           id: 3,
-          details: ": Project using transformer models to summarize dialogues"
+          details: "Project using transformer models to summarize dialogues"
         },
       ],
     };
