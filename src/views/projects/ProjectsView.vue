@@ -8,13 +8,7 @@
           title: project.title,
           id: project.id,
           details: project.details,
-
-        }
-          
-
-
-
-        
+        },       
       }" class="project-link">
       <!-- inline block makes the background color only as wide as the text -->
       <h2 style="background-color: white; color: black; display: inline-block; padding: 0.25em; border-radius: 0.25em;"> {{project.title}} : {{project.details }}</h2>

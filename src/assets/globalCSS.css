@@ -74,7 +74,14 @@ h1 {
 .paragraph-text {
   margin-left: 6em;
   margin-right: 6em;  
-  line-height: 1.7;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.aside-text {
+  margin-left: 1em;
+  margin-right: 1em;  
+  line-height: 1.5;
   text-align: left;
 }
 
@@ -97,7 +104,7 @@ h1 {
 
 
 .project-link {
-  color: #a13f3f;
+  
 
   /* change link color */
   font-size: 16px;

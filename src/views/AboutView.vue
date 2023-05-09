@@ -7,7 +7,7 @@
         <h1 style="color: black;">Howdy there! Welcome to conradswebsite.com</h1>
         <br>
         <p class="paragraph-text">
-          This website is totally self-made by Conrad using
+          This iteration of the website was started in March, 2023 and is totally self-made by Conrad using
           <a class="text-links" href="https://github.com/vuejs/core"> Vue 3</a>
           (Vue.js). It is hosted on
           <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
@@ -27,13 +27,13 @@
         <p class="paragraph-text">        
           This websites focus is to show some examples of work I've done using code, plus it's fun to have a website made in a framework (Vue.js) and be able to 
           experiment here. For anyone unfamiliar with what a framework is <a class="text-links" href="https://en.wikipedia.org/wiki/Web_framework">https://en.wikipedia.org/wiki/Web_framework</a><br><br>
+        </p>         
+        <figure class="center-figure">
+              <img class="img-container" :src="imagePath" alt="Coding Languages used" />
+        <figcaption>Here is an approximation of the languages this website uses. It's mostly Vue.js.
 
-          Here is an approximation of the languages this website uses. It's mostly Vue.js, JavaScript, some minimal styling. The percentage of Vue.js is always increasing.<br>
-          
-            <img style="max-width: 20em; padding-top: 0.5em; text-align: center;" :src="imagePath" alt="Coding Languages used" />
-          
-          
-        </p>
+        </figcaption>
+      </figure>
         <br>
         <p class="paragraph-text">GitHub Pages requires special methods to work properly. 
           For example, in order to deploy this website, the command <i>"deploy": "copy dist\index.html dist\404.html & gh-pages -d dist"</i> is used, and this command is added to the package.json file. 
@@ -45,7 +45,41 @@
         
     </div>
     <!-- Aside area -->
-    <AsideContent class="aside"> </AsideContent>
+    <AsideContent>
+      <template v-slot:aside-content>
+        <p class="aside-text" style="margin-top: 1em">
+          <!-- make a hyperlink template to google.com -->
+          
+        This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>. What are slots in vue.js?
+        <br> 
+        <br> 
+        According to chatGPT: "Slots in Vue.js provide a way to pass content from a parent component to a child component. 
+        The main purpose of slots is to make it easier to create reusable components that can be customized with different content.
+        <br>
+        <br>
+        Here are some of the benefits of using slots in Vue.js:
+        <br>
+        <br>
+        1. Reusability: Slots allow you to create reusable components that can be used in different parts of your application with different content. 
+        This makes it easier to create modular, maintainable code.
+        <br>
+        <br>
+        2. Customizability: Slots allow you to customize the content of a component without having to modify the component itself. This makes it easier to create components that can be used in a variety of contexts.
+        <br>
+        <br>
+        3. Flexibility: Slots provide a flexible way to structure your components. 
+        You can use slots to define different sections of a component and then fill those sections with content as needed.
+        <br>
+        <br>
+        4. Separation of concerns: Slots allow you to separate the concerns of a component. 
+        The component defines the structure and behavior, while the content is provided by the parent component.
+        <br>
+        <br>
+        In summary, slots are an essential feature of Vue.js that make it easier to create reusable, customizable, and flexible components. 
+        By using slots, you can create more modular and maintainable code, which can save you time and effort in the long run."
+        </p>
+      </template>
+    </AsideContent>
   </div>
   <div class="push-footer-low-res">
     <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
@@ -82,9 +116,50 @@ h1 {
   background: rgb(255, 255, 255);
 }
 
-@media only screen and (max-width: 900px){
+
+figure {
+  
+  display: flex;
+  flex-flow: column;
+  padding: 0.5em;
+  padding-bottom: 0em;
+  max-width: 300px;
+  margin: auto;
+  font-size: 0.9em;
+  text-align: left;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  border-radius: 5px; 
+  line-height: 1.2;
+
+}
+figcaption {
+  padding: 0.5em;
+}
+.center-figure{
+  margin:auto;
+}
+
+.img-container {
+  text-align: center;
+  margin: auto; 
+  max-width: 350px;
+  
+ 
+}
+
+@media only screen and (max-width: 900px) {  
+
+  figure {
+
+    margin-left: 1.2em;
+    margin-right: 1.2em;
+    
+
+  }
+
   .push-footer-low-res{
   height: 500px;
-  }
+}
 }
 </style>

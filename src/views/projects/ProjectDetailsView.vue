@@ -19,17 +19,18 @@
 
       </p>
 
-      <figure class="">
+      <figure>
         <img :src="imagePath" alt="Binary Tree example" />
-        <figcaption>Binary Tree example showing how the cowculator code computes. The left tree result is 14, the right
+        <figcaption>A) Binary Tree example showing how the cowculator code computes. The left tree result is 14, the right
           tree is -19, and an expression with paranthesis is shown.
-          As shown, the binary tree evaluates each node starting from the bottom.
+          As shown, the binary tree evaluates each node starting from the bottom. Diagram made using: <a
+            href="https://vanya.jp.net/vtree/">https://vanya.jp.net/vtree/</a>.
 
         </figcaption>
       </figure>
-      <figure class="">
-        <img :src="imagePathTwo" alt="Binary Tree example 2" />
-        <figcaption>Binary Tree example of the left-most example above directly from the cowculator output!
+      <figure>
+        <img style="max-width: 200px; margin-left: auto; margin-right: auto;" :src="imagePathTwo" alt="Binary Tree example 2" />
+        <figcaption>B) Binary Tree example of the left-most example from the above figure, this comes directly from the cowculator output!
 
         </figcaption>
       </figure>
@@ -295,6 +296,7 @@ export default {
 </script>
 
 <style scoped>
+
 .router-link-style {
   font-size: 2em;
   font-weight: bold;
@@ -320,6 +322,7 @@ p.homeview {
 }
 
 .hhh {
+  margin-top: 1em;
   font-weight: normal;
   font-size: 14px;
   page-break-inside: avoid;
@@ -346,20 +349,24 @@ h1 {
 
 
 /* image and figures */
-figure {
-  border: thin #c0c0c0 solid;
+figure { 
+  
   display: flex;
   flex-flow: column;
   padding: 0.5em;
   padding-bottom: 0em;
   max-width: 500px;
-  margin: auto;
-  font-size: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 0.45em;
+  font-weight: 75;
   text-align: left;
-  color: rgb(255, 255, 255);
-  background-color: #999999;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
   border-radius: 5px;
-
+  line-height: 1.2;
 }
 
 figcaption {

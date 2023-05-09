@@ -6,6 +6,7 @@
   <div class="container custom-background-home-page">
     <!-- Main area -->
     <div style="padding-top:2em;">      
+     
       <p class="homeview paragraph-text">
         Check out the
         <router-link style="text-decoration: none" to="/projects/cowculator"
@@ -19,7 +20,13 @@
     </div>
 
     <!-- Aside area -->
-    <AsideContent class="aside"> </AsideContent>
+    <AsideContent>
+      <template v-slot:aside-content>
+        <p class="aside" style="margin-top: 1em">
+          This is the content for the home page aside using a slot!
+        </p>
+      </template>
+    </AsideContent>
   </div>
   <FirstFooter></FirstFooter>
 </template>

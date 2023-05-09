@@ -11,12 +11,7 @@
     <p class="paragraph-text" style="text-align: center; color: #808080;">This is a real calculator! The most current node in the tree to perform calculations is shown in real time! 
     This performs all calculations with self-made parsing, no JavaScript eval() function is used! Next idea is to draw the full tree structure as a graphic.
     </p>
-    <div style="padding-top: 3em;">
-      <!--
-      <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    -->
-      
+    <div style="padding-top: 3em;">  
 
       <div v-if="showAboutCalc">
         <AboutCalc
@@ -145,12 +140,5 @@ h2{
   padding-bottom: 0em;
   color:#808080;
 }
-
-
-
-  
-  
-
-
 </style>
   
