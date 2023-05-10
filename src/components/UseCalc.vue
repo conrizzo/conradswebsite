@@ -1,5 +1,3 @@
-
-
 <template>
   <div style="">
     <input class="input-field" v-model="expression" type="text" @input="checkInput" />
@@ -138,7 +136,7 @@ export default {
       tree: { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } },
     }
 
-
+  
 
   }, computed: {
     treeString() {

@@ -5,24 +5,36 @@
   <div class="title-section"><h1>Conrad's Website</h1></div>
   <div class="container custom-background-home-page">
     <!-- Main area -->
-    <div style="padding-top:2em;">      
-     
-      <p class="homeview paragraph-text">
-        Check out the
-        <router-link style="text-decoration: none" to="/projects/cowculator"
-          >Cowculator</router-link
-        >, be sure to press the Moo button! 
+    
+    <div style="padding-top:2em;">  
+
+      <!-- I want to make this router-link below be the color red and stay red after a user clicks it -->
+      
+     <div class="centered"><h1 style="color: rgb(198, 198, 198);">Check out the
+        <router-link class="home-router-link"  to="/projects/cowculator"
+          >Cowculator!</router-link
+        ></h1>  
+      </div>
+
+      <div class="centered"><h1 style="color: rgb(198, 198, 198);">Check out the
+        <router-link class="home-router-link"  to="/projects"
+          >Projects Page!</router-link
+        ></h1>  
+      </div>
+       
+      <p class="paragraph-text">
+        
         <br><br/>
         This website is now an ongoing project. The main point isn't the styling and 
-        how polished everything looks, though some time has gone into making it presentable. The idea is to design some 
-        applications using vue.js, and after some practice make some useful/fun applications.
+        how polished everything looks, though some time has gone into making it presentable. The idea is to design a practical website, and also some 
+        applications using Vue.js!
       </p>
     </div>
 
     <!-- Aside area -->
-    <AsideContent>
+    <AsideContent v-if="removeAsideAtLowResolution">
       <template v-slot:aside-content>
-        <p class="aside" style="margin-top: 1em">
+        <p class="aside-text" style="margin-top: 1em">
           This is the content for the home page aside using a slot!
         </p>
       </template>
@@ -44,6 +56,12 @@ export default {
     AsideContent,
     FirstFooter,
   },
+  computed: {
+    // this connects to the v-if to remove the aside at low resolution
+    removeAsideAtLowResolution() {
+      return window.innerWidth >= 900;
+    },
+  },
   mounted() {
     Prism.highlightAll();
   },
@@ -53,9 +71,18 @@ export default {
 
 
 <style scoped>
+.centered {
+  display: flex;
+  margin-left: 6em;
+  text-align: left;
+}
+
 h1 {
-  text-align: center;
+  
   padding-top: 0.25em;
+  font-size: 2.5em;
+  color: #ffffff;
+  
 }
 p.homeview {
   padding-top: 0.75em;
@@ -72,28 +99,39 @@ p.homeview {
   border-radius: 5px;
 }
 
-.hhh {
-  page-break-inside: avoid;
-  font-family: monospace;
-  font-size: 14px;
-  margin-left: 30px;
-  margin-right: 20px;
-  overflow: auto;
-  display: block;
-  word-wrap: break-word;
-  border-radius: 5px;
-}
+
 .custom-background-home-page {
-  background-color: rgb(158, 158, 158);
+  background-color: rgb(255, 255, 255);
 }
 
+.home-router-link{
+  border-radius: 5px; padding: 0.1em; background-color: rgb(221, 221, 221); 
+  background: linear-gradient(90deg, rgba(0,255,119,1) 29%, rgba(0,224,255,1) 100%);
+  color: white;
+ text-decoration: none;
+}
+.home-router-link:hover{
+  text-decoration: underline;
+  
+}
+
+
 /* Adjust the padding for mobile resolution for this block */
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1200px) {
   p.homeview {
     margin-left: 20px;
   }
-  .hhh {
-    margin-left: 20px;
-  }
+
+  h1 {
+  
+  font-size: 1.6em; 
+  
+}
+.centered {
+  display: flex;
+  margin-left: 2em;
+  text-align: left;
+}
+  
 }
 </style>

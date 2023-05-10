@@ -1,4 +1,4 @@
-/* adside css */
+/* aside css */
 
 .container {
   display: grid;
@@ -6,11 +6,18 @@
   gap: 1rem;
 }
 
-.aside {
+.aside-content {
   min-height: 100vh;
   justify-content: space-between;
   flex-direction: column;
 
+}
+
+.aside-text {
+  margin-left: 1em;
+  margin-right: 1em;  
+  line-height: 1.5;
+  text-align: left;
 }
 
 
@@ -28,14 +35,13 @@
     width: 100%;
   }
 
-  .aside {
-    display: none;
-  }
-
   .container {
     grid-template-columns: 100% 1fr;
   }
 }
+/* end aside css */
+
+
 
 /* Reset default margin and padding */
 * {
@@ -68,7 +74,7 @@ main p {
 
 h1 {
   color: rgba(255, 255, 255, 0.873);
-  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
 .paragraph-text {
@@ -78,12 +84,6 @@ h1 {
   text-align: left;
 }
 
-.aside-text {
-  margin-left: 1em;
-  margin-right: 1em;  
-  line-height: 1.5;
-  text-align: left;
-}
 
 .white-color-text {
   color: #d2d2d2;
@@ -93,7 +93,7 @@ h1 {
   color: #303030;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
   .paragraph-text {
     max-width: 100%;
     margin-left: 2em;
