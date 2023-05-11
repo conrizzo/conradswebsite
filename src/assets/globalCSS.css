@@ -103,24 +103,7 @@ h1 {
 }
 
 
-.project-link {
-  
 
-  /* change link color */
-  font-size: 16px;
-  /* change font size */
-  text-decoration: none;
-  /* remove underline */
-  font-weight: bold;
-  /* add bold style */
-  background-color: white; 
-
-  display: inline-block; 
-  padding: 0.25em; 
-  border-radius: 0.25em;
-  margin-bottom: 0.8em;
-  
-}
 
 
 

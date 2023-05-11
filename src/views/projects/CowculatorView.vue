@@ -1,6 +1,6 @@
 
 <template>
-  <div style="background-color:#42b883;" class="title-section"><h1 style="color: white">
+  <div style="background: linear-gradient(90deg, rgba(0,255,119,0.66) 29%, rgba(0,224,255,0.66) 100%);" class="title-section"><h1 style="color: white">
     <span  v-html="title"></span>: <span  v-html="header"></span>
         
       </h1></div>

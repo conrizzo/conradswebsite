@@ -11,7 +11,7 @@
         },       
       }" class="project-link">
       <!-- inline block makes the background color only as wide as the text -->
-      <h2 style="background-color: white; color: black; display: inline-block; padding: 0.25em; border-radius: 0.25em;"> {{project.title}} : {{project.details }}</h2>
+      <h2 style="color: rgb(255, 255, 255); border: 5px gray; display: inline-block; padding: 0.25em; border-radius: 0.25em;">{{ project.id }}. {{project.title}} : {{project.details }}</h2>
     </router-link>
   </div>
 
@@ -56,5 +56,27 @@ export default {
 <style scoped>
 h1 {
   margin-top: 5em;
+}
+
+
+.project-link {
+  
+
+  /* change link color */
+  font-size: 16px;
+  /* change font size */
+  text-decoration: none;
+  /* remove underline */
+  font-weight: bold;
+  /* add bold style */
+  
+  background: linear-gradient(90deg, rgba(0,255,119,0.66) 29%, rgba(0,224,255,0.66) 100%);
+  display: inline-block; 
+  padding: 0.25em; 
+  border-radius: 0.5em;
+  margin-bottom: 0.8em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  
 }
 </style>

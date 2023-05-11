@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <h2>Aside Content</h2>
+    
 
     <!-- eslint-disable-next-line vue/valid-v-slot -->
     <slot name="aside-content"></slot>
