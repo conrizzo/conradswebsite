@@ -28,7 +28,7 @@
     mounted() {
       const owner = 'conrizzo';
       const repo = 'conradswebsite';
-      const path = 'data/data.tsv';
+      const path = 'conradswebsite/data/data.tsv';
   
       const rawFileURL = `https://raw.githubusercontent.com/${owner}/${repo}/main/${path}`;
   
