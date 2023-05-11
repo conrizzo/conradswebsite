@@ -24,7 +24,7 @@
 
       <div class="centered"><h1 style="color: rgb(0, 0, 0);">
         <router-link class="home-router-link"  to="/projects/DataPull"
-          >Pulling Data from GitHub</router-link
+          >Pulling Datasets from GitHub</router-link
         ></h1>  
       </div>
 
