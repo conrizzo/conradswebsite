@@ -27,7 +27,8 @@
       <p class="paragraph-text">
         This websites focus is to show some examples of work I've done using code, plus it's fun to have a website made in
         a framework (Vue.js) and be able to
-        experiment here. For anyone unfamiliar with what a framework is <a class="text-links"
+        experiment here. Once one has a basic understanding of HTML, CSS, JavaScript the next step in web devlopment are frameworks. 
+        Framework description: <a class="text-links"
           href="https://en.wikipedia.org/wiki/Web_framework">https://en.wikipedia.org/wiki/Web_framework</a><br><br>
       </p>
       <figure class="center-figure">

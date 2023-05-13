@@ -1,10 +1,16 @@
+
 <template>
   <div>
     <p class="paragraph-text homeview">
-      Data as an array: {{ fileContentsArray }} 
+      Testing datasets here.
+    </p>
+    <p class="paragraph-text homeview">
+      Data as an array: {{ fileContentsArray }}
       <br>
       <br>
-      This is pulling data from <a href="https://github.com/conrizzo/conradswebsite/blob/master/src/data/data.tsv">https://github.com/conrizzo/conradswebsite/blob/master/src/data/data.tsv</a> as a TSV file.
+      This is pulling data from <a
+        href="https://github.com/conrizzo/conradswebsite/blob/master/src/data/data.tsv">https://github.com/conrizzo/conradswebsite/blob/master/src/data/data.tsv</a>
+      as a TSV file.
     </p>
     <br>
     <table>
@@ -20,46 +26,74 @@
         </tr>
       </tbody>
     </table>
-    <button @click="sortData">Optional buttons to sort data by types</button>
-    <p class="paragraph-text homeview">This is using data from <a href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>, but
-     it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs, further divided by 2.20462. For example each JSON value is computed through: <span style="color: red">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span> </p>
+
+
+    <p class="paragraph-text homeview">This is using data from <a
+        href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
+      but
+      it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs,
+      further divided by 2.20462. For example each JSON value is computed through: <span
+        style="color: red">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span> </p>
+
+
+    <h2 style="color: white; font-size:3em; padding-bottom: 0.33em;" class="homeview">Click column titles to sort</h2>
     <table>
+
       <thead>
+
         <tr>
-          <th>Country</th>
-          <th>Kg's of Coffee per year</th>
+          <th style="cursor: pointer;" @click="sortData('country')">Country</th>
+          <th style="cursor: pointer;" @click="sortData('perCapitaCons2016')">Coffee Consumption per Capita 2016 (kg)</th>
+          <th style="cursor: pointer;" @click="sortData('totCons2019')">Total Consumption 2019 (kg)</th>
+          <th style="cursor: pointer;" @click="sortData('region')">Region</th>
+          <th style="cursor: pointer;" @click="sortData('pop2023')">Population 2023</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, key) in sortedData" :key="key">
           <td>{{ item.country }}</td>
-          <td>{{ Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100}}</td>
+          <td>{{ Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100 }}</td>
+          <td>{{ item.totCons2019 }}</td>
+          <td>{{ item.region }}</td>
+          <td>{{ item.pop2023 }}</td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <FirstFooter></FirstFooter>
 </template>
 
 <script>
-import "@/assets/globalCSS.css";
 
+
+
+
+import "@/assets/globalCSS.css";
+import FirstFooter from "@/components/FirstFooter.vue";
 export default {
+  name: "DatasetsView",
+  components: {
+    FirstFooter,
+  },
   data() {
     return {
       fileContents: '',
       fileContentsArray: [],
       jsonData: null,
       sortedData: null,
+      removedZeros: null,
     };
   },
   mounted() {
+
     // Text file import
     const owner = 'conrizzo';
     const repo = 'conradswebsite';
     const path = 'src/data/data.tsv';
 
     const rawFileURL = `https://raw.githubusercontent.com/${owner}/${repo}/master/${path}`;
-    
+
     fetch(rawFileURL)
       .then(response => response.text())
       .then(data => {
@@ -76,79 +110,126 @@ export default {
         console.error(error);
       });
 
-          // JSON file import
-          const owner1 = 'conrizzo';
-      const repo1 = 'data_test';
-     
-      const path1 = 'coffee_data.json';
+    // JSON file import
+    const owner1 = 'conrizzo';
+    const repo1 = 'data_test';
 
-      const rawJsonURL = `https://raw.githubusercontent.com/${owner1}/${repo1}/main/${path1}`;
-      console.log(rawJsonURL)
+    const path1 = 'coffee_data.json';
+
+    const rawJsonURL = `https://raw.githubusercontent.com/${owner1}/${repo1}/main/${path1}`;
+    console.log(rawJsonURL)
 
     fetch(rawJsonURL)
       .then(response => response.json())
       .then(data2 => {
         this.jsonData = data2;
+        this.removeZeros();
         this.sortData(); // Call the sortData method here so that the data is sorted by default
-        
+
       })
       .catch(error => {
         console.error(error);
       }
-      
+
       );
-      
-      this.sortedData = this.jsonData;
-     
+
+    this.sortedData = this.jsonData;
+
   },
   methods: {
-    sortData() {
-      
-      this.sortedData = this.jsonData.slice().sort((a, b) => b.perCapitaCons2016 - a.perCapitaCons2016);
+
+    // this sorts the data by a specific column
+    sortData(columnName) {
+      /*
+      Check if the currently sorted column is the same as the clicked column
+      If this.sortedColumn and columnName are the same, it means that the 
+      currently sorted column is being clicked again. This is important because 
+      you want to toggle the sorting direction when the same column is clicked multiple times.
+      */
+      const isSameColumn = this.sortedColumn === columnName;
+
+
+      // Toggle the sorting direction based on whether it's the same column or not
+      // The "?" is a ternary operator. It's a shorthand for an if/else statement
+      this.sortDirection = isSameColumn ? !this.sortDirection : true;
+
+      this.sortedData = this.removedZeros
+        .slice()
+        .sort((a, b) => {
+          const columnA = a[columnName];
+          const columnB = b[columnName];
+
+          // Handle null values
+          if (columnA === null) return 1;
+          if (columnB === null) return -1;
+
+          // Handle numeric and non-numeric values
+          if (typeof columnA === 'number' && typeof columnB === 'number') {
+            const result = columnB - columnA;
+            return this.sortDirection ? result : -result; // Reverse sorting if necessary
+
+          } else {
+            const strA = String(columnA).toLowerCase();
+            const strB = String(columnB).toLowerCase();
+
+            // localeCompare https://www.w3schools.com/jsref/jsref_localecompare.asp#:~:text=Definition%20and%20Usage,language%20settings%20of%20the%20browser.
+            const result = strB.localeCompare(strA);
+            return this.sortDirection ? result : -result; // Reverse sorting if necessary
+          }
+        });
+
+      // Store the currently sorted column
+      this.sortedColumn = columnName;
+    },
+    // this function removes all 0 or null values from JSON data
+    removeZeros() {
+      this.removedZeros = this.jsonData.filter(item => item.perCapitaCons2016 !== 0 && item.perCapitaCons2016 !== null)
     }
   }
 };
 </script>
-  <style scoped>
-  
-  /* Table */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+<style scoped>
+/* Table */
+table {
+  width: 99%;
+  margin-right: 0.5%;
+  margin-left: 0.5%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
 
-  /* Table Header */
-  thead {
-    background-color: #f5f5f5;
-    
-  }
+}
 
-  th {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid black;
-  }
+/* Table Header */
+thead {
+  background-color: #f5f5f5;
+}
 
-  /* Table Body */
-  tbody {
-    background-color: #fff;
-  }
+th {
+  padding: 1em;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid black;
+}
 
-  td {
-    text-align: left;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid black;
-  }
+/* Table Body */
+tbody {
+  background-color: #fff;
+}
 
-  /* Alternate Row Color */
-  tr:nth-child(even) {
-    background-color: #ededed96;
-  }
+td {
+  text-align: left;
+  padding: 1em;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid black;
+}
+
+/* Alternate Row Color */
+tr:nth-child(even) {
+  background-color: #ededed96;
+}
 
 
-  p.homeview {
+p.homeview {
   padding-top: 0.75em;
   padding-bottom: 0.75em;
   margin-left: auto;
@@ -161,7 +242,7 @@ export default {
   color: #000000;
   background: #fff;
   border-radius: 5px;
-  
+
   font-weight: normal;
   margin-bottom: 1em;
   margin-top: 1em;
