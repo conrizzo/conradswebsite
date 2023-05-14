@@ -4,7 +4,7 @@
     <p class="paragraph-text homeview">
       Testing datasets here.
     </p>
-    <p class="paragraph-text homeview">
+    <p class="paragraph-text homeview break-text">
       Data as an array: {{ fileContentsArray }}
       <br>
       <br>
@@ -27,8 +27,8 @@
       </tbody>
     </table>
 
-
-    <p class="paragraph-text homeview">This is using data from <a
+    $ curl wttr.in
+    <p class="paragraph-text homeview break-text">This is using data from <a
         href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
       but
       it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs,
@@ -196,19 +196,23 @@ table {
   margin-left: 0.5%;
   border-collapse: collapse;
   margin-bottom: 1em;
-
+ 
 }
 
 /* Table Header */
 thead {
   background-color: #f5f5f5;
+  
 }
 
 th {
-  padding: 1em;
+  padding-right: 0em;
+  padding-left: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   text-align: left;
   border-bottom: 1px solid #ddd;
-  border-right: 1px solid black;
+  border-right: 1px solid #ddd;
 }
 
 /* Table Body */
@@ -218,14 +222,39 @@ tbody {
 
 td {
   text-align: left;
-  padding: 1em;
+  
   border-bottom: 1px solid #ddd;
-  border-right: 1px solid black;
+  border-right: 1px solid #ddd;
+  
+  padding-left: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 /* Alternate Row Color */
 tr:nth-child(even) {
   background-color: #ededed96;
+  
+}
+
+.responsive-link {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+
+@media (max-width: 768px) {
+  table {
+    font-size: 0.7em;
+    padding: 0.25em;
+  }
+  .responsive-link {
+    display: block;
+  }
+  
 }
 
 

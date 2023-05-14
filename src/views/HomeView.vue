@@ -28,6 +28,12 @@
         ></h1>  
       </div>
 
+      <div class="centered"><h1 style="color: rgb(0, 0, 0);">
+        <router-link class="home-router-link"  to="/projects/weather"
+          >Weather</router-link
+        ></h1>  
+      </div>
+
       <p class="paragraph-text">
         
         <br><br/>
