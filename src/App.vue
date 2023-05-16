@@ -4,6 +4,7 @@
     <router-link to="/about">About</router-link> 
     <router-link to="/projects">Projects</router-link> 
     <router-link to="/projects/cowculator">Cowculator</router-link>    
+    <router-link to="/projects/weather">Weather</router-link>   
   </nav>
   <router-view />
 </template>

@@ -1,9 +1,9 @@
 
 <template>
   <div>
-    <p class="paragraph-text homeview">
+    <h1 class="homeview">
       Testing datasets here.
-    </p>
+    </h1>
     <p class="paragraph-text homeview break-text">
       Data as an array: {{ fileContentsArray }}
       <br>
@@ -27,7 +27,7 @@
       </tbody>
     </table>
 
-    $ curl wttr.in
+    
     <p class="paragraph-text homeview break-text">This is using data from <a
         href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
       but
@@ -117,6 +117,7 @@ export default {
     const path1 = 'coffee_data.json';
 
     const rawJsonURL = `https://raw.githubusercontent.com/${owner1}/${repo1}/main/${path1}`;
+    
     console.log(rawJsonURL)
 
     fetch(rawJsonURL)

@@ -754,7 +754,7 @@ input:focus {
 
 /* notification menu when copy to clipboard */
 .notification {
-  background-color: #42b883;
+  background-color: rgb(116, 247, 164);
   color: #333;
   border: 1px solid;
   position: fixed;
