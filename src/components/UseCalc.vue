@@ -1,6 +1,8 @@
 <template>
   <div style="">
-    <input class="input-field" v-model="expression" type="text" @input="checkInput" />
+    <!-- checkInput highlights key presses, and formatNumber adds commas -->
+    <input class="input-field" v-model="formattedNumber" type="text" @input="checkInput(), formatNumber()" />
+
   </div>
   <div class="grid-container cow-image">
     <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
@@ -60,8 +62,8 @@
   <div style="padding-top: 0.5em;">
     <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
-      {{ expression }}<span v-if="this.expression == ''"></span>
-      <span v-if="showText"> = <span style="font-size: 1.15em;">{{ result }}</span></span>
+      {{ formattedNumber }}<span v-if="this.expression == ''"></span>
+      <span v-if="showText"> = <span style="font-size: 1.15em;">{{ formattedResult  }}</span></span>
       <span v-if="mooCounter > 0"><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
       <span v-if="superMoo"> <br>{{ mooPlication }}</span>
     </div>
@@ -129,6 +131,9 @@ export default {
       rightNode: null,
       operator: null,
 
+      formattedNumber: "",
+      formattedResult: "",
+
       showDescriptionText: false,
 
       message: toString(this.result),
@@ -136,7 +141,7 @@ export default {
       tree: { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } },
     }
 
-  
+
 
   }, computed: {
     treeString() {
@@ -147,7 +152,7 @@ export default {
   watch: {
     expression(userInput) {
 
-
+      
 
       // This expression(userInput) works by taking whatever the user input is from buttons/text field.
       // The number of Moo's are counted and saved to mooCounter
@@ -239,6 +244,28 @@ export default {
     },
   },
   methods: {
+    formatNumber() {
+      var parts = this.expression.split(/([\d.]+)/g);
+      for (let i = 1; i < parts.length; i += 2) {
+        parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+      this.formattedNumber = parts.join("");
+
+      if (this.result != null) {
+        var stringFormatResult = this.result.toString();
+        //console.log(stringFormatResult)
+        var theResult = stringFormatResult.split(/([\d.]+)/g);
+        //console.log(theResult)
+        for (let j = 0; j < theResult.length; j += 1) {
+          theResult[j] = theResult[j].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        this.formattedResult = theResult.join("");
+        //console.log(this.formattedResult)
+      }
+
+    },
+
+
     printTree(node, level = 1, isRoot = true) {
       if (node === null) {
         return '';
@@ -387,6 +414,9 @@ export default {
             this.message = result
             // this outputs the FINAL calculation
             this.result = result;
+
+            // easiest to just add the commas in the watcher automatically and invoke this function
+            this.formatNumber();
           }
           // Good article about using NaN in JavaScript like the function above does ^ 
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
@@ -476,6 +506,7 @@ export default {
     // This function will highlight the buttons as a user types input, or as a user hits the back button on their input to delete it
     checkInput() {
       let str = this.expression;
+
       const lastDigitIndex = str.slice(-1);
 
       if (lastDigitIndex === "0") {
@@ -504,6 +535,8 @@ export default {
           this.isActive[i] = false;
         }
       }, 150);
+
+
     },
     mooButtonHit() {
       this.mooMessage = true;
@@ -515,11 +548,15 @@ export default {
       }, 1500);
     },
     addNumber(buttonValueToAdd) {
+
       this.expression += buttonValueToAdd;
+      // when any number is added via button format it with commas
+      this.formatNumber();
     },
     addMathOperator(mathOperatorToAdd) {
       this.expression += mathOperatorToAdd
-
+      // when any number is added via button format it with commas
+      this.formatNumber();
     },
     addMoo() {
       this.expression += "Moo";
@@ -603,6 +640,10 @@ export default {
       this.operator = null;
 
       this.showDescriptionText = false;
+
+      this.formattedNumber = ""; // expression with commas
+      this.formattedResult = ""; // final result with commas
+      
 
       // reset tree
       this.tree = { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } };
