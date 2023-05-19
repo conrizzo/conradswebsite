@@ -77,8 +77,9 @@
       Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{ operator
       }}</span>&nbsp; Right node: <span class="node-display">{{ addCommas(rightNode) }}</span><br>
       <b style="color:#42b883;">Full Binary Tree Structure</b><br>
-      {{ treeNodeCalculations }}
-
+      <div style="margin-left: 5em;">
+      <span>{{ treeNodeCalculations }}</span>
+    </div>
     </div>
     <div>
       <pre v-if="showText">{{ treeString }}</pre>

@@ -27,10 +27,10 @@ nav {
   justify-content: center;
   align-items: center;
   position: fixed; 
-  padding: 10px 0px 10px 0px;
+  padding: 2em 0px 2em 0px;
   
-  background-color: rgb(75, 75, 75);
-  padding-bottom: -50px; 
+  background-color: rgb(255, 255, 255);
+  
 }
 
 
@@ -64,7 +64,7 @@ nav a.router-link-exact-active {
 
 html,
 body {
-  padding-top: 1em;
+  padding-top: 2em;
   background-color: rgb(198, 198, 198);
 }
 </style>

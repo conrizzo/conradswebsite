@@ -1,6 +1,47 @@
 
 <template>
   <div>
+    
+
+    <h2 style="color: white; font-size:3em; padding-top: 2em; padding-bottom: 0.33em;" class="homeview">Coffee Consumers by country</h2>
+    <p class="paragraph-text homeview break-text">This is using data from <a
+        href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
+      but
+      it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs,
+      further divided by 2.20462. For example each JSON value is computed through: <span
+        style="color: red">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span>.
+        <br>
+        <br>
+        Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the sorted values.
+        Note: all 0 values are removed for the column that is sorted. </p>
+
+      <!-- how do i output the graph here? -->
+      
+      <div style="text-align: left;">
+      <canvas id="barGraphCanvas"></canvas>
+    </div>
+    <table style="margin-top: 1em;">
+
+      <thead>
+
+        <tr>
+          <th style="cursor: pointer;" @click="sortData('country')">Country</th>
+          <th style="cursor: pointer;" @click="removeZeros('perCapitaCons2016'),sortData('perCapitaCons2016'), barChart('perCapitaCons2016')">Coffee Consumption per Capita 2016 (kg)</th>
+          <th style="cursor: pointer;" @click="removeZeros('totCons2019'),sortData('totCons2019'),barChart('totCons2019')">dry coffee beans 2019 (kg)</th>
+          <th style="cursor: pointer;" @click="sortData('region')">Region</th>
+          <th style="cursor: pointer;" @click="sortData('pop2023'),barChart('pop2023')">Population 2023</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, key) in sortedData" :key="key">
+          <td>{{ item.country }}</td>
+          <td>{{ Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100 }}</td>
+          <td>{{ addCommas(Math.round((item.totCons2019 * 60000)* 100 / 2.20462) / 100 ) }}</td>
+          <td>{{ item.region }}</td>
+          <td>{{ addCommas(item.pop2023) }}</td>
+        </tr>
+      </tbody>
+    </table>
     <h1 class="homeview">
       Testing datasets here.
     </h1>
@@ -26,45 +67,14 @@
         </tr>
       </tbody>
     </table>
-
-    
-    <p class="paragraph-text homeview break-text">This is using data from <a
-        href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
-      but
-      it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs,
-      further divided by 2.20462. For example each JSON value is computed through: <span
-        style="color: red">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span> </p>
-
-
-    <h2 style="color: white; font-size:3em; padding-bottom: 0.33em;" class="homeview">Click column titles to sort</h2>
-    <table>
-
-      <thead>
-
-        <tr>
-          <th style="cursor: pointer;" @click="sortData('country')">Country</th>
-          <th style="cursor: pointer;" @click="sortData('perCapitaCons2016')">Coffee Consumption per Capita 2016 (kg)</th>
-          <th style="cursor: pointer;" @click="sortData('totCons2019')">dry coffee beans 2019 (kg)</th>
-          <th style="cursor: pointer;" @click="sortData('region')">Region</th>
-          <th style="cursor: pointer;" @click="sortData('pop2023')">Population 2023</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, key) in sortedData" :key="key">
-          <td>{{ item.country }}</td>
-          <td>{{ Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100 }}</td>
-          <td>{{ addCommas(Math.round((item.totCons2019 * 60000)* 100 / 2.20462) / 100 ) }}</td>
-          <td>{{ item.region }}</td>
-          <td>{{ addCommas(item.pop2023) }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
-
+  
+  
   <FirstFooter></FirstFooter>
 </template>
 
 <script>
+
 import "@/assets/globalCSS.css";
 import FirstFooter from "@/components/FirstFooter.vue";
 export default {
@@ -79,21 +89,27 @@ export default {
       jsonData: null,
       sortedData: null,
       removedZeros: null,
+
+      
+      
       
       // This function adds commas to numbers to increase readability
       addCommas: function(number) {
         number = number.toString();
         var parts = number.split(/([\d.]+)/g);
-        console.log(parts);
+        
+        
         for (let i = 1; i < parts.length; i += 2) {
           parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         return parts.join("");
-      
+        
     }
     };
   },
   mounted() {
+     
+   
     // Text file import
     const owner = "conrizzo";
     const repo = "conradswebsite";
@@ -123,12 +139,9 @@ export default {
     // JSON file import
     const owner1 = "conrizzo";
     const repo1 = "data_sets_for_conradswebsite";
-
     const path1 = "coffee_data.json";
-
-    const rawJsonURL = `https://raw.githubusercontent.com/${owner1}/${repo1}/main/${path1}`;
-
-    console.log(rawJsonURL);
+    const rawJsonURL = `https://raw.githubusercontent.com/${owner1}/${repo1}/main/${path1}`;   
+    
 
     fetch(rawJsonURL)
       .then((response) => response.json())
@@ -136,12 +149,14 @@ export default {
         this.jsonData = data2;
         this.removeZeros();
         this.sortData(); // Call the sortData method here so that the data is sorted by default
+        this.barChart()
       })
       .catch((error) => {
         console.error(error);
       });
 
     this.sortedData = this.jsonData;
+    
   },
   methods: {
     // this sorts the data by a specific column
@@ -184,19 +199,88 @@ export default {
       this.sortedColumn = columnName;
     },
     // this function removes all 0 or null values from JSON data
-    removeZeros() {
+    removeZeros(columnName = 'perCapitaCons2016') {
       this.removedZeros = this.jsonData.filter(
         (item) =>
-          item.perCapitaCons2016 !== 0 && item.perCapitaCons2016 !== null
+          item[columnName] !== 0 && item[columnName] !== null
       );
     },
+    barChart(sortType = 'perCapitaCons2016') {    
+        
+        // Sample data for the bar graph
+        console.log(this.sortedData);
+        const data = this.sortedData.map(item => {
+          return {
+            label: item.country,
+            value: item[sortType]
+          }
+        });
+
+        // Get the canvas element and its 2D context
+        const canvas = document.getElementById('barGraphCanvas');
+         
+        const ctx = canvas.getContext('2d');
+        
+const screenWidth = window.innerWidth; // Get the width of the screen
+const canvasWidthPercentage = 90; // Set the desired percentage
+
+canvas.width = (screenWidth * canvasWidthPercentage) / 100;
+canvas.height = canvas.width * (9 / 16); // Adjust height proportionally if needed
+        
+        
+        // Clear the canvas before drawing the graph - point of this is so updated values can be displayed and it doesn't
+        // just keep the same graph values with updated orders
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Set the bar graph configuration
+        const barHeight = 20;
+        const barSpacing = 5;
+        const graphWidth = canvas.width;
+        const maxValue = Math.max(...data.map(item => item.value));
+
+        // Calculate the scaling factor for the bar widths
+        const scaleFactor = graphWidth / maxValue;
+        
+        // Function to draw a bar
+        const drawBar = (x, y, width, height, color) => {
+          ctx.fillStyle = color;
+          ctx.fillRect(x, y, width, height);
+        };
+
+        // Function to draw the bar graph
+        const drawGraph = () => {
+          let startY = 40;
+
+          for (let i = 0; i < data.length; i++) {
+            const item = data[i];
+            const barWidth = item.value * scaleFactor;
+            const startX = 20;
+
+            drawBar(startX, startY, barWidth, barHeight, '#00ff77'); // Change the color to red
+
+            // Draw the label to the left of the bar
+            ctx.fillStyle = '#000';
+            ctx.textAlign = 'left';
+              ctx.font = 'bold 14px Arial';
+              ctx.fillStyle = 'black'; // Set the fill color to yellow
+              
+            ctx.fillText(item.label, startX + 5, startY + barHeight / 2 + 5);
+
+            startY += barHeight + barSpacing;
+          }
+        };
+
+        drawGraph();
+      },
+
+      
   },
 };
 </script>
 <style scoped>
 /* Table */
 table {
-  width: 99%;
+  width: 40%;
   margin-right: 0.5%;
   margin-left: 0.5%;
   border-collapse: collapse;
