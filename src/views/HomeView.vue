@@ -2,7 +2,7 @@
 
 
 <template>
-  <div class="title-section"><h1>Conrad's Website</h1></div>
+  <div class="title-section"><h1 style="font-size: 3em; padding-bottom: 0.4em;">Conrad's Website</h1></div>
   <div class="container custom-background-home-page">
     <!-- Main area -->
     

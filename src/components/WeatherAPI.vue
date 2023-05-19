@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Weather</h1>
+    <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>
     <table>
       <thead>
         <tr>

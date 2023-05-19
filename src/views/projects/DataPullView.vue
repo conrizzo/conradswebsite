@@ -44,7 +44,7 @@
         <tr>
           <th style="cursor: pointer;" @click="sortData('country')">Country</th>
           <th style="cursor: pointer;" @click="sortData('perCapitaCons2016')">Coffee Consumption per Capita 2016 (kg)</th>
-          <th style="cursor: pointer;" @click="sortData('totCons2019')">Total Consumption 2019 (kg)</th>
+          <th style="cursor: pointer;" @click="sortData('totCons2019')">dry coffee beans 2019 (kg)</th>
           <th style="cursor: pointer;" @click="sortData('region')">Region</th>
           <th style="cursor: pointer;" @click="sortData('pop2023')">Population 2023</th>
         </tr>
@@ -53,9 +53,9 @@
         <tr v-for="(item, key) in sortedData" :key="key">
           <td>{{ item.country }}</td>
           <td>{{ Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100 }}</td>
-          <td>{{ item.totCons2019 }}</td>
+          <td>{{ addCommas(Math.round((item.totCons2019 * 60000)* 100 / 2.20462) / 100 ) }}</td>
           <td>{{ item.region }}</td>
-          <td>{{ item.pop2023 }}</td>
+          <td>{{ addCommas(item.pop2023) }}</td>
         </tr>
       </tbody>
     </table>
@@ -65,10 +65,6 @@
 </template>
 
 <script>
-
-
-
-
 import "@/assets/globalCSS.css";
 import FirstFooter from "@/components/FirstFooter.vue";
 export default {
@@ -78,67 +74,76 @@ export default {
   },
   data() {
     return {
-      fileContents: '',
+      fileContents: "",
       fileContentsArray: [],
       jsonData: null,
       sortedData: null,
       removedZeros: null,
+      
+      // This function adds commas to numbers to increase readability
+      addCommas: function(number) {
+        number = number.toString();
+        var parts = number.split(/([\d.]+)/g);
+        console.log(parts);
+        for (let i = 1; i < parts.length; i += 2) {
+          parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        return parts.join("");
+      
+    }
     };
   },
   mounted() {
-
     // Text file import
-    const owner = 'conrizzo';
-    const repo = 'conradswebsite';
-    const path = 'src/data/data.tsv';
+    const owner = "conrizzo";
+    const repo = "conradswebsite";
+    const path = "src/data/data.tsv";
 
     const rawFileURL = `https://raw.githubusercontent.com/${owner}/${repo}/master/${path}`;
 
     fetch(rawFileURL)
-      .then(response => response.text())
-      .then(data => {
+      .then((response) => response.text())
+      .then((data) => {
         this.fileContents = data;
-        this.fileContentsArray = data.split('\n').map(line => line.split('\t'));
+        this.fileContentsArray = data
+          .split("\n")
+          .map((line) => line.split("\t"));
 
         // Check if the last field in the last line is an empty value and if it is, remove it
-        const lastLine = this.fileContentsArray[this.fileContentsArray.length - 1];
-        if (lastLine && lastLine[lastLine.length - 1] === '') {
+        const lastLine =
+          this.fileContentsArray[this.fileContentsArray.length - 1];
+        if (lastLine && lastLine[lastLine.length - 1] === "") {
           this.fileContentsArray.pop();
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
 
     // JSON file import
-    const owner1 = 'conrizzo';
-    const repo1 = 'data_test';
+    const owner1 = "conrizzo";
+    const repo1 = "data_sets_for_conradswebsite";
 
-    const path1 = 'coffee_data.json';
+    const path1 = "coffee_data.json";
 
     const rawJsonURL = `https://raw.githubusercontent.com/${owner1}/${repo1}/main/${path1}`;
-    
-    console.log(rawJsonURL)
+
+    console.log(rawJsonURL);
 
     fetch(rawJsonURL)
-      .then(response => response.json())
-      .then(data2 => {
+      .then((response) => response.json())
+      .then((data2) => {
         this.jsonData = data2;
         this.removeZeros();
         this.sortData(); // Call the sortData method here so that the data is sorted by default
-
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-      }
-
-      );
+      });
 
     this.sortedData = this.jsonData;
-
   },
   methods: {
-
     // this sorts the data by a specific column
     sortData(columnName) {
       /*
@@ -149,44 +154,43 @@ export default {
       */
       const isSameColumn = this.sortedColumn === columnName;
 
-
       // Toggle the sorting direction based on whether it's the same column or not
       // The "?" is a ternary operator. It's a shorthand for an if/else statement
       this.sortDirection = isSameColumn ? !this.sortDirection : true;
 
-      this.sortedData = this.removedZeros
-        .slice()
-        .sort((a, b) => {
-          const columnA = a[columnName];
-          const columnB = b[columnName];
+      this.sortedData = this.removedZeros.slice().sort((a, b) => {
+        const columnA = a[columnName];
+        const columnB = b[columnName];
 
-          // Handle null values
-          if (columnA === null) return 1;
-          if (columnB === null) return -1;
+        // Handle null values
+        if (columnA === null) return 1;
+        if (columnB === null) return -1;
 
-          // Handle numeric and non-numeric values
-          if (typeof columnA === 'number' && typeof columnB === 'number') {
-            const result = columnB - columnA;
-            return this.sortDirection ? result : -result; // Reverse sorting if necessary
+        // Handle numeric and non-numeric values
+        if (typeof columnA === "number" && typeof columnB === "number") {
+          const result = columnB - columnA;
+          return this.sortDirection ? result : -result; // Reverse sorting if necessary
+        } else {
+          const strA = String(columnA).toLowerCase();
+          const strB = String(columnB).toLowerCase();
 
-          } else {
-            const strA = String(columnA).toLowerCase();
-            const strB = String(columnB).toLowerCase();
-
-            // localeCompare https://www.w3schools.com/jsref/jsref_localecompare.asp#:~:text=Definition%20and%20Usage,language%20settings%20of%20the%20browser.
-            const result = strB.localeCompare(strA);
-            return this.sortDirection ? result : -result; // Reverse sorting if necessary
-          }
-        });
+          // localeCompare https://www.w3schools.com/jsref/jsref_localecompare.asp#:~:text=Definition%20and%20Usage,language%20settings%20of%20the%20browser.
+          const result = strB.localeCompare(strA);
+          return this.sortDirection ? result : -result; // Reverse sorting if necessary
+        }
+      });
 
       // Store the currently sorted column
       this.sortedColumn = columnName;
     },
     // this function removes all 0 or null values from JSON data
     removeZeros() {
-      this.removedZeros = this.jsonData.filter(item => item.perCapitaCons2016 !== 0 && item.perCapitaCons2016 !== null)
-    }
-  }
+      this.removedZeros = this.jsonData.filter(
+        (item) =>
+          item.perCapitaCons2016 !== 0 && item.perCapitaCons2016 !== null
+      );
+    },
+  },
 };
 </script>
 <style scoped>
@@ -197,13 +201,11 @@ table {
   margin-left: 0.5%;
   border-collapse: collapse;
   margin-bottom: 1em;
- 
 }
 
 /* Table Header */
 thead {
   background-color: #f5f5f5;
-  
 }
 
 th {
@@ -223,10 +225,10 @@ tbody {
 
 td {
   text-align: left;
-  
+
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
-  
+
   padding-left: 0.5em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -235,7 +237,6 @@ td {
 /* Alternate Row Color */
 tr:nth-child(even) {
   background-color: #ededed96;
-  
 }
 
 .responsive-link {
@@ -246,7 +247,6 @@ tr:nth-child(even) {
   max-width: 100%;
 }
 
-
 @media (max-width: 768px) {
   table {
     font-size: 0.7em;
@@ -255,9 +255,7 @@ tr:nth-child(even) {
   .responsive-link {
     display: block;
   }
-  
 }
-
 
 p.homeview {
   padding-top: 0.75em;

@@ -1,7 +1,7 @@
 <template>
   <div style="">
     <!-- checkInput highlights key presses, and formatNumber adds commas -->
-    <input class="input-field" v-model="formattedNumber" type="text" @input="checkInput(), formatNumber()" />
+    <input class="input-field" v-model="expression" type="text" @input="checkInput()" />
 
   </div>
   <div class="grid-container cow-image">
@@ -62,20 +62,20 @@
   <div style="padding-top: 0.5em;">
     <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
-      {{ formattedNumber }}<span v-if="this.expression == ''"></span>
-      <span v-if="showText"> = <span style="font-size: 1.15em;">{{ formattedResult  }}</span></span>
+      {{ addCommas(expression) }}<span v-if="this.expression == ''"></span>
+      <span v-if="showText"> = <span style="font-size: 1.15em;">{{ addCommas(result)  }}</span></span>
       <span v-if="mooCounter > 0"><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
       <span v-if="superMoo"> <br>{{ mooPlication }}</span>
     </div>
   </div>
-  <div v-if="showNotification" class="notification"><span style="font-weight: bold;">{{ result }}</span> copied to
+  <div v-if="showNotification" class="notification"><span style="font-weight: bold;">({{ result }}</span> copied to
     clipboard!</div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
     <div class=".dark-color-text" v-if="showDescriptionText"
       style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
       <b style="color:#42b883;">Final Node Cowculation</b><br>
-      Left node: <span class="node-display">{{ leftNode }}</span>&nbsp; Operator: <span class="node-display">{{ operator
-      }}</span>&nbsp; Right node: <span class="node-display">{{ rightNode }}</span><br>
+      Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{ operator
+      }}</span>&nbsp; Right node: <span class="node-display">{{ addCommas(rightNode) }}</span><br>
       <b style="color:#42b883;">Full Binary Tree Structure</b><br>
       {{ treeNodeCalculations }}
 
@@ -139,13 +139,27 @@ export default {
       message: toString(this.result),
       showNotification: false,
       tree: { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } },
+      
+      // Adds commas to the result or expression shown on the screen to increase readability    
+      addCommas(number) {
+        if (number == null) {
+          return "";
+        } else {
+        number = number.toString();
+        var parts = number.split(/([\d.]+)/g);        
+        for (let i = 1; i < parts.length; i += 2) {
+          parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        return parts.join("");
+      }
+      
+    }
     }
 
 
 
   }, computed: {
     treeString() {
-
       return this.printTree(this.tree);
     }
   },
@@ -228,7 +242,7 @@ export default {
       // remove Moo's for number calculations
       str = str.replaceAll("Moo", "");
 
-      // This only fixes deleting the last number when the back button <- arrow is used
+      // This only fixes deleting the very very last number when the back button <- arrow is used
       if (this.expression === "") {
         this.showText = false;
         this.result = ""
@@ -244,26 +258,7 @@ export default {
     },
   },
   methods: {
-    formatNumber() {
-      var parts = this.expression.split(/([\d.]+)/g);
-      for (let i = 1; i < parts.length; i += 2) {
-        parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      }
-      this.formattedNumber = parts.join("");
-
-      if (this.result != null) {
-        var stringFormatResult = this.result.toString();
-        //console.log(stringFormatResult)
-        var theResult = stringFormatResult.split(/([\d.]+)/g);
-        //console.log(theResult)
-        for (let j = 0; j < theResult.length; j += 1) {
-          theResult[j] = theResult[j].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-        this.formattedResult = theResult.join("");
-        //console.log(this.formattedResult)
-      }
-
-    },
+    
 
 
     printTree(node, level = 1, isRoot = true) {
@@ -416,7 +411,7 @@ export default {
             this.result = result;
 
             // easiest to just add the commas in the watcher automatically and invoke this function
-            this.formatNumber();
+            //this.formatNumber();
           }
           // Good article about using NaN in JavaScript like the function above does ^ 
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
@@ -550,13 +545,12 @@ export default {
     addNumber(buttonValueToAdd) {
 
       this.expression += buttonValueToAdd;
-      // when any number is added via button format it with commas
-      this.formatNumber();
+      
+      
     },
     addMathOperator(mathOperatorToAdd) {
       this.expression += mathOperatorToAdd
-      // when any number is added via button format it with commas
-      this.formatNumber();
+ 
     },
     addMoo() {
       this.expression += "Moo";
@@ -607,11 +601,12 @@ export default {
     },
     removeEntry() {
       if (this.expression != "") {
-        if (this.expression.slice(-3) == "Moo") {
+        if (this.expression.slice(-3) == "Moo") {        
           this.expression = this.expression.slice(0, -3);
-        } else {
+        } else {        
           this.expression = this.expression.slice(0, -1);
         }
+        
       }
     },
     copyToClipboard() {
