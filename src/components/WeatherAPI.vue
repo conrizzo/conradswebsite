@@ -81,12 +81,12 @@
           <td>
             <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0].temp_C">
               <div style="margin-bottom: 0.25em;">
-                High Temp Today:
+                Projected High Today:
                 <span class="high-temp-text-coloring">{{ cityWeather.weather.weather[0].maxtempC }}°C&nbsp;{{ cityWeather.weather.weather[0].maxtempF }}°F</span><br>
                 
               </div>
-              Recent Temp: {{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
-                cityWeather.weather.current_condition[0].temp_F }}°F<br>
+              Recent Temperature: <b>{{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
+                cityWeather.weather.current_condition[0].temp_F }}°F</b><br><br>
               Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
               - - - -<br>
               <span class="">
@@ -95,7 +95,7 @@
                 </span>- - - -<br>
                 <span class="">
                 {{ formatDate(cityWeather.weather.weather[2].date)}}:
-                <span class="high-temp-text-coloring-2">{{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{ cityWeather.weather.weather[1].maxtempF }}°F</span><br>
+                <span class="high-temp-text-coloring-2">{{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{ cityWeather.weather.weather[2].maxtempF }}°F</span><br>
                 </span>
                 
 

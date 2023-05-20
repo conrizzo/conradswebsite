@@ -3,23 +3,13 @@
   <div>
     
 
-    <h2 style="color: white; font-size:3em; padding-top: 2em; padding-bottom: 0.33em;" class="homeview">Coffee Consumers by country</h2>
-    <p class="paragraph-text homeview break-text">This is using data from <a
-        href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
-      but
-      it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs,
-      further divided by 2.20462. For example each JSON value is computed through: <span
-        style="color: #999999;">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span>.
-        <br>
-        <br>
-        Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the sorted values.
-        Note: all 0 values are removed for the column that is sorted. The graph now uses an SVG format output. </p>
-
+    <h2 style="color: white; font-size:3em; padding-top: 1em; padding-bottom: 0.33em;" class="homeview">Coffee Consumers by country</h2>
+    
       <!-- how do i output the graph here? -->
       
-      <div style="text-align: left; width: 100%;">
+      <div style="margin-left: 8px; margin-right: 8px; text-align: left; width: width: calc(100% - 16px);">
       
-      <div style="margin-left: 0.5em; margin-right: 0.5em;" id="chartContainer"></div>
+          <div id="chartContainer"></div>
       </div>
     <table style="margin-top: 1em;">
 
@@ -43,8 +33,19 @@
         </tr>
       </tbody>
     </table>
+    <p class="paragraph-text homeview break-text">This coffee data above comes from <a
+        href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
+      but
+      it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs,
+      further divided by 2.20462. For example each JSON value is computed through: <span
+        style="color: #999999;">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span>.
+        <br>
+        <br>
+        Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the sorted values.
+        Note: all 0 values are removed for the column that is sorted. The graph now uses an SVG format output. </p>
+
     <h1 class="homeview">
-      Testing datasets here.
+      Testing other datasets here....
     </h1>
     <p class="paragraph-text homeview break-text">
       Data as an array: {{ fileContentsArray }}
@@ -216,7 +217,7 @@ export default {
         };
       });
 
-      const svgWidth = window.innerWidth * 0.9; // Set the width to 90% of the viewport width
+      const svgWidth = window.innerWidth * 0.95; // Set the width to 90% of the viewport width
       const barHeight = 20; 
       const barSpacing = 4;
       const maxValue = Math.max(...data.map((item) => item.value));
@@ -229,7 +230,7 @@ export default {
       // Draw the title
       svg += `<text x="${
         svgWidth / 2
-      }" y="20" text-anchor="middle" font-size="20" font-weight="bold">${title}</text>`;
+      }" y="20" text-anchor="middle" font-size="17" font-weight="bold">${title}</text>`;
 
       // Draw the bars and labels
       let startY = 30;
@@ -238,7 +239,7 @@ export default {
         const barWidth = item.value * scaleFactor;
 
         svg += `<rect x="0" y="${startY}" width="${barWidth}" height="${barHeight}" fill="#66ff99" />`;
-        svg += `<text x="5" y="${startY + barHeight / 2 + 6}" font-size="18">${
+        svg += `<text x="5" y="${startY + barHeight / 2 + 6}" font-size="17">${
           item.label
         }</text>`;
 
@@ -258,7 +259,7 @@ export default {
 <style scoped>
 /* Table */
 table {
-  width: 98%;
+  width: calc(100% - 1em); /* Subtract 1em from 100% to account for the 0.5em margins on both sides */
 
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -334,7 +335,7 @@ p.homeview {
   background: #fff;
   border-radius: 5px;
 
-  font-weight: normal;
+  
   margin-bottom: 1em;
   margin-top: 1em;
 }

@@ -19,23 +19,26 @@
 
       </p>
 
-      <figure>
-        <img :src="imagePath" alt="Binary Tree example" />
-        <figcaption>A) Binary Tree example showing how the cowculator code computes. The left tree result is 14, the right
-          tree is -19, and an expression with paranthesis is shown.
-          As shown, the binary tree evaluates each node starting from the bottom. Diagram made using: <a
-            href="https://vanya.jp.net/vtree/">https://vanya.jp.net/vtree/</a>.
+      <div class="figure-stuff">
+        <div>
+          <figure>
+            <img :src="imagePath" alt="Binary Tree example" />
+            <figcaption>A) Binary Tree example showing how the cowculator code computes. The left tree result is 14, the right
+              tree is -19, and an expression with paranthesis is shown.
+              As shown, the binary tree evaluates each node starting from the bottom. Diagram made using: <a
+                href="https://vanya.jp.net/vtree/">https://vanya.jp.net/vtree/</a>.
 
-        </figcaption>
-      </figure>
-      <figure>
-        <img style="max-width: 200px; margin-left: auto; margin-right: auto;" :src="imagePathTwo" alt="Binary Tree example 2" />
-        <figcaption>B) Binary Tree example of the left-most example from the above figure, this comes directly from the cowculator output!
+            </figcaption>
+          </figure>
+          <figure>
+            <img  :src="imagePathTwo" alt="Binary Tree example 2" />
+            <figcaption>B) Binary Tree example of the left-most example from the above figure <b>5*4-6=14</b>, this comes directly from the cowculator output!
 
-        </figcaption>
-      </figure>
-
-      <pre v-bind:class="'language-JavaScript'" class="hhh">
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <pre v-bind:class="'language-JavaScript'" class="code-format">
   <code>cowculate() {
       /* Cow Moo cowculations */
       
@@ -199,7 +202,7 @@
       <div style="padding-top: 0.5em;">
         <h1>{{ title }} : {{ details }}</h1>
       </div>
-      <pre v-bind:class="'language-python'" class="hhh">
+      <pre v-bind:class="'language-python'" class="code-format">
   <code>DRINK_COFFEE = True
   website_finished = False
   while website_finished is False:
@@ -210,7 +213,7 @@
         the code above emphasizes that work continues, and the coffee drinking
         will always continue.
       </p>
-      <pre v-bind:class="'language-python'" class="hhh">
+      <pre v-bind:class="'language-python'" class="code-format">
   <code># Defines a Python function to describe coffee
   def describe_coffee(roast_level, origin, flavor_notes):
       """
@@ -310,26 +313,26 @@ p.homeview {
   text-align: left;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  margin-left: 30px;
-  margin-right: 20px;
+  margin-left: 1em;
+  margin-right: 1em;
   color: #000000;
   background: #fff;
   border-radius: 5px;
-  font-size: 0.5em;
+  font-size: 0.6em;
   font-weight: normal;
   margin-bottom: 1em;
   margin-top: 1em;
 }
 
-.hhh {
+.code-format {
   margin-top: 1em;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 0.6em;
   page-break-inside: avoid;
   font-family: monospace;
 
-  margin-left: 30px;
-  margin-right: 20px;
+  margin-left: 1.2em;
+  margin-right: 1.2em;
   overflow: auto;
   display: block;
   word-wrap: break-word;
@@ -355,18 +358,19 @@ figure {
   flex-flow: column;
   padding: 0.5em;
   padding-bottom: 0em;
-  max-width: 500px;
+  
   margin-left: auto;
   margin-right: auto;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  font-size: 0.45em;
+  font-size: 0.6em;
   font-weight: 75;
   text-align: left;
   color: rgb(0, 0, 0);
   background-color: #ffffff;
   border-radius: 5px;
-  line-height: 1.2;
+  line-height: 1.2em;
+  
 }
 
 figcaption {
@@ -378,13 +382,43 @@ img {
   max-height: auto;
 }
 
+/* figure stuff */
+.figure-stuff {
+  margin: 0em 0.5em 0em 0.5em;
+  text-align: center;
+}
+
+.figure-stuff > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.figure-stuff figure {
+  margin: 0em 0.25em auto;
+  width: 48.5%;
+}
+
+.figure-stuff img {
+  width: 100%;
+  height: auto;
+  max-width: 98%;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+
+/* end figure stuff */
+
 /* Adjust the padding for mobile resolution for this block */
 @media only screen and (max-width: 900px) {
   p.homeview {
     margin-left: 20px;
   }
 
-  .hhh {
+  .code-format {
     margin-left: 20px;
   }
 
@@ -393,6 +427,15 @@ img {
     margin-left: 1.2em;
     margin-right: 1.2em;
 
+  }
+  .figure-stuff> div {
+    flex-direction: column;
+  }
+  
+  .figure-stuff figure {
+    margin-top: 0.5em;
+    margin-right: 1em;
+    width: 95%;
   }
 }
 </style>

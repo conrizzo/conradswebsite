@@ -27,7 +27,7 @@ nav {
   justify-content: center;
   align-items: center;
   position: fixed; 
-  padding: 1em 0.25em 1em 0.25em;
+  padding: 1.05em 0.25em 1.05em 0.25em;
   font-size: 1.25em;
   background-color: rgb(255, 255, 255);
   
@@ -39,8 +39,8 @@ nav a {
   font-weight: bold;
   color: rgb(75, 75, 75);
   text-decoration: none;
-  background-color: rgb(168, 168, 168);
-  margin-right: 0.5em;
+  background-color: rgb(255, 255, 255);
+  margin-right: 0.1em;
   
   border-radius: 5px;
   padding: 0.5em 0.6em 0.5em 0.6em;
@@ -49,10 +49,10 @@ nav a {
 
 nav a:hover {
   font-weight: bold;
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
   
-  margin-right: 0.5em;
+  margin-right: 0.1em;
   border-radius: 5px;
   padding: 0.5em 0.6em 0.5em 0.6em;
 }
@@ -69,9 +69,10 @@ body {
   background-color: rgb(198, 198, 198);
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 600px) {
   nav {
     font-size: 1em;
+    padding: 1.5em 0.25em 1.5em 0.25em;
   }
 }
 </style>

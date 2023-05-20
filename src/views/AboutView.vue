@@ -4,7 +4,7 @@
   <div class="about container">
     <!-- Main area -->
     <div>
-      <h1 style="color: black;">Howdy there! Welcome to conradswebsite.com</h1>
+      <h1 style="color: #66ff99; font-size: 3em;">Welcome to ConradsWebsite.com</h1>
       <br>
       <p class="paragraph-text">
         This iteration of the website was started in March, 2023 and is totally self-made by Conrad using
