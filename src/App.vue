@@ -27,8 +27,8 @@ nav {
   justify-content: center;
   align-items: center;
   position: fixed; 
-  padding: 2em 0px 2em 0px;
-  
+  padding: 1em 0.25em 1em 0.25em;
+  font-size: 1.25em;
   background-color: rgb(255, 255, 255);
   
 }
@@ -41,8 +41,9 @@ nav a {
   text-decoration: none;
   background-color: rgb(168, 168, 168);
   margin-right: 0.5em;
+  
   border-radius: 5px;
-  padding: 0.33em;
+  padding: 0.5em 0.6em 0.5em 0.6em;
   
 }
 
@@ -53,18 +54,24 @@ nav a:hover {
   
   margin-right: 0.5em;
   border-radius: 5px;
-  padding: 0.33em;
+  padding: 0.5em 0.6em 0.5em 0.6em;
 }
 
 nav a.router-link-exact-active {
   color: #ffffff;
   background-color: rgb(75, 75, 75);
-  padding: 0.33em;
+  padding: 0.5em 0.6em 0.5em 0.6em;
 }
 
 html,
 body {
-  padding-top: 2em;
+  padding-top: 2.02em;
   background-color: rgb(198, 198, 198);
+}
+
+@media only screen and (max-width: 1000px) {
+  nav {
+    font-size: 1em;
+  }
 }
 </style>

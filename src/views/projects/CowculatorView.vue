@@ -1,16 +1,33 @@
 
 <template>
-  <div style="background: linear-gradient(90deg, rgba(0,255,119,0.66) 29%, rgba(0,224,255,0.66) 100%);" class="title-section"><h1 style="color: white">
-    <span  v-html="title"></span>: <span  v-html="header"></span>
-        
-      </h1></div>
-      <!-- change background color of the cowculator main area -->
-      <!--style="background-color:rgb(60,60,60);-->
-  <div style="background-color:rgb(255, 255, 255);">
-    <h2>Built in <a style="color: #42b883" class="text-links" href="https://vuejs.org/">Vue.js</a> <br> Moo<span style="color: black;">&times;</span>Moo<span style="color: black;">&times;</span>Moo = Moooooooooooooooo</h2>
-    
-    <div style="padding-top: 3em;">  
+  <div
+    style="
+      background: linear-gradient(
+        90deg,
+        rgba(0, 255, 119, 0.66) 29%,
+        rgba(0, 224, 255, 0.66) 100%
+      );
+    "
+  >
+    <h1 style="color: white">
+      <span v-html="title"></span>: <span v-html="header"></span>
+    </h1>
+  </div>
+  <!-- change background color of the cowculator main area -->
+  <!--style="background-color:rgb(60,60,60);-->
+  <div style="background-color: rgb(255, 255, 255)">
+    <h2>
+      Built in
+      <a style="color: #42b883" class="text-links" href="https://vuejs.org/"
+        >Vue.js</a
+      >
+      <br />
+      Moo<span style="color: black">&times;</span>Moo<span style="color: black"
+        >&times;</span
+      >Moo = Moooooooooooooooo
+    </h2>
 
+    <div style="padding-top: 3em">
       <div v-if="showAboutCalc">
         <AboutCalc
           :title="title"
@@ -31,14 +48,16 @@
             class="professor-cow-figure"
           />
           <figcaption class="professor-cow-figure-text">
-            <strong>"I certify that this Cowculator cowculates!"</strong> - Professor Maximillian "Cowculus" Cowington, Distinguished Professor of Cowculating.
+            <strong>"I certify that this Cowculator cowculates!"</strong> -
+            Professor Maximillian "Cowculus" Cowington, Distinguished Professor
+            of Cowculating.
           </figcaption>
         </figure>
       </div>
-      <div style="padding-bottom: 1em; margin-left: 0.2em; margin-right: 0.2em;">
+      <div style="padding-bottom: 1em; margin-left: 0.2em; margin-right: 0.2em">
         <button
           class="button-35"
-          style="margin-top: 0.25em;"
+          style="margin-top: 0.25em"
           @click="toggleAboutCalc"
         >
           About the Cowculator
@@ -60,8 +79,6 @@
         @close="toggleHelpGuide"
       />
     </div>
-
-  
   </div>
   <FirstFooter></FirstFooter>
 </template>
@@ -85,8 +102,9 @@ export default {
   data() {
     return {
       title: "Use the <u><i>Cow</i></u>-culator",
-      header: "<q>For the <u><i>moo</i></u>-st accurate <u><i>cow</i></u>-culations!</q>",
-      text:"The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered. The modal is comprised of the following props from top to bottom: title, header, text, imagePath, and URL. A rough estimate of the programming languages used to build the Cowculator are:",
+      header:
+        "<q>For the <u><i>moo</i></u>-st accurate <u><i>cow</i></u>-culations!</q>",
+      text: "The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered. The modal is comprised of the following props from top to bottom: title, header, text, imagePath, and URL. A rough estimate of the programming languages used to build the Cowculator are:",
       url: "https://github.com/conrizzo/conradswebsite",
       showAboutCalc: false,
       helpTitle: "How to use:",
@@ -109,21 +127,19 @@ export default {
 </script>
   
   <style scoped>
-  .main-cow-figure{
-    margin-top: 1em;
-    
-  }
+.main-cow-figure {
+  margin-top: 1em;
+}
 .professor-cow-figure {
   width: 300px;
   background-color: #515151;
   text-align: left;
   margin-bottom: 0em;
-  
+
   padding: 10px;
   border-radius: 5px;
-  
 }
-.professor-cow-figure-text{
+.professor-cow-figure-text {
   background: rgb(235, 235, 235);
   width: 300px;
   text-align: left;
@@ -133,10 +149,10 @@ export default {
   border-radius: 5px;
   margin-bottom: 0.66em;
 }
-h2{
+h2 {
   padding-top: 2em;
   padding-bottom: 0em;
-  color:#808080;
+  color: #808080;
 }
 </style>
   

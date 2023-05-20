@@ -9,27 +9,28 @@
       but
       it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs,
       further divided by 2.20462. For example each JSON value is computed through: <span
-        style="color: red">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span>.
+        style="color: #999999;">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span>.
         <br>
         <br>
         Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the sorted values.
-        Note: all 0 values are removed for the column that is sorted. </p>
+        Note: all 0 values are removed for the column that is sorted. The graph now uses an SVG format output. </p>
 
       <!-- how do i output the graph here? -->
       
-      <div style="text-align: left;">
-      <canvas id="barGraphCanvas"></canvas>
-    </div>
+      <div style="text-align: left; width: 100%;">
+      
+      <div style="margin-left: 0.5em; margin-right: 0.5em;" id="chartContainer"></div>
+      </div>
     <table style="margin-top: 1em;">
 
       <thead>
 
         <tr>
           <th style="cursor: pointer;" @click="sortData('country')">Country</th>
-          <th style="cursor: pointer;" @click="removeZeros('perCapitaCons2016'),sortData('perCapitaCons2016'), barChart('perCapitaCons2016')">Coffee Consumption per Capita 2016 (kg)</th>
-          <th style="cursor: pointer;" @click="removeZeros('totCons2019'),sortData('totCons2019'),barChart('totCons2019')">dry coffee beans 2019 (kg)</th>
+          <th style="cursor: pointer;" @click="removeZeros('perCapitaCons2016'),sortData('perCapitaCons2016'), barChart('perCapitaCons2016', 'Coffee Consumption Per Capita 2016 (kg)')">Coffee Consumption per Capita 2016 (kg)</th>
+          <th style="cursor: pointer;" @click="removeZeros('totCons2019'),sortData('totCons2019'),barChart('totCons2019','Dry coffee beans 2019 (kg)')">Dry coffee beans 2019 (kg)</th>
           <th style="cursor: pointer;" @click="sortData('region')">Region</th>
-          <th style="cursor: pointer;" @click="sortData('pop2023'),barChart('pop2023')">Population 2023</th>
+          <th style="cursor: pointer;" @click="sortData('pop2023'),barChart('pop2023','Population 2023')">Population 2023</th>
         </tr>
       </thead>
       <tbody>
@@ -74,7 +75,6 @@
 </template>
 
 <script>
-
 import "@/assets/globalCSS.css";
 import FirstFooter from "@/components/FirstFooter.vue";
 export default {
@@ -90,26 +90,19 @@ export default {
       sortedData: null,
       removedZeros: null,
 
-      
-      
-      
       // This function adds commas to numbers to increase readability
-      addCommas: function(number) {
+      addCommas: function (number) {
         number = number.toString();
         var parts = number.split(/([\d.]+)/g);
-        
-        
+
         for (let i = 1; i < parts.length; i += 2) {
           parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         return parts.join("");
-        
-    }
+      },
     };
   },
   mounted() {
-     
-   
     // Text file import
     const owner = "conrizzo";
     const repo = "conradswebsite";
@@ -140,8 +133,7 @@ export default {
     const owner1 = "conrizzo";
     const repo1 = "data_sets_for_conradswebsite";
     const path1 = "coffee_data.json";
-    const rawJsonURL = `https://raw.githubusercontent.com/${owner1}/${repo1}/main/${path1}`;   
-    
+    const rawJsonURL = `https://raw.githubusercontent.com/${owner1}/${repo1}/main/${path1}`;
 
     fetch(rawJsonURL)
       .then((response) => response.json())
@@ -149,14 +141,13 @@ export default {
         this.jsonData = data2;
         this.removeZeros();
         this.sortData(); // Call the sortData method here so that the data is sorted by default
-        this.barChart()
+        this.barChart();
       })
       .catch((error) => {
         console.error(error);
       });
 
     this.sortedData = this.jsonData;
-    
   },
   methods: {
     // this sorts the data by a specific column
@@ -199,90 +190,78 @@ export default {
       this.sortedColumn = columnName;
     },
     // this function removes all 0 or null values from JSON data
-    removeZeros(columnName = 'perCapitaCons2016') {
+    removeZeros(columnName = "perCapitaCons2016") {
       this.removedZeros = this.jsonData.filter(
-        (item) =>
-          item[columnName] !== 0 && item[columnName] !== null
+        (item) => item[columnName] !== 0 && item[columnName] !== null
       );
     },
-    barChart(sortType = 'perCapitaCons2016') {    
-        
-        // Sample data for the bar graph
-        console.log(this.sortedData);
-        const data = this.sortedData.map(item => {
-          return {
-            label: item.country,
-            value: item[sortType]
-          }
-        });
-
-        // Get the canvas element and its 2D context
-        const canvas = document.getElementById('barGraphCanvas');
-         
-        const ctx = canvas.getContext('2d');
-        
-const screenWidth = window.innerWidth; // Get the width of the screen
-const canvasWidthPercentage = 90; // Set the desired percentage
-
-canvas.width = (screenWidth * canvasWidthPercentage) / 100;
-canvas.height = canvas.width * (9 / 16); // Adjust height proportionally if needed
-        
-        
-        // Clear the canvas before drawing the graph - point of this is so updated values can be displayed and it doesn't
-        // just keep the same graph values with updated orders
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Set the bar graph configuration
-        const barHeight = 20;
-        const barSpacing = 5;
-        const graphWidth = canvas.width;
-        const maxValue = Math.max(...data.map(item => item.value));
-
-        // Calculate the scaling factor for the bar widths
-        const scaleFactor = graphWidth / maxValue;
-        
-        // Function to draw a bar
-        const drawBar = (x, y, width, height, color) => {
-          ctx.fillStyle = color;
-          ctx.fillRect(x, y, width, height);
+    barChart(
+      sortType = "perCapitaCons2016",
+      title = "Coffee Consumption Per Capita 2016 (kg)"
+    ) {
+      // This will sort the data by the selected column for the graph
+      console.log(this.sortedData);
+      const data = this.sortedData.map((item) => {
+        let value;
+        if (sortType === "perCapitaCons2016") {
+          value = Math.round((item.perCapitaCons2016 * 100) / 2.20462) / 100;
+        } else if (sortType === "totCons2019") {
+          value = Math.round((item[sortType] * 60000 * 100) / 2.20462) / 100;
+        } else {
+          value = item[sortType];
+        }
+        return {
+          label: `${item.country} (${this.addCommas(value)})`,
+          value: value,
         };
+      });
 
-        // Function to draw the bar graph
-        const drawGraph = () => {
-          let startY = 40;
+      const svgWidth = window.innerWidth * 0.9; // Set the width to 90% of the viewport width
+      const barHeight = 20; 
+      const barSpacing = 4;
+      const maxValue = Math.max(...data.map((item) => item.value));
+      const scaleFactor = svgWidth / maxValue;
 
-          for (let i = 0; i < data.length; i++) {
-            const item = data[i];
-            const barWidth = item.value * scaleFactor;
-            const startX = 20;
+      let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${
+        (barHeight + barSpacing) * data.length + 30
+      }">`;
 
-            drawBar(startX, startY, barWidth, barHeight, '#00ff77'); // Change the color to red
+      // Draw the title
+      svg += `<text x="${
+        svgWidth / 2
+      }" y="20" text-anchor="middle" font-size="20" font-weight="bold">${title}</text>`;
 
-            // Draw the label to the left of the bar
-            ctx.fillStyle = '#000';
-            ctx.textAlign = 'left';
-              ctx.font = 'bold 14px Arial';
-              ctx.fillStyle = 'black'; // Set the fill color to yellow
-              
-            ctx.fillText(item.label, startX + 5, startY + barHeight / 2 + 5);
+      // Draw the bars and labels
+      let startY = 30;
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i];
+        const barWidth = item.value * scaleFactor;
 
-            startY += barHeight + barSpacing;
-          }
-        };
+        svg += `<rect x="0" y="${startY}" width="${barWidth}" height="${barHeight}" fill="#66ff99" />`;
+        svg += `<text x="5" y="${startY + barHeight / 2 + 6}" font-size="18">${
+          item.label
+        }</text>`;
 
-        drawGraph();
-      },
+        startY += barHeight + barSpacing;
+      }
 
-      
+      svg += "</svg>";
+
+      //console.log(svg); // Output the generated SVG
+
+      // You can then use the SVG as needed, e.g., appending it to an HTML element:
+      document.getElementById("chartContainer").innerHTML = svg;
+    },
   },
 };
 </script>
 <style scoped>
 /* Table */
 table {
-  width: 40%;
-  margin-right: 0.5%;
-  margin-left: 0.5%;
+  width: 98%;
+
+  margin-left: 0.5em;
+  margin-right: 0.5em;
   border-collapse: collapse;
   margin-bottom: 1em;
 }
