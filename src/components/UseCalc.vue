@@ -290,8 +290,6 @@ export default {
       this.operators = []
 
       let str = this.cleanedExpression;
-
-      // old method BAD - to check if numbers were the same parseFloat(str) === eval(str)
       try {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
         if (!(/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/).test(str)) {
@@ -433,6 +431,7 @@ export default {
 
       console.log(left, node.value, right);
 
+      // This shows the operator to the user in '×' or '÷' format and not * or /
       let viewer_symbol_node = ""
       if (node.value === "*") {
         viewer_symbol_node = '\u00D7'

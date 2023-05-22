@@ -9,10 +9,10 @@
         {{ text }}
       </p>
       <ul style="text-align: left; padding-left: 2em;">
-      <li><router-link style="text-decoration: none;"
-        to="/projects/1Do%20Cowculations%20with%20math%20and%20moos!Cowculator">Actual code that does the calculations
+      <li><router-link class="text-links" style="text-decoration: none;"
+        to="/projects/1/Cowculator/A%20working%20calculator">Actual code that does the calculations
         here!</router-link></li>
-        <li><a style="text-decoration: none;" :href="url">Conrad's GitHub</a></li>
+        <li><a style="text-decoration: none;" class="text-links" :href="url">Conrad's GitHub</a></li>
       </ul>
       <!--
       <div>

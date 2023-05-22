@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProjectsView from  '../views/projects/ProjectsView.vue'
 import CowculatorView from  '../views/projects/CowculatorView.vue'
-import DataPullView from  '../views/projects/DataPullView.vue'
+import DatasetsView from  '../views/projects/DatasetsView.vue'
 import WeatherView from  '../views/projects/WeatherView.vue'
 
 import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
@@ -47,9 +47,9 @@ const routes = [
   },
 
   {
-    path: '/projects/datapull',
-    name: 'DataPullView',  
-    component: DataPullView,
+    path: '/projects/datasets',
+    name: 'DatasetsView',  
+    component: DatasetsView,
     
   },
 

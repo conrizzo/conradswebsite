@@ -63,7 +63,7 @@ h1 {
   
 
   /* change link color */
-  font-size: 16px;
+  font-size: 1.3em;
   /* change font size */
   text-decoration: none;
   /* remove underline */

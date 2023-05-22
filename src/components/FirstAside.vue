@@ -21,12 +21,20 @@ aside {
   background-color: #f2f2f2;
   border-left: 2px solid rgb(198, 198, 198);
   padding: 10px;
+  
 
 }
 
 p.aside {
   text-align: left;
   padding-left: 1em;
+}
+
+@media only screen and (max-width: 1200px) {
+  aside {
+    /*display: none;*/
+    border: none;
+  }
 }
 </style>
   

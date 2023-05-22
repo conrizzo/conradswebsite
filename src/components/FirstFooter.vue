@@ -37,7 +37,7 @@ export default {
 }
 
 .footer-links:visited {
-  color: rgb(181, 0, 181);
+  color: #ff5959;
 }
 
 footer {
