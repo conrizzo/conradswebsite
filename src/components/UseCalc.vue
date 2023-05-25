@@ -656,9 +656,9 @@ button.active {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #fff;
-  padding: 10px;
-  max-width: 300px;
+ 
+  padding: 1em;  
+  max-width: 22em;       
   margin-left: auto;
   margin-right: auto;
   grid-gap: 0.2em;
@@ -669,10 +669,10 @@ button.active {
 }
 
 .grid-item {
-  background-color: rgba(30, 30, 30, 0.55);
-  border: 1px solid rgba(0, 0, 0, 1);
-  padding: 0.8em 0.8em 0.8em 0.8em;
-  font-size: 1.2em;
+  background-color: rgba(30, 30, 30, 0.6);
+  border: none;
+  padding: 0.8em 0.8em 0.8em 0.8em;   
+  font-size: 1.5em;
   text-align: center;
   border-radius: 12px;
   color: rgba(255, 255, 255, 1);
@@ -681,9 +681,9 @@ button.active {
 
 .grid-item-symbols {
   background-color: rgba(198, 198, 198, 0.6);
-  border: 1px solid rgb(0, 0, 0);
-  padding: 0.8em 0.8em 0.8em 0.8em;
-  font-size: 1.2em;
+  border: none;
+  padding: 0.8em 0.8em 0.8em 0.8em;   
+  font-size: 1.5em;
   text-align: center;
   border-radius: 12px;
   font-weight: bold;
@@ -713,13 +713,12 @@ button.active {
 }
 
 .input-field {
-  width: 9.95em;
-  font-size: 2em;
+  width: 10.6115em;
+  font-size: 2.25em;
   border-width: 1px;
   margin-bottom: 1px;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
-
 }
 
 /* doesn't highlight when clicking on input field */
@@ -735,10 +734,23 @@ input:focus {
   box-shadow: 0 0 10px #42b883;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 600px) {
   .moo-cows-go-moo {
     top: 100%;
   }
+
+  .input-field {
+    max-width: 9.8em;
+  }
+  /* adjust the button grid */
+  .grid-container {
+    max-width: 22em;    
+    grid-gap: 0.2em;
+    padding: 0.1em;
+  }
+  
+ 
+  
 }
 
 .cowculate-result {

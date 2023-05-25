@@ -2,12 +2,27 @@
   <nav>
     <router-link to="/">Home</router-link> 
     <router-link to="/about">About</router-link> 
-    <router-link to="/projects">Projects</router-link> 
-    <router-link to="/projects/cowculator">Cowculator</router-link>    
-    <router-link to="/projects/weather">Weather</router-link>   
+    <router-link to="/projects">Project Details</router-link>     
+
+    <!--import the dropdown menu into the nav bar-->
+    <DropDownMenu></DropDownMenu>
+    
   </nav>
+ 
   <router-view />
 </template>
+
+<script>
+// import the dropdown menu into the nav bar
+import DropDownMenu from "@/components/DropDownMenu.vue";
+
+export default {
+  name: "App",
+  components: {
+    DropDownMenu
+  }
+};
+</script>
 
 <style>
 #app {
@@ -27,7 +42,7 @@ nav {
   justify-content: center;
   align-items: center;
   position: fixed; 
-  padding: 1.05em 0.25em 1.05em 0.25em;
+  padding: 0.3em 0.25em 0.3em 0.25em;
   font-size: 1.25em;
   background-color: rgb(255, 255, 255);
   
@@ -49,24 +64,21 @@ nav a {
 
 nav a:hover {
   font-weight: bold;
-  color: #000000;
-  text-decoration: none;
-  
-  margin-right: 0.1em;
-  border-radius: 5px;
-  padding: 0.5em 0.6em 0.5em 0.6em;
+  color: #34B7F1;
+  text-decoration: none;  
+  background-color: none;
+ 
 }
 
 nav a.router-link-exact-active {
   color: #ffffff;
-  background-color: rgb(75, 75, 75);
-  padding: 0.5em 0.6em 0.5em 0.6em;
+  background-color: rgb(75, 75, 75);  
 }
 
 html,
 body {
-  padding-top: 2.02em;
-  background-color: rgb(198, 198, 198);
+  padding-top: 2em;
+  background-color: rgb(100, 100, 100);
 }
 
 @media only screen and (max-width: 600px) {

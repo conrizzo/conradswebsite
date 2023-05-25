@@ -56,6 +56,7 @@ export default {
 <style scoped>
 h1 {
   margin-top: 5em;
+  margin-bottom: 2em;
 }
 
 

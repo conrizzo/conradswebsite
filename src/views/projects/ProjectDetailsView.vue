@@ -7,7 +7,7 @@
             {{ details }}</router-link></h1>
       </div>
       <h2 class="homeview">How does it work?</h2>
-      <div style="margin-top: 2em;">
+      <div style="margin-top: 2em; margin-bottom: 0em;">
       <p class="homeview paragraph-text">As of April 2023, here is how the <router-link style="text-decoration: none;"
           to="/projects/cowculator">Cowculator</router-link> cowculates. An additional evaluate function is also used.
         There are some tricks to how this works. The user can also type in things like (2)(2) and this will automatically
@@ -39,6 +39,7 @@
           </figure>
         </div>
       </div>
+      <div>
       <pre v-bind:class="'language-JavaScript'" class="code-format">
   <code>cowculate() {
       /* Cow Moo cowculations */
@@ -218,6 +219,7 @@
           return null;
       }
     }</code></pre>
+  </div>
     </div>
 
     <!-- PROJECT 2 -->
@@ -343,7 +345,7 @@ p.homeview {
   border-radius: 5px;
   font-size: 0.6em;
   font-weight: normal;
-  margin-bottom: 1em;
+  margin-bottom: 0.25em;
   margin-top: 1em;
 }
 
@@ -365,7 +367,7 @@ h2.homeview{
 }
 
 .code-format {
-  margin-top: 1em;
+  margin-top: 0.25em;
   font-weight: normal;
   font-size: 0.6em;
   page-break-inside: avoid;
@@ -393,7 +395,7 @@ h1 {
 
 /* image and figures */
 figure { 
-  height: 500px;
+  height: 550px;
   display: flex;
   flex-flow: column;
   padding: 0.5em;
@@ -401,8 +403,8 @@ figure {
   
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 0em;
+  margin-bottom: 0.25em;
   font-size: 0.6em;
   font-weight: 75;
   text-align: left;
@@ -450,16 +452,20 @@ img {
 
 
 
+
 /* end figure stuff */
 
 /* Adjust the padding for mobile resolution for this block */
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1800px) {
   p.homeview {
     margin-left: 20px;
   }
 
   .code-format {
-    margin-left: 20px;
+    margin-left: 2em;
+    font-size: 0.4em;
+    margin-right: 2em;
+
   }
 
   figure {

@@ -84,12 +84,13 @@ h1 {
   text-align: left;
   word-break: break-word;
   font-weight: 400;
+  margin-bottom: 1em;
 }
 
 
 
 .white-color-text {
-  color: #d2d2d2;
+  color: #ffffff;
 }
 
 .dark-color-text{
@@ -158,8 +159,11 @@ h1 {
 
 
 .cow-image {
+  
   background-image: url(../images/highland-cow.jpeg);
+  background-size: cover;
   border-radius: 12px;
+  
 }
 
 
@@ -213,7 +217,7 @@ h1 {
 
 .text-links:link {
   text-decoration: none;
-  color: #ff5959;
+  color: #34B7F1;
 }
 
 .text-links:hover {
@@ -221,9 +225,9 @@ h1 {
 }
 
 .text-links:visited {
-  color: #ff5959;
+  color: #34B7F1;
 }
 
 .text-links:active {
-  color: rgba(128, 255, 187, 0.8);
+  color: #34B7F1;
 }

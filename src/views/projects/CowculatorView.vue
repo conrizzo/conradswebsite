@@ -15,7 +15,7 @@
   </div>
   <!-- change background color of the cowculator main area -->
   <!--style="background-color:rgb(60,60,60);-->
-  <div style="background-color: rgb(255, 255, 255)">
+  <div style="background: #fff;">
     <h2>
       Built in
       <a style="color: #42b883" class="text-links" href="https://vuejs.org/"
@@ -104,7 +104,7 @@ export default {
       title: "Use the <u><i>Cow</i></u>-culator",
       header:
         "<q>For the <u><i>moo</i></u>-st accurate <u><i>cow</i></u>-culations!</q>",
-      text: "The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered. The modal is comprised of the following props from top to bottom: title, header, text, imagePath, and URL. A rough estimate of the programming languages used to build the Cowculator are:",
+      text: "The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered.",
       url: "https://github.com/conrizzo/conradswebsite",
       showAboutCalc: false,
       helpTitle: "How to use:",
@@ -140,7 +140,7 @@ export default {
   border-radius: 5px;
 }
 .professor-cow-figure-text {
-  background: rgb(235, 235, 235);
+  background: rgb(255, 255, 255);
   width: 300px;
   text-align: left;
   margin-left: auto;

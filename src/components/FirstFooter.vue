@@ -12,8 +12,8 @@
         unless mentioned otherwise, licensing is
         <a
           class="footer-links"
-          href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-          >CC BY NC SA 4.0</a
+          href="https://creativecommons.org/licenses/by-nc/4.0/"
+          >CC BY NC 4.0</a
         >. 
       </p>
     </div>
@@ -29,7 +29,7 @@ export default {
 <style>
 .footer-links:link {
   text-decoration: none;
-  color: #d2d2d2;
+  color: #34B7F1;
 }
 
 .footer-links:hover {
@@ -37,7 +37,7 @@ export default {
 }
 
 .footer-links:visited {
-  color: #ff5959;
+  color: #34B7F1;
 }
 
 footer {

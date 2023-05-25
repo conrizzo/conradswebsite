@@ -4,15 +4,21 @@
     <div class="aboutCowculator">
       <button class="close" @click.self="closeModal"></button>
       <h2 style="padding-top: 0.5em"><span v-html="title"></span>, why?</h2>
-      
+
       <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">
         {{ text }}
       </p>
-      <ul style="text-align: left; padding-left: 2em;">
-      <li><router-link class="text-links" style="text-decoration: none;"
-        to="/projects/1/Cowculator/A%20working%20calculator">Actual code that does the calculations
-        here!</router-link></li>
-        <li><a style="text-decoration: none;" class="text-links" :href="url">Conrad's GitHub</a></li>
+      <ul style="text-align: left; padding-left: 2em">
+        <li>
+          <router-link
+            class="text-links"
+            to="/projects/1/Cowculator/A%20working%20calculator"
+            ><b>Actual code that does the calculations here!</b></router-link
+          >
+        </li>
+        <li>
+          <a class="text-links" :href="url"><b>Conrad's GitHub</b></a>
+        </li>
       </ul>
       <!--
       <div>
@@ -20,10 +26,6 @@
       </div>
        -->
 
-     
-        
-       
-      
       <p class="about-modal-text">
         Without a doubt, other calculators are simply inadequate. They lack the
         one essential feature that sets the Cow-culator apart: the Moo function.
@@ -101,7 +103,7 @@ h2 {
   cursor: pointer;
   width: 15px;
   height: 15px;
- 
+
   border: none;
   width: 40px;
   height: 40px;
@@ -113,7 +115,6 @@ h2 {
 }
 
 .close:hover {
-  
   background-color: #ff5959;
 }
 
@@ -143,8 +144,6 @@ li + li {
 @media only screen and (max-width: 600px) {
   h2 {
     font-size: 1.1em;
- }
-
- 
+  }
 }
 </style>

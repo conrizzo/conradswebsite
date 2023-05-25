@@ -1,18 +1,17 @@
 <template>
   <div>
     <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>
+    <p class="paragraph-text white-color-text"> All the locations here are easily customizable!<br> Data is queried as JSON using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>, 
+      then formatted and displayed here in a custom made table.</p>
     <table>
       <thead>
         <tr>
           <th>City / Country / Region</th>
-          <th>Sun Rise/Sun Set</th>
-          
+          <th>Sun Rise/Sun Set</th>          
           <th>Weather Conditions</th>
           <th>Temperature °C</th>
           <th>Temperature °C (Feels Like)</th>
           <th>Wind Speed</th>
-
-
         </tr>
       </thead>
       <tbody>
@@ -129,7 +128,9 @@
         </tr>
       </tbody>
     </table>
+    
   </div>
+ 
 </template>
 
 
@@ -236,7 +237,7 @@ th {
 
 /* Table Body */
 tbody {
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 td {
@@ -250,12 +251,12 @@ td {
   padding-bottom: 0.5em;
 }
 
-/* Alternate Row Color */
+/* Alternate Row Color 
 tr:nth-child(even) {
   background-color: #ededed96;
 
 }
-
+*/
 .responsive-link {
   display: inline-block;
   white-space: nowrap;
