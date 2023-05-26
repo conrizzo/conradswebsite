@@ -32,10 +32,7 @@ export default {
   text-align: center;
   color: #2d2d2d;
 }
-
 /* how to pin the nav to the top of the page */
-
-
 nav {
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
@@ -45,30 +42,24 @@ nav {
   /* padding: 0.3em 0.25em 0.3em 0.25em; */
   font-size: 1.25em;
   background-color: rgb(255, 255, 255);
-  height: 3.18em;
-  
+  height: 3.18em;  
 }
-
-
 
 nav a {
   font-weight: bold;
   color: rgb(75, 75, 75);
   text-decoration: none;
   background-color: rgb(255, 255, 255);
-  margin-right: 0.1em;
-  
+  margin-right: 0.1em;  
   border-radius: 5px;
-  padding: 0.5em 0.6em 0.5em 0.6em;
-  
+  padding: 0.5em 0.6em 0.5em 0.6em;  
 }
 
 nav a:hover {
   font-weight: bold;
   color: #34B7F1;
   text-decoration: none;  
-  background-color: none;
- 
+  background-color: none; 
 }
 
 nav a.router-link-exact-active {

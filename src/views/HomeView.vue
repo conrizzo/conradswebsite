@@ -1,6 +1,11 @@
 <template>
   <div class="title-section">
-    <h1 style="font-size: 3em; padding-bottom: 0.4em">Conrad's Website</h1>
+    <!-- negative margin here to fill in space in nav on home page -->
+    <h1 style="background: linear-gradient(
+        90deg,
+        rgba(0, 255, 119, 0.66) 29%,
+        rgba(0, 224, 255, 0.66) 100%
+      ); font-size: 3em; padding-bottom: 0.3em; margin-top: -0.33em;">Conrad's Website</h1>
   </div>
   <!-- Main area -->
 
@@ -98,7 +103,7 @@ export default {
       items: {
         cowculator: "Cowculator",
         weather: "Custom Weather",
-        Datasets: "Interactive Data",
+        Datasets: "Interactive Data Table",
         projects: "Project Descriptions",
       },
     };

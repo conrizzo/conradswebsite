@@ -8,7 +8,7 @@
 
 .container {
   display: grid;
-  grid-template-columns: 70% 1fr;
+  grid-template-columns: 75% 1fr;
   gap: 1rem;
 }
 
@@ -27,7 +27,7 @@
 
 .title-section {
   padding-top: 1em;
-  padding-bottom: 0.2em;
+  padding-bottom: 0em;
 }
 
 @media only screen and (max-width: 1200px) {  
