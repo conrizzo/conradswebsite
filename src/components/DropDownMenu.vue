@@ -1,10 +1,12 @@
 <template>
-    <div class="dropdown">
+    <div class="dropdown" @mouseleave="closeDropdown">
         <button class="dropbtn" @click="toggleDropdown" style="background-color: white;">Projects</button>           
         <div class="dropdown-content" v-if="isDropdownOpen">
             <router-link to="/projects/cowculator" :class="{ active: $route.path === '/projects/cowculator' }">Cowculator</router-link>   
-            <router-link to="/projects/weather" :class="{ active: $route.path === '/projects/weather' }">Custom Weather</router-link>   
-            <router-link to="/projects/" :class="{ active: $route.path === '/projects/' }">Project Details</router-link>   
+            <router-link to="/projects/weather" :class="{ active: $route.path === '/projects/weather' }">Custom Weather</router-link>
+            <router-link to="/projects/datasets" :class="{ active: $route.path === '/projects/datasets' }">Interactive Dataset</router-link>   
+            <router-link to="/projects/" :class="{ active: $route.path === '/projects/' }">Project Descriptions</router-link>   
+               
         </div>
     </div>
 </template>
@@ -21,6 +23,11 @@ export default {
         toggleDropdown() {
             this.isDropdownOpen = !this.isDropdownOpen;
         },
+        closeDropdown() {
+            if (!this.isDropdownOpen) {
+                this.isDropdownOpen = true;
+            }
+        },
     },
 };
 </script>
@@ -29,16 +36,19 @@ export default {
 .dropbtn {
     
     border-radius: 5px;
-    padding: 0.5em 0.6em 0.45em 0.6em;
+    /* padding: 0.72em 0.6em 0.72em 0.6em; */
+    padding: 0.72em 0.6em 0.72em 0.6em;
     color: rgb(75, 75, 75);
-    
+    font-weight: 600;
     font-size: 1em;
     border: none;
+    
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
+    
 }
 
 .dropdown-content {
@@ -46,7 +56,7 @@ export default {
     position: absolute;
     
     min-width: 160px;    
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);    
+    box-shadow: 0px -2px 8px rgba(0,0,0,0.4);    
     z-index: 1;
 }
 

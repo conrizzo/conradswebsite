@@ -10,18 +10,18 @@
 
       <h2
         style="font-weight: 10; padding: 0.25em; border-radius: 0.25em; margin-top: 1em; color: #fff; font-size: 3em; display: inline-block;">
-        Guten Tag! Howdy!
+        Guten Tag / Howdy!
       </h2>
       <br>
-      <span style="color: white;">Guten Tag is German for "Howdy" in English - <i>sort of</i>. Well, they are both classified as greetings.</span>
+      <span style="color: white;">Guten Tag is German for "Howdy" in English - <i>not really, but sort of</i>. Well, they are both classified as greetings.</span>
       <br>
       <br>
       <h3 style="color: #fff; font-size: 1.2em; font-weight: 600">
-        This website has a Cowculator and some code projects.
+        This website has some code projects
       </h3>
       <br>
       <p style="color: #fff; text-align: center;" class="aside-text">
-        Made by Conrad. Coded in <a class="text-links"
+        <span style="font-size: 1.25em;">Made by Conrad.</span> Coded in <a class="text-links"
           href="https://vuejs.org/">Vue 3.</a><br> At the moment it is powered by
         <a class="text-links" href="https://pages.github.com/">
           GitHub pages</a>

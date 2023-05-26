@@ -2,7 +2,7 @@
   <nav>
     <router-link to="/">Home</router-link> 
     <router-link to="/about">About</router-link> 
-    <router-link to="/projects">Project Details</router-link>     
+    
 
     <!--import the dropdown menu into the nav bar-->
     <DropDownMenu></DropDownMenu>
@@ -42,9 +42,10 @@ nav {
   justify-content: center;
   align-items: center;
   position: fixed; 
-  padding: 0.3em 0.25em 0.3em 0.25em;
+  /* padding: 0.3em 0.25em 0.3em 0.25em; */
   font-size: 1.25em;
   background-color: rgb(255, 255, 255);
+  height: 3.18em;
   
 }
 
@@ -81,10 +82,11 @@ body {
   background-color: rgb(100, 100, 100);
 }
 
+/*
 @media only screen and (max-width: 600px) {
   nav {
     font-size: 1em;
     padding: 1.5em 0.25em 1.5em 0.25em;
   }
-}
+}*/
 </style>
