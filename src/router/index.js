@@ -4,6 +4,7 @@ import ProjectsView from  '../views/projects/ProjectsView.vue'
 import CowculatorView from  '../views/projects/CowculatorView.vue'
 import DatasetsView from  '../views/projects/DatasetsView.vue'
 import WeatherView from  '../views/projects/WeatherView.vue'
+import NaturalLanguageProcessingView from  '../views/projects/NaturalLanguageProcessingView.vue'
 
 import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
 
@@ -57,6 +58,12 @@ const routes = [
     path: '/projects/weather',
     name: 'WeatherView',  
     component: WeatherView,
+    
+  },
+  {
+    path: '/projects/nlp',
+    name: 'NaturalLanguageProcessingView',
+    component: NaturalLanguageProcessingView,
     
   },
   // Keep this at the end of the array so only unmatched paths go here

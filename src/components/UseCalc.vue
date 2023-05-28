@@ -52,6 +52,7 @@
     <button class="grid-item" @click=" setFactorialize(this.expression)">n!</button>
     <button class="grid-item" @click=" addMathOperator('(')">(</button>
     <button class="grid-item" @click=" addMathOperator(')')">)</button>
+   
 
   </div>
 
@@ -68,15 +69,15 @@
       <span v-if="superMoo"> <br>{{ mooPlication }}</span>
     </div>
   </div>
-  <div v-if="showNotification" class="notification"><span style="font-weight: bold;">({{ result }}</span> copied to
+  <div v-if="showNotification" class="notification"><span style="font-weight: bold;">{{ result }}</span> copied to
     clipboard!</div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
     <div class=".dark-color-text" v-if="showDescriptionText"
       style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
-      <b style="color:#42b883;">Final Node Cowculation</b><br>
+      <b style="color:#42b883;">Final Node Cowculation:</b><br>
       Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{ operator
       }}</span>&nbsp; Right node: <span class="node-display">{{ addCommas(rightNode) }}</span><br>
-      <b style="color:#42b883;">Full Binary Tree Structure</b><br>
+      <b style="color:#42b883;">Full Binary Tree Structure in JSON:</b><br>
       <div style="margin-left: 5em;">
       <span>{{ treeNodeCalculations }}</span>
     </div>
@@ -84,7 +85,9 @@
     <div>
       <pre v-if="showText">{{ treeString }}</pre>
     </div>
-
+    <!-- attempt to draw svg here of binary tree -->
+    <div ref="svgContainer"></div>
+    
   </div>
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
@@ -140,6 +143,9 @@ export default {
       message: toString(this.result),
       showNotification: false,
       tree: { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } },
+
+      expressionTree: this.treeNodeCalculations,
+      //svgContent: '',
       
       // Adds commas to the result or expression shown on the screen to increase readability    
       addCommas(number) {
@@ -162,7 +168,15 @@ export default {
   }, computed: {
     treeString() {
       return this.printTree(this.tree);
+    },
+    svgContent() {
+      // Generate the SVG content based on the JSON data
+      var svg = this.drawTree();
+      console.log(svg)
+
+      return svg;
     }
+    
   },
   watch: {
     expression(userInput) {
@@ -258,7 +272,65 @@ export default {
       }
     },
   },
+  mounted() {
+    // Call your function to generate the SVG
+    //const svg = this.drawTree();
+
+    // Update the data property with the SVG content
+    //this.svgContent = svg;
+    
+    //this.$refs.svgContainer.appendChild(svg);
+
+    //this.$refs.svgContainer.appendChild(this.svgContent);
+    
+  },
   methods: {
+    
+    drawTree(){
+      
+  
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', '500');
+      svg.setAttribute('height', '500');
+      svg.setAttribute('viewBox', '0 0 500 500');
+
+      const startX = 250;
+      const startY = 50;
+      const dx = 75;
+      const dy = 75;
+
+      this.drawTreeTwo(svg, this.tree, startX, startY, dx, dy);
+      
+     //console.log(svg)
+      return svg;
+
+    }, drawTreeTwo(svg, node, x, y, dx, dy) {
+  
+
+  
+  if (!node) {
+    return;
+  }
+
+  const leftX = x - dx;
+  const leftY = y + dy;
+  const rightX = x + dx;
+  const rightY = y + dy;
+
+  if (node.left) {
+    svg.innerHTML += `<line x1="${x}" y1="${y}" x2="${leftX}" y2="${leftY}" stroke="black" />`;
+    this.drawTreeTwo(svg, node.left, leftX, leftY, dx / 1.3, dy);
+  }
+
+  if (node.right) {
+    svg.innerHTML += `<line x1="${x}" y1="${y}" x2="${rightX}" y2="${rightY}" stroke="black" />`;
+    this.drawTreeTwo(svg, node.right, rightX, rightY, dx / 1.3, dy);
+  }
+
+  svg.innerHTML += `<circle cx="${x}" cy="${y}" r="20" fill="white" stroke="black" />`;
+  svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" alignment-baseline="central" font-family="Arial" font-size="14">${node.value}</text>`;
+
+},
     
 
 
@@ -411,6 +483,10 @@ export default {
 
             // easiest to just add the commas in the watcher automatically and invoke this function
             //this.formatNumber();
+
+            // At the moment this is a bit of a hack to get the svg to show up
+            this.$refs.svgContainer.appendChild(this.svgContent);           
+            this.svgContent.setAttribute("width", "100%");
           }
           // Good article about using NaN in JavaScript like the function above does ^ 
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
@@ -554,8 +630,12 @@ export default {
     },
     addMoo() {
       this.expression += "Moo";
-    }
-    , autoFixIncorrectInput(str) {
+    },
+    
+    
+
+    
+     autoFixIncorrectInput(str) {
 
       // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
 
@@ -616,7 +696,7 @@ export default {
         this.showNotification = false;
       }, 1000);
     },
-    /* Reset the array - if some error happens or want to restart */
+    /* Reset all input fields - if some error happens or want to restart */
     clearField() {
       this.expression = ""; // am unfiltered raw user input
       this.cleanedExpression = ""; // a cleaned version of user input
@@ -642,7 +722,8 @@ export default {
 
       // reset tree
       this.tree = { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } };
-
+      this.svgContent = '';
+      
     },
   },
 };

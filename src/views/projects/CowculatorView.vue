@@ -17,7 +17,7 @@
   <!--style="background-color:rgb(60,60,60);-->
   <div style="background: #fff;">
     <h2>
-      Built in
+      Now shows binary tree graphic of calculations as svg! Built in
       <a style="color: #42b883" class="text-links" href="https://vuejs.org/"
         >Vue.js</a
       >

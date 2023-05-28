@@ -231,3 +231,10 @@ h1 {
 .text-links:active {
   color: #34B7F1;
 }
+
+
+
+/* make space to push footer down on short pages */
+.push-footer {
+  padding-bottom: 100vh;
+}

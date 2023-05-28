@@ -69,7 +69,8 @@ nav a.router-link-exact-active {
 
 html,
 body {
-  padding-top: 2em;
+  /* for some reason 2.0em leaves spacing at some resolutions and 1.98 works perfectly */
+  padding-top: 1.98em;
   background-color: rgb(100, 100, 100);
 }
 

@@ -22,16 +22,17 @@
       <br>
       <br>
       <h3 style="color: #fff; font-size: 1.2em; font-weight: 600">
-        This website has some code projects
+        This website is an ongoing project and runs from my Github repository.
       </h3>
       <br>
       <p style="color: #fff; text-align: center;" class="aside-text">
         <span style="font-size: 1.25em;">Made by Conrad.</span> Coded in <a class="text-links"
-          href="https://vuejs.org/">Vue 3.</a><br> At the moment it is powered by
+          href="https://vuejs.org/">Vue 3.</a> Currently hosted on
         <a class="text-links" href="https://pages.github.com/">
-          GitHub pages</a>
-        and
-        <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee.</a>
+          GitHub pages</a>.
+        <br>
+        <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a> + <a class="text-links" href="https://pages.github.com/">
+          GitHub pages</a> = Free Fun website hosting
         <br>
       </p>
 
@@ -105,6 +106,7 @@ export default {
         weather: "Custom Weather",
         Datasets: "Interactive Data Table",
         projects: "Project Descriptions",
+        nlp: "Interesting NLP Research",
       },
     };
   },
@@ -148,9 +150,7 @@ h1 {
   text-decoration: none;
 }
 
-.push-footer {
-  padding-bottom: 700px;
-}
+
 
 .route-styling {
   padding-top: 2em;

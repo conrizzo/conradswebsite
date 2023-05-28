@@ -5,7 +5,10 @@
             <router-link to="/projects/cowculator" :class="{ active: $route.path === '/projects/cowculator' }">Cowculator</router-link>   
             <router-link to="/projects/weather" :class="{ active: $route.path === '/projects/weather' }">Custom Weather</router-link>
             <router-link to="/projects/datasets" :class="{ active: $route.path === '/projects/datasets' }">Interactive Data Table</router-link>   
+            <router-link to="/projects/NLP" :class="{ active: $route.path === '/projects/NLP' }">Interesting NLP Research</router-link>   
             <router-link to="/projects/" :class="{ active: $route.path === '/projects/' }">Project Descriptions</router-link>   
+            
+            
                
         </div>
     </div>
@@ -35,9 +38,9 @@ export default {
 <style>
 .dropbtn {
     
-    border-radius: 5px;
+    border-radius: 20px;
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
-    padding: 1.05em 0.6em 1em 0.6em;
+    padding: 1em 0.6em 1em 0.6em;
     color: rgb(75, 75, 75);
     font-weight: 600;
     font-size: 1em;
@@ -49,6 +52,7 @@ export default {
 .dropdown {
     position: relative;
     display: inline-block;    
+    
 }
 
 .dropdown-content {
