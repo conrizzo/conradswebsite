@@ -145,6 +145,7 @@ export default {
       tree: { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } },
 
       expressionTree: this.treeNodeCalculations,
+    
       //svgContent: '',
       
       // Adds commas to the result or expression shown on the screen to increase readability    
@@ -290,9 +291,9 @@ export default {
       
   
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('width', '500');
-      svg.setAttribute('height', '500');
-      svg.setAttribute('viewBox', '0 0 500 500');
+      svg.setAttribute('width', '100%');
+      svg.setAttribute('height', '600');
+      svg.setAttribute('viewBox', '0 0 470 800');
 
       const startX = 250;
       const startY = 50;
@@ -485,7 +486,13 @@ export default {
             //this.formatNumber();
 
             // At the moment this is a bit of a hack to get the svg to show up
-            this.$refs.svgContainer.appendChild(this.svgContent);           
+            const svgContainer = this.$refs.svgContainer;
+            // Remove old SVG content with this loop otherwise it creates a new SVG tree each time
+            while (svgContainer.firstChild) {
+              svgContainer.removeChild(svgContainer.firstChild);
+            }
+            // Append new SVG content
+            svgContainer.appendChild(this.svgContent);
             this.svgContent.setAttribute("width", "100%");
           }
           // Good article about using NaN in JavaScript like the function above does ^ 
@@ -722,7 +729,7 @@ export default {
 
       // reset tree
       this.tree = { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } };
-      this.svgContent = '';
+      this.svgContent = '';      
       
     },
   },

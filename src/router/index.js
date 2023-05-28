@@ -7,6 +7,7 @@ import WeatherView from  '../views/projects/WeatherView.vue'
 import NaturalLanguageProcessingView from  '../views/projects/NaturalLanguageProcessingView.vue'
 
 import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
+import yadhtriByppahView from  '../views/yadhtriByppahView.vue'
 
 //import about from '../views/about.vue'
 
@@ -66,6 +67,16 @@ const routes = [
     component: NaturalLanguageProcessingView,
     
   },
+
+  {
+    path: '/yadhtriByppah',
+    name: 'yadhtriByppahView',
+    component: yadhtriByppahView,
+    
+  },
+
+
+  
   // Keep this at the end of the array so only unmatched paths go here
   // This is important, otherwise direct links to pages a user enters will not work on the web!
   // The important fix for the direct links to work on github pages was copying the generated build from the dist
