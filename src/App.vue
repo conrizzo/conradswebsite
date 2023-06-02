@@ -41,22 +41,23 @@ nav {
   position: fixed; 
   /* padding: 0.3em 0.25em 0.3em 0.25em; */
   font-size: 1.25em;
-  background-color: rgb(255, 255, 255);
-  height: 3.18em;  
+  background-color: rgba(255, 255, 255);
+   
+  
 }
 
 nav a {
-  font-weight: bold;
+  
   color: rgb(75, 75, 75);
   text-decoration: none;
   background-color: rgb(255, 255, 255);
   margin-right: 0.1em;  
   border-radius: 5px;
-  padding: 0.5em 0.6em 0.5em 0.6em;  
+  padding: 0.4em 0.6em 0.4em 0.6em;  
 }
 
 nav a:hover {
-  font-weight: bold;
+  
   color: #34B7F1;
   text-decoration: none;  
   background-color: none; 
@@ -69,8 +70,8 @@ nav a.router-link-exact-active {
 
 html,
 body {
-  /* for some reason 2.0em leaves spacing at some resolutions and 1.98 works perfectly */
-  padding-top: 1.98em;
+  
+  padding-top: 1.33em;
   background-color: rgb(100, 100, 100);
 }
 

@@ -1,93 +1,151 @@
 <template>
   <div style="">
     <!-- checkInput highlights key presses, and formatNumber adds commas -->
-    <input class="input-field" v-model="expression" type="text" @input="checkInput()" />
-
+    <input
+      class="input-field"
+      v-model="expression"
+      type="text"
+      @input="checkInput()"
+    />
   </div>
   <div class="grid-container cow-image">
-    <button class="grid-item-symbols" @click="addMathOperator('\u00D7');">
+    <button class="grid-item-symbols" @click="addMathOperator('\u00D7')">
       &#215;
     </button>
 
-    <button class="grid-item" @click=" addNumber(1)" :class="{ active: isActive[1] }">
+    <button
+      class="grid-item"
+      @click="addNumber(1)"
+      :class="{ active: isActive[1] }"
+    >
       {{ buttonList[1] }}
     </button>
-    <button class="grid-item" @click=" addNumber(2)" :class="{ active: isActive[2] }">
+    <button
+      class="grid-item"
+      @click="addNumber(2)"
+      :class="{ active: isActive[2] }"
+    >
       {{ buttonList[2] }}
     </button>
-    <button class="grid-item" @click=" addNumber(3)" :class="{ active: isActive[3] }">
+    <button
+      class="grid-item"
+      @click="addNumber(3)"
+      :class="{ active: isActive[3] }"
+    >
       {{ buttonList[3] }}
     </button>
-    <button class="grid-item-symbols" @click=" addMathOperator('\u00F7')">÷</button>
-    <button class="grid-item" @click=" addNumber(4)" :class="{ active: isActive[4] }">
+    <button class="grid-item-symbols" @click="addMathOperator('\u00F7')">
+      ÷
+    </button>
+    <button
+      class="grid-item"
+      @click="addNumber(4)"
+      :class="{ active: isActive[4] }"
+    >
       {{ buttonList[4] }}
     </button>
-    <button class="grid-item" @click=" addNumber(5)" :class="{ active: isActive[5] }">
+    <button
+      class="grid-item"
+      @click="addNumber(5)"
+      :class="{ active: isActive[5] }"
+    >
       {{ buttonList[5] }}
     </button>
-    <button class="grid-item" @click=" addNumber(6)" :class="{ active: isActive[6] }">
+    <button
+      class="grid-item"
+      @click="addNumber(6)"
+      :class="{ active: isActive[6] }"
+    >
       {{ buttonList[6] }}
     </button>
-    <button class="grid-item-symbols" @click=" addMathOperator('-')">-</button>
-    <button class="grid-item" @click=" addNumber(7)" :class="{ active: isActive[7] }">
+    <button class="grid-item-symbols" @click="addMathOperator('-')">-</button>
+    <button
+      class="grid-item"
+      @click="addNumber(7)"
+      :class="{ active: isActive[7] }"
+    >
       {{ buttonList[7] }}
     </button>
-    <button class="grid-item" @click=" addNumber(8)" :class="{ active: isActive[8] }">
+    <button
+      class="grid-item"
+      @click="addNumber(8)"
+      :class="{ active: isActive[8] }"
+    >
       {{ buttonList[8] }}
     </button>
-    <button class="grid-item" @click=" addNumber(9)" :class="{ active: isActive[9] }">
+    <button
+      class="grid-item"
+      @click="addNumber(9)"
+      :class="{ active: isActive[9] }"
+    >
       {{ buttonList[9] }}
     </button>
-    <button class="grid-item-symbols" @click=" addMathOperator('+')">+</button>
-    <button class="grid-item" @click=" removeEntry(), checkInput()">
+    <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
+    <button class="grid-item" @click="removeEntry(), checkInput()">
       <div class="arrow-position">
         <div class="left-arrow"></div>
       </div>
     </button>
-    <button class="grid-item" @click=" addMathOperator('.')">.</button>
-    <button class="grid-item" @click=" addNumber(0)" :class="{ active: isActive[0] }">
+    <button class="grid-item" @click="addMathOperator('.')">.</button>
+    <button
+      class="grid-item"
+      @click="addNumber(0)"
+      :class="{ active: isActive[0] }"
+    >
       {{ buttonList[0] }}
     </button>
-    <button class="grid-item" @click=" addMoo(), mooButtonHit()">Moo</button>
-    <button class="grid-item" @click=" setFactorialize(this.expression)">n!</button>
-    <button class="grid-item" @click=" addMathOperator('(')">(</button>
-    <button class="grid-item" @click=" addMathOperator(')')">)</button>
-   
-
+    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
+    <button class="grid-item" @click="setFactorialize(this.expression)">
+      n!
+    </button>
+    <button class="grid-item" @click="addMathOperator('(')">(</button>
+    <button class="grid-item" @click="addMathOperator(')')">)</button>
   </div>
 
   <div>
-    <button style="margin-right: 0.25em;" class="button-35" @click="clearField">Reset</button>
+    <button style="margin-right: 0.25em" class="button-35" @click="clearField">
+      Reset
+    </button>
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
   </div>
-  <div style="padding-top: 0.5em;">
-    <b v-if="showDescriptionText" style="color:#42b883;">Cowculation</b>
+  <div style="padding-top: 0.5em">
+    <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
       {{ addCommas(expression) }}<span v-if="this.expression == ''"></span>
-      <span v-if="showText"> = <span style="font-size: 1.15em;">{{ addCommas(result)  }}</span></span>
-      <span v-if="mooCounter > 0"><br>Number of Moos: <span style="">{{ mooCounter }}</span></span>
-      <span v-if="superMoo"> <br>{{ mooPlication }}</span>
+      <span v-if="showText">
+        = <span style="font-size: 1.15em">{{ addCommas(result) }}</span></span
+      >
+      <span v-if="mooCounter > 0"
+        ><br />Number of Moos: <span style="">{{ mooCounter }}</span></span
+      >
+      <span v-if="superMoo"> <br />{{ mooPlication }}</span>
     </div>
   </div>
-  <div v-if="showNotification" class="notification"><span style="font-weight: bold;">{{ result }}</span> copied to
-    clipboard!</div>
-  <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em;">
-    <div class=".dark-color-text" v-if="showDescriptionText"
-      style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em;">
-      <b style="color:#42b883;">Final Node Cowculation:</b><br>
-      Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{ operator
-      }}</span>&nbsp; Right node: <span class="node-display">{{ addCommas(rightNode) }}</span><br>
-      <b style="color:#42b883;">Full Binary Tree Structure in JSON:</b><br>
-      <div style="margin-left: 5em;">
-      <span>{{ treeNodeCalculations }}</span>
-    </div>
+  <div v-if="showNotification" class="notification">
+    <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
+  </div>
+  <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em">
+    <div
+      class=".dark-color-text"
+      v-if="showDescriptionText"
+      style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em"
+    >
+      <b style="color: #42b883">Final Node Cowculation:</b><br />
+      Left node: <span class="node-display">{{ addCommas(leftNode) }}</span
+      >&nbsp; Operator: <span class="node-display">{{ operator }}</span
+      >&nbsp; Right node:
+      <span class="node-display">{{ addCommas(rightNode) }}</span
+      ><br />
+      <b style="color: #42b883">Full Binary Tree Structure in JSON:</b><br />
+      <div style="margin-left: 5em">
+        <span>{{ treeNodeCalculations }}</span>
+      </div>
     </div>
     <div>
       <pre v-if="showText">{{ treeString }}</pre>
     </div>
     <!-- attempt to draw svg here of binary tree -->
     <div ref="svgContainer"></div>
-    
   </div>
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
@@ -98,17 +156,13 @@
     <h2 class="moo-cows-go-moo">
       <span v-if="mooMessage">
         Moo cows go moo, moo, moo!<br />
-        Moo cows go moo, moo, moo!</span>
+        Moo cows go moo, moo, moo!</span
+      >
     </h2>
-
   </div>
 </template>
 <script>
-
-
-
 export default {
-
   data() {
     return {
       showText: false,
@@ -124,7 +178,18 @@ export default {
       mooPlication: "",
 
       buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-      isActive: [false, false, false, false, false, false, false, false, false, false],
+      isActive: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+      ],
 
       userTokens: [],
       operators: [],
@@ -142,48 +207,45 @@ export default {
 
       message: toString(this.result),
       showNotification: false,
-      tree: { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } },
+      tree: {
+        value: "",
+        left: { value: "", left: null, right: null },
+        right: { value: "", left: null, right: null },
+      },
 
       expressionTree: this.treeNodeCalculations,
-    
+
       //svgContent: '',
-      
-      // Adds commas to the result or expression shown on the screen to increase readability    
+
+      // Adds commas to the result or expression shown on the screen to increase readability
       addCommas(number) {
         if (number == null) {
           return "";
         } else {
-        number = number.toString();
-        var parts = number.split(/([\d.]+)/g);        
-        for (let i = 1; i < parts.length; i += 2) {
-          parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          number = number.toString();
+          var parts = number.split(/([\d.]+)/g);
+          for (let i = 1; i < parts.length; i += 2) {
+            parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          }
+          return parts.join("");
         }
-        return parts.join("");
-      }
-      
-    }
-    }
-
-
-
-  }, computed: {
+      },
+    };
+  },
+  computed: {
     treeString() {
       return this.printTree(this.tree);
     },
     svgContent() {
       // Generate the SVG content based on the JSON data
       var svg = this.drawTree();
-      console.log(svg)
+      console.log(svg);
 
       return svg;
-    }
-    
+    },
   },
   watch: {
     expression(userInput) {
-
-      
-
       // This expression(userInput) works by taking whatever the user input is from buttons/text field.
       // The number of Moo's are counted and saved to mooCounter
       // the math symbols that are displayed but don't actually work in calculations are replaced, along with
@@ -195,7 +257,6 @@ export default {
       let str = userInput;
 
       this.mooCounter = (str.match(/Moo/g) || []).length;
-
 
       if (str.includes("Moo\u00D7Moo") || str.includes("Moo+Moo")) {
         this.superMoo = true;
@@ -213,10 +274,10 @@ export default {
             index = str.indexOf(mooMultiplication, index + 1);
           }
           for (let i = 0; i < count; i++) {
-            mooNumber *= mooNumber
+            mooNumber *= mooNumber;
           }
           for (let i = 0; i < mooNumber; i++) {
-            mooString += "o"
+            mooString += "o";
           }
           console.log(count, mooNumber, mooString);
         } else if (str.includes(mooAddition)) {
@@ -232,11 +293,11 @@ export default {
             mooString += "o";
           }
         }
-        this.mooPlication = mooString
+        this.mooPlication = mooString;
       }
 
       // The following is largely pre-processing for the string to go into the cowculate() function
-      str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*")
+      str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*");
 
       // This decides whether calculatons can actully be done
       // regular expression for +, -, /, and * operators before any actual parsing is done (saves useless calculations)
@@ -249,10 +310,13 @@ export default {
         this.expression = str.replace(")(", ")\u00D7(");
       }
 
-      // invoke function to autocorrect bad entries such as -/ or */ or -+          
-      if (!this.expression.includes("Moo\u00D7Moo") || !this.expression.includes("Moo+Moo")) {
-        // the string contains "Moo×Moo" or "Moo+Moo"        
-        this.autoFixIncorrectInput(str)
+      // invoke function to autocorrect bad entries such as -/ or */ or -+
+      if (
+        !this.expression.includes("Moo\u00D7Moo") ||
+        !this.expression.includes("Moo+Moo")
+      ) {
+        // the string contains "Moo×Moo" or "Moo+Moo"
+        this.autoFixIncorrectInput(str);
       }
 
       // remove Moo's for number calculations
@@ -261,12 +325,12 @@ export default {
       // This only fixes deleting the very very last number when the back button <- arrow is used
       if (this.expression === "") {
         this.showText = false;
-        this.result = ""
+        this.result = "";
         this.showDescriptionText = false;
         this.treeNodeCalculations = null;
         this.currentNode = null;
       }
-      // This sends a cleaned input to the cowculate function 
+      // This sends a cleaned input to the cowculate function
       else if (mathOperators.test(str)) {
         this.cleanedExpression = str;
         this.cowculate();
@@ -276,82 +340,84 @@ export default {
   mounted() {
     // Call your function to generate the SVG
     //const svg = this.drawTree();
-
     // Update the data property with the SVG content
     //this.svgContent = svg;
-    
     //this.$refs.svgContainer.appendChild(svg);
-
     //this.$refs.svgContainer.appendChild(this.svgContent);
-    
   },
   methods: {
-    
-    drawTree(){
-      
-  
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('width', '100%');
-      svg.setAttribute('height', '600');
-      svg.setAttribute('viewBox', '0 0 470 800');
+    drawTree() {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("width", "800");
+      svg.setAttribute("height", "800");
+      svg.setAttribute("viewBox", "0 0 470 800");
 
-      const startX = 250;
+      const startX = 235;
       const startY = 50;
-      const dx = 75;
-      const dy = 75;
+      const dx = 100;
+      const dy = 100;
 
       this.drawTreeTwo(svg, this.tree, startX, startY, dx, dy);
-      
-     //console.log(svg)
+
+      //console.log(svg)
       return svg;
+    },
+    drawTreeTwo(svg, node, x, y, dx, dy) {
+      if (!node) {
+        return;
+      }
 
-    }, drawTreeTwo(svg, node, x, y, dx, dy) {
-  
+      // change output symbol in the svg graphic from * multiplcation to × symbol for example, and / to ÷ symbol
+      if (node.value == '*'){
+        node.value = '\u00D7';
+      }
+      else if (node.value == '/'){
+        node.value = '\u00F7';
+      }
+      
 
-  
-  if (!node) {
-    return;
-  }
+      const leftX = x - dx;
+      const leftY = y + dy;
+      const rightX = x + dx;
+      const rightY = y + dy;
 
-  const leftX = x - dx;
-  const leftY = y + dy;
-  const rightX = x + dx;
-  const rightY = y + dy;
+      if (node.left) {
+        svg.innerHTML += `<line x1="${x}" y1="${y}" x2="${leftX}" y2="${leftY}" stroke="black" />`;
+        this.drawTreeTwo(svg, node.left, leftX, leftY, dx / 1.6, dy);
+      }
 
-  if (node.left) {
-    svg.innerHTML += `<line x1="${x}" y1="${y}" x2="${leftX}" y2="${leftY}" stroke="black" />`;
-    this.drawTreeTwo(svg, node.left, leftX, leftY, dx / 1.3, dy);
-  }
+      if (node.right) {
+        svg.innerHTML += `<line x1="${x}" y1="${y}" x2="${rightX}" y2="${rightY}" stroke="black" />`;
+        this.drawTreeTwo(svg, node.right, rightX, rightY, dx / 1.6, dy);
+      }
 
-  if (node.right) {
-    svg.innerHTML += `<line x1="${x}" y1="${y}" x2="${rightX}" y2="${rightY}" stroke="black" />`;
-    this.drawTreeTwo(svg, node.right, rightX, rightY, dx / 1.3, dy);
-  }
-
-  svg.innerHTML += `<circle cx="${x}" cy="${y}" r="20" fill="white" stroke="black" />`;
-  svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" alignment-baseline="central" font-family="Arial" font-size="14">${node.value}</text>`;
-
-},
-    
-
+      svg.innerHTML += `<circle cx="${x}" cy="${y}" r="15" fill="white" stroke="#42b883" stroke-opacity="0.5" />`;
+      svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" alignment-baseline="central" font-family="Arial" font-size="14">${node.value}</text>`;
+    },
 
     printTree(node, level = 1, isRoot = true) {
       if (node === null) {
-        return '';
+        return "";
       }
 
       let indent;
       if (isRoot) {
-        indent = '';
+        indent = "";
       } else {
         const levelPrefix = `Tree Level ${level - 1}`;
-        indent = '   '.repeat(level - 2) + levelPrefix + '   ';
+        indent = "   ".repeat(level - 2) + levelPrefix + "   ";
       }
 
-      const value = isRoot ? `Root        (${node.value})` : '(' + node.value + ')';
-      indent += '   '.repeat(level - 1) + '   ';
+      const value = isRoot
+        ? `Root        (${node.value})`
+        : "(" + node.value + ")";
+      indent += "   ".repeat(level - 1) + "   ";
 
-      return `${indent}${value}\n${this.printTree(node.left, level + 1, false)}${this.printTree(node.right, level + 1, false)}`;
+      return `${indent}${value}\n${this.printTree(
+        node.left,
+        level + 1,
+        false
+      )}${this.printTree(node.right, level + 1, false)}`;
     },
     cowculate() {
       /* Cow Moo cowculations */
@@ -359,16 +425,15 @@ export default {
       /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
 
       // clears all number tokens and math operations from previous inputs
-      this.userTokens = []
-      this.operators = []
+      this.userTokens = [];
+      this.operators = [];
 
       let str = this.cleanedExpression;
       try {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
-        if (!(/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/).test(str)) {
+        if (!/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/.test(str)) {
           this.result = "";
-        }
-        else {
+        } else {
           class Node {
             constructor(value, left = null, right = null) {
               this.value = value;
@@ -376,18 +441,30 @@ export default {
               this.right = right;
             }
           }
-          var input = this.cleanedExpression
+          var input = this.cleanedExpression;
           let currentNumber = "";
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
-            // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" paranthesis 
+            // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" paranthesis
             // such as "-(" To solve this the expression in paranthesis is subtracted from 0
-            if (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))) && input.charAt(i + 1) === "(") {
+            if (
+              char === "-" &&
+              (i === 0 || isNaN(input.charAt(i - 1))) &&
+              input.charAt(i + 1) === "("
+            ) {
               this.userTokens.push(new Node(0));
               this.operators.push("-");
             }
             // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
-            else if (!isNaN(char) || char === "." || (char === "-" && (i === 0 || isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "("))) {
+            else if (
+              !isNaN(char) ||
+              char === "." ||
+              (char === "-" &&
+                (i === 0 ||
+                  (isNaN(input.charAt(i - 1)) &&
+                    input.charAt(i - 1) !== ")" &&
+                    input.charAt(i + 1) !== "(")))
+            ) {
               currentNumber += char;
               // Does operations like (2)2 = 4
               if (")" === input.charAt(i - 1)) {
@@ -398,14 +475,16 @@ export default {
               if ("(" === input.charAt(i + 1)) {
                 this.operators.push("*");
               }
-            }
-            else {
+            } else {
               if (currentNumber !== "") {
                 this.userTokens.push(new Node(parseFloat(currentNumber)));
                 currentNumber = "";
               }
               if (char === "+" || char === "-") {
-                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+                while (
+                  this.operators.length > 0 &&
+                  this.operators[this.operators.length - 1] !== "("
+                ) {
                   const op = this.operators.pop();
                   const right = this.userTokens.pop();
                   const left = this.userTokens.pop();
@@ -413,9 +492,13 @@ export default {
                   this.userTokens.push(node);
                 }
                 this.operators.push(char);
-              }
-              else if (char === "*" || char === "/" || char === "!") {
-                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(" && (this.operators[this.operators.length - 1] === "*" || this.operators[this.operators.length - 1] === "/")) {
+              } else if (char === "*" || char === "/" || char === "!") {
+                while (
+                  this.operators.length > 0 &&
+                  this.operators[this.operators.length - 1] !== "(" &&
+                  (this.operators[this.operators.length - 1] === "*" ||
+                    this.operators[this.operators.length - 1] === "/")
+                ) {
                   const op = this.operators.pop();
                   const right = this.userTokens.pop();
                   const left = this.userTokens.pop();
@@ -423,19 +506,23 @@ export default {
                   this.userTokens.push(node);
                 }
                 this.operators.push(char);
-              }
-              else if (char === "(") {
+              } else if (char === "(") {
                 this.operators.push(char);
-              }
-              else if (char === ")") {
-                while (this.operators.length > 0 && this.operators[this.operators.length - 1] !== "(") {
+              } else if (char === ")") {
+                while (
+                  this.operators.length > 0 &&
+                  this.operators[this.operators.length - 1] !== "("
+                ) {
                   const op = this.operators.pop();
                   const right = this.userTokens.pop();
                   const left = this.userTokens.pop();
                   const node = new Node(op, left, right);
                   this.userTokens.push(node);
                 }
-                if (this.operators.length > 0 && this.operators[this.operators.length - 1] === "(") {
+                if (
+                  this.operators.length > 0 &&
+                  this.operators[this.operators.length - 1] === "("
+                ) {
                   this.operators.pop();
                 }
               }
@@ -458,18 +545,18 @@ export default {
           // Quick way to make sure output isn't 5555 = 5555 if the user just enters a number
           // If no calculations are done don't need to show a number is equal to itself.
           if (result == this.cleanedExpression) {
-            result = ""
+            result = "";
           }
           // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
           else if (!Number.isNaN(result)) {
             // show equal sign and results
             this.showText = true;
             // create the binary tree structure
-            this.treeNodeCalculations = this.userTokens[0]
+            this.treeNodeCalculations = this.userTokens[0];
 
             //console.log(typeof this.treeNodeCalculations)
             const myJSON = JSON.stringify(this.treeNodeCalculations);
-            console.log(myJSON)
+            console.log(myJSON);
 
             this.treeData = this.treeNodeCalculations;
             this.tree = this.treeNodeCalculations;
@@ -478,7 +565,7 @@ export default {
 
             this.showDescriptionText = true;
             // this puts the final calculation into a variable to be copied from the clipboard
-            this.message = result
+            this.message = result;
             // this outputs the FINAL calculation
             this.result = result;
 
@@ -495,7 +582,7 @@ export default {
             svgContainer.appendChild(this.svgContent);
             this.svgContent.setAttribute("width", "100%");
           }
-          // Good article about using NaN in JavaScript like the function above does ^ 
+          // Good article about using NaN in JavaScript like the function above does ^
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
           // This method works below, but others could also work.
         }
@@ -515,33 +602,32 @@ export default {
       console.log(left, node.value, right);
 
       // This shows the operator to the user in '×' or '÷' format and not * or /
-      let viewer_symbol_node = ""
+      let viewer_symbol_node = "";
       if (node.value === "*") {
-        viewer_symbol_node = '\u00D7'
+        viewer_symbol_node = "\u00D7";
       } else if (node.value === "/") {
-        viewer_symbol_node = '\u00F7'
-      } else
-        viewer_symbol_node = node.value;
+        viewer_symbol_node = "\u00F7";
+      } else viewer_symbol_node = node.value;
       // this.currentNode = "Left node: " + left +" Operator: " + viewer_symbol_node + " Right node: " + right;
       this.leftNode = left;
       this.operator = viewer_symbol_node;
       this.rightNode = right;
       // Switched this to a switch - simpler and more readable for this use case
       switch (node.value) {
-        case '+':
+        case "+":
           return left + right;
-        case '-':
+        case "-":
           return left - right;
-        case '*':
+        case "*":
           return left * right;
-        case '/':
+        case "/":
           return left / right;
         default:
           return null;
       }
-    }
+    },
     // This code createNode isn't currently used, but here for future modularization
-    , createNode() {
+    createNode() {
       class Node {
         constructor(value, left = null, right = null) {
           this.value = value;
@@ -554,31 +640,27 @@ export default {
       const left = this.userTokens.pop();
       const node = new Node(op, left, right);
       this.userTokens.push(node);
-
-    }, setFactorialize(num) {
+    },
+    setFactorialize(num) {
       // Currently only works for individual numbers, not programmed into the tree structure
       if (!Number.isNaN(num)) {
         try {
-          var factorializeAnswer = this.factorialize(num)
+          var factorializeAnswer = this.factorialize(num);
           //this.expression = factorializeAnswer
-          this.result = factorializeAnswer
+          this.result = factorializeAnswer;
 
           this.showText = true;
-
-
         } catch (error) {
-          this.result = ""
-          factorializeAnswer = 0
+          this.result = "";
+          factorializeAnswer = 0;
         }
       }
     },
     factorialize(num) {
-      if (num < 0)
-        return -1;
-      else if (num == 0)
-        return 1;
+      if (num < 0) return -1;
+      else if (num == 0) return 1;
       else {
-        return (num * this.factorialize(num - 1));
+        return num * this.factorialize(num - 1);
       }
     },
     // This function will highlight the buttons as a user types input, or as a user hits the back button on their input to delete it
@@ -613,8 +695,6 @@ export default {
           this.isActive[i] = false;
         }
       }, 150);
-
-
     },
     mooButtonHit() {
       this.mooMessage = true;
@@ -626,74 +706,100 @@ export default {
       }, 1500);
     },
     addNumber(buttonValueToAdd) {
-
       this.expression += buttonValueToAdd;
-      
-      
     },
     addMathOperator(mathOperatorToAdd) {
-      this.expression += mathOperatorToAdd
- 
+      this.expression += mathOperatorToAdd;
     },
     addMoo() {
       this.expression += "Moo";
     },
-    
-    
 
-    
-     autoFixIncorrectInput(str) {
-
+    autoFixIncorrectInput(str) {
       // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
 
-      //if (!this.expression === "Moo\u00D7Moo"){     
+      //if (!this.expression === "Moo\u00D7Moo"){
 
-      // If someone types 5-+2 or 5-/2 or 5-*2 this will automatically change it to the last typed character  
+      // If someone types 5-+2 or 5-/2 or 5-*2 this will automatically change it to the last typed character
       if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "-" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "-" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
-      } else if (str[str.length - 3] === "-" && str[str.length - 2] === "-" && str[str.length - 1] === "-") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
+      } else if (
+        str[str.length - 3] === "-" &&
+        str[str.length - 2] === "-" &&
+        str[str.length - 1] === "-"
+      ) {
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       }
-      // If someone types 5++2 or 5+/2 or 5+*2 this will automatically change it to the last typed character  
+      // If someone types 5++2 or 5+/2 or 5+*2 this will automatically change it to the last typed character
       else if (str[str.length - 2] === "+" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "+" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "+" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       }
-      // If someone types 5*+2 or 5*/2 or 5**2 this will automatically change it to the last typed character  
+      // If someone types 5*+2 or 5*/2 or 5**2 this will automatically change it to the last typed character
       else if (str[str.length - 2] === "*" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "*" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
-      } else if (str[str.length - 3] === "*" && str[str.length - 2] === "-" && str[str.length - 1] === "-") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
+      } else if (
+        str[str.length - 3] === "*" &&
+        str[str.length - 2] === "-" &&
+        str[str.length - 1] === "-"
+      ) {
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "*" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       }
-      // If someone types 5/+2 or 5//2 or 5/*2 this will automatically change it to the last typed character  
+      // If someone types 5/+2 or 5//2 or 5/*2 this will automatically change it to the last typed character
       else if (str[str.length - 2] === "/" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "/" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("/", "\u00F7").replaceAll("*", "\u00D7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("/", "\u00F7")
+          .replaceAll("*", "\u00D7");
       } else if (str[str.length - 2] === "/" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1)).replaceAll("*", "\u00D7").replaceAll("/", "\u00F7");
+        this.expression = (str.slice(0, -2) + str.slice(-1))
+          .replaceAll("*", "\u00D7")
+          .replaceAll("/", "\u00F7");
       }
-
     },
     removeEntry() {
       if (this.expression != "") {
-        if (this.expression.slice(-3) == "Moo") {        
+        if (this.expression.slice(-3) == "Moo") {
           this.expression = this.expression.slice(0, -3);
-        } else {        
+        } else {
           this.expression = this.expression.slice(0, -1);
         }
-        
       }
     },
     copyToClipboard() {
@@ -725,28 +831,29 @@ export default {
 
       this.formattedNumber = ""; // expression with commas
       this.formattedResult = ""; // final result with commas
-      
 
       // reset tree
-      this.tree = { "value": "", "left": { "value": "", "left": null, "right": null }, "right": { "value": "", "left": null, "right": null } };
-      this.svgContent = '';      
-      
+      this.tree = {
+        value: "",
+        left: { value: "", left: null, right: null },
+        right: { value: "", left: null, right: null },
+      };
+      this.svgContent = "";
     },
   },
 };
 </script>
 <style scoped>
 button.active {
-
   background: rgb(66, 184, 131, 0.5);
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
- 
-  padding: 1em;  
-  max-width: 22em;       
+
+  padding: 1em;
+  max-width: 22em;
   margin-left: auto;
   margin-right: auto;
   grid-gap: 0.2em;
@@ -759,7 +866,7 @@ button.active {
 .grid-item {
   background-color: rgba(30, 30, 30, 0.6);
   border: none;
-  padding: 0.8em 0.8em 0.8em 0.8em;   
+  padding: 0.8em 0.8em 0.8em 0.8em;
   font-size: 1.5em;
   text-align: center;
   border-radius: 12px;
@@ -770,7 +877,7 @@ button.active {
 .grid-item-symbols {
   background-color: rgba(198, 198, 198, 0.6);
   border: none;
-  padding: 0.8em 0.8em 0.8em 0.8em;   
+  padding: 0.8em 0.8em 0.8em 0.8em;
   font-size: 1.5em;
   text-align: center;
   border-radius: 12px;
@@ -784,7 +891,6 @@ button.active {
 }
 
 .grid-item:hover {
-
   background-color: rgba(186, 186, 186, 0.318);
 }
 
@@ -832,18 +938,14 @@ input:focus {
   }
   /* adjust the button grid */
   .grid-container {
-    max-width: 22em;    
+    max-width: 22em;
     grid-gap: 0.2em;
     padding: 0.1em;
   }
-  
- 
-  
 }
 
 .cowculate-result {
   padding-top: 1em;
-
 
   margin-top: 0.05em;
   font-size: 1.5em;
@@ -856,9 +958,6 @@ input:focus {
   /* background: #515151; */
   border-radius: 4px 4px 4px 4px;
 }
-
-
-
 
 /* back arrow start */
 .arrow {
@@ -915,6 +1014,6 @@ input:focus {
   font-size: 1.3em;
   background-color: #e3e3e3;
   padding-right: 0.33em;
-  padding-left: 0.33em
+  padding-left: 0.33em;
 }
 </style>

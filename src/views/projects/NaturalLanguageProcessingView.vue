@@ -1,7 +1,7 @@
 <template>
     <div class="background">
         <h1>Interesting NLP (Natural Language Processing)</h1>
-        <p class="paragraph-text">The goal here is to link interesting research papers, videos, webpages. This section is under development.
+        <p class="paragraph-text ">The goal here is to link interesting research papers, videos, webpages. This section is under development.
             Will likely categorize this for NLP, useful code links, and other topics.
         </p>
        
@@ -16,9 +16,9 @@
             <tbody>
                 <tr v-for="(link, index) in links" :key="index">
                     <td>{{ link.date }}</td>
-                    <td><a class="text-links" :href=link.url>{{ link.title }}</a></td>
+                    <td><a class="text-links break-text" :href=link.url>{{ link.title }}</a></td>
                     
-                    <td><a class="text-links" :href="link.videoUrl">{{ link.videoUrl }}</a></td>
+                    <td><a class="text-links break-text" :href="link.videoUrl">{{ link.videoUrl }}</a></td>
                 </tr>
             </tbody>
         </table>
