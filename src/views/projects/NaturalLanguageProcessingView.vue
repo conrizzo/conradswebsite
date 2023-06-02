@@ -9,14 +9,15 @@
             <thead>
                 <tr>
                     <th>Publication Date</th>
-                    <th>Title</th>
+                    <th>Title / Description</th>
                     <th>Video</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(link, index) in links" :key="index">
                     <td>{{ link.date }}</td>
-                    <td><a class="text-links break-text" :href=link.url>{{ link.title }}</a></td>
+                    <td><a class="text-links break-text" :href=link.url>{{ link.title }}</a><br><br>
+                        {{link.description}} </td>
                     
                     <td><a class="text-links break-text" :href="link.videoUrl">{{ link.videoUrl }}</a></td>
                 </tr>
@@ -40,6 +41,13 @@ export default {
     data() {
         return {
             links: [
+                {
+                    date: "31 May 2023",
+                    title: "Introducing BERTopic Integration with the Hugging Face Hub",
+                    description: "Interesting way to model topics!",
+                    url: "https://huggingface.co/blog/bertopic",
+                    
+                },
                 {
                     date: "17 May 2023",
                     title: "Tree of Thoughts: Deliberate Problem Solving with Large Language Models",
