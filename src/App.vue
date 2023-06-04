@@ -40,6 +40,7 @@ nav {
   align-items: center;
   position: fixed; 
   /* padding: 0.3em 0.25em 0.3em 0.25em; */
+  
   font-size: 1.25em;
   background-color: rgba(255, 255, 255);
    

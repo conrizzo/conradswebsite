@@ -86,7 +86,9 @@
 </template>
 
 <script>
+
 import Prism from "prismjs";
+
 import AsideContent from "@/components/FirstAside.vue";
 
 import FirstFooter from "@/components/FirstFooter.vue";
@@ -106,7 +108,7 @@ export default {
         weather: "Custom Weather",
         Datasets: "Interactive Data Table",
         projects: "Project Descriptions",
-        nlp: "Interesting NLP Research",
+        nlp: "Interesting NLP",
       },
     };
   },

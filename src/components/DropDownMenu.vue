@@ -5,7 +5,7 @@
             <router-link to="/projects/cowculator" :class="{ active: $route.path === '/projects/cowculator' }">Cowculator</router-link>   
             <router-link to="/projects/weather" :class="{ active: $route.path === '/projects/weather' }">Custom Weather</router-link>
             <router-link to="/projects/datasets" :class="{ active: $route.path === '/projects/datasets' }">Interactive Data Table</router-link>   
-            <router-link to="/projects/NLP" :class="{ active: $route.path === '/projects/NLP' }">Interesting NLP Research</router-link>   
+            <router-link to="/projects/NLP" :class="{ active: $route.path === '/projects/NLP' }">Interesting NLP</router-link>   
             <router-link to="/projects/" :class="{ active: $route.path === '/projects/' }">Project Descriptions</router-link>   
                            
         </div>
@@ -58,30 +58,29 @@ export default {
 .dropdown-content {
     display: none;
     position: absolute;
-    
-    min-width: 160px;    
+    padding:0.15em;    
+    background-color: white;        
     box-shadow: 0px -2px 8px rgba(0,0,0,0.4);    
     z-index: 1;
+    
 }
 
 .dropdown-content a {
     color: black;
-    padding: 1em 1em;
+    padding: 0.5em 0.6em 0.5em 0.6em; 
     text-decoration: none;
     display: block;
-    border-radius: 0;
+    border-radius: 5px;
     margin-right: 0;
     
 }
 
-.dropdown-content a:hover:not(.active) {background-color: none;}
+.dropdown-content a:hover:not(.active) {background-color: none; color: #00b3ff; background-color: rgb(240, 240, 240);}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {display: block; }
 
 .dropdown:hover .dropbtn {background-color: none;}
 
-.active {
-    background-color: #34B7F1;
-    color: none;
-}
+
+
 </style>

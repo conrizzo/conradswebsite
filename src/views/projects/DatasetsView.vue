@@ -8,7 +8,7 @@
       
     <div id="chartContainer"></div>
       </div>
-     <h4 style="margin-top: 0.3em;"><u><b>Note:</b></u> click on the column titles in the table below for each column to sort data numerically/alphabetically. The graph will update to the sorted values.
+     <h4 style="margin-top: 0.3em; text-align: left; color: white; margin-left: 0.5em; margin-right: 0.5em;"><u><b>Note:</b></u> click on the column titles in the table below for each column to sort data numerically/alphabetically. The graph will update to the sorted values.
         All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
     
     <table style="margin-top: 1em;">
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+
 import "@/assets/globalCSS.css";
 import FirstFooter from "@/components/FirstFooter.vue";
 export default {

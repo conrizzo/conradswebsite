@@ -44,7 +44,7 @@ export default {
                 {
                     date: "31 May 2023",
                     title: "Introducing BERTopic Integration with the Hugging Face Hub",
-                    description: "Interesting way to model topics!",
+                    description: "Interesting tool for topic modeling.",
                     url: "https://huggingface.co/blog/bertopic",
                     
                 },

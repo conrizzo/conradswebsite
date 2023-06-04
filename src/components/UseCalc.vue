@@ -100,12 +100,21 @@
     </button>
     <button class="grid-item" @click="addMathOperator('(')">(</button>
     <button class="grid-item" @click="addMathOperator(')')">)</button>
+    
+    <button class="grid-item tooltip" @click="squared()">
+      <i>x<sup>y</sup></i>
+      <span class="tooltiptext">{{ showTooltip }}</span>
+    </button>
+   
+    
   </div>
 
   <div>
     <button style="margin-right: 0.25em" class="button-35" @click="clearField">
       Reset
     </button>
+
+
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
   </div>
   <div style="padding-top: 0.5em">
@@ -137,7 +146,7 @@
       <span class="node-display">{{ addCommas(rightNode) }}</span
       ><br />
       <b style="color: #42b883">Full Binary Tree Structure in JSON:</b><br />
-      <div style="margin-left: 5em">
+      <div>
         <span>{{ treeNodeCalculations }}</span>
       </div>
     </div>
@@ -207,13 +216,11 @@ export default {
 
       message: toString(this.result),
       showNotification: false,
-      tree: {
-        value: "",
-        left: { value: "", left: null, right: null },
-        right: { value: "", left: null, right: null },
-      },
+      tree: {},
 
       expressionTree: this.treeNodeCalculations,
+
+      showTooltip: "This currently sets the whole expression to the power y, and not just the last number entered. May change to only the last number entered in a future update.",
 
       //svgContent: '',
 
@@ -302,14 +309,7 @@ export default {
       // This decides whether calculatons can actully be done
       // regular expression for +, -, /, and * operators before any actual parsing is done (saves useless calculations)
       const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;
-      /*
-      if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
-      to the input expression be ")*("
-      */
-      if (str.indexOf(")(") !== -1) {
-        this.expression = str.replace(")(", ")\u00D7(");
-      }
-
+      
       // invoke function to autocorrect bad entries such as -/ or */ or -+
       if (
         !this.expression.includes("Moo\u00D7Moo") ||
@@ -317,6 +317,14 @@ export default {
       ) {
         // the string contains "Moo×Moo" or "Moo+Moo"
         this.autoFixIncorrectInput(str);
+      }
+
+      /*
+      if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
+      to the input expression be ")*("
+      */
+      if (str.indexOf(")(") !== -1) {
+        this.expression = str.replaceAll(")(", ")\u00D7(").replaceAll("*", "\u00D7").replaceAll("/", "\u00F7");
       }
 
       // remove Moo's for number calculations
@@ -336,14 +344,6 @@ export default {
         this.cowculate();
       }
     },
-  },
-  mounted() {
-    // Call your function to generate the SVG
-    //const svg = this.drawTree();
-    // Update the data property with the SVG content
-    //this.svgContent = svg;
-    //this.$refs.svgContainer.appendChild(svg);
-    //this.$refs.svgContainer.appendChild(this.svgContent);
   },
   methods: {
     drawTree() {
@@ -421,9 +421,7 @@ export default {
     },
     cowculate() {
       /* Cow Moo cowculations */
-
       /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
-
       // clears all number tokens and math operations from previous inputs
       this.userTokens = [];
       this.operators = [];
@@ -492,12 +490,12 @@ export default {
                   this.userTokens.push(node);
                 }
                 this.operators.push(char);
-              } else if (char === "*" || char === "/" || char === "!") {
+              } else if (char === "*" || char === "/" || char === "!" || char === "^") {
                 while (
                   this.operators.length > 0 &&
                   this.operators[this.operators.length - 1] !== "(" &&
                   (this.operators[this.operators.length - 1] === "*" ||
-                    this.operators[this.operators.length - 1] === "/")
+                    this.operators[this.operators.length - 1] === "/" || this.operators[this.operators.length - 1] === "^")
                 ) {
                   const op = this.operators.pop();
                   const right = this.userTokens.pop();
@@ -553,25 +551,19 @@ export default {
             this.showText = true;
             // create the binary tree structure
             this.treeNodeCalculations = this.userTokens[0];
-
             //console.log(typeof this.treeNodeCalculations)
             const myJSON = JSON.stringify(this.treeNodeCalculations);
             console.log(myJSON);
 
             this.treeData = this.treeNodeCalculations;
-            this.tree = this.treeNodeCalculations;
-            //this.$set(this,'treeData', myJSON);
-            //console.log("test", this.treeData)
+
+            this.tree = this.treeNodeCalculations;           
 
             this.showDescriptionText = true;
             // this puts the final calculation into a variable to be copied from the clipboard
             this.message = result;
             // this outputs the FINAL calculation
-            this.result = result;
-
-            // easiest to just add the commas in the watcher automatically and invoke this function
-            //this.formatNumber();
-
+            this.result = result;   
             // At the moment this is a bit of a hack to get the svg to show up
             const svgContainer = this.$refs.svgContainer;
             // Remove old SVG content with this loop otherwise it creates a new SVG tree each time
@@ -600,6 +592,7 @@ export default {
       var right = this.evaluate(node.right);
 
       console.log(left, node.value, right);
+      console.log(node)
 
       // This shows the operator to the user in '×' or '÷' format and not * or /
       let viewer_symbol_node = "";
@@ -622,6 +615,9 @@ export default {
           return left * right;
         case "/":
           return left / right;
+        // This is the power function
+        case "^":
+          return Math.pow(left, right);   
         default:
           return null;
       }
@@ -713,6 +709,34 @@ export default {
     },
     addMoo() {
       this.expression += "Moo";
+    },
+    squared() {
+      /*
+      let str = this.expression;
+      let lastNum = "";
+      let i = str.length - 1;
+      // !isNaN(str[i]) checks if the last character is a number
+      while (i >= 0 && !isNaN(str[i])) {
+        lastNum = str[i] + lastNum;
+        i--;
+      }
+      if (lastNum !== "") {
+        let newNum = Number(lastNum) * Number(lastNum);
+        this.expression = str.slice(0, i + 1) + newNum.toString();
+      }
+      */
+
+      /* Was testing code above, but decided to go with the code below instead, current solution is just temporary */
+     if(this.expression !== ""){
+       
+      if (this.expression[0] !== "(") {
+        this.expression = "(" + this.expression;
+      }
+      if (this.expression[this.expression.length - 1] !== ")") {
+        this.expression += ")";
+      }
+      this.expression += "^";
+    }
     },
 
     autoFixIncorrectInput(str) {
@@ -811,7 +835,7 @@ export default {
     },
     /* Reset all input fields - if some error happens or want to restart */
     clearField() {
-      this.expression = ""; // am unfiltered raw user input
+      this.expression = ""; // an unfiltered raw user input
       this.cleanedExpression = ""; // a cleaned version of user input
       this.showText = false; // shows main results
       this.result = null; // final result
@@ -834,11 +858,9 @@ export default {
 
       // reset tree
       this.tree = {
-        value: "",
-        left: { value: "", left: null, right: null },
-        right: { value: "", left: null, right: null },
-      };
-      this.svgContent = "";
+        
+      };      
+      
     },
   },
 };
