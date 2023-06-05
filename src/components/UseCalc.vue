@@ -1,5 +1,5 @@
 <template>
-  <div style="">
+  <div>
     <!-- checkInput highlights key presses, and formatNumber adds commas -->
     <input
       class="input-field"
@@ -94,17 +94,16 @@
     >
       {{ buttonList[0] }}
     </button>
-    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
-    <button class="grid-item" @click="setFactorialize(this.expression)">
-      n!
-    </button>
-    <button class="grid-item" @click="addMathOperator('(')">(</button>
-    <button class="grid-item" @click="addMathOperator(')')">)</button>
     
     <button class="grid-item tooltip" @click="squared()">
       <i>x<sup>y</sup></i>
       <span class="tooltiptext">{{ showTooltip }}</span>
     </button>
+    <button class="grid-item" @click="addMathOperator('(')">(</button>
+    <button class="grid-item" @click="addMathOperator(')')">)</button>
+    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>    
+    
+    
    
     
   </div>
@@ -478,7 +477,7 @@ export default {
                 this.userTokens.push(new Node(parseFloat(currentNumber)));
                 currentNumber = "";
               }
-              if (char === "+" || char === "-") {
+              if (char === "+" || char === "-" || char === "^") {
                 while (
                   this.operators.length > 0 &&
                   this.operators[this.operators.length - 1] !== "("
@@ -490,12 +489,12 @@ export default {
                   this.userTokens.push(node);
                 }
                 this.operators.push(char);
-              } else if (char === "*" || char === "/" || char === "!" || char === "^") {
+              } else if (char === "*" || char === "/" || char === "!") {
                 while (
                   this.operators.length > 0 &&
                   this.operators[this.operators.length - 1] !== "(" &&
                   (this.operators[this.operators.length - 1] === "*" ||
-                    this.operators[this.operators.length - 1] === "/" || this.operators[this.operators.length - 1] === "^")
+                    this.operators[this.operators.length - 1] === "/")
                 ) {
                   const op = this.operators.pop();
                   const right = this.userTokens.pop();
@@ -585,43 +584,47 @@ export default {
 
     // Perform calculations
     evaluate(node) {
-      if (node.left === null && node.right === null) {
-        return node.value;
-      }
-      var left = this.evaluate(node.left);
-      var right = this.evaluate(node.right);
+          if (node.left === null && node.right === null) {
+            return node.value;
+          }
+          var left = this.evaluate(node.left);
+          var right = this.evaluate(node.right);
 
-      console.log(left, node.value, right);
-      console.log(node)
+          console.log(left, node.value, right);
+          console.log(node)
 
-      // This shows the operator to the user in '×' or '÷' format and not * or /
-      let viewer_symbol_node = "";
-      if (node.value === "*") {
-        viewer_symbol_node = "\u00D7";
-      } else if (node.value === "/") {
-        viewer_symbol_node = "\u00F7";
-      } else viewer_symbol_node = node.value;
-      // this.currentNode = "Left node: " + left +" Operator: " + viewer_symbol_node + " Right node: " + right;
-      this.leftNode = left;
-      this.operator = viewer_symbol_node;
-      this.rightNode = right;
-      // Switched this to a switch - simpler and more readable for this use case
-      switch (node.value) {
-        case "+":
-          return left + right;
-        case "-":
-          return left - right;
-        case "*":
-          return left * right;
-        case "/":
-          return left / right;
-        // This is the power function
-        case "^":
-          return Math.pow(left, right);   
-        default:
-          return null;
-      }
-    },
+          // This shows the operator to the user in '×' or '÷' format and not * or /
+          let viewer_symbol_node = "";
+          if (node.value === "*") {
+            viewer_symbol_node = "\u00D7";
+          } else if (node.value === "/") {
+            viewer_symbol_node = "\u00F7";
+          } else viewer_symbol_node = node.value;
+          // this.currentNode = "Left node: " + left +" Operator: " + viewer_symbol_node + " Right node: " + right;
+          this.leftNode = left;
+          this.operator = viewer_symbol_node;
+          this.rightNode = right;
+          // Switched this to a switch - simpler and more readable for this use case
+          switch (node.value) {
+            case "+":
+              return left + right;
+            case "-":
+              return left - right;
+            case "*":
+              return left * right;
+            case "/":
+              return left / right;
+            // This is the power function
+            case "^":
+              // Check if the right node is a number or not
+              
+                return Math.pow(left, right);
+               
+            default:
+              return null;
+            }
+          },
+       
     // This code createNode isn't currently used, but here for future modularization
     createNode() {
       class Node {
@@ -637,13 +640,19 @@ export default {
       const node = new Node(op, left, right);
       this.userTokens.push(node);
     },
+    /*
     setFactorialize(num) {
-      // Currently only works for individual numbers, not programmed into the tree structure
+    
+      console.log(typeof num)
       if (!Number.isNaN(num)) {
+
+        num = Number(num)
+        console.log(typeof num)
         try {
           var factorializeAnswer = this.factorialize(num);
-          //this.expression = factorializeAnswer
-          this.result = factorializeAnswer;
+          console.log(typeof factorializeAnswer)
+         
+            this.result = factorializeAnswer;
 
           this.showText = true;
         } catch (error) {
@@ -659,6 +668,7 @@ export default {
         return num * this.factorialize(num - 1);
       }
     },
+    */
     // This function will highlight the buttons as a user types input, or as a user hits the back button on their input to delete it
     checkInput() {
       let str = this.expression;
@@ -727,14 +737,14 @@ export default {
       */
 
       /* Was testing code above, but decided to go with the code below instead, current solution is just temporary */
+
+      
      if(this.expression !== ""){
        
-      if (this.expression[0] !== "(") {
-        this.expression = "(" + this.expression;
+      if (this.expression[0] !== "(" && this.expression[this.expression.length - 1] !== ")" && !/^\d+$/.test(this.expression)) {
+        this.expression = "(" + this.expression + ")";
       }
-      if (this.expression[this.expression.length - 1] !== ")") {
-        this.expression += ")";
-      }
+      
       this.expression += "^";
     }
     },
