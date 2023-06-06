@@ -94,25 +94,20 @@
     >
       {{ buttonList[0] }}
     </button>
-    
+
     <button class="grid-item tooltip" @click="squared()">
       <i>x<sup>y</sup></i>
       <span class="tooltiptext">{{ showTooltip }}</span>
     </button>
     <button class="grid-item" @click="addMathOperator('(')">(</button>
     <button class="grid-item" @click="addMathOperator(')')">)</button>
-    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>    
-    
-    
-   
-    
+    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
   </div>
 
   <div>
     <button style="margin-right: 0.25em" class="button-35" @click="clearField">
       Reset
     </button>
-
 
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
   </div>
@@ -219,7 +214,8 @@ export default {
 
       expressionTree: this.treeNodeCalculations,
 
-      showTooltip: "This currently sets the whole expression to the power y, and not just the last number entered. May change to only the last number entered in a future update.",
+      showTooltip:
+        "This currently sets the whole expression to the power y, and not just the last number entered. May change to only the last number entered in a future update.",
 
       //svgContent: '',
 
@@ -308,7 +304,7 @@ export default {
       // This decides whether calculatons can actully be done
       // regular expression for +, -, /, and * operators before any actual parsing is done (saves useless calculations)
       const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;
-      
+
       // invoke function to autocorrect bad entries such as -/ or */ or -+
       if (
         !this.expression.includes("Moo\u00D7Moo") ||
@@ -323,7 +319,10 @@ export default {
       to the input expression be ")*("
       */
       if (str.indexOf(")(") !== -1) {
-        this.expression = str.replaceAll(")(", ")\u00D7(").replaceAll("*", "\u00D7").replaceAll("/", "\u00F7");
+        this.expression = str
+          .replaceAll(")(", ")\u00D7(")
+          .replaceAll("*", "\u00D7")
+          .replaceAll("/", "\u00F7");
       }
 
       // remove Moo's for number calculations
@@ -367,13 +366,11 @@ export default {
       }
 
       // change output symbol in the svg graphic from * multiplcation to × symbol for example, and / to ÷ symbol
-      if (node.value == '*'){
-        node.value = '\u00D7';
+      if (node.value == "*") {
+        node.value = "\u00D7";
+      } else if (node.value == "/") {
+        node.value = "\u00F7";
       }
-      else if (node.value == '/'){
-        node.value = '\u00F7';
-      }
-      
 
       const leftX = x - dx;
       const leftY = y + dy;
@@ -505,6 +502,7 @@ export default {
                 this.operators.push(char);
               } else if (char === "(") {
                 this.operators.push(char);
+
               } else if (char === ")") {
                 while (
                   this.operators.length > 0 &&
@@ -516,6 +514,7 @@ export default {
                   const node = new Node(op, left, right);
                   this.userTokens.push(node);
                 }
+                
                 if (
                   this.operators.length > 0 &&
                   this.operators[this.operators.length - 1] === "("
@@ -556,20 +555,17 @@ export default {
 
             this.treeData = this.treeNodeCalculations;
 
-            this.tree = this.treeNodeCalculations;           
+            this.tree = this.treeNodeCalculations;
 
             this.showDescriptionText = true;
             // this puts the final calculation into a variable to be copied from the clipboard
             this.message = result;
             // this outputs the FINAL calculation
-            this.result = result;   
-            // At the moment this is a bit of a hack to get the svg to show up
-            const svgContainer = this.$refs.svgContainer;
-            // Remove old SVG content with this loop otherwise it creates a new SVG tree each time
-            while (svgContainer.firstChild) {
-              svgContainer.removeChild(svgContainer.firstChild);
-            }
+            this.result = result;
+            // At the moment this is a bit of a hack to get the svg to clear and redraw
+            this.clearSVG();
             // Append new SVG content
+            const svgContainer = this.$refs.svgContainer;
             svgContainer.appendChild(this.svgContent);
             this.svgContent.setAttribute("width", "100%");
           }
@@ -584,47 +580,50 @@ export default {
 
     // Perform calculations
     evaluate(node) {
-          if (node.left === null && node.right === null) {
-            return node.value;
-          }
-          var left = this.evaluate(node.left);
-          var right = this.evaluate(node.right);
+      if (node.left === null && node.right === null) {
+        return node.value;
+      }
+      var left = this.evaluate(node.left);
+      var right = this.evaluate(node.right);
 
-          console.log(left, node.value, right);
-          console.log(node)
+      console.log(left, node.value, right);
+      console.log(node);
 
-          // This shows the operator to the user in '×' or '÷' format and not * or /
-          let viewer_symbol_node = "";
-          if (node.value === "*") {
-            viewer_symbol_node = "\u00D7";
-          } else if (node.value === "/") {
-            viewer_symbol_node = "\u00F7";
-          } else viewer_symbol_node = node.value;
-          // this.currentNode = "Left node: " + left +" Operator: " + viewer_symbol_node + " Right node: " + right;
-          this.leftNode = left;
-          this.operator = viewer_symbol_node;
-          this.rightNode = right;
-          // Switched this to a switch - simpler and more readable for this use case
-          switch (node.value) {
-            case "+":
-              return left + right;
-            case "-":
-              return left - right;
-            case "*":
-              return left * right;
-            case "/":
-              return left / right;
-            // This is the power function
-            case "^":
-              // Check if the right node is a number or not
-              
-                return Math.pow(left, right);
-               
-            default:
-              return null;
-            }
-          },
-       
+      // This shows the operator to the user in '×' or '÷' format and not * or /
+      let viewer_symbol_node = "";
+      if (node.value === "*") {
+        viewer_symbol_node = "\u00D7";
+      } else if (node.value === "/") {
+        viewer_symbol_node = "\u00F7";
+      } else viewer_symbol_node = node.value;
+      // this.currentNode = "Left node: " + left +" Operator: " + viewer_symbol_node + " Right node: " + right;
+      this.leftNode = left;
+      this.operator = viewer_symbol_node;
+      this.rightNode = right;
+      // Switched this to a switch - simpler and more readable for this use case
+      switch (node.value) {
+        case "+":
+          return left + right;
+        case "-":
+          return left - right;
+        case "*":
+          return left * right;
+        case "/":
+          return left / right;
+        // This is the power function
+        case "^":
+          // Check if the right node is a number or not
+          return Math.pow(left, right);
+        default:
+          return null;
+      }
+    },
+    clearSVG() {
+      const svgContainer = this.$refs.svgContainer;
+      while (svgContainer.firstChild) {
+        svgContainer.removeChild(svgContainer.firstChild);
+      }
+    },
     // This code createNode isn't currently used, but here for future modularization
     createNode() {
       class Node {
@@ -738,14 +737,16 @@ export default {
 
       /* Was testing code above, but decided to go with the code below instead, current solution is just temporary */
 
-      
-     if(this.expression !== ""){
-       
-      if (this.expression[0] !== "(" && this.expression[this.expression.length - 1] !== ")" && !/^\d+$/.test(this.expression)) {
-        this.expression = "(" + this.expression + ")";
-      }
-      
-      this.expression += "^";
+      if (this.expression !== "") {
+        if (
+          this.expression[0] !== "(" &&
+          this.expression[this.expression.length - 1] !== ")" &&
+          !/^\d+$/.test(this.expression)
+        ) {
+          this.expression = "(" + this.expression + ")";
+        }
+
+        this.expression += "^";
     }
     },
 
@@ -867,10 +868,8 @@ export default {
       this.formattedResult = ""; // final result with commas
 
       // reset tree
-      this.tree = {
-        
-      };      
-      
+      this.tree = {};
+      this.clearSVG();
     },
   },
 };

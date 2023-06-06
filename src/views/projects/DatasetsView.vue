@@ -230,7 +230,7 @@ export default {
       // Draw the title
       svg += `<text x="${
         svgWidth / 2
-      }" y="20" text-anchor="middle" font-size="17" font-weight="bold">${title}</text>`;
+      }" y="20" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">${title}</text>`;
 
       // Draw the bars and labels
       let startY = 30;

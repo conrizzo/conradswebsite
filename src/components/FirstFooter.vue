@@ -2,11 +2,10 @@
   <footer class="footer">
     <div class="">
       <p>
-        Website by
         <a
           class="footer-links"
           href="https://github.com/conrizzo"
-          >Conrad</a
+          >Conrad's GitHub Account</a
         >
         | conradswebsite.com © 2023<br />
         unless mentioned otherwise, licensing is

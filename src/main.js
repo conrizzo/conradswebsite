@@ -1,5 +1,15 @@
 
+import { createApp } from 'vue';
+import  App  from './App.vue';
+import router from './router';
 
+import 'prismjs/themes/prism.css';
+import 'prismjs/components/prism-python';
+
+createApp(App).use(router).mount('#app');
+
+
+/*
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -8,7 +18,8 @@ import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-python';
 
 
-
+createApp(App).use(router).mount('#app')
+*/
 
 /* In the package.json this command is important:
 "deploy": "copy dist\\index.html dist\\404.html & gh-pages -d dist"
@@ -19,6 +30,6 @@ then sends it to the gh-dist folder */
 
 
 
-createApp(App).use(router).mount('#app')
+
 
 

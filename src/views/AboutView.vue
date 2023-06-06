@@ -28,7 +28,7 @@
       <p class="paragraph-text break-text">
         This websites focus is to show some examples of work I've done using code, plus it's fun to have a website made in
         a framework (Vue.js) and be able to
-        experiment here. Once one has a basic understanding of HTML, CSS, JavaScript the next step in web devlopment are frameworks. 
+        experiment here. Once one has a basic understanding of HTML, CSS, JavaScript the next step in web development are frameworks. 
         Framework description: <a class="text-links"
           href="https://en.wikipedia.org/wiki/Web_framework">https://en.wikipedia.org/wiki/Web_framework</a><br><br>
       </p>
