@@ -329,12 +329,14 @@ export default {
       str = str.replaceAll("Moo", "");
 
       // This only fixes deleting the very very last number when the back button <- arrow is used
+      // For example if I enter 2*2 then hit "<-" button 3 times this lets the user delete the last number and reset everything!
       if (this.expression === "") {
         this.showText = false;
         this.result = "";
         this.showDescriptionText = false;
         this.treeNodeCalculations = null;
         this.currentNode = null;
+        this.clearSVG();
       }
       // This sends a cleaned input to the cowculate function
       else if (mathOperators.test(str)) {
@@ -538,11 +540,26 @@ export default {
           }
           // calculate the final result
           var result = this.evaluate(this.userTokens[0]);
-          // Quick way to make sure output isn't 5555 = 5555 if the user just enters a number
-          // If no calculations are done don't need to show a number is equal to itself.
-          if (result == this.cleanedExpression) {
+          
+          // This goes to output all the results in its own function
+          this.setOutputs(result);
+
+          // Good article about using NaN in JavaScript like the function above does ^
+          // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
+          // This method works below, but others could also work.
+        }
+      } catch (error) {
+        this.result = null;
+      }
+    },
+    // This just sets the outputs to the result of the cowculation function so the function is shorter    
+    setOutputs(result){
+      // If no calculations are done don't need to show a number is equal to itself
+      // Quick way to make sure output isn't 5555 = 5555 if the user just enters a number
+      if (result == this.cleanedExpression) { 
             result = "";
           }
+       
           // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
           else if (!Number.isNaN(result)) {
             // show equal sign and results
@@ -558,26 +575,22 @@ export default {
             this.tree = this.treeNodeCalculations;
 
             this.showDescriptionText = true;
+
             // this puts the final calculation into a variable to be copied from the clipboard
             this.message = result;
+            
             // this outputs the FINAL calculation
             this.result = result;
+
             // At the moment this is a bit of a hack to get the svg to clear and redraw
             this.clearSVG();
+
             // Append new SVG content
             const svgContainer = this.$refs.svgContainer;
             svgContainer.appendChild(this.svgContent);
             this.svgContent.setAttribute("width", "100%");
-          }
-          // Good article about using NaN in JavaScript like the function above does ^
-          // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
-          // This method works below, but others could also work.
-        }
-      } catch (error) {
-        this.result = null;
-      }
+          }        
     },
-
     // Perform calculations
     evaluate(node) {
       if (node.left === null && node.right === null) {
@@ -611,8 +624,7 @@ export default {
         case "/":
           return left / right;
         // This is the power function
-        case "^":
-          // Check if the right node is a number or not
+        case "^":         
           return Math.pow(left, right);
         default:
           return null;

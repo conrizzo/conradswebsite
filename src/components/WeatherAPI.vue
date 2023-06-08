@@ -142,12 +142,12 @@ export default {
       cityWeathers: [
         { city: "Tübingen, Germany", weather: "" },
         { city: "STR, Stuttgart Airport, Germany", weather: "" },
-        { city: "Albany WA, Australia", weather: "" },
-        { city: "RDU, Raleigh Durham Airport, USA", weather: "" },
-
-        { city: "Uppsala, Sweden", weather: "" },
         { city: "Cary, NC", weather: "" },
         { city: "Wilmington, NC", weather: "" },
+        { city: "Albuquerque, New Mexico", weather: ""},
+        { city: "Albany WA, Australia", weather: "" },
+        { city: "RDU, Raleigh Durham Airport, USA", weather: "" },
+        { city: "Uppsala, Sweden", weather: "" },        
         { city: "Miami, Florida", weather: "" },
         { city: "Madrid", weather: "" },
         { city: "Helsinki", weather: "" },
