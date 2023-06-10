@@ -111,6 +111,7 @@
 
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
   </div>
+  {{ addParanthesisAroundPowerSymbol(this.expression) }}
   <div style="padding-top: 0.5em">
     <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
@@ -122,10 +123,13 @@
         ><br />Number of Moos: <span style="">{{ mooCounter }}</span></span
       >
       <span v-if="superMoo"> <br />{{ mooPlication }}</span>
+      
     </div>
   </div>
+  
   <div v-if="showNotification" class="notification">
     <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
+    
   </div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em">
     <div
@@ -196,6 +200,7 @@ export default {
 
       userTokens: [],
       operators: [],
+      arrayOfNumbersOnly: [],
 
       treeNodeCalculations: null,
       currentNode: null,
@@ -241,7 +246,7 @@ export default {
     svgContent() {
       // Generate the SVG content based on the JSON data
       var svg = this.drawTree();
-      console.log(svg);
+      //console.log(svg);
 
       return svg;
     },
@@ -281,7 +286,7 @@ export default {
           for (let i = 0; i < mooNumber; i++) {
             mooString += "o";
           }
-          console.log(count, mooNumber, mooString);
+          //console.log(count, mooNumber, mooString);
         } else if (str.includes(mooAddition)) {
           let count = (str.match(/Moo/g) || []).length;
           mooString = "M";
@@ -420,9 +425,16 @@ export default {
     cowculate() {
       /* Cow Moo cowculations */
       /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
+
       // clears all number tokens and math operations from previous inputs
       this.userTokens = [];
       this.operators = [];
+
+      // Here is an interesing way I found how to add in exponents with parsing. I just add in a 
+      // set of paranthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
+      // figuring out these solutions is rewarding but since this has been a built from scratch project it feels like yarn and duck tape too, which is okay!
+      // but everything works!! and I am happy with the results
+      this.cleanedExpression = this.addParanthesisAroundPowerSymbol(this.cleanedExpression);
 
       let str = this.cleanedExpression;
       try {
@@ -437,85 +449,96 @@ export default {
               this.right = right;
             }
           }
+
           var input = this.cleanedExpression;
           let currentNumber = "";
+
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
             // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" paranthesis
             // such as "-(" To solve this the expression in paranthesis is subtracted from 0
-            if (
-              char === "-" &&
-              (i === 0 || isNaN(input.charAt(i - 1))) &&
-              input.charAt(i + 1) === "("
-            ) {
-              this.userTokens.push(new Node(0));
-              this.operators.push("-");
-            }
-            // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
-            else if (
-              !isNaN(char) ||
-              char === "." ||
-              (char === "-" &&
-                (i === 0 ||
-                  (isNaN(input.charAt(i - 1)) &&
-                    input.charAt(i - 1) !== ")" &&
-                    input.charAt(i + 1) !== "(")))
-            ) {
-              currentNumber += char;
-              // Does operations like (2)2 = 4
-              if (")" === input.charAt(i - 1)) {
-                this.operators.push("*");
+              if (
+                char === "-" &&
+                (i === 0 || isNaN(input.charAt(i - 1))) &&
+                input.charAt(i + 1) === "("
+              ) {
+                this.userTokens.push(new Node(0));
+                this.operators.push("-");
               }
+              // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
+                else if (
+                  !isNaN(char) || char === "." || (char === "-" && (i === 0 || (isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "(")))
+                      ) {
+                      currentNumber += char;
+                      // Does operations like (2)2 = 4
+                      if (")" === input.charAt(i - 1)) {
+                        this.operators.push("*");
+                      }
 
-              // Does operations like 2(2) = 4
-              if ("(" === input.charAt(i + 1)) {
-                this.operators.push("*");
-              }
-            } else {
-              if (currentNumber !== "") {
-                this.userTokens.push(new Node(parseFloat(currentNumber)));
-                currentNumber = "";
-              }
-              if (char === "+" || char === "-" || char === "^") {
-                while (
-                  this.operators.length > 0 &&
-                  this.operators[this.operators.length - 1] !== "("
-                ) {
-                  const op = this.operators.pop();
-                  const right = this.userTokens.pop();
-                  const left = this.userTokens.pop();
-                  const node = new Node(op, left, right);
-                  this.userTokens.push(node);
-                }
-                this.operators.push(char);
-              } else if (char === "*" || char === "/" || char === "!") {
-                while (
-                  this.operators.length > 0 &&
-                  this.operators[this.operators.length - 1] !== "(" &&
-                  (this.operators[this.operators.length - 1] === "*" ||
-                    this.operators[this.operators.length - 1] === "/")
-                ) {
-                  const op = this.operators.pop();
-                  const right = this.userTokens.pop();
-                  const left = this.userTokens.pop();
-                  const node = new Node(op, left, right);
-                  this.userTokens.push(node);
-                }
-                this.operators.push(char);
-              } else if (char === "(") {
-                this.operators.push(char);
+                      // Does operations like 2(2) = 4
+                      if ("(" === input.charAt(i + 1)) {
+                        this.operators.push("*");
+                      }
+              } else {
+                      if (currentNumber !== "") {
+                        this.userTokens.push(new Node(parseFloat(currentNumber)));
+                        currentNumber = "";
+                      }
+                      if (char === "+" || char === "-") {
+                        while (
+                          this.operators.length > 0 &&
+                          this.operators[this.operators.length - 1] !== "("
+                        ) {
+                          const op = this.operators.pop();
+                          const right = this.userTokens.pop();
+                          const left = this.userTokens.pop();
+                          const node = new Node(op, left, right);
+                          this.userTokens.push(node);
+                        }
+                        this.operators.push(char);
+                      } else if (char === "*" || char === "/" || char === "!") {
+                          while (
+                            this.operators.length > 0 &&
+                            this.operators[this.operators.length - 1] !== "(" &&
+                            (this.operators[this.operators.length - 1] === "*" ||
+                              this.operators[this.operators.length - 1] === "/")
+                          ) {
+                            const op = this.operators.pop();
+                            const right = this.userTokens.pop();
+                            const left = this.userTokens.pop();
+                            const node = new Node(op, left, right);
+                            this.userTokens.push(node);
+                          }
+                                  this.operators.push(char);
+                        }
+                        else if (char === "^") {
+                          while (
+                            this.operators.length > 0 &&
+                            this.operators[this.operators.length - 1] !== "(" &&
+                            (this.operators[this.operators.length - 1] === "*" ||
+                              this.operators[this.operators.length - 1] === "/")
+                          ) {
+                            const op = this.operators.pop();
+                            const right = this.userTokens.pop();
+                            const left = this.userTokens.pop();
+                            const node = new Node(op, left, right);
+                            this.userTokens.push(node);
+                          }
+                                  this.operators.push(char);
+                      } else if (char === "(") {
+                        this.operators.push(char);
 
-              } else if (char === ")") {
-                while (
-                  this.operators.length > 0 &&
-                  this.operators[this.operators.length - 1] !== "("
-                ) {
-                  const op = this.operators.pop();
-                  const right = this.userTokens.pop();
-                  const left = this.userTokens.pop();
-                  const node = new Node(op, left, right);
-                  this.userTokens.push(node);
-                }
+                      } else if (char === ")") {
+                        while (
+                          this.operators.length > 0 &&
+                          this.operators[this.operators.length - 1] !== "("
+                        ) {
+                          const op = this.operators.pop();
+                          const right = this.userTokens.pop();
+                          const left = this.userTokens.pop();
+                          const node = new Node(op, left, right);
+                          this.userTokens.push(node);
+                        }
                 
                 if (
                   this.operators.length > 0 &&
@@ -525,6 +548,8 @@ export default {
                 }
               }
             }
+            this.arrayOfNumbersOnly.push(currentNumber);
+            console.log(this.arrayOfNumbersOnly)
           }
           // Add the last number if there is one
           if (currentNumber !== "") {
@@ -567,8 +592,8 @@ export default {
             // create the binary tree structure
             this.treeNodeCalculations = this.userTokens[0];
             //console.log(typeof this.treeNodeCalculations)
-            const myJSON = JSON.stringify(this.treeNodeCalculations);
-            console.log(myJSON);
+            //const myJSON = JSON.stringify(this.treeNodeCalculations);
+            //console.log(myJSON);
 
             this.treeData = this.treeNodeCalculations;
 
@@ -599,8 +624,8 @@ export default {
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
 
-      console.log(left, node.value, right);
-      console.log(node);
+      //console.log(left, node.value, right);
+      //console.log(node);
 
       // This shows the operator to the user in '×' or '÷' format and not * or /
       let viewer_symbol_node = "";
@@ -749,7 +774,7 @@ export default {
 
       /* Was testing code above, but decided to go with the code below instead, current solution is just temporary */
 
-      if (this.expression !== "") {
+      /* if (this.expression !== "") {
         if (
           this.expression[0] !== "(" &&
           this.expression[this.expression.length - 1] !== ")" &&
@@ -757,10 +782,20 @@ export default {
         ) {
           this.expression = "(" + this.expression + ")";
         }
+        */
 
         this.expression += "^";
-    }
+    
     },
+    addParanthesisAroundPowerSymbol(input) {
+  // Use regular expression to match number^number pattern
+  const regex = /(\d+\^\d+)/g;
+
+  // Replace matches with the desired format
+  const output = input.replace(regex, '($1)');
+
+  return output;
+},
 
     autoFixIncorrectInput(str) {
       // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!

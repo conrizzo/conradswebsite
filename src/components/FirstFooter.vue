@@ -2,12 +2,12 @@
   <footer class="footer">
     <div class="">
       <p>
-        Conrad's Account on <a
+        Conrad's account on <a
           class="footer-links"
           href="https://github.com/conrizzo"
           >GitHub</a
         >
-        | conradswebsite.com © {{date()}}<br />
+        | conradswebsite.com © {{ getCurrentYear }}<br />
         unless mentioned otherwise, licensing is
         <a
           class="footer-links"
@@ -22,10 +22,9 @@
 <script>
 export default {
   name: "FirstFooter",
-  methods: {
-    date() {
-      const d = new Date();
-      return d.getFullYear();
+  computed: {
+    getCurrentYear() {
+      return new Date().getFullYear();
     },
   },
 };

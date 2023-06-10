@@ -34,7 +34,7 @@
       </p>
       <figure class="center-figure">
         <img class="img-container" :src="imagePath" alt="Coding Languages used" />
-        <figcaption>Here is an approximation of the languages this website uses. It's mostly Vue.js.
+        <figcaption>Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June 2023, currently starting to add in TypeScript support.
 
         </figcaption>
       </figure>
@@ -155,6 +155,7 @@ figure {
 
 figcaption {
   padding: 0.5em;
+  text-align: left;
 }
 
 .center-figure {
@@ -181,6 +182,9 @@ figcaption {
 
 .adjust-title-font-size {
   font-size: 3em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  
 }
 
 @media (max-width: 600px) {
