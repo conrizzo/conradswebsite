@@ -111,7 +111,7 @@
 
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
   </div>
-  {{ addParanthesisAroundPowerSymbol(this.expression) }}
+  {{ addParenthesisAroundPowerSymbol(this.expression) }} 
   <div style="padding-top: 0.5em">
     <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
@@ -220,7 +220,7 @@ export default {
       expressionTree: this.treeNodeCalculations,
 
       showTooltip:
-        "This currently sets the whole expression to the power y, and not just the last number entered. May change to only the last number entered in a future update.",
+        "Making this work with my code was interesting! If the user does an expression like 2*2^2+2 the actual expression being evaluated is 2*(2^2)+2",
 
       //svgContent: '',
 
@@ -430,11 +430,11 @@ export default {
       this.userTokens = [];
       this.operators = [];
 
-      // Here is an interesing way I found how to add in exponents with parsing. I just add in a 
+      // Here is an interesting way I found how to add in exponents with parsing. I just add in a 
       // set of paranthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
       // figuring out these solutions is rewarding but since this has been a built from scratch project it feels like yarn and duck tape too, which is okay!
-      // but everything works!! and I am happy with the results
-      this.cleanedExpression = this.addParanthesisAroundPowerSymbol(this.cleanedExpression);
+      // but everything works! and I am happy with the results
+      this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);
 
       let str = this.cleanedExpression;
       try {
@@ -787,15 +787,18 @@ export default {
         this.expression += "^";
     
     },
-    addParanthesisAroundPowerSymbol(input) {
-  // Use regular expression to match number^number pattern
-  const regex = /(\d+\^\d+)/g;
+    addParenthesisAroundPowerSymbol(input) {
+      // Use regular expression to match number^number pattern
+      // const regex = /(\(\d+\)\^\d+)/g;
+      // const regex2 = /(\d+\^\d+)/g;
 
-  // Replace matches with the desired format
-  const output = input.replace(regex, '($1)');
+      const regex = /(\(\d+\)\^\d+|\d+\^\d+)/g;
 
-  return output;
-},
+      // Replace matches with the desired format
+      const output = input.replace(regex, '($1)');
+
+      return output;
+    },
 
     autoFixIncorrectInput(str) {
       // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
