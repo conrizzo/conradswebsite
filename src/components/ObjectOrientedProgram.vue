@@ -1,10 +1,10 @@
-<template>
+vue <template>
   
 </template>
 
 <script>
 export default {
-name: 'coffeeProject',
+name: 'ObjectOrientedProgram',
 }
 </script>
 

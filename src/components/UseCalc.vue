@@ -111,7 +111,7 @@
 
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
   </div>
-  {{ addParenthesisAroundPowerSymbol(this.expression) }} 
+   <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
   <div style="padding-top: 0.5em">
     <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
@@ -514,17 +514,15 @@ export default {
                         else if (char === "^") {
                           while (
                             this.operators.length > 0 &&
-                            this.operators[this.operators.length - 1] !== "(" &&
-                            (this.operators[this.operators.length - 1] === "*" ||
-                              this.operators[this.operators.length - 1] === "/")
-                          ) {
+                            this.operators[this.operators.length - 1] !== "(")                           
+                          {
                             const op = this.operators.pop();
                             const right = this.userTokens.pop();
                             const left = this.userTokens.pop();
                             const node = new Node(op, left, right);
                             this.userTokens.push(node);
                           }
-                                  this.operators.push(char);
+                            this.operators.push(char);
                       } else if (char === "(") {
                         this.operators.push(char);
 
@@ -783,23 +781,22 @@ export default {
           this.expression = "(" + this.expression + ")";
         }
         */
-
-        this.expression += "^";
-    
+        this.expression += "^";    
     },
     addParenthesisAroundPowerSymbol(input) {
       // Use regular expression to match number^number pattern
+
       // const regex = /(\(\d+\)\^\d+)/g;
       // const regex2 = /(\d+\^\d+)/g;
+      //const regex = /(\(\d+\)\^\d+|\d+\^\d+)/g;
 
-      const regex = /(\(\d+\)\^\d+|\d+\^\d+)/g;
+      const regex = /(\(\d+\)\^\d+|\d+(?:\^\d+)+)/g;
 
       // Replace matches with the desired format
       const output = input.replace(regex, '($1)');
 
       return output;
     },
-
     autoFixIncorrectInput(str) {
       // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
 
