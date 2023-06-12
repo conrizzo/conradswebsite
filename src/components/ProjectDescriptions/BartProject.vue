@@ -1,6 +1,10 @@
 <template>
-  <h1>{{ BartProjectTitle }}</h1>
+
+
+  <h1 style="font-size: 1em;">{{ BartProjectTitle }}</h1>
   <p>{{ BartProjectDescription }}</p>
+
+
   <p class="homeview paragraph-text">
     Lundberg C,Viñuela LS, Biales S. 2022. Dialogue summarization using BART.
     Paper presented at: 15th International Natural Language Generation
