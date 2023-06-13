@@ -243,10 +243,7 @@ h1 {
 }
 
 
-
-
-
-
+/* links styling with underline on hover */
 .text-links:link {
   text-decoration: none;
   color: #34B7F1;
@@ -263,6 +260,26 @@ h1 {
 .text-links:active {
   color: #34B7F1;
 }
+
+
+/* links styling with NO underline on hover */
+.text-links-no-underline:link {
+  text-decoration: none;
+  color: #34B7F1;
+}
+
+.text-links-no-underline:hover {
+  text-decoration: none;
+}
+
+.text-links-no-underline:visited {
+  color: #34B7F1;
+}
+
+.text-links-no-underline:active {
+  color: #34B7F1;
+}
+
 
 
 

@@ -110,22 +110,21 @@
     </button>
 
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
-  </div>
-   <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
-  <div style="padding-top: 0.5em">
-    <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
-    <div class=".dark-color-text cowculate-result">
-      {{ addCommas(expression) }}<span v-if="this.expression == ''"></span>
-      <span v-if="showText">
-        = <span style="font-size: 1.15em">{{ addCommas(result) }}</span></span
-      >
-      <span v-if="mooCounter > 0"
-        ><br />Number of Moos: <span style="">{{ mooCounter }}</span></span
-      >
-      <span v-if="superMoo"> <br />{{ mooPlication }}</span>
-      
     </div>
-  </div>
+     <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
+    <div style="padding-top: 0.5em">
+      <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
+      <div class=".dark-color-text cowculate-result">
+        {{ addCommas(expression) }}<span v-if="this.expression == ''"></span>
+        <span v-if="showText"> = <span style="font-size: 1.15em"> <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}</span></span
+        >
+        <span v-if="mooCounter > 0"
+          ><br />Number of Moos: <span style="">{{ mooCounter }}</span></span
+        >
+        <span v-if="superMoo"> <br />{{ mooPlication }}</span>
+      
+      </div>
+    </div>
   
   <div v-if="showNotification" class="notification">
     <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
@@ -158,7 +157,7 @@
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
                           As long as a correct number math operator sequence is present a correct output is shown.    
                         -->
-
+  
   <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
       <span v-if="mooMessage">
@@ -185,19 +184,8 @@ export default {
       mooPlication: "",
 
       buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-      isActive: [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-      ],
-
+      isActive: [ false,   false,  false,  false,  false, false,  false,  false,   false,  false,],
+      // isActive: [ false,   false,  false,  false,  false, false,  false,  false,   false,  false,],
       userTokens: [],
       operators: [],
       arrayOfNumbersOnly: [],
@@ -219,11 +207,8 @@ export default {
 
       expressionTree: this.treeNodeCalculations,
 
-      showTooltip:
-        "Making this work with my code was interesting! If the user does an expression like 2*2^2+2 the actual expression being evaluated is 2*(2^2)+2",
-
+      showTooltip: "Making this work with my code was interesting! If the user does an expression like 2*2^2+2 the actual expression being evaluated is 2*(2^2)+2",
       //svgContent: '',
-
       // Adds commas to the result or expression shown on the screen to increase readability
       addCommas(number) {
         if (number == null) {
@@ -250,6 +235,10 @@ export default {
 
       return svg;
     },
+    // If the result is infinity, then we need a custom message to display
+    findInfinity() {
+      return this.result == "Infinity" ? "Moooooooo! You have reached " : "";
+    }
   },
   watch: {
     expression(userInput) {
@@ -318,7 +307,6 @@ export default {
         // the string contains "Moo×Moo" or "Moo+Moo"
         this.autoFixIncorrectInput(str);
       }
-
       /*
       if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
       to the input expression be ")*("
@@ -351,6 +339,12 @@ export default {
     },
   },
   methods: {
+    findInfinity2(){
+      if(this.result == "Infinity"){
+        this.result = "Moo-Infinity!";
+      }
+    },
+    
     drawTree() {
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       svg.setAttribute("width", "800");
@@ -546,8 +540,9 @@ export default {
                 }
               }
             }
-            this.arrayOfNumbersOnly.push(currentNumber);
-            console.log(this.arrayOfNumbersOnly)
+            // This was an array for testing each number addition to the expression
+            // this.arrayOfNumbersOnly.push(currentNumber);
+            // console.log(this.arrayOfNumbersOnly)
           }
           // Add the last number if there is one
           if (currentNumber !== "") {

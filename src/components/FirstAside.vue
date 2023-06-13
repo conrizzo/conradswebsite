@@ -3,7 +3,7 @@
     
 
     <!-- eslint-disable-next-line vue/valid-v-slot -->
-    <slot name="aside-content">aaaaaaaaaa</slot>
+    <slot name="aside-content"></slot>
     <!--<p class="aside" style="margin-top: 1em">
       I haven't decided what to write here yet, but I coded in this aside!
     </p> -->
