@@ -1,7 +1,7 @@
 <template>
 
 
-  <h1 style="font-size: 1em;">{{ BartProjectTitle }}</h1>
+  <h1>{{ BartProjectTitle }}</h1>
   <p>{{ BartProjectDescription }}</p>
 
 
@@ -91,7 +91,7 @@ p.homeview {
   color: #000000;
   background: #fff;
   border-radius: 5px;
-  font-size: 0.6em;
+  
   font-weight: normal;
   margin-bottom: 1em;
   margin-top: 1em;
@@ -100,7 +100,7 @@ p.homeview {
 .code-format {
   margin-top: 0.25em;
   font-weight: normal;
-  font-size: 0.6em;
+  font-size: 1em;
   page-break-inside: avoid;
   font-family: monospace;
 
@@ -149,7 +149,7 @@ figure {
   margin-right: auto;
   margin-top: 0em;
   margin-bottom: 0.25em;
-  font-size: 0.6em;
+  font-size: 1em;
   font-weight: 75;
   text-align: left;
   color: rgb(0, 0, 0);
@@ -178,7 +178,7 @@ h2.homeview {
   color: #000000;
   background: #fff;
   border-radius: 5px;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: normal;
 }
 

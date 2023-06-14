@@ -36,19 +36,22 @@
 
 .container {
   display: grid;
-  grid-template-columns: 75% 1fr;
+  margin-left: 6em;
+  margin-right: 6em;
+  grid-template-columns: 80% 1fr;
   gap: 1rem;
 }
+
 
 .aside-content {
   min-height: 100vh;
   justify-content: space-between;
-  flex-direction: column;
+  flex-direction: column;  
 }
 
 .aside-text {
-  margin-left: 1em;
-  margin-right: 1em;  
+  margin-left: 0.5em;
+  margin-right: 0.5em;  
   line-height: 1.5;
   text-align: left;
 }
@@ -61,10 +64,15 @@
 @media only screen and (max-width: 1200px) {  
   .container {
     grid-template-columns: 100%;
+    margin-left: 0em;
+    margin-right: 0em;
+    
   }
   .aside-content {
     margin-top: 1rem;
   }
+
+  
 }
 /* end aside css */
 

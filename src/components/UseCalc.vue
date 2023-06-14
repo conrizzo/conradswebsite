@@ -111,7 +111,7 @@
 
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
     </div>
-    {{ cleanedExpression }}
+      {{ cleanedExpression }} 
      <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
     <div style="padding-top: 0.5em">
       <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
@@ -312,13 +312,15 @@ export default {
       if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
       to the input expression be ")*("
       */
+
+     
       if (str.indexOf(")(") !== -1) {
         this.expression = str
           .replaceAll(")(", ")\u00D7(")
           .replaceAll("*", "\u00D7")
           .replaceAll("/", "\u00F7");
-      }
-
+      } 
+      
       // remove Moo's for number calculations
       str = str.replaceAll("Moo", "");
 
@@ -426,38 +428,31 @@ export default {
       this.operators = [];
 
       // Here is an interesting way I found how to add in exponents with parsing. I just add in a 
-      // set of paranthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
+      // set of parenthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
       // figuring out these solutions is rewarding but since this has been a built from scratch project it feels like yarn and duck tape too, which is okay!
       // but everything works! and I am happy with the results
-      this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);
+      this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);  
 
-      let str = this.cleanedExpression;
       try {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
-        if (!/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/.test(str)) {
-          this.result = "";
-        } else {
-          class Node {
-            constructor(value, left = null, right = null) {
-              this.value = value;
-              this.left = left;
-              this.right = right;
-            }
-          }
-
+        //if (!/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/.test(str)) {
+        //  this.result = "";
+        //} else {          
+          
           var input = this.cleanedExpression;
           let currentNumber = "";
 
           for (let i = 0; i < input.length; i++) {
             const char = input.charAt(i);
-            // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" paranthesis
-            // such as "-(" To solve this the expression in paranthesis is subtracted from 0
+            // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" parenthesis
+            // such as "-(" To solve this the expression in parenthesis is subtracted from 0
               if (
                 char === "-" &&
                 (i === 0 || isNaN(input.charAt(i - 1))) &&
                 input.charAt(i + 1) === "("
               ) {
-                this.userTokens.push(new Node(0));
+                // access helper function to push a 0 to the stack, this is for the use case such as "-(" To solve this the expression in parenthesis is subtracted from 0
+                this.userTokens.push( this.createNodes(true, 0));
                 this.operators.push("-");
               }
               // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
@@ -476,7 +471,8 @@ export default {
                       }
               } else {
                       if (currentNumber !== "") {
-                        this.userTokens.push(new Node(parseFloat(currentNumber)));
+                        // access helper function to push a node and number to the stack
+                        this.userTokens.push( this.createNodes(true, parseFloat(currentNumber)));
                         currentNumber = "";
                       }
                       if (char === "+" || char === "-") {
@@ -484,10 +480,7 @@ export default {
                           this.operators.length > 0 &&
                           this.operators[this.operators.length - 1] !== "("
                         ) {
-                          const op = this.operators.pop();
-                          const right = this.userTokens.pop();
-                          const left = this.userTokens.pop();
-                          const node = new Node(op, left, right);
+                          const node = this.createNodes();
                           this.userTokens.push(node);
                         }
                         this.operators.push(char);
@@ -498,10 +491,7 @@ export default {
                             (this.operators[this.operators.length - 1] === "*" ||
                               this.operators[this.operators.length - 1] === "/")
                           ) {
-                            const op = this.operators.pop();
-                            const right = this.userTokens.pop();
-                            const left = this.userTokens.pop();
-                            const node = new Node(op, left, right);
+                            const node = this.createNodes();
                             this.userTokens.push(node);
                           }
                                   this.operators.push(char);
@@ -511,10 +501,7 @@ export default {
                             this.operators.length > 0 &&
                             this.operators[this.operators.length - 1] !== "(")                           
                           {
-                            const op = this.operators.pop();
-                            const right = this.userTokens.pop();
-                            const left = this.userTokens.pop();
-                            const node = new Node(op, left, right);
+                            const node = this.createNodes();
                             this.userTokens.push(node);
                           }
                             this.operators.push(char);
@@ -526,10 +513,7 @@ export default {
                           this.operators.length > 0 &&
                           this.operators[this.operators.length - 1] !== "("
                         ) {
-                          const op = this.operators.pop();
-                          const right = this.userTokens.pop();
-                          const left = this.userTokens.pop();
-                          const node = new Node(op, left, right);
+                          const node = this.createNodes();
                           this.userTokens.push(node);
                         }
                 
@@ -547,14 +531,12 @@ export default {
           }
           // Add the last number if there is one
           if (currentNumber !== "") {
-            this.userTokens.push(new Node(parseFloat(currentNumber)));
+            // access helper function to push a node and number to the stack
+            this.userTokens.push( this.createNodes(true, parseFloat(currentNumber)));
           }
           // Perform remaining operations
-          while (this.operators.length > 0) {
-            const op = this.operators.pop();
-            const right = this.userTokens.pop();
-            const left = this.userTokens.pop();
-            const node = new Node(op, left, right);
+          while (this.operators.length > 0) {            
+            const node = this.createNodes();
             this.userTokens.push(node);
           }
           // calculate the final result
@@ -566,11 +548,33 @@ export default {
           // Good article about using NaN in JavaScript like the function above does ^
           // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
           // This method works below, but others could also work.
-        }
+        
       } catch (error) {
         this.result = null;
       }
     },
+    //helper function to create nodes - this separates the concerns and makes functions shorter
+    createNodes(pushNode = false, number = 0){
+
+      // create a node class to store the values
+      class Node {
+            constructor(value, left = null, right = null) {
+              this.value = value;
+              this.left = left;
+              this.right = right;
+            }
+          }
+          // if a node only needs to be built then this first IF is used
+          if (pushNode === false) {          
+            const op = this.operators.pop();
+            const right = this.userTokens.pop();
+            const left = this.userTokens.pop();
+            return new Node(op, left, right);
+            // if a node has to input a specific number then this second ELSE is used
+          }else{
+            return new Node(number);
+          }
+        },
     // This just sets the outputs to the result of the cowculation function so the function is shorter    
     setOutputs(result){
       // If no calculations are done don't need to show a number is equal to itself
@@ -584,11 +588,8 @@ export default {
             // show equal sign and results
             this.showText = true;
             // create the binary tree structure
-            this.treeNodeCalculations = this.userTokens[0];
-            //console.log(typeof this.treeNodeCalculations)
+            this.treeNodeCalculations = this.userTokens[0];           
             //const myJSON = JSON.stringify(this.treeNodeCalculations);
-            //console.log(myJSON);
-
             this.treeData = this.treeNodeCalculations;
 
             this.tree = this.treeNodeCalculations;
@@ -617,10 +618,6 @@ export default {
       }
       var left = this.evaluate(node.left);
       var right = this.evaluate(node.right);
-
-      //console.log(left, node.value, right);
-      //console.log(node);
-
       // This shows the operator to the user in '×' or '÷' format and not * or /
       let viewer_symbol_node = "";
       if (node.value === "*") {
@@ -654,22 +651,7 @@ export default {
       while (svgContainer.firstChild) {
         svgContainer.removeChild(svgContainer.firstChild);
       }
-    },
-    // This code createNode isn't currently used, but here for future modularization
-    createNode() {
-      class Node {
-        constructor(value, left = null, right = null) {
-          this.value = value;
-          this.left = left;
-          this.right = right;
-        }
-      }
-      const op = this.operators.pop();
-      const right = this.userTokens.pop();
-      const left = this.userTokens.pop();
-      const node = new Node(op, left, right);
-      this.userTokens.push(node);
-    },
+    },    
     /*
     setFactorialize(num) {
     
@@ -785,14 +767,16 @@ export default {
       // const regex = /(\(\d+\)\^\d+)/g;
       // const regex2 = /(\d+\^\d+)/g;
       // const regex = /(\(\d+\)\^\d+|\d+\^\d+)/g;
-
-
-      const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g;
-      const output = input.replace(regex, '($1)');
-
       
 
-      return output;
+      const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g;
+      let output = input.replace(regex, '($1)');
+
+      // for now this fixes it, but it's not the best solution, forces multiplication symbol between parenthesis to fix mult error
+      let output2 = output.replace(/\)\(/g, ')*(');
+      
+      console.log(output2)
+      return output2;
     },
     autoFixIncorrectInput(str) {
       // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!

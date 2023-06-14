@@ -7,7 +7,7 @@
     <div>
 
       <div style="margin-top: 2em;">
-        <h1 style="font-size: 1em;"><router-link style="color: rgb(0, 255, 119)" class="text-links-no-underline" :to="'/projects/cowculator'"></router-link></h1>
+        <h1 style="font-size: 2em;"><router-link style="color: rgb(0, 255, 119)" class="text-links-no-underline" :to="'/projects/cowculator'"></router-link></h1>
       </div>
 
     <router-link class="text-links-no-underline" :to="'/projects/cowculator'">
@@ -24,7 +24,7 @@
 
     <div :class="classObject" >
       <!--{{ toiletPaperMessage }} -->
-      <span v-html="toiletPaperMessage"></span>
+      <span v-html="cowMessage"></span>
     </div>   
     <button style="margin-top: 2em; margin-bottom: 0.5em;" class="button-35" @click="setError()">Feed cows!</button>
       
@@ -96,10 +96,13 @@
     </div>
 
     <!-- Aside area -->
-    <AsideContent>
+    
+    <AsideContent class="aside-padding">
       <template v-slot:aside-content>       
+        <p class="aside-text">Nothing to add here yet.</p>
       </template>
     </AsideContent>
+ 
 
   </div>
 
@@ -112,6 +115,7 @@
 
 import CowculatorCode from "@/components/ProjectDescriptions/ProjectText/CowculatorCode.vue";
 import AsideContent from "@/components/FirstAside.vue";
+
 
 //import { ref, computed } from 'vue';
 export default {
@@ -127,8 +131,8 @@ export default {
       isActive: true,
       error: null,
       isButtonClicked: false,
-      toiletPaperMessageGood: "The cows are fed, they are now happily mooing! <br> You saved the day!",
-      toiletPaperMessageBad: "Red Alert: <br> The cows are mooing disgruntledly! <br> Heroically save them by pressing the Feed cows button!",
+      goodCowMessage: "The cows are fed, they are now happily mooing! <br> You saved the day!",
+      badCowMessage: "Red Alert: <br> The cows are mooing disgruntledly! <br> Heroically save them by pressing the Feed cows button!",
       imagePath: require("@/images/binary_tree.jpg"),
       imagePathTwo: require("@/images/binary_tree_two.jpg"),
       cowculatorUserInterface: require("@/images/cowculator_design_picture.jpg"),
@@ -143,12 +147,8 @@ export default {
         'text-danger': this.error && this.error.type === 'fatal'
       };
     },
-    toiletPaperMessage() {
-      if (this.isButtonClicked) {
-        return this.toiletPaperMessageGood;
-      } else {        
-        return this.toiletPaperMessageBad;
-      }
+    cowMessage() {     
+        return this.isButtonClicked ? this.goodCowMessage : this.badCowMessage;      
     }
   },
   methods: {
@@ -171,7 +171,7 @@ export default {
   margin-left: 10em;
   margin-right: 10em;
   line-height: 1.65em;
-  font-size: 0.5em;
+  font-size: 1em;
   text-align: left;
   word-break: break-word;
   font-weight: 400;
@@ -180,7 +180,7 @@ export default {
 
 /* figure stuff */
 .figure-stuff {
-  margin: 0em 2em 0em 2em;
+  margin: 0em 0em 0em 0em;
   text-align: center;
 }
 
@@ -191,7 +191,7 @@ export default {
 }
 
 .figure-stuff figure {
-  margin: 0em 0.25em auto;
+  margin: 0em 0em auto;
   width: 48.5%;
 }
 
@@ -205,24 +205,20 @@ export default {
 
 /* image and figures */
 figure {
-  height: 450px;
+  height: 400px;
   display: flex;
   flex-flow: column;
   padding: 0.5em;
   padding-bottom: 0em;
-
   margin-left: auto;
-  margin-right: auto;
-  margin-top: 0em;
-  margin-bottom: 0.25em;
-  font-size: 0.5em;
+  margin-right: auto;  
+  font-size: 1em;
   font-weight: 75;
   text-align: left;
   color: rgb(0, 0, 0);
   background-color: #ffffff;
   border-radius: 5px;
   line-height: 1.2em;
-
 }
 
 figcaption {
@@ -243,7 +239,7 @@ img {
 }
 .active{
 color: rgb(255, 0, 0);
-font-size: 1.1em;
+font-size: 1em;
 margin-right: 2em;
 margin-left: 2em;
 }
@@ -252,57 +248,43 @@ margin-left: 2em;
   font-size: 1em;
 }
 
-
-
+.aside-padding{
+ padding: 1em;
+}
 
 
 /* Adjust the padding for mobile resolution for this block */
-@media only screen and (max-width: 1500px) {
+@media only screen and (max-width: 1600px) {
 
-  .cow-image{
-  width: 300px;
-}
-
-.sub-section-titles{
-  margin-left: 1.875em;
-  font-size: 0.75em;
-}
-
-
+    .cow-image{
+    width: 300px;
+  }
+  .sub-section-titles{
+    margin-left: 1.875em;
+    font-size: 1em;
+  }
   .code-format {
     margin-left: 2em;
-    font-size: 0.4em;
+    font-size: 1em;
     margin-right: 2em;
-
   }
-
   .figure-stuff{
     margin: 0em 0em 0em 0em;
   }
-
   figure {
-
     margin-left: 1em;
     margin-right: 1em;
     height: auto;
-
   }
-
   .figure-stuff>div {
     flex-direction: column;
   }
-
   .figure-stuff figure {
     margin-top: 0.5em; 
     width: auto;
   }
-
   .paragraph-text {
     margin-left: 3em;
     margin-right: 3em;
-
   }
-
-  
-
 }</style>

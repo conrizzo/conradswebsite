@@ -70,7 +70,7 @@ p.homeview {
   color: #000000;
   background: #fff;
   border-radius: 5px;
-  font-size: 0.6em;
+  font-size: 1em;
   font-weight: normal;
   margin-bottom: 1em;
   margin-top: 1em;
@@ -79,7 +79,7 @@ p.homeview {
 .code-format {
   margin-top: 0.25em;
   font-weight: normal;
-  font-size: 0.6em;
+  font-size: 1em;
   page-break-inside: avoid;
   font-family: monospace;
 
@@ -99,7 +99,7 @@ p.homeview {
 
   .code-format {
     margin-left: 2em;
-    font-size: 0.4em;
+    font-size: 1em;
     margin-right: 2em;
 
   }

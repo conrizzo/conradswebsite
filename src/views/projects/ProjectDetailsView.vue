@@ -73,14 +73,11 @@ export default {
 
 <style scoped>
 
-.router-link-style {
-  font-size: 2em;
-  font-weight: bold;
-}
+
 
 
 h1 {
-  font-size: 1em;
+  font-size: 1.75em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
 }
