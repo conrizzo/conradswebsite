@@ -109,6 +109,7 @@ export default {
         Datasets: "Interactive Data Table",
         projects: "Project Descriptions",
         nlp: "Interesting NLP",
+        cowgame: "Feed the cows!",
       },
     };
   },

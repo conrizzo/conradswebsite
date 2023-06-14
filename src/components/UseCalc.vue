@@ -111,6 +111,7 @@
 
     <button class="button-35" @click="copyToClipboard">Copy Result</button>
     </div>
+    {{ cleanedExpression }}
      <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
     <div style="padding-top: 0.5em">
       <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
@@ -783,12 +784,13 @@ export default {
 
       // const regex = /(\(\d+\)\^\d+)/g;
       // const regex2 = /(\d+\^\d+)/g;
-      //const regex = /(\(\d+\)\^\d+|\d+\^\d+)/g;
+      // const regex = /(\(\d+\)\^\d+|\d+\^\d+)/g;
 
-      const regex = /(\(\d+\)\^\d+|\d+(?:\^\d+)+)/g;
 
-      // Replace matches with the desired format
+      const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g;
       const output = input.replace(regex, '($1)');
+
+      
 
       return output;
     },

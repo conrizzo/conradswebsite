@@ -7,26 +7,26 @@
     <div>
 
       <div style="margin-top: 2em;">
-        <h1 style="font-size: 1em;"><router-link class="text-links-no-underline" :to="'/projects/cowculator'">The Cowculator</router-link></h1>
+        <h1 style="font-size: 1em;"><router-link style="color: rgb(0, 255, 119)" class="text-links-no-underline" :to="'/projects/cowculator'"></router-link></h1>
       </div>
 
-      <router-link class="text-links-no-underline" :to="'/projects/cowculator'">
-        <img :src="cowculatorUserInterface" alt="Cowculator Picture" />
-      </router-link>
-      <div>
-        <p class="paragraph-text break-text"> Testing some other features in vue 3 on this page, page not finished! This button is using a class binding to change the color of the text.
-          <a href="https://vuejs.org/guide/essentials/class-and-style.html">https://vuejs.org/guide/essentials/class-and-style.html</a> and was using Composition API setup
-          <a class="text-links" href="https://vuejs.org/api/composition-api-setup.html"> https://vuejs.org/api/composition-api-setup.html</a> but is now using options API with computed class 
-        binding to enlarge the text and change the color.</p>
+    <router-link class="text-links-no-underline" :to="'/projects/cowculator'">
+      <img class="cow-image" :src="cowculatorUserInterface" alt="Cowculator Picture" />
+    </router-link>
+    <div>
+      <p class="paragraph-text break-text top-most-paragraph-space"> Testing some other features in vue 3 on this page, page not finished! This button is using a class binding to change the color of the text.
+        <a href="https://vuejs.org/guide/essentials/class-and-style.html">https://vuejs.org/guide/essentials/class-and-style.html</a> and was using Composition API setup
+        <a class="text-links" href="https://vuejs.org/api/composition-api-setup.html"> https://vuejs.org/api/composition-api-setup.html</a> but is now using options API with computed class 
+      binding to enlarge the text and change the color.</p>
       
       
-          <button @click="setError()">Vue bind test</button>
 
-          <div :class="classObject">
-            {{ toiletPaperMessage }}
-          </div>
-       
-        
+
+    <div :class="classObject" >
+      <!--{{ toiletPaperMessage }} -->
+      <span v-html="toiletPaperMessage"></span>
+    </div>   
+    <button style="margin-top: 2em; margin-bottom: 0.5em;" class="button-35" @click="setError()">Feed cows!</button>
       
       
     </div>
@@ -52,6 +52,13 @@
         2(2)^3 and it will be evaluated correctly.
       </p>
 
+      <p class="paragraph-text break-text">
+        Adding in the x^y power function was a challenge. The interesting part of how it computes powers is that for an expression
+        like 2(3)^2^2 it will use the code const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g; and add parenthesis 2((3)^2^2) so powers get evaluated
+        correctly using this code. The multiplication symbol and power symbol both have the same precedence so the additional paranthesis was a simple
+        fix to force the code to first evaluate all exponents before multiplication in the parsing. As the user, you don't see these additional parenthesis, but they are there in the code.
+      </p>
+
       <div style="padding-top: 1em;" class="figure-stuff">
         <div>
           <figure>
@@ -75,246 +82,16 @@
       </div>
 
       <div>
-     <h4 class="sub-section-titles">Code that does the calculations</h4>
+      <h4 class="sub-section-titles">Code that does the calculations</h4>
 
-     <p class="top-most-paragraph-space paragraph-text break-text">
-        Here is the actual JavaScript code for the cowculator calculations themselves. It is a bit long, but it is a
-        cowculator after all!
-      </p>
+      <p class="top-most-paragraph-space paragraph-text break-text">
+          Here is the actual JavaScript code for the cowculator calculations themselves. It is a bit long, but it is a
+          cowculator after all!
+        </p>
 
-    </div>
-      <pre v-bind:class="'language-JavaScript'" class="code-format">
-        <code>cowculate() {
-            /* Cow Moo cowculations */
-            /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
-
-            // clears all number tokens and math operations from previous inputs
-            this.userTokens = [];
-            this.operators = [];
-
-            // Here is an interesting way I found how to add in exponents with parsing. I just add in a 
-            // set of paranthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
-            // figuring out these solutions is rewarding but since this has been a built from scratch project it feels like yarn and duck tape too, which is okay!
-            // but everything works! and I am happy with the results
-            this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);
-
-            let str = this.cleanedExpression;
-            try {
-                // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
-                if (!/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/.test(str)) {
-                this.result = "";
-                } else {
-                class Node {
-                    constructor(value, left = null, right = null) {
-                    this.value = value;
-                    this.left = left;
-                    this.right = right;
-                    }
-                }
-
-                var input = this.cleanedExpression;
-                let currentNumber = "";
-
-                for (let i = 0; i &lt; input.length; i++) {
-                    const char = input.charAt(i);
-                    // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" paranthesis
-                    // such as "-(" To solve this the expression in paranthesis is subtracted from 0
-                    if (
-                        char === "-" &&
-                        (i === 0 || isNaN(input.charAt(i - 1))) &&
-                        input.charAt(i + 1) === "("
-                    ) {
-                        this.userTokens.push(new Node(0));
-                        this.operators.push("-");
-                    }
-                    // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
-                        else if (
-                        !isNaN(char) || char === "." || (char === "-" && (i === 0 || (isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "(")))
-                            ) {
-                            currentNumber += char;
-                            // Does operations like (2)2 = 4
-                            if (")" === input.charAt(i - 1)) {
-                                this.operators.push("*");
-                            }
-
-                            // Does operations like 2(2) = 4
-                            if ("(" === input.charAt(i + 1)) {
-                                this.operators.push("*");
-                            }
-                    } else {
-                            if (currentNumber !== "") {
-                                this.userTokens.push(new Node(parseFloat(currentNumber)));
-                                currentNumber = "";
-                            }
-                            if (char === "+" || char === "-") {
-                                while (
-                                this.operators.length > 0 &&
-                                this.operators[this.operators.length - 1] !== "("
-                                ) {
-                                const op = this.operators.pop();
-                                const right = this.userTokens.pop();
-                                const left = this.userTokens.pop();
-                                const node = new Node(op, left, right);
-                                this.userTokens.push(node);
-                                }
-                                this.operators.push(char);
-                            } else if (char === "*" || char === "/" || char === "!") {
-                                while (
-                                    this.operators.length > 0 &&
-                                    this.operators[this.operators.length - 1] !== "(" &&
-                                    (this.operators[this.operators.length - 1] === "*" ||
-                                    this.operators[this.operators.length - 1] === "/")
-                                ) {
-                                    const op = this.operators.pop();
-                                    const right = this.userTokens.pop();
-                                    const left = this.userTokens.pop();
-                                    const node = new Node(op, left, right);
-                                    this.userTokens.push(node);
-                                }
-                                        this.operators.push(char);
-                                }
-                                else if (char === "^") {
-                                while (
-                                    this.operators.length > 0 &&
-                                    this.operators[this.operators.length - 1] !== "(")                           
-                                {
-                                    const op = this.operators.pop();
-                                    const right = this.userTokens.pop();
-                                    const left = this.userTokens.pop();
-                                    const node = new Node(op, left, right);
-                                    this.userTokens.push(node);
-                                }
-                                    this.operators.push(char);
-                            } else if (char === "(") {
-                                this.operators.push(char);
-
-                            } else if (char === ")") {
-                                while (
-                                this.operators.length > 0 &&
-                                this.operators[this.operators.length - 1] !== "("
-                                ) {
-                                const op = this.operators.pop();
-                                const right = this.userTokens.pop();
-                                const left = this.userTokens.pop();
-                                const node = new Node(op, left, right);
-                                this.userTokens.push(node);
-                                }
-                        
-                        if (
-                        this.operators.length > 0 &&
-                        this.operators[this.operators.length - 1] === "("
-                        ) {
-                        this.operators.pop();
-                        }
-                    }
-                    }
-                    this.arrayOfNumbersOnly.push(currentNumber);
-                    console.log(this.arrayOfNumbersOnly)
-                }
-                // Add the last number if there is one
-                if (currentNumber !== "") {
-                    this.userTokens.push(new Node(parseFloat(currentNumber)));
-                }
-                // Perform remaining operations
-                while (this.operators.length > 0) {
-                    const op = this.operators.pop();
-                    const right = this.userTokens.pop();
-                    const left = this.userTokens.pop();
-                    const node = new Node(op, left, right);
-                    this.userTokens.push(node);
-                }
-                // calculate the final result
-                var result = this.evaluate(this.userTokens[0]);
-                
-                // This goes to output all the results in its own function
-                this.setOutputs(result);
-
-                // Good article about using NaN in JavaScript like the function above does ^
-                // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
-                // This method works below, but others could also work.
-                }
-            } catch (error) {
-                this.result = null;
-            }
-            },
-            // This just sets the outputs to the result of the cowculation function so the function is shorter    
-            setOutputs(result){
-            // If no calculations are done don't need to show a number is equal to itself
-            // Quick way to make sure output isn't 5555 = 5555 if the user just enters a number
-            if (result == this.cleanedExpression) { 
-                    result = "";
-                }
-            
-                // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
-                else if (!Number.isNaN(result)) {
-                    // show equal sign and results
-                    this.showText = true;
-                    // create the binary tree structure
-                    this.treeNodeCalculations = this.userTokens[0];
-                    //console.log(typeof this.treeNodeCalculations)
-                    //const myJSON = JSON.stringify(this.treeNodeCalculations);
-                    //console.log(myJSON);
-
-                    this.treeData = this.treeNodeCalculations;
-
-                    this.tree = this.treeNodeCalculations;
-
-                    this.showDescriptionText = true;
-
-                    // this puts the final calculation into a variable to be copied from the clipboard
-                    this.message = result;
-                    
-                    // this outputs the FINAL calculation
-                    this.result = result;
-
-                    // At the moment this is a bit of a hack to get the svg to clear and redraw
-                    this.clearSVG();
-
-                    // Append new SVG content
-                    const svgContainer = this.$refs.svgContainer;
-                    svgContainer.appendChild(this.svgContent);
-                    this.svgContent.setAttribute("width", "100%");
-                }        
-            },
-            // Perform calculations
-            evaluate(node) {
-            if (node.left === null && node.right === null) {
-                return node.value;
-            }
-            var left = this.evaluate(node.left);
-            var right = this.evaluate(node.right);
-
-            //console.log(left, node.value, right);
-            //console.log(node);
-
-            // This shows the operator to the user in '×' or '÷' format and not * or /
-            let viewer_symbol_node = "";
-            if (node.value === "*") {
-                viewer_symbol_node = "\u00D7";
-            } else if (node.value === "/") {
-                viewer_symbol_node = "\u00F7";
-            } else viewer_symbol_node = node.value;
-            // this.currentNode = "Left node: " + left +" Operator: " + viewer_symbol_node + " Right node: " + right;
-            this.leftNode = left;
-            this.operator = viewer_symbol_node;
-            this.rightNode = right;
-            // Switched this to a switch - simpler and more readable for this use case
-            switch (node.value) {
-                case "+":
-                return left + right;
-                case "-":
-                return left - right;
-                case "*":
-                return left * right;
-                case "/":
-                return left / right;
-                // This is the power function
-                case "^":         
-                return Math.pow(left, right);
-                default:
-                return null;
-            }
-            },</code></pre>
+      </div>
+      
+      <CowculatorCode></CowculatorCode>
 
     </div>
 
@@ -332,6 +109,8 @@
 </template>
   
 <script>
+
+import CowculatorCode from "@/components/ProjectDescriptions/ProjectText/CowculatorCode.vue";
 import AsideContent from "@/components/FirstAside.vue";
 
 //import { ref, computed } from 'vue';
@@ -340,7 +119,7 @@ export default {
  
   name: "CowculatorDescription",
   components: {
-    AsideContent,
+    AsideContent, CowculatorCode,
 
   },
   data() {
@@ -348,11 +127,12 @@ export default {
       isActive: true,
       error: null,
       isButtonClicked: false,
-      toiletPaperMessageGood: "The cows are happy and mooing!",
-      toiletPaperMessageBad: "Red Alert: The cows are mooing disgruntledly!",
+      toiletPaperMessageGood: "The cows are fed, they are now happily mooing! <br> You saved the day!",
+      toiletPaperMessageBad: "Red Alert: <br> The cows are mooing disgruntledly! <br> Heroically save them by pressing the Feed cows button!",
       imagePath: require("@/images/binary_tree.jpg"),
       imagePathTwo: require("@/images/binary_tree_two.jpg"),
       cowculatorUserInterface: require("@/images/cowculator_design_picture.jpg"),
+      
 
     };
   },
@@ -365,9 +145,9 @@ export default {
     },
     toiletPaperMessage() {
       if (this.isButtonClicked) {
-        return this.toiletPaperMessageBad;
-      } else {
         return this.toiletPaperMessageGood;
+      } else {        
+        return this.toiletPaperMessageBad;
       }
     }
   },
@@ -387,7 +167,6 @@ export default {
   background-color: #ffffff;
 }
 
-
 .paragraph-text {
   margin-left: 10em;
   margin-right: 10em;
@@ -397,21 +176,6 @@ export default {
   word-break: break-word;
   font-weight: 400;
   margin-bottom: 1em;
-}
-
-.code-format {
-  margin-top: 0.25em;
-  font-weight: normal;
-  font-size: 0.5em;
-  page-break-inside: avoid;
-  font-family: monospace;
-
-  margin-left: 1.2em;
-  margin-right: 1.2em;
-  overflow: auto;
-  display: block;
-  word-wrap: break-word;
-  border-radius: 5px;
 }
 
 /* figure stuff */
@@ -471,23 +235,33 @@ img {
 }
 .sub-section-titles{
   margin-left: 5em;
+  margin-top: 1em;
   text-align: left;
 }
-.static{
+   .static{
   color: blue;
 }
 .active{
-color: rgba(8, 168, 21, 0.671);
+color: rgb(255, 0, 0);
+font-size: 1.1em;
+margin-right: 2em;
+margin-left: 2em;
 }
 .text-danger{
-  color: red;
-  font-size: 2em;
+  color: rgb(90, 255, 104);
+  font-size: 1em;
 }
+
+
 
 
 
 /* Adjust the padding for mobile resolution for this block */
 @media only screen and (max-width: 1500px) {
+
+  .cow-image{
+  width: 300px;
+}
 
 .sub-section-titles{
   margin-left: 1.875em;
