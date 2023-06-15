@@ -1,83 +1,42 @@
 <template>
   <div>
     <!-- checkInput highlights key presses, and formatNumber adds commas -->
-    <input
-      class="input-field"
-      v-model="expression"
-      type="text"
-      @input="checkInput()"
-    />
+    <input class="input-field" v-model="expression" type="text" @input="checkInput()" />
   </div>
   <div class="grid-container cow-image">
     <button class="grid-item-symbols" @click="addMathOperator('\u00D7')">
       &#215;
     </button>
 
-    <button
-      class="grid-item"
-      @click="addNumber(1)"
-      :class="{ active: isActive[1] }"
-    >
+    <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">
       {{ buttonList[1] }}
     </button>
-    <button
-      class="grid-item"
-      @click="addNumber(2)"
-      :class="{ active: isActive[2] }"
-    >
+    <button class="grid-item" @click="addNumber(2)" :class="{ active: isActive[2] }">
       {{ buttonList[2] }}
     </button>
-    <button
-      class="grid-item"
-      @click="addNumber(3)"
-      :class="{ active: isActive[3] }"
-    >
+    <button class="grid-item" @click="addNumber(3)" :class="{ active: isActive[3] }">
       {{ buttonList[3] }}
     </button>
     <button class="grid-item-symbols" @click="addMathOperator('\u00F7')">
       ÷
     </button>
-    <button
-      class="grid-item"
-      @click="addNumber(4)"
-      :class="{ active: isActive[4] }"
-    >
+    <button class="grid-item" @click="addNumber(4)" :class="{ active: isActive[4] }">
       {{ buttonList[4] }}
     </button>
-    <button
-      class="grid-item"
-      @click="addNumber(5)"
-      :class="{ active: isActive[5] }"
-    >
+    <button class="grid-item" @click="addNumber(5)" :class="{ active: isActive[5] }">
       {{ buttonList[5] }}
     </button>
-    <button
-      class="grid-item"
-      @click="addNumber(6)"
-      :class="{ active: isActive[6] }"
-    >
+    <button class="grid-item" @click="addNumber(6)" :class="{ active: isActive[6] }">
       {{ buttonList[6] }}
     </button>
     <button class="grid-item-symbols" @click="addMathOperator('-')">-</button>
-    <button
-      class="grid-item"
-      @click="addNumber(7)"
-      :class="{ active: isActive[7] }"
-    >
+    <button class="grid-item" @click="addNumber(7)" :class="{ active: isActive[7] }">
       {{ buttonList[7] }}
     </button>
-    <button
-      class="grid-item"
-      @click="addNumber(8)"
-      :class="{ active: isActive[8] }"
-    >
+    <button class="grid-item" @click="addNumber(8)" :class="{ active: isActive[8] }">
       {{ buttonList[8] }}
     </button>
-    <button
-      class="grid-item"
-      @click="addNumber(9)"
-      :class="{ active: isActive[9] }"
-    >
+    <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">
       {{ buttonList[9] }}
     </button>
     <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
@@ -87,11 +46,7 @@
       </div>
     </button>
     <button class="grid-item" @click="addMathOperator('.')">.</button>
-    <button
-      class="grid-item"
-      @click="addNumber(0)"
-      :class="{ active: isActive[0] }"
-    >
+    <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
       {{ buttonList[0] }}
     </button>
 
@@ -109,40 +64,36 @@
       Reset
     </button>
 
-    <button class="button-35" @click="copyToClipboard">Copy Result</button>
+    <button class="button-35" @click="copyToClipboard">
+      Copy Result
+    </button>
+  </div>
+  <!-- {{ cleanedExpression }} -->
+  <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
+  <div style="padding-top: 0.5em">
+    <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
+    <div class=".dark-color-text cowculate-result">
+
+      {{ addCommas(addInExtraMultiplicationSymbols(expression)) }}<span v-if="this.expression == ''"></span>
+      <span v-if="showText"> = <span style="font-size: 1.15em"> 
+        <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}</span></span>
+      <span v-if="mooCounter > 0"><br />Number of Moos: <span style="">{{ mooCounter }}</span></span>
+      <span v-if="superMoo"> <br />{{ mooPlication }}</span>
+
     </div>
-      {{ cleanedExpression }} 
-     <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
-    <div style="padding-top: 0.5em">
-      <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
-      <div class=".dark-color-text cowculate-result">
-        {{ addCommas(expression) }}<span v-if="this.expression == ''"></span>
-        <span v-if="showText"> = <span style="font-size: 1.15em"> <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}</span></span
-        >
-        <span v-if="mooCounter > 0"
-          ><br />Number of Moos: <span style="">{{ mooCounter }}</span></span
-        >
-        <span v-if="superMoo"> <br />{{ mooPlication }}</span>
-      
-      </div>
-    </div>
-  
+  </div>
+
   <div v-if="showNotification" class="notification">
     <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
-    
+
   </div>
   <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em">
-    <div
-      class=".dark-color-text"
-      v-if="showDescriptionText"
-      style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em"
-    >
+    <div class=".dark-color-text" v-if="showDescriptionText"
+      style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em">
       <b style="color: #42b883">Final Node Cowculation:</b><br />
-      Left node: <span class="node-display">{{ addCommas(leftNode) }}</span
-      >&nbsp; Operator: <span class="node-display">{{ operator }}</span
-      >&nbsp; Right node:
-      <span class="node-display">{{ addCommas(rightNode) }}</span
-      ><br />
+      Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{
+        operator }}</span>&nbsp; Right node:
+      <span class="node-display">{{ addCommas(rightNode) }}</span><br />
       <b style="color: #42b883">Full Binary Tree Structure in JSON:</b><br />
       <div>
         <span>{{ treeNodeCalculations }}</span>
@@ -158,13 +109,12 @@
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
                           As long as a correct number math operator sequence is present a correct output is shown.    
                         -->
-  
+
   <div style="text-align: center">
     <h2 class="moo-cows-go-moo">
       <span v-if="mooMessage">
         Moo cows go moo, moo, moo!<br />
-        Moo cows go moo, moo, moo!</span
-      >
+        Moo cows go moo, moo, moo!</span>
     </h2>
   </div>
 </template>
@@ -185,7 +135,7 @@ export default {
       mooPlication: "",
 
       buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-      isActive: [ false,   false,  false,  false,  false, false,  false,  false,   false,  false,],
+      isActive: [false, false, false, false, false, false, false, false, false, false,],
       // isActive: [ false,   false,  false,  false,  false, false,  false,  false,   false,  false,],
       userTokens: [],
       operators: [],
@@ -313,14 +263,14 @@ export default {
       to the input expression be ")*("
       */
 
-     
+/*
       if (str.indexOf(")(") !== -1) {
         this.expression = str
           .replaceAll(")(", ")\u00D7(")
           .replaceAll("*", "\u00D7")
           .replaceAll("/", "\u00F7");
-      } 
-      
+      }
+*/
       // remove Moo's for number calculations
       str = str.replaceAll("Moo", "");
 
@@ -342,12 +292,12 @@ export default {
     },
   },
   methods: {
-    findInfinity2(){
-      if(this.result == "Infinity"){
+    findInfinity2() {
+      if (this.result == "Infinity") {
         this.result = "Moo-Infinity!";
       }
     },
-    
+
     drawTree() {
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       svg.setAttribute("width", "800");
@@ -431,185 +381,185 @@ export default {
       // set of parenthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
       // figuring out these solutions is rewarding but since this has been a built from scratch project it feels like yarn and duck tape too, which is okay!
       // but everything works! and I am happy with the results
-      this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);  
+      // This is also fixing )( to )*( so it can be parsed correctly
+      this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);
 
       try {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
         //if (!/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/.test(str)) {
         //  this.result = "";
         //} else {          
-          
-          var input = this.cleanedExpression;
-          let currentNumber = "";
 
-          for (let i = 0; i < input.length; i++) {
-            const char = input.charAt(i);
-            // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" parenthesis
-            // such as "-(" To solve this the expression in parenthesis is subtracted from 0
-              if (
-                char === "-" &&
-                (i === 0 || isNaN(input.charAt(i - 1))) &&
-                input.charAt(i + 1) === "("
+        var input = this.cleanedExpression;
+        let currentNumber = "";
+
+        for (let i = 0; i < input.length; i++) {
+          const char = input.charAt(i);
+          // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" parenthesis
+          // such as "-(" To solve this the expression in parenthesis is subtracted from 0
+          if (
+            char === "-" &&
+            (i === 0 || isNaN(input.charAt(i - 1))) &&
+            input.charAt(i + 1) === "("
+          ) {
+            // access helper function to push a 0 to the stack, this is for the use case such as "-(" To solve this the expression in parenthesis is subtracted from 0
+            this.userTokens.push(this.createNodes(true, 0));
+            this.operators.push("-");
+          }
+          // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
+          else if (
+            !isNaN(char) || char === "." || (char === "-" && (i === 0 || (isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "(")))
+          ) {
+            currentNumber += char;
+            // Does operations like (2)2 = 4
+            if (")" === input.charAt(i - 1)) {
+              this.operators.push("*");
+            }
+
+            // Does operations like 2(2) = 4
+            if ("(" === input.charAt(i + 1)) {
+              this.operators.push("*");
+            }
+          } else {
+            if (currentNumber !== "") {
+              // access helper function to push a node and number to the stack
+              this.userTokens.push(this.createNodes(true, parseFloat(currentNumber)));
+              currentNumber = "";
+            }
+            if (char === "+" || char === "-") {
+              while (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] !== "("
               ) {
-                // access helper function to push a 0 to the stack, this is for the use case such as "-(" To solve this the expression in parenthesis is subtracted from 0
-                this.userTokens.push( this.createNodes(true, 0));
-                this.operators.push("-");
+                const node = this.createNodes();
+                this.userTokens.push(node);
               }
-              // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
-                else if (
-                  !isNaN(char) || char === "." || (char === "-" && (i === 0 || (isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "(")))
-                      ) {
-                      currentNumber += char;
-                      // Does operations like (2)2 = 4
-                      if (")" === input.charAt(i - 1)) {
-                        this.operators.push("*");
-                      }
+              this.operators.push(char);
+            } else if (char === "*" || char === "/" || char === "!") {
+              while (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] !== "(" &&
+                (this.operators[this.operators.length - 1] === "*" ||
+                  this.operators[this.operators.length - 1] === "/")
+              ) {
+                const node = this.createNodes();
+                this.userTokens.push(node);
+              }
+              this.operators.push(char);
+            }
+            else if (char === "^") {
+              while (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] !== "(") {
+                const node = this.createNodes();
+                this.userTokens.push(node);
+              }
+              this.operators.push(char);
+            } else if (char === "(") {
+              this.operators.push(char);
 
-                      // Does operations like 2(2) = 4
-                      if ("(" === input.charAt(i + 1)) {
-                        this.operators.push("*");
-                      }
-              } else {
-                      if (currentNumber !== "") {
-                        // access helper function to push a node and number to the stack
-                        this.userTokens.push( this.createNodes(true, parseFloat(currentNumber)));
-                        currentNumber = "";
-                      }
-                      if (char === "+" || char === "-") {
-                        while (
-                          this.operators.length > 0 &&
-                          this.operators[this.operators.length - 1] !== "("
-                        ) {
-                          const node = this.createNodes();
-                          this.userTokens.push(node);
-                        }
-                        this.operators.push(char);
-                      } else if (char === "*" || char === "/" || char === "!") {
-                          while (
-                            this.operators.length > 0 &&
-                            this.operators[this.operators.length - 1] !== "(" &&
-                            (this.operators[this.operators.length - 1] === "*" ||
-                              this.operators[this.operators.length - 1] === "/")
-                          ) {
-                            const node = this.createNodes();
-                            this.userTokens.push(node);
-                          }
-                                  this.operators.push(char);
-                        }
-                        else if (char === "^") {
-                          while (
-                            this.operators.length > 0 &&
-                            this.operators[this.operators.length - 1] !== "(")                           
-                          {
-                            const node = this.createNodes();
-                            this.userTokens.push(node);
-                          }
-                            this.operators.push(char);
-                      } else if (char === "(") {
-                        this.operators.push(char);
+            } else if (char === ")") {
+              while (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] !== "("
+              ) {
+                const node = this.createNodes();
+                this.userTokens.push(node);
+              }
 
-                      } else if (char === ")") {
-                        while (
-                          this.operators.length > 0 &&
-                          this.operators[this.operators.length - 1] !== "("
-                        ) {
-                          const node = this.createNodes();
-                          this.userTokens.push(node);
-                        }
-                
-                if (
-                  this.operators.length > 0 &&
-                  this.operators[this.operators.length - 1] === "("
-                ) {
-                  this.operators.pop();
-                }
+              if (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] === "("
+              ) {
+                this.operators.pop();
               }
             }
-            // This was an array for testing each number addition to the expression
-            // this.arrayOfNumbersOnly.push(currentNumber);
-            // console.log(this.arrayOfNumbersOnly)
           }
-          // Add the last number if there is one
-          if (currentNumber !== "") {
-            // access helper function to push a node and number to the stack
-            this.userTokens.push( this.createNodes(true, parseFloat(currentNumber)));
-          }
-          // Perform remaining operations
-          while (this.operators.length > 0) {            
-            const node = this.createNodes();
-            this.userTokens.push(node);
-          }
-          // calculate the final result
-          var result = this.evaluate(this.userTokens[0]);
-          
-          // This goes to output all the results in its own function
-          this.setOutputs(result);
+          // This was an array for testing each number addition to the expression
+          // this.arrayOfNumbersOnly.push(currentNumber);
+          // console.log(this.arrayOfNumbersOnly)
+        }
+        // Add the last number if there is one
+        if (currentNumber !== "") {
+          // access helper function to push a node and number to the stack
+          this.userTokens.push(this.createNodes(true, parseFloat(currentNumber)));
+        }
+        // Perform remaining operations
+        while (this.operators.length > 0) {
+          const node = this.createNodes();
+          this.userTokens.push(node);
+        }
+        // calculate the final result
+        var result = this.evaluate(this.userTokens[0]);
 
-          // Good article about using NaN in JavaScript like the function above does ^
-          // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
-          // This method works below, but others could also work.
-        
+        // This goes to output all the results in its own function
+        this.setOutputs(result);
+
+        // Good article about using NaN in JavaScript like the function above does ^
+        // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
+        // This method works below, but others could also work.
+
       } catch (error) {
         this.result = null;
       }
     },
     //helper function to create nodes - this separates the concerns and makes functions shorter
-    createNodes(pushNode = false, number = 0){
+    createNodes(pushNode = false, number = 0) {
 
       // create a node class to store the values
       class Node {
-            constructor(value, left = null, right = null) {
-              this.value = value;
-              this.left = left;
-              this.right = right;
-            }
-          }
-          // if a node only needs to be built then this first IF is used
-          if (pushNode === false) {          
-            const op = this.operators.pop();
-            const right = this.userTokens.pop();
-            const left = this.userTokens.pop();
-            return new Node(op, left, right);
-            // if a node has to input a specific number then this second ELSE is used
-          }else{
-            return new Node(number);
-          }
-        },
+        constructor(value, left = null, right = null) {
+          this.value = value;
+          this.left = left;
+          this.right = right;
+        }
+      }
+      // if a node only needs to be built then this first IF is used
+      if (pushNode === false) {
+        const op = this.operators.pop();
+        const right = this.userTokens.pop();
+        const left = this.userTokens.pop();
+        return new Node(op, left, right);
+        // if a node has to input a specific number then this second ELSE is used
+      } else {
+        return new Node(number);
+      }
+    },
     // This just sets the outputs to the result of the cowculation function so the function is shorter    
-    setOutputs(result){
+    setOutputs(result) {
       // If no calculations are done don't need to show a number is equal to itself
       // Quick way to make sure output isn't 5555 = 5555 if the user just enters a number
-      if (result == this.cleanedExpression) { 
-            result = "";
-          }
-       
-          // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
-          else if (!Number.isNaN(result)) {
-            // show equal sign and results
-            this.showText = true;
-            // create the binary tree structure
-            this.treeNodeCalculations = this.userTokens[0];           
-            //const myJSON = JSON.stringify(this.treeNodeCalculations);
-            this.treeData = this.treeNodeCalculations;
+      if (result == this.cleanedExpression) {
+        result = "";
+      }
 
-            this.tree = this.treeNodeCalculations;
+      // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
+      else if (!Number.isNaN(result)) {
+        // show equal sign and results
+        this.showText = true;
+        // create the binary tree structure
+        this.treeNodeCalculations = this.userTokens[0];
+        //const myJSON = JSON.stringify(this.treeNodeCalculations);
+        this.treeData = this.treeNodeCalculations;
 
-            this.showDescriptionText = true;
+        this.tree = this.treeNodeCalculations;
 
-            // this puts the final calculation into a variable to be copied from the clipboard
-            this.message = result;
-            
-            // this outputs the FINAL calculation
-            this.result = result;
+        this.showDescriptionText = true;
 
-            // At the moment this is a bit of a hack to get the svg to clear and redraw
-            this.clearSVG();
+        // this puts the final calculation into a variable to be copied from the clipboard
+        this.message = result;
 
-            // Append new SVG content
-            const svgContainer = this.$refs.svgContainer;
-            svgContainer.appendChild(this.svgContent);
-            this.svgContent.setAttribute("width", "100%");
-          }        
+        // this outputs the FINAL calculation
+        this.result = result;
+
+        // At the moment this is a bit of a hack to get the svg to clear and redraw
+        this.clearSVG();
+
+        // Append new SVG content
+        const svgContainer = this.$refs.svgContainer;
+        svgContainer.appendChild(this.svgContent);
+        this.svgContent.setAttribute("width", "100%");
+      }
     },
     // Perform calculations
     evaluate(node) {
@@ -640,7 +590,7 @@ export default {
         case "/":
           return left / right;
         // This is the power function
-        case "^":         
+        case "^":
           return Math.pow(left, right);
         default:
           return null;
@@ -651,7 +601,7 @@ export default {
       while (svgContainer.firstChild) {
         svgContainer.removeChild(svgContainer.firstChild);
       }
-    },    
+    },
     /*
     setFactorialize(num) {
     
@@ -759,7 +709,12 @@ export default {
           this.expression = "(" + this.expression + ")";
         }
         */
-        this.expression += "^";    
+      this.expression += "^";
+      // this adds in a x symbol for the user to see in the output to screen
+    },addInExtraMultiplicationSymbols(input){
+      let output = input.replace(/(\d)\(/g, '$1\u00D7(').replace(/\)\(/g, ')\u00D7(');
+      //console.log(output)
+      return output
     },
     addParenthesisAroundPowerSymbol(input) {
       // Use regular expression to match number^number pattern
@@ -767,16 +722,14 @@ export default {
       // const regex = /(\(\d+\)\^\d+)/g;
       // const regex2 = /(\d+\^\d+)/g;
       // const regex = /(\(\d+\)\^\d+|\d+\^\d+)/g;
-      
 
       const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g;
       let output = input.replace(regex, '($1)');
 
       // for now this fixes it, but it's not the best solution, forces multiplication symbol between parenthesis to fix mult error
-      let output2 = output.replace(/\)\(/g, ')*(');
-      
-      console.log(output2)
-      return output2;
+      let addMultParenthesis = output.replace(/\)\(/g, ')*(');      
+          
+      return addMultParenthesis;
     },
     autoFixIncorrectInput(str) {
       // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
@@ -995,6 +948,7 @@ input:focus {
   .input-field {
     max-width: 9.8em;
   }
+
   /* adjust the button grid */
   .grid-container {
     max-width: 22em;
@@ -1005,14 +959,14 @@ input:focus {
 
 .cowculate-result {
   padding-top: 1em;
-
+  text-align: center;
   margin-top: 0.05em;
   font-size: 1.5em;
-  position: absolute;
+  /* position: absolute; */
   left: 0em;
   right: 0em;
-  margin-left: auto;
-  margin-right: auto;
+  /*margin-left: auto;
+   margin-right: auto; */
   padding: 0em;
   /* background: #515151; */
   border-radius: 4px 4px 4px 4px;

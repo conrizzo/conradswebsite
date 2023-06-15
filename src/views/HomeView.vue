@@ -36,7 +36,7 @@
         <br>
       </p>
 
-      <div class="route-styling">
+      <div style="padding-bottom: 2em;" class="route-styling">
         <div v-for="(item, key, index) in items" :key="key">
           <h1>
             <!-- This is some cool code. Here's a step-by-step explanation of the selected code:               
@@ -53,6 +53,12 @@
             </router-link>
           </h1>
         </div>
+      </div>
+      
+      <div style="padding-top: 3em; background-color: #fff;">
+        <h1 style="color: black;"> Featuring the Cowculator </h1>
+        <p> Go to the <router-link class="text-links-no-underline" to="/projects/cowculator">cowculator page</router-link> for the full experience.</p>
+      <UseCalc></UseCalc>
       </div>
     </div>
 
@@ -93,6 +99,7 @@ import AsideContent from "@/components/FirstAside.vue";
 
 import FirstFooter from "@/components/FirstFooter.vue";
 
+import UseCalc from "@/components/UseCalc.vue";
 
 
 export default {
@@ -100,7 +107,9 @@ export default {
   components: {
     AsideContent,
     FirstFooter,
-  },
+    UseCalc,
+   
+},
   data() {
     return {
       items: {

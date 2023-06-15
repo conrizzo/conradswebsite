@@ -39,7 +39,7 @@
   margin-left: 6em;
   margin-right: 6em;
   grid-template-columns: 80% 1fr;
-  gap: 1rem;
+  gap: 0rem;
 }
 
 
