@@ -143,6 +143,14 @@
     },
         </code>   
     </pre>
+    <p class="paragraph-text break-text">Adding in explantions on how the buttons on the cowculator are generated.</p>
+    <pre v-bind:class="'language-markup'" class="code-format">
+      <code>
+      
+      
+      </code>   
+    </pre>
+  
     <pre v-bind:class="'language-JavaScript'" class="code-format">
     <code>
     //helper function to create nodes - this separates the concerns and makes functions shorter

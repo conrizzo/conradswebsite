@@ -3,60 +3,26 @@
     <!-- checkInput highlights key presses, and formatNumber adds commas -->
     <input class="input-field" v-model="expression" type="text" @input="checkInput()" />
   </div>
+
+  <!-- build the cowculator buttons and their functions using v-for with conditions for each button type -->
   <div class="grid-container cow-image">
-    <button class="grid-item-symbols" @click="addMathOperator('\u00D7')">
-      &#215;
-    </button>
+    <button v-for="button in buttonList" :key="button" :class="['grid-item', {
+      'grid-item-symbols': button === '+' || button === '-' || button == '\u00F7' || button == '\u00D7', 'tooltip' : button === 'power',
+      active: isActive[button]
+    }]" @click="addNumber(button)">
 
-    <button class="grid-item" @click="addNumber(1)" :class="{ active: isActive[1] }">
-      {{ buttonList[1] }}
-    </button>
-    <button class="grid-item" @click="addNumber(2)" :class="{ active: isActive[2] }">
-      {{ buttonList[2] }}
-    </button>
-    <button class="grid-item" @click="addNumber(3)" :class="{ active: isActive[3] }">
-      {{ buttonList[3] }}
-    </button>
-    <button class="grid-item-symbols" @click="addMathOperator('\u00F7')">
-      ÷
-    </button>
-    <button class="grid-item" @click="addNumber(4)" :class="{ active: isActive[4] }">
-      {{ buttonList[4] }}
-    </button>
-    <button class="grid-item" @click="addNumber(5)" :class="{ active: isActive[5] }">
-      {{ buttonList[5] }}
-    </button>
-    <button class="grid-item" @click="addNumber(6)" :class="{ active: isActive[6] }">
-      {{ buttonList[6] }}
-    </button>
-    <button class="grid-item-symbols" @click="addMathOperator('-')">-</button>
-    <button class="grid-item" @click="addNumber(7)" :class="{ active: isActive[7] }">
-      {{ buttonList[7] }}
-    </button>
-    <button class="grid-item" @click="addNumber(8)" :class="{ active: isActive[8] }">
-      {{ buttonList[8] }}
-    </button>
-    <button class="grid-item" @click="addNumber(9)" :class="{ active: isActive[9] }">
-      {{ buttonList[9] }}
-    </button>
-    <button class="grid-item-symbols" @click="addMathOperator('+')">+</button>
-    <button class="grid-item" @click="removeEntry(), checkInput()">
-      <div class="arrow-position">
+      <div v-if="button === '<-'" class="arrow-position">
         <div class="left-arrow"></div>
+      </div>      
+      <div v-else-if="button === 'power'">
+        <i>x<sup>y</sup></i>
+        <span class="tooltiptext">{{ showTooltip }}</span>
       </div>
-    </button>
-    <button class="grid-item" @click="addMathOperator('.')">.</button>
-    <button class="grid-item" @click="addNumber(0)" :class="{ active: isActive[0] }">
-      {{ buttonList[0] }}
-    </button>
+      <div v-else>
+        {{ button }}
+      </div>
 
-    <button class="grid-item tooltip" @click="squared()">
-      <i>x<sup>y</sup></i>
-      <span class="tooltiptext">{{ showTooltip }}</span>
     </button>
-    <button class="grid-item" @click="addMathOperator('(')">(</button>
-    <button class="grid-item" @click="addMathOperator(')')">)</button>
-    <button class="grid-item" @click="addMoo(), mooButtonHit()">Moo</button>
   </div>
 
   <div>
@@ -75,8 +41,8 @@
     <div class=".dark-color-text cowculate-result">
 
       {{ addCommas(addInExtraMultiplicationSymbols(expression)) }}<span v-if="this.expression == ''"></span>
-      <span v-if="showText"> = <span style="font-size: 1.15em"> 
-        <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}</span></span>
+      <span v-if="showText"> = <span style="font-size: 1.15em">
+          <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}</span></span>
       <span v-if="mooCounter > 0"><br />Number of Moos: <span style="">{{ mooCounter }}</span></span>
       <span v-if="superMoo"> <br />{{ mooPlication }}</span>
 
@@ -133,8 +99,8 @@ export default {
 
       superMoo: false,
       mooPlication: "",
-
-      buttonList: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      
+      buttonList: ["\u00D7", "1", "2", "3", "\u00F7", "4", "5", "6", "-", "7", "8", "9", "+", "<-", ".", "0", "power", "(", ")", "Moo"],
       isActive: [false, false, false, false, false, false, false, false, false, false,],
       // isActive: [ false,   false,  false,  false,  false, false,  false,  false,   false,  false,],
       userTokens: [],
@@ -248,7 +214,7 @@ export default {
 
       // This decides whether calculatons can actully be done
       // regular expression for +, -, /, and * operators before any actual parsing is done (saves useless calculations)
-      const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;
+      //const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;
 
       // invoke function to autocorrect bad entries such as -/ or */ or -+
       if (
@@ -262,15 +228,14 @@ export default {
       if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
       to the input expression be ")*("
       */
-
-/*
-      if (str.indexOf(")(") !== -1) {
-        this.expression = str
-          .replaceAll(")(", ")\u00D7(")
-          .replaceAll("*", "\u00D7")
-          .replaceAll("/", "\u00F7");
-      }
-*/
+      /*
+            if (str.indexOf(")(") !== -1) {
+              this.expression = str
+                .replaceAll(")(", ")\u00D7(")
+                .replaceAll("*", "\u00D7")
+                .replaceAll("/", "\u00F7");
+            }
+      */
       // remove Moo's for number calculations
       str = str.replaceAll("Moo", "");
 
@@ -284,8 +249,8 @@ export default {
         this.currentNode = null;
         this.clearSVG();
       }
-      // This sends a cleaned input to the cowculate function
-      else if (mathOperators.test(str)) {
+      // This sends input to the cowculator if the input is valid
+      else {
         this.cleanedExpression = str;
         this.cowculate();
       }
@@ -674,7 +639,17 @@ export default {
       }, 1500);
     },
     addNumber(buttonValueToAdd) {
-      this.expression += buttonValueToAdd;
+      if (buttonValueToAdd === "<-") {
+        this.removeEntry();
+        this.checkInput();
+      } else if (buttonValueToAdd === "power") {
+        this.squared();
+      }
+      else if (buttonValueToAdd === "Moo") {
+        this.addMoo(), this.mooButtonHit();
+      } else {
+        this.expression += buttonValueToAdd;
+      }
     },
     addMathOperator(mathOperatorToAdd) {
       this.expression += mathOperatorToAdd;
@@ -711,7 +686,7 @@ export default {
         */
       this.expression += "^";
       // this adds in a x symbol for the user to see in the output to screen
-    },addInExtraMultiplicationSymbols(input){
+    }, addInExtraMultiplicationSymbols(input) {
       let output = input.replace(/(\d)\(/g, '$1\u00D7(').replace(/\)\(/g, ')\u00D7(');
       //console.log(output)
       return output
@@ -727,8 +702,8 @@ export default {
       let output = input.replace(regex, '($1)');
 
       // for now this fixes it, but it's not the best solution, forces multiplication symbol between parenthesis to fix mult error
-      let addMultParenthesis = output.replace(/\)\(/g, ')*(');      
-          
+      let addMultParenthesis = output.replace(/\)\(/g, ')*(');
+
       return addMultParenthesis;
     },
     autoFixIncorrectInput(str) {
