@@ -1,12 +1,7 @@
 <template>
-  <div class="title-section">
+  
     <!-- negative margin here to fill in space in nav on home page -->
-    <h1 style="background: linear-gradient(
-        90deg,
-        rgba(0, 255, 119, 0.66) 29%,
-        rgba(0, 224, 255, 0.66) 100%
-      ); font-size: 3em; padding-bottom: 0.3em; margin-top: -0.33em;">Conrad's Website</h1>
-  </div>
+  <h1 class="h1-title">Conrad's Website</h1>  
   <!-- Main area -->
 
   <div class="container custom-background-home-page">
@@ -38,7 +33,7 @@
 
       <div style="padding-bottom: 2em;" class="route-styling">
         <div v-for="(item, key, index) in items" :key="key">
-          <h1>
+          <h2>
             <!-- This is some cool code. Here's a step-by-step explanation of the selected code:               
               The `to` attribute is being set dynamically using a ternary operator and some string manipulation. 
               If the `key` prop is equal to "Projects" (case-insensitive), the `to` attribute is set to "/projects". 
@@ -51,12 +46,12 @@
             " active-class="active-link">
               {{ index + 1 }}. {{ item }}
             </router-link>
-          </h1>
+          </h2>
         </div>
       </div>
       
       <div style="padding-top: 3em; background-color: #fff;">
-        <h1 style="color: black;"> Featuring the Cowculator </h1>
+        <h2 style="color: black;"> Featuring the Cowculator </h2>
         <p> Go to the <router-link class="text-links-no-underline" to="/projects/cowculator">cowculator page</router-link> for the full experience.</p>
       <UseCalc></UseCalc>
       </div>
@@ -101,7 +96,6 @@ import FirstFooter from "@/components/FirstFooter.vue";
 
 import UseCalc from "@/components/UseCalc.vue";
 
-
 export default {
   name: "HomeView",
   components: {
@@ -136,10 +130,24 @@ export default {
   text-align: left;
 }
 
-h1 {
-  padding-top: 0.25em;
+.h1-title{
+  color: #ffffff; 
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 119, 0.66) 29%,
+    rgba(0, 224, 255, 0.66) 100%
+  ); 
+  font-size: 3em; 
+  padding-bottom: 0.5em; 
+  padding-top: 0.5em;
+  /* margin-top: -0.33em;  */
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+h2{
   font-size: 2.5em;
-  color: #ffffff;
+  padding-bottom: 0.5em;
 }
 
 .custom-background-home-page {
@@ -161,28 +169,27 @@ h1 {
   color: #ff5959;
   text-decoration: none;
 }
-
-
-
 .route-styling {
   padding-top: 2em;
   margin-left: 7em;
   text-align: left;
   font-size: 0.75em;
 }
-
 .remove {
   display: none;
 }
-
 /* Adjust the padding for mobile resolution for this block */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1500px) {
   .route-styling {
     margin-left: 2em;
   }
 
   .remove {
     display: grid;
+  }
+  .h1-title{
+    margin-left: 0em;
+    margin-right: 0em;
   }
 }
 </style>

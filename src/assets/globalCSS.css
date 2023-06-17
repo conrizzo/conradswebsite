@@ -56,12 +56,9 @@
   text-align: left;
 }
 
-.title-section {
-  padding-top: 1em;
-  padding-bottom: 0em;
-}
 
-@media only screen and (max-width: 1200px) {  
+
+@media only screen and (max-width: 1500px) {  
   .container {
     grid-template-columns: 100%;
     margin-left: 0em;
@@ -148,11 +145,6 @@ h1 {
   }
 }
 
-
-
-
-
-
 /* CSS */
 .button-35 {
   align-items: center;
@@ -207,13 +199,11 @@ h1 {
 }
 
 
-  .blue-sky-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)),url(../images/blue_sky.jpg);    
-    background-repeat: no-repeat;    
-  }
+.blue-sky-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)),url(../images/blue_sky.jpg);    
+  background-repeat: no-repeat;    
+}
   
-
-
 /* when media sizes adjust, the non-media needs to come first in parsing the code */
 .cow-lecture {
   background-image: url('../images/cow_lecture.png');
@@ -221,8 +211,6 @@ h1 {
   background-repeat: no-repeat;
   background-size: 150px auto;
 }
-
-
 
 
 @media only screen and (max-width: 500px) {

@@ -7,31 +7,19 @@
     <div>
 
       <div style="margin-top: 2em;">
-        <h1 style="font-size: 2em;"><router-link style="color: rgb(0, 255, 119)" class="text-links-no-underline" :to="'/projects/cowculator'"></router-link></h1>
+        <h1 style="font-size: 2em;"><router-link style="color: rgb(0, 255, 119)" class="text-links-no-underline"
+            :to="'/projects/cowculator'"></router-link></h1>
       </div>
 
-    <router-link class="text-links-no-underline" :to="'/projects/cowculator'">
-      <img class="cow-image" :src="cowculatorUserInterface" alt="Cowculator Picture" />
-    </router-link>
-    <div>
-      <p class="paragraph-text break-text top-most-paragraph-space"> Testing some other features in vue 3 on this page, page not finished! This button is using a class binding to change the color of the text.
-        <a href="https://vuejs.org/guide/essentials/class-and-style.html">https://vuejs.org/guide/essentials/class-and-style.html</a> and was using Composition API setup
-        <a class="text-links" href="https://vuejs.org/api/composition-api-setup.html"> https://vuejs.org/api/composition-api-setup.html</a> but is now using options API with computed class 
-      binding to enlarge the text and change the color.</p>
-      
-      
+      <router-link class="text-links-no-underline" :to="'/projects/cowculator'">
+        <img class="cow-image" :src="cowculatorUserInterface" alt="Cowculator Picture" />
+      </router-link>
 
+      <p class="paragraph-text break-text" style="padding-top: 2em;">Rough draft below - have been updating code in this to make it more professional and reviewing everything.</p>
 
-    <div :class="classObject" >
-      <!--{{ toiletPaperMessage }} -->
-      <span v-html="cowMessage"></span>
-    </div>   
-    <button style="margin-top: 2em; margin-bottom: 0.5em;" class="button-35" @click="setError()">Feed cows!</button>
-      
-      
-    </div>
-      <p class="paragraph-text break-text" style="padding-top: 2em;">The cowculator is a project for fun/practice. It
-        had some challenges, and when undertaking a project like this one has
+      <p class="paragraph-text break-text" style="padding-top: 2em;">The cowculator is a fully functional calculator! The cowculator has been a project for fun/practice. It uses actual parsing, not the JavaScript eval() function
+        which is considered insecure and bad practice to use!
+        Building it had some challenges, and when undertaking a project like this one has
         to remember how much fine-tuning is involved. One challenge was implementing the parenthesis functionality. This
         was a step by step process thinking
         about which symbol came before or after another symbol. Some neat features were added into it, such as the ability
@@ -53,10 +41,14 @@
       </p>
 
       <p class="paragraph-text break-text">
-        Adding in the x^y power function was a challenge. The interesting part of how it computes powers is that for an expression
-        like 2(3)^2^2 it will use the code const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g; and add parenthesis 2((3)^2^2) so powers get evaluated
-        correctly using this code. The multiplication symbol and power symbol both have the same precedence so the additional paranthesis was a simple
-        fix to force the code to first evaluate all exponents before multiplication in the parsing. As the user, you don't see these additional parenthesis, but they are there in the code.
+        Adding in the x^y power function was a challenge. The interesting part of how it computes powers is that for an
+        expression
+        like 2(3)^2^2 it will use the code const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g; and add parenthesis
+        2((3)^2^2) so powers get evaluated
+        correctly using this code. The multiplication symbol and power symbol both have the same precedence so the
+        additional paranthesis was a simple
+        fix to force the code to first evaluate all exponents before multiplication in the parsing. As the user, you don't
+        see these additional parenthesis, but they are there in the code.
       </p>
 
       <div style="padding-top: 1em;" class="figure-stuff">
@@ -80,31 +72,49 @@
           </figure>
         </div>
       </div>
-
       <div>
-      <h4 class="sub-section-titles">Code that does the calculations</h4>
+        <h4 class="sub-section-titles">Code that does the cowculations:</h4>
 
-      <p class="top-most-paragraph-space paragraph-text break-text">
+        <p class="top-most-paragraph-space paragraph-text break-text">
           Here is the actual JavaScript code for the cowculator calculations themselves. It is a bit long, but it is a
           cowculator after all!
         </p>
-
       </div>
-      
       <CowculatorCode></CowculatorCode>
-
     </div>
 
     <!-- Aside area -->
-    
+
     <AsideContent class="aside-padding">
-      <template v-slot:aside-content>       
+      <template v-slot:aside-content>
+
         <p class="aside-text">Nothing to add here yet.</p>
+
+
       </template>
     </AsideContent>
- 
 
+    <!-- testing features START -->
+    <div>
+      <p class="paragraph-text break-text top-most-paragraph-space"> Testing some other features in vue 3 on this page,
+        page not finished! This button is using a class binding to change the color of the text.
+        <a
+          href="https://vuejs.org/guide/essentials/class-and-style.html">https://vuejs.org/guide/essentials/class-and-style.html</a>
+        and was using Composition API setup
+        <a class="text-links" href="https://vuejs.org/api/composition-api-setup.html">
+          https://vuejs.org/api/composition-api-setup.html</a> but is now using options API with computed class
+        binding to enlarge the text and change the color.
+      </p>
+      <div :class="classObject">
+        <!--{{ toiletPaperMessage }} -->
+        <span v-html="cowMessage"></span>
+      </div>
+      <button style="margin-top: 2em; margin-bottom: 0.5em;" class="button-35" @click="setError()">Feed cows!</button>
+
+
+    </div>
   </div>
+  <!-- testing features END -->
 
   <div class="push-footer-low-res">
     <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
@@ -120,7 +130,7 @@ import AsideContent from "@/components/FirstAside.vue";
 //import { ref, computed } from 'vue';
 export default {
 
- 
+
   name: "CowculatorDescription",
   components: {
     AsideContent, CowculatorCode,
@@ -136,7 +146,7 @@ export default {
       imagePath: require("@/images/binary_tree.jpg"),
       imagePathTwo: require("@/images/binary_tree_two.jpg"),
       cowculatorUserInterface: require("@/images/cowculator_design_picture.jpg"),
-      
+
 
     };
   },
@@ -147,8 +157,8 @@ export default {
         'text-danger': this.error && this.error.type === 'fatal'
       };
     },
-    cowMessage() {     
-        return this.isButtonClicked ? this.goodCowMessage : this.badCowMessage;      
+    cowMessage() {
+      return this.isButtonClicked ? this.goodCowMessage : this.badCowMessage;
     }
   },
   methods: {
@@ -163,6 +173,11 @@ export default {
 </script>
   
 <style scoped>
+h4 {
+  padding-left: 0em;
+  font-size: 2em;
+}
+
 .background-color-about-page {
   background-color: #ffffff;
 }
@@ -211,7 +226,7 @@ figure {
   padding: 0.5em;
   padding-bottom: 0em;
   margin-left: auto;
-  margin-right: auto;  
+  margin-right: auto;
   font-size: 1em;
   font-weight: 75;
   text-align: left;
@@ -229,62 +244,74 @@ img {
   max-width: 500px;
   max-height: auto;
 }
-.sub-section-titles{
+
+.sub-section-titles {
   margin-left: 5em;
   margin-top: 1em;
   text-align: left;
 }
-   .static{
+
+.static {
   color: blue;
 }
-.active{
-color: rgb(255, 0, 0);
-font-size: 1em;
-margin-right: 2em;
-margin-left: 2em;
+
+.active {
+  color: rgb(255, 0, 0);
+  font-size: 1em;
+  margin-right: 2em;
+  margin-left: 2em;
 }
-.text-danger{
+
+.text-danger {
   color: rgb(90, 255, 104);
   font-size: 1em;
 }
 
-.aside-padding{
- padding: 1em;
+.aside-padding {
+  padding: 1em;
 }
 
 
 /* Adjust the padding for mobile resolution for this block */
 @media only screen and (max-width: 1600px) {
 
-    .cow-image{
+  .cow-image {
     width: 300px;
   }
-  .sub-section-titles{
-    margin-left: 1.875em;
+
+  .sub-section-titles {
+    margin-left: 3em;
     font-size: 1em;
   }
+
   .code-format {
     margin-left: 2em;
     font-size: 1em;
     margin-right: 2em;
   }
-  .figure-stuff{
+
+  .figure-stuff {
     margin: 0em 0em 0em 0em;
   }
+
   figure {
     margin-left: 1em;
     margin-right: 1em;
     height: auto;
   }
+
   .figure-stuff>div {
     flex-direction: column;
   }
+
   .figure-stuff figure {
-    margin-top: 0.5em; 
+    margin-top: 0.5em;
     width: auto;
   }
+
   .paragraph-text {
     margin-left: 3em;
     margin-right: 3em;
   }
-}</style>
+}
+</style>

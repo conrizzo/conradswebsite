@@ -4,9 +4,9 @@
 <div>
 <p class="paragraph-text break-text"> This code takes the user input and parses through the expression to evaluate it correctly. 
     Explaining this entirely step-by-step could take some time!</p>
-<pre v-bind:class="'language-JavaScript'" class="code-format">
+<pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
     <code>
-        cowculate() {
+      cowculate() {
       /* Cow Moo cowculations */
       /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
 
@@ -15,143 +15,203 @@
       this.operators = [];
 
       // Here is an interesting way I found how to add in exponents with parsing. I just add in a 
-      // set of paranthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
+      // set of parenthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
       // figuring out these solutions is rewarding but since this has been a built from scratch project it feels like yarn and duck tape too, which is okay!
       // but everything works! and I am happy with the results
+      // This is also fixing )( to )*( so it can be parsed correctly
       this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);
 
-      let str = this.cleanedExpression;
       try {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
-        if (!/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/.test(str)) {
-          this.result = "";
-        } else {          
-          
-          var input = this.cleanedExpression;
-          let currentNumber = "";
+        //if (!/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/.test(str)) {
+        //  this.result = "";
+        //} else {          
 
-          for (let i = 0; i &lt; input.length; i++) {
-            const char = input.charAt(i);
-            // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" paranthesis
-            // such as "-(" To solve this the expression in paranthesis is subtracted from 0
-              if (
-                char === "-" &&
-                (i === 0 || isNaN(input.charAt(i - 1))) &&
-                input.charAt(i + 1) === "("
+        var input = this.cleanedExpression;
+        let currentNumber = "";
+
+        for (let i = 0; i &lt; input.length; i++) {
+          const char = input.charAt(i);
+          // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" parenthesis
+          // such as "-(" To solve this the expression in parenthesis is subtracted from 0
+          if (
+            char === "-" &&
+            (i === 0 || isNaN(input.charAt(i - 1))) &&
+            input.charAt(i + 1) === "("
+          ) {
+            // access helper function to push a 0 to the stack, this is for the use case such as "-(" To solve this the expression in parenthesis is subtracted from 0
+            this.userTokens.push(this.createNodes(true, 0));
+            this.operators.push("-");
+          }
+          // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
+          else if (
+            !isNaN(char) || char === "." || (char === "-" && (i === 0 || (isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "(")))
+          ) {
+            currentNumber += char;
+            // Does operations like (2)2 = 4
+            if (")" === input.charAt(i - 1)) {
+              this.operators.push("*");
+            }
+
+            // Does operations like 2(2) = 4
+            if ("(" === input.charAt(i + 1)) {
+              this.operators.push("*");
+            }
+          } else {
+            if (currentNumber !== "") {
+              // access helper function to push a node and number to the stack
+              this.userTokens.push(this.createNodes(true, parseFloat(currentNumber)));
+              currentNumber = "";
+            }
+            if (char === "+" || char === "-") {
+              while (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] !== "("
               ) {
-                // access helper function to push a 0 to the stack, this is for the use case such as "-(" To solve this the expression in paranthesis is subtracted from 0
-                this.userTokens.push( this.createNodes(true, 0));
-                this.operators.push("-");
+                const node = this.createNodes();
+                this.userTokens.push(node);
               }
-              // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
-                else if (
-                  !isNaN(char) || char === "." || (char === "-" && (i === 0 || (isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "(")))
-                      ) {
-                      currentNumber += char;
-                      // Does operations like (2)2 = 4
-                      if (")" === input.charAt(i - 1)) {
-                        this.operators.push("*");
-                      }
+              this.operators.push(char);
+            } else if (char === "*" || char === "/" || char === "!") {
+              while (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] !== "(" &&
+                (this.operators[this.operators.length - 1] === "*" ||
+                  this.operators[this.operators.length - 1] === "/")
+              ) {
+                const node = this.createNodes();
+                this.userTokens.push(node);
+              }
+              this.operators.push(char);
+            }
+            else if (char === "^") {
+              while (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] !== "(") {
+                const node = this.createNodes();
+                this.userTokens.push(node);
+              }
+              this.operators.push(char);
+            } else if (char === "(") {
+              this.operators.push(char);
 
-                      // Does operations like 2(2) = 4
-                      if ("(" === input.charAt(i + 1)) {
-                        this.operators.push("*");
-                      }
-              } else {
-                      if (currentNumber !== "") {
-                        // access helper function to push a node and number to the stack
-                        this.userTokens.push( this.createNodes(true, parseFloat(currentNumber)));
-                        currentNumber = "";
-                      }
-                      if (char === "+" || char === "-") {
-                        while (
-                          this.operators.length > 0 &&
-                          this.operators[this.operators.length - 1] !== "("
-                        ) {
-                          const node = this.createNodes();
-                          this.userTokens.push(node);
-                        }
-                        this.operators.push(char);
-                      } else if (char === "*" || char === "/" || char === "!") {
-                          while (
-                            this.operators.length > 0 &&
-                            this.operators[this.operators.length - 1] !== "(" &&
-                            (this.operators[this.operators.length - 1] === "*" ||
-                              this.operators[this.operators.length - 1] === "/")
-                          ) {
-                            const node = this.createNodes();
-                            this.userTokens.push(node);
-                          }
-                                  this.operators.push(char);
-                        }
-                        else if (char === "^") {
-                          while (
-                            this.operators.length > 0 &&
-                            this.operators[this.operators.length - 1] !== "(")                           
-                          {
-                            const node = this.createNodes();
-                            this.userTokens.push(node);
-                          }
-                            this.operators.push(char);
-                      } else if (char === "(") {
-                        this.operators.push(char);
+            } else if (char === ")") {
+              while (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] !== "("
+              ) {
+                const node = this.createNodes();
+                this.userTokens.push(node);
+              }
 
-                      } else if (char === ")") {
-                        while (
-                          this.operators.length > 0 &&
-                          this.operators[this.operators.length - 1] !== "("
-                        ) {
-                          const node = this.createNodes();
-                          this.userTokens.push(node);
-                        }
-                
-                if (
-                  this.operators.length > 0 &&
-                  this.operators[this.operators.length - 1] === "("
-                ) {
-                  this.operators.pop();
-                }
+              if (
+                this.operators.length > 0 &&
+                this.operators[this.operators.length - 1] === "("
+              ) {
+                this.operators.pop();
               }
             }
-            // This was an array for testing each number addition to the expression
-            // this.arrayOfNumbersOnly.push(currentNumber);
-            // console.log(this.arrayOfNumbersOnly)
           }
-          // Add the last number if there is one
-          if (currentNumber !== "") {
-            // access helper function to push a node and number to the stack
-            this.userTokens.push( this.createNodes(true, parseFloat(currentNumber)));
-          }
-          // Perform remaining operations
-          while (this.operators.length > 0) {            
-            const node = this.createNodes();
-            this.userTokens.push(node);
-          }
-          // calculate the final result
-          var result = this.evaluate(this.userTokens[0]);
-          
-          // This goes to output all the results in its own function
-          this.setOutputs(result);
-
-          // Good article about using NaN in JavaScript like the function above does ^
-          // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
-          // This method works below, but others could also work.
+          // This was an array for testing each number addition to the expression
+          // this.arrayOfNumbersOnly.push(currentNumber);
+          // console.log(this.arrayOfNumbersOnly)
         }
+        // Add the last number if there is one
+        if (currentNumber !== "") {
+          // access helper function to push a node and number to the stack
+          this.userTokens.push(this.createNodes(true, parseFloat(currentNumber)));
+        }
+        // Perform remaining operations
+        while (this.operators.length > 0) {
+          const node = this.createNodes();
+          this.userTokens.push(node);
+        }
+        // calculate the final result
+        var result = this.evaluate(this.userTokens[0]);
+
+        // This goes to output all the results in its own function
+        this.setOutputs(result);
+
+        // Good article about using NaN in JavaScript like the function above does ^
+        // https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
+        // This method works below, but others could also work.
+
       } catch (error) {
         this.result = null;
       }
     },
-        </code>   
+    </code>   
     </pre>
-    <p class="paragraph-text break-text">Adding in explantions on how the buttons on the cowculator are generated.</p>
-    <pre v-bind:class="'language-markup'" class="code-format">
+
+
+    <hr style="background-color: blue; height: 2px;">
+    <p class="paragraph-text break-text ">Adding in explanations on how the buttons on the cowculator are generated.
+    This generates the whole main cowculator interface with buttons using a v-for loop. Specific class styling are applied based on the 
+    button type referenced from the buttonList array. The buttonList array is used to generate the buttons and the isActive array is used to
+    highlight the numbers as they are pressed on the keyboard or removed with the &lt;- back button.
+
+    </p>
+    <pre v-bind:class="'language-html line-numbers'" class="code-format">
       <code>
-      
+
+      &lt;div class=&quot;grid-container cow-image&quot;&gt;
+        &lt;button v-for=&quot;button in buttonList&quot; :key=&quot;button&quot; :class=&quot;[&#39;grid-item&#39;, {
+            &#39;grid-item-symbols&#39;: button === &#39;+&#39; || button === &#39;-&#39; || button == &#39;\u00F7&#39; || button == &#39;\u00D7&#39;, &#39;tooltip&#39; : button === &#39;power&#39;,
+            active: isActive[button]
+          }]&quot; @click=&quot;addNumber(button)&quot;&gt;
+
+            &lt;div v-if=&quot;button === &#39;&lt;-&#39;&quot; class=&quot;arrow-position&quot;&gt;
+              &lt;div class=&quot;left-arrow&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;      
+            &lt;div v-else-if=&quot;button === &#39;power&#39;&quot;&gt;
+              &lt;i&gt;x&lt;sup&gt;y&lt;/sup&gt;&lt;/i&gt;
+              &lt;span class=&quot;tooltiptext&quot;&gt;{{ showTooltip }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div v-else&gt;
+              {{ button }}
+            &lt;/div&gt;
+
+        &lt;/button&gt;
+      &lt;/div&gt;
       
       </code>   
     </pre>
-  
-    <pre v-bind:class="'language-JavaScript'" class="code-format">
+    <p class="paragraph-text break-text ">The buttonList array is used to generate the buttons in the v-for loop. 
+      Depending on the button function, whatever argument that is inputted into the addNumber function will be used to determine what the button does.
+
+    </p>
+    <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
+    <code>
+
+    // This is the list/array of buttons that are used to generate the cowculator buttons
+    buttonList: ["\u00D7", "1", "2", "3", "\u00F7", "4", "5", "6", "-", "7", "8", "9", "+", "&lt;-", ".", "0", "power", "(", ")", "Moo"],
+
+
+    // this decides what each button type does
+    addNumber(buttonValueToAdd) {
+      if (buttonValueToAdd === "&lt;-") {
+        this.removeEntry();
+        this.checkInput();
+      } else if (buttonValueToAdd === "power") {
+        this.squared();
+      }
+      else if (buttonValueToAdd === "Moo") {
+        this.addMoo(), this.mooButtonHit();
+      } else {
+        this.expression += buttonValueToAdd;
+      }
+    },  
+
+
+    
+
+  </code>   
+    </pre>
+
+    <hr style="background-color: blue; height: 2px;">
+
+
+    <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
     <code>
     //helper function to create nodes - this separates the concerns and makes functions shorter
     createNodes(pushNode = false, number = 0){
@@ -179,7 +239,7 @@
     </code>   
     </pre>
     <p class="paragraph-text break-text"> This code below sets the outputs the user sees, and all the final results of the code:</p>
-    <pre v-bind:class="'language-JavaScript'" class="code-format">
+    <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
     <code>
             // This just sets the outputs to the result of the cowculation function so the function is shorter    
             setOutputs(result){
@@ -223,7 +283,7 @@
         </code>   
     </pre>
     <p class="paragraph-text break-text"> This code below evalutes the nodes that are parsed:</p>
-    <pre v-bind:class="'language-JavaScript'" class="code-format">
+    <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
     <code>
             // Perform calculations
             evaluate(node) {
@@ -270,6 +330,11 @@
 </template>
 
 <script>
+
+// import prismjs mods
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js'
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+//import 'prismjs/themes/prism-okaidia.css'
 
 export default {
     name: "CowculatorCode",
@@ -318,10 +383,10 @@ export default {
 
   }
 
-  .code-format {
-    margin-left: 2em;
-    font-size: 1em;
-    margin-right: 2em;
+  .code-format {    
+    font-size: 0.75em;    
+    margin-left: 0em;
+    margin-right: 0em;
   }
 
 }

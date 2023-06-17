@@ -638,6 +638,7 @@ export default {
         this.mooMessage = false;
       }, 1500);
     },
+     // this decides what each button type does
     addNumber(buttonValueToAdd) {
       if (buttonValueToAdd === "<-") {
         this.removeEntry();
@@ -650,10 +651,7 @@ export default {
       } else {
         this.expression += buttonValueToAdd;
       }
-    },
-    addMathOperator(mathOperatorToAdd) {
-      this.expression += mathOperatorToAdd;
-    },
+    },    
     addMoo() {
       this.expression += "Moo";
     },
