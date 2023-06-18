@@ -705,82 +705,29 @@ export default {
       return addMultParenthesis;
     },
     autoFixIncorrectInput(str) {
-      // check that the expression isn't MooMoo first so we don't delete the expression when doing Moo operations!
+      // This code was updated from a long if-else chain to just regex so could have some bugs, likely its good!
 
-      //if (!this.expression === "Moo\u00D7Moo"){
+      // If someone types 5-+2 or 5-/2 or 5-*2 or other incorrect inputs this will fix them.
+      const lastTwoChars = str.slice(-2);
+      const lastThreeChars = str.slice(-3);
 
-      // If someone types 5-+2 or 5-/2 or 5-*2 this will automatically change it to the last typed character
-      if (str[str.length - 2] === "-" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (str[str.length - 2] === "-" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (str[str.length - 2] === "-" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (
-        str[str.length - 3] === "-" &&
-        str[str.length - 2] === "-" &&
-        str[str.length - 1] === "-"
-      ) {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
+      const regexPatterns = [
+        { pattern: /-\+|-\/|-\\|\+\+|\+\/|\+\*|\*\+|\*\/|\*\*|\+\\|\/\+|\/\/|\/\*/, replacement: '' },
+        { pattern: /--|--|-\\/, replacement: '-' }
+      ];
+
+      for (const regex of regexPatterns) {
+        if (regex.pattern.test(lastTwoChars) || regex.pattern.test(lastThreeChars)) {
+          this.expression = str.slice(0, -2) + str.slice(-1)
+            .replaceAll("/", "\u00F7")
+            .replaceAll("*", "\u00D7")
+            .replace(regex.pattern, regex.replacement);
+          break;
+        }
       }
-      // If someone types 5++2 or 5+/2 or 5+*2 this will automatically change it to the last typed character
-      else if (str[str.length - 2] === "+" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (str[str.length - 2] === "+" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (str[str.length - 2] === "+" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      }
-      // If someone types 5*+2 or 5*/2 or 5**2 this will automatically change it to the last typed character
-      else if (str[str.length - 2] === "*" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (str[str.length - 2] === "*" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (
-        str[str.length - 3] === "*" &&
-        str[str.length - 2] === "-" &&
-        str[str.length - 1] === "-"
-      ) {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (str[str.length - 2] === "*" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      }
-      // If someone types 5/+2 or 5//2 or 5/*2 this will automatically change it to the last typed character
-      else if (str[str.length - 2] === "/" && str[str.length - 1] === "+") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (str[str.length - 2] === "/" && str[str.length - 1] === "/") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("/", "\u00F7")
-          .replaceAll("*", "\u00D7");
-      } else if (str[str.length - 2] === "/" && str[str.length - 1] === "*") {
-        this.expression = (str.slice(0, -2) + str.slice(-1))
-          .replaceAll("*", "\u00D7")
-          .replaceAll("/", "\u00F7");
-      }
+      // for output to screen to show x instead of * and ÷ instead of /
+      this.expression = this.expression.replaceAll("/", "\u00F7")
+            .replaceAll("*", "\u00D7")
     },
     removeEntry() {
       if (this.expression != "") {

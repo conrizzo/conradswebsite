@@ -42,13 +42,10 @@ nav {
   /* padding: 0.3em 0.25em 0.3em 0.25em; */
   
   font-size: 1.25em;
-  background-color: rgba(255, 255, 255);
-   
-  
+  background-color: rgba(255, 255, 255);  
 }
 
-nav a {
-  
+nav a {  
   color: rgb(75, 75, 75);
   text-decoration: none;
   background-color: rgb(255, 255, 255);
@@ -57,8 +54,7 @@ nav a {
   padding: 0.4em 0.6em 0.4em 0.6em;  
 }
 
-nav a:hover {
-  
+nav a:hover {  
   color: #34B7F1;
   text-decoration: none;  
   background-color: none; 
