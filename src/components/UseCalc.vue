@@ -705,30 +705,31 @@ export default {
       return addMultParenthesis;
     },
     autoFixIncorrectInput(str) {
-      // This code was updated from a long if-else chain to just regex so could have some bugs, likely its good!
+  // This code was updated from a long if-else chain to just regex so could have some bugs, likely its good!
 
-      // If someone types 5-+2 or 5-/2 or 5-*2 or other incorrect inputs this will fix them.
-      const lastTwoChars = str.slice(-2);
-      const lastThreeChars = str.slice(-3);
+  // If someone types 5-+2 or 5-/2 or 5-*2 or other incorrect inputs this will fix them.
+  const lastTwoChars = str.slice(-2);
+  const lastThreeChars = str.slice(-3);
 
-      const regexPatterns = [
-        { pattern: /-\+|-\/|-\\|\+\+|\+\/|\+\*|\*\+|\*\/|\*\*|\+\\|\/\+|\/\/|\/\*/, replacement: '' },
-        { pattern: /--|--|-\\/, replacement: '-' }
-      ];
+  const regexPatterns = [
+    { pattern: /-\+|-\/|-\\|\+\+|\+\/|\+\*|\*\+|\*\/|\*\*|\+\\|\/\+|\/\/|\/\*/, replacement: '' },
+    { pattern: /---/, replacement: '-' },
+    { pattern: /-\*/, replacement: '*' }
+  ];
 
-      for (const regex of regexPatterns) {
-        if (regex.pattern.test(lastTwoChars) || regex.pattern.test(lastThreeChars)) {
-          this.expression = str.slice(0, -2) + str.slice(-1)
-            .replaceAll("/", "\u00F7")
-            .replaceAll("*", "\u00D7")
-            .replace(regex.pattern, regex.replacement);
-          break;
-        }
-      }
-      // for output to screen to show x instead of * and ÷ instead of /
-      this.expression = this.expression.replaceAll("/", "\u00F7")
-            .replaceAll("*", "\u00D7")
-    },
+  for (const regex of regexPatterns) {
+    if (regex.pattern.test(lastTwoChars) || regex.pattern.test(lastThreeChars)) {
+      this.expression = str.slice(0, -2) + str.slice(-1)
+        .replaceAll("/", "\u00F7")
+        .replaceAll("*", "\u00D7")
+        .replace(regex.pattern, regex.replacement);
+      break;
+    }
+  }
+  // for output to screen to show x instead of * and ÷ instead of /
+  this.expression = this.expression.replaceAll("/", "\u00F7")
+        .replaceAll("*", "\u00D7")
+},
     removeEntry() {
       if (this.expression != "") {
         if (this.expression.slice(-3) == "Moo") {
