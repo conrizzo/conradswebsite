@@ -13,8 +13,8 @@
       :rect="object.rect"
       ref="foodObjects"
     />
+
   </div>
-  
   <h1 style="float: left; position: absolute;"> This is under construction!</h1>
   <div class="unselectable" style="padding-top: 1em; padding-bottom: 1em;">
     
@@ -92,6 +92,7 @@
   </div>
 
 </template>
+
 
 <script lang="ts">
 import { defineComponent} from "vue";
@@ -213,7 +214,8 @@ export default defineComponent({
         }
         
       }      
-    },*/checkCollision(rect1: DOMRect, rect2: DOMRect) {
+    },*/checkCollision(rect1: any, rect2: any) {
+      // the type of this is DomRect but to fix errors am allowing any
         return (
           rect1.left < rect2.right &&
           rect1.right > rect2.left &&
@@ -247,10 +249,15 @@ export default defineComponent({
   },
   // This is like the main code that checks for collisions and anything to evaluate in real time
   // It goes here, then this invokes the other functions   
+  // --- this needs to be read through and understood
     updatePosition(index: number, position: { top: number; left: number }) {
+      const foodObjects = (this.$refs as { foodObjects: typeof CowFood[] }).foodObjects;
+      const foodElement = foodObjects[index].$el as HTMLElement;
+
       const foodObject = this.cowFoodObjects[index];
       foodObject.position = position;
-      const foodElement = this.$refs.foodObjects[index].$el as HTMLElement;
+
+      
       foodObject.rect = foodElement.getBoundingClientRect();
       console.log(foodObject.rect)
       this.checkCollisions();
