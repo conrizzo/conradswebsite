@@ -1,6 +1,6 @@
 <template>
   <div>
-
+   
    <!-- @food-returned="handleFoodReturned" -->
     <CowFood
       v-for="(object, index) in cowFoodObjects"
@@ -15,7 +15,9 @@
     />
 
   </div>
+ 
   <h1 style="float: left; position: absolute;"> This is under construction!</h1>
+  <h1 style="float: left; left: 60px; top: 260px; position: absolute;">Drag the cow food below!</h1>
   <div class="unselectable" style="padding-top: 1em; padding-bottom: 1em;">
     
     <h2>Cow Food Coordinates:</h2>
@@ -26,8 +28,8 @@
   <div style="background-color: rgb(75, 75, 75);   top: 0; height: 255px;">
     <h1 class="unselectable">The Cows need their food delivered! Deliver the correct food to make the cows happy!</h1>
     <button style="float: left; margin-left: 1em; background-color: rgb(173, 173, 173); color: black;" class="button-35" @click="refreshPage">Reset</button>
-      <div v-if="winningMessage"><h1>You win!</h1></div>
-      <div v-else-if="losingMessage"><h1>You Lose!</h1></div>
+      <!---<div v-if="winningMessage"><h1>You win!</h1></div>
+      <div v-else-if="losingMessage"><h1>You Lose!</h1></div>-->
       <div v-if="isThereACollision"><h1>{{ collisionMessage }}</h1></div>
       <h1 class="unselectable">{{  customMessage }}</h1>
       <div v-if="collisionCowPasture"><h1>{{ cowPastureCollisionMessage }}</h1></div>
@@ -104,6 +106,7 @@ interface cowFoodObjectsData {
   label: string;
   position: Position;
   rect: DOMRect | null;  
+  inPasture: boolean;
 }
 interface Position {
   top: number;
@@ -118,6 +121,7 @@ export default defineComponent({
     return {
       winningMessage: false,
       losingMessage: false,
+      
       customMessage: "",
       firstCowFoodObject: [] as [number, number] | never[],
       secondCowFoodObject: [] as [number, number] | never[],
@@ -133,6 +137,7 @@ export default defineComponent({
           label: "Grass",
           position: { top: 310, left: 90 },
           rect: null,
+          inPasture: false,
           
         },
         {
@@ -140,12 +145,14 @@ export default defineComponent({
           label: "Peanut Butter",
           position: { top: 310, left: 200 },
           rect: null,
+          inPasture: false,
         },
         {
           id: 'onion-rings',
           label: "Onion Rings",
           position: { top: 310, left: 310 },
           rect: null,
+          inPasture: false,
         },
       ] as cowFoodObjectsData[], 
       movedFoodLabel: "",
@@ -158,6 +165,15 @@ export default defineComponent({
   },  
 
   methods: {
+    areGrassAndPeanutButterInPasture() {
+    const grassInPasture = this.cowFoodObjects[0].inPasture;
+    const peanutButterInPasture = this.cowFoodObjects[1].inPasture;
+    if(grassInPasture && peanutButterInPasture){
+      this.winningMessage = true;
+      this.customMessage = "You win! The cows are happy and full! they love to eat " + this.cowFoodObjects[1].label + " and " +this.cowFoodObjects[0].label +"!";
+    }
+  },
+    
     updateRects() {
       const foodObjects = this.$refs.foodObjects as typeof CowFood[];
       foodObjects.forEach((foodObject, index) => {
@@ -237,20 +253,40 @@ export default defineComponent({
   }
   return false;
 },checkGreenAreaCollisions() {
-    const greenArea = document.querySelector('.farm') as HTMLElement;
-    const greenAreaRect = greenArea.getBoundingClientRect();
-    for (let i = 0; i < this.cowFoodObjects.length; i++) {
-      const foodObjectRect = this.cowFoodObjects[i].rect;
-      if (this.checkCollision(foodObjectRect, greenAreaRect)) {
+  const greenArea = document.querySelector('.farm') as HTMLElement;
+  const greenAreaRect = greenArea.getBoundingClientRect();
+  const inPasture: string[] = [];
+
+  for (let i = 0; i < this.cowFoodObjects.length; i++) {
+    const foodObjectRect = this.cowFoodObjects[i].rect;
+    if (this.checkCollision(foodObjectRect, greenAreaRect)) {
+      if (!this.cowFoodObjects[i].inPasture) {
         this.collisionCowPasture = true;
         this.cowPastureCollisionMessage = (`${this.cowFoodObjects[i].label} has entered the cow pasture!`);
+        this.cowFoodObjects[i].inPasture = true;
+        console.log("Enter cow", this.cowFoodObjects[i].inPasture)
+      }
+      inPasture.push(this.cowFoodObjects[i].label);
+    } else { // add an else block to set inPasture to false if the object leaves the pasture
+      if (this.cowFoodObjects[i].inPasture) {
+        this.cowFoodObjects[i].inPasture = false;
+        console.log("Leave cow", this.cowFoodObjects[i].inPasture)
       }
     }
-  },
+  }
+  if (inPasture.length > 0) {
+    this.collisionCowPasture = true;
+    this.cowPastureCollisionMessage = (`${inPasture.join(', ')} ${inPasture.length > 1 ? 'are' : 'is'} in the cow pasture!`);
+  } else {
+    this.collisionCowPasture = false;
+    this.cowPastureCollisionMessage = '';
+  }
+},
   // This is like the main code that checks for collisions and anything to evaluate in real time
   // It goes here, then this invokes the other functions   
   // --- this needs to be read through and understood
     updatePosition(index: number, position: { top: number; left: number }) {
+
       const foodObjects = (this.$refs as { foodObjects: typeof CowFood[] }).foodObjects;
       const foodElement = foodObjects[index].$el as HTMLElement;
 
@@ -262,6 +298,7 @@ export default defineComponent({
       console.log(foodObject.rect)
       this.checkCollisions();
       this.checkGreenAreaCollisions();
+      this.areGrassAndPeanutButterInPasture();
     },
   },  
   
