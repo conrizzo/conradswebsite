@@ -1,7 +1,5 @@
 <template>
   <aside>
-    
-
     <!-- eslint-disable-next-line vue/valid-v-slot -->
     <slot name="aside-content"></slot>
     <!--<p class="aside" style="margin-top: 1em">
@@ -19,11 +17,8 @@ export default {
 <style scoped>
 aside {
   background-color: #ffffff;
-  border-left: 2px solid #ff5959;
-  
+  border-left: 2px solid #ff5959;  
   padding: 2em;
-  
-
 }
 
 p.aside {

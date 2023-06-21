@@ -2,13 +2,9 @@
   <nav>
     <router-link to="/">Home</router-link> 
     <router-link to="/about">About</router-link> 
-    
-
     <!--import the dropdown menu into the nav bar-->
-    <DropDownMenu></DropDownMenu>
-    
-  </nav>
- 
+    <DropDownMenu></DropDownMenu>    
+  </nav> 
   <router-view />
 </template>
 
@@ -39,8 +35,7 @@ nav {
   justify-content: center;
   align-items: center;
   position: fixed; 
-  /* padding: 0.3em 0.25em 0.3em 0.25em; */
-  
+  /* padding: 0.3em 0.25em 0.3em 0.25em; */  
   font-size: 1.25em;
   background-color: rgba(255, 255, 255);  
 }
@@ -66,8 +61,7 @@ nav a.router-link-exact-active {
 }
 
 html,
-body {
-  
+body {  
   padding-top: 1.33em;
   /* background-color: rgb(100, 100, 100); */
   background-color: rgb(110, 110, 110);
