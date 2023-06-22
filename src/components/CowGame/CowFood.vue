@@ -2,17 +2,13 @@
     
     
 
-    <div class="movable-object unselectable" :style="{ top: position.top + 'px', left: position.left + 'px' }" @mousedown="startDrag">
+    <div :class="{ 'peanut-butter': label === 'Peanut Butter', 'onion-rings': label === 'Onion Rings' }" class="movable-object unselectable" :style="{ top: position.top + 'px', left: position.left + 'px' }" @mousedown="startDrag">
 
         <b class="unselectable" style="color: white; pointer-events: none;">
 
             {{ label }} <!-- {{ position.top }} {{ position.left }} -->
         </b>
-    </div>    
-
-   
-
-  
+    </div>      
 </template>
   
 <script lang="ts">
@@ -46,8 +42,13 @@ export default defineComponent({
         startDrag(event: MouseEvent) {
             this.isMouseDown = true;
             const rect = (event.target as HTMLElement).getBoundingClientRect();
-            this.offsetX = event.clientX - rect.left;
-            this.offsetY = event.clientY - rect.top;
+
+            
+            this.offsetX = event.clientX - rect.left - window.scrollX;
+            this.offsetY = event.clientY - rect.top - window.scrollY;
+
+            //this.offsetX = event.clientX - rect.left;
+            //this.offsetY = event.clientY - rect.top;
         },
         stopDrag() {
             this.isMouseDown = false;
@@ -58,11 +59,10 @@ export default defineComponent({
             this.position.top = event.clientY - this.offsetY;
             this.position.left = event.clientX - this.offsetX;
 
-             // Emit an event with the updated position
-      this.$emit('position-updated', this.position);
-
-           
             
+
+             // Emit an event with the updated position
+      this.$emit('position-updated', this.position);            
              
             if (this.position.left > 500 && this.position.top > 304 && !this.alertShown) { // check if alert has been shown
                         this.alertShown = true; // set alertShown to true to block future alerts
@@ -95,8 +95,19 @@ export default defineComponent({
     position: absolute;
     width: 100px;
     height: 60px;
-    background-color: rgb(30, 255, 0);
+    background-color: rgb(60, 255, 0);
     padding-top: 40px;
+   
+}
+
+.peanut-butter{
+  background-color: #7e5d02;
+  color: #fff;
+}
+
+.onion-rings{
+    background-color: #b6b609;
+    color: #000;
 }
 
 .unselectable {
@@ -108,20 +119,5 @@ export default defineComponent({
     user-select: none;
 }
 
-div.text-container {
-    display: flex;
-    justify-content: center;
-}
 
-div.text-container span {
-    text-align: left;
-}
-
-.delivered-color {
-    color: rgb(30, 255, 0);
-}
-
-.undelivered-color {
-    color: #ff5959;
-}
 </style>

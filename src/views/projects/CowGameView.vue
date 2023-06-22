@@ -1,31 +1,43 @@
 <template>
-  <div>
-   
-   <!-- @food-returned="handleFoodReturned" -->
-    <CowFood
-      v-for="(object, index) in cowFoodObjects"
-      :key="index"
-      :label="object.label"
-      :initialPosition="object.position"
-      @food-moved="handleFoodMoved"
-     
-      @position-updated="updatePosition(index, $event)"
-      :rect="object.rect"
-      ref="foodObjects"
-    />
-
-  </div>
- 
-  <h1 style="float: left; position: absolute;"> This is under construction!</h1>
-  <h1 style="float: left; left: 60px; top: 260px; position: absolute;">Drag the cow food below!</h1>
-  <div class="unselectable" style="padding-top: 1em; padding-bottom: 1em;">
+  <div class="my-page">
+    <div class="">
     
-    <h2>Cow Food Coordinates:</h2>
-    <div style="color: white;" v-for="(object, index) in cowFoodObjects" :key="index">
+    <!-- @food-returned="handleFoodReturned" -->
+      <CowFood
+        v-for="(object, index) in cowFoodObjects"
+        :style="{zIndex: 2}"
+        :key="index"
+        :label="object.label"
+        :initialPosition="object.position"
+        @food-moved="handleFoodMoved"
+      
+        @position-updated="updatePosition(index, $event)"
+        :rect="object.rect"
+        ref="foodObjects"
+      />
+
+    </div>
+  
+    <div v-if="showAboutCowGame">
+        <AboutCowGame          
+          @close="toggleAboutCowGame"
+        />
+    </div>
+
+  <h1 class="unselectable" style="float: left; position: absolute;"> This is under construction!</h1>
+  <h1 class="unselectable" style="float: left; left: 60px; top: 260px; position: absolute;">Drag the cow food below!</h1>
+  <div class="unselectable" style="padding-top: 1em; padding-bottom: 1em;">
+   
+     <!-- generate the pasture -->
+ 
+    <h2 style="color: #fff;">Cow Food Coordinates:</h2>
+    <div style="color: #fff;" v-for="(object, index) in cowFoodObjects" :key="index">
       <p>{{ object.label }}: Top {{ object.position.top }}, Left {{ object.position.left }}</p>
     </div>
   </div>
-  <div style="background-color: rgb(75, 75, 75);   top: 0; height: 255px;">
+  <div style="
+      background-color:  rgb(0, 138, 156);
+     top: 0; height: 255px; padding-bottom: 1em;">
     <h1 class="unselectable">The Cows need their food delivered! Deliver the correct food to make the cows happy!</h1>
     <button style="float: left; margin-left: 1em; background-color: rgb(173, 173, 173); color: black;" class="button-35" @click="refreshPage">Reset</button>
       <!---<div v-if="winningMessage"><h1>You win!</h1></div>
@@ -34,63 +46,19 @@
       <h1 class="unselectable">{{  customMessage }}</h1>
       <div v-if="collisionCowPasture"><h1>{{ cowPastureCollisionMessage }}</h1></div>
   </div>
-  <h1 class="unselectable" style="padding-top: 1em;">The Happy Cow Pasture! (Filled with cows that need to eat)</h1>
   
-  <div class="farm">
-    <div class="row">
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
+  
+ <div style="padding-bottom: 100px; padding-top: 50px;">
+ 
+ 
+    <div class="farm">
+      <h1 class="unselectable">Cow Pasture</h1>
+      <p class="unselectable paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow pasture filled with hungry cows! (Danger: Some cows may be hangry!)</p>
+      
     </div>
-    <div class="row">
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-    </div>
-    <div class="row">
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-    </div>
-    <div class="row">
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-    </div>
-    <div class="row">
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-    </div>
-    <div class="row">
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-    </div>
-    <div class="row">
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-    </div>
-    <div class="row">
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-      <div class="brown-soil"></div>
-    </div>
-    <div class="row">
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-      <div class="green-soil"></div>
-    </div>    
+
+  </div>
+  <button style="background-color: #ff5959; margin-bottom: 1em;" class="button-35" @click="toggleAboutCowGame">About</button>
   </div>
 
 </template>
@@ -98,8 +66,9 @@
 
 <script lang="ts">
 import { defineComponent} from "vue";
-
+import "@/assets/globalCSS.css";
 import CowFood from "@/components/CowGame/CowFood.vue";
+import AboutCowGame from "@/components/CowGame/AboutCowGame.vue";
 
 interface cowFoodObjectsData {
   id: string;
@@ -115,7 +84,7 @@ interface Position {
 export default defineComponent({
   name: "CowGameView",
   components: {
-    CowFood,
+    CowFood, AboutCowGame
   },
   data() {
     return {
@@ -130,7 +99,9 @@ export default defineComponent({
       collisionMessage: "",
       collisionCowPasture: false,
       cowPastureCollisionMessage: "",
+      showAboutCowGame: false,
       
+
       cowFoodObjects: [
         {
           id: 'grass',
@@ -146,6 +117,7 @@ export default defineComponent({
           position: { top: 310, left: 200 },
           rect: null,
           inPasture: false,
+          
         },
         {
           id: 'onion-rings',
@@ -153,22 +125,27 @@ export default defineComponent({
           position: { top: 310, left: 310 },
           rect: null,
           inPasture: false,
-        },
+        },        
       ] as cowFoodObjectsData[], 
-      movedFoodLabel: "",
-      returnedFoodMessage: "",
+     
     };
     
   }, 
   mounted() {
     this.updateRects();    
+  
   },  
 
   methods: {
+    toggleAboutCowGame() {
+      this.showAboutCowGame = !this.showAboutCowGame;
+    },
+   
     areGrassAndPeanutButterInPasture() {
     const grassInPasture = this.cowFoodObjects[0].inPasture;
     const peanutButterInPasture = this.cowFoodObjects[1].inPasture;
-    if(grassInPasture && peanutButterInPasture){
+    const onionRingsInPasture = this.cowFoodObjects[2].inPasture;
+    if(grassInPasture && peanutButterInPasture && !onionRingsInPasture){
       this.winningMessage = true;
       this.customMessage = "You win! The cows are happy and full! they love to eat " + this.cowFoodObjects[1].label + " and " +this.cowFoodObjects[0].label +"!";
     }
@@ -273,10 +250,14 @@ export default defineComponent({
         console.log("Leave cow", this.cowFoodObjects[i].inPasture)
       }
     }
+  }if (inPasture.length === 1 && this.cowFoodObjects[2].inPasture){ 
+  this.collisionCowPasture = true;
+    this.cowPastureCollisionMessage = (`${inPasture.join(', ')} are in the cow pasture!`);
   }
-  if (inPasture.length > 0) {
+  else if (inPasture.length > 0) {
     this.collisionCowPasture = true;
     this.cowPastureCollisionMessage = (`${inPasture.join(', ')} ${inPasture.length > 1 ? 'are' : 'is'} in the cow pasture!`);
+    console.log(inPasture.length)
   } else {
     this.collisionCowPasture = false;
     this.cowPastureCollisionMessage = '';
@@ -319,10 +300,9 @@ export default defineComponent({
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(75, 75, 75);  
-  z-index: -2; /* Set the z-index to -2 to position the background behind the line */
+  background-color: rgb(75, 75, 75);   
+  z-index: 0; /* Set the z-index to -2 to position the background behind the line */
 }
-
 
 .farm {
   display: inline-flex;
@@ -330,32 +310,40 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  padding: 4px;
+  border: 2px dashed rgb(255, 255, 255);
+  
+  
+  z-index: -1;
+  background: 
+        
+        rgba(0, 255, 119, 0.66) 29%;
+       
+     
+  width: 500px;
+  height: 350px;
 }
 
   .row {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 4px;
+    margin-bottom: 1px;
   }
 
   .green-soil {
     width: 100px;
-    height: 40px;
-    background-color: #71ff25;
-    border-radius: 10px;
-    margin: 0 2px;
+    height: 30px;
+    background-color: #67ff52;
+   
+    border-radius: 1px;
+    z-index: 1;
+    margin: 0 1px;
+  }
+  
+  .my-page {
+     background-color: rgba(99, 67, 0, 0.856);
   }
 
-  .brown-soil {
-    width: 100px;
-    height: 40px;
-    background-color: #964B00;
-    border-radius: 10px;
-    margin: 0 2px;
-  }
+  
 </style>
 
