@@ -5,10 +5,15 @@
         <button class="close" @click.self="closeModal"></button>
        
   
-        <h2>This is a game project for fun/learning!</h2>
-        <p class="about-modal-text">
-        This was started June 19th 2023, and is built from scratch. It's not finished yet, so the exact mechanics of how the game works are a work in progress!
-      </p>
+        <h2>This is a game project</h2>
+        
+            <ul>
+            <li>This was started June 19th 2023, and is built from scratch.</li>
+            <li>It's made with Vue.js, TypeScript, JavaScript, etc.</li>
+            <li>It's not finished yet, so the exact mechanics of how the game works and what the final result will be are a surprise!</li>
+            <li>Not designed for mobile and touch devices, but can implement this later!</li>
+            </ul>
+     
       <p class="about-modal-text">
         One nice fix to this was changing:
     </p>
@@ -142,8 +147,23 @@
     transform: rotate(-45deg);
   }
   li + li {
-    margin-top: 0.5em;
+    margin-top: 0.5em;   
   }
+
+  li::marker{
+    color: #ff5959;
+    font-size: 1.1em;    
+  }
+
+ 
+  ul {
+  list-style-type: decimal ;
+  text-align: left;
+  padding-top: 1em;
+  padding-left: 1em;
+}
+
+  
   
   @media only screen and (max-width: 600px) {
     h2 {

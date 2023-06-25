@@ -7,6 +7,8 @@ import WeatherView from  '../views/projects/WeatherView.vue'
 import NaturalLanguageProcessingView from  '../views/projects/NaturalLanguageProcessingView.vue'
 import CowGameView from  '../views/projects/CowGameView.vue'
 
+
+
 import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
 import yadhtriByppahView from  '../views/yadhtriByppahView.vue'
 
@@ -82,6 +84,9 @@ const routes = [
     component: yadhtriByppahView,
     
   },
+
+  
+ 
 
 
   

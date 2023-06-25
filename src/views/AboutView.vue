@@ -35,6 +35,7 @@
       <figure class="center-figure">
         <img class="img-container" :src="imagePath" alt="Coding Languages used" />
         <figcaption>Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June 2023, currently starting to add in TypeScript support.
+          <br>Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
 
         </figcaption>
       </figure>
