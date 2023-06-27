@@ -8,9 +8,10 @@
         <h2>This is a game project</h2>
         
             <ul>
-            <li>This was started June 19th 2023, and is built from scratch.</li>
+            <li>This was started June 19th 2023, and is built from scratch for fun and to learn!</li>
             <li>It's made with Vue.js, TypeScript, JavaScript, etc.</li>
             <li>It's not finished yet, so the exact mechanics of how the game works and what the final result will be are a surprise!</li>
+            <li>Building a game with interactions and multiple objects being generated + tracking positions is challenging!</li>
             <li>Not designed for mobile and touch devices, but can implement this later!</li>
             </ul>
      

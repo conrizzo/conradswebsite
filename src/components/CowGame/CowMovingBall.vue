@@ -9,45 +9,52 @@
   </template>
   
   <script lang="ts">
+
+  
+  
   import { defineComponent } from 'vue';
   
   export default defineComponent({
     name: 'CowMovingBall',
     props: {
+    
+      initialPosition: {
+       /* type: Object, */ // Removing this type setting fixes the console log errors appearing in a loop, not sure why all this happens yet
+       
+       default: () => ({ top: 0, left: 0 })
+      },
+      
       speed: {
         type: Number,
         default: 5,
         required: false,
-        validator: (value: number) => value >= 0,
+        
       },
     },
     data() {
       return {
-        x: 600,
-        y: 600,
+        x: this.initialPosition.left,
+        y: this.initialPosition.top,
         directionX: 1,
-        directionY: 1,
-        position: {
-          x: 0,
-          y: 0,
-        },
+        directionY: 2,     
        
       };
     },
-    mounted() {
-      this.moveBall();
-    },
+    mounted() { 
+    
+    this.moveBall();  
+},
     methods: {
       moveBall() {
         setInterval(() => {
           this.x += this.speed * this.directionX;
           this.y += this.speed * this.directionY;
   
-          if (this.x >= window.innerWidth - 150 || this.x <= 0) {
+          if (this.x >= window.innerWidth - 160 || this.x <= 0) {
             this.directionX *= -1;
           }
   
-          if (this.y >= window.innerHeight - 150 || this.y <= 0) {
+          if (this.y >= window.innerHeight - 160 || this.y <= 0) {
             this.directionY *= -1;
           }
 
