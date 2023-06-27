@@ -12,15 +12,17 @@
  
     <!-- <CowMovingBall class="unselectable" ref="ball" ></CowMovingBall> -->
 
-    <!-- Very cool, can loop through the :ref ids for objects  :ref="ball.id" -->
+    <!-- Very cool, can loop through the :ref ids for objects  :ref="object.id" -->
     <CowMovingBall  v-for="(object, index) in bouncingBallObjects" 
-    :ref="object.id" 
+    
     :key="index"
-    :rect="object.rect" 
+    
     :initial-position="object.position"  
     :speed="object.speed"
-    @position-updated="updateBallPosition(index, $event)"></CowMovingBall>
-    
+    @position-updated="updateBallPosition(index, $event)" 
+    @rect-updated="updateBallRect(index, $event)"
+     ref="ballObjects"></CowMovingBall>
+  
    
 
     
@@ -70,24 +72,25 @@
     <div class="vertical-line-four"></div>
     
     <div style=" margin-left: 30em; padding-top: 30em;">
+      <h1 style="position: absolute; top: 3em; left: 1em; font-size: 5em; color: greenyellow;" class="unselectable">{{ customMessage }}</h1>
       <div class="farm">
         <h1 style="padding-top: 2em;" class="unselectable">Cow Pasture</h1>
         <p class="unselectable paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow
           pasture filled with hungry cows! (Danger: Some cows may be hangry!)</p>
-        <h1 style="font-size: 1.5em; color: greenyellow;" class="unselectable">{{ customMessage }}</h1>
+        
       </div>
       <div style="background-color:  rgb(99, 67, 0);
       top: 0;  padding-bottom: 1em;">
         <h1 style="font-size: 1.5em;" class="unselectable">The Cows need their food delivered! Deliver the correct food to make the cows happy!</h1>
         
       </div>
-      <div class="unselectable" style="padding-top: 1em; padding-bottom: 1em;">
+      <div class="unselectable">
       <!-- generate the pasture -->
-      <h2 style="color: #fff;">Cow Food Coordinates:</h2>
-      <div style="color: #fff;" v-for="(object, index) in cowFoodObjects" :key="index">
-        <p>{{ object.label }}: Top {{ object.position.top }}, Left {{ object.position.left }}</p>
-      </div>
-    </div>
+          
+          <div style="color: #fff;" v-for="(object, index) in cowFoodObjects" :key="index">
+            <p>{{ object.label }}: Top {{ object.position.top }}, Left {{ object.position.left }}</p>
+          </div>
+        </div>
     </div>
 
     <button style="background-color: #ff5959; position: absolute;  top: 600px; right: 1em;" class="button-35"
@@ -100,13 +103,14 @@
 
 
 <script lang="ts">
+
 import { defineComponent } from "vue";
 import "@/assets/globalCSS.css";
 import CowFood from "@/components/CowGame/CowFood.vue";
 import AboutCowGame from "@/components/CowGame/AboutCowGame.vue";
 import CowMovingBall from "@/components/CowGame/CowMovingBall.vue";
 
-interface ballObject {
+interface ballObjectData {
   id: string;  
   position: Position; 
   speed: number;
@@ -124,6 +128,8 @@ interface Position {
   top: number;
   left: number;
 }
+
+
 export default defineComponent({
   name: "CowGameView",
   components: {
@@ -144,61 +150,81 @@ export default defineComponent({
 
       isBlocked: false,
       hitCowFence: false,
-      onionRingsHitCowFence: false,
-
-      
+      onionRingsHitCowFence: false,      
 
       bouncingBallObjects: [
         {
-          id: 'ball-one',
-          position: { top: 200, left: 500 },     
-          speed: 6,     
-          rect: null,
+          id: 'ball1',
+          position: { top: 500, left: 500 },     
+          speed: 2,     
+          
          
         },
-        
-      ] as ballObject[],
+        {
+          id: 'ball2',
+          position: { top: 600, left: 500 },     
+          speed: 3,     
+     
+         
+        },
+        {
+          id: 'ball3',
+          position: { top: 700, left: 500 },     
+          speed: 4,     
+     
+         
+        },
+              
+      ] as ballObjectData[],
+
 
       cowFoodObjects: [
         {
           id: 'grass',
           label: "Grass",
           position: { top: Math.floor(Math.random() * (window.innerHeight - 100)), left: 10 },
-          rect: null,
+         
           inPasture: false,
-
         },
         {
           id: 'peanut-butter',
           label: "Peanut Butter",
           position: { top: Math.floor(Math.random() * (window.innerHeight - 100)), left: 120 },
-          rect: null,
+        
           inPasture: false,
-
         },
         {
           id: 'onion-rings',
           label: "Onion Rings",
           position: { top: Math.floor(Math.random() * (window.innerHeight - 100)), left: 230 },
-          rect: null,
+        
           inPasture: false,
         },
       ] as cowFoodObjectsData[],
 
     };
-
   },
   mounted() {  
  
       this.updateRects();
 
+      const ballObjects = this.$refs.ballObjects as typeof CowMovingBall[];
+      ballObjects.forEach((ballObject, index) => {
+      const ballElement = ballObject.$el as HTMLElement;
+      const rect = ballElement.getBoundingClientRect();
+      console.log(`Ball ${index} rect:`, rect);
+    });
+
       // debugging ---- 
+
+      
           
           // Loop through each bouncingBallObject in the array
             for (let i = 0; i < this.bouncingBallObjects.length; i++) {
               const ballObject = this.bouncingBallObjects[i];
               console.log(ballObject)   
             }
+
   },
   methods: {   
 
@@ -206,13 +232,31 @@ export default defineComponent({
       this.showAboutCowGame = !this.showAboutCowGame;
     },
 
-    updateBallPosition(index: number, position: { top: number; left: number }) {      
+    updateBallRect(index: number, rect: DOMRect) {
+      const ballObject = this.bouncingBallObjects[index] as ballObjectData;
+      ballObject.rect = rect;
+
+      //console.log(index, ballObject.rect)
+    },
+    
+   
+    updateBallPosition(index: number, position: { top: number; left: number; }) {      
 
     this.bouncingBallObjects[index].position = position;  
+   
+    /*
+    const ballObject = this.bouncingBallObjects[index] as ballObjectData;
+    ballObject.position = position;
+    const ballElement = (this.$refs.ballObjects as (typeof CowMovingBall)[])[index].$el as HTMLElement;
+    ballObject.rect = ballElement.getBoundingClientRect();
+    */
+   
 
-    //console.log(this.bouncingBallObjects[index].position); // check the position of the ball   
+    //console.log(this.bouncingBallObjects[index], this.bouncingBallObjects[index].position); // check the position of the ball   
     
     },   
+
+   
 
     cowFenceHit() {
       this.hitCowFence = true;
@@ -241,6 +285,17 @@ export default defineComponent({
           this.cowFoodObjects[index].rect = foodObject.$el.getBoundingClientRect();
         }
       });  
+      /*
+      const ballObjects = this.$refs.ballObjects as typeof CowMovingBall[];
+      ballObjects.forEach((ballObject, index) => {
+        if (!this.bouncingBallObjects[index].rect) {
+          this.bouncingBallObjects[index].rect = ballObject.$el.getBoundingClientRect();
+        }
+      });  
+*/
+
+      
+
 
       
    
@@ -292,6 +347,13 @@ export default defineComponent({
 
       const movingBall = document.querySelector('.ball') as HTMLElement;    
       const movingBallRect = movingBall.getBoundingClientRect();   
+
+      // This is 2nd value in the bouncingballobject array console.log(this.bouncingBallObjects[1].rect)
+      // This is 3rd value in the bouncingballobject array console.log(this.bouncingBallObjects[2].rect)
+
+
+     
+     
       
     
       //const movingBallFour = document.querySelector('ball-four') as HTMLElement;    
@@ -306,13 +368,13 @@ export default defineComponent({
             this.collisionCowPasture = true;
             this.cowPastureCollisionMessage = (`${this.cowFoodObjects[i].label} has entered the cow pasture!`);
             this.cowFoodObjects[i].inPasture = true;
-            console.log("Enter cow", this.cowFoodObjects[i].inPasture)
+            //console.log("Enter cow", this.cowFoodObjects[i].inPasture)
           }
           inPasture.push(this.cowFoodObjects[i].label);
         } else { // add an else block to set inPasture to false if the object leaves the pasture
           if (this.cowFoodObjects[i].inPasture) {
             this.cowFoodObjects[i].inPasture = false;
-            console.log("Leave cow", this.cowFoodObjects[i].inPasture)
+            //console.log("Leave cow", this.cowFoodObjects[i].inPasture)
           }
         }
         // check for collision with vertical-line
@@ -320,7 +382,9 @@ export default defineComponent({
           this.checkCollision(foodObjectRect, diagonalLineRect) ||
           this.checkCollision(foodObjectRect, verticalLineTwoRect) || 
           this.checkCollision(foodObjectRect, verticalLineThreeRect) ||
-          this.checkCollision(foodObjectRect, movingBallRect)
+          this.checkCollision(foodObjectRect, movingBallRect) ||
+          this.checkCollision(foodObjectRect, this.bouncingBallObjects[1].rect!) ||
+          this.checkCollision(foodObjectRect, this.bouncingBallObjects[2].rect!)
          
            /* ||
          
@@ -373,6 +437,7 @@ export default defineComponent({
       const foodObject = this.cowFoodObjects[index];
       foodObject.position = position;
       foodObject.rect = foodElement.getBoundingClientRect();          
+      //console.log( foodObject.rect)
 
       
       
@@ -474,7 +539,7 @@ export default defineComponent({
 }
 
 .horizontal-line {
-  width: 85em;
+  width: 82em;
   top: 28.3em;
   position: absolute;
   height: 10px;

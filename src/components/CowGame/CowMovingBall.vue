@@ -1,7 +1,7 @@
 <template>
     <div>
       <!-- The ball that moves around the screen -->
-      <div class="ball" :style="{ left: x + 'px', top: y + 'px' }">
+      <div ref="ballElement" class="ball" :style="{ left: x + 'px', top: y + 'px' }">
         <span class="ball-text"></span>
       </div>
       
@@ -11,18 +11,16 @@
   <script lang="ts">
 
   
-  
   import { defineComponent } from 'vue';
   
   export default defineComponent({
     name: 'CowMovingBall',
     props: {
-    
       initialPosition: {
        /* type: Object, */ // Removing this type setting fixes the console log errors appearing in a loop, not sure why all this happens yet
-       
        default: () => ({ top: 0, left: 0 })
       },
+
       
       speed: {
         type: Number,
@@ -30,20 +28,24 @@
         required: false,
         
       },
+      rect: {      
+      default: () => ({ top: 40, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+      },
     },
     data() {
       return {
+
         x: this.initialPosition.left,
         y: this.initialPosition.top,
         directionX: 1,
-        directionY: 2,     
-       
+        directionY: 1,      
       };
     },
-    mounted() { 
-    
-    this.moveBall();  
-},
+    mounted() {
+      
+
+      this.moveBall();
+    },
     methods: {
       moveBall() {
         setInterval(() => {
@@ -58,7 +60,11 @@
             this.directionY *= -1;
           }
 
+          const ballElement = this.$refs.ballElement as HTMLElement;
+          const rect = ballElement.getBoundingClientRect();
+          //console.log(rect)
           this.$emit('position-updated', this.x, this.y); 
+          this.$emit('rect-updated', rect);
         }, 10);
       },
     },
