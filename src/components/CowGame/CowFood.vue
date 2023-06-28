@@ -1,6 +1,8 @@
 <template>   
 
-    <div :class="{ 'peanut-butter': label === 'Peanut Butter', 'onion-rings': label === 'Onion Rings' }" class="movable-object unselectable" 
+    <div ref="cowFood" 
+    :class="{ 'peanut-butter': label === 'Peanut Butter', 'onion-rings': label === 'Onion Rings' }" 
+    class="movable-object unselectable" 
     :style="{ top: position.top + 'px', left: position.left + 'px' }" 
     @mousedown="startDrag"
     @touchstart="onTouchStart"
@@ -22,8 +24,7 @@ import { defineComponent } from "vue";
 
 interface Position {
     top: number;
-    left: number;
-   
+    left: number;   
 }
 
 export default defineComponent({
@@ -32,7 +33,9 @@ export default defineComponent({
     props: {
         label: {type: String, required: true,},
         initialPosition: {type: Object,required: true,},      
-         
+        rect: {      
+      default: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+      },
     },
     
     data() {
@@ -114,7 +117,12 @@ export default defineComponent({
                */
 
                // This keeps track of the position of the food in the CowGameView.vue
-               this.$emit('position-updated', this.position); 
+
+               //this.$emit('position-updated', this.position);   //PREVIOUS CODE
+
+               const cowFoodElement = this.$refs.cowFood as HTMLElement;
+               const rect = cowFoodElement.getBoundingClientRect();
+               this.$emit('rect-updated', rect); 
            }
         },      
         }, 
