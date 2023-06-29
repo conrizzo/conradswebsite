@@ -40,7 +40,7 @@
       The Onion Rings have special properties! They can hit the electric fence and the fireball and not cause you to lose! But they may or may not be important!
     </p>   
 
-    <div style="z-index: 3; position: absolute; right: 5em; top: 7em;" class="unselectable">      
+    <div style="z-index: 3; position: absolute; right: 3em; top: 2.9em;" class="unselectable">      
       <div v-if="isThereACollision">
         <h1>{{ collisionMessage }}</h1>
       </div>
@@ -48,11 +48,19 @@
       <div v-if="collisionCowPasture">
         <h1>{{ cowPastureCollisionMessage }}</h1>
       </div>
+     </div>
 
-      <div v-if="hitCowFence">
-        <h1 style="color: #ff5959;">The cow food collided with the electric fence or fireball! <br>The cows are sad! You are a bad cow farmer!</h1>
-      </div><div v-else-if="onionRingsHitCowFence"><h1>It's okay for the Onion rings to hit the electric fence or fireball!</h1></div>    
-    </div>
+     <!-- hitting items and losing messages -->
+      <div v-if="hitCowFence && !peanutButterHitCowFence" :style="{ left: cowFoodObjects[0].rect?.left + 'px', top: cowFoodObjects[0].rect?.top + 'px' }" style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;" class="unselectable">
+        <h1 style="color: #ff5959;">The {{cowFoodObjects[0].label}} collided with the electric fence or fireball! <br>The cows are sad! You are a bad cow farmer!</h1>
+      </div>
+      <div v-else-if="hitCowFence && peanutButterHitCowFence" :style="{ left: cowFoodObjects[1].rect?.left + 'px', top: cowFoodObjects[1].rect?.top + 'px' }" style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;" class="unselectable" >
+        <h1 style="color: #ff5959;">The {{cowFoodObjects[1].label}} collided with the electric fence or fireball! <br>The cows are sad! You are a bad cow farmer!</h1>
+      </div>
+      <div v-else-if="onionRingsHitCowFence" :style="{ left: cowFoodObjects[2].rect?.left + 'px', top: cowFoodObjects[2].rect?.top + 'px' }" style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;" >
+        <h1>It's okay for the {{cowFoodObjects[2].label}} to hit the electric fence or fireball!</h1>
+      </div>    
+    
 
     
     <div style="margin-top: 0em;"></div>    
@@ -66,32 +74,25 @@
     <div class="vertical-line-five"></div>
     <div class="spinning-rectangle"></div>
     
-    <div style=" margin-left: 30em; padding-top: 50vh;">
+    <div style=" margin-left: 26.5em; padding-top: 49vh;">
       <h1 style="position: absolute; top: 3em; left: 1em; font-size: 5em; color: greenyellow;" class="unselectable">{{ customMessage }}</h1>
         <!-- generate the pasture -->
       <div class="farm">
-        <h1 style="padding-top: 2em;" class="unselectable">Cow Pasture</h1>
+        <h1 style="padding-top: 1em;" class="unselectable">Cow Pasture</h1>
         <p class="unselectable paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow
-          pasture filled with hungry cows! (Danger: Some cows may be hangry!)</p>
-        
-      </div>
-      <div style="background-color:  rgb(0, 0, 0);
-      top: 0;  padding-bottom: 1em;">
-        <h1 style="font-size: 1.5em;" class="unselectable">The Cows need their food delivered! Deliver the correct food to make the cows happy!</h1>
-        
-      </div>
-      <div class="unselectable">
-    
+          pasture filled with hungry cows! (Danger: Some cows may be hangry!)<br>
+          The Cows need their food delivered!<br>Deliver the correct food to make the cows happy!</p>
           
-          <div style="color: #fff;" v-for="(object, index) in cowFoodObjects" :key="index">
-            <p>{{ object.label }}: Top {{ object.position.top }}, Left {{ object.position.left }}</p>
-          </div>
-        </div>
+      </div>
+
+      
+
+    
     </div>
 
-    <button style="background-color: #ff5959; position: absolute;  top: 600px; right: 1em;" class="button-35"
+    <button style="background-color: #ff5959; position: absolute;  top: 75vh; right: 1em;" class="button-35"
       @click="toggleAboutCowGame">About</button>
-    <button style="position: absolute; top: 660px; right: 1em; background-color: #ff5959;" class="button-35"
+    <button style="position: absolute; top: 85vh; right: 1em; background-color: #ff5959;" class="button-35"
       @click="refreshPage">Reset Page</button>
   </div>
   
@@ -154,7 +155,10 @@ export default defineComponent({
 
       isBlocked: false,
       hitCowFence: false,
-      onionRingsHitCowFence: false,     
+      onionRingsHitCowFence: false,  
+      
+      peanutButterHitCowFence: false,
+      
       
       
 
@@ -171,14 +175,14 @@ export default defineComponent({
         },
         {
           id: 'ball2',
-          position: { top: 200, left: 350  },   
+          position: { top: 250, left: 350  },   
           setMovementDirection: { directionX: 3, directionY: 0 },
           speed: 2,       
          
         },
         {
           id: 'ball3',
-          position: { top: 350, left: 350 },   
+          position: { top: 450, left: 350 },   
           setMovementDirection: { directionX: 3, directionY: 0},  
           speed: 2,        
          
@@ -190,19 +194,19 @@ export default defineComponent({
         {
           id: 'grass',
           label: "Grass",
-          position: { top: 800, left: 10 },         
+          position: { top: 500, left: 10 },         
           inPasture: false,
         },
         {
           id: 'peanut-butter',
           label: "Peanut Butter",
-          position: { top: 800, left: 120 },       
+          position: { top: 500, left: 120 },       
           inPasture: false,
         },
         {
           id: 'onion-rings',
           label: "Onion Rings",
-          position: { top: 800, left: 230 },       
+          position: { top: 500, left: 230 },       
           inPasture: false,
         },
       ] as cowFoodObjectsData[],
@@ -337,9 +341,20 @@ export default defineComponent({
           this.isThereACollision = true;
           this.collisionMessage = `${this.cowFoodObjects[i].label} is colliding with the electric fence or fireball!`;
           if (this.cowFoodObjects[i].label === "Onion Rings") {
-            this.onionRingsHitCowFence = true;
-          } else {
-            this.cowFenceHit();
+                this.onionRingsHitCowFence = true;
+                setTimeout(() => {
+                this.onionRingsHitCowFence = false;
+            }, 2000);
+          } 
+          else if (this.cowFoodObjects[i].label === "Peanut Butter"){
+              this.peanutButterHitCowFence = true;
+              this.cowFenceHit();
+              setTimeout(() => {
+              this.peanutButterHitCowFence = false;
+            }, 2000);
+          }          
+          else {
+            this.cowFenceHit();          
           }
           return true;
         }
@@ -382,6 +397,9 @@ export default defineComponent({
         // update the rect position of the food object in the cowFoodObjects array to this function parameter rect  - this is like a setter
         //foodObject.rect = rect;
 
+        //retrieve the position
+        console.log(this.cowFoodObjects[index].rect?.x, this.cowFoodObjects[index].rect?.y)
+
         // Get and set the rect property of the food object in the cowFoodObjects array
         this.cowFoodObjects[index].rect = rect;
         //console.log(index, foodObject.rect)
@@ -415,8 +433,8 @@ export default defineComponent({
   z-index: -1;
   background:
     rgba(0, 255, 119, 0.66) 29%;
-  width: 500px;
-  height: 350px; 
+  width: 35em;
+  height: 20em; 
  }
 
 .vertical-line {
@@ -424,7 +442,7 @@ export default defineComponent({
   top: 13vh;
   left: 400px; 
   width: 10px;
-  height: 91vh;
+  height: 91.5vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -438,7 +456,7 @@ export default defineComponent({
   left: 600px;
   transform: translateX(-25%);
   width: 10px;
-  height: 34vh;
+  height: 32vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -466,7 +484,7 @@ export default defineComponent({
   left: 1000px;
   transform: translateX(-25%);
   width: 10px;
-  height: 34vh;
+  height: 32vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -528,8 +546,7 @@ export default defineComponent({
 
 .my-page {
   background-color: rgb(0, 0, 0);
-  height: 100vh; /* Add this line to set the height to 100% of the window size */
- 
+  height: 100vh; /* Add this line to set the height to 100% of the window size */ 
 }
 
 </style>

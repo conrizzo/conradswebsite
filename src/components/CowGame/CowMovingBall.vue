@@ -84,6 +84,7 @@
     background-color: #ff5959;
     position: absolute;
     filter: blur(5px);
+    box-shadow: 0 0 20px 20px rgb(255, 136, 0);
   }
 
   .ball-text {

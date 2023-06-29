@@ -5,7 +5,7 @@
         <button class="close" @click.self="closeModal"></button>
        
   
-        <h2>This is a game project</h2>
+        <h2>This is a game project!</h2>
         
             <ul>
             <li>This was started June 19th 2023, and is built from scratch for fun and to learn!</li>
@@ -75,7 +75,7 @@
     padding-bottom: 25px;
     padding-left: 25px;
     padding-right: 25px;
-    margin: 80px auto;
+    margin: 1em auto;
     background: rgb(255, 255, 255);
     border-radius: 10px;
     position: relative;
