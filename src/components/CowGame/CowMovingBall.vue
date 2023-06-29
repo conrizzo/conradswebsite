@@ -17,8 +17,7 @@
       initialPosition: {
        /* type: Object, */ // Removing this type setting fixes the console log errors appearing in a loop, not sure why all this happens yet
        default: () => ({ top: 0, left: 0 })
-      },
-      
+      },      
       speed: {
         type: Number,
         default: 5,
@@ -27,11 +26,12 @@
       setMovementDirection: {        
         default: () => ({ directionX: 0, directionY: 0 }),
         required: false,      
-      },
+      },     
       rect: {      
-        default: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+      default: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
       },
     },
+
     data() {
       return {
         x: this.initialPosition.left,
@@ -48,8 +48,7 @@
         this.directionX = randomValue;
         const randomValueTwo = Math.floor(Math.random() * 6) - 3;
         this.directionY = randomValueTwo;
-      }, 3000);
-      
+      }, 3000);      
     },
     methods: {
       moveBall() {
@@ -74,6 +73,7 @@
       },
     },
   });
+  
   </script>
   
   <style scoped>

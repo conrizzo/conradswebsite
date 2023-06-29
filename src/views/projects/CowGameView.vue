@@ -1,28 +1,28 @@
 <template >
   <div class="my-page">
-<!-- @position-updated="updatePosition(index, $event)" -->
-    <div class="">
-      <h2 style="color: #ff5959; float: left;">This page is not currently designed<br> for mobile/touchscreen!</h2>
-      <!-- @food-returned="handleFoodReturned" -->
-      <CowFood v-for="(object, index) in cowFoodObjects" 
-      :style="{ zIndex: 2 }" 
-      :key="index" 
-      :label="object.label"
-      :initialPosition="object.position"       
-      @rect-updated="updateCowFoodRect(index, $event)"
-      ref="foodObjects" />
-    </div> 
+    <!-- @position-updated="updatePosition(index, $event)" -->
+    
+    <h2 style="color: #ff5959; float: left;">This page is not currently designed<br> for mobile/touchscreen!</h2>
+    <!-- @food-returned="handleFoodReturned" -->
+    <CowFood v-for="(object, index) in cowFoodObjects" 
+    :style="{ zIndex: 2 }" 
+    :key="index" 
+    :label="object.label"
+    :initialPosition="object.position"       
+    @rect-updated="updateCowFoodRect(index, $event)"
+    ref="foodObjects" />    
 
     <!-- @position-updated="updateBallPosition(index, $event)" -->
    
     <CowMovingBall  v-for="(object, index) in bouncingBallObjects"     
     :key="index"    
-    :initial-position="object.position"  
+    :initial-position="object.position"      
     :speed="object.speed"   
-    :setMovementDirection="object.setMovementDirection"
+    :setMovementDirection="object.setMovementDirection"    
     @rect-updated="updateBallRect(index, $event)"    
      ref="ballObjects">
     </CowMovingBall>    
+    
 
     <div v-if="showAboutCowGame">
       <AboutCowGame @close="toggleAboutCowGame" />
@@ -64,8 +64,9 @@
     <div class="horizontal-line"></div>
     <div class="vertical-line-four"></div>
     <div class="vertical-line-five"></div>
+    <div class="spinning-rectangle"></div>
     
-    <div style=" margin-left: 30em; padding-top: 30em;">
+    <div style=" margin-left: 30em; padding-top: 50vh;">
       <h1 style="position: absolute; top: 3em; left: 1em; font-size: 5em; color: greenyellow;" class="unselectable">{{ customMessage }}</h1>
         <!-- generate the pasture -->
       <div class="farm">
@@ -74,7 +75,7 @@
           pasture filled with hungry cows! (Danger: Some cows may be hangry!)</p>
         
       </div>
-      <div style="background-color:  rgb(99, 67, 0);
+      <div style="background-color:  rgb(0, 0, 0);
       top: 0;  padding-bottom: 1em;">
         <h1 style="font-size: 1.5em;" class="unselectable">The Cows need their food delivered! Deliver the correct food to make the cows happy!</h1>
         
@@ -111,7 +112,7 @@ interface ballObjectData {
   position: Position; 
   speed: number;
   setMovementDirection: Movement;
-  rect: DOMRect | null;
+  rect: DOMRect;
 }
 
 interface cowFoodObjectsData {
@@ -163,7 +164,7 @@ export default defineComponent({
       bouncingBallObjects: [
         {
           id: 'ball1',
-          position: { top: 0, left: 350 },    
+          position: { top: 50, left: 350 },    
           setMovementDirection: { directionX: 3, directionY: 0 },
           speed: 2,             
          
@@ -177,7 +178,7 @@ export default defineComponent({
         },
         {
           id: 'ball3',
-          position: { top: 400, left: 350 },   
+          position: { top: 350, left: 350 },   
           setMovementDirection: { directionX: 3, directionY: 0},  
           speed: 2,        
          
@@ -189,25 +190,26 @@ export default defineComponent({
         {
           id: 'grass',
           label: "Grass",
-          position: { top: Math.floor(Math.random() * (window.innerHeight - 100)), left: 10 },         
+          position: { top: 800, left: 10 },         
           inPasture: false,
         },
         {
           id: 'peanut-butter',
           label: "Peanut Butter",
-          position: { top: Math.floor(Math.random() * (window.innerHeight - 100)), left: 120 },       
+          position: { top: 800, left: 120 },       
           inPasture: false,
         },
         {
           id: 'onion-rings',
           label: "Onion Rings",
-          position: { top: Math.floor(Math.random() * (window.innerHeight - 100)), left: 230 },       
+          position: { top: 800, left: 230 },       
           inPasture: false,
         },
       ] as cowFoodObjectsData[],
 
     };
   },
+  
   mounted() {   
       this.updateRects();          
   },
@@ -216,19 +218,15 @@ export default defineComponent({
       this.showAboutCowGame = !this.showAboutCowGame;
     },
     updateBallRect(index: number, rect: DOMRect) {
-      const ballObject = this.bouncingBallObjects[index] as ballObjectData;
-      ballObject.rect = rect;
+      //const ballObject = this.bouncingBallObjects[index] as ballObjectData;
+      //ballObject.rect = rect;
+
+      this.bouncingBallObjects[index].rect = rect;
+      
       //console.log(index, ballObject.rect)      
-    },   
-   /*
-    updateBallPosition(index: number, position: { top: number; left: number; }) { 
-    this.bouncingBallObjects[index].position = position;   
-    //console.log(this.bouncingBallObjects[index], this.bouncingBallObjects[index].position); // check the position of the ball     
-    },      
-    */
+    },     
     cowFenceHit() {
       this.hitCowFence = true;
-
       setTimeout(() => {
         this.hitCowFence = false;
         this.refreshPage();
@@ -249,21 +247,13 @@ export default defineComponent({
       foodObjects.forEach((foodObject, index) => {
         if (!this.cowFoodObjects[index].rect) {
           this.cowFoodObjects[index].rect = foodObject.$el.getBoundingClientRect();
+          console.log(this.cowFoodObjects[index].rect)
         }
-      });  
-      /*
-      const ballObjects = this.$refs.ballObjects as typeof CowMovingBall[];
-      ballObjects.forEach((ballObject, index) => {
-        if (!this.bouncingBallObjects[index].rect) {
-          this.bouncingBallObjects[index].rect = ballObject.$el.getBoundingClientRect();
-        }
-      });  
-*/          
+      });           
     },   
     refreshPage() {
       location.reload();
-    },
-    
+    },    
     checkCollision(rect1: DOMRect, rect2: DOMRect) {
       // the type of this is DomRect but to fix errors am allowing any
       // the -1 + 1 make the collision area slightly larger than the object to account for any slight numerical errors
@@ -301,15 +291,17 @@ export default defineComponent({
       const verticalLineTwoRect = verticalLineTwo.getBoundingClientRect();
       const verticalLineThree = document.querySelector('.vertical-line-three') as HTMLElement;
       const verticalLineThreeRect = verticalLineThree.getBoundingClientRect();
+      const verticalLineFour = document.querySelector('.vertical-line-four') as HTMLElement;
+      const verticalLineFourRect = verticalLineFour.getBoundingClientRect();
+      const verticalLineFive = document.querySelector('.vertical-line-five') as HTMLElement;
+      const verticalLineFiveRect = verticalLineFive.getBoundingClientRect();  
 
-      //const movingBall = document.querySelector('.ball') as HTMLElement;    
-      //const movingBallRect = movingBall.getBoundingClientRect();   
+      const spinningRectangle = document.querySelector('.spinning-rectangle') as HTMLElement;
+      const spinningRectangleRect = spinningRectangle.getBoundingClientRect();  
 
-      // This is 2nd value in the bouncingballobject array console.log(this.bouncingBallObjects[1].rect)
-      // This is 3rd value in the bouncingballobject array console.log(this.bouncingBallObjects[2].rect)          
+
 
       const inPasture: string[] = [];
-
       // this LOOP will  check for collisions with any objects
       for (let i = 0; i < this.cowFoodObjects.length; i++) {
         const foodObjectRect = this.cowFoodObjects[i].rect;
@@ -332,6 +324,9 @@ export default defineComponent({
           this.checkCollision(foodObjectRect, diagonalLineRect) ||
           this.checkCollision(foodObjectRect, verticalLineTwoRect) || 
           this.checkCollision(foodObjectRect, verticalLineThreeRect) ||
+          this.checkCollision(foodObjectRect, verticalLineFourRect) ||
+          this.checkCollision(foodObjectRect, verticalLineFiveRect) ||
+          this.checkCollision(foodObjectRect, spinningRectangleRect) ||
           // checks for collision with the moving balls          
           this.checkCollision(foodObjectRect, this.bouncingBallObjects[0].rect!) ||
           this.checkCollision(foodObjectRect, this.bouncingBallObjects[1].rect!) ||
@@ -370,7 +365,6 @@ export default defineComponent({
         else {
           this.cowPastureCollisionMessage = `${inPasture[0]} is in the cow pasture!`;
         }
-
       } else {
         this.collisionCowPasture = false;
         this.cowPastureCollisionMessage = '';
@@ -384,39 +378,19 @@ export default defineComponent({
       },updateCowFoodRect(index: number, rect: DOMRect){
         
         // get the food object from the cowFoodObjects array - this is like a getter
-        const foodObject = this.cowFoodObjects[index] as cowFoodObjectsData;
+        //const foodObject = this.cowFoodObjects[index] as cowFoodObjectsData;
         // update the rect position of the food object in the cowFoodObjects array to this function parameter rect  - this is like a setter
-        foodObject.rect = rect;
+        //foodObject.rect = rect;
+
+        // Get and set the rect property of the food object in the cowFoodObjects array
+        this.cowFoodObjects[index].rect = rect;
         //console.log(index, foodObject.rect)
 
         // As the user drags the cowFood objects we check for collisions and interactions
         this.checkCollisions();
         this.checkGreenAreaCollisions();
         this.areGrassAndPeanutButterInPasture();
-      },
-    // This WAS like the main code that checks for movement of the COW FOOD and will check collisions and anything to evaluate in real time
-    // It goes here, then this invokes the other functions   
-    // --- this needs to be read through and understood
-
-    /*
-    updatePosition(index: number, position: { top: number; left: number }) {
-
-      
-      const foodObjects = (this.$refs as { foodObjects: typeof CowFood[] }).foodObjects;
-      const foodElement = foodObjects[index].$el as HTMLElement;
-      const foodObject = this.cowFoodObjects[index];
-      foodObject.position = position;
-      foodObject.rect = foodElement.getBoundingClientRect();          
-      //console.log( foodObject.rect)      
-      
-      // These consecutive function invocations is a prototype, there are definitely more practical efficient ways to do this
-      // But for building up a prototype this is fine
-      this.checkCollisions();
-      this.checkGreenAreaCollisions();
-      this.areGrassAndPeanutButterInPasture();
-          
-    },
-    */
+      },   
   },
 
 });
@@ -460,11 +434,11 @@ export default defineComponent({
 
 .vertical-line-two {
   position: absolute;
-  top: calc(0%);
+  top: 0;
   left: 600px;
   transform: translateX(-25%);
   width: 10px;
-  height: 20em;
+  height: 34vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -474,11 +448,11 @@ export default defineComponent({
 
 .vertical-line-three {
   position: absolute;
-  top: 8em;
+  top: 16vh;
   left: 800px;
   transform: translateX(-25%);
   width: 10px;
-  height: 20.5em;
+  height: 34.33vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -488,11 +462,11 @@ export default defineComponent({
 
 .vertical-line-four {
   position: absolute;
-  top: 0em;
+  top: 0;
   left: 1000px;
   transform: translateX(-25%);
   width: 10px;
-  height: 20em;
+  height: 34vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -502,11 +476,11 @@ export default defineComponent({
 
 .vertical-line-five {
   position: absolute;
-  top: 8em;
+  top: 16vh;
   left: 1200px;
   transform: translateX(-25%);
   width: 10px;
-  height: 20.5em;
+  height: 34.33vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -515,8 +489,8 @@ export default defineComponent({
 }
 
 .horizontal-line {
-  width: 82em;
-  top: 28.3em;
+  width: 60vw;
+  top: 50vh;
   position: absolute;
   height: 10px;
   background-color: black;
@@ -524,12 +498,36 @@ export default defineComponent({
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
   border-radius: 3px;
-  margin-left: 402px;
+  left: 25.3em;
   opacity: 0.9;
 }
 
+.spinning-rectangle {
+  width: 19vw;
+  height: 10px;
+  background-color: #f00;
+  animation: left-right 2s ease-in-out infinite;
+  top: 50vh;
+  right: 19vw;
+  filter: blur(1px);
+  box-shadow: 0 0 10px 5px rgba(255, 72, 0, 0.8);
+  position: absolute;
+}
+
+@keyframes left-right {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(19vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .my-page {
-  background-color: rgba(99, 67, 0);
+  background-color: rgb(0, 0, 0);
   height: 100vh; /* Add this line to set the height to 100% of the window size */
  
 }

@@ -1,7 +1,12 @@
 <template>   
 
     <div ref="cowFood" 
-    :class="{ 'peanut-butter': label === 'Peanut Butter', 'onion-rings': label === 'Onion Rings' }" 
+    :class="{ 'peanut-butter': label === 'Peanut Butter' && !dragColorChangeCSS , 
+    'moving-peanut-butter': label === 'Peanut Butter' && dragColorChangeCSS,
+    'onion-rings': label === 'Onion Rings' && !dragColorChangeCSS,
+    'moving-onion-rings': label === 'Onion Rings' && dragColorChangeCSS,
+    'moving-grass': label === 'Grass' && dragColorChangeCSS,
+    }" 
     class="movable-object unselectable" 
     :style="{ top: position.top + 'px', left: position.left + 'px' }" 
     @mousedown="startDrag"
@@ -11,16 +16,14 @@
     >
 <!-- the above style only needs to be top: position.top +'px', left: position.left +'px' - TESTING TOUCHSCREENS  -->
 <!-- :style="{ top: isTouchscreen ? y + 'px' : position.top + 'px', left: isTouchscreen ? x + 'px' : position.left + 'px' }"  -->
-        <b class="unselectable" style="color: #fff; pointer-events: none;">
-
-            {{ label }} <!-- {{ position.top }} {{ position.left }} -->
+        <b class="unselectable" style="pointer-events: none;">
+          {{ label }} <!-- {{ position.top }} {{ position.left }} -->
         </b>
     </div>      
 </template>
   
 <script lang="ts">
 import { defineComponent } from "vue";
-
 
 interface Position {
     top: number;
@@ -32,9 +35,9 @@ export default defineComponent({
 
     props: {
         label: {type: String, required: true,},
-        initialPosition: {type: Object,required: true,},      
+        initialPosition: {type: Object, required: true,},      
         rect: {      
-      default: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+          default: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
       },
     },
     
@@ -45,7 +48,7 @@ export default defineComponent({
             offsetY: 0,
             position: ({ ...this.initialPosition }) as Position,
             alertShown: false,
-
+            dragColorChangeCSS: false,
       //TEST TOUCHSCREENS
       isTouchscreen: false,
       x: 0,
@@ -92,9 +95,12 @@ export default defineComponent({
 
             //this.offsetX = event.clientX - rect.left;
             //this.offsetY = event.clientY - rect.top;
+            this.dragColorChangeCSS = true;
+            
         },
         stopDrag() {
             this.isMouseDown = false;
+            this.dragColorChangeCSS = false;
            
         },
         drag(event: MouseEvent) {
@@ -148,22 +154,39 @@ export default defineComponent({
     position: absolute;
     width: 100px;
     height: 60px;
-    background-color: rgb(60, 255, 0);
+    background-color: rgb(131, 255, 94);
+    color: #fff;  
     padding-top: 40px;
-    opacity: 0.9;
-    
-   
+    opacity: 0.9;   
+}
+
+.moving-grass{
+    background-color: rgb(60, 255, 0);;
+    color: #fff;  
+    filter: brightness(150%);
 }
 
 .peanut-butter{
   background-color: #7e5d02;
   color: #fff;
 }
-
+.moving-peanut-butter{
+    background-color: #7e5d02;
+    color: #fff;  
+    filter: brightness(120%);
+    
+ }
 .onion-rings{
-    background-color: #b6b609;
-    color: #000;
+    background-color: #c29e00;    
+    color: #fff;  
 }
+.moving-onion-rings{
+    background-color: #c29e00;   
+    color: #fff;  
+    filter: brightness(120%);
+    
+   
+ }
 
 .unselectable {
     -webkit-touch-callout: none;
