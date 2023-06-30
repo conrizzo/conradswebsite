@@ -1,4 +1,6 @@
 <template >
+   <!-- this nav here fills in the empty space where we tell the vue router not to send the nav structure to the game page -->
+  <nav style="background-color: black; height: 2.3em;"></nav>
   <div class="my-page">
     <!-- @position-updated="updatePosition(index, $event)" -->
     
@@ -51,6 +53,7 @@
      </div>
 
      <!-- hitting items and losing messages -->
+     <div class="unselectable">
       <div v-if="hitCowFence && !peanutButterHitCowFence" :style="{ left: cowFoodObjects[0].rect?.left + 'px', top: cowFoodObjects[0].rect?.top + 'px' }" style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;" class="unselectable">
         <h1 style="color: #ff5959;">The {{cowFoodObjects[0].label}} collided with the electric fence or fireball! <br>The cows are sad! You are a bad cow farmer!</h1>
       </div>
@@ -60,7 +63,7 @@
       <div v-else-if="onionRingsHitCowFence" :style="{ left: cowFoodObjects[2].rect?.left + 'px', top: cowFoodObjects[2].rect?.top + 'px' }" style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;" >
         <h1>It's okay for the {{cowFoodObjects[2].label}} to hit the electric fence or fireball!</h1>
       </div>    
-    
+    </div>
 
     
     <div style="margin-top: 0em;"></div>    
@@ -547,7 +550,10 @@ export default defineComponent({
 .my-page {
   background-color: rgb(0, 0, 0);
   height: 100vh; /* Add this line to set the height to 100% of the window size */ 
+ 
 }
+
+
 
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-  <nav>
+    <nav v-if="showNav">
     <router-link to="/">Home</router-link> 
     <router-link to="/about">About</router-link> 
     <!--import the dropdown menu into the nav bar-->
@@ -16,6 +16,11 @@ export default {
   name: "App",
   components: {
     DropDownMenu
+  }, computed: {
+    showNav() {
+      // Check if the current route is not the cowGame route
+      return this.$route.path !== '/projects/cowgame';
+    }
   }
 };
 </script>
