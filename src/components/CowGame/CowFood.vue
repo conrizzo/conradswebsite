@@ -157,7 +157,9 @@ export default defineComponent({
     background-color: rgb(131, 255, 94);
     color: #fff;  
     padding-top: 40px;
-    opacity: 0.9;   
+    opacity: 1;   
+    border-radius: 4px;
+
 }
 
 .moving-grass{

@@ -42,6 +42,12 @@
       The Onion Rings have special properties! They can hit the electric fence and the fireball and not cause you to lose! But they may or may not be important!
     </p>   
 
+    <p class="unselectable" style="width: 10em; color: white; top: 7em; right: 5em; position: absolute; text-align: left;">
+    Once you move the cow food, a timer starts:<br>
+    <b style="color: greenyellow; font-size: 2em;">{{ timeLeft }}</b>
+    <br>Don't run out of time before the cows get the food or they will be hangry cows! MOOOO!
+    </p>
+
     <div style="z-index: 3; position: absolute; right: 3em; top: 2.9em;" class="unselectable">      
       <div v-if="isThereACollision">
         <h1>{{ collisionMessage }}</h1>
@@ -76,6 +82,9 @@
     <div class="vertical-line-four"></div>
     <div class="vertical-line-five"></div>
     <div class="spinning-rectangle"></div>
+    <div class="parent">
+       <div class="vertical-rectangle"></div>
+     </div>
     
     <div style=" margin-left: 26.5em; padding-top: 49vh;">
       <h1 style="position: absolute; top: 3em; left: 1em; font-size: 5em; color: greenyellow;" class="unselectable">{{ customMessage }}</h1>
@@ -146,14 +155,15 @@ export default defineComponent({
   data() {
     return {
       winningMessage: false,
-      losingMessage: false,
-
       customMessage: "",
 
       isThereACollision: false,
       collisionMessage: "",
       collisionCowPasture: false,
       cowPastureCollisionMessage: "",
+
+      onionLeavesCowPasture: false,
+
       showAboutCowGame: false,
 
       isBlocked: false,
@@ -162,6 +172,9 @@ export default defineComponent({
       
       peanutButterHitCowFence: false,
       
+      // if timeLeft is changed make sure to change the first invocation in the updatecowfoodrect function
+      timeLeft: 30,
+     
       
       
 
@@ -221,6 +234,31 @@ export default defineComponent({
       this.updateRects();          
   },
   methods: {      
+    startGameTimerCountDown() {
+      let seconds = this.timeLeft;
+
+      let timer = setInterval(() => {
+        // Display the remaining seconds
+        
+
+        // Reduce the remaining seconds by 1
+        seconds--;
+        //console.log(seconds);
+        this.timeLeft = seconds;
+        // If the countdown is finished, clear the interval and display "Time's up!"
+        if (this.winningMessage){
+          clearInterval(timer);
+        }
+        if (seconds === 0 && this.winningMessage === false) {
+          clearInterval(timer);
+          this.customMessage = "Time's up! You are a bad farmer! Try again!";
+          setTimeout(() => {
+            this.refreshPage();
+          }, 2000);
+        }
+      }, 1000);
+      
+    },
     toggleAboutCowGame() {
       this.showAboutCowGame = !this.showAboutCowGame;
     },
@@ -245,7 +283,7 @@ export default defineComponent({
       const onionRingsInPasture = this.cowFoodObjects[2].inPasture;
       if (grassInPasture && peanutButterInPasture && !onionRingsInPasture) {
         this.winningMessage = true;
-        this.customMessage = "You win! The cows are happy and full! they love to eat " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+        this.customMessage = "You won in " + (30-this.timeLeft) + " seconds! The cows are happy and full! they love to eat " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
       }
     },
     updateRects() {
@@ -261,8 +299,7 @@ export default defineComponent({
     refreshPage() {
       location.reload();
     },    
-    checkCollision(rect1: DOMRect, rect2: DOMRect) {
-      // the type of this is DomRect but to fix errors am allowing any
+    checkCollision(rect1: DOMRect, rect2: DOMRect) {      
       // the -1 + 1 make the collision area slightly larger than the object to account for any slight numerical errors
       return (
         rect1.left - 1 < rect2.right &&
@@ -305,7 +342,11 @@ export default defineComponent({
 
       const spinningRectangle = document.querySelector('.spinning-rectangle') as HTMLElement;
       const spinningRectangleRect = spinningRectangle.getBoundingClientRect();  
+      
+      const verticalMovingRectangle = document.querySelector('.vertical-rectangle') as HTMLElement;
+      const verticalMovingRectangleRect = verticalMovingRectangle.getBoundingClientRect();  
 
+      
 
 
       const inPasture: string[] = [];
@@ -334,6 +375,7 @@ export default defineComponent({
           this.checkCollision(foodObjectRect, verticalLineFourRect) ||
           this.checkCollision(foodObjectRect, verticalLineFiveRect) ||
           this.checkCollision(foodObjectRect, spinningRectangleRect) ||
+          this.checkCollision(foodObjectRect, verticalMovingRectangleRect) ||
           // checks for collision with the moving balls          
           this.checkCollision(foodObjectRect, this.bouncingBallObjects[0].rect!) ||
           this.checkCollision(foodObjectRect, this.bouncingBallObjects[1].rect!) ||
@@ -362,10 +404,11 @@ export default defineComponent({
           return true;
         }
       }
-      if (inPasture.length === 1 && this.cowFoodObjects[2].inPasture) {
+      if (this.cowFoodObjects[2].inPasture) {
         this.collisionCowPasture = true;
-        this.cowPastureCollisionMessage = (`${inPasture.join(', ')} are in the cow pasture!`);
-      }
+        this.cowPastureCollisionMessage = (`${inPasture.join(', ')} are Toxic to cows! Get them out of the cow pasture!`);
+       
+      } 
       // lingustics the message by adding commas, and, and commas in a nice happy grammatic way!
       else if (inPasture.length > 0) {
 
@@ -386,22 +429,25 @@ export default defineComponent({
       } else {
         this.collisionCowPasture = false;
         this.cowPastureCollisionMessage = '';
-      }
-
-      /**
+      }      
+      },
+       /**
        * Updates the `rect` property of a food object in the `cowFoodObjects` array with a new `DOMRect` value.
        * @param {number} index - The index of the food object in the `cowFoodObjects` array.
        * @param {DOMRect} rect - The new `DOMRect` value of the food object.
        */
-      },updateCowFoodRect(index: number, rect: DOMRect){
-        
+      updateCowFoodRect(index: number, rect: DOMRect){
+
+        if (this.timeLeft === 30){
+          this.startGameTimerCountDown();
+        }
         // get the food object from the cowFoodObjects array - this is like a getter
         //const foodObject = this.cowFoodObjects[index] as cowFoodObjectsData;
         // update the rect position of the food object in the cowFoodObjects array to this function parameter rect  - this is like a setter
         //foodObject.rect = rect;
 
         //retrieve the position
-        console.log(this.cowFoodObjects[index].rect?.x, this.cowFoodObjects[index].rect?.y)
+          //console.log(this.cowFoodObjects[index].rect?.x, this.cowFoodObjects[index].rect?.y)
 
         // Get and set the rect property of the food object in the cowFoodObjects array
         this.cowFoodObjects[index].rect = rect;
@@ -444,7 +490,7 @@ export default defineComponent({
   position: absolute;
   top: 13vh;
   left: 400px; 
-  width: 10px;
+  width: 1em;
   height: 91.5vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
@@ -458,7 +504,7 @@ export default defineComponent({
   top: 0;
   left: 600px;
   transform: translateX(-25%);
-  width: 10px;
+  width: 1em;
   height: 32vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
@@ -472,7 +518,7 @@ export default defineComponent({
   top: 16vh;
   left: 800px;
   transform: translateX(-25%);
-  width: 10px;
+  width: 1em;
   height: 34.33vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
@@ -486,7 +532,7 @@ export default defineComponent({
   top: 0;
   left: 1000px;
   transform: translateX(-25%);
-  width: 10px;
+  width: 1em;
   height: 32vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
@@ -500,7 +546,7 @@ export default defineComponent({
   top: 16vh;
   left: 1200px;
   transform: translateX(-25%);
-  width: 10px;
+  width: 1em;
   height: 34.33vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
@@ -513,7 +559,7 @@ export default defineComponent({
   width: 60vw;
   top: 50vh;
   position: absolute;
-  height: 10px;
+  height: 1em;
   background-color: black;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
@@ -525,14 +571,28 @@ export default defineComponent({
 
 .spinning-rectangle {
   width: 19vw;
-  height: 10px;
-  background-color: #f00;
+  height: 1em;
+  background-color: rgb(115, 129, 255);
+  box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   animation: left-right 2s ease-in-out infinite;
   top: 50vh;
   right: 19vw;
-  filter: blur(1px);
-  box-shadow: 0 0 10px 5px rgba(255, 72, 0, 0.8);
+  filter: blur(1px);  
   position: absolute;
+}
+
+
+.vertical-rectangle {
+  width: 1em;
+  height: 19vh;
+  background-color: rgb(115, 129, 255);
+  box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
+  animation: top-bottom 2s ease-in-out infinite;
+  top: 50vh;
+  right: 19vw;
+  filter: blur(1px);  
+  position: absolute;
+  
 }
 
 @keyframes left-right {
@@ -544,6 +604,21 @@ export default defineComponent({
   }
   100% {
     transform: translateX(0);
+    
+  }
+}
+
+/* for vertical-rectangle */
+@keyframes top-bottom {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 50vh;
+  }
+  100% {
+    top: 85vh;
+    
   }
 }
 
