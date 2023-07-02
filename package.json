@@ -14,7 +14,8 @@
     "prismjs": "^1.29.0",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "word-wrap": "^1.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
