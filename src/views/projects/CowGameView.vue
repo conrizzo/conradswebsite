@@ -283,7 +283,14 @@ export default defineComponent({
       const onionRingsInPasture = this.cowFoodObjects[2].inPasture;
       if (grassInPasture && peanutButterInPasture && !onionRingsInPasture) {
         this.winningMessage = true;
-        this.customMessage = "You won in " + (30-this.timeLeft) + " seconds! The cows are happy and full! they love to eat " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+        if(this.timeLeft >= 20){
+          this.customMessage = "You WIN! You are a PROFESSIONAL FARMER! It only took you " + (30-this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+        }
+        else if(this.timeLeft >= 10){
+          this.customMessage = "You WIN! You are a RESPECTABLE FARMER! It only took you " + (30-this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+        } else{
+          this.customMessage = "You WIN! You are a GREENHORN FARMER, It took you " + (30-this.timeLeft) + " seconds! The cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+        }
       }
     },
     updateRects() {
