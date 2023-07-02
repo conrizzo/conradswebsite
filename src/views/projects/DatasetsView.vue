@@ -126,8 +126,9 @@ export default {
           this.fileContentsArray.pop();
         }
       })
-      .catch((error) => {
-        console.error(error);
+      .catch((error) => {       
+        //error handling
+        this.errorMessage = 'An error occurred while fetching the data. Please try again later.' + error;
       });
 
     // JSON file import
@@ -145,7 +146,8 @@ export default {
         this.barChart();
       })
       .catch((error) => {
-        console.error(error);
+        // error handling
+        this.errorMessage = 'An error occurred while fetching the data. Please try again later.' + error;
       });
 
     this.sortedData = this.jsonData;
@@ -201,7 +203,7 @@ export default {
       title = "Coffee Consumption Per Capita 2016 (kg)"
     ) {
       // This will sort the data by the selected column for the graph
-      console.log(this.sortedData);
+      //console.log(this.sortedData);
       const data = this.sortedData.map((item) => {
         let value;
         if (sortType === "perCapitaCons2016") {

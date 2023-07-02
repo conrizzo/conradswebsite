@@ -172,7 +172,8 @@ export default {
             this.jsonData = data;
           })
           .catch((error) => {
-            console.error(`Error fetching weather for ${cityWeather.city}:`, error);
+           // error handling
+           this.jsonData = { data: { error: [{ msg: "Unknown error occurred." + error }] } };
           });
 
         // optional regular text
@@ -202,7 +203,7 @@ export default {
       const date = new Date(convertDate);
       const options = { weekday: 'long', month: 'long', day: 'numeric' };
       const formattedDate = date.toLocaleDateString('en-US', options);
-      console.log(formattedDate);
+      
       return formattedDate;
     }
   },

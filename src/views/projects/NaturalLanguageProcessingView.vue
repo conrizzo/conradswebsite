@@ -54,6 +54,13 @@ export default {
                     url: "https://arxiv.org/abs/2305.10601",
                     videoUrl: "https://www.youtube.com/watch?v=ut5kp56wW_4",
                 },
+                {
+                    date: "November 1, 2018",
+                    title: "Good article web security vulnerabilities using NPM",
+                    url: "https://www.voitanos.io/blog/don-t-be-alarmed-by-vulnerabilities-after-running-npm-install/",
+                   
+                },
+                
             ],
         };
     },

@@ -101,7 +101,7 @@
 
     
     </div>
-
+    
     <button style="background-color: #ff5959; position: absolute;  top: 75vh; right: 1em;" class="button-35"
       @click="toggleAboutCowGame">About</button>
     <button style="position: absolute; top: 85vh; right: 1em; background-color: #ff5959;" class="button-35"
@@ -292,7 +292,7 @@ export default defineComponent({
       foodObjects.forEach((foodObject, index) => {
         if (!this.cowFoodObjects[index].rect) {
           this.cowFoodObjects[index].rect = foodObject.$el.getBoundingClientRect();
-          console.log(this.cowFoodObjects[index].rect)
+          //console.log(this.cowFoodObjects[index].rect)
         }
       });           
     },   

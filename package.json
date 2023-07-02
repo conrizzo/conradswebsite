@@ -9,15 +9,16 @@
     "deploy": "copy dist\\index.html dist\\404.html & gh-pages -d dist",
     "predeploy": "npm run build"
   },
-  "dependencies": {
+"dependencies": {
     "core-js": "^3.8.3",
     "prismjs": "^1.29.0",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "word-wrap": "^1.2.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
+    "@babel/core": "^7.22.5",
     "@babel/eslint-parser": "^7.12.16",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

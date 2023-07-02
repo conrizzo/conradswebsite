@@ -6,6 +6,12 @@
        
   
         <h2>This is a game project!</h2>
+
+        <p class="about-modal-text">Here is a link to the main view page:</p>
+        <a href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/CowGameView.vue">My GitHub</a>
+        <p class="about-modal-text">It also uses multiple components:</p>
+        <a href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/CowGame">in the cowgame folder.</a>
+        
         
             <ul>
             <li>This was started June 19th 2023, and is built from scratch for fun and to learn!</li>
