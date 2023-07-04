@@ -1,54 +1,55 @@
 <template >
-   <!-- this nav here fills in the empty space where we tell the vue router not to send the nav structure to the game page -->
+  <!-- this nav here fills in the empty space where we tell the vue router not to send the nav structure to the game page -->
   <nav style="background-color: black; height: 2.3em;"></nav>
   <div class="my-page">
     <!-- @position-updated="updatePosition(index, $event)" -->
-    
-    <h2 style="color: #ff5959; float: left;">This page is not currently designed<br> for mobile/touchscreen!</h2>
+
+    <h2 style="z-index: 4; position: absolute; color: #ff5959; float: left; top: 0em;">This page is not currently designed
+      for mobile/touchscreen!</h2>
     <!-- @food-returned="handleFoodReturned" -->
     <CowFood v-for="(object, index) in cowFoodObjects" 
     :style="{ zIndex: 2 }" 
     :key="index" 
     :label="object.label"
-    :initialPosition="object.position"       
-    @rect-updated="updateCowFoodRect(index, $event)"
-    ref="foodObjects" />    
+    :initialPosition="object.position" @rect-updated="updateCowFoodRect(index, $event)" 
+    ref="foodObjects" />
 
     <!-- @position-updated="updateBallPosition(index, $event)" -->
-   
-    <CowMovingBall  v-for="(object, index) in bouncingBallObjects"     
-    :key="index"    
-    :initial-position="object.position"      
-    :speed="object.speed"   
-    :setMovementDirection="object.setMovementDirection"    
-    @rect-updated="updateBallRect(index, $event)"    
-     ref="ballObjects">
-    </CowMovingBall>    
-    
+    <CowMovingBall v-for="(object, index) in bouncingBallObjects" 
+    :key="index" 
+    :initial-position="object.position"
+    :speed="object.speed" 
+    :setMovementDirection="object.setMovementDirection"
+    @rect-updated="updateBallRect(index, $event)" 
+    ref="ballObjects">
+    </CowMovingBall>
 
     <div v-if="showAboutCowGame">
       <AboutCowGame @close="toggleAboutCowGame" />
     </div>
 
-    <h1 class="unselectable"
-      style="font-size: 1.5em; top: 5em; text-align: left; padding-left: 1em; float: left; position: absolute;"> This is still under
+    <h1 class="unselectable cow-game-text"
+      style="font-size: 1.5em; top: 0em; float: left; position: absolute;"> This is
+      still under
       construction!<br>
-      How to play: <br>
-      
-    </h1>    
-    <p class="unselectable" style="width: 250px; color: #fff; font-size: 1.2em; text-align: left; padding-left: 1em; top: 11em; float: left; position: absolute;">Don't hit the cow food
-      on the electric fence or the fireball! If any of the cow food gets hit by the fireball while you are moving one of them, you lose!
-      For example: If moving the Onion Rings and the fireball hits the Peanut butter, you lose! Pay attention to where all the cowfood is at all times!
-      The Onion Rings have special properties! They can hit the electric fence and the fireball and not cause you to lose! But they may or may not be important!
-    </p>   
-
-    <p class="unselectable" style="width: 10em; color: white; top: 7em; right: 5em; position: absolute; text-align: left;">
-    Once you move the cow food, a timer starts:<br>
-    <b style="color: greenyellow; font-size: 2em;">{{ timeLeft }}</b>
-    <br>Don't run out of time before the cows get the food or they will be hangry cows! MOOOO!
+    </h1>
+    <p class="unselectable cow-game-text"
+      style="width: 25em; color: #fff;  top: 8em; float: left; position: absolute;">
+      <b>How to play:</b><br><br>Don't hit the cow food
+      on the electric fence or the fireball! You can only lose if you run out of time or are moving something! 
+      <br>
+      <br>For example: If moving the Onion Rings and the fireball hits the Peanut butter, you lose! Pay attention to where
+      all the cowfood is at all times!
     </p>
 
-    <div style="z-index: 3; position: absolute; right: 3em; top: 2.9em;" class="unselectable">      
+    <p class="unselectable cow-game-text"
+      style="width: 25em; color: white; top: 25em; position: absolute; ">
+      Once you move the cow food, a timer starts:
+      <b style="color: greenyellow; font-size: 2em;">{{ timeLeft }}</b>
+      <br><br>Don't run out of time before the cows get the food or they will be hangry cows! MOOOO!
+    </p>
+
+    <div style="z-index: 1; position: absolute; right: 3em; top: 2.9em;" class="unselectable">
       <div v-if="isThereACollision">
         <h1>{{ collisionMessage }}</h1>
       </div>
@@ -56,23 +57,33 @@
       <div v-if="collisionCowPasture">
         <h1>{{ cowPastureCollisionMessage }}</h1>
       </div>
-     </div>
-
-     <!-- hitting items and losing messages -->
-     <div class="unselectable">
-      <div v-if="hitCowFence && !peanutButterHitCowFence" :style="{ left: cowFoodObjects[0].rect?.left + 'px', top: cowFoodObjects[0].rect?.top + 'px' }" style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;" class="unselectable">
-        <h1 style="color: #ff5959;">The {{cowFoodObjects[0].label}} collided with the electric fence or fireball! <br>The cows are sad! You are a bad cow farmer!</h1>
-      </div>
-      <div v-else-if="hitCowFence && peanutButterHitCowFence" :style="{ left: cowFoodObjects[1].rect?.left + 'px', top: cowFoodObjects[1].rect?.top + 'px' }" style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;" class="unselectable" >
-        <h1 style="color: #ff5959;">The {{cowFoodObjects[1].label}} collided with the electric fence or fireball! <br>The cows are sad! You are a bad cow farmer!</h1>
-      </div>
-      <div v-else-if="onionRingsHitCowFence" :style="{ left: cowFoodObjects[2].rect?.left + 'px', top: cowFoodObjects[2].rect?.top + 'px' }" style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;" >
-        <h1>It's okay for the {{cowFoodObjects[2].label}} to hit the electric fence or fireball!</h1>
-      </div>    
     </div>
 
-    
-    <div style="margin-top: 0em;"></div>    
+    <!-- hitting items and losing messages -->
+    <div class="unselectable">
+      <div v-if="hitCowFence && !peanutButterHitCowFence"
+        :style="{ left: cowFoodObjects[0].rect?.left + 'px', top: cowFoodObjects[0].rect?.top + 'px' }"
+        style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;"
+        class="unselectable">
+        <h1 style="color: #ff5959;">The {{ cowFoodObjects[0].label }} collided with the electric fence or fireball! <br>The
+          cows are sad! You are a bad cow farmer!</h1>
+      </div>
+      <div v-else-if="hitCowFence && peanutButterHitCowFence"
+        :style="{ left: cowFoodObjects[1].rect?.left + 'px', top: cowFoodObjects[1].rect?.top + 'px' }"
+        style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;"
+        class="unselectable">
+        <h1 style="color: #ff5959;">The {{ cowFoodObjects[1].label }} collided with the electric fence or fireball! <br>The
+          cows are sad! You are a bad cow farmer!</h1>
+      </div>
+      <div v-else-if="onionRingsHitCowFence"
+        :style="{ left: cowFoodObjects[2].rect?.left + 'px', top: cowFoodObjects[2].rect?.top + 'px' }"
+        style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;">
+        <h1>It's okay for the {{ cowFoodObjects[2].label }} to hit the electric fence or fireball!</h1>
+      </div>
+    </div>
+
+
+    <div style="margin-top: 0em;"></div>
 
     <!-- obstacles -->
     <div class="vertical-line-three"></div>
@@ -83,31 +94,31 @@
     <div class="vertical-line-five"></div>
     <div class="spinning-rectangle"></div>
     <div class="parent">
-       <div class="vertical-rectangle"></div>
-     </div>
-    
-    <div style=" margin-left: 26.5em; padding-top: 49vh;">
-      <h1 style="position: absolute; top: 3em; left: 1em; font-size: 5em; color: greenyellow;" class="unselectable">{{ customMessage }}</h1>
-        <!-- generate the pasture -->
+      <div class="vertical-rectangle"></div>
+    </div>
+
+    <div style=" margin-left: 27em; padding-top: 49vh;">
+      <h1 style="position: absolute; top: 3em; left: 1em; font-size: 5em; color: greenyellow;" class="unselectable">{{
+        customMessage }}</h1>
+      <!-- generate the pasture -->
       <div class="farm">
         <h1 style="padding-top: 1em;" class="unselectable">Cow Pasture</h1>
         <p class="unselectable paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow
           pasture filled with hungry cows! (Danger: Some cows may be hangry!)<br>
           The Cows need their food delivered!<br>Deliver the correct food to make the cows happy!</p>
-          
+
       </div>
 
-      
 
-    
+
+
     </div>
-    
-    <button style="background-color: #ff5959; position: absolute;  top: 75vh; right: 1em;" class="button-35"
-      @click="toggleAboutCowGame">About</button>
-    <button style="position: absolute; top: 85vh; right: 1em; background-color: #ff5959;" class="button-35"
-      @click="refreshPage">Reset Page</button>
+
+    <button style="background-color: #ff5959; position: absolute; bottom: 1vh; right: 1em;" class="button-35"
+   @click="toggleAboutCowGame">About</button>
+   <!--<button style="background-color: #ff5959; position: absolute; bottom: calc(2vh + 3em); right: 1em;" class="button-35"
+    @click="refreshPage">Reset Page</button> -->
   </div>
-  
 </template>
 
 <script lang="ts">
@@ -121,8 +132,8 @@ import CowMovingBall from "@/components/CowGame/CowMovingBall.vue";
 // In JavaScript Object and object are different! Object creates a new object! lowercase object just sets properties and values of an object.
 
 interface ballObjectData {
-  id: string;  
-  position: Position; 
+  id: string;
+  position: Position;
   speed: number;
   setMovementDirection: Movement;
   rect: DOMRect;
@@ -138,7 +149,7 @@ interface cowFoodObjectsData {
 
 interface Movement {
   directionX: number;
-  directionY: number; 
+  directionY: number;
 }
 
 interface Position {
@@ -167,16 +178,16 @@ export default defineComponent({
       showAboutCowGame: false,
 
       isBlocked: false,
+
       hitCowFence: false,
-      onionRingsHitCowFence: false,  
-      
+      onionRingsHitCowFence: false,
       peanutButterHitCowFence: false,
-      
+
       // if timeLeft is changed make sure to change the first invocation in the updatecowfoodrect function
       timeLeft: 30,
-     
-      
-      
+
+
+
 
       // all these values can be set to defaults, or not, the interface shows what is allowed here
       // position values set the initial location of the objects
@@ -184,69 +195,69 @@ export default defineComponent({
       bouncingBallObjects: [
         {
           id: 'ball1',
-          position: { top: 50, left: 350 },    
+          position: { top: 50, left: 350 },
           setMovementDirection: { directionX: 3, directionY: 0 },
-          speed: 2,             
-         
+          speed: 2,
+
         },
         {
           id: 'ball2',
-          position: { top: 250, left: 350  },   
+          position: { top: 250, left: 350 },
           setMovementDirection: { directionX: 3, directionY: 0 },
-          speed: 2,       
-         
+          speed: 2,
+
         },
         {
           id: 'ball3',
-          position: { top: 450, left: 350 },   
-          setMovementDirection: { directionX: 3, directionY: 0},  
-          speed: 2,        
-         
-        },              
+          position: { top: 450, left: 350 },
+          setMovementDirection: { directionX: 3, directionY: 0 },
+          speed: 2,
+
+        },
       ] as ballObjectData[],
 
-      
+
       cowFoodObjects: [
         {
           id: 'grass',
           label: "Grass",
-          position: { top: 500, left: 10 },         
+          position: { top: 500, left: 10 },
           inPasture: false,
         },
         {
           id: 'peanut-butter',
           label: "Peanut Butter",
-          position: { top: 500, left: 120 },       
+          position: { top: 500, left: 120 },
           inPasture: false,
         },
         {
           id: 'onion-rings',
           label: "Onion Rings",
-          position: { top: 500, left: 230 },       
+          position: { top: 500, left: 230 },
           inPasture: false,
         },
       ] as cowFoodObjectsData[],
 
     };
   },
-  
-  mounted() {   
-      this.updateRects();          
+
+  mounted() {
+    this.updateRects();
   },
-  methods: {      
+  methods: {
     startGameTimerCountDown() {
       let seconds = this.timeLeft;
 
       let timer = setInterval(() => {
         // Display the remaining seconds
-        
+
 
         // Reduce the remaining seconds by 1
         seconds--;
         //console.log(seconds);
         this.timeLeft = seconds;
         // If the countdown is finished, clear the interval and display "Time's up!"
-        if (this.winningMessage){
+        if (this.winningMessage) {
           clearInterval(timer);
         }
         if (seconds === 0 && this.winningMessage === false) {
@@ -257,7 +268,7 @@ export default defineComponent({
           }, 2000);
         }
       }, 1000);
-      
+
     },
     toggleAboutCowGame() {
       this.showAboutCowGame = !this.showAboutCowGame;
@@ -267,9 +278,9 @@ export default defineComponent({
       //ballObject.rect = rect;
 
       this.bouncingBallObjects[index].rect = rect;
-      
+
       //console.log(index, ballObject.rect)      
-    },     
+    },
     cowFenceHit() {
       this.hitCowFence = true;
       setTimeout(() => {
@@ -281,15 +292,16 @@ export default defineComponent({
       const grassInPasture = this.cowFoodObjects[0].inPasture;
       const peanutButterInPasture = this.cowFoodObjects[1].inPasture;
       const onionRingsInPasture = this.cowFoodObjects[2].inPasture;
-      if (grassInPasture && peanutButterInPasture && !onionRingsInPasture) {
+      // checks if grass and peanut butter are in the pasture and nothing hit the cowfence right before the food is in the cow pasture
+      if (grassInPasture && peanutButterInPasture && !onionRingsInPasture && this.hitCowFence === false) {
         this.winningMessage = true;
-        if(this.timeLeft >= 20){
-          this.customMessage = "You WIN! You are a PROFESSIONAL FARMER! It only took you " + (30-this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+        if (this.timeLeft >= 15) {
+          this.customMessage = "You WIN! You are a PROFESSIONAL FARMER! It only took you " + (30 - this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
         }
-        else if(this.timeLeft >= 10){
-          this.customMessage = "You WIN! You are a RESPECTABLE FARMER! It only took you " + (30-this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
-        } else{
-          this.customMessage = "You WIN! You are a GREENHORN FARMER, It took you " + (30-this.timeLeft) + " seconds! The cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+        else if (this.timeLeft >= 5) {
+          this.customMessage = "You WIN! You are a RESPECTABLE FARMER! It only took you " + (30 - this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+        } else {
+          this.customMessage = "You WIN! You are a GREENHORN FARMER, It took you " + (30 - this.timeLeft) + " seconds! The cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
         }
       }
     },
@@ -301,12 +313,12 @@ export default defineComponent({
           this.cowFoodObjects[index].rect = foodObject.$el.getBoundingClientRect();
           //console.log(this.cowFoodObjects[index].rect)
         }
-      });           
-    },   
+      });
+    },
     refreshPage() {
       location.reload();
-    },    
-    checkCollision(rect1: DOMRect, rect2: DOMRect) {      
+    },
+    checkCollision(rect1: DOMRect, rect2: DOMRect) {
       // the -1 + 1 make the collision area slightly larger than the object to account for any slight numerical errors
       return (
         rect1.left - 1 < rect2.right &&
@@ -345,15 +357,15 @@ export default defineComponent({
       const verticalLineFour = document.querySelector('.vertical-line-four') as HTMLElement;
       const verticalLineFourRect = verticalLineFour.getBoundingClientRect();
       const verticalLineFive = document.querySelector('.vertical-line-five') as HTMLElement;
-      const verticalLineFiveRect = verticalLineFive.getBoundingClientRect();  
+      const verticalLineFiveRect = verticalLineFive.getBoundingClientRect();
 
       const spinningRectangle = document.querySelector('.spinning-rectangle') as HTMLElement;
-      const spinningRectangleRect = spinningRectangle.getBoundingClientRect();  
-      
-      const verticalMovingRectangle = document.querySelector('.vertical-rectangle') as HTMLElement;
-      const verticalMovingRectangleRect = verticalMovingRectangle.getBoundingClientRect();  
+      const spinningRectangleRect = spinningRectangle.getBoundingClientRect();
 
-      
+      const verticalMovingRectangle = document.querySelector('.vertical-rectangle') as HTMLElement;
+      const verticalMovingRectangleRect = verticalMovingRectangle.getBoundingClientRect();
+
+
 
 
       const inPasture: string[] = [];
@@ -377,7 +389,7 @@ export default defineComponent({
         // check for collision with vertical-line
         if (foodObjectRect && (this.checkCollision(foodObjectRect, verticalLineRect) ||
           this.checkCollision(foodObjectRect, diagonalLineRect) ||
-          this.checkCollision(foodObjectRect, verticalLineTwoRect) || 
+          this.checkCollision(foodObjectRect, verticalLineTwoRect) ||
           this.checkCollision(foodObjectRect, verticalLineThreeRect) ||
           this.checkCollision(foodObjectRect, verticalLineFourRect) ||
           this.checkCollision(foodObjectRect, verticalLineFiveRect) ||
@@ -386,36 +398,36 @@ export default defineComponent({
           // checks for collision with the moving balls          
           this.checkCollision(foodObjectRect, this.bouncingBallObjects[0].rect!) ||
           this.checkCollision(foodObjectRect, this.bouncingBallObjects[1].rect!) ||
-          this.checkCollision(foodObjectRect, this.bouncingBallObjects[2].rect!)        
-      
+          this.checkCollision(foodObjectRect, this.bouncingBallObjects[2].rect!)
+
           /* ||
           this.checkCollision(foodObjectRect, movingBallRectThree) */)) {
           this.isThereACollision = true;
           this.collisionMessage = `${this.cowFoodObjects[i].label} is colliding with the electric fence or fireball!`;
           if (this.cowFoodObjects[i].label === "Onion Rings") {
-                this.onionRingsHitCowFence = true;
-                setTimeout(() => {
-                this.onionRingsHitCowFence = false;
+            this.onionRingsHitCowFence = true;
+            setTimeout(() => {
+              this.onionRingsHitCowFence = false;
             }, 2000);
-          } 
-          else if (this.cowFoodObjects[i].label === "Peanut Butter"){
-              this.peanutButterHitCowFence = true;
-              this.cowFenceHit();
-              setTimeout(() => {
+          }
+          else if (this.cowFoodObjects[i].label === "Peanut Butter") {
+            this.peanutButterHitCowFence = true;
+            this.cowFenceHit();
+            setTimeout(() => {
               this.peanutButterHitCowFence = false;
             }, 2000);
-          }          
+          }
           else {
-            this.cowFenceHit();          
+            this.cowFenceHit();
           }
           return true;
         }
       }
-      if (this.cowFoodObjects[2].inPasture) {
+      if (this.cowFoodObjects[2].inPasture && this.cowFoodObjects[1].inPasture === false && this.cowFoodObjects[0].inPasture === false) {
         this.collisionCowPasture = true;
         this.cowPastureCollisionMessage = (`${inPasture.join(', ')} are Toxic to cows! Get them out of the cow pasture!`);
-       
-      } 
+
+      }
       // lingustics the message by adding commas, and, and commas in a nice happy grammatic way!
       else if (inPasture.length > 0) {
 
@@ -436,35 +448,35 @@ export default defineComponent({
       } else {
         this.collisionCowPasture = false;
         this.cowPastureCollisionMessage = '';
-      }      
-      },
-       /**
-       * Updates the `rect` property of a food object in the `cowFoodObjects` array with a new `DOMRect` value.
-       * @param {number} index - The index of the food object in the `cowFoodObjects` array.
-       * @param {DOMRect} rect - The new `DOMRect` value of the food object.
-       */
-      updateCowFoodRect(index: number, rect: DOMRect){
+      }
+    },
+    /**
+    * Updates the `rect` property of a food object in the `cowFoodObjects` array with a new `DOMRect` value.
+    * @param {number} index - The index of the food object in the `cowFoodObjects` array.
+    * @param {DOMRect} rect - The new `DOMRect` value of the food object.
+    */
+    updateCowFoodRect(index: number, rect: DOMRect) {
 
-        if (this.timeLeft === 30){
-          this.startGameTimerCountDown();
-        }
-        // get the food object from the cowFoodObjects array - this is like a getter
-        //const foodObject = this.cowFoodObjects[index] as cowFoodObjectsData;
-        // update the rect position of the food object in the cowFoodObjects array to this function parameter rect  - this is like a setter
-        //foodObject.rect = rect;
+      if (this.timeLeft === 30) {
+        this.startGameTimerCountDown();
+      }
+      // get the food object from the cowFoodObjects array - this is like a getter
+      //const foodObject = this.cowFoodObjects[index] as cowFoodObjectsData;
+      // update the rect position of the food object in the cowFoodObjects array to this function parameter rect  - this is like a setter
+      //foodObject.rect = rect;
 
-        //retrieve the position
-          //console.log(this.cowFoodObjects[index].rect?.x, this.cowFoodObjects[index].rect?.y)
+      //retrieve the position
+      //console.log(this.cowFoodObjects[index].rect?.x, this.cowFoodObjects[index].rect?.y)
 
-        // Get and set the rect property of the food object in the cowFoodObjects array
-        this.cowFoodObjects[index].rect = rect;
-        //console.log(index, foodObject.rect)
+      // Get and set the rect property of the food object in the cowFoodObjects array
+      this.cowFoodObjects[index].rect = rect;
+      //console.log(index, foodObject.rect)
 
-        // As the user drags the cowFood objects we check for collisions and interactions
-        this.checkCollisions();
-        this.checkGreenAreaCollisions();
-        this.areGrassAndPeanutButterInPasture();
-      },   
+      // As the user drags the cowFood objects we check for collisions and interactions
+      this.checkCollisions();
+      this.checkGreenAreaCollisions();
+      this.areGrassAndPeanutButterInPasture();
+    },
   },
 
 });
@@ -484,19 +496,19 @@ export default defineComponent({
   user-select: none;
 }
 
-.farm {  
+.farm {
   border: 2px dashed rgb(255, 255, 255);
   z-index: -1;
   background:
     rgba(0, 255, 119, 0.66) 29%;
   width: 35em;
-  height: 20em; 
- }
+  height: 20em;
+}
 
 .vertical-line {
   position: absolute;
   top: 13vh;
-  left: 400px; 
+  left: 400px;
   width: 1em;
   height: 91.5vh;
   background-color: rgb(115, 129, 255);
@@ -584,7 +596,7 @@ export default defineComponent({
   animation: left-right 2s ease-in-out infinite;
   top: 50vh;
   right: 19vw;
-  filter: blur(1px);  
+  filter: blur(1px);
   position: absolute;
 }
 
@@ -597,21 +609,29 @@ export default defineComponent({
   animation: top-bottom 2s ease-in-out infinite;
   top: 50vh;
   right: 19vw;
-  filter: blur(1px);  
+  filter: blur(1px);
   position: absolute;
-  
+}
+
+.cow-game-text{
+  line-height: 1.5em;
+  font-size: 0.9em;
+  padding-left: 2em;
+  text-align: left;
 }
 
 @keyframes left-right {
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(19vw);
   }
+
   100% {
     transform: translateX(0);
-    
+
   }
 }
 
@@ -620,22 +640,33 @@ export default defineComponent({
   0% {
     top: 0;
   }
+
   50% {
     top: 50vh;
   }
+
   100% {
     top: 85vh;
-    
+
   }
 }
 
 .my-page {
   background-color: rgb(0, 0, 0);
-  height: 100vh; /* Add this line to set the height to 100% of the window size */ 
- 
+  height: 100vh;
+  /* Add this line to set the height to 100% of the window size */
+
 }
 
+h2 {
+  display: none;
+}
 
+@media (max-width: 1400px) {
 
-</style>
+  /* Add your CSS rules here */
+  h2 {
+    display: block;
+  }
+}</style>
 
