@@ -140,11 +140,12 @@ export default {
   data() {
     return {
       cityWeathers: [
+        { city: "Shamokin, PA", weather: ""},
         { city: "Tübingen, Germany", weather: "" },
         { city: "STR, Stuttgart Airport, Germany", weather: "" },
         { city: "Cary, NC", weather: "" },
         { city: "Wilmington, NC", weather: "" },
-        { city: "Albuquerque, New Mexico", weather: ""},
+        { city: "Albuquerque, New Mexico", weather: ""},       
         { city: "Albany WA, Australia", weather: "" },
         { city: "RDU, Raleigh Durham Airport, USA", weather: "" },
         { city: "Uppsala, Sweden", weather: "" },        

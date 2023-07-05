@@ -281,5 +281,11 @@ h1 {
 
 /* make space to push footer down on short pages */
 .push-footer {
-  padding-bottom: 100vh;
+  padding-bottom: 40vh;
+}
+
+.fill-page-to-footer{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

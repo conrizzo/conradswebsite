@@ -510,7 +510,7 @@ export default defineComponent({
   top: 13vh;
   left: 400px;
   width: 1em;
-  height: 91.5vh;
+  height: 85vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -646,14 +646,14 @@ export default defineComponent({
   }
 
   100% {
-    top: 85vh;
+    top: 80vh;
 
   }
 }
 
 .my-page {
   background-color: rgb(0, 0, 0);
-  height: 100vh;
+  height: 95vh;
   /* Add this line to set the height to 100% of the window size */
 
 }

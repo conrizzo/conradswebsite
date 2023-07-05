@@ -1,36 +1,41 @@
 
 
 <template>
+  <div class="fill-page-to-footer">
   <div class="container background-color-about-page">
     <!-- Main area -->
-    <div class="custom-background-about-page">
-      <h1 style="color: #000;" class="adjust-title-font-size">About ConradsWebsite.com</h1>
+    <div>
+      <h1 class="h1-title">About ConradsWebsite.com</h1>
       
-      <br>
+      <div style="padding-top: 3em;">
       <p class="paragraph-text break-text">
-        This iteration of the website was started in March, 2023 and is totally self-made by Conrad using
-        <a class="text-links" href="https://github.com/vuejs/core"> Vue 3</a>
-        (Vue.js). It is hosted on
-        <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
-          Conrad's GitHub</a> with
-        <a class="text-links" href="https://pages.github.com/">
-          GitHub pages</a>.
+          This iteration of the website was started in March, 2023 and is totally self-made by Conrad using
+          <a class="text-links" style="color: #42b883;" href="https://vuejs.org/"><b>Vue 3</b></a>
+          (Vue.js). It is hosted on
+          <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
+            <b>Conrad's GitHub</b></a> with
+          <a class="text-links" href="https://pages.github.com/">
+            <b>GitHub pages</b></a>.<br>
+            Much of this website was originally written in Vue 3 and straight JavaScript, however new projects such as the 
+            <router-link class="text-links" to="/projects/cowgame"><b>Cow Game</b></router-link> heavily use 
+            <a class="text-links" href=https://www.typescriptlang.org/><b>TypeScript</b></a>.          
       </p>
-     
+      
+    
       <ul style="margin-left: 2em;">
         <li class="paragraph-text break-text">I started learning about Vue.JS when I worked on the Bioinformatics Toolkit at Max
           Planck in Tübingen, Germany.</li>
      
-        <li class="paragraph-text break-text">I earned a B.A in Computational Linguistics from the University of Tübingen, Germany,
-          and a B.S in Biology from the University of North Carolina at Wilmington.</li>
+        <li class="paragraph-text break-text">I hold a degree in Computational Linguistics from the University of Tübingen, Germany,
+          and previously completed a degree in Biology from the University of North Carolina at Wilmington in the USA.</li>
       </ul>
     
       <p class="paragraph-text break-text">
         This websites focus is to show some examples of work I've done using code, plus it's fun to have a website made in
         a framework (Vue.js) and be able to
-        experiment here. Once one has a basic understanding of HTML, CSS, JavaScript the next step in web development are frameworks. 
+        experiment here. Once one has a basic understanding of HTML, CSS, and JavaScript, the next step in front-end web development is frameworks. 
         Framework description: <a class="text-links"
-          href="https://en.wikipedia.org/wiki/Web_framework">https://en.wikipedia.org/wiki/Web_framework</a><br><br>
+          href="https://en.wikipedia.org/wiki/Web_framework">https://en.wikipedia.org/wiki/Web_framework</a>
       </p>
       <figure class="center-figure">
         <img class="img-container" :src="imagePath" alt="Coding Languages used" />
@@ -58,6 +63,7 @@
         now work properly by falling back to the index.html page. This solution may not be ideal, but it is necessary when
         using gh-pages.</p>
       </div>
+     </div>
     </div>
     <!-- Aside area -->
     <AsideContent>
@@ -105,9 +111,7 @@
     </AsideContent>
   </div>
   
-  <div class="push-footer-low-res">
-    <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
-  </div>
+</div>
   <FirstFooter></FirstFooter>
 </template>
 
@@ -166,8 +170,20 @@ figcaption {
 .img-container {
   text-align: center;
   margin: 1em auto;
-  max-width: auto;
-  
+  max-width: auto;   
+}
+
+.h1-title {
+  color: #ffffff;
+  background: linear-gradient(90deg,
+      rgba(0, 255, 119, 1) 29%,
+      rgba(0, 224, 255, 1) 100%);
+  font-size: 3em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  /* margin-top: -0.33em;  */
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 @media (min-width: 600px) {
