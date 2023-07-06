@@ -176,8 +176,8 @@ figcaption {
 .h1-title {
   color: #ffffff;
   background: linear-gradient(90deg,
-      rgba(0, 255, 119, 1) 29%,
-      rgba(0, 224, 255, 1) 100%);
+      rgb(0, 204, 95) 29%,
+      rgb(0, 183, 207) 100%);
   font-size: 3em;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
@@ -223,6 +223,12 @@ figcaption {
   }
   figcaption {
     margin-top: 0.5em;
+  }
+
+  .h1-title {
+    margin-left: 0em;
+    margin-right: 0em;
+    font-size: 1.9em;
   }
 }
 

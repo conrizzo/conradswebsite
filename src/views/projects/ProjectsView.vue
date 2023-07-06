@@ -1,5 +1,5 @@
 <template>
-  <h1>Projects</h1>
+  <h1>Project Descriptions</h1>
 
   <div v-for="project in projects" :key="project.id">
     <router-link :to="{
@@ -54,30 +54,25 @@ export default {
 </script>
 
 <style scoped>
+
 h1 {
   margin-top: 5em;
   margin-bottom: 2em;
 }
-
-
 .project-link {
-  
-
   /* change link color */
   font-size: 1.3em;
   /* change font size */
   text-decoration: none;
   /* remove underline */
   font-weight: bold;
-  /* add bold style */
-  
+  /* add bold style */  
   background: linear-gradient(90deg, rgba(0,255,119,0.66) 29%, rgba(0,224,255,0.66) 100%);
   display: inline-block; 
   padding: 0.25em; 
   border-radius: 0.5em;
   margin-bottom: 0.8em;
   margin-left: 0.5em;
-  margin-right: 0.5em;
-  
+  margin-right: 0.5em;  
 }
 </style>

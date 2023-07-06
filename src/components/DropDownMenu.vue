@@ -5,7 +5,7 @@
             <router-link to="/projects/cowculator" :class="{ active: $route.path === '/projects/cowculator' }">Cowculator</router-link>   
             <router-link to="/projects/weather" :class="{ active: $route.path === '/projects/weather' }">Custom Weather</router-link>
             <router-link to="/projects/datasets" :class="{ active: $route.path === '/projects/datasets' }">Interactive Data Table</router-link>   
-            <router-link to="/projects/NLP" :class="{ active: $route.path === '/projects/NLP' }">Interesting NLP</router-link>   
+            <router-link to="/projects/interestingLinks" :class="{ active: $route.path === '/projects/interestingLinks' }">Interesting Links</router-link>   
             <router-link to="/projects/cowgame" :class="{ active: $route.path === '/projects/cowgame' }">Feed the cows (game)</router-link>   
             <router-link to="/projects/" :class="{ active: $route.path === '/projects/' }">Project Descriptions</router-link>   
             

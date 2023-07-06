@@ -1,6 +1,7 @@
 <template>
-    <div class="background">
-        <h1>Interesting NLP (Natural Language Processing)</h1>
+    <div class="fill-page-to-footer">
+      <div class="background">
+        <h1>Interesting Links</h1>
         <p class="paragraph-text ">The goal here is to link interesting research papers, videos, webpages. This section is under development.
             Will likely categorize this for NLP, useful code links, and other topics.
         </p>
@@ -25,7 +26,8 @@
         </table>
 
     </div>
-    <div class="push-footer"></div>
+   
+</div>
     <FirstFooter></FirstFooter>
 </template>
 

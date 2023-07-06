@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>
-    <p class="paragraph-text white-color-text"> All the locations here are easily customizable!<br> Data is queried as JSON using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>, 
+    <p class="paragraph-text white-color-text"> All the locations here are easily customizable! Data is queried as JSON using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>, 
       then formatted and displayed here in a custom made table.</p>
     <table>
       <thead>
@@ -141,6 +141,7 @@ export default {
     return {
       cityWeathers: [
         { city: "Shamokin, PA", weather: ""},
+        { city: "Temecula, CA", weather: ""},
         { city: "Tübingen, Germany", weather: "" },
         { city: "STR, Stuttgart Airport, Germany", weather: "" },
         { city: "Cary, NC", weather: "" },

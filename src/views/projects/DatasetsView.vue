@@ -1,50 +1,61 @@
 
 <template>
-  <div>   
+  <div>
 
-    <h2 style="color: white; font-size:3em; padding-top: 1em; padding-bottom: 0.33em;" class="homeview">Coffee Consumers by country</h2>    
-      <!-- how do i output the graph here? -->      
+    <h2 style="color: white; font-size:3em; padding-top: 1em; padding-bottom: 0.33em;" class="homeview">Coffee Consumers
+      by country</h2>
+    <!-- how do i output the graph here? -->
     <div style="margin-left: 8px; margin-right: 8px; text-align: left; width: width: calc(100% - 16px);">
-      
-    <div id="chartContainer"></div>
-      </div>
-     <h4 style="margin-top: 0.3em; text-align: left; color: white; margin-left: 0.5em; margin-right: 0.5em;"><u><b>Note:</b></u> click on the column titles in the table below for each column to sort data numerically/alphabetically. The graph will update to the sorted values.
-        All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
-    
+
+      <div id="chartContainer"></div>
+    </div>
+    <h4 style="margin-top: 0.3em; text-align: left; color: white; margin-left: 0.5em; margin-right: 0.5em;">
+      <u><b>Note:</b></u> click on the column titles in the table below for each column to sort data
+      numerically/alphabetically. The graph will update to the sorted values.
+      All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
+
     <table style="margin-top: 1em;">
       <thead>
         <tr>
           <th style="cursor: pointer;" @click="sortData('country')">Country</th>
-          <th class="table-column-buttons" style="cursor: pointer;" @click="removeZeros('perCapitaCons2016'),sortData('perCapitaCons2016'), barChart('perCapitaCons2016', 'Coffee Consumption Per Capita 2016 (kg)')">Coffee Consumption per Capita 2016 (kg)</th>
-          <th class="table-column-buttons" style="cursor: pointer;" @click="removeZeros('totCons2019'),sortData('totCons2019'),barChart('totCons2019','Dry coffee beans 2019 (kg)')">Dry coffee beans 2019 (kg)</th>
+          <th class="table-column-buttons" style="cursor: pointer;"
+            @click="removeZeros('perCapitaCons2016'), sortData('perCapitaCons2016'), barChart('perCapitaCons2016', 'Coffee Consumption Per Capita 2016 (kg)')">
+            Coffee Consumption per Capita 2016 (kg)</th>
+          <th class="table-column-buttons" style="cursor: pointer;"
+            @click="removeZeros('totCons2019'), sortData('totCons2019'), barChart('totCons2019', 'Dry coffee beans 2019 (kg)')">
+            Dry coffee beans 2019 (kg)</th>
           <th style="cursor: pointer;" @click="sortData('region')">Region</th>
-          <th class="table-column-buttons" style="cursor: pointer;" @click="sortData('pop2023'),barChart('pop2023','Population 2023')">Population 2023</th>
+          <th class="table-column-buttons" style="cursor: pointer;"
+            @click="sortData('pop2023'), barChart('pop2023', 'Population 2023')">Population 2023</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, key) in sortedData" :key="key">
           <td>{{ item.country }}</td>
           <td>{{ Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100 }}</td>
-          <td>{{ addCommas(Math.round((item.totCons2019 * 60000)* 100 / 2.20462) / 100 ) }}</td>
+          <td>{{ addCommas(Math.round((item.totCons2019 * 60000) * 100 / 2.20462) / 100) }}</td>
           <td>{{ item.region }}</td>
           <td>{{ addCommas(item.pop2023) }}</td>
         </tr>
       </tbody>
     </table>
-    
-    <p class="paragraph-text homeview break-text">This coffee data above comes from <a
+
+    <p class="paragraph-text homeview break-text">The functions/graphical formatting using this data table are self-made.
+      Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the
+      sorted values.
+      Note: all 0 values are removed for the column that is sorted. The graph now uses an SVG format output. The coffee
+      data itself comes from <a
         href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
       but
-      it is being linked as JSON with GitHub. The values are rounded to 2 decimal places, and since values are in lbs,
+      it is being linked as JSON from a GitHub file. The values are rounded to 2 decimal places, and since values are in
+      lbs,
       further divided by 2.20462. For example each JSON value is computed through: <span
         style="color: #999999;">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span>.
-        <br>
-        <br>
-        Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the sorted values.
-        Note: all 0 values are removed for the column that is sorted. The graph now uses an SVG format output. </p>
+
+    </p>
 
     <h1 class="homeview">
-      Testing other datasets here....
+      Convenient area to test anything else dataset related here...
     </h1>
     <p class="paragraph-text homeview break-text">
       Data as an array: {{ fileContentsArray }}
@@ -69,8 +80,8 @@
       </tbody>
     </table>
   </div>
-  
-  
+
+
   <FirstFooter></FirstFooter>
 </template>
 
@@ -126,7 +137,7 @@ export default {
           this.fileContentsArray.pop();
         }
       })
-      .catch((error) => {       
+      .catch((error) => {
         //error handling
         this.errorMessage = 'An error occurred while fetching the data. Please try again later.' + error;
       });
@@ -225,14 +236,12 @@ export default {
       const maxValue = Math.max(...data.map((item) => item.value));
       const scaleFactor = svgWidth / maxValue;
 
-      let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${
-        (barHeight + barSpacing) * data.length + 30
-      }">`;
+      let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${(barHeight + barSpacing) * data.length + 30
+        }">`;
 
       // Draw the title
-      svg += `<text x="${
-        svgWidth / 2
-      }" y="20" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">${title}</text>`;
+      svg += `<text x="${svgWidth / 2
+        }" y="20" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">${title}</text>`;
 
       // Draw the bars and labels
       let startY = 30;
@@ -241,9 +250,8 @@ export default {
         const barWidth = item.value * scaleFactor;
 
         svg += `<rect x="0" y="${startY}" width="${barWidth}" height="${barHeight}" fill="#66ff99" />`;
-        svg += `<text x="5" y="${startY + barHeight / 2 + 6}" font-size="17">${
-          item.label
-        }</text>`;
+        svg += `<text x="5" y="${startY + barHeight / 2 + 6}" font-size="17">${item.label
+          }</text>`;
 
         startY += barHeight + barSpacing;
       }
@@ -261,9 +269,8 @@ export default {
 <style scoped>
 /* Table */
 table {
-  width: calc(
-    100% - 1em
-  ); /* Subtract 1em from 100% to account for the 0.5em margins on both sides */
+  width: calc(100% - 1em);
+  /* Subtract 1em from 100% to account for the 0.5em margins on both sides */
 
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -315,10 +322,11 @@ tr:nth-child(even) {
   max-width: 100%;
 }
 
-.table-column-buttons{
+.table-column-buttons {
   background-color: #66ff99;
 }
-.table-column-buttons:hover{
+
+.table-column-buttons:hover {
   background-color: #9dffbe;
 }
 
@@ -327,6 +335,7 @@ tr:nth-child(even) {
     font-size: 0.7em;
     padding: 0.25em;
   }
+
   .responsive-link {
     display: block;
   }
@@ -348,5 +357,4 @@ p.homeview {
 
   margin-bottom: 1em;
   margin-top: 1em;
-}
-</style>
+}</style>

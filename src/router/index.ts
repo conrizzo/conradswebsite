@@ -4,7 +4,7 @@ import ProjectsView from  '../views/projects/ProjectsView.vue'
 import CowculatorView from  '../views/projects/CowculatorView.vue'
 import DatasetsView from  '../views/projects/DatasetsView.vue'
 import WeatherView from  '../views/projects/WeatherView.vue'
-import NaturalLanguageProcessingView from  '../views/projects/NaturalLanguageProcessingView.vue'
+import InterestingLinksView from  '../views/projects/InterestingLinksView.vue'
 import CowGameView from  '../views/projects/CowGameView.vue'
 
 
@@ -65,9 +65,9 @@ const routes = [
     
   },
   {
-    path: '/projects/nlp',
-    name: 'NaturalLanguageProcessingView',
-    component: NaturalLanguageProcessingView,
+    path: '/projects/interestingLinks',
+    name: 'InterestingLinksView',
+    component: InterestingLinksView,
     
   },
 

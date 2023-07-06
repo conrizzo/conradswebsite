@@ -46,7 +46,8 @@ export default {
 
 footer {
   margin-top: auto;
-  height: 50px;
-  font-size: 12px;
+  height: 2em;
+  font-size: 0.9em;
+  line-height: 1.5;
 }
 </style>
