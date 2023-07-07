@@ -1,16 +1,11 @@
 <template>
-    <div class="dropdown" @mouseleave="closeDropdown">
-        <div class="dropbtn" @click="toggleDropdown" style="background-color: white;">Projects</div>           
-        <div class="dropdown-content" v-if="isDropdownOpen">
-            <router-link to="/projects/cowculator" :class="{ active: $route.path === '/projects/cowculator' }">Cowculator</router-link>   
-            <router-link to="/projects/weather" :class="{ active: $route.path === '/projects/weather' }">Custom Weather</router-link>
-            <router-link to="/projects/datasets" :class="{ active: $route.path === '/projects/datasets' }">Interactive Data Table</router-link>   
-            <router-link to="/projects/interestingLinks" :class="{ active: $route.path === '/projects/interestingLinks' }">Interesting Links</router-link>   
-            <router-link to="/projects/cowgame" :class="{ active: $route.path === '/projects/cowgame' }">Feed the cows (game)</router-link>   
-            <router-link to="/projects/" :class="{ active: $route.path === '/projects/' }">Project Descriptions</router-link>   
-            
-                           
-        </div>
+<div class="dropdown" @mouseleave="closeDropdown">
+    <div class="dropbtn" @click="toggleDropdown">Projects</div>           
+       <div class="dropdown-content" v-if="isDropdownOpen">
+            <router-link v-for="(item, index) in links" :key="index" :to="item.to" :class="{ active: $route.path === item.to }">
+            {{ item.text }}
+            </router-link>
+       </div>
     </div>
 </template>
 
@@ -20,6 +15,14 @@ export default {
     data() {
         return {
             isDropdownOpen: true,
+            links: [
+        { text: 'Cowculator', to: '/projects/cowculator' },
+        { text: 'Custom Weather', to: '/projects/weather' },
+        { text: 'Interactive Data Table', to: '/projects/datasets' },
+        { text: 'Interesting Links', to: '/projects/interestingLinks' },
+        { text: 'Feed the cows (game!)', to: '/projects/cowgame' },
+        { text: 'Project Descriptions', to: '/projects/' }
+      ]
         };
     },
     methods: {
@@ -36,52 +39,47 @@ export default {
 </script>
 
 <style>
-.dropbtn {
-    
-    
+.dropbtn {    
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
     padding: 0.5em 0.6em 0.5em 0.6em;  
-    color: rgb(75, 75, 75);
+    color:#ffffff;
+    background-color: rgb(0, 0, 0);
     font-weight: normal;
     font-size: 1em;
-    border: none;
-    
-    
-    
+    border: none;    
 }
 
 .dropdown {
     position: relative;
-    display: inline-block;    
-    
-    
+    display: inline-block;            
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
+    margin-left: -0.2em;
+    text-align: left;
     padding:0.15em;    
+    width: 13em;
     background-color: white;        
     box-shadow: 0px -2px 8px rgba(0,0,0,0.4);    
-    z-index: 1;
-    
+    z-index: 1;    
 }
 
 .dropdown-content a {
-    color: black;
+    color: rgb(128, 128, 128);
     padding: 0.5em 0.6em 0.5em 0.6em; 
     text-decoration: none;
-    display: block;
-    border-radius: 5px;
-    margin-right: 0;
-    
+    display: block;   
+    margin-right: 0;    
 }
+/* #00b3ff; */
 
-.dropdown-content a:hover:not(.active) {background-color: none; color: #00b3ff; background-color: rgb(240, 240, 240);}
+.dropdown-content a:hover:not(.active) {background-color: none; color: #000; background-color: rgb(235, 235, 235);}
 
 .dropdown:hover .dropdown-content {display: block; }
 
-.dropdown:hover .dropbtn {background-color: none;}
+.dropdown:hover .dropbtn {background-color: none; cursor: pointer;}
 
 
 

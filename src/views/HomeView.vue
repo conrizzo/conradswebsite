@@ -11,21 +11,23 @@
           Guten Tag / Howdy!
         </h2>
 
-        <h3 style="color: #fff; font-size: 1.2em; font-weight: 600">
-          This is a personal website by Conrad that is an ongoing project.
+        <h3 style="color: #fff;">
+          This is an ongoing personal website project made by <a class="text-links" href="https://github.com/conrizzo"
+          >Conrad</a
+        >. For more specific info about this website please read the <router-link
+            class="text-links" to="/about">About page</router-link>!
         </h3>
         <br>
-        <p style="color: #fff; text-align: center; line-height: 1.6;">
+        <p style="color: #fff; text-align: center;">
 
-          A cup of <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">coffee</a>☕🌳 and <a
+          <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and <a
              class="text-links" href="https://pages.github.com/">
             GitHub pages</a> = Free Fun website hosting!
           <br>
-        </p>
+        </p>     
         
-        
-        <div style="padding-left: 2em;">
-          <h3 style="font-size: 2em; padding-bottom: 0.5em; padding-top: 0.5em; padding-left: 1.2em; color:#ff5959;; text-align: left;">Some Projects ({{ this.itemsLength }})</h3>        
+        <div class="links-div-container">
+          <h3 style="font-size: 2em; padding-bottom: 0.5em; padding-top: 3em; padding-left: 1.6em; color:#ff5959; text-align: left;">Projects ({{ this.itemsLength }})</h3>        
           <div class="route-styling">          
             <div v-for="(item, key, index) in items" :key="key">
               <h2>
@@ -101,8 +103,9 @@ export default {
         weather: "Custom Weather",
         datasets: "Interactive Data Table",
         interestingLinks: "Interesting Links",
-        cowgame: "Feed the cows (game)",
+        cowgame: "Feed the cows (game!)",
         projects: "Project Descriptions",
+        
       },
       itemsLength: 0,
     };
@@ -127,24 +130,22 @@ export default {
   margin-left: 6em;
   text-align: left;
 }
-
 .h1-title {
   color: #ffffff;
   background: linear-gradient(90deg,
-      rgba(0, 255, 119, 0.9) 29%,
-      rgba(0, 224, 255, 0.9) 100%);
+      rgb(0, 255, 119) 20%,      
+      rgb(0, 225, 255) 100%);
   font-size: 3em;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
+  margin-top:0.5em;
   /* margin-top: -0.33em;  */
   margin-left: 2em;
   margin-right: 2em;
 }
-
 h2 {
   font-size: 2.5em; 
 }
-
 .custom-background-home-page {
   background-color: rgb(50, 50, 50);
 }
@@ -154,11 +155,13 @@ h2 {
   color: rgb(255, 255, 255);
   text-decoration: none;
   display: block;  /* fills in the whole parent element */
-  max-width: 13em;   
+  max-width: 12em;   
   /*border-top: 1px solid rgb(255, 255, 255);*/
 }
 
-
+.links-div-container{
+  padding-left: 10em;  
+}
 
 .home-router-link:hover {
   text-decoration: underline;
@@ -168,26 +171,36 @@ h2 {
 }
 
 .route-styling div:nth-child(odd)  {
-  border-right: 1px solid rgb(255, 255, 255);
-  
-  max-width: 33.4em;
+  border-right: 1px solid rgba(255, 255, 255, 0.9);  
+  max-width: 31em;
 }
 .route-styling div:nth-child(even)  {
-  border-left: 1px solid rgb(255, 255, 255);
-  
-  max-width: 33.4em;
+  border-left: 1px solid rgba(255, 255, 255, 0.9);  
+  max-width: 31em;
 }
 
 
 .route-styling {  
   text-align: left;
   font-size: 0.75em;
+  padding: 1em;  
+  border-radius: 5px;
+  max-width: 31.2em;
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 /* Adjust the padding for mobile resolution for this block */
-@media only screen and (max-width: 1500px) {
-  
+@media only screen and (max-width: 1500px) {  
   .h1-title {
     margin-left: 0em;
     margin-right: 0em;
   }
-}</style>
+}
+@media only screen and (max-width: 800px) {
+  .links-div-container{
+    padding-left: 1em;
+    padding-right: 1em;
+    display: inline-block;
+  }
+}
+
+</style>

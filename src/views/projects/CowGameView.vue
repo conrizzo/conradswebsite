@@ -101,12 +101,16 @@
       <h1 style="position: absolute; top: 3em; left: 1em; font-size: 5em; color: greenyellow;" class="unselectable">{{
         customMessage }}</h1>
       <!-- generate the pasture -->
-      <div class="farm">
-        <h1 style="padding-top: 1em;" class="unselectable">Cow Pasture</h1>
-        <p class="unselectable paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow
+      <div class="farm unselectable">
+        <h1 style="padding-top: 1em;" >Cow Pasture</h1>
+        <p class="paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow
           pasture filled with hungry cows! (Danger: Some cows may be hangry!)<br>
           The Cows need their food delivered!<br>Deliver the correct food to make the cows happy!</p>
-
+          <div style="font-size: 2em; padding-right: 5em; color: rgb(179, 255, 0);" v-if="showCowPastureMessage">
+            {{cowPastureMessage}} 
+          </div>
+          <div v-if="showCowPastureMessage===false" style="font-size: 2em; color: rgb(179, 255, 0); padding-left: 5em;">{{ cowPastureMessage }}</div>
+          <div v-if="showCowPastureMessage===false" style="font-size: 2em; color: rgb(179, 255, 0); padding-left: 10em;">Moo!</div>
       </div>
 
 
@@ -185,8 +189,8 @@ export default defineComponent({
 
       // if timeLeft is changed make sure to change the first invocation in the updatecowfoodrect function
       timeLeft: 30,
-
-
+      cowPastureMessage:"Moo!",
+      showCowPastureMessage: false,
 
 
       // all these values can be set to defaults, or not, the interface shows what is allowed here
@@ -243,6 +247,16 @@ export default defineComponent({
 
   mounted() {
     this.updateRects();
+
+    setInterval(() => {
+      this.showCowPastureMessage = true;
+      setTimeout(() => {
+        this.showCowPastureMessage = false;
+      }, 1500);
+    }, 3000);
+
+    
+  
   },
   methods: {
     startGameTimerCountDown() {
@@ -262,10 +276,10 @@ export default defineComponent({
         }
         if (seconds === 0 && this.winningMessage === false) {
           clearInterval(timer);
-          this.customMessage = "Time's up! You are a bad farmer! Try again!";
+          this.customMessage = "Time's up! You are a bad cow farmer! Try again!";
           setTimeout(() => {
             this.refreshPage();
-          }, 2000);
+          }, 3000);
         }
       }, 1000);
 
@@ -286,7 +300,7 @@ export default defineComponent({
       setTimeout(() => {
         this.hitCowFence = false;
         this.refreshPage();
-      }, 1000);
+      }, 1500);
     },
     areGrassAndPeanutButterInPasture() {
       const grassInPasture = this.cowFoodObjects[0].inPasture;

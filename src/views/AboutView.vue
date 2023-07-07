@@ -18,7 +18,8 @@
             <b>GitHub pages</b></a>.<br>
             Much of this website was originally written in Vue 3 and straight JavaScript, however new projects such as the 
             <router-link class="text-links" to="/projects/cowgame"><b>Cow Game</b></router-link> heavily use 
-            <a class="text-links" href=https://www.typescriptlang.org/><b>TypeScript</b></a>.          
+            <a class="text-links" href=https://www.typescriptlang.org/><b>TypeScript</b></a>. This website is designed 
+            to be minimal and offer simple navigation to some projects I've made.         
       </p>
       
     
@@ -181,6 +182,7 @@ figcaption {
   font-size: 3em;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
+  margin-top: 0.5em;
   /* margin-top: -0.33em;  */
   margin-left: 2em;
   margin-right: 2em;

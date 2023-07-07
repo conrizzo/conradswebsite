@@ -47,7 +47,7 @@
   </p>
 
   <p class="homeview paragraph-text">
-    Will add more machine learning projects as ideas come along.
+    Will add more machine learning style projects here in the future.
   </p>
 </template>
 

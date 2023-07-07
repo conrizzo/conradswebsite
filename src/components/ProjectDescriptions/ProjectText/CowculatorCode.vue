@@ -1,10 +1,11 @@
 <!-- This text is imported into the CowculatorDescription.vue so that page isn't long -->
 
 <template>
-<div>
-<p class="paragraph-text break-text"> This code takes the user input and parses through the expression to evaluate it correctly. 
-    Explaining this entirely step-by-step could take some time!</p>
-<pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
+  <div>
+    <p class="paragraph-text break-text"> This code takes the user input and parses through the expression to evaluate it
+      correctly.
+      Explaining this entirely step-by-step could take some time!</p>
+    <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
     <code>
       cowculate() {
       /* Cow Moo cowculations */
@@ -146,9 +147,11 @@
 
     <hr style="background-color: blue; height: 2px;">
     <p class="paragraph-text break-text ">Adding in explanations on how the buttons on the cowculator are generated.
-    This generates the whole main cowculator interface with buttons using a v-for loop. Specific class styling are applied based on the 
-    button type referenced from the buttonList array. The buttonList array is used to generate the buttons and the isActive array is used to
-    highlight the numbers as they are pressed on the keyboard or removed with the &lt;- back button.
+      This generates the whole main cowculator interface with buttons using a v-for loop. Specific class styling are
+      applied based on the
+      button type referenced from the buttonList array. The buttonList array is used to generate the buttons and the
+      isActive array is used to
+      highlight the numbers as they are pressed on the keyboard or removed with the &lt;- back button.
 
     </p>
     <pre v-bind:class="'language-html line-numbers'" class="code-format">
@@ -176,8 +179,9 @@
       
       </code>   
     </pre>
-    <p class="paragraph-text break-text ">The buttonList array is used to generate the buttons in the v-for loop. 
-      Depending on the button function, whatever argument that is inputted into the addNumber function will be used to determine what the button does.
+    <p class="paragraph-text break-text ">The buttonList array is used to generate the buttons in the v-for loop.
+      Depending on the button function, whatever argument that is inputted into the addNumber function will be used to
+      determine what the button does.
 
     </p>
     <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
@@ -200,12 +204,7 @@
       } else {
         this.expression += buttonValueToAdd;
       }
-    },  
-
-
-    
-
-  </code>   
+    },</code>   
     </pre>
 
     <hr style="background-color: blue; height: 2px;">
@@ -238,7 +237,8 @@
 
     </code>   
     </pre>
-    <p class="paragraph-text break-text"> This code below sets the outputs the user sees, and all the final results of the code:</p>
+    <p class="paragraph-text break-text"> This code below sets the outputs the user sees, and all the final results of the
+      code:</p>
     <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
     <code>
             // This just sets the outputs to the result of the cowculation function so the function is shorter    
@@ -330,21 +330,19 @@
 </template>
 
 <script>
-
 // import prismjs mods
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 //import 'prismjs/themes/prism-okaidia.css'
 
 export default {
-    name: "CowculatorCode",
-    
-    data() {
-        return {
-            
-        }
-    },
-    
+  name: "CowculatorCode",
+
+  data() {
+    return {
+
+    }
+  },
 };
 </script>
 
@@ -376,19 +374,18 @@ export default {
   margin-bottom: 1em;
   margin-top: 1em;
 }
+
 @media only screen and (max-width: 1500px) {
-.paragraph-text {
+  .paragraph-text {
     margin-left: 3em;
     margin-right: 3em;
 
   }
 
-  .code-format {    
-    font-size: 0.75em;    
+  .code-format {
+    font-size: 0.75em;
     margin-left: 0em;
     margin-right: 0em;
   }
 
-}
-
-</style>
+}</style>

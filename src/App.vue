@@ -1,10 +1,10 @@
 <template>
     <nav v-if="showNav">
-    <router-link to="/">Home</router-link> 
-    <router-link to="/about">About</router-link> 
-    <!--import the dropdown menu into the nav bar-->
-    <DropDownMenu></DropDownMenu>    
-  </nav> 
+      <router-link to="/">Home</router-link> 
+      <router-link to="/about">About</router-link> 
+      <!--import the dropdown menu into the nav bar-->
+      <DropDownMenu></DropDownMenu> 
+    </nav> 
   <router-view />
 </template>
 
@@ -42,34 +42,34 @@ nav {
   position: fixed; 
   /* padding: 0.3em 0.25em 0.3em 0.25em; */  
   font-size: 1.25em;
-  background-color: rgba(255, 255, 255);  
+  background-color: rgb(0, 0, 0);  
 }
 
-nav a {  
-  color: rgb(75, 75, 75);
+nav a {    
   text-decoration: none;
-  background-color: rgb(255, 255, 255);
-  margin-right: 0.1em;  
-  border-radius: 5px;
+  color: #fff;
+  
+  margin-right: 0.2em;   
   padding: 0.4em 0.6em 0.4em 0.6em;  
 }
 
-nav a:hover {  
-  color: #34B7F1;
+nav a:hover {    
+  color: #000000;
   text-decoration: none;  
-  background-color: none; 
+  background-color: rgb(235, 235, 235);
+ /*background-color:rgb(235, 235, 235);*/
 }
 
 nav a.router-link-exact-active {
   color: #ffffff;
-  background-color: rgb(75, 75, 75);  
+  background-color: #ff5959;
 }
 
 html,
 body {  
   padding-top: 1.33em;
   /* background-color: rgb(100, 100, 100); */
-  background-color: rgb(110, 110, 110);
+  background-color: rgb(128, 128, 128);
 }
 
 /*
