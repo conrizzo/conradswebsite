@@ -1,20 +1,20 @@
 <template>
-<div class="dropdown" @mouseleave="closeDropdown">
-    <div class="dropbtn" @click="toggleDropdown">Projects</div>           
-       <div class="dropdown-content" v-if="isDropdownOpen">
-            <router-link v-for="(item, index) in links" :key="index" :to="item.to" :class="{ active: $route.path === item.to }">
-            {{ item.text }}
-            </router-link>
-       </div>
+    <div class="dropdown" > <!-- @mouseleave="closeDropdown" -->
+      <div class="dropbtn unselectable" @mouseover="openDropdown" @click="toggleDropdown">Projects</div>
+      <div class="dropdown-content" v-if="isDropdownOpen">
+        <router-link v-for="(item, index) in links" :key="index" :to="item.to" :class="{ active: $route.path === item.to }">
+          {{ item.text }}
+        </router-link>
+      </div>
     </div>
-</template>
-
+  </template>
 <script>
 export default {
     name: "DropdownMenu",
     data() {
         return {
-            isDropdownOpen: true,
+            isDropdownOpen: false, // Initialize as closed
+            openTimeout: null, // Variable to store the timeout
             links: [
         { text: 'Cowculator', to: '/projects/cowculator' },
         { text: 'Custom Weather', to: '/projects/weather' },
@@ -31,9 +31,17 @@ export default {
         },
         closeDropdown() {
             if (!this.isDropdownOpen) {
-                this.isDropdownOpen = true;
+                this.isDropdownOpen = false;
             }
         },
+        openDropdown() {
+            clearTimeout(this.openTimeout); // Clear any existing timeout
+                this.openTimeout = setTimeout(() => {
+                    this.isDropdownOpen = true;
+                }, 250); // Set a new 250ms-second timeout
+                // set to false after opening
+                this.isDropdownOpen = false;
+        }
     },
 };
 </script>
@@ -46,12 +54,13 @@ export default {
     background-color: rgb(0, 0, 0);
     font-weight: normal;
     font-size: 1em;
-    border: none;    
+    border: none;        
 }
 
 .dropdown {
     position: relative;
-    display: inline-block;            
+    display: inline-block;    
+   
 }
 
 .dropdown-content {
@@ -63,7 +72,10 @@ export default {
     width: 13em;
     background-color: white;        
     box-shadow: 0px -2px 8px rgba(0,0,0,0.4);    
-    z-index: 1;    
+    z-index: 1;   
+  
+   
+    
 }
 
 .dropdown-content a {
@@ -72,12 +84,17 @@ export default {
     text-decoration: none;
     display: block;   
     margin-right: 0;    
+    
 }
 /* #00b3ff; */
 
-.dropdown-content a:hover:not(.active) {background-color: none; color: #000; background-color: rgb(235, 235, 235);}
+.dropdown-content a:hover:not(.active) {
+    background-color: none; 
+    color: #000; 
+    background-color: rgb(235, 235, 235);   
+}
 
-.dropdown:hover .dropdown-content {display: block; }
+.dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: none; cursor: pointer;}
 

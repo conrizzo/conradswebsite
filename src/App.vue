@@ -3,7 +3,9 @@
       <router-link to="/">Home</router-link> 
       <router-link to="/about">About</router-link> 
       <!--import the dropdown menu into the nav bar-->
+     
       <DropDownMenu></DropDownMenu> 
+    
     </nav> 
   <router-view />
 </template>

@@ -6,14 +6,9 @@ import DatasetsView from  '../views/projects/DatasetsView.vue'
 import WeatherView from  '../views/projects/WeatherView.vue'
 import InterestingLinksView from  '../views/projects/InterestingLinksView.vue'
 import CowGameView from  '../views/projects/CowGameView.vue'
-
-
-
 import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
 import yadhtriByppahView from  '../views/yadhtriByppahView.vue'
-
 //import about from '../views/about.vue'
-
 
 const routes = [
   
@@ -22,6 +17,7 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+
   {
     path: '/about',
     name: 'about',
@@ -30,12 +26,14 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
+
   {
     path: '/projects',
     name: 'projects',    
     
     component: ProjectsView
   },
+
   {
     path: '/projects/cowculator',
     name: 'cowculator',    
@@ -61,9 +59,9 @@ const routes = [
   {
     path: '/projects/weather',
     name: 'WeatherView',  
-    component: WeatherView,
-    
+    component: WeatherView,    
   },
+
   {
     path: '/projects/interestingLinks',
     name: 'InterestingLinksView',

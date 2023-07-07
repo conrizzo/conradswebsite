@@ -43,8 +43,6 @@ import CoffeeFunction from "@/components/ProjectDescriptions/CoffeeFunction.vue"
 import BartProject from "@/components/ProjectDescriptions/BartProject.vue";
 
 import "@/assets/globalCSS.css";
-
-
 import Prism from "prismjs";
 import FirstFooter from "@/components/FirstFooter.vue";
 
@@ -59,7 +57,6 @@ export default {
     BartProjectTitle: String,
 
   },
-
   mounted() {
     Prism.highlightAll();
   },
@@ -72,10 +69,6 @@ export default {
 </script>
 
 <style scoped>
-
-
-
-
 h1 {
   font-size: 1.75em;
   padding-top: 0.25em;
@@ -85,8 +78,5 @@ h1 {
 .title-padding{
   padding-top: 0.5em; 
   padding-bottom: 0.5em;
-
 }
-
-
 </style>

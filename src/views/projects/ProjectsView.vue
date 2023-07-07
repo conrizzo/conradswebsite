@@ -11,7 +11,9 @@
         },       
       }" class="project-link">
       <!-- inline block makes the background color only as wide as the text -->
-      <h2 style="color: rgb(255, 255, 255); border: 5px gray; display: inline-block; padding: 0.25em; border-radius: 0.25em;">{{ project.id }}. {{project.title}} : {{project.details }}</h2>
+      <h2 style="color: rgb(255, 255, 255); border: 5px gray; display: inline-block; padding: 0.25em; border-radius: 0.25em;">
+        {{ project.id }}. {{project.title}} : {{project.details }}
+      </h2>
     </router-link>
   </div>
 
