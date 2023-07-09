@@ -49,8 +49,7 @@ nav {
 
 nav a {    
   text-decoration: none;
-  color: #fff;
-  
+  color: #fff;  
   margin-right: 0.2em;   
   padding: 0.4em 0.6em 0.4em 0.6em;  
 }

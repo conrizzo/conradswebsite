@@ -501,7 +501,6 @@ export default defineComponent({
 
 
 <style scoped>
-
 .farm {
   border: 2px dashed rgb(255, 255, 255);
   z-index: -1;

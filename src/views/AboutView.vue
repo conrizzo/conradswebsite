@@ -223,13 +223,15 @@ figcaption {
 }
 
 @media only screen and (max-width: 1200px) {
+  .text-container{
+  padding-left: 1em;
+  padding-right: 1em
+  }
   figure {
     margin-left: 1.2em;
     margin-right: 1.2em;
   }
-  .push-footer-low-res {
-    height: 500px;
-  }
+  
   .img-container {
     margin: 1em 0;
   }

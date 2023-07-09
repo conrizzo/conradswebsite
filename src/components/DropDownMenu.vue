@@ -1,28 +1,35 @@
 <template>
     <div class="dropdown" > <!-- @mouseleave="closeDropdown" -->
       <div class="dropbtn unselectable" @mouseover="openDropdown" @click="toggleDropdown">Projects</div>
-      <div class="dropdown-content" v-if="isDropdownOpen">
-        <router-link v-for="(item, index) in links" :key="index" :to="item.to" :class="{ active: $route.path === item.to }">
-          {{ item.text }}
-        </router-link>
-      </div>
-    </div>
-  </template>
+        <div class="dropdown-content" v-if="isDropdownOpen">
+            <ProjectLinks :links="links">
+                <template v-slot="{ links }">            
+                
+                    <router-link v-for="(item, index) in links" :key="index" :to="item.to"
+                    :class="{ active: $route.path === item.to }">
+                    {{ item.text }}<br>
+                    </router-link>            
+
+                </template>
+            </ProjectLinks>
+        </div>
+        </div>
+    </template>
 <script>
+import ProjectLinks from '@/components/ProjectLinks.vue'
+
 export default {
     name: "DropdownMenu",
+    components: {
+        ProjectLinks
+    },
+    props: {
+        links: Array,
+    },
     data() {
         return {
             isDropdownOpen: false, // Initialize as closed
-            openTimeout: null, // Variable to store the timeout
-            links: [
-        { text: 'Cowculator', to: '/projects/cowculator' },
-        { text: 'Custom Weather', to: '/projects/weather' },
-        { text: 'Interactive Data Table', to: '/projects/datasets' },
-        { text: 'Interesting Links', to: '/projects/interestingLinks' },
-        { text: 'Feed the cows (game!)', to: '/projects/cowgame' },
-        { text: 'Project Descriptions', to: '/projects/' }
-      ]
+            openTimeout: null, // Variable to store the timeout            
         };
     },
     methods: {

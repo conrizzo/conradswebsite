@@ -12,20 +12,21 @@
           Guten Tag / Howdy!
         </h2>
 
-        <div style="display: flex; justify-content: center;">
-            <ul style="text-align: left; color: white;">
+        <div class="main-text-container">
+          <ul style="text-align: left; color: white;">
             <li style="margin-bottom: 1em;">
               <h3 style="color: #fff;">
-                This is an ongoing personal website project made by <a class="text-links" href="https://github.com/conrizzo">Conrad</a>.
+                This is an ongoing personal website project made by <a class="text-links"
+                  href="https://github.com/conrizzo">Conrad</a>.
               </h3>
             </li>
-            
             <li style="">
               <h3 style="color: #fff;">
-                For more specific info about this website please read the <router-link class="text-links" to="/about">About page</router-link>!
+                For more specific info about this website please read the <router-link class="text-links"
+                  to="/about">About page</router-link>!
               </h3>
             </li>
-            </ul>
+          </ul>
         </div>
 
         <br>
@@ -36,24 +37,29 @@
             GitHub pages</a> = Free Fun website hosting!
           <br>
         </p>
-
         <div class="links-div-container">
-          <h3
-            style="font-size: 2em; padding-bottom: 0.5em; padding-top: 3em; padding-left: 1.6em; color:#ff5959; text-align: left;">
-            Projects ({{ this.itemsLength }})</h3>
-          <div class="route-styling">
-            <div v-for="(item, key, index) in items" :key="key">
-              <h2>
-                <router-link class="home-router-link" :to="key.toLowerCase() === 'projects'
-                  ? '/projects'
-                  : '/projects/' + key.toLowerCase().replace(' ', '')
-                  " active-class="active-link">
-                  {{ index + 1 }}. {{ item }}
+          <!-- Projects ({{ this.itemsLength }})</h3> -->
+
+          <ProjectLinks :links="links">
+            <template v-slot="{ links }">
+
+              <h3
+                style="font-size: 2em; padding-bottom: 0.5em; padding-top: 3em; padding-left: 1.6em; color:#ff5959; text-align: left;">
+                Projects: {{ links.length }}
+              </h3>
+
+              <div class="route-styling">
+                <router-link class="on-hover-projects" v-for="(item, index) in links" :key="index" :to="item.to"
+                  :class="{ active: $route.path === item.to }">
+                  {{ item.text }}<br>
                 </router-link>
-              </h2>
-            </div>
-          </div>
+              </div>
+
+            </template>
+          </ProjectLinks>
         </div>
+
+
 
         <!--
       <div style="padding-top: 3em; background-color: #fff;">
@@ -99,6 +105,8 @@ import AsideContent from "@/components/FirstAside.vue";
 
 import FirstFooter from "@/components/FirstFooter.vue";
 
+import ProjectLinks from '@/components/ProjectLinks.vue'
+
 //import UseCalc from "@/components/UseCalc.vue";
 
 export default {
@@ -106,31 +114,24 @@ export default {
   components: {
     AsideContent,
     FirstFooter,
-    //UseCalc,
+    ProjectLinks,
+
+    //UseCalc, 
+
+  },
+  props: {
+    links: Array,
 
   },
   data() {
     return {
-      items: {
-        cowculator: "Cowculator",
-        weather: "Custom Weather",
-        datasets: "Interactive Data Table",
-        interestingLinks: "Interesting Links",
-        cowgame: "Feed the cows (game!)",
-        projects: "Project Descriptions",
-      },
       itemsLength: 0,
     };
   },
   mounted() {
     Prism.highlightAll();
-    this.checkLength();
   },
-  methods: {
-    checkLength() {
-      this.itemsLength = Object.keys(this.items).length;
-    }
-  }
+
 
 
 };
@@ -142,6 +143,7 @@ export default {
   margin-left: 6em;
   text-align: left;
 }
+
 .h1-title {
   color: #ffffff;
   background: linear-gradient(90deg,
@@ -150,50 +152,64 @@ export default {
   font-size: 3em;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
-  margin-top: 0.5em;
+
   /* margin-top: -0.33em;  */
   margin-left: 2em;
   margin-right: 2em;
 }
-h2 {
-  font-size: 2.5em;
-}
+
 .custom-background-home-page {
   background-color: rgb(50, 50, 50);
 }
-.home-router-link {
-  padding: 0.2em;
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  display: block;
-  /* fills in the whole parent element */
-  max-width: 12em;
-  /*border-top: 1px solid rgb(255, 255, 255);*/
-}
+
 .links-div-container {
   padding-left: 10em;
 }
-.home-router-link:hover {
-  text-decoration: underline;
-  color: #000;
+
+.on-hover-projects {
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.9);
+  padding-right: 0.25em;
+  padding-left: 0.25em;
 }
-.route-styling div:nth-child(odd) {
-  border-right: 1px solid rgba(255, 255, 255, 0.9);
-  max-width: 31em;
+
+.on-hover-projects:visited {
+  text-decoration: none;
+  color: #fff;
 }
-.route-styling div:nth-child(even) {
-  border-left: 1px solid rgba(255, 255, 255, 0.9);
-  max-width: 31em;
+
+.on-hover-projects:hover {
+  background-color: #fff;
+  color: #000;
+
 }
+
+.on-hover-projects:nth-child(odd) {
+  border-right: 1px solid #ff5959;
+  max-width: 100%;
+}
+
+.on-hover-projects:nth-child(even) {
+  border-left: 1px solid #ff5959;
+  max-width: 100%;
+}
+
 .route-styling {
+
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  display: block;
   text-align: left;
-  font-size: 0.75em;
+  font-size: 2em;
   padding: 1em;
   border-radius: 5px;
-  max-width: 31.2em;
+  max-width: 10.8em;
   border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.main-text-container {
+  padding-top: 0.5em;
+  display: flex;
+  justify-content: center;
 }
 
 /* Adjust the padding for mobile resolution for this block */
@@ -202,7 +218,15 @@ h2 {
     margin-left: 0em;
     margin-right: 0em;
   }
+
+  .main-text-container {
+    padding-right: 1em;
+    padding-left: 2em;
+
+  }
 }
+
+
 
 @media only screen and (max-width: 800px) {
   .links-div-container {
