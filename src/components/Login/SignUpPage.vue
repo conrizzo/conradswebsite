@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="signUp">
-        
-      <h2>Sign Up</h2>
+
+      <h2 style="padding: 0.5em;">Sign Up</h2>
 
       <input type="text"     placeholder="Username" required v-model="username">
       <input type="email"    placeholder="Email"    required v-model="email">

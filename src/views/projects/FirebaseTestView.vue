@@ -1,5 +1,7 @@
 <template>
-    <div>
+    <!-- conflict with "firebase": "^10.0.0", security-->
+    <!-- tried downgrading to "firebase": "9.0.2" -->
+    <div style="background-color: rgb(255, 255, 255); padding-bottom: 2em;">
     <h2 style="padding-top: 1em;">This page is still under construction - actively working on this!</h2>
       <div v-if="!isLoggedIn">
             <!-- login -->
@@ -30,23 +32,33 @@
         </form>
   
         <h2 style="padding-bottom: 1em;">Public message posts:</h2>
-
-        <ul>
+        <div style="background-color: rgb(213, 255, 241); display: flex;
+             flex-direction: column;
+             align-items: center;
+             text-align: left; width: 40em; margin: 0 auto; padding: 2em; border-radius: 1em; border: 1px solid black;">
+        <ul style="list-style: none;">
           <li v-for="submission in submissions" :key="submission.id">
             <div>
-              <h3 style="color: #fff; display: inline-block; padding: 0.25em 0 0.25em 0;">{{ submission.name }}</h3>  
+              <span style="font-weight: bold; font-size: 1em; color: rgb(100, 100, 100); display: inline-block; padding: 0.25em 0 0.25em 0;">{{ submission.name }}</span>  
               <p style="padding-left: 0.5em; font-size: 0.8em; color: #ff6b6b; display: inline-block;" 
                 v-if="submission.timestamp">{{ submission.timestamp.toDate().toLocaleString() }}</p>
             </div>
-            <p style="background-color: white; display: inline-block; padding: 0.5em; border-radius: 0.5em;">{{ submission.description }}</p> 
+            <p class="break-text" style="background-color: white; 
+            display: inline-block; padding: 0.5em; margin-bottom: 0.5em; 
+            border-radius: 0.5em;">{{ submission.description }}</p> 
           </li>
         </ul>
+    </div>
       </div>
 
     </div>
+    
+    <FirstFooter></FirstFooter>
   </template>
   
   <script>
+  import FirstFooter from "@/components/FirstFooter.vue";
+
   import SignUpPage from '@/components/Login/SignUpPage.vue'
   import LoginPage from '@/components/Login/LoginPage.vue'
   import "@/assets/globalCSS.css";
@@ -59,7 +71,7 @@
   //import router from "@/router"; // import the router object
   
   export default {
-    components: { SignUpPage, LoginPage },
+    components: { SignUpPage, LoginPage, FirstFooter },
     data() {
       return {
         isLoggedIn: false,
@@ -147,7 +159,7 @@
   </script>
   
   <style scoped>
-    p,h2{text-align:center}
+   
     span{cursor:pointer; color:#ff6b6b}
     .addinput-form{display:flex;
         flex-direction:column;
