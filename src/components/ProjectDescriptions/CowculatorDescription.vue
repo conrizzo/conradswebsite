@@ -43,11 +43,24 @@
       <p class="paragraph-text break-text">
         Adding in the x^y power function was a challenge. The interesting part of how it computes powers is that for an
         expression
-        like 2(3)^2^2 it will use the code const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g; and add parenthesis
+        like 2(3)^2^2 it will use the code:
+        <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
+    <code>
+        addParenthesisAroundPowerSymbol(input) {
+          // Use regular expression to match number^number pattern
+          const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g;
+          let output = input.replace(regex, '($1)');
+          // for now this fixes it, but it's not the best solution, forces multiplication symbol between parenthesis to fix mult error
+          let addMultParenthesis = output.replace(/\)\(/g, ')*(');
+
+          return addMultParenthesis;
+        },
+      </code>
+        </pre>
+        This will add parenthesis
         2((3)^2^2) so powers get evaluated
-        correctly using this code. The multiplication symbol and power symbol both have the same precedence so the
-        additional paranthesis was a simple
-        fix to force the code to first evaluate all exponents before multiplication in the parsing. As the user, you don't
+        correctly. The multiplication symbol and power symbol in this parsing code both have the same precedence so adding in the paranthesis
+        is a quick fix to force the code to first evaluate all exponents before multiplication. As the user, you don't
         see these additional parenthesis, but they are there in the code.
       </p>
 
@@ -88,7 +101,7 @@
     <AsideContent class="aside-padding">
       <template v-slot:aside-content>
 
-        <p class="aside-text">Nothing to add here yet.</p>
+        <p class="aside-text"></p>
 
 
       </template>

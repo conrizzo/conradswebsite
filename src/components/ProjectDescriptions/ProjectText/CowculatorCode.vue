@@ -145,7 +145,7 @@
     </pre>
 
 
-    <hr style="background-color: blue; height: 2px;">
+    <hr style="background-color: blue; height: 2px; width: 100%;">
     <p class="paragraph-text break-text ">Adding in explanations on how the buttons on the cowculator are generated.
       This generates the whole main cowculator interface with buttons using a v-for loop. Specific class styling are
       applied based on the
@@ -207,7 +207,7 @@
     },</code>   
     </pre>
 
-    <hr style="background-color: blue; height: 2px;">
+    <hr style="background-color: blue; height: 2px; width: 100%;">
 
 
     <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">

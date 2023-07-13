@@ -67,6 +67,8 @@ export default defineComponent({
         this.startX = event.touches[0].clientX - rect.left - window.scrollX;
         this.startY = event.touches[0].clientY - rect.top - window.scrollY;
         this.dragging = true;
+
+        
         },
         onTouchMove(event: TouchEvent) {
         if (this.dragging) {

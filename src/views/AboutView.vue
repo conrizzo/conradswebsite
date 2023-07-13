@@ -21,7 +21,8 @@
                   <a class="text-links" href=https://www.typescriptlang.org/><b>TypeScript</b></a>. This website is designed 
                   to be minimal and offer simple navigation to some projects I've made. These projects have been made for fun and to learn.
                   The focus has really been to use progressively more complex aspects of Vue 3, JavaScript, TypeScript, CSS, HTML, and really just learn
-                  everything that is useful to know and make some more sophisticated projects.
+                  everything that is useful to know and make some more sophisticated projects. As of July, 2023, have been working on integrating backend development.
+                  This website has been a static website, but will change into a dynamic one with a backend.
             </p>
         
         

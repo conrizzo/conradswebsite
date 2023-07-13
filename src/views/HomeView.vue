@@ -31,11 +31,7 @@
 
         <br>
         <p style="color: #fff; text-align: center;">
-
-          <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and <a class="text-links"
-            href="https://pages.github.com/">
-            GitHub pages</a> = Free Fun website hosting!
-          <br>
+          Healthy amounts of <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were consumed while building this.           
         </p>
         <div class="links-div-container">
           <!-- Projects ({{ this.itemsLength }})</h3> -->
@@ -58,8 +54,6 @@
             </template>
           </ProjectLinks>
         </div>
-
-
 
         <!--
       <div style="padding-top: 3em; background-color: #fff;">
@@ -115,9 +109,7 @@ export default {
     AsideContent,
     FirstFooter,
     ProjectLinks,
-
     //UseCalc, 
-
   },
   props: {
     links: Array,
@@ -143,7 +135,6 @@ export default {
   margin-left: 6em;
   text-align: left;
 }
-
 .h1-title {
   color: #ffffff;
   background: linear-gradient(90deg,
@@ -164,7 +155,9 @@ export default {
 
 .links-div-container {
   padding-left: 10em;
+  
 }
+
 
 .on-hover-projects {
   text-decoration: none;
@@ -193,9 +186,13 @@ export default {
   max-width: 100%;
 }
 
+a {
+  color: white;
+}
+
 .route-styling {
 
-  color: rgb(255, 255, 255);
+  color: #fff;
   text-decoration: none;
   display: block;
   text-align: left;
@@ -226,12 +223,14 @@ export default {
   }
 }
 
-
-
 @media only screen and (max-width: 800px) {
   .links-div-container {
     padding-left: 1em;
     padding-right: 1em;
     display: inline-block;
+  }
+
+  .route-styling {
+    font-size: 1.75em;
   }
 }</style>

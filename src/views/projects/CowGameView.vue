@@ -98,8 +98,13 @@
     </div>
 
     <div style=" margin-left: 27em; padding-top: 49vh;">
-      <h1 style="position: absolute; top: 3em; left: 1em; font-size: 5em; color: greenyellow;" class="unselectable">{{
-        customMessage }}</h1>
+      <div v-if="winningMessage">
+          <span style="border-radius: 1em; padding: 0.5em; background-color: #444444; margin-right: 3em; margin-left: 3em; position: absolute; top: 3em; left: 1em; font-size: 3em; color: greenyellow;" class="unselectable">
+             {{ customMessage }}<br><br>
+          <a class="text-links no-underline" href="https://www.youtube.com/watch?v=uA8dAnlD51o">{{ youTubeCowVideoLink }}</a>
+          </span>
+      </div>
+
       <!-- generate the pasture -->
       <div class="farm unselectable">
         <h1 style="padding-top: 1em;" >Cow Pasture</h1>
@@ -171,6 +176,7 @@ export default defineComponent({
     return {
       winningMessage: false,
       customMessage: "",
+      youTubeCowVideoLink: "Click here to see a happy cow video!",
 
       isThereACollision: false,
       collisionMessage: "",

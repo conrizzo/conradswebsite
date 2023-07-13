@@ -57,8 +57,8 @@ export default {
 .dropbtn {    
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
     padding: 0.5em 0.6em 0.5em 0.6em;  
-    color:#ffffff;
-    background-color: rgb(0, 0, 0);
+    color: rgb(128, 128, 128);
+    background-color: rgb(255, 255, 255);
     font-weight: normal;
     font-size: 1em;
     border: none;        
@@ -103,7 +103,7 @@ export default {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: none; cursor: pointer;}
+.dropdown:hover .dropbtn {background-color: none; cursor: pointer; color: #000;}
 
 
 

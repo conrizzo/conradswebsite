@@ -7,6 +7,7 @@ import WeatherView from  '../views/projects/WeatherView.vue'
 import InterestingLinksView from  '../views/projects/InterestingLinksView.vue'
 import CowGameView from  '../views/projects/CowGameView.vue'
 import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
+import FirebaseTestView from  '../views/projects/FirebaseTestView.vue'
 import yadhtriByppahView from  '../views/yadhtriByppahView.vue'
 //import about from '../views/about.vue'
 
@@ -73,6 +74,13 @@ const routes = [
     path: '/projects/cowgame',
     name: 'CowGameView',
     component: CowGameView,
+    
+  },
+
+  {
+    path: '/projects/firebasetest',
+    name: 'FirebaseTestView',
+    component: FirebaseTestView,
     
   },
 

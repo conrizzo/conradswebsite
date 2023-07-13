@@ -9,8 +9,9 @@
     "deploy": "copy dist\\index.html dist\\404.html & gh-pages -d dist",
     "predeploy": "npm run build"
   },
-"dependencies": {
+  "dependencies": {
     "core-js": "^3.8.3",
+    "firebase": "^10.0.0",
     "prismjs": "^1.29.0",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",

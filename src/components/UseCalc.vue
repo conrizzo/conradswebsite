@@ -308,8 +308,7 @@ export default {
 
       svg.innerHTML += `<circle cx="${x}" cy="${y}" r="15" fill="white" stroke="#42b883" stroke-opacity="0.5" />`;
       svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" alignment-baseline="central" font-family="Arial" font-size="14">${node.value}</text>`;
-    },
-
+    },    
     printTree(node, level = 1, isRoot = true) {
       if (node === null) {
         return "";
@@ -322,7 +321,6 @@ export default {
         const levelPrefix = `Tree Level ${level - 1}`;
         indent = "   ".repeat(level - 2) + levelPrefix + "   ";
       }
-
       const value = isRoot
         ? `Root        (${node.value})`
         : "(" + node.value + ")";
@@ -337,18 +335,15 @@ export default {
     cowculate() {
       /* Cow Moo cowculations */
       /* This works with some preprocessing and then everything goes into stack and is parsed in a tree */
-
       // clears all number tokens and math operations from previous inputs
       this.userTokens = [];
       this.operators = [];
-
       // Here is an interesting way I found how to add in exponents with parsing. I just add in a 
       // set of parenthesis around the exponent part such as 5*2^2+5 changes to 5*(2^2)+5 , but the user doesn't see this
       // figuring out these solutions is rewarding but since this has been a built from scratch project it feels like yarn and duck tape too, which is okay!
       // but everything works! and I am happy with the results
       // This is also fixing )( to )*( so it can be parsed correctly
       this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);
-
       try {
         // checks that it doesn't have parenthesis and a valid math operator so it doesn't output when there is nothing to output
         //if (!/-?\(?\d+\.?\d*\)?([+\-*/÷\u00D7]-?\(?\d+\.?\d*\)?)*$/.test(str)) {
@@ -497,7 +492,6 @@ export default {
       if (result == this.cleanedExpression) {
         result = "";
       }
-
       // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
       else if (!Number.isNaN(result)) {
         // show equal sign and results
@@ -506,20 +500,14 @@ export default {
         this.treeNodeCalculations = this.userTokens[0];
         //const myJSON = JSON.stringify(this.treeNodeCalculations);
         this.treeData = this.treeNodeCalculations;
-
         this.tree = this.treeNodeCalculations;
-
         this.showDescriptionText = true;
-
         // this puts the final calculation into a variable to be copied from the clipboard
         this.message = result;
-
         // this outputs the FINAL calculation
         this.result = result;
-
         // At the moment this is a bit of a hack to get the svg to clear and redraw
         this.clearSVG();
-
         // Append new SVG content
         const svgContainer = this.$refs.svgContainer;
         svgContainer.appendChild(this.svgContent);
@@ -623,7 +611,7 @@ export default {
       } else if (lastDigitIndex === "9") {
         this.isActive[9] = true;
       }
-      setTimeout(() => {
+    setTimeout(() => {
         for (let i = 0; i < 10; i++) {
           this.isActive[i] = false;
         }
@@ -655,50 +643,18 @@ export default {
     addMoo() {
       this.expression += "Moo";
     },
-    squared() {
-      /*
-      let str = this.expression;
-      let lastNum = "";
-      let i = str.length - 1;
-      // !isNaN(str[i]) checks if the last character is a number
-      while (i >= 0 && !isNaN(str[i])) {
-        lastNum = str[i] + lastNum;
-        i--;
-      }
-      if (lastNum !== "") {
-        let newNum = Number(lastNum) * Number(lastNum);
-        this.expression = str.slice(0, i + 1) + newNum.toString();
-      }
-      */
-
-      /* Was testing code above, but decided to go with the code below instead, current solution is just temporary */
-
-      /* if (this.expression !== "") {
-        if (
-          this.expression[0] !== "(" &&
-          this.expression[this.expression.length - 1] !== ")" &&
-          !/^\d+$/.test(this.expression)
-        ) {
-          this.expression = "(" + this.expression + ")";
-        }
-        */
-      this.expression += "^";
-      // this adds in a x symbol for the user to see in the output to screen
-    }, addInExtraMultiplicationSymbols(input) {
+    squared() {     
+      this.expression += "^";      
+    }, 
+    addInExtraMultiplicationSymbols(input) {
       let output = input.replace(/(\d)\(/g, '$1\u00D7(').replace(/\)\(/g, ')\u00D7(');
       //console.log(output)
       return output
     },
     addParenthesisAroundPowerSymbol(input) {
       // Use regular expression to match number^number pattern
-
-      // const regex = /(\(\d+\)\^\d+)/g;
-      // const regex2 = /(\d+\^\d+)/g;
-      // const regex = /(\(\d+\)\^\d+|\d+\^\d+)/g;
-
       const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g;
       let output = input.replace(regex, '($1)');
-
       // for now this fixes it, but it's not the best solution, forces multiplication symbol between parenthesis to fix mult error
       let addMultParenthesis = output.replace(/\)\(/g, ')*(');
 
@@ -769,7 +725,7 @@ export default {
       this.formattedNumber = ""; // expression with commas
       this.formattedResult = ""; // final result with commas
 
-      // reset tree
+      // reset tree graphic
       this.tree = {};
       this.clearSVG();
     },
@@ -780,11 +736,9 @@ export default {
 button.active {
   background: rgb(66, 184, 131, 0.5);
 }
-
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-
   padding: 1em;
   max-width: 22em;
   margin-left: auto;
@@ -806,7 +760,6 @@ button.active {
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
 }
-
 .grid-item-symbols {
   background-color: rgba(198, 198, 198, 0.6);
   border: none;
@@ -818,15 +771,12 @@ button.active {
   color: rgba(0, 0, 0, 1);
   cursor: pointer;
 }
-
 .grid-item-symbols:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
-
 .grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
-
 .moo-cows-go-moo {
   top: 102%;
   left: 50%;
@@ -838,7 +788,6 @@ button.active {
   position: absolute;
   color: #42b883;
 }
-
 .input-field {
   width: 10.6115em;
   font-size: 2.25em;
@@ -847,20 +796,17 @@ button.active {
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 }
-
 /* doesn't highlight when clicking on input field */
 select:focus,
 button:focus {
   outline: none;
 }
-
 /* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
 input:focus {
   outline: none !important;
   border: 1px solid #42b883;
   box-shadow: 0 0 10px #42b883;
 }
-
 @media only screen and (max-width: 600px) {
   .moo-cows-go-moo {
     top: 100%;
@@ -877,22 +823,16 @@ input:focus {
     padding: 0.1em;
   }
 }
-
 .cowculate-result {
   padding-top: 1em;
   text-align: center;
   margin-top: 0.05em;
-  font-size: 1.5em;
-  /* position: absolute; */
+  font-size: 1.5em; 
   left: 0em;
   right: 0em;
-  /*margin-left: auto;
-   margin-right: auto; */
-  padding: 0em;
-  /* background: #515151; */
+  padding: 0em;  
   border-radius: 4px 4px 4px 4px;
 }
-
 /* back arrow start */
 .arrow {
   border: solid rgb(255, 255, 255);
@@ -900,25 +840,20 @@ input:focus {
   display: inline-block;
   padding: 3px;
 }
-
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
-
 .left-arrow {
   border-right: 0.6em solid #ffffff;
   border-bottom: 0.4em solid transparent;
   border-top: 0.4em solid transparent;
-
   position: absolute;
 }
-
 .arrow-position {
   margin-bottom: 0.8em;
   margin-left: 0.75em;
 }
-
 /* back arrow end */
 
 /* notification menu when copy to clipboard */
@@ -934,16 +869,13 @@ input:focus {
   border-radius: 10px;
   margin-top: 0.5em;
   margin-left: 0.5em;
-
   transition: opacity 0.5s ease-in-out;
   width: 300px;
   opacity: 1;
 }
-
 .notification.hide {
   opacity: 0;
 }
-
 .node-display {
   font-size: 1.3em;
   background-color: #e3e3e3;
