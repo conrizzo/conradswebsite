@@ -74,45 +74,12 @@
       <AsideContent>
         <template v-slot:aside-content>
           <p class="aside-text" style="margin-top: 1em">
-            <!-- make a hyperlink template to google.com -->
-
-            This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>. What
-            are slots in vue.js?
-            <br>
-            <br>
-            According to chatGPT: "Slots in Vue.js provide a way to pass content from a parent component to a child
-            component.
-            The main purpose of slots is to make it easier to create reusable components that can be customized with
-            different content.
-            <br>
-            <br>
-            Here are some of the benefits of using slots in Vue.js:
-            <br>
-            <br>
-            1. Reusability: Slots allow you to create reusable components that can be used in different parts of your
-            application with different content.
-            This makes it easier to create modular, maintainable code.
-            <br>
-            <br>
-            2. Customizability: Slots allow you to customize the content of a component without having to modify the
-            component itself. This makes it easier to create components that can be used in a variety of contexts.
-            <br>
-            <br>
-            3. Flexibility: Slots provide a flexible way to structure your components.
-            You can use slots to define different sections of a component and then fill those sections with content as
-            needed.
-            <br>
-            <br>
-            4. Separation of concerns: Slots allow you to separate the concerns of a component.
-            The component defines the structure and behavior, while the content is provided by the parent component.
-            <br>
-            <br>
-            In summary, slots are an essential feature of Vue.js that make it easier to create reusable, customizable, and
-            flexible components.
-            By using slots, you can create more modular and maintainable code, which can save you time and effort in the
-            long run."
-          </p>
-          
+            This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>.</p>
+            <img style="border-radius: 1em;" :src="birdPicture" alt="Kohlenmeise picture">
+            <p class="aside-text">This is a <a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a> (name in German, English name is Great Tit), a species of bird that is native to Europe. 
+              Kohlenmeises are known for their distinctive black and white plumage and their cheerful songs. They also love to eat peanuts!</p>
+         
+        
       </template>
     </AsideContent>
   </div>
@@ -124,7 +91,7 @@
 <script>
 import AsideContent from "@/components/FirstAside.vue";
 import FirstFooter from "@/components/FirstFooter.vue";
-
+import Prism from "prismjs";
 export default {
   name: "HomeView",
   components: {
@@ -133,9 +100,27 @@ export default {
   },
   data() {
     return {
-
+      birdPicture: require('@/images/Kohlenmeise.jpg'),
       imagePath: require("@/images/website-code.jpg"), // Add the image path to the data object
     }
+  },
+  downloadPDF() {
+      const url = 'https://raw.githubusercontent.com/username/repo/branch/path/to/file.pdf';
+
+      fetch(url)
+        .then((response) => response.blob())
+        .then((blob) => {
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'my-document.pdf');
+          document.body.appendChild(link);
+          link.click();
+        });
+    },
+  
+  mounted() {
+    Prism.highlightAll();
   },
   
 };
@@ -177,6 +162,7 @@ figcaption {
   text-align: center;
   margin: 1em auto;
   max-width: auto;   
+  border-radius: 0.5em;
 }
 
 .h1-title {
@@ -191,6 +177,7 @@ figcaption {
   /* margin-top: -0.33em;  */
   margin-left: 2em;
   margin-right: 2em;
+  border-radius: 0.3em;
 }
 
 
@@ -217,10 +204,13 @@ figcaption {
   padding-right: 8em
 }
 
+
+
 @media (max-width: 600px) {
   .adjust-title-font-size {
     font-size: 2em;
   }
+ 
 }
 
 @media only screen and (max-width: 1200px) {
@@ -245,6 +235,9 @@ figcaption {
     margin-right: 0em;
     font-size: 1.9em;
   }
+
+ 
 }
+
 
 </style>

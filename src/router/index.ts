@@ -8,6 +8,8 @@ import InterestingLinksView from  '../views/projects/InterestingLinksView.vue'
 import CowGameView from  '../views/projects/CowGameView.vue'
 import ProjectDetailsView from  '../views/projects/ProjectDetailsView.vue'
 import FirebaseTestView from  '../views/projects/FirebaseTestView.vue'
+import SortingAlgorithmsView from  '../views/projects/SortingAlgorithmsView.vue'
+
 import yadhtriByppahView from  '../views/yadhtriByppahView.vue'
 //import about from '../views/about.vue'
 
@@ -82,6 +84,12 @@ const routes = [
     name: 'FirebaseTestView',
     component: FirebaseTestView,
     
+  },
+
+  {
+  path: '/projects/sortingAlgorithms',
+  name: 'SortingAlgorithmsView',
+  component: SortingAlgorithmsView,
   },
 
   {

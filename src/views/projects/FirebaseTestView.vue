@@ -22,7 +22,7 @@
         <button class="button-35" @click="handleLogout">Logout</button>
         <h2>Welcome, you can submit a message now, you are logged in! {{ displayName }}</h2>
       </div>
-   
+      
       <div style="padding-top: 5em;">
         <form class="addinput-form" @submit.prevent="createSubmission">
           <h2>Submit Message! - must be logged in for it to work.</h2>
@@ -30,16 +30,13 @@
           <textarea type="text" placeholder="Description" required v-model="description" name="submissionDescription" cols="50" rows="10"></textarea>
           <button @click="createUser" class="button-35">Add Entry</button>
         </form>
-  
+        <!-- message area -->
         <h2 style="padding-bottom: 1em;">Public message posts:</h2>
-        <div style="background-color: rgb(213, 255, 241); display: flex;
-             flex-direction: column;
-             align-items: center;
-             text-align: left; width: 40em; margin: 0 auto; padding: 2em; border-radius: 1em; border: 1px solid black;">
+        <div class="submission-container">
         <ul style="list-style: none;">
           <li v-for="submission in submissions" :key="submission.id">
             <div>
-              <span style="font-weight: bold; font-size: 1em; color: rgb(100, 100, 100); display: inline-block; padding: 0.25em 0 0.25em 0;">{{ submission.name }}</span>  
+              <span style="font-weight: bold; font-size: 1em; color: rgb(3, 212, 142); display: inline-block; padding: 0.25em 0 0.25em 0;">{{ submission.name }}</span>  
               <p style="padding-left: 0.5em; font-size: 0.8em; color: #ff6b6b; display: inline-block;" 
                 v-if="submission.timestamp">{{ submission.timestamp.toDate().toLocaleString() }}</p>
             </div>
@@ -171,4 +168,20 @@
         border: 1px solid #ff5959; padding: 0.25em; margin-bottom: -0.5em;}
     textarea{font-size: 1.25em; border-radius: 0.25em; border-width: 1px; outline: none; border: 1px solid #ff5959; padding: 0.25em;}
     button{width:fit-content; margin:auto}
+
+    .submission-container{
+        background-color: rgb(221, 250, 240); 
+        display: flex;
+            flex-direction: column;
+            align-items: center;
+             text-align: left; width: 40em; margin: 0 auto; padding: 2em; border-radius: 1em; border: 1px solid black;
+
+    }
+    @media only screen and (max-width: 800px) {
+        .submission-container{
+            width: 90%;
+            padding-right: 1em;
+            padding-left: 1em;
+        }
+    }
   </style>

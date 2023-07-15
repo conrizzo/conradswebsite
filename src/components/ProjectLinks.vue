@@ -26,7 +26,9 @@ export default {
                 { text: 'Interesting Links', to: '/projects/interestingLinks' },
                 { text: 'Feed the cows (game!)', to: '/projects/cowgame' },
                 { text: 'Backend Firebase App', to: '/projects/firebasetest'},
-                { text: 'Project Descriptions', to: '/projects/' },                
+                { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
+                { text: 'Project Descriptions', to: '/projects/' },             
+                   
                 
             ]
         },       

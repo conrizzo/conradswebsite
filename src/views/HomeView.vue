@@ -9,7 +9,7 @@
 
         <h2
           style="font-weight: 10; padding: 0.25em; border-radius: 0.25em; margin-top: 1em; color: #fff; font-size: 3em; display: inline-block;">
-          Guten Tag / Howdy!
+          Guten Tag / Howdy! 
         </h2>
 
         <div class="main-text-container">
@@ -68,21 +68,8 @@
       <!-- Aside area begins -->
       <AsideContent class="aside-low-resolution">
         <template v-slot:aside-content>
-          <p class="aside-text">
-            Howdy, partner! If you're hankerin' for some good eatin', I recommend makin' fresh salsa.
-            <br><br>All you need is:
-          <ul>
-            <li style="margin-left: 3em;">2 medium or bigger tomatoes</li>
-            <li style="margin-left: 3em;">Fresh lime juice (1 lime is good)</li>
-            <li style="margin-left: 3em;">1 onion</li>
-            <li style="margin-left: 3em;">Salt to taste</li>
-            <li style="margin-left: 3em;">Some black pepper</li>
-            <li style="margin-left: 3em;">Jalapenos! Add as much as you want, no limits ya hear.</li>
-            <li style="margin-left: 3em;">Fresh Cilantro (Coriander)</li>
-          </ul>
-          <br>
-          Chop all them ingredients up and mix it together! It's delicious! Picture of salsa comin' soon!
-          </p>
+          <p class="aside-text loading">Nothing here yet</p>
+          
         </template>
       </AsideContent>
 
@@ -113,7 +100,6 @@ export default {
   },
   props: {
     links: Array,
-
   },
   data() {
     return {
@@ -232,5 +218,29 @@ a {
 
   .route-styling {
     font-size: 1.75em;
-  }
-}</style>
+  } 
+}
+
+
+.loading {    
+    font-family: sans-serif;
+    font-size: 1.25em;
+}
+
+.loading:after {
+  display: inline-block;
+  animation: dotty 3s steps(1,end) 3;
+  content: '';
+}
+
+@keyframes dotty {
+  0%   { content: ''; }
+  20%  { content: '.'; }
+  40%  { content: '..'; }
+  60%  { content: '...'; }
+  80%  { content: '....'; }
+  100% { content: ''; }
+}
+
+
+</style>
