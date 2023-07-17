@@ -9,7 +9,7 @@
 
         <h2
           style="font-weight: 10; padding: 0.25em; border-radius: 0.25em; margin-top: 1em; color: #fff; font-size: 3em; display: inline-block;">
-          Guten Tag / Howdy! 
+          Welcome!
         </h2>
 
         <div class="main-text-container">
@@ -17,7 +17,7 @@
             <li style="margin-bottom: 1em;">
               <h3 style="color: #fff;">
                 This is an ongoing personal website project made by <a class="text-links"
-                  href="https://github.com/conrizzo">Conrad</a>.
+                  href="https://github.com/conrizzo">Conrad</a>
               </h3>
             </li>
             <li style="">
@@ -31,7 +31,7 @@
 
         <br>
         <p style="color: #fff; text-align: center;">
-          Healthy amounts of <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were consumed while building this.           
+          "Healthy" amounts of <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were consumed while building this.           
         </p>
         <div class="links-div-container">
           <!-- Projects ({{ this.itemsLength }})</h3> -->

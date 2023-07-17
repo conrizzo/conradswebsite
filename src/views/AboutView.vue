@@ -32,6 +32,10 @@
           
               <li class="paragraph-text break-text">I hold a degree in Computational Linguistics from the University of Tübingen in Germany,
                 and previously completed a Bachelor of Science in Biology from the University of North Carolina at Wilmington.</li>
+
+                <li class="paragraph-text break-text">Have currently been working on this website using Vue.js, JavaScript, TypeScript, CSS, HTML. Starting to
+                  learn more about backend development and databases. Started learning <a class="text-links" href=https://en.wikipedia.org/wiki/Rust_(programming_language)>Rust</a> as well.
+                </li>
             </ul>
           
             <p class="paragraph-text break-text">
@@ -76,7 +80,7 @@
           <p class="aside-text" style="margin-top: 1em">
             This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>.</p>
             <img style="border-radius: 1em;" :src="birdPicture" alt="Kohlenmeise picture">
-            <p class="aside-text">This is a <a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a> (name in German, English name is Great Tit), a species of bird that is native to Europe. 
+            <p class="aside-text">This is a self-taken <a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a> (name in German, English name is Great Tit) photo in Tübingen, Germany. It is a species of bird that is native to Europe. 
               Kohlenmeises are known for their distinctive black and white plumage and their cheerful songs. They also love to eat peanuts!</p>
          
         

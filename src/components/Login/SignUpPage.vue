@@ -46,8 +46,7 @@ export default {
 
       // register and login user
       createUserWithEmailAndPassword(auth, this.email, this.password)
-        .then(() => {
-
+          .then(() => {
           // update 'displayName'
           updateProfile(auth.currentUser, {
             displayName: this.username
