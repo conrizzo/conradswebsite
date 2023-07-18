@@ -1,6 +1,6 @@
 <template>
   
-    <nav class="move-left-at-lower-resolution" v-if="showNav">
+    <nav class="move-left-at-lower-resolution" v-if="showNav">     
       <router-link to="/">Home</router-link> 
       <router-link to="/about">About</router-link> 
       <!--import the dropdown menu into the nav bar-->

@@ -35,6 +35,7 @@
 
                 <li class="paragraph-text break-text">Have currently been working on this website using Vue.js, JavaScript, TypeScript, CSS, HTML. Starting to
                   learn more about backend development and databases. Started learning <a class="text-links" href=https://en.wikipedia.org/wiki/Rust_(programming_language)>Rust</a> as well.
+                  Am continually practicing more German too, so it is <u>a lot</u> of language learning!
                 </li>
             </ul>
           
@@ -81,7 +82,7 @@
             This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>.</p>
             <img style="border-radius: 1em;" :src="birdPicture" alt="Kohlenmeise picture">
             <p class="aside-text">This is a self-taken <a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a> (name in German, English name is Great Tit) photo in Tübingen, Germany. It is a species of bird that is native to Europe. 
-              Kohlenmeises are known for their distinctive black and white plumage and their cheerful songs. They also love to eat peanuts!</p>
+              They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat peanuts!</p>
          
         
       </template>
@@ -105,7 +106,7 @@ export default {
   data() {
     return {
       birdPicture: require('@/images/Kohlenmeise.jpg'),
-      imagePath: require("@/images/website-code.jpg"), // Add the image path to the data object
+      imagePath: require("@/images/languages_july_17_2023.jpg"), // Add the image path to the data object
     }
   },
   downloadPDF() {

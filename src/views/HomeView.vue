@@ -1,7 +1,7 @@
 <template>
   <div class="fill-page-to-footer">
     <!-- negative margin here to fill in space in nav on home page -->
-    <h1 class="h1-title">Conrad's Website</h1>
+    
     <!-- Main area -->
 
     <div class="container custom-background-home-page">
@@ -9,7 +9,7 @@
 
         <h2
           style="font-weight: 10; padding: 0.25em; border-radius: 0.25em; margin-top: 1em; color: #fff; font-size: 3em; display: inline-block;">
-          Welcome!
+          Welcome
         </h2>
 
         <div class="main-text-container">
@@ -65,11 +65,14 @@
     -->
       </div>
 
-      <!-- Aside area begins -->
-      <AsideContent class="aside-low-resolution">
+      <!-- Aside area begins  #2d2d2d; slate black color -->
+      <AsideContent class="aside-low-resolution" style="background: #fff;">
         <template v-slot:aside-content>
-          <p class="aside-text loading">Nothing here yet</p>
-          
+          <p class="aside-text loading">Nothing in this section</p>
+          <figure style="display: inline-block;">
+          <img :src="birdDrawing" alt="Bird Drawing">
+          <figcaption class="aside-text" style="display: block;"><i>Except this quickly doodled bird drawing made in ms paint!</i></figcaption>
+        </figure>
         </template>
       </AsideContent>
 
@@ -104,12 +107,41 @@ export default {
   data() {
     return {
       itemsLength: 0,
+      birdDrawing: require("@/images/bird_drawing.jpg"), // Add the image path to the data object
+
+      skyGradientIndex: 0,
+      skyGradientClasses: [
+        "sky-gradient-00",
+        "sky-gradient-01",
+        "sky-gradient-02",
+        "sky-gradient-03",
+        "sky-gradient-04",
+        "sky-gradient-05",
+        "sky-gradient-06",
+        "sky-gradient-07",
+        "sky-gradient-08",
+        "sky-gradient-09",
+        "sky-gradient-10",
+        "sky-gradient-11",
+        "sky-gradient-12",
+        "sky-gradient-13",
+        "sky-gradient-14",
+        "sky-gradient-15",
+        "sky-gradient-16",
+        "sky-gradient-17",
+        "sky-gradient-18",
+        "sky-gradient-19",
+        "sky-gradient-20",
+        "sky-gradient-21",
+        "sky-gradient-22",
+        "sky-gradient-23",
+      ],
     };
   },
   mounted() {
     Prism.highlightAll();
-  },
-
+    
+  }, 
 
 
 };
@@ -121,22 +153,24 @@ export default {
   margin-left: 6em;
   text-align: left;
 }
+/*
 .h1-title {
   color: #ffffff;
   background: linear-gradient(90deg,
-      rgb(0, 255, 119) 20%,
-      rgb(0, 225, 255) 100%);
+      rgb(224, 11, 11) 20%,
+      rgb(137, 238, 252) 100%);
   font-size: 3em;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
 
-  /* margin-top: -0.33em;  */
+  
   margin-left: 2em;
   margin-right: 2em;
 }
-
+*/
 .custom-background-home-page {
-  background-color: rgb(50, 50, 50);
+  
+  background: linear-gradient(0deg, rgba(1,239,249,1) 0%, rgba(0,112,255,0.5746673669467788) 38%, rgba(23,50,143,0.8155637254901961) 78%);
 }
 
 .links-div-container {
@@ -225,6 +259,7 @@ a {
 .loading {    
     font-family: sans-serif;
     font-size: 1.25em;
+  
 }
 
 .loading:after {
@@ -241,6 +276,8 @@ a {
   80%  { content: '....'; }
   100% { content: ''; }
 }
+
+
 
 
 </style>

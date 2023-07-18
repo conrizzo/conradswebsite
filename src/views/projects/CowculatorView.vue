@@ -111,7 +111,7 @@ export default {
       helpTitleTwo: "Why use the cowculator?",
       helpText: "",
       showHelpGuide: false,
-      imagePath: require("@/images/languages.jpg"), // Add the image path to the data object
+      imagePath: require("@/images/languages_july_17_2023.jpg"), // Add the image path to the data object
     };
   },
 

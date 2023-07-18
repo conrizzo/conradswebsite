@@ -77,7 +77,7 @@
         description: '',    
         submissions: [],  
         displayName: '',   
-       
+        lastMessageSentTime: 0,
       }
     },
     beforeUpdate() {
@@ -92,28 +92,46 @@
           //if (auth.currentUser) {
           // set local 'displayName' to user's displayName
           this.displayName = auth.currentUser
-          //}
-  
-          // Get a reference to the 'items' collection in the database
-          const colRef = collection(db, 'submissions')
-  
-          // Create an object with the data for the new item
-          const dataObj = {
-            name: this.name,
-            description: this.description,      
-            timestamp: serverTimestamp(),          
-          }
-  
-          // Add the new item to the 'items' collection and get a reference to the new document
-          const docRef = await addDoc(colRef, dataObj)
-  
-          console.log("Document written with ID: ", docRef.id);
+          
+          this.sendMessage();
+          
         } catch (err) {
           console.error("Error adding document!!!: ", err);
         }
       },
+      async sendMessage(){
+
+        console.log("message sent")
+        // Get the current time in milliseconds
+        const currentTime = new Date().getTime();
+        console.log(currentTime)
+        // Calculate the time elapsed since the last message was sent
+        const timeElapsed = currentTime - this.lastMessageSentTime;
+        console.log(timeElapsed)
+
+        // If less than 5 seconds have elapsed, do not send the message
+        if (timeElapsed < 5000) {
+          console.log('Please wait at least 5 seconds before sending another message.');
+          alert('Please wait at least 5 seconds before sending another message.');
+          return;
+        }
+
+
+        // Get a reference to the 'items' collection in the database
+        const colRef = collection(db, 'submissions')        
+        // Create an object with the data for the new item
+        const dataObj = {
+          name: this.name,
+          description: this.description,      
+          timestamp: serverTimestamp(),          
+        }
+        // Add the new item to the 'items' collection and get a reference to the new document          
+        const docRef = await addDoc(colRef, dataObj)
+        console.log("Document written with ID: ", docRef.id);
+      },
       handleLogin() {
         this.isLoggedIn = true;
+        document.cookie = 'isLoggedIn=true; SameSite=Strict';
         localStorage.setItem('isLoggedIn', 'true'); // store the authentication state in local storage
       },
       // needs to be invoked from firebase - this is why it said signOut function didnt exist before
@@ -128,6 +146,7 @@
       handleLogout() {
         this.signOut();
         this.isLoggedIn = false;
+        document.cookie = 'isLoggedIn=false; SameSite=Strict';
         localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
       },    
       

@@ -10,7 +10,7 @@
       <h1>Sorting algorithms:</h1>
       <p class="paragraph-text">What is <a class="bogo-link no-underlines" style="color: #fff;"
           href="https://en.wikipedia.org/wiki/Bogosort">Bogosort?</a></p><br>
-      <p class="paragraph-text">This button will Bogosort an array.
+      <p class="paragraph-text">This button below will Bogosort an array.
         Each iteration it adds an element (random integer 1-100) to the array. This is currently using the
         performance.now() function to measure performance time it takes to sort each newly pushed element. This is not the
         most precise way to measure time, and it
@@ -24,32 +24,36 @@
 
 
       </p><br>
-      <button @click="bogoSort" class="button-35" style="background: #424242;">Click me to Bogosort</button>
+
+      <div style="display: inline-block;">
+        <button @click="bogoSort" class="button-35" style="background: #424242;">Click me to Bogosort</button>
+        <button @click="arrayOfArrays = [], bogoSortArrayButtonClicked=false" class="button-35" style="background: #424242; margin-left: 0.5em;">Reset</button>
+      </div>
+
       <br><br><label style="padding-right: 1em; color: #fff;" for="number-input">Enter length of array to
         Bogosort!</label>
       <input style="font-size: 1.25em; margin-bottom: 1em;" type="text" id="number-input" v-model="arrayInput"
         placeholder=""><br>
 
-      <div class="table-container">
-        <table style="color: #fff; text-align: left;">
+      <div v-show="bogoSortArrayButtonClicked" class="table-container">
+        <table  style="color: #fff; text-align: left;">
           <thead>
             <tr>
               <th style="width: 6em;">Array Size</th>
               <th style="width: 15em;">Sorted Array</th>
+              <th style="width: 11em;">Number of Shuffles</th>
               <th>Elapsed Time (ms)</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in arrayofArrays" :key="index">
+            <tr v-for="(item, index) in arrayOfArrays" :key="index">
               <td style="padding-right: 1em;">{{ item[0] }}</td>
               <td style="padding-right: 1em; padding-bottom: 0.5em;">{{ item[1] }}</td>
-              <td style="padding-right: 1em;">{{ "Milliseconds: " + item[2].toFixed(3) }}</td>
-
+              <td style="padding-bottom: 0.5em;">{{ item[2] }}</td>
+              <td>{{ "Milliseconds: " + item[3].toFixed(3) }}</td>
             </tr>
-
           </tbody>
         </table>
-
       </div>
       <!-- https://vademon.github.io/steam2019emoticons/stickers-Winter2019.html png is from Steam 2019 winter collection -->
       <img
@@ -57,22 +61,28 @@
         alt="Bogo Sort GIF">
 <pre v-bind:class="'language-JavaScript line-numbers'">
 <code>      
-  bogoSort() {
+  // Following section is BOGOSORT
+    bogoSort() {
+      
+
+      this.bogoSortArrayButtonClicked = true;
+
       for (let i = 1; i &lt;= this.arrayInput; i++) {
         const arr = [];
         for (let j = 0; j &lt; i; j++) {
           const randomNumber = this.getRandomInt(1, 100); // Adjust the range as needed
           arr.push(randomNumber);
         }
-
+        let number_of_shuffles = 0;
         let startTime = performance.now();
         while (!this.isSorted(arr)) {
+          number_of_shuffles++;
           this.shuffle(arr);
         }
         let endTime = performance.now();
         let elapsedTime = (endTime - startTime);
 
-        this.arrayofArrays.push([i, arr, "Milliseconds: " + elapsedTime]);
+        this.arrayOfArrays.push([i, arr, number_of_shuffles, elapsedTime]);
       }
     },
     // Function to generate a random integer between min and max (inclusive)
@@ -93,13 +103,48 @@
         }
       }
       return true;
-    }
-  }
+    },
 </code>
 </pre>
+
+<pre v-bind:class="'language-JavaScript line-numbers'">
+<code> 
+// Below is my self-written way to reverse a string using recursion. 
+// This is oddly the way I came up with this writing it from scratch with no resources in a few minutes.
+// Generally, building anything it's good to get a working prototype, then can fine-tune it, but this was just
+// an exercise to see how I would solve this on my own.
+
+let string = 'hello'
+
+function reverse(string, newString, finalString){
+  if (string.length === 0){
+   return newString;
+  }
+  //console.log(string.slice(-1))
+
+  console.log(newString)
+ 
+ 
+	newString = string.slice(string.length-1,string.length);
+  string = string.slice(0,string.length - 1);
+  
+  finalString = finalString + newString
+  //console.log(newString)
+  //console.log(string)
+  console.log(finalString)
+  reverse(string,newString, finalString);
+
+}
+
+reverse(string, '', '');
+</code>
+</pre>
+<button class="button-35" @click="quickSort">Quick Sort</button>
     </div>
+    
     <div style="height: 95vh;"></div>
   </div>
+  
   <FirstFooter></FirstFooter>
 </template>
   
@@ -115,32 +160,41 @@ export default {
   },
   data() {
     return {
+      bogoSortArrayButtonClicked: false,
       bogoSortArray: [],
-      arrayofArrays: [],
+      arrayOfArrays: [],
       arrayInput: 9,
+
+      quickSortArray: [4,3,5,7,2,4,9,1,6,7,13,3,1,3,5,6,5],
     };
   },
-  methods: {
-    mounted() {
+  mounted() {
       Prism.highlightAll();
     },
+  methods: {
+   
     // Following section is BOGOSORT
     bogoSort() {
+      
+
+      this.bogoSortArrayButtonClicked = true;
+
       for (let i = 1; i <= this.arrayInput; i++) {
         const arr = [];
         for (let j = 0; j < i; j++) {
           const randomNumber = this.getRandomInt(1, 100); // Adjust the range as needed
           arr.push(randomNumber);
         }
-
+        let number_of_shuffles = 0;
         let startTime = performance.now();
         while (!this.isSorted(arr)) {
+          number_of_shuffles++;
           this.shuffle(arr);
         }
         let endTime = performance.now();
         let elapsedTime = (endTime - startTime);
 
-        this.arrayofArrays.push([i, arr, elapsedTime]);
+        this.arrayOfArrays.push([i, arr, number_of_shuffles, elapsedTime]);
       }
     },
     // Function to generate a random integer between min and max (inclusive)
@@ -161,7 +215,17 @@ export default {
         }
       }
       return true;
-    }
+    },
+    quickSort(){
+      // get the middle point of the array
+      let pivot = this.quickSortArray[ Math.floor( [this.quickSortArray.length/2] ) ];
+      console.log(this.quickSortArray[pivot])
+
+      let sliced_array = this.quickSortArray.slice(0,this.quickSortArray[pivot]);
+      console.log(pivot);
+      console.log(sliced_array);
+    },
+
   }
 };
 </script>
