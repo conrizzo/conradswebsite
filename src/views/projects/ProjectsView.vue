@@ -1,24 +1,26 @@
 <template>
-  <h1>Project Descriptions</h1>
+  <div style="background:#171a21;">
+    <h1 style="color:#ffffff; background: #000; display: inline-block; padding: 0.1em 0.25em 0.1em 0.25em; border-radius: 0.25em;">Project Descriptions</h1>
 
-  <div v-for="project in projects" :key="project.id">
-    <router-link :to="{
-        name: 'ProjectDetailsView',
-        params: {
-          title: project.title,
-          id: project.id,
-          details: project.details,
-        },       
-      }" class="project-link">
-      <!-- inline block makes the background color only as wide as the text -->
-      <h2 style="color: rgb(255, 255, 255); border: 5px gray; display: inline-block; padding: 0.25em; border-radius: 0.25em;">
-        {{ project.id }}. {{project.title}} : {{project.details }}
-      </h2>
-    </router-link>
-  </div>
+    <div v-for="project in projects" :key="project.id">
+      <router-link :to="{
+          name: 'ProjectDetailsView',
+          params: {
+            title: project.title,
+            id: project.id,
+            details: project.details,
+          },       
+        }" class="project-link">
+        <!-- inline block makes the background color only as wide as the text -->
+        <h2 style="color: #fff; border: 5px gray; display: inline-block; padding: 0.25em; border-radius: 0.25em;">
+          {{ project.id }}. {{project.title}} : {{project.details }}
+        </h2>
+      </router-link>
+    </div>
 
-  <div style="height: 600px">
-    <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
+    <div style="height: 600px">
+      <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
+    </div>
   </div>
   <FirstFooter></FirstFooter>
 </template>
@@ -69,7 +71,7 @@ h1 {
   /* remove underline */
   font-weight: bold;
   /* add bold style */  
-  background: linear-gradient(90deg, rgba(0,255,119,0.66) 29%, rgba(0,224,255,0.66) 100%);
+  background: linear-gradient(90deg, rgba(0,255,119) 29%, rgba(0,224,255) 100%);
   display: inline-block; 
   padding: 0.25em; 
   border-radius: 0.5em;

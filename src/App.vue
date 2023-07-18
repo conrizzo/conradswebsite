@@ -71,7 +71,9 @@ html,
 body {  
   padding-top: 1.33em;
   /* background-color: rgb(100, 100, 100); */
-  background-color: rgb(128, 128, 128);
+  background-color: #ffffff;
+
+
 }
 
 

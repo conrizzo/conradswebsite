@@ -4,7 +4,7 @@
     
     <!-- Main area -->
 
-    <div class="container custom-background-home-page">
+    <div class="container custom-background-home-page" style="margin-top: 2em;">
       <div style="margin-bottom: 9em;">
 
         <h2
@@ -168,8 +168,7 @@ export default {
   margin-right: 2em;
 }
 */
-.custom-background-home-page {
-  
+.custom-background-home-page {  
   background: linear-gradient(0deg, rgba(1,239,249,1) 0%, rgba(0,112,255,0.5746673669467788) 38%, rgba(23,50,143,0.8155637254901961) 78%);
 }
 

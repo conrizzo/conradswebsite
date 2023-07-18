@@ -1,11 +1,11 @@
 
 <template>
-  
+ 
   <!-- PROJECT 1 -->
   <div class="router-link-style">    
     <div v-show="id == 1">      
-      <div class="title-padding">
-        <h1><router-link style="text-decoration: none; color: white;" to="/projects/cowculator">{{ title }} :
+      <div class="title-padding" style="margin-top: 2em;">
+        <h1><router-link style="text-decoration: none; color: rgb(36, 36, 36);" to="/projects/cowculator">{{ title }} :
             {{ details }}</router-link></h1>
       </div>
       <CowculatorDescription></CowculatorDescription>   
@@ -16,7 +16,7 @@
     <!-- PROJECT 2 -->
     <div v-show="id == 2">
       <div class="title-padding">
-        <h1>{{ title }} : {{ details }}</h1>
+        <h1 style="color: rgb(36, 36, 36);">{{ title }} : {{ details }}</h1>
       </div>
       <CoffeeFunction></CoffeeFunction>
     </div>
@@ -24,7 +24,7 @@
     <!-- PROJECT 3 -->
     <div v-show="id == 3">
       <div class="title-padding">
-        <h1>{{ title }} : {{ details }}</h1>
+        <h1 style="color: rgb(36, 36, 36);">{{ title }} : {{ details }}</h1>
       </div>
       <BartProject BartProjectTitle=""></BartProject>      
     </div>

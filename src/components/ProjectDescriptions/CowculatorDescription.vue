@@ -5,12 +5,17 @@
     <!-- Main area -->
 
     <div>
-
+     
+      <!--- this title links in from ProjectDetailsView - see there for chaning these values -->
+      
       <div style="margin-top: 2em;">
-        <h1 style="font-size: 2em;"><router-link style="color: rgb(0, 255, 119)" class="text-links-no-underline"
-            :to="'/projects/cowculator'"></router-link></h1>
+        <h1 style="font-size: 2em; background-color: #000;">
+          <router-link class="text-links-no-underline" :to="'/projects/cowculator'">          
+          
+          </router-link>
+        </h1>
       </div>
-
+      
       <router-link class="text-links-no-underline" :to="'/projects/cowculator'">
         <img class="cow-image" :src="cowculatorUserInterface" alt="Cowculator Picture" />
       </router-link>

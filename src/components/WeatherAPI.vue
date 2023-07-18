@@ -1,13 +1,17 @@
 <template>
-  <div>
+  <!-- this 1st div does a nice background color, and puts padding between this element and the footer-->
+  <div style="background: linear-gradient(0deg, rgba(1,239,249,1) 0%, rgba(0,112,255,0.5746673669467788) 38%, rgba(23,50,143,0.8155637254901961) 78%); 
+  padding-bottom: 9em;
+  ">
     <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>
-    <p class="paragraph-text white-color-text"> All the locations here are easily customizable! Data is queried as JSON using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>, 
+    <p class="paragraph-text white-color-text"> All the locations here are easily customizable! Data is queried as JSON
+      using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
       then formatted and displayed here in a custom made table.</p>
     <table>
       <thead>
         <tr>
           <th>City / Country / Region</th>
-          <th>Sun Rise/Sun Set</th>          
+          <th>Sun Rise/Sun Set</th>
           <th>Weather Conditions</th>
           <th>Temperature °C</th>
           <th>Temperature °C (Feels Like)</th>
@@ -19,17 +23,18 @@
           <!-- 1 -->
           <td><b>{{ cityWeather.city }}</b>
             <br><br>
-            
             <template v-if="cityWeather.weather && cityWeather.weather.request[0].query">
-              <span style="color: rgb(0, 149, 255);">Country:</span> {{ cityWeather.weather.nearest_area[0].country[0].value }}<br>
-              <span style="color: rgb(255, 133, 133);">Region:</span> {{ cityWeather.weather.nearest_area[0].region[0].value }}<br>
+              <span style="color: rgb(0, 149, 255);">Country:</span> {{
+                cityWeather.weather.nearest_area[0].country[0].value }}<br>
+              <span style="color: rgb(255, 133, 133);">Region:</span> {{
+                cityWeather.weather.nearest_area[0].region[0].value }}<br>
               {{ cityWeather.weather.request[0].query }}<br>
               <div style="margin-top: 0.25em;"><br>
                 <span style="color: rgb(123, 123, 123);">Query Date:</span> {{
-                   cityWeather.weather.current_condition[0].observation_time }} -
-                  {{ formatDate(cityWeather.weather.weather[0].date) }}
-              
-            </div>
+                  cityWeather.weather.current_condition[0].observation_time }} -
+                {{ formatDate(cityWeather.weather.weather[0].date) }}
+
+              </div>
             </template>
           </td>
           <!-- 2 -->
@@ -50,20 +55,18 @@
             </template>
           </td>
           <!-- 3 -->
-          
-         
+
           <!-- This sets the table cell to have a different color background on a condition  -->
-          <td
-            v-bind:class="{
-              'gray-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy',
-              'rain-showers-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain shower',
-              'overcast-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Overcast',
-              'cloudy-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Cloudy',
-              'sunny-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Sunny',
-              'light-rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Light rain',
-              'rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain',
-              'clear-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Clear'
-            }">
+          <td v-bind:class="{
+            'gray-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy',
+            'rain-showers-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain shower',
+            'overcast-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Overcast',
+            'cloudy-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Cloudy',
+            'sunny-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Sunny',
+            'light-rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Light rain',
+            'rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain',
+            'clear-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Clear'
+          }">
             <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
               <div v-if="cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy'">
                 {{ cityWeather.weather.current_condition[0].weatherDesc[0].value }}
@@ -81,22 +84,25 @@
             <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0].temp_C">
               <div style="margin-bottom: 0.25em;">
                 Projected High Today:
-                <span class="high-temp-text-coloring">{{ cityWeather.weather.weather[0].maxtempC }}°C&nbsp;{{ cityWeather.weather.weather[0].maxtempF }}°F</span><br>
-                
+                <span class="high-temp-text-coloring">{{ cityWeather.weather.weather[0].maxtempC }}°C&nbsp;{{
+                  cityWeather.weather.weather[0].maxtempF }}°F</span><br>
+
               </div>
               Recent Temperature: <b>{{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
                 cityWeather.weather.current_condition[0].temp_F }}°F</b><br><br>
               Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
               - - - -<br>
               <span class="">
-                {{formatDate(cityWeather.weather.weather[1].date)}}:
-                <span class="high-temp-text-coloring-1">{{ cityWeather.weather.weather[1].maxtempC }}°C&nbsp;{{ cityWeather.weather.weather[1].maxtempF }}°F</span><br>
-                </span>- - - -<br>
-                <span class="">
-                {{ formatDate(cityWeather.weather.weather[2].date)}}:
-                <span class="high-temp-text-coloring-2">{{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{ cityWeather.weather.weather[2].maxtempF }}°F</span><br>
-                </span>
-                
+                {{ formatDate(cityWeather.weather.weather[1].date) }}:
+                <span class="high-temp-text-coloring-1">{{ cityWeather.weather.weather[1].maxtempC }}°C&nbsp;{{
+                  cityWeather.weather.weather[1].maxtempF }}°F</span><br>
+              </span>- - - -<br>
+              <span class="">
+                {{ formatDate(cityWeather.weather.weather[2].date) }}:
+                <span class="high-temp-text-coloring-2">{{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{
+                  cityWeather.weather.weather[2].maxtempF }}°F</span><br>
+              </span>
+
 
             </template>
             <template v-else>
@@ -128,9 +134,8 @@
         </tr>
       </tbody>
     </table>
-    
+
   </div>
- 
 </template>
 
 
@@ -140,17 +145,17 @@ export default {
   data() {
     return {
       cityWeathers: [
-      
+
         { city: "Tübingen, Germany", weather: "" },
         { city: "STR, Stuttgart Airport, Germany", weather: "" },
         { city: "Cary, NC", weather: "" },
         { city: "Wilmington, NC", weather: "" },
-        { city: "Albuquerque, New Mexico", weather: ""},  
-        { city: "Shamokin, PA", weather: ""},
-        { city: "Temecula, CA", weather: ""},     
+        { city: "Albuquerque, New Mexico", weather: "" },
+        { city: "Shamokin, PA", weather: "" },
+        { city: "Temecula, CA", weather: "" },
         { city: "Albany WA, Australia", weather: "" },
         { city: "RDU, Raleigh Durham Airport, USA", weather: "" },
-        { city: "Uppsala, Sweden", weather: "" },        
+        { city: "Uppsala, Sweden", weather: "" },
         { city: "Miami, Florida", weather: "" },
         { city: "Madrid", weather: "" },
         { city: "Helsinki", weather: "" },
@@ -175,8 +180,8 @@ export default {
             this.jsonData = data;
           })
           .catch((error) => {
-           // error handling
-           this.jsonData = { data: { error: [{ msg: "Unknown error occurred." + error }] } };
+            // error handling
+            this.jsonData = { data: { error: [{ msg: "Unknown error occurred." + error }] } };
           });
 
         // optional regular text
@@ -201,12 +206,12 @@ export default {
       const minutes = Math.floor((daylightTime - hours) * 60);
       return `${hours} hours ${minutes} minutes`;
     },
-    formatDate(convertDate){
+    formatDate(convertDate) {
       // const date takes string in format of 2021-05-18
       const date = new Date(convertDate);
       const options = { weekday: 'long', month: 'long', day: 'numeric' };
       const formattedDate = date.toLocaleDateString('en-US', options);
-      
+
       return formattedDate;
     }
   },
@@ -276,23 +281,24 @@ tr:nth-child(even) {
   border-radius: 0.3em;
 }
 
-.high-temp-text-coloring{
-  color: #000;  
+.high-temp-text-coloring {
+  color: #000;
   padding-right: 0.1em;
   padding-left: 0.1em;
   background-color: #5eff00;
   border-radius: 0.2em;
 }
-.high-temp-text-coloring-1{
-  color: #000;  
+
+.high-temp-text-coloring-1 {
+  color: #000;
   padding-right: 0.1em;
   padding-left: 0.1em;
   background-color: #e0ffcd;
   border-radius: 0.2em;
 }
 
-.high-temp-text-coloring-2{
-  color: #000;  
+.high-temp-text-coloring-2 {
+  color: #000;
   padding-right: 0.1em;
   padding-left: 0.1em;
   background-color: #e0ffcd;
@@ -320,7 +326,7 @@ tr:nth-child(even) {
   background: #e1e1e1;
 }
 
-.cloudy-background{
+.cloudy-background {
   background: #e1e1e1;
 }
 
@@ -328,13 +334,13 @@ tr:nth-child(even) {
   background: #fef88b;
 }
 
-.clear-background{
+.clear-background {
   background: #272727;
   color: white;
 }
 
 .sun-hour-background {
-  
+
   text-decoration: underline;
   padding: 0.1em;
   border-radius: 0.3em;

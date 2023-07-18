@@ -4,8 +4,8 @@
     style="
       background: linear-gradient(
         90deg,
-        rgba(0, 255, 119, 0.66) 29%,
-        rgba(0, 224, 255, 0.66) 100%
+        rgba(0, 255, 119) 29%,
+        rgba(0, 224, 255) 100%
       );
     "
   >

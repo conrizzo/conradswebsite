@@ -2,14 +2,14 @@
 <template>
   <div>
 
-    <h2 style="color: white; font-size:3em; padding-top: 1em; padding-bottom: 0.33em;" class="homeview">Coffee Consumers
+    <h2 style="font-size:3em; padding-top: 1em; padding-bottom: 0.33em;" class="homeview">Coffee Consumers
       by country</h2>
     <!-- how do i output the graph here? -->
     <div style="margin-left: 8px; margin-right: 8px; text-align: left; width: width: calc(100% - 16px);">
 
       <div id="chartContainer"></div>
     </div>
-    <h4 style="margin-top: 0.3em; text-align: left; color: white; margin-left: 0.5em; margin-right: 0.5em;">
+    <h4 style="margin-top: 0.3em; text-align: left; margin-left: 0.5em; margin-right: 0.5em;">
       <u><b>Note:</b></u> click on the column titles in the table below for each column to sort data
       numerically/alphabetically. The graph will update to the sorted values.
       All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
@@ -54,7 +54,7 @@
 
     </p>
 
-    <h1 class="homeview">
+    <h1 class="homeview" style="color: #000;">
       Convenient area to test anything else dataset related here...
     </h1>
     <p class="paragraph-text homeview break-text">

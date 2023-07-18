@@ -5,9 +5,9 @@
    <div class="container background-color-about-page">
     <!-- Main area -->
      <div>
-      <h1 class="h1-title">About this website!</h1>
+      <h1 class="h1-title">About</h1>
         <div class="text-container">
-          <div style="padding-top: 3em;">
+          <div>
             <p class="paragraph-text break-text">
                 This iteration of the website was started in March, 2023 and is totally self-made by Conrad using
                 <a class="text-links" style="color: #42b883;" href="https://vuejs.org/"><b>Vue 3</b></a>
@@ -80,7 +80,7 @@
         <template v-slot:aside-content>
           <p class="aside-text" style="margin-top: 1em">
             This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>.</p>
-            <img style="border-radius: 1em;" :src="birdPicture" alt="Kohlenmeise picture">
+            <img style="border-radius: 1em;" :src="birdPicture" alt="Kohlmeise picture">
             <p class="aside-text">This is a self-taken <a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a> (name in German, English name is Great Tit) photo in Tübingen, Germany. It is a species of bird that is native to Europe. 
               They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat peanuts!</p>
          
@@ -133,10 +133,6 @@ export default {
 
 
 <style scoped>
-h1 {
-  text-align: center;
-  margin-top: 1em;
-}
 
 figure {
   display: flex;
@@ -171,18 +167,21 @@ figcaption {
 }
 
 .h1-title {
+  text-align: center;
+  margin-top: 1em;
   color: #ffffff;
   background: linear-gradient(90deg,
       rgb(0, 204, 95) 29%,
-      rgb(0, 183, 207) 100%);
+      rgb(0, 183, 207) 100%); 
   font-size: 3em;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.5em;  
   padding-top: 0.5em;
   margin-top: 0.5em;
   /* margin-top: -0.33em;  */
   margin-left: 2em;
   margin-right: 2em;
   border-radius: 0.3em;
+  margin-bottom: 1em;
 }
 
 
@@ -236,8 +235,9 @@ figcaption {
   }
 
   .h1-title {
-    margin-left: 0em;
-    margin-right: 0em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
     font-size: 1.9em;
   }
 

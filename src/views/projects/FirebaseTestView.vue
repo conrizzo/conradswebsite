@@ -1,7 +1,7 @@
 <template>
     <!-- conflict with "firebase": "^10.0.0", security-->
     <!-- tried downgrading to "firebase": "9.0.2" -->
-    <div style="background-color: rgb(255, 255, 255); padding-bottom: 2em;">
+    <div style=" background: rgb(199, 253, 255); padding-bottom: 2em;">
     <h2 style="padding-top: 1em;">This page is still under construction - actively working on this!</h2>
       <div v-if="!isLoggedIn">
             <!-- login -->
