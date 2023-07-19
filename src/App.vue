@@ -76,6 +76,9 @@ body {
 
 }
 
+.move-left-at-lower-resolution{
+  z-index: 2;
+}
 
 @media only screen and (max-width: 1000px) {
 

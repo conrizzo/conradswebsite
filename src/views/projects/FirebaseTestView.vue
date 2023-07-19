@@ -3,6 +3,8 @@
     <!-- tried downgrading to "firebase": "9.0.2" -->
     <div style=" background: rgb(199, 253, 255); padding-bottom: 2em;">
     <h2 style="padding-top: 1em;">This page is still under construction - actively working on this!</h2>
+    <p>This is just a place to learn more about setting up a login/sign out setup using a basic BaaS (Back end as a service) tools.<br>
+    The goal will eventually be to create a more comprehensive backend once there is a need for it.</p>
       <div v-if="!isLoggedIn">
             <!-- login -->
             <template v-if="showLogin">

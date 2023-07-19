@@ -10,7 +10,7 @@
           <div>
             <p class="paragraph-text break-text">
                 This iteration of the website was started in March, 2023 and is totally self-made by Conrad using
-                <a class="text-links" style="color: #42b883;" href="https://vuejs.org/"><b>Vue 3</b></a>
+                <a class="text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue 3</b></a>
                 (Vue.js). It is hosted on
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
                   <b>Conrad's GitHub</b></a> with
@@ -30,12 +30,16 @@
               <li class="paragraph-text break-text">I started learning about Vue.JS when I worked on the Bioinformatics Toolkit at Max
                 Planck in Tübingen, Germany.</li>
           
-              <li class="paragraph-text break-text">I hold a degree in Computational Linguistics from the University of Tübingen in Germany,
-                and previously completed a Bachelor of Science in Biology from the University of North Carolina at Wilmington.</li>
+              <li class="paragraph-text break-text">I hold a degree in <b>Computational Linguistics</b> from the University of Tübingen in Germany,
+                and previously completed a <b>Bachelor of Science in Biology</b> from the University of North Carolina at Wilmington, Wilmington, NC, USA.</li>
 
-                <li class="paragraph-text break-text">Have currently been working on this website using Vue.js, JavaScript, TypeScript, CSS, HTML. Starting to
-                  learn more about backend development and databases. Started learning <a class="text-links" href=https://en.wikipedia.org/wiki/Rust_(programming_language)>Rust</a> as well.
-                  Am continually practicing more German too, so it is <u>a lot</u> of language learning!
+                <li class="paragraph-text break-text">Have been working on this website using Vue.js, JavaScript, TypeScript, CSS, HTML. Starting to
+                  learn more about backend development and databases. It's normal to spend at least a couple hours a day learning reviewing and learning
+                  code for this where I will commit changes to GitHub.
+                </li>
+                <li class="paragraph-text break-text">
+                Started learning <a class="text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as well.
+                Am continually practicing more German too, so it is <u>a lot</u> of language learning!
                 </li>
             </ul>
           

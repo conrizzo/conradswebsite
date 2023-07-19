@@ -5,13 +5,28 @@
     <!-- Main area -->
 
     <div class="container custom-background-home-page" style="margin-top: 2em;">
+      
+      <!-- generate clouds -->
       <div style="margin-bottom: 9em;">
+        <div style="position: absolute; margin-left: 5em; margin-top: 2.5em; opacity: 0.95;">
+          <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
+          <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
+          <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
+        </div>
 
-        <h2
-          style="font-weight: 10; padding: 0.25em; border-radius: 0.25em; margin-top: 1em; color: #fff; font-size: 3em; display: inline-block;">
+        <div style="float: right; margin-right: 20em; margin-top: 5em; opacity: 0.95;">
+          <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
+          <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
+          <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
+        </div>
+        <!-- Title -->
+        
+        <h2 class="title-spacing"
+          >
           Welcome
         </h2>
-
+     
+        <!-- Main bullets -->
         <div class="main-text-container">
           <ul style="text-align: left; color: white;">
             <li style="margin-bottom: 1em;">
@@ -20,41 +35,42 @@
                   href="https://github.com/conrizzo">Conrad</a>
               </h3>
             </li>
-            <li style="">
+            <li style="margin-bottom: 1em;">
               <h3 style="color: #fff;">
                 For more specific info about this website please read the <router-link class="text-links"
                   to="/about">About page</router-link>!
               </h3>
             </li>
-          </ul>
+            <li>
+              <h3 style="color: #fff;">
+                "Healthy" amounts of <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were consumed while building this.    
+              </h3>
+            </li>
+          </ul>         
+          
         </div>
-
-        <br>
-        <p style="color: #fff; text-align: center;">
-          "Healthy" amounts of <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were consumed while building this.           
-        </p>
-        <div class="links-div-container">
+       
+        <div>
+        <div class="links-div-container" style="position: relative; z-index: 1;">
           <!-- Projects ({{ this.itemsLength }})</h3> -->
 
           <ProjectLinks :links="links">
             <template v-slot="{ links }">
-
               <h3
-                style="font-size: 2em; padding-bottom: 0.5em; padding-top: 3em; padding-left: 1.6em; color:#ff5959; text-align: left;">
+                style="font-size: 2em; padding-bottom: 0.5em; padding-top: 2em; padding-left: 1.6em; color:#ff5959; text-align: left;">
                 Projects: {{ links.length }}
               </h3>
-
               <div class="route-styling">
                 <router-link class="on-hover-projects" v-for="(item, index) in links" :key="index" :to="item.to"
                   :class="{ active: $route.path === item.to }">
                   {{ item.text }}<br>
                 </router-link>
               </div>
-
             </template>
           </ProjectLinks>
+         
         </div>
-
+       
         <!--
       <div style="padding-top: 3em; background-color: #fff;">
         <h2 style="color: black;"> Featuring the Cowculator </h2>
@@ -63,10 +79,15 @@
         <UseCalc></UseCalc>
       </div>
     -->
+         
+          <div style="position: relative; width: 100%; z-index: 0;">
+            <div class="box" style="--size: 7em; width: 100%; height: 3em; position: absolute; left: 0em; bottom: -9em;"></div>
+            <div class="box" style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0em; padding-left: 2em; bottom: -7em; "></div>
+          </div>
+        </div>
       </div>
-
       <!-- Aside area begins  #2d2d2d; slate black color -->
-      <AsideContent class="aside-low-resolution" style="background: #fff;">
+      <AsideContent class="aside-low-resolution" style="background: #fff; z-index: 1;">
         <template v-slot:aside-content>
           <p class="aside-text loading">Nothing in this section</p>
           <figure style="display: inline-block;">
@@ -109,33 +130,7 @@ export default {
       itemsLength: 0,
       birdDrawing: require("@/images/bird_drawing.jpg"), // Add the image path to the data object
 
-      skyGradientIndex: 0,
-      skyGradientClasses: [
-        "sky-gradient-00",
-        "sky-gradient-01",
-        "sky-gradient-02",
-        "sky-gradient-03",
-        "sky-gradient-04",
-        "sky-gradient-05",
-        "sky-gradient-06",
-        "sky-gradient-07",
-        "sky-gradient-08",
-        "sky-gradient-09",
-        "sky-gradient-10",
-        "sky-gradient-11",
-        "sky-gradient-12",
-        "sky-gradient-13",
-        "sky-gradient-14",
-        "sky-gradient-15",
-        "sky-gradient-16",
-        "sky-gradient-17",
-        "sky-gradient-18",
-        "sky-gradient-19",
-        "sky-gradient-20",
-        "sky-gradient-21",
-        "sky-gradient-22",
-        "sky-gradient-23",
-      ],
+     
     };
   },
   mounted() {
@@ -174,7 +169,7 @@ export default {
 
 .links-div-container {
   padding-left: 10em;
-  
+ 
 }
 
 
@@ -228,6 +223,13 @@ a {
   justify-content: center;
 }
 
+.title-spacing{   
+
+    margin-top: 2em;
+    color: #fff;
+    font-size: 3em;
+}
+
 /* Adjust the padding for mobile resolution for this block */
 @media only screen and (max-width: 1500px) {
   .h1-title {
@@ -239,6 +241,14 @@ a {
     padding-right: 1em;
     padding-left: 2em;
 
+  }
+}
+
+@media only screen and (max-width: 880px) {
+  .title-spacing{
+    text-align: center;
+    margin-left: 0em;
+    margin-top: 3.5em;
   }
 }
 
@@ -263,7 +273,7 @@ a {
 
 .loading:after {
   display: inline-block;
-  animation: dotty 3s steps(1,end) 3;
+  animation: dotty 3s steps(1,end) infinite;
   content: '';
 }
 
@@ -276,7 +286,91 @@ a {
   100% { content: ''; }
 }
 
+/* Make some happy clouds */
+.cloud {
+  width: 200px;
+  height: 50px;
+  background: #fff;
+  border-radius: 100px;
+  position: relative;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1), 0 30px 50px rgba(0, 0, 0, 0.1);
+}
 
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  border-radius: 100%;
+}
+
+.cloud::before {
+  width: 100px;
+  height: 70px;
+  top: -20px;
+  left: 20px;
+}
+
+.cloud::after {
+  width: 100px;
+  height: 70px;
+  top: -30px;
+  right: 20px;
+}
+
+/* make hills */
+
+/* Base code I used to make my own design started from here: https://codepen.io/t_afif/pen/RwyNVOr */
+
+.box {
+  margin-left: 0em;
+  margin-bottom: 0em;
+  --size: 30px;
+  --R: calc(var(--size)*1.28);
+
+  -webkit-mask:
+    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) 
+      calc(0% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
+      0% var(--size)/calc(4*var(--size)) 100% repeat-x;
+  mask:
+    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) 
+      calc(0% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
+      0% var(--size)/calc(4*var(--size)) 100% repeat-x;
+  background: repeating-linear-gradient(
+    -70deg,
+    green 0 10em,
+    #14ec00 10em 20em
+  );
+  
+ 
+}
+
+.box-two {
+  margin-left: 0em;
+  margin-bottom: 0em;
+  --size: 30px;
+  --R: calc(var(--size)*1.28);
+
+  -webkit-mask:
+    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) 
+      calc(0% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
+      0% var(--size)/calc(4*var(--size)) 100% repeat-x;
+  mask:
+    radial-gradient(var(--R) at 20% calc(1.8*var(--size)),#000 99%,#0000 101%) 
+      calc(0% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
+      0% var(--size)/calc(4*var(--size)) 100% repeat-x;
+  background: repeating-linear-gradient(
+    -70deg,
+    rgb(107, 167, 107) 0 10em,
+    #14ec00 10em 20em
+  );
+  
+ 
+}
 
 
 </style>
