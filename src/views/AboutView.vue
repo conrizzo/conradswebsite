@@ -15,11 +15,13 @@
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
                   <b>Conrad's GitHub</b></a> with
                 <a class="text-links" href="https://pages.github.com/">
-                  <b>GitHub pages</b></a>.<br>
-                  Much of this website was originally written in Vue 3 and straight JavaScript, however new projects such as the 
+                  <b>GitHub pages</b></a>.
+                  </p>
+                  <p class="paragraph-text break-text">Much of this website was originally written in Vue 3 and straight JavaScript, however it was converted to have TypeScript supports
+                  later on, and new projects such as the 
                   <router-link class="text-links" to="/projects/cowgame"><b>Cow Game</b></router-link> heavily use 
-                  <a class="text-links" href=https://www.typescriptlang.org/><b>TypeScript</b></a>. This website is designed 
-                  to be minimal and offer simple navigation to some projects I've made. These projects have been made for fun and to learn.
+                  TypeScript. This website is designed 
+                  to be minimal and offer simple navigation to some projects I've made.
                   The focus has really been to use progressively more complex aspects of Vue 3, JavaScript, TypeScript, CSS, HTML, and really just learn
                   everything that is useful to know and make some more sophisticated projects. As of July, 2023, have been working on integrating backend development.
                   This website has been a static website, but will change into a dynamic one with a backend.
@@ -34,8 +36,8 @@
                 and previously completed a <b>Bachelor of Science in Biology</b> from the University of North Carolina at Wilmington, Wilmington, NC, USA.</li>
 
                 <li class="paragraph-text break-text">Have been working on this website using Vue.js, JavaScript, TypeScript, CSS, HTML. Starting to
-                  learn more about backend development and databases. It's normal to spend at least a couple hours a day learning reviewing and learning
-                  code for this where I will commit changes to GitHub.
+                  learn more about backend development and databases. The normal routine is to spend a few hours a day reviewing and learning
+                  code. Usually a commit or two on github each day to make some changes.
                 </li>
                 <li class="paragraph-text break-text">
                 Started learning <a class="text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as well.
@@ -59,7 +61,8 @@
             </figure>
             <br>
             <div>
-            <p class="paragraph-text break-text">
+             
+            <p class="paragraph-text break-text" style="padding-top: 1em; border-top: 1px solid rgb(211, 211, 211);">
               Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods to work properly.
               For example, in order to deploy this website, the command <i>"deploy": "copy dist\index.html dist\404.html &
               gh-pages -d dist"</i> is used, and this command is added to the package.json file.
@@ -174,17 +177,17 @@ figcaption {
   text-align: center;
   margin-top: 1em;
   color: #ffffff;
-  background: linear-gradient(90deg,
-      rgb(0, 204, 95) 29%,
-      rgb(0, 183, 207) 100%); 
+  background: rgb(0, 204, 95);
+  
+ 
   font-size: 3em;
   padding-bottom: 0.5em;  
   padding-top: 0.5em;
   margin-top: 0.5em;
   /* margin-top: -0.33em;  */
-  margin-left: 2em;
-  margin-right: 2em;
-  border-radius: 0.3em;
+ 
+  
+
   margin-bottom: 1em;
 }
 
@@ -207,9 +210,13 @@ figcaption {
   margin-right: 0.5em;  
 }
 
+
+
 .text-container{
-  padding-left: 8em;
-  padding-right: 8em
+  padding-left: 10em;
+  padding-right: 10em;
+
+ 
 }
 
 

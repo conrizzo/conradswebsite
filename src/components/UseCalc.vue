@@ -94,36 +94,27 @@ export default {
       result: null,
       mooMessage: false,
       mooTimer: null,
-
       mooCounter: null,
-
       superMoo: false,
-      mooPlication: "",
-      
+      mooPlication: "",      
       buttonList: ["\u00D7", "1", "2", "3", "\u00F7", "4", "5", "6", "-", "7", "8", "9", "+", "<-", ".", "0", "power", "(", ")", "Moo"],
       isActive: [false, false, false, false, false, false, false, false, false, false,],
       // isActive: [ false,   false,  false,  false,  false, false,  false,  false,   false,  false,],
       userTokens: [],
       operators: [],
       arrayOfNumbersOnly: [],
-
       treeNodeCalculations: null,
       currentNode: null,
       leftNode: null,
       rightNode: null,
       operator: null,
-
       formattedNumber: "",
       formattedResult: "",
-
       showDescriptionText: false,
-
       message: toString(this.result),
       showNotification: false,
       tree: {},
-
       expressionTree: this.treeNodeCalculations,
-
       showTooltip: "Making this work with my code was interesting! If the user does an expression like 2*2^2+2 the actual expression being evaluated is 2*(2^2)+2",
       //svgContent: '',
       // Adds commas to the result or expression shown on the screen to increase readability
@@ -862,7 +853,8 @@ input:focus {
   color: #333;
   border: 1px solid;
   position: fixed;
-  top: 0;
+  top: 3em;
+  font-weight: bold;
   left: 0;
   transform: translate(0, 0);
   padding: 10px;

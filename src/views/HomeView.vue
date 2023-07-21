@@ -8,13 +8,20 @@
       
       <!-- generate clouds -->
       <div style="margin-bottom: 9em;">
-        <div style="position: absolute; margin-left: 5em; margin-top: 2.5em; opacity: 0.95;">
+
+        <div id="cloudOne" style="position: absolute; margin-left: 2em; margin-top: 2.5em; opacity: 0.8;">
           <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
         </div>
 
-        <div style="float: right; margin-right: 20em; margin-top: 5em; opacity: 0.95;">
+        <div id="cloudTwo" style="position: absolute; margin-left: 12em; margin-top: 5em; opacity: 0.8;">
+          <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
+          <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
+          <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
+        </div>
+
+        <div id="cloudThree" style="position: absolute; margin-left: 6em; margin-top:10em; opacity: 0.9; z-index: 0;">
           <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
@@ -82,8 +89,10 @@
          
           <div style="position: relative; width: 100%; z-index: 0;">
             <div class="box" style="--size: 7em; width: 100%; height: 3em; position: absolute; left: 0em; bottom: -9em;"></div>
-            <div class="box" style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0em; padding-left: 2em; bottom: -7em; "></div>
+            <div class="box" style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0em; padding-left: 2em; bottom: -8em; "></div>
+            <div class="box" style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0em; padding-left: 4em; bottom: -7em; "></div>
           </div>
+
         </div>
       </div>
       <!-- Aside area begins  #2d2d2d; slate black color -->
@@ -136,8 +145,43 @@ export default {
   mounted() {
     Prism.highlightAll();
     
-  }, 
+    const cloudOne = document.getElementById("cloudOne");
+    let marginLeftCloudOne = 6;
 
+    const cloudTwo = document.getElementById("cloudTwo");
+    let cloudTwoMargin = 65;
+
+    const cloudThree = document.getElementById("cloudThree");
+    let marginLeft = 2;
+
+
+    if (window.innerWidth >= 800) {
+
+      setInterval(() => {
+        marginLeft += 0.015;
+        cloudOne.style.marginLeft = `${marginLeft}em`;
+        if (marginLeft > 90) {
+          marginLeft = -22;
+        }
+      }, 33);
+      
+      setInterval(() => {
+        cloudTwoMargin += 0.03;
+        cloudTwo.style.marginLeft = `${cloudTwoMargin}em`;
+        if (cloudTwoMargin > 90) {
+          cloudTwoMargin = -22;
+        }
+      }, 33);
+
+      setInterval(() => {
+        marginLeftCloudOne += 0.02;
+        cloudThree.style.marginLeft = `${marginLeftCloudOne}em`;
+        if (marginLeftCloudOne > 90) {
+          marginLeftCloudOne = -22;
+        }
+      }, 33);
+    }
+  },
 
 };
 </script>
@@ -224,10 +268,12 @@ a {
 }
 
 .title-spacing{   
-
+    position: relative;
+    padding-top: 1.5em;
     margin-top: 2em;
-    color: #fff;
+    color: #ffffff;
     font-size: 3em;
+    z-index: 1;
 }
 
 /* Adjust the padding for mobile resolution for this block */
@@ -246,6 +292,7 @@ a {
 
 @media only screen and (max-width: 880px) {
   .title-spacing{
+    color: #fff;
     text-align: center;
     margin-left: 0em;
     margin-top: 3.5em;
@@ -359,16 +406,15 @@ a {
     radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
       0% var(--size)/calc(4*var(--size)) 100% repeat-x;
   mask:
-    radial-gradient(var(--R) at 20% calc(1.8*var(--size)),#000 99%,#0000 101%) 
+    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) 
       calc(0% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
     radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
       0% var(--size)/calc(4*var(--size)) 100% repeat-x;
   background: repeating-linear-gradient(
     -70deg,
-    rgb(107, 167, 107) 0 10em,
+    green 0 10em,
     #14ec00 10em 20em
   );
-  
  
 }
 
