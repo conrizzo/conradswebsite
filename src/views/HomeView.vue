@@ -10,7 +10,7 @@
 
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
-          @click="toggleClouds"><span v-if='moveTheClouds'>Move</span><span v-else>Stop</span>&nbsp;Clouds</button>
+          @click="toggleClouds"><span v-if='moveTheClouds'>Stop</span><span v-else>Move</span>&nbsp;Clouds</button>
 
         <div id="cloudOne" style="position: absolute; margin-left: 2em; margin-top: 2.5em; opacity: 0.8;">
           <div style="margin-left: 3em; position: absolute;" class="cloud"></div>

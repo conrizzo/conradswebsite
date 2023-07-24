@@ -493,6 +493,7 @@ export default defineComponent({
       //console.log(index, foodObject.rect)
 
       // As the user drags the cowFood objects we check for collisions and interactions
+      // This could also be called the "game loop" - but it is not a loop, it is a function that is called every time the user moves a cowFood object
       this.checkCollisions();
       this.checkGreenAreaCollisions();
       this.areGrassAndPeanutButterInPasture();
