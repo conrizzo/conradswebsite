@@ -1,5 +1,5 @@
 <template>
-  
+  <div id="body">
     <!-- negative margin here to fill in space in nav on home page -->
 
     <!-- Main area -->
@@ -12,7 +12,7 @@
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
           @click="toggleClouds"><span v-if='moveTheClouds'>Stop</span><span v-else>Move</span>&nbsp;Clouds</button>
 
-        <div id="cloudOne" style="position: absolute; margin-left: 2em; margin-top: 2.5em; opacity: 0.8;">
+        <div id="cloudOne" style="position: absolute; margin-left: 2em; margin-top: 3em; opacity: 0.8;">
           <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
@@ -65,7 +65,7 @@
             <ProjectLinks :links="links">
               <template v-slot="{ links }">
                 <h3
-                  style="font-size: 2em; padding-bottom: 0.5em; padding-top: 2em; padding-left: 1.6em; color:#ff5959; text-align: left;">
+                  style="font-size: 2em; padding-bottom: 0.5em; padding-top: 1em; padding-left: 1.6em; color:#ff5959; text-align: left;">
                   Projects: {{ links.length }}
                 </h3>
                 <div class="route-styling">
@@ -89,17 +89,13 @@
         -->
 
           <div style="position: relative; width: 100%; z-index: 0;">
-            <div class="box" style="--size: 7em; width: 100%; height: 3em; position: absolute; left: 0em; bottom: -9em;">
+            <div class="box" style="--size: 7em; width: 100%; height: 3em; position: absolute; left: -17em; bottom: -9em;">
             </div>
+            
             <div class="box"
-              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0em; padding-left: 2em; bottom: -8em; ">
+              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: -6em; padding-left: 0em; bottom: -8em; ">
             </div>
-            <div class="box"
-              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0em; padding-left: 4em; bottom: -7em; ">
-            </div>
-            <div class="box"
-              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0em; padding-left: 6em; bottom: -6em; ">
-            </div>
+            
           </div>
 
         </div>
@@ -116,7 +112,7 @@
         </template>
       </AsideContent>
     </div>
-  
+  </div>
   <FirstFooter />
 </template>
 
@@ -230,10 +226,11 @@ export default {
 </script>
 
 <style scoped>
-.centered {
-  display: flex;
-  margin-left: 6em;
-  text-align: left;
+
+
+
+#body{
+  background: linear-gradient(0deg, rgba(1, 239, 249, 1) 0%, rgba(0, 112, 255, 1) 38%, rgba(23, 50, 143, 1) 78%);
 }
 /*
 .h1-title {
@@ -251,7 +248,7 @@ export default {
 }
 */
 .custom-background-home-page {
-  background: linear-gradient(0deg, rgba(1, 239, 249, 1) 0%, rgba(0, 112, 255, 0.5746673669467788) 38%, rgba(23, 50, 143, 0.8155637254901961) 78%);
+  background: linear-gradient(0deg, rgba(1, 239, 249, 1) 0%, rgba(0, 112, 255, 1) 38%, rgba(23, 50, 143, 1) 78%);
 }
 .links-div-container {
   padding-left: 10em;

@@ -1,7 +1,7 @@
 
 <template>
   <div
-    style="
+    style="padding-top: 2.7em;
       background: linear-gradient(
         90deg,
         rgba(0, 255, 119) 29%,

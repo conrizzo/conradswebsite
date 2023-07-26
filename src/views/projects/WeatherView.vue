@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" style="padding-top: 3em;">
       <WeatherAPI></WeatherAPI>
     </div>
   

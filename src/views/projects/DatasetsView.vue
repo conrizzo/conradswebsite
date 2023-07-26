@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div style="padding-top: 2.7em;">
 
     <h2 style="font-size:3em; padding-top: 1em; padding-bottom: 0.33em;" class="homeview">Coffee Consumers
       by country</h2>
@@ -39,6 +39,8 @@
         </tr>
       </tbody>
     </table>
+
+    <div style="padding-top: 2em; padding-bottom: 2em;"></div>
 
     <p class="paragraph-text homeview break-text">The functions/graphical formatting using this data table are self-made.
       Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the
@@ -241,7 +243,7 @@ export default {
 
       // Draw the title
       svg += `<text x="${svgWidth / 2
-        }" y="20" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">${title}</text>`;
+        }" y="20" text-anchor="middle" font-size="17" font-weight="bold" fill="#000">${title}</text>`;
 
       // Draw the bars and labels
       let startY = 30;

@@ -4,8 +4,8 @@
 
     <h2 style="padding: 0.5em;">Log in</h2>
     
-      <input type="email"  placeholder="Email"    required v-model="email" >
-      <input type="password" placeholder="Password" required v-model="password">
+      <input name="email" type="email"  placeholder="Email"    required v-model="email" autocomplete="email">
+      <input name="password" type="password" placeholder="Password" required v-model="password">
       <button style="margin-top: 0.5em;" class="button-35">Log in</button>
     </form>
   </template>

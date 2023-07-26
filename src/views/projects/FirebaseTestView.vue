@@ -1,7 +1,7 @@
 <template>
     <!-- conflict with "firebase": "^10.0.0", security-->
     <!-- tried downgrading to "firebase": "9.0.2" -->
-    <div style=" background: rgb(199, 253, 255); padding-bottom: 2em;">
+    <div style="background: rgb(199, 253, 255); padding-bottom: 2em; padding-top: 2.7em;">
     <h2 style="padding-top: 1em;">This page is still under construction - actively working on this!</h2>
     <p>This is just a place to learn more about setting up a login/sign out setup using a basic BaaS (Back end as a service) tools.<br>
     The goal will eventually be to create a more comprehensive backend once there is a need for it.</p>
@@ -21,12 +21,14 @@
       </div>
       <!-- is logged in -->
       <div v-else>
-        <button class="button-35" @click="handleLogout">Logout</button>
-        <h2>Welcome, you can submit a message now, you are logged in! {{ displayName }}</h2>
+        <h2 style="padding-top: 1em; font-size: 2em;">Welcome, you can submit a message now, you are logged in! {{ displayName }}</h2>
+        <button class="button-35" style="position: absolute;  top: 3em;
+  right: 1em;" @click="handleLogout">Logout</button>
+       
       </div>
       
-      <div style="padding-top: 5em;">
-        <form class="addinput-form" @submit.prevent="createSubmission">
+      <div style="padding-top: 2em;">
+        <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
           <h2>Submit Message! - must be logged in for it to work.</h2>
           <input type="text" placeholder="Name to post as" required v-model="name" name="submissionName">
           <textarea type="text" placeholder="Description" required v-model="description" name="submissionDescription" cols="50" rows="10"></textarea>
@@ -80,6 +82,7 @@
         submissions: [],  
         displayName: '',   
         lastMessageSentTime: 0,
+        timeElapsed: 0,
       }
     },
     beforeUpdate() {
@@ -103,20 +106,23 @@
       },
       async sendMessage(){
 
-        console.log("message sent")
+        
         // Get the current time in milliseconds
         const currentTime = new Date().getTime();
         console.log(currentTime)
         // Calculate the time elapsed since the last message was sent
-        const timeElapsed = currentTime - this.lastMessageSentTime;
-        console.log(timeElapsed)
+        this.timeElapsed = currentTime - this.lastMessageSentTime;
+        console.log(this.timeElapsed)
 
         // If less than 5 seconds have elapsed, do not send the message
-        if (timeElapsed < 5000) {
+        if (this.timeElapsed < 5000) {
           console.log('Please wait at least 5 seconds before sending another message.');
           alert('Please wait at least 5 seconds before sending another message.');
           return;
         }
+        console.log("message sent")
+        // this effectively uses the last message sent to find the time between them
+        this.lastMessageSentTime = currentTime;
 
 
         // Get a reference to the 'items' collection in the database

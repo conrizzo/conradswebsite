@@ -3,9 +3,9 @@
 
     <h2 style="padding: 0.5em;">Sign Up</h2>
 
-    <input type="text"     placeholder="Username" required v-model="username">
-    <input type="email"    placeholder="Email"    required v-model="email">
-    <input type="password" placeholder="Password" required v-model="password">
+    <input name="text" type="text"     placeholder="Username" required v-model="username">
+    <input name="email" type="email"    placeholder="Email"    required v-model="email">
+    <input name="password" type="password" placeholder="Password" required v-model="password">
     <button style="margin: 0.5em;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText }}</button>
     <div v-if="signUpError" style="color: red;">{{ signUpError }}</div>
   </form>

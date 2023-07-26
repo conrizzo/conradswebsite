@@ -5,7 +5,7 @@
  */
 
 <template>
-  <div class="background-color">
+  <div class="background-color" style="padding-top: 3em;">
     <div class="">
       
       <h1>Sorting algorithms: <p style="font-size: 0.5em;">This area is just a place to do stuff with sorting algorithms</p></h1>

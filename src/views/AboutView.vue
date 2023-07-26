@@ -10,8 +10,9 @@
           <div>
             
 
-            <h2 style="text-align: left; padding-bottom: 1em; padding-top: 1em;">Current info:</h2>
-              <ul style="margin-left: 2em;">
+            
+              <ul>
+                <h2 style="text-align: left; padding-left: 1em; padding-bottom: 1em; padding-top: 3em;">Current info:</h2>
                 <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is 
                   totally self-made by Conrad using
                 <a class="text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
@@ -39,7 +40,7 @@
                 <li class="paragraph-text break-text">
                   Started learning <a class="text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as
                   well.
-                  Am continually practicing more German too, so it is <u>a lot</u> of language learning!
+                  German too, so it is <u>a lot</u> of language learning!
                 </li>
               </ul>
             <h2 style="text-align: left; padding-bottom: 1em; padding-left: 1.16em;">More info:</h2>

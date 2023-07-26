@@ -69,7 +69,7 @@ nav a.router-link-exact-active {
 
 html,
 body {  
-  padding-top: 1.33em;
+  /* padding-top: 1.33em; */
   /* background-color: rgb(100, 100, 100); */
   background-color: #ffffff;
 
