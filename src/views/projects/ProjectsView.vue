@@ -27,6 +27,7 @@
 
 <script>
 import FirstFooter from "@/components/FirstFooter.vue";
+import "@/assets/globalCSS.css";
 export default {
   components: {
     FirstFooter,

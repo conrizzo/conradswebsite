@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>{{ CoffeeTitle }}</h1>
+  <div >
+    <h1 >{{ CoffeeTitle }}</h1>
     <p>{{ CoffeeDescription }}</p>
     <!-- PROJECT 2 -->
 
@@ -39,7 +39,7 @@
 
 <script>
 import Prism from "prismjs";
-
+import 'prismjs/components/prism-python';
 export default {
   name: "CoffeeFunction",
   components: Prism,

@@ -97,7 +97,7 @@
       <div class="vertical-rectangle"></div>
     </div>
 
-    <div style=" margin-left: 27em; padding-top: 49vh;">
+    <div style=" margin-left: 27em; padding-top: 54vh;">
       <div v-if="winningMessage">
           <span style="border-radius: 1em; padding: 0.5em; background-color: #444444; margin-right: 3em; margin-left: 3em; position: absolute; top: 3em; left: 1em; font-size: 3em; color: greenyellow;" class="unselectable">
              {{ customMessage }}<br><br>
@@ -522,7 +522,7 @@ export default defineComponent({
   top: 13vh;
   left: 400px;
   width: 1em;
-  height: 85vh;
+  height: 87vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
@@ -665,7 +665,7 @@ export default defineComponent({
 
 .my-page {
   background-color: rgb(0, 0, 0);
-  height: 95vh;
+  height: 100vh;
   /* Add this line to set the height to 100% of the window size */
 
 }

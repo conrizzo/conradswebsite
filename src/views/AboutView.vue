@@ -10,9 +10,9 @@
           <div>
             
 
-            
+            <h2 style="text-align: left;  padding-bottom: 1em; padding-top: 3em;">About this website</h2>
               <ul>
-                <h2 style="text-align: left; padding-left: 1em; padding-bottom: 1em; padding-top: 3em;">Current info:</h2>
+                
                 <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is 
                   totally self-made by Conrad using
                 <a class="text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
@@ -43,7 +43,7 @@
                   German too, so it is <u>a lot</u> of language learning!
                 </li>
               </ul>
-            <h2 style="text-align: left; padding-bottom: 1em; padding-left: 1.16em;">More info:</h2>
+            <h2 style="text-align: left; padding-bottom: 1em;">More about this website</h2>
               <p class="paragraph-text break-text">
                 This websites focus is to show some examples of work I've done using code, plus it's fun to have a website
                 made in
@@ -128,6 +128,8 @@
 import AsideContent from "@/components/FirstAside.vue";
 import FirstFooter from "@/components/FirstFooter.vue";
 import Prism from "prismjs";
+import "@/assets/globalCSS.css";
+
 export default {
   name: "HomeView",
   components: {
@@ -202,7 +204,7 @@ figcaption {
   font-size: 3em;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
-  margin-top: 0.5em;
+  
   /* margin-top: -0.33em;  */
   
 }

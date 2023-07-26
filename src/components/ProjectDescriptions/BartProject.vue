@@ -54,7 +54,7 @@
 
 <script>
 import Prism from "prismjs";
-
+import "@/assets/globalCSS.css";
 export default {
   name: "BartProject",
   components: Prism,

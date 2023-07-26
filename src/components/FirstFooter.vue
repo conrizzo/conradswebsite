@@ -45,8 +45,9 @@ export default {
 }
 
 footer {
-  margin-top: auto;
-  height: 2em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  
   font-size: 0.9em;
   line-height: 1.5;
 }

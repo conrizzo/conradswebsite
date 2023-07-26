@@ -32,7 +32,7 @@
         </div>
         <!-- Title -->
 
-        <h2 class="title-spacing">Welcome</h2>
+        <h2 class="title-spacing">Conrad's Website</h2>
 
         <!-- Main bullets -->
         <div class="main-text-container">
@@ -87,25 +87,27 @@
           <UseCalc></UseCalc>
           </div>
         -->
-
-          <div style="position: relative; width: 100%; z-index: 0;">
-            <div class="box" style="--size: 7em; width: 100%; height: 3em; position: absolute; left: -17em; bottom: -9em;">
+        <div style="position: relative; z-index: 0;">
+            <div class="box" style="--size: 7em; width: 100%; height: 3em; position: absolute; left: 0; bottom: -9em;">
             </div>
             
             <div class="box"
-              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: -6em; padding-left: 0em; bottom: -8em; ">
+              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0; padding-left: 0em; bottom: -7em; ">
             </div>
             
           </div>
+          
 
         </div>
+        
       </div>
+      
       <!-- Aside area begins  #2d2d2d; slate black color -->
       <AsideContent class="aside-low-resolution" style="background: #fff; z-index: 1;">
         <template v-slot:aside-content>
           <p class="aside-text loading">Nothing in this section</p>
           <figure style="display: inline-block;">
-            <img :src="birdDrawing" alt="Bird Drawing">
+            <img style="max-width: 250px;" :src="birdDrawing" alt="Bird Drawing">
             <figcaption class="aside-text" style="display: block;"><i>Except this quickly doodled bird drawing made in ms
                 paint!</i></figcaption>
           </figure>
@@ -125,6 +127,7 @@ import FirstFooter from "@/components/FirstFooter.vue";
 
 import ProjectLinks from '@/components/ProjectLinks.vue'
 
+import "@/assets/globalCSS.css";
 //import UseCalc from "@/components/UseCalc.vue";
 
 export default {
@@ -230,7 +233,7 @@ export default {
 
 
 #body{
-  background: linear-gradient(0deg, rgba(1, 239, 249, 1) 0%, rgba(0, 112, 255, 1) 38%, rgba(23, 50, 143, 1) 78%);
+  background: rgb(255, 255, 255);
 }
 /*
 .h1-title {

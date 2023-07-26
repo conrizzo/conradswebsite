@@ -175,7 +175,7 @@
 import "@/assets/globalCSS.css";
 import FirstFooter from "@/components/FirstFooter.vue";
 import Prism from "prismjs";
-
+import 'prismjs/themes/prism.css';
 import FastQuickSort from "@/components/SortingAlgorithms/FastQuickSort.vue"
 
 export default {

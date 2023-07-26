@@ -76,7 +76,7 @@ h1 {
 }
 
 .title-padding{
-  padding-top: 0.5em; 
+  padding-top: 3em; 
   padding-bottom: 0.5em;
 }
 </style>

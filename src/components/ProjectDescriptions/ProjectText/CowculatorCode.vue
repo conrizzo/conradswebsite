@@ -333,15 +333,19 @@
 // import prismjs mods
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+
+import Prism from "prismjs";
+import 'prismjs/themes/prism.css';
 //import 'prismjs/themes/prism-okaidia.css'
 
 export default {
   name: "CowculatorCode",
-
   data() {
     return {
-
     }
+  },
+  mounted() {
+    Prism.highlightAll();
   },
 };
 </script>
