@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 const HomeView = () => import('../views/HomeView.vue');
+const AboutView = () => import('../views/AboutView.vue');
 const ProjectsView = () => import('../views/projects/ProjectsView.vue');
 const CowculatorView = () => import('../views/projects/CowculatorView.vue');
 const DatasetsView = () => import('../views/projects/DatasetsView.vue');
@@ -22,7 +23,7 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    component: AboutView,
   },
   {
     path: '/projects',

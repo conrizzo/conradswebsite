@@ -72,9 +72,37 @@ body {
   /* padding-top: 1.33em; */
   /* background-color: rgb(100, 100, 100); */
   background-color: #ffffff;
-
-
 }
+
+
+/* BELOW this comment adjusts the default scrollbar on the right */
+/* Set the width of the scrollbar */
+::-webkit-scrollbar {
+  width: 0.75em; 
+  background-color: #fff;
+  margin-right: 5px;
+  height: 50px;
+}
+/* Set the color of the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  width: 0.5em;
+  margin-right: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(172, 172, 172);  
+  border-right: 0.25em white solid;
+  border-top: 0.25em white solid;
+  border-bottom: 0.25em white solid;
+  background-clip: padding-box;
+  border-radius: 0.5em; 
+}
+/* Set the color of the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888888;
+}
+/* ABOVE this comment adjusts the default scrollbar on the right */
+
 
 .move-left-at-lower-resolution{
   z-index: 2;
@@ -85,7 +113,6 @@ body {
   .move-left-at-lower-resolution {
   padding-left: 1.7em;
   text-align: left;
-
   
 }
 }

@@ -1,16 +1,16 @@
 
 
 <template>
-  <div class="fill-page-to-footer">
+  <div >
     <div class="container background-color-about-page">
       <!-- Main area -->
       <div>
-        <h1 class="h1-title">About</h1>
+        
         <div class="text-container">
           <div>
-            
+            <h1 class="h1-title">About</h1>
 
-            <h2 style="text-align: left;  padding-bottom: 1em; padding-top: 3em;">About this website</h2>
+            <h2 style="text-align: left;  padding-bottom: 1em; padding-top: 1em;">About this website</h2>
               <ul>
                 
                 <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is 
@@ -198,11 +198,11 @@ figcaption {
 
 .h1-title {
   text-align: center;
-  margin-top: 1em;
+  margin-top: 0.5em;
   color: #ffffff;
   background: rgb(0, 204, 95);
   font-size: 3em;
-  padding-bottom: 0.5em;
+  
   padding-top: 0.5em;
   
   /* margin-top: -0.33em;  */
@@ -259,9 +259,11 @@ figcaption {
   }
 
   .h1-title {
+    
+    margin-top: 1em;
     margin-left: 1em;
     margin-right: 1em;   
-    font-size: 1.9em;
+    font-size: 1.8em;
   }
 
 

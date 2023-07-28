@@ -27,7 +27,8 @@ export default {
                 { text: 'Feed the cows (game!)', to: '/projects/cowgame' },
                 { text: 'Backend Firebase App', to: '/projects/firebasetest'},
                 { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
-                { text: 'Project Descriptions', to: '/projects/' },             
+                { text: 'Project Descriptions', to: '/projects/' },    
+                { text: 'Rust Web Assembly', to: '/' },              
                    
                 
             ]

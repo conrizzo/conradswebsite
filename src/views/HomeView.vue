@@ -18,7 +18,7 @@
           <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
         </div>
 
-        <div id="cloudTwo" style="position: absolute; margin-left: 12em; margin-top: 5em; opacity: 0.8;">
+        <div id="cloudTwo" style="position: absolute; margin-left: 9em; margin-top: 5em; opacity: 0.8;">
           <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
@@ -115,6 +115,7 @@
       </AsideContent>
     </div>
   </div>
+  <div style="height: 3em;"></div>
   <FirstFooter />
 </template>
 
@@ -151,7 +152,7 @@ export default {
       i2: null,
       i3: null,
       clouds: [],
-      coordX: [6,12,2],
+      coordX: [6,9,2],
     };
   },
   methods: {

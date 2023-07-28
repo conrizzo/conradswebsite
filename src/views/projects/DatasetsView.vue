@@ -39,7 +39,7 @@
         </tr>
       </tbody>
     </table>
-
+    <button @click="quickSort()">Quick Sort</button>
     <div style="padding-top: 2em; padding-bottom: 2em;"></div>
 
     <p class="paragraph-text homeview break-text">The functions/graphical formatting using this data table are self-made.
@@ -83,18 +83,19 @@
     </table>
   </div>
 
-
+  <FastQuickSort ref="fastQuickSort"/>
   <FirstFooter></FirstFooter>
 </template>
 
 <script>
+import FastQuickSort from "@/components/SortingAlgorithms/FastQuickSort.vue"
 
 import "@/assets/globalCSS.css";
 import FirstFooter from "@/components/FirstFooter.vue";
 export default {
   name: "DatasetsView",
   components: {
-    FirstFooter,
+    FirstFooter, FastQuickSort
   },
   data() {
     return {
@@ -166,6 +167,17 @@ export default {
     this.sortedData = this.jsonData;
   },
   methods: {
+    quickSort(columnName){
+      console.log(columnName);
+      const columnA = [columnName];
+      console.log(columnA);
+      let array = columnA;
+      // set a reference to the component FastQuickSort
+      const fastQuickSort = this.$refs.fastQuickSort;
+      // Invoke the function from the component FastQuickSort
+      this.quickSortedArray = fastQuickSort.invoke([...array], 0, array.length - 1);  
+      console.log(this.quickSortedArray)  
+    },
     // this sorts the data by a specific column
     sortData(columnName) {
       /*
@@ -189,13 +201,14 @@ export default {
         if (columnB === null) return -1;
 
         // Handle numeric and non-numeric values
-        if (typeof columnA === "number" && typeof columnB === "number") {
+        if (typeof columnA === "number" && typeof columnB === "number") {          
           const result = columnB - columnA;
           return this.sortDirection ? result : -result; // Reverse sorting if necessary
+
         } else {
+
           const strA = String(columnA).toLowerCase();
           const strB = String(columnB).toLowerCase();
-
           // localeCompare https://www.w3schools.com/jsref/jsref_localecompare.asp#:~:text=Definition%20and%20Usage,language%20settings%20of%20the%20browser.
           const result = strB.localeCompare(strA);
           return this.sortDirection ? result : -result; // Reverse sorting if necessary
