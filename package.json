@@ -16,7 +16,7 @@
     "vue": "^3.3.4",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.3",
-    "word-wrap": "^1.2.3"
+    "word-wrap": "^1.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
