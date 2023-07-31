@@ -8,7 +8,7 @@
         CLICK ME
       </button>
       <h2 style="font-size: 7em; color: #b3ff00;" v-if="showBirthdayMessage">Happy Birthday</h2>
-      <h1 style="font-size: 5em; color: white;">{{ reversedText }}</h1>
+      <h1 style="font-size: 5em; color: #000;">{{ reversedText }}</h1>
       
     </div>
   </template>

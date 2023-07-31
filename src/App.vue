@@ -81,7 +81,7 @@ body {
   width: 0.75em; 
   background-color: #fff;
   margin-right: 5px;
-  height: 50px;
+  height: 2em;
 }
 /* Set the color of the scrollbar track */
 ::-webkit-scrollbar-track {

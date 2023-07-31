@@ -39,20 +39,20 @@
           <ul style="text-align: left; color: white;">
             <li style="margin-bottom: 1em;">
               <h3 style="color: #fff;">
-                This is an ongoing personal website project made by <a class="text-links"
-                  href="https://github.com/conrizzo">Conrad</a>
+                This is an ongoing personal website project made by <a class="text-links" style="color: #ff5959;"
+                  href="https://github.com/conrizzo">Conrad</a> in Vue.js
               </h3>
             </li>
             <li style="margin-bottom: 1em;">
               <h3 style="color: #fff;">
-                For more specific info about this website please read the <router-link class="text-links"
+                For more specific info about this website please read the <router-link class="text-links" style="color: #ff5959;"
                   to="/about">About page</router-link>!
               </h3>
             </li>
             <li>
               <h3 style="color: #fff;">
-                "Healthy" amounts of <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were
-                consumed while building this.
+                "Healthy" amounts of <a class="text-links" style="color: #ff5959;" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were
+                consumed while making this website.
               </h3>
             </li>
           </ul>
@@ -252,7 +252,7 @@ export default {
 }
 */
 .custom-background-home-page {
-  background: linear-gradient(0deg, rgba(1, 239, 249, 1) 0%, rgba(0, 112, 255, 1) 38%, rgba(23, 50, 143, 1) 78%);
+  background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
 }
 .links-div-container {
   padding-left: 10em;
@@ -279,10 +279,10 @@ export default {
   max-width: 100%;
 }
 a {
-  color: white;
+  color: rgb(255, 255, 255);
 }
 .route-styling {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   display: block;
   text-align: left;
@@ -290,7 +290,8 @@ a {
   padding: 1em;
   border-radius: 5px;
   max-width: 10.8em;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.9);
 }
 .main-text-container {
   padding-top: 0.5em;

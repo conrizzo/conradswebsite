@@ -10,7 +10,7 @@
           <div>
             <h1 class="h1-title">About</h1>
 
-            <h2 style="text-align: left;  padding-bottom: 1em; padding-top: 1em;">About this website</h2>
+            <h2 style="text-align: left;  padding-bottom: 1em;">About this website</h2>
               <ul>
                 
                 <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is 
@@ -43,7 +43,7 @@
                   German too, so it is <u>a lot</u> of language learning!
                 </li>
               </ul>
-            <h2 style="text-align: left; padding-bottom: 1em;">More about this website</h2>
+            <h2 style="text-align: left; padding-bottom: 1em;">More stuff to read about this website</h2>
               <p class="paragraph-text break-text">
                 This websites focus is to show some examples of work I've done using code, plus it's fun to have a website
                 made in
@@ -110,9 +110,9 @@
             This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>.
           </p>
           <img style="border-radius: 1em;" :src="birdPicture" alt="Kohlmeise picture">
-          <p class="aside-text">This is a self-taken <a class="text-links"
+          <p class="aside-text">This is a <a class="text-links"
               href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a> (name in German, English name is Great Tit)
-            photo in Tübingen, Germany. It is a species of bird that is native to Europe.
+            photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
             They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
             peanuts!</p>
 
@@ -198,15 +198,13 @@ figcaption {
 
 .h1-title {
   text-align: center;
-  margin-top: 0.5em;
+  margin-top: 2em;
+  margin-bottom: 1em;
   color: #ffffff;
   background: rgb(0, 204, 95);
-  font-size: 3em;
-  
-  padding-top: 0.5em;
-  
-  /* margin-top: -0.33em;  */
-  
+  font-size: 3em;  
+
+  /* margin-top: -0.33em;  */  
 }
 
 @media (min-width: 600px) {
@@ -260,7 +258,7 @@ figcaption {
 
   .h1-title {
     
-    margin-top: 1em;
+    margin-top: 2.5em;
     margin-left: 1em;
     margin-right: 1em;   
     font-size: 1.8em;

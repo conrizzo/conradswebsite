@@ -64,11 +64,15 @@
             this.directionY *= -1;
           }
 
-          const ballElement = this.$refs.ballElement as HTMLElement;
-          const rect = ballElement.getBoundingClientRect();
-          //console.log(rect)
-          //this.$emit('position-updated', this.x, this.y); 
-          this.$emit('rect-updated', rect);
+          const ballElement = this.$refs.ballElement as HTMLElement;          
+          // by adding an if statement here we check if the ballElement actually exists before we try to get the bounding client rect
+          // this way backing out of the page doesn't cause a null Element reference and keep looping infinitely to search for
+          // the ballElement which no longer exists in the DOM!
+          if (ballElement){
+            const rect = ballElement.getBoundingClientRect();        
+            this.$emit('rect-updated', rect);
+          }
+
         }, 10);
       },
     },
@@ -88,6 +92,7 @@
   }
 
   .ball-text {
+ 
   position: absolute;
   top: 50%;
   left: 50%;
