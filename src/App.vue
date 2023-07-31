@@ -40,12 +40,16 @@ export default {
 nav {
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
+  display: flex;
   justify-content: center;
   align-items: center;
   position: fixed; 
   /* padding: 0.3em 0.25em 0.3em 0.25em; */  
   font-size: 1.25em;
   background-color: rgb(255, 255, 255);  
+
+  left: 0;
+  right: 0;
 }
 
 nav a {    

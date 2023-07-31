@@ -28,7 +28,7 @@ export default {
                 { text: 'Backend Firebase App', to: '/projects/firebasetest'},
                 { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
                 { text: 'Project Descriptions', to: '/projects/' },    
-                { text: 'Rust Web Assembly', to: '/underconstruction' },              
+                { text: 'Rust Web Assembly', to: '/projects/rustwebassembly' },              
                    
                 
             ]

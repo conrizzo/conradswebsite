@@ -63,7 +63,8 @@
 <pre v-bind:class="'language-JavaScript line-numbers'">
 <code>      
   // Following section is BOGOSORT
-    bogoSort() {     
+    bogoSort() {
+      let startTime = performance.now();
 
       this.bogoSortArrayButtonClicked = true;
 
@@ -74,7 +75,7 @@
           arr.push(randomNumber);
         }
         let number_of_shuffles = 0;
-        let startTime = performance.now();
+        
         while (!this.isSorted(arr)) {
           number_of_shuffles++;
           this.shuffle(arr);

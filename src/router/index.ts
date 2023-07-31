@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const HomeView = () => import('../views/HomeView.vue');
 const AboutView = () => import('../views/AboutView.vue');
+
 const ProjectsView = () => import('../views/projects/ProjectsView.vue');
 const CowculatorView = () => import('../views/projects/CowculatorView.vue');
 const DatasetsView = () => import('../views/projects/DatasetsView.vue');
@@ -11,6 +12,10 @@ const CowGameView = () => import('../views/projects/CowGameView.vue');
 const ProjectDetailsView = () => import('../views/projects/ProjectDetailsView.vue');
 const FirebaseTestView = () => import('../views/projects/FirebaseTestView.vue');
 const SortingAlgorithmsView = () => import('../views/projects/SortingAlgorithmsView.vue');
+const RustWebAssemblyView = () => import('../views/projects/RustWebAssemblyView.vue');
+
+
+
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 // const about = () => import('../views/about.vue');
 
@@ -71,6 +76,13 @@ const routes = [
     name: 'SortingAlgorithmsView',
     component: SortingAlgorithmsView,
   },
+
+  {
+    path: '/projects/rustwebassembly',
+    name: 'RustWebAssemblyView',
+    component: RustWebAssemblyView,
+  },
+
   {
     path: '/yadhtriByppah',
     name: 'yadhtriByppahView',

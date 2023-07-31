@@ -6,7 +6,7 @@
     <div class="container custom-background-home-page" style="margin-top: 2em;">
 
       <!-- generate clouds -->
-      <div style="margin-bottom: 9em;">
+      <div style="margin-bottom: 9em; ">
 
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
@@ -294,9 +294,14 @@ a {
   border: 2px solid rgba(255, 255, 255, 0.9);
 }
 .main-text-container {
-  padding-top: 0.5em;
+ 
   display: flex;
   justify-content: center;
+
+  background: rgba(0, 0, 0, 0.05); display: inline-block; max-width: 800px; margin: 0 auto; padding: 1.5em; 
+  
+  border-right: 2px solid rgba(255, 255, 255, 0.9);
+  border-left: 2px solid rgba(255, 255, 255, 0.9);
 }
 .title-spacing {
   position: relative;
@@ -339,6 +344,11 @@ a {
 
   .hide-button-low-resolution {
     display: none;
+  }
+
+  .main-text-container{
+    border-right: 8px solid rgba(255, 255, 255, 0.9);
+    border-left: 8px solid rgba(255, 255, 255, 0.9);
   }
 }
 

@@ -1,48 +1,48 @@
 
 
 <template>
-  <div >
+ 
     <div class="container background-color-about-page">
-      <!-- Main area -->
-      <div>
-        
+      <!-- Main area -->     
         <div class="text-container">
-          <div>
+          
             <h1 class="h1-title">About</h1>
 
             <h2 style="text-align: left;  padding-bottom: 1em;">About this website</h2>
-              <ul>
-                
-                <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is 
-                  totally self-made by Conrad using
+
+            <ul>
+              <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is
+                totally self-made by me (Conrad) using
                 <a class="text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
                     3</b></a>
                 (Vue.js). It is hosted on
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
                   <b>Conrad's GitHub</b></a> with
                 <a class="text-links" href="https://pages.github.com/">
-                  <b>GitHub pages</b></a>.</li>
-                <li class="paragraph-text break-text">I started learning about Vue.JS when I worked on the Bioinformatics
-                  Toolkit at Max
-                  Planck in Tübingen, Germany.</li>
+                  <b>GitHub pages</b></a>.
+              </li>
+              <li class="paragraph-text break-text">I started learning about Vue.JS when I worked on the Bioinformatics
+                Toolkit at Max
+                Planck in Tübingen, Germany.</li>
 
-                <li class="paragraph-text break-text">I hold a degree in Computational Linguistics from the
-                  University of Tübingen in Germany,
-                  and previously completed a Bachelor of Science in Biology from the University of North Carolina at
-                  Wilmington, Wilmington, NC, USA.</li>
+              <li class="paragraph-text break-text">I hold a degree in Computational Linguistics from the
+                University of Tübingen in Germany,
+                and previously completed a Bachelor of Science in Biology from the University of North Carolina at
+                Wilmington, Wilmington, NC, USA.</li>
 
-                <li class="paragraph-text break-text">Have been working on this website using Vue.js, JavaScript,
-                  TypeScript, CSS, HTML. Starting to
-                  learn more about backend development and databases. The normal routine is to spend a few hours a day
-                  reviewing and learning
-                  code. Usually a commit or two on github each day to make some changes.
-                </li>
-                <li class="paragraph-text break-text">
-                  Started learning <a class="text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as
-                  well.
-                  German too, so it is <u>a lot</u> of language learning!
-                </li>
-              </ul>
+              <li class="paragraph-text break-text">Have been working on this website using Vue.js, JavaScript,
+                TypeScript, CSS, HTML. Starting to
+                learn more about backend development and databases. The normal routine is to spend a few hours a day
+                reviewing and learning
+                code. Usually a commit or two on github each day to make some changes.
+              </li>
+              <li class="paragraph-text break-text">
+                Started learning <a class="text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as
+                well.
+                German too, so it is <u>a lot</u> of language learning!
+              </li>
+            </ul>
+
             <h2 style="text-align: left; padding-bottom: 1em;">More stuff to read about this website</h2>
               <p class="paragraph-text break-text">
                 This websites focus is to show some examples of work I've done using code, plus it's fun to have a website
@@ -54,26 +54,26 @@
                   href="https://en.wikipedia.org/wiki/Web_framework">https://en.wikipedia.org/wiki/Web_framework</a>
               </p>
 
-            <p class="paragraph-text break-text">Much of this website was originally written in Vue 3 and straight
-              JavaScript, however it was converted to have TypeScript supports
-              later on, and new projects such as the
-              <router-link class="text-links" to="/projects/cowgame"><b>Cow Game</b></router-link> heavily use
-              TypeScript. This website is designed
-              to be minimal and offer simple navigation to some projects I've made.
-              The focus has really been to use progressively more complex aspects of Vue 3, JavaScript, TypeScript, CSS,
-              HTML, and really just learn
-              everything that is useful to know and make some more sophisticated projects. As of July, 2023, have been
-              working on integrating backend development.
-              This website has been a static website, but will change into a dynamic one with a backend.
-            </p>
+              <p class="paragraph-text break-text">Much of this website was originally written in Vue 3 and straight
+                JavaScript, however it was converted to have TypeScript support
+                later on, and new projects such as the
+                <router-link class="text-links" to="/projects/cowgame"><b>Cow Game</b></router-link> heavily use
+                TypeScript. This website is designed
+                to be minimal and offer simple navigation to some projects I've made.
+                The focus has really been to use progressively more complex aspects of Vue 3, JavaScript, TypeScript, CSS,
+                HTML, and really just learn
+                everything that is useful to know and make some more sophisticated projects. As of July, 2023, have been
+                working on integrating backend development.
+                This website has been a static website, but will change into a dynamic one with a backend.
+              </p>
+
             <figure class="center-figure">
-              <img class="img-container" :src="imagePath" alt="Coding Languages used" />
-              <figcaption>Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June
+            <img class="img-container" :src="imagePath" alt="Coding Languages used" />
+            <figcaption>Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June
                 2023, currently starting to add in TypeScript support.
                 Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
-
-              </figcaption>
-            </figure>
+             </figcaption>
+             </figure>
             <br>
             <div>
               <p class="paragraph-text break-text" style="padding-top: 1em; border-top: 1px solid rgb(211, 211, 211);">
@@ -99,9 +99,8 @@
                 now work properly by falling back to the index.html page. This solution may not be ideal, but it is
                 necessary when
                 using gh-pages.</p>
-            </div>
-          </div>
-        </div>
+            </div>     
+        
       </div>
       <!-- Aside area -->
       <AsideContent>
@@ -115,12 +114,9 @@
             photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
             They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
             peanuts!</p>
-
         </template>
       </AsideContent>
-    </div>
-
-  </div>
+    </div>  
   <FirstFooter></FirstFooter>
 </template>
 
@@ -175,7 +171,7 @@ figure {
   font-size: 0.9em;
   text-align: center;
   color: rgb(0, 0, 0);
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 5px;
   line-height: 1.2;
 }
@@ -202,9 +198,9 @@ figcaption {
   margin-bottom: 1em;
   color: #ffffff;
   background: rgb(0, 204, 95);
-  font-size: 3em;  
+  font-size: 3em;
 
-  /* margin-top: -0.33em;  */  
+  /* margin-top: -0.33em;  */
 }
 
 @media (min-width: 600px) {
@@ -257,12 +253,13 @@ figcaption {
   }
 
   .h1-title {
-    
+
     margin-top: 2.5em;
     margin-left: 1em;
-    margin-right: 1em;   
+    margin-right: 1em;
     font-size: 1.8em;
   }
 
 
-}</style>
+}
+</style>
