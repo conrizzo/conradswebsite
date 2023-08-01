@@ -13,7 +13,22 @@
       I am currently working on a project that uses Rust with Web Assembly to compile the logic of a web program and I will be updating this page with more information 
     soon!</p>
   </div>
-  
+  <div class="button-area">
+    <button class="button-35"  @click="runRust">Run Rust</button>
+  </div>
+  <div id="greeting"></div>
+  <pre v-bind:class="'language-rust'"><code>#[wasm_bindgen]
+pub fn greet(name: &str) -> String {
+    let mut rng = thread_rng();
+    let random_number = rng.gen_range(1..=100);
+    
+        if random_number >= 75 {
+            return format!("{name} {random_number}/100 Coffee is good, time to drink more coffee!");
+        } else {
+            return format!("{name} {random_number}/100 Seems you may have had too much coffee today, drink carbonated water instead!");
+        }    
+    }   
+</code></pre>
   <FirstFooter></FirstFooter>
 </template>
   
@@ -23,7 +38,9 @@ import "@/assets/globalCSS.css";
 import FirstFooter from "@/components/FirstFooter.vue";
 import Prism from "prismjs";
 import 'prismjs/themes/prism.css';
-
+import 'prismjs/components/prism-rust.min.js';
+// import rust web assembly .js file
+import init, {greet} from "@/rust_web_assembly/hello_wasm.js";
 
 export default {
   name: 'rustWebAssemblyView',
@@ -39,11 +56,24 @@ export default {
       Prism.highlightAll();
     },
   methods: {
-  
+  runRust(){
+    init().then(() => {
+        const greeting = greet("You rolled:");
+        document.getElementById("greeting").textContent = greeting;
+      });
+  }
 
   }
 };
 </script>
   
 <style scoped>
+
+.button-area{
+ 
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
 </style>

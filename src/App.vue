@@ -1,12 +1,10 @@
 <template>
   
-    <nav class="move-left-at-lower-resolution" v-if="showNav">     
+    <nav style="left: 0; position: absolute;" class="move-left-at-lower-resolution" v-if="showNav">     
       <router-link to="/">Home</router-link> 
       <router-link to="/about">About</router-link> 
-      <!--import the dropdown menu into the nav bar-->
-      
-      <DropDownMenu></DropDownMenu> 
-   
+      <!--import the dropdown menu into the nav bar-->      
+      <DropDownMenu></DropDownMenu>    
     </nav> 
   <router-view />
 </template>
@@ -46,10 +44,7 @@ nav {
   position: fixed; 
   /* padding: 0.3em 0.25em 0.3em 0.25em; */  
   font-size: 1.25em;
-  background-color: rgb(255, 255, 255);  
-
-  left: 0;
-  right: 0;
+  background-color: rgb(255, 255, 255);   
 }
 
 nav a {    
@@ -113,11 +108,11 @@ body {
 }
 
 @media only screen and (max-width: 1000px) {
-
   .move-left-at-lower-resolution {
-  padding-left: 1.7em;
-  text-align: left;
-  
+  padding-left: 1em;
+  text-align: left; 
+  position: absolute; 
+  justify-content: left;
 }
 }
 </style>
