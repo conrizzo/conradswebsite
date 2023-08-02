@@ -1,8 +1,3 @@
-/**
- * Sorts an array using the selection sort algorithm.
- * @param {Array} arr - The array to be sorted.
- * @returns {Array} - The sorted array.
- */
 
 <template>
   <div class="background-color" style="padding-top: 3em;">
@@ -40,12 +35,12 @@ pub fn greet(name: &str) -> String {
   'tree beach house car' and they will be randomized using Rust Web Assembly as you type them in! Amazing!<br>
    Oddly, every new character addition or deletion is shuffling the array using Rust Web Assembly code. Yes, spaces 
   count as characters, and nothing can logically be shuffled until there are two tokens with a space between them!</p>
-    <label for="name">Name:</label>
-    <input style="width: 250px;" type="text" id="name" v-model="name">
+    <label for="name">Write stuff here:</label>
+    <input style="width: 350px; font-size: 1.5em;" type="text" id="name" v-model="name">
     
     <p class="paragraph-text">What you typed: {{ name }}{{runRustArrayRandomizer()}}</p>
     <div style="font-size: 1.5em; text-align: center; padding-left: 1em; padding-right: 1em; padding-bottom: 2em;" id="randomizedArray"></div>
-
+    
   <FirstFooter></FirstFooter>
 </template>
   
@@ -67,13 +62,24 @@ export default {
   data() {
     return {      
       name: "",
-      
+      inputString: "Hello, it is a beautiful day isn't it?",
     };
   },
   mounted() {
       Prism.highlightAll();
     },
   methods: {
+  addLettersIntoInput(){
+    let i = 0;
+const intervalId = setInterval(() => {
+  if (i < this.inputString.length) {
+    this.name += this.inputString[i];
+    i++;
+  } else {
+    clearInterval(intervalId);
+  }
+}, 200);
+  },
   runRust(){
     init().then(() => {
         const greeting = greet("You rolled:");

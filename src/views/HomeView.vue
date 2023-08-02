@@ -4,10 +4,10 @@
 
     <!-- Main area -->
     <div class="container custom-background-home-page" style="margin-top: 2em;">
-
+      
       <!-- generate clouds -->
       <div style="margin-bottom: 9em; ">
-
+        
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
           @click="toggleClouds"><span v-if='moveTheClouds'>Stop</span><span v-else>Move</span>&nbsp;Clouds</button>
@@ -32,10 +32,14 @@
         </div>
         <!-- Title -->
 
-        <h2 class="title-spacing">Conrad's Website</h2>
-
+        <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
+        
+        <p style="position: relative; color: #fff; padding-bottom: 0.5em;">(The main heading &uarr; is actually being shuffled each character addition with 
+          <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code 
+          compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>)</p>
         <!-- Main bullets -->
         <div class="main-text-container">
+         
           <ul style="text-align: left; color: white;">
             <li style="margin-bottom: 1em;">
               <h3 style="color: #fff;">
@@ -45,17 +49,19 @@
             </li>
             <li style="margin-bottom: 1em;">
               <h3 style="color: #fff;">
-                For more specific info about this website please read the <router-link class="text-links" style="color: #ff5959;"
-                  to="/about">About page</router-link>!
+                For more specific info about this website please read the <router-link class="text-links"
+                  style="color: #ff5959;" to="/about">About page</router-link>!
               </h3>
             </li>
             <li>
               <h3 style="color: #fff;">
-                "Healthy" amounts of <a class="text-links" style="color: #ff5959;" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were
-                consumed while making this website.
+                "Healthy" amounts of <a class="text-links" style="color: #ff5959;"
+                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were
+                consumed while making this website. 
               </h3>
             </li>
           </ul>
+          
         </div>
 
         <div>
@@ -87,21 +93,21 @@
           <UseCalc></UseCalc>
           </div>
         -->
-        <div style="position: relative; z-index: 0;">
+          <div style="position: relative; z-index: 0;">
             <div class="box" style="--size: 7em; width: 100%; height: 3em; position: absolute; left: 0; bottom: -9em;">
             </div>
-            
+
             <div class="box"
               style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0; padding-left: 0em; bottom: -7em; ">
             </div>
-            
+
           </div>
-          
+
 
         </div>
-        
+
       </div>
-      
+
       <!-- Aside area begins  #2d2d2d; slate black color -->
       <AsideContent class="aside-low-resolution" style="background: #fff; z-index: 1;">
         <template v-slot:aside-content>
@@ -131,6 +137,8 @@ import ProjectLinks from '@/components/ProjectLinks.vue'
 import "@/assets/globalCSS.css";
 //import UseCalc from "@/components/UseCalc.vue";
 
+import init, { main } from "@/rust_web_assembly/hello_wasm.js";
+
 export default {
   name: "HomeView",
   components: {
@@ -152,20 +160,59 @@ export default {
       i2: null,
       i3: null,
       clouds: [],
-      coordX: [6,9,2],
+      coordX: [6, 9, 2],
+
+      inputString: "Welcome to Conrad's Website",
+      name: "",
+      inputStringShuffled: "",
     };
   },
+
   methods: {
+    runRustArrayRandomizer(){
+    init().then(() => {
+        const arr = this.name.split(" ");
+        let mainFunction = main(arr);
+        /*
+        let outputArray = []
+        for (let i = 0; i < mainFunction.length; i++) {
+          outputArray.push(mainFunction[i]);
+        }
+        */
+        // add spaces
+        mainFunction = mainFunction.join(" ");
+
+        this.inputStringShuffled = mainFunction;
+        
+        //document.getElementById("randomizedArray").textContent = mainFunction;
+      });
+  },
+    addLettersIntoInput() {
+      let i = 0;
+      const intervalId = setInterval(() => {
+        if (i < this.inputString.length) {
+          this.name += this.inputString[i];
+          this.runRustArrayRandomizer();
+          i++;
+        } else {
+          clearInterval(intervalId);
+          console.log("end")
+          this.inputStringShuffled = "Welcome to Conrad's Website";
+        }
+      }, 200);
+    },
+
+
 
     toggleClouds() {
 
-      
+
 
       if (this.moveTheClouds === false) {
         this.moveClouds();
       }
 
-      if( this.moveTheClouds === true){
+      if (this.moveTheClouds === true) {
         this.stopClouds();
       }
 
@@ -225,17 +272,16 @@ export default {
   },
   mounted() {
     Prism.highlightAll();
+    this.addLettersIntoInput();
   },
 };
 </script>
 
 <style scoped>
-
-
-
-#body{
+#body {
   background: rgb(230, 230, 230);
 }
+
 /*
 .h1-title {
   color: #ffffff;
@@ -254,33 +300,41 @@ export default {
 .custom-background-home-page {
   background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
 }
+
 .links-div-container {
   padding-left: 10em;
 }
+
 .on-hover-projects {
   text-decoration: none;
   padding-right: 0.25em;
   padding-left: 0.25em;
 }
+
 .on-hover-projects:visited {
   text-decoration: none;
   color: #fff;
 }
+
 .on-hover-projects:hover {
   background-color: #fff;
   color: #000;
 }
+
 .on-hover-projects:nth-child(odd) {
   border-right: 1px solid #ff5959;
   max-width: 100%;
 }
+
 .on-hover-projects:nth-child(even) {
   border-left: 1px solid #ff5959;
   max-width: 100%;
 }
+
 a {
   color: rgb(255, 255, 255);
 }
+
 .route-styling {
   color: #ffffff;
   text-decoration: none;
@@ -293,16 +347,22 @@ a {
   background: rgba(0, 0, 0, 0.25);
   border: 2px solid rgba(255, 255, 255, 0.9);
 }
+
 .main-text-container {
- 
+
   display: flex;
   justify-content: center;
 
-  background: rgba(0, 0, 0, 0.05); display: inline-block; max-width: 800px; margin: 0 auto; padding: 1.5em; 
-  
+  background: rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5em;
+
   border-right: 2px solid rgba(255, 255, 255, 0.9);
   border-left: 2px solid rgba(255, 255, 255, 0.9);
 }
+
 .title-spacing {
   position: relative;
   padding-top: 1.5em;
@@ -311,18 +371,21 @@ a {
   font-size: 3em;
   z-index: 1;
 }
+
 /* Adjust the padding for mobile resolution for this block */
 @media only screen and (max-width: 1500px) {
   .h1-title {
     margin-left: 0em;
     margin-right: 0em;
   }
+
   .main-text-container {
     padding-right: 1em;
     padding-left: 2em;
 
   }
 }
+
 @media only screen and (max-width: 880px) {
   .title-spacing {
     color: #fff;
@@ -338,6 +401,7 @@ a {
     padding-right: 1em;
     display: inline-block;
   }
+
   .route-styling {
     font-size: 1.75em;
   }
@@ -346,7 +410,7 @@ a {
     display: none;
   }
 
-  .main-text-container{
+  .main-text-container {
     border-right: 8px solid rgba(255, 255, 255, 0.9);
     border-left: 8px solid rgba(255, 255, 255, 0.9);
   }
@@ -356,31 +420,39 @@ a {
   font-family: sans-serif;
   font-size: 1.25em;
 }
+
 .loading:after {
   display: inline-block;
   animation: dotty 3s steps(1, end) infinite;
   content: '';
 }
+
 @keyframes dotty {
   0% {
     content: '.';
   }
+
   20% {
     content: '.';
   }
+
   40% {
     content: '..';
   }
+
   60% {
     content: '...';
   }
+
   80% {
     content: '....';
   }
+
   100% {
     content: '.';
   }
 }
+
 /* Make some happy clouds */
 .cloud {
   width: 200px;
@@ -390,6 +462,7 @@ a {
   position: relative;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1), 0 30px 50px rgba(0, 0, 0, 0.1);
 }
+
 .cloud::before,
 .cloud::after {
   content: "";
@@ -397,12 +470,14 @@ a {
   background-color: #ffffff;
   border-radius: 100%;
 }
+
 .cloud::before {
   width: 100px;
   height: 70px;
   top: -20px;
   left: 20px;
 }
+
 .cloud::after {
   width: 100px;
   height: 70px;
@@ -427,7 +502,4 @@ a {
   background: repeating-linear-gradient(-70deg,
       green 0 10em,
       #14ec00 10em 20em);
-}
-
-
-</style>
+}</style>
