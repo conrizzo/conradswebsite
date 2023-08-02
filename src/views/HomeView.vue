@@ -234,7 +234,7 @@ export default {
 
 
 #body{
-  background: rgb(255, 255, 255);
+  background: rgb(230, 230, 230);
 }
 /*
 .h1-title {

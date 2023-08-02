@@ -1,6 +1,6 @@
 <template>
   <div style="background:#171a21;">
-    <h1 style="color:#ffffff; background: #000; display: inline-block; padding: 0.1em 0.25em 0.1em 0.25em; border-radius: 0.25em;">Project Descriptions</h1>
+    <h1 style="color:#ffffff; background: rgb(80, 80, 80); display: inline-block; padding: 0.1em 0.25em 0.1em 0.25em; border-radius: 0.25em;">Project Descriptions</h1>
 
     <div v-for="project in projects" :key="project.id">
       <router-link :to="{

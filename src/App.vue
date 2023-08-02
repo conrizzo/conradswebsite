@@ -70,7 +70,7 @@ html,
 body {  
   /* padding-top: 1.33em; */
   /* background-color: rgb(100, 100, 100); */
-  background-color: #ffffff;
+  background-color: rgb(230, 230, 230);
 }
 
 

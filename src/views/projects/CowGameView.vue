@@ -99,7 +99,7 @@
 
     <div style=" margin-left: 27em; padding-top: 54vh;">
       <div v-if="winningMessage">
-          <span style="border-radius: 1em; padding: 0.5em; background-color: #444444; margin-right: 3em; margin-left: 3em; position: absolute; top: 3em; left: 1em; font-size: 3em; color: greenyellow;" class="unselectable">
+          <span style="border-radius: 1em; padding: 0.5em; background-color: #ffd755; margin-right: 3em; margin-left: 3em; position: absolute; top: 3em; left: 1em; font-size: 3em; color: rgb(255, 255, 255);" class="unselectable">
              {{ customMessage }}<br><br>
           <a class="text-links no-underline" href="https://www.youtube.com/watch?v=uA8dAnlD51o">{{ youTubeCowVideoLink }}</a>
           </span>
@@ -176,7 +176,7 @@ export default defineComponent({
     return {
       winningMessage: false,
       customMessage: "",
-      youTubeCowVideoLink: "Click here to see a happy cow video!",
+      youTubeCowVideoLink: "Your reward for winning is a happy cow video!",
 
       isThereACollision: false,
       collisionMessage: "",
