@@ -6,9 +6,7 @@
       <!-- Main area -->     
         <div class="text-container">
           
-            <h1 class="h1-title">About</h1>
-
-            <h2 style="text-align: left;  padding-bottom: 1em;">About this website</h2>
+            <h1 class="h1-title">About:</h1>          
 
             <ul>
               <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is
@@ -43,39 +41,35 @@
               </li>
             </ul>
 
-            <h2 style="text-align: left; padding-bottom: 1em;">More stuff to read about this website</h2>
-              <p class="paragraph-text break-text">
-                This websites focus is to show some examples of work I've done using code, plus it's fun to have a website
+            <h2 style="text-align: left;">More info if interested:</h2>
+              <p class="paragraph-text break-text" style="padding-top: 1em; border-top: 1px solid rgb(211, 211, 211);">
+                This websites focus is to show some examples of some projects and other work, plus it's fun to have a website
                 made in
-                a framework (Vue.js) and be able to build somewhat complex projects.
-                Once one has a basic understanding of HTML, CSS, and JavaScript, the next step in front-end
-                web development is frameworks.
-                Framework description: <a class="text-links"
-                  href="https://en.wikipedia.org/wiki/Web_framework">https://en.wikipedia.org/wiki/Web_framework</a>
+                a framework (Vue.js) and be able to build stuff.                
               </p>
 
               <p class="paragraph-text break-text">Much of this website was originally written in Vue 3 and straight
-                JavaScript, however it was converted to have TypeScript support
+                JavaScript, however I converted it to have TypeScript support
                 later on, and new projects such as the
                 <router-link class="text-links" to="/projects/cowgame"><b>Cow Game</b></router-link> heavily use
-                TypeScript. This website is designed
-                to be minimal and offer simple navigation to some projects I've made.
-                The focus has really been to use progressively more complex aspects of Vue 3, JavaScript, TypeScript, CSS,
-                HTML, and really just learn
-                everything that is useful to know and make some more sophisticated projects. As of July, 2023, have been
-                working on integrating backend development.
-                This website has been a static website, but will change into a dynamic one with a backend.
+                TypeScript. As of July, 2023, have been
+                working on integrating backend development. In July, 2023 I also started learning Rust and some of this website
+                now uses Rust compiled into Web Assembly.
+                
               </p>
-
+       
             <figure class="center-figure">
-            <img class="img-container" :src="imagePath" alt="Coding Languages used" />
+            <img class="img-container"  :src="imagePath" alt="Coding Languages used" />
             <figcaption>Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June
                 2023, currently starting to add in TypeScript support.
                 Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
              </figcaption>
              </figure>
+             
             <br>
+            <h2 style="text-align: left;">About the Vue Routing with GitHub Pages:</h2>
             <div>
+             
               <p class="paragraph-text break-text" style="padding-top: 1em; border-top: 1px solid rgb(211, 211, 211);">
                 Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods
                 to work properly.
@@ -106,9 +100,9 @@
       <AsideContent>
         <template v-slot:aside-content>
           <p class="aside-text" style="margin-top: 1em">
-            This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>.
+            This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>:
           </p>
-          <img style="border-radius: 1em;" :src="birdPicture" alt="Kohlmeise picture">
+          <img style="border-radius: 0.5em; width: 200px;" :src="birdPicture" alt="Kohlmeise picture">
           <p class="aside-text">This is a <a class="text-links"
               href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a> (name in German, English name is Great Tit)
             photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
@@ -182,26 +176,32 @@ figcaption {
 }
 
 .center-figure {
-  margin: auto;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
-
 .img-container {
-  text-align: center;
-  margin: 1em auto;
-  max-width: auto;
+ 
+  max-width: 350px;
   border-radius: 0.5em;
 }
 
-.h1-title {
+.h1-title {  
   text-align: center;
-  margin-top: 2em;
-  margin-bottom: 1em;
-  color: #ffffff;
-  background: rgb(0, 204, 95);
+  margin-top: 1em;
+  margin-bottom: 0em;
+  color: #000000;
+  /*background: rgb(0, 204, 95);*/
   font-size: 3em;
-
+  border-radius: 0.2em;
   /* margin-top: -0.33em;  */
 }
+h2{
+  padding-left: 4em;
+}
+
 
 @media (min-width: 600px) {
   figure {
@@ -236,30 +236,31 @@ figcaption {
 @media only screen and (max-width: 1200px) {
   .text-container {
     padding-left: 1em;
-    padding-right: 1em
+    padding-right: 1em;    
   }
-
   figure {
     margin-left: 1.2em;
     margin-right: 1.2em;
+    float: center;
   }
-
   .img-container {
-    margin: 1em 0;
+    margin: 1em 0;    
   }
-
   figcaption {
-    margin-top: 0.5em;
+    margin-top: 0.5em;    
   }
-
   .h1-title {
-
     margin-top: 2.5em;
     margin-left: 1em;
     margin-right: 1em;
     font-size: 1.8em;
   }
+}
 
+@media only screen and (max-width: 1000px) {
+  h2{
+  padding-left: 1.3em;
+  }
 
 }
 </style>

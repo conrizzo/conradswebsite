@@ -101,7 +101,7 @@
           this.sendMessage();
           
         } catch (err) {
-          console.error("Error adding document!!!: ", err);
+          console.error("Error adding document!: ", err);
         }
       },
       async sendMessage(){
@@ -115,9 +115,9 @@
         console.log(this.timeElapsed)
 
         // If less than 5 seconds have elapsed, do not send the message
-        if (this.timeElapsed < 5000) {
-          console.log('Please wait at least 5 seconds before sending another message.');
-          alert('Please wait at least 5 seconds before sending another message.');
+        if (this.timeElapsed < 10000) {
+          console.log('Please wait at least 10 seconds before sending another message.');
+          alert('Please wait at least 10 seconds before sending another message.');
           return;
         }
         console.log("message sent")

@@ -28,7 +28,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -45,6 +45,7 @@ nav {
   /* padding: 0.3em 0.25em 0.3em 0.25em; */  
   font-size: 1.25em;
   background-color: rgb(255, 255, 255);   
+  
 }
 
 nav a {    
@@ -52,6 +53,7 @@ nav a {
   color: rgb(128, 128, 128);
   margin-right: 0.2em;   
   padding: 0.4em 0.6em 0.4em 0.6em;  
+  border-radius: 0.3em;
 }
 
 nav a:hover {    

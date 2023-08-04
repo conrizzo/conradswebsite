@@ -4,10 +4,10 @@
 
     <!-- Main area -->
     <div class="container custom-background-home-page" style="margin-top: 2em;">
-      
+
       <!-- generate clouds -->
       <div style="margin-bottom: 9em; ">
-        
+
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
           @click="toggleClouds"><span v-if='moveTheClouds'>Stop</span><span v-else>Move</span>&nbsp;Clouds</button>
@@ -33,13 +33,15 @@
         <!-- Title -->
 
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
-        
-        <p style="position: relative; color: #fff; padding-bottom: 0.5em;">(The main heading &uarr; is actually being shuffled each character addition with 
-          <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code 
-          compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>)</p>
+
+        <p style="position: relative; color: #fff; padding-bottom: 0.5em;">(The main heading &uarr; is actually being
+          shuffled each character addition with
+          <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code
+          compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>)
+        </p>
         <!-- Main bullets -->
         <div class="main-text-container">
-         
+
           <ul style="text-align: left; color: white;">
             <li style="margin-bottom: 1em;">
               <h3 style="color: #fff;">
@@ -57,11 +59,11 @@
               <h3 style="color: #fff;">
                 "Healthy" amounts of <a class="text-links" style="color: #ff5959;"
                   href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were
-                consumed while making this website. 
+                consumed while making this website.
               </h3>
             </li>
           </ul>
-          
+
         </div>
 
         <div>
@@ -115,7 +117,7 @@
           <figure style="display: inline-block;">
             <img style="max-width: 250px;" :src="birdDrawing" alt="Bird Drawing">
             <figcaption class="aside-text" style="display: block;"><i>Except this quickly doodled bird drawing made in ms
-                paint!</i></figcaption>
+                paint!</i><br>Chirp chirp chirp!</figcaption>
           </figure>
         </template>
       </AsideContent>
@@ -169,24 +171,17 @@ export default {
   },
 
   methods: {
-    runRustArrayRandomizer(){
-    init().then(() => {
+    runRustArrayRandomizer() {
+      init().then(() => {
         const arr = this.name.split(" ");
-        let mainFunction = main(arr);
-        /*
-        let outputArray = []
-        for (let i = 0; i < mainFunction.length; i++) {
-          outputArray.push(mainFunction[i]);
-        }
-        */
-        // add spaces
+        let mainFunction = main(arr);          
         mainFunction = mainFunction.join(" ");
 
         this.inputStringShuffled = mainFunction;
-        
+
         //document.getElementById("randomizedArray").textContent = mainFunction;
       });
-  },
+    },
     addLettersIntoInput() {
       let i = 0;
       const intervalId = setInterval(() => {
@@ -194,19 +189,16 @@ export default {
           this.name += this.inputString[i];
           this.runRustArrayRandomizer();
           i++;
-        } else {
-          clearInterval(intervalId);
-          console.log("end")
-          this.inputStringShuffled = "Welcome to Conrad's Website";
         }
-      }, 200);
+        else {
+          clearInterval(intervalId);
+          setTimeout(() => {
+            this.inputStringShuffled = "Welcome to Conrad's Website";
+          }, 1000);
+        }
+      }, 125);
     },
-
-
-
     toggleClouds() {
-
-
 
       if (this.moveTheClouds === false) {
         this.moveClouds();
@@ -220,8 +212,6 @@ export default {
 
     },
     moveClouds() {
-
-
       const cloudOne = document.getElementById("cloudOne");
       let marginLeftCloudOne = this.coordX[0]
 
@@ -230,7 +220,6 @@ export default {
 
       const cloudThree = document.getElementById("cloudThree");
       let marginLeft = this.coordX[2]
-
 
       if (window.innerWidth >= 800) {
 
@@ -310,7 +299,6 @@ export default {
   padding-right: 0.25em;
   padding-left: 0.25em;
 }
-
 .on-hover-projects:visited {
   text-decoration: none;
   color: #fff;
@@ -320,12 +308,10 @@ export default {
   background-color: #fff;
   color: #000;
 }
-
 .on-hover-projects:nth-child(odd) {
   border-right: 1px solid #ff5959;
   max-width: 100%;
 }
-
 .on-hover-projects:nth-child(even) {
   border-left: 1px solid #ff5959;
   max-width: 100%;
@@ -334,7 +320,6 @@ export default {
 a {
   color: rgb(255, 255, 255);
 }
-
 .route-styling {
   color: #ffffff;
   text-decoration: none;
@@ -347,22 +332,17 @@ a {
   background: rgba(0, 0, 0, 0.25);
   border: 2px solid rgba(255, 255, 255, 0.9);
 }
-
 .main-text-container {
-
   display: flex;
   justify-content: center;
-
   background: rgba(0, 0, 0, 0.05);
   display: inline-block;
   max-width: 800px;
   margin: 0 auto;
   padding: 1.5em;
-
   border-right: 2px solid rgba(255, 255, 255, 0.9);
   border-left: 2px solid rgba(255, 255, 255, 0.9);
 }
-
 .title-spacing {
   position: relative;
   padding-top: 1.5em;
@@ -372,55 +352,10 @@ a {
   z-index: 1;
 }
 
-/* Adjust the padding for mobile resolution for this block */
-@media only screen and (max-width: 1500px) {
-  .h1-title {
-    margin-left: 0em;
-    margin-right: 0em;
-  }
-
-  .main-text-container {
-    padding-right: 1em;
-    padding-left: 2em;
-
-  }
-}
-
-@media only screen and (max-width: 880px) {
-  .title-spacing {
-    color: #fff;
-    text-align: center;
-    margin-left: 0em;
-    margin-top: 3.5em;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .links-div-container {
-    padding-left: 1em;
-    padding-right: 1em;
-    display: inline-block;
-  }
-
-  .route-styling {
-    font-size: 1.75em;
-  }
-
-  .hide-button-low-resolution {
-    display: none;
-  }
-
-  .main-text-container {
-    border-right: 8px solid rgba(255, 255, 255, 0.9);
-    border-left: 8px solid rgba(255, 255, 255, 0.9);
-  }
-}
-
 .loading {
   font-family: sans-serif;
   font-size: 1.25em;
 }
-
 .loading:after {
   display: inline-block;
   animation: dotty 3s steps(1, end) infinite;
@@ -502,4 +437,45 @@ a {
   background: repeating-linear-gradient(-70deg,
       green 0 10em,
       #14ec00 10em 20em);
-}</style>
+}
+
+/* Adjust the padding for mobile resolution for this block */
+@media only screen and (max-width: 1500px) {
+  .h1-title {
+    margin-left: 0em;
+    margin-right: 0em;
+  }
+  .main-text-container {
+    padding-right: 1em;
+    padding-left: 2em;
+
+  }
+}
+
+@media only screen and (max-width: 880px) {
+  .title-spacing {
+    color: #fff;
+    text-align: center;
+    margin-left: 0em;
+    margin-top: 3.5em;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .links-div-container {
+    padding-left: 1em;
+    padding-right: 1em;
+    display: inline-block;
+  }
+  .route-styling {
+    font-size: 1.75em;
+  }
+  .hide-button-low-resolution {
+    display: none;
+  }
+  .main-text-container {
+    border-right: 8px solid rgba(255, 255, 255, 0.9);
+    border-left: 8px solid rgba(255, 255, 255, 0.9);
+  }
+}
+</style>
