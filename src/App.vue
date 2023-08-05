@@ -1,7 +1,7 @@
-<template>
-  
-    <nav style="left: 0; position: absolute;" class="move-left-at-lower-resolution" v-if="showNav">     
-      <router-link to="/">Home</router-link> 
+<!-- This page mostly just sets the default values across the whole website, and whether to omit nav bar such as on the cow game -->
+<template>  
+    <nav class="nav-space-at-lower-resolution" v-if="showNav">     
+      <router-link class="move-first-nav-link-at-lower-resolution" to="/">Home</router-link> 
       <router-link to="/about">About</router-link> 
       <!--import the dropdown menu into the nav bar-->      
       <DropDownMenu></DropDownMenu>    
@@ -75,7 +75,6 @@ body {
   background-color: rgb(230, 230, 230);
 }
 
-
 /* BELOW this comment adjusts the default scrollbar on the right */
 /* Set the width of the scrollbar */
 ::-webkit-scrollbar {
@@ -104,17 +103,21 @@ body {
 }
 /* ABOVE this comment adjusts the default scrollbar on the right */
 
-
-.move-left-at-lower-resolution{
+.nav-space-at-lower-resolution{
   z-index: 2;
+  left: 0; 
+  position: absolute;
 }
 
 @media only screen and (max-width: 1000px) {
-  .move-left-at-lower-resolution {  
-  text-align: left; 
+  .nav-space-at-lower-resolution {    
   position: absolute; 
-  justify-content: left;
-  padding-left: 1em;  
+  justify-content: left;  
 }
+/* This creates space on the left of the home button in the nav at low resolutions */
+.move-first-nav-link-at-lower-resolution {
+  margin-left: 0.5em;
+}
+
 }
 </style>

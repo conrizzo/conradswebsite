@@ -3,7 +3,7 @@
     <!-- negative margin here to fill in space in nav on home page -->
 
     <!-- Main area -->
-    <div class="container custom-background-home-page" style="margin-top: 2em;">
+    <div class="container custom-background-home-page" style="margin-top: 2.7em;">
 
       <!-- generate clouds -->
       <div style="margin-bottom: 9em; ">

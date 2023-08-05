@@ -16,14 +16,13 @@
               3</b></a>
           (Vue.js). It is hosted on
           <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
-            <b>Conrad's GitHub</b></a> with
+            <b>my GitHub</b></a> with
           <a class="text-links" href="https://pages.github.com/">
             <b>GitHub pages</b></a>.
         </li>
 
-        <li class="paragraph-text break-text">I started learning about Vue.JS when I worked on the Bioinformatics
-          Toolkit at Max
-          Planck in Tübingen, Germany.</li>
+        <li class="paragraph-text break-text">I started learning about Vue.js when I worked on the Bioinformatics
+          Toolkit at <i>Max-Planck-Institut für Biologie</i> in Tübingen, Germany.</li>
 
         <li class="paragraph-text break-text">I hold a degree in Computational Linguistics from the
           University of Tübingen in Germany,
@@ -54,8 +53,8 @@
       <p class="paragraph-text break-text">Much of this website was originally written in Vue 3 and straight
         JavaScript, however I converted it to have TypeScript support
         later on, and new projects such as the
-        <router-link class="text-links" to="/projects/cowgame"><b>Cow Game</b></router-link> heavily use
-        TypeScript. As of July, 2023, have been
+        <router-link class="text-links" to="/projects/cowgame">Cow Game</router-link> heavily use
+        TypeScript. <a class="text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. As of July, 2023, have been
         working on integrating backend development. In July, 2023 I also started learning Rust and some of this website
         now uses Rust compiled into Web Assembly.
       </p>
