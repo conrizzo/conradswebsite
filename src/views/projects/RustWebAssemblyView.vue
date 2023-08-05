@@ -109,8 +109,7 @@ const intervalId = setInterval(() => {
   
 <style scoped>
 
-.button-area{
- 
+.button-area{ 
   justify-content: center;
   align-items: center;
   margin-top: 2em;

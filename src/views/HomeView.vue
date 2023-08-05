@@ -289,11 +289,9 @@ export default {
 .custom-background-home-page {
   background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
 }
-
 .links-div-container {
   padding-left: 10em;
 }
-
 .on-hover-projects {
   text-decoration: none;
   padding-right: 0.25em;
@@ -303,7 +301,6 @@ export default {
   text-decoration: none;
   color: #fff;
 }
-
 .on-hover-projects:hover {
   background-color: #fff;
   color: #000;
@@ -316,7 +313,6 @@ export default {
   border-left: 1px solid #ff5959;
   max-width: 100%;
 }
-
 a {
   color: rgb(255, 255, 255);
 }
@@ -351,7 +347,6 @@ a {
   font-size: 3em;
   z-index: 1;
 }
-
 .loading {
   font-family: sans-serif;
   font-size: 1.25em;
@@ -361,20 +356,16 @@ a {
   animation: dotty 3s steps(1, end) infinite;
   content: '';
 }
-
 @keyframes dotty {
   0% {
     content: '.';
   }
-
   20% {
     content: '.';
   }
-
   40% {
     content: '..';
   }
-
   60% {
     content: '...';
   }
@@ -382,12 +373,10 @@ a {
   80% {
     content: '....';
   }
-
   100% {
     content: '.';
   }
 }
-
 /* Make some happy clouds */
 .cloud {
   width: 200px;
@@ -397,7 +386,6 @@ a {
   position: relative;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1), 0 30px 50px rgba(0, 0, 0, 0.1);
 }
-
 .cloud::before,
 .cloud::after {
   content: "";
@@ -405,21 +393,18 @@ a {
   background-color: #ffffff;
   border-radius: 100%;
 }
-
 .cloud::before {
   width: 100px;
   height: 70px;
   top: -20px;
   left: 20px;
 }
-
 .cloud::after {
   width: 100px;
   height: 70px;
   top: -30px;
   right: 20px;
 }
-
 /* make hills */
 /* Base code I used to make my own design started from here: https://codepen.io/t_afif/pen/RwyNVOr */
 .box {
@@ -441,14 +426,9 @@ a {
 
 /* Adjust the padding for mobile resolution for this block */
 @media only screen and (max-width: 1500px) {
-  .h1-title {
-    margin-left: 0em;
-    margin-right: 0em;
-  }
   .main-text-container {
     padding-right: 1em;
     padding-left: 2em;
-
   }
 }
 

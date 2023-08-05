@@ -82,7 +82,7 @@ body {
   width: 0.75em; 
   background-color: #fff;
   margin-right: 5px;
-  height: 2em;
+  height: 1.5em;
 }
 /* Set the color of the scrollbar track */
 ::-webkit-scrollbar-track {
@@ -110,11 +110,11 @@ body {
 }
 
 @media only screen and (max-width: 1000px) {
-  .move-left-at-lower-resolution {
-  padding-left: 1em;
+  .move-left-at-lower-resolution {  
   text-align: left; 
   position: absolute; 
   justify-content: left;
+  padding-left: 1em;  
 }
 }
 </style>

@@ -145,7 +145,7 @@ export default {
   data() {
     return {
       cityWeathers: [
-
+        { city: "Death Valley, CA", weather: "" },
         { city: "Tübingen, Germany", weather: "" },
         { city: "STR, Stuttgart Airport, Germany", weather: "" },
         { city: "Cary, NC", weather: "" },
