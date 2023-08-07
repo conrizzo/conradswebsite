@@ -2,8 +2,6 @@
 .break-text{
   word-break: break-word;
 }
-
-
 /* basic css tooltip */
 .tooltip {
   position: relative;
@@ -31,10 +29,9 @@
   visibility: visible;
 }
 
-
 /* aside css */
 
-.container {
+.main-content {
   display: grid;
   margin-left: 6em;
   margin-right: 6em;
@@ -59,7 +56,7 @@
 
 
 @media only screen and (max-width: 1500px) {  
-  .container {
+  .main-content {
     grid-template-columns: 100%;
     margin-left: 0em;
     margin-right: 0em;
@@ -74,14 +71,11 @@
 /* end aside css */
 
 
-
 /* Reset default margin and padding */
 * {
   margin: 0;
   padding: 0;
 }
-
-
 
 /* Set height and background color of header and footer */
 header,
@@ -92,14 +86,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-
-
-/* Set font size for body content */
-main p {
-  font-size: 30px;
-  padding: 20px;
 }
 
 /* buttons and stuff */
@@ -275,10 +261,6 @@ h1 {
 .text-links-no-underline:active {
   color: #34B7F1;
 }
-
-
-
-
 /* make space to push footer down on short pages */
 .push-footer {
   padding-bottom: 40vh;

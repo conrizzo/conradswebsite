@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
-    <div class="">
-      <p>
+    <div>
+      <span>
         Conrad's account on <a
           class="footer-links"
           href="https://github.com/conrizzo"
@@ -14,7 +14,7 @@
           href="https://creativecommons.org/licenses/by-nc/4.0/"
           >CC BY NC 4.0</a
         >. 
-      </p>
+      </span>
     </div>
   </footer>
 </template>

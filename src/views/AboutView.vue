@@ -3,7 +3,7 @@
 <template>   
 
 <body>
-  <div class="container background-color-about-page">
+  <div class="main-content background-color-about-page">
     <!-- Main area -->
     <div class="text-container">
 

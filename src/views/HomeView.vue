@@ -3,7 +3,7 @@
     <!-- negative margin here to fill in space in nav on home page -->
 
     <!-- Main area -->
-    <div class="container custom-background-home-page" style="margin-top: 2.7em;">
+    <div class="main-content custom-background-home-page" style="margin-top: 2.7em;">
 
       <!-- generate clouds -->
       <div style="margin-bottom: 9em; ">
@@ -44,23 +44,23 @@
 
           <ul style="text-align: left; color: white;">
             <li style="margin-bottom: 1em;">
-              <h3 style="color: #fff;">
+              <span style="color: #fff; font-size: 1.25em;">
                 This is an ongoing personal website project made by <a class="text-links" style="color: #ff5959;"
                   href="https://github.com/conrizzo">Conrad</a> in Vue.js
-              </h3>
+              </span>
             </li>
             <li style="margin-bottom: 1em;">
-              <h3 style="color: #fff;">
+              <span style="color: #fff; font-size: 1.25em;">
                 For more specific info about this website please read the <router-link class="text-links"
                   style="color: #ff5959;" to="/about">About page</router-link>!
-              </h3>
+                </span>
             </li>
             <li>
-              <h3 style="color: #fff;">
+              <span style="color: #fff; font-size: 1.25em;">
                 "Healthy" amounts of <a class="text-links" style="color: #ff5959;"
                   href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were
                 consumed while making this website.
-              </h3>
+              </span>
             </li>
           </ul>
 
@@ -100,7 +100,7 @@
             </div>
 
             <div class="box"
-              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0; padding-left: 0em; bottom: -7em; ">
+              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0; bottom: -7em; ">
             </div>
 
           </div>
@@ -321,7 +321,7 @@ a {
   text-decoration: none;
   display: block;
   text-align: left;
-  font-size: 2em;
+  font-size: 1.75em;
   padding: 1em;
   border-radius: 5px;
   max-width: 10.8em;
