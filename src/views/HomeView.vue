@@ -34,7 +34,7 @@
 
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
 
-        <p style="position: relative; color: #fff; padding-bottom: 0.5em;">(The main heading &uarr; is actually being
+        <p style="position: relative; color: #fff; padding-bottom: 0.25em; padding-top: 0.25em;">(The main heading &uarr; is actually being
           shuffled each character addition with
           <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code
           compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>)
@@ -42,14 +42,14 @@
         <!-- Main bullets -->
         <div class="main-text-container">
 
-          <ul style="text-align: left; color: white;">
-            <li style="margin-bottom: 1em;">
+          <ul style="text-align: left; color: white;" class="mb-3">
+            <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
                 This is an ongoing personal website project made by <a class="text-links" style="color: #ff5959;"
                   href="https://github.com/conrizzo">Conrad</a> in Vue.js
               </span>
             </li>
-            <li style="margin-bottom: 1em;">
+            <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
                 For more specific info about this website please read the <router-link class="text-links"
                   style="color: #ff5959;" to="/about">About page</router-link>!
@@ -76,12 +76,14 @@
                   style="font-size: 2em; padding-bottom: 0.5em; padding-top: 1em; padding-left: 1.6em; color:#ff5959; text-align: left;">
                   Projects: {{ links.length }}
                 </h3>
+
                 <div class="route-styling">
-                  <router-link class="on-hover-projects" v-for="(item, index) in links" :key="index" :to="item.to"
+                 <router-link class="on-hover-projects" v-for="(item, index) in links" :key="index" :to="item.to"
                     :class="{ active: $route.path === item.to }">
                     {{ item.text }}<br>
-                  </router-link>
+                 </router-link>
                 </div>
+
               </template>
             </ProjectLinks>
 
@@ -95,16 +97,20 @@
           <UseCalc></UseCalc>
           </div>
         -->
+        
           <div style="position: relative; z-index: 0;">
-            <div class="box" style="--size: 7em; width: 100%; height: 3em; position: absolute; left: 0; bottom: -9em;">
+            <div class="box" style="--size: 7em; height: 2em; width: 100%; position: absolute; left: 0; bottom: -9em;">
             </div>
-
             <div class="box"
-              style="--size: 7em; width: 100%; height: 2em; position: absolute; left: 0; bottom: -7em; ">
+              style="--size: 7em; width: 100%; height: 2.5em; position: absolute; left: 0; padding-left: 0em; bottom: -8em; ">
             </div>
+            <div class="box"
+              style="--size: 7em; width: 100%; height: 3em; position: absolute; left: 0; padding-left: 0em; bottom: -7em; ">
+            </div>
+            
 
           </div>
-
+         
 
         </div>
 
@@ -140,6 +146,8 @@ import "@/assets/globalCSS.css";
 //import UseCalc from "@/components/UseCalc.vue";
 
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
+
+
 
 export default {
   name: "HomeView",
@@ -267,6 +275,8 @@ export default {
 </script>
 
 <style scoped>
+/* @import "~bootstrap/dist/css/bootstrap.css"; */
+
 #body {
   background: rgb(230, 230, 230);
 }
@@ -292,6 +302,7 @@ export default {
 .links-div-container {
   padding-left: 10em;
 }
+
 .on-hover-projects {
   text-decoration: none;
   padding-right: 0.25em;
@@ -301,32 +312,38 @@ export default {
   text-decoration: none;
   color: #fff;
 }
-.on-hover-projects:hover {
-  background-color: #fff;
-  color: #000;
+.on-hover-projects:hover {  
+  color: #ffffff;
 }
+
 .on-hover-projects:nth-child(odd) {
-  border-right: 1px solid #ff5959;
-  max-width: 100%;
+  border-right: 2px solid #ff5959; 
 }
 .on-hover-projects:nth-child(even) {
-  border-left: 1px solid #ff5959;
-  max-width: 100%;
+  border-left: 2px solid #ff5959;     
 }
-a {
-  color: rgb(255, 255, 255);
-}
+
 .route-styling {
-  color: #ffffff;
+  /* to fix bootstrap link styling */
+  line-height: 1.11;  
+  
   text-decoration: none;
   display: block;
   text-align: left;
   font-size: 1.75em;
   padding: 1em;
-  border-radius: 5px;
-  max-width: 10.8em;
+  padding-bottom: 1em;
+  border-radius: 0.33em;
+  max-width: 11em;
   background: rgba(0, 0, 0, 0.25);
   border: 2px solid rgba(255, 255, 255, 0.9);
+}
+.route-styling a{  
+  color: rgb(255, 255, 255);  
+}
+
+.route-styling a:hover{  
+  color: #ff5959; 
 }
 .main-text-container {
   display: flex;
@@ -335,13 +352,19 @@ a {
   display: inline-block;
   max-width: 800px;
   margin: 0 auto;
-  padding: 1.5em;
+  /* padding-right: 0.5em;
+  padding-top: 1em; */
+  padding: 1em;
+  padding-left: 2em;
   border-right: 2px solid rgba(255, 255, 255, 0.9);
   border-left: 2px solid rgba(255, 255, 255, 0.9);
 }
 .title-spacing {
   position: relative;
-  padding-top: 1.5em;
+  line-height: 1;
+  padding-top: 1.5em;  
+  padding-left: 0.25em;
+  padding-right: 0.25em;
   margin-top: 2em;
   color: #ffffff;
   font-size: 3em;
@@ -427,8 +450,8 @@ a {
 /* Adjust the padding for mobile resolution for this block */
 @media only screen and (max-width: 1500px) {
   .main-text-container {
-    padding-right: 1em;
-    padding-left: 2em;
+    padding-right: 0.5em;
+    padding-left: 1.25em;
   }
 }
 

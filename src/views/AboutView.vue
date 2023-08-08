@@ -61,7 +61,7 @@
 
       <figure class="center-figure">
         <img class="img-container" :src="imagePath" alt="Coding Languages used" />
-        <figcaption>Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June
+        <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June
           2023, currently starting to add in TypeScript support.
           Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
         </figcaption>
@@ -101,11 +101,11 @@
     <AsideContent style="background-color: rgb(40, 40, 40);">
       <template v-slot:aside-content >
         
-        <p class="aside-text" style="margin-top: 1em; color: #c7c7c7;">
-          This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html"><i>slot</i></a>:
-        </p>
+        <h3 class="aside-text" style="margin-top: 1em; color: #c7c7c7;">
+          This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html">slot</a>:
+        </h3>
         <img style="border-radius: 0.5em; width: 200px;" :src="birdPicture" alt="Kohlmeise picture">
-        <p class="aside-text" style="color: #c7c7c7">This is a <a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
+        <p class="aside-text" style="color: #c7c7c7"><a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
           (name in German, English name is Great Tit)
           photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
           They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
@@ -183,16 +183,11 @@ figure {
   border-radius: 5px;
   line-height: 1.2;
 }
-figcaption {
-   padding-top: 0.5em;  
-   text-align: left;
-}
+
 .center-figure {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-left: 6.6em;
-  padding-right: 6.6em;
+  align-items: center;  
 }
 .img-container {
   max-width: 350px;
@@ -232,41 +227,28 @@ h2 {
   padding-right: 10em;
   background-color: rgb(40, 40, 40);
 }
-
-
-
-
+.figure-caption{
+  text-align: left;  
+  margin-left: 6em;
+  margin-left: 6em;
+}
 @media only screen and (max-width: 1200px) {
   .text-container {
     padding-left: 1em;
     padding-right: 1em;
-  }
-  figure {
-    margin-left: 1.2em;
-    margin-right: 1.2em;
-    float: center;
-  }
+  }  s
   .img-container {
     margin-bottom: 0.25em;
-  }
-  figcaption{
-    padding-left: 1em;
   } 
-  .h1-title {
-    margin-top: 2.5em;
-    margin-left: 1em;
-    margin-right: 1em;
-    font-size: 1.8em;
-  }
 }
 @media only screen and (max-width: 1000px) {
   h2 {
     padding-left: 1.3em;
   }
-  .center-figure{
-  padding-left: 0em;
-  padding-right: 0em;
- }
+  .figure-caption{  
+  margin-left: 1.6em;
+  margin-right: 1.6em;
+}  
 
 }
 </style>

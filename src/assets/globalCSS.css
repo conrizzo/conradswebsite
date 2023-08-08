@@ -8,7 +8,6 @@
   display: inline-block;
   border-bottom: 1px dotted black;
 }
-
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 200px;
@@ -24,13 +23,11 @@
   top: 0px;
   left: 105%;
 }
-
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
 
 /* aside css */
-
 .main-content {
   display: grid;
   margin-left: 6em;
@@ -38,14 +35,11 @@
   grid-template-columns: 80% 1fr;
   gap: 0rem;
 }
-
-
 .aside-content {
   min-height: 100vh;
   justify-content: space-between;
   flex-direction: column;  
 }
-
 .aside-text {
   margin-left: 0.5em;
   margin-right: 0.5em;  
@@ -53,23 +47,17 @@
   text-align: left;
 }
 
-
-
 @media only screen and (max-width: 1500px) {  
   .main-content {
     grid-template-columns: 100%;
     margin-left: 0em;
-    margin-right: 0em;
-    
+    margin-right: 0em;    
   }
   .aside-content {
     margin-top: 1rem;
-  }
-
-  
+  }  
 }
 /* end aside css */
-
 
 /* Reset default margin and padding */
 * {
@@ -89,16 +77,13 @@ footer {
 }
 
 /* buttons and stuff */
-
 h1 {
   color: rgba(255, 255, 255, 0.873);
   line-height: 1.5;
 }
-
 .top-most-paragraph-space{
   padding-top: 1em;
 }
-
 .paragraph-text {
   margin-left: 6em;
   margin-right: 6em;  
@@ -109,17 +94,12 @@ h1 {
   font-weight: 400;
   margin-bottom: 1em;
 }
-
-
-
 .white-color-text {
   color: #ffffff;
 }
-
 .dark-color-text{
   color: #303030;
 }
-
 @media only screen and (max-width: 1000px) {
   .paragraph-text {
     max-width: 100%;
@@ -130,16 +110,13 @@ h1 {
     line-height: 1.4em;
   }
 }
-
 /* CSS */
 .button-35 {
   align-items: center;
   background-color: #515151;
   border-radius: 12px;
-
   box-sizing: border-box;
-  color: #d2d2d2;
-  
+  color: #d2d2d2;  
   display: inline-flex;
   flex: 1 1 auto;
   font-family: Inter, sans-serif;
@@ -161,11 +138,9 @@ h1 {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
 .button-35:hover {
   box-shadow: #d2d2d2 0 0 0 2px, transparent 0 0 0 0;  
 }
-
 .box {
   padding: 80px 0;
   width: 300px;
@@ -174,22 +149,15 @@ h1 {
   margin: 20px;
   display: inline-block;
 }
-
-
-.cow-image {
-  
+.cow-image {  
   background-image: url(../images/highland-cow.jpeg);
   background-size: cover;
-  border-radius: 12px;
-  
+  border-radius: 12px;  
 }
-
-
 .blue-sky-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)),url(../images/blue_sky.jpg);    
   background-repeat: no-repeat;    
-}
-  
+}  
 /* when media sizes adjust, the non-media needs to come first in parsing the code */
 .cow-lecture {
   background-image: url('../images/cow_lecture.png');
@@ -198,7 +166,6 @@ h1 {
   background-size: 150px auto;
 }
 
-
 @media only screen and (max-width: 500px) {
   .green-field-image {
     background-image: url('../images/cow_lecture.png');
@@ -206,7 +173,6 @@ h1 {
     background-repeat: no-repeat;
     background-size: 33% auto;
   }
-
   .professor-message {
     font-size: xx-small;
     max-width: 33%;
@@ -214,50 +180,37 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     background: white;
-
   }
-
 }
-
-
 .no-underlines {
   text-decoration: none;
 }
-
-
 /* links styling with underline on hover */
 .text-links:link {
   text-decoration: none;
   color: #34B7F1;
 }
-
 .text-links:hover {
   text-decoration: underline;
 }
-
 .text-links:visited {
   color: #34B7F1;
 }
-
 .text-links:active {
   color: #34B7F1;
 }
-
 
 /* links styling with NO underline on hover */
 .text-links-no-underline:link {
   text-decoration: none;
   color: #34B7F1;
 }
-
 .text-links-no-underline:hover {
   text-decoration: none;
 }
-
 .text-links-no-underline:visited {
   color: #34B7F1;
 }
-
 .text-links-no-underline:active {
   color: #34B7F1;
 }
@@ -265,13 +218,11 @@ h1 {
 .push-footer {
   padding-bottom: 40vh;
 }
-
 .fill-page-to-footer{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-
 /* make elements unselectable */
 .unselectable {
   -webkit-touch-callout: none;
