@@ -72,7 +72,7 @@ html,
 body {  
   /* padding-top: 1.33em; */
   /* background-color: rgb(100, 100, 100); */
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(240, 240, 240);
 }
 
 /* BELOW this comment adjusts the default scrollbar on the right */

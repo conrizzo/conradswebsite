@@ -7,7 +7,7 @@ const ProjectsView = () => import('../views/projects/ProjectsView.vue');
 const CowculatorView = () => import('../views/projects/CowculatorView.vue');
 const DatasetsView = () => import('../views/projects/DatasetsView.vue');
 const WeatherView = () => import('../views/projects/WeatherView.vue');
-const InterestingLinksView = () => import('../views/projects/InterestingLinksView.vue');
+const LinksView = () => import('../views/projects/LinksView.vue');
 const CowGameView = () => import('../views/projects/CowGameView.vue');
 const ProjectDetailsView = () => import('../views/projects/ProjectDetailsView.vue');
 const FirebaseTestView = () => import('../views/projects/FirebaseTestView.vue');
@@ -57,9 +57,9 @@ const routes = [
     component: WeatherView,
   },
   {
-    path: '/projects/interestingLinks',
-    name: 'InterestingLinksView',
-    component: InterestingLinksView,
+    path: '/projects/Links',
+    name: 'LinksView',
+    component: LinksView,
   },
   {
     path: '/projects/cowgame',

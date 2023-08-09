@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class="container background-color-about-page">
+  <div class="main-content background-color-about-page">
     <!-- Main area -->
 
     <div>
@@ -20,7 +20,7 @@
         <img class="cow-image" :src="cowculatorUserInterface" alt="Cowculator Picture" />
       </router-link>
 
-      <p class="paragraph-text break-text" style="padding-top: 2em;">Rough draft below - have been updating code in this to make it more professional and reviewing everything.</p>
+      <p class="paragraph-text break-text" style="padding-top: 2em;">Rough draft below - this is just an unpolished test example to show the code.</p>
 
       <p class="paragraph-text break-text" style="padding-top: 2em;">The cowculator is a fully functional calculator! The cowculator has been a project for fun/practice. It uses actual parsing, not the JavaScript eval() function
         which is considered insecure and bad practice to use!
@@ -50,7 +50,7 @@
         expression
         like 2(3)^2^2 it will use the code:
         <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
-    <code>
+        <code>
         addParenthesisAroundPowerSymbol(input) {
           // Use regular expression to match number^number pattern
           const regex = /(\(\d+\)(?:\^\d+)*|\d+(?:\^\d+)+)/g;
@@ -91,7 +91,7 @@
         </div>
       </div>
       <div>
-        <h4 class="sub-section-titles">Code that does the cowculations:</h4>
+        <h4 style="padding-top: 5em;" class="sub-section-titles">Code that does the cowculations:</h4>
 
         <p class="top-most-paragraph-space paragraph-text break-text">
           Here is the actual JavaScript code for the cowculator calculations themselves. It is a bit long, but it is a
@@ -303,9 +303,9 @@ img {
   }
 
   .code-format {
-    margin-left: 2em;
-    font-size: 1em;
-    margin-right: 2em;
+    font-size: 0.75em;
+    margin-left: 0em;
+    margin-right: 0em;
   }
 
   .figure-stuff {

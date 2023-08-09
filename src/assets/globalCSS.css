@@ -1,3 +1,7 @@
+.main-red-color{
+  color: #ff5959;
+}
+
 /* make words and long links break to the next line */
 .break-text{
   word-break: break-word;

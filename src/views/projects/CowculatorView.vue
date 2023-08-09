@@ -1,7 +1,7 @@
 
 <template>
   <div
-    style="padding-top: 2.7em;
+    style="padding-top: 10vh;
       background: linear-gradient(
         90deg,
         rgba(0, 255, 119) 29%,
@@ -9,7 +9,7 @@
       );
     "
   >
-    <h1 style="color: white">
+    <h1 style="color: white; padding-bottom: 5vh; line-height: 1.2; font-size: 2.5em;">
       <span v-html="title"></span>: <span v-html="header"></span>
     </h1>
   </div>

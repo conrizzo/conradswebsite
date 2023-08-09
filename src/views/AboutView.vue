@@ -11,14 +11,14 @@
 
       <ul>
         <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is
-          totally self-made by me (Conrad) using
+          totally self-made by me (Conrad) using primarily
           <a class="text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
               3</b></a>
           (Vue.js). It is hosted on
           <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
-            <b>my GitHub</b></a> with
+            my GitHub</a> with
           <a class="text-links" href="https://pages.github.com/">
-            <b>GitHub pages</b></a>.
+            GitHub pages</a>.
         </li>
 
         <li class="paragraph-text break-text">I started learning about Vue.js when I worked on the Bioinformatics

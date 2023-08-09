@@ -10,7 +10,7 @@
       <div id="chartContainer"></div>
     </div>
     <h4 style="margin-top: 0.3em; text-align: left; margin-left: 0.5em; margin-right: 0.5em;">
-      <u><b>Note:</b></u> click on the column titles in the table below for each column to sort data
+      <b class="main-red-color">Note:</b> click on the column titles in the table below for each column to sort data
       numerically/alphabetically. The graph will update to the sorted values.
       All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
 
@@ -39,7 +39,7 @@
         </tr>
       </tbody>
     </table>
-    <button @click="quickSort()">Quick Sort</button>
+    
     <div style="padding-top: 2em; padding-bottom: 2em;"></div>
 
     <p class="paragraph-text homeview break-text">The functions/graphical formatting using this data table are self-made.

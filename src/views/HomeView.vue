@@ -1,12 +1,11 @@
 <template>
-  <div id="body">
-    <!-- negative margin here to fill in space in nav on home page -->
-
+  <div id="body" style="padding-top: 2.7em;">
+    <!-- negative margin here to fill in space in nav on home page -->    
     <!-- Main area -->
-    <div class="main-content custom-background-home-page" style="margin-top: 2.7em;">
-
+    <div class="main-content custom-background-home-page">
+  
       <!-- generate clouds -->
-      <div style="margin-bottom: 9em; ">
+      <div style="margin-bottom: 9em;">
 
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
@@ -34,19 +33,19 @@
 
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
 
-        <p style="position: relative; color: #fff; padding-bottom: 0.25em; padding-top: 0.25em;">(The main heading &uarr; is actually being
-          shuffled each character addition with
+        <div style="position: relative; color: #fff; padding-bottom: 0.25em; padding-top: 0.25em; line-height: 1.4;">(The main heading tokens &uarr; are
+          shuffled as each character is added using
           <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code
           compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>)
-        </p>
+        </div>
         <!-- Main bullets -->
         <div class="main-text-container">
 
           <ul style="text-align: left; color: white;" class="mb-3">
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
-                This is an ongoing personal website project made by <a class="text-links" style="color: #ff5959;"
-                  href="https://github.com/conrizzo">Conrad</a> in Vue.js
+                This is a website project made by <a class="text-links" style="color: #ff5959;"
+                  href="https://github.com/conrizzo">Conrad</a>
               </span>
             </li>
             <li style="margin-bottom: 1em">
@@ -57,9 +56,8 @@
             </li>
             <li>
               <span style="color: #fff; font-size: 1.25em;">
-                "Healthy" amounts of <a class="text-links" style="color: #ff5959;"
-                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ were
-                consumed while making this website.
+                <a class="text-links" style="color: #ff5959;"
+                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ helped make this website 🐦Yay! coffee!
               </span>
             </li>
           </ul>
@@ -67,9 +65,9 @@
         </div>
 
         <div>
+
           <div class="links-div-container" style="position: relative; z-index: 1;">
             <!-- Projects ({{ this.itemsLength }})</h3> -->
-
             <ProjectLinks :links="links">
               <template v-slot="{ links }">
                 <h3
@@ -86,7 +84,6 @@
 
               </template>
             </ProjectLinks>
-
           </div>
 
           <!--
@@ -98,18 +95,7 @@
           </div>
         -->
         
-          <div style="position: relative; z-index: 0;">
-            <div class="box" style="--size: 7em; height: 2em; width: 100%; position: absolute; left: 0; bottom: -9em;">
-            </div>
-            <div class="box"
-              style="--size: 7em; width: 100%; height: 2.5em; position: absolute; left: 0; padding-left: 0em; bottom: -8em; ">
-            </div>
-            <div class="box"
-              style="--size: 7em; width: 100%; height: 3em; position: absolute; left: 0; padding-left: 0em; bottom: -7em; ">
-            </div>
-            
-
-          </div>
+         
          
 
         </div>
@@ -129,7 +115,7 @@
       </AsideContent>
     </div>
   </div>
-  <div style="height: 3em;"></div>
+  
   <FirstFooter />
 </template>
 
@@ -278,29 +264,16 @@ export default {
 /* @import "~bootstrap/dist/css/bootstrap.css"; */
 
 #body {
-  background: rgb(230, 230, 230);
+  background: rgb(240, 240, 240);
 }
 
-/*
-.h1-title {
-  color: #ffffff;
-  background: linear-gradient(90deg,
-      rgb(224, 11, 11) 20%,
-      rgb(137, 238, 252) 100%);
-  font-size: 3em;
-  padding-bottom: 0.5em;
-  padding-top: 0.5em;
-
-  
-  margin-left: 2em;
-  margin-right: 2em;
-}
-*/
 .custom-background-home-page {
   background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
 }
-.links-div-container {
-  padding-left: 10em;
+.links-div-container {  
+  padding-left: 1em;
+  padding-right: 1em;
+  display: inline-block;
 }
 
 .on-hover-projects {
@@ -318,15 +291,13 @@ export default {
 
 .on-hover-projects:nth-child(odd) {
   border-right: 2px solid #ff5959; 
+  padding-left: 0.33em; 
 }
 .on-hover-projects:nth-child(even) {
-  border-left: 2px solid #ff5959;     
+  border-left: 2px solid #ff5959;  
 }
-
 .route-styling {
-  /* to fix bootstrap link styling */
-  line-height: 1.11;  
-  
+  /* to fix bootstrap link styling */  
   text-decoration: none;
   display: block;
   text-align: left;
@@ -340,10 +311,11 @@ export default {
 }
 .route-styling a{  
   color: rgb(255, 255, 255);  
+  padding-top: 0.05em;
 }
-
 .route-styling a:hover{  
   color: #ff5959; 
+  background-color: #fff;  
 }
 .main-text-container {
   display: flex;
@@ -427,24 +399,6 @@ export default {
   height: 70px;
   top: -30px;
   right: 20px;
-}
-/* make hills */
-/* Base code I used to make my own design started from here: https://codepen.io/t_afif/pen/RwyNVOr */
-.box {
-  margin-left: 0em;
-  margin-bottom: 0em;
-  --size: 30px;
-  --R: calc(var(--size)*1.28);
-
-  -webkit-mask:
-    radial-gradient(var(--R) at 50% calc(1.8*var(--size)), #000 99%, #0000 101%) calc(0% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
-    radial-gradient(var(--R) at 50% calc(-.8*var(--size)), #0000 99%, #000 101%) 0% var(--size)/calc(4*var(--size)) 100% repeat-x;
-  mask:
-    radial-gradient(var(--R) at 50% calc(1.8*var(--size)), #000 99%, #0000 101%) calc(0% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
-    radial-gradient(var(--R) at 50% calc(-.8*var(--size)), #0000 99%, #000 101%) 0% var(--size)/calc(4*var(--size)) 100% repeat-x;
-  background: repeating-linear-gradient(-70deg,
-      green 0 10em,
-      #14ec00 10em 20em);
 }
 
 /* Adjust the padding for mobile resolution for this block */
