@@ -5,7 +5,7 @@
     <div class="main-content custom-background-home-page">
   
       <!-- generate clouds -->
-      <div style="margin-bottom: 9em;">
+      <div style="margin-bottom: 3em;">
 
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
@@ -71,7 +71,7 @@
             <ProjectLinks :links="links">
               <template v-slot="{ links }">
                 <h3
-                  style="font-size: 2em; padding-bottom: 0.5em; padding-top: 1em; padding-left: 1.6em; color:#ff5959; text-align: left;">
+                  style="font-size: 2em; padding-bottom: 0.25em; padding-top: 0.5em; padding-left: 1.05em; color:#fff; text-align: left;">
                   Projects: {{ links.length }}
                 </h3>
 
@@ -291,19 +291,21 @@ export default {
 
 .on-hover-projects:nth-child(odd) {
   border-right: 2px solid #ff5959; 
-  padding-left: 0.33em; 
+  padding-left: 0.315em; 
 }
 .on-hover-projects:nth-child(even) {
   border-left: 2px solid #ff5959;  
 }
 .route-styling {
   /* to fix bootstrap link styling */  
+  line-height: 1.11;
+
   text-decoration: none;
   display: block;
   text-align: left;
-  font-size: 1.75em;
-  padding: 1em;
-  padding-bottom: 1em;
+  font-size: 2.25em;
+  padding: 0.5em;
+  
   border-radius: 0.33em;
   max-width: 11em;
   background: rgba(0, 0, 0, 0.25);
@@ -311,7 +313,7 @@ export default {
 }
 .route-styling a{  
   color: rgb(255, 255, 255);  
-  padding-top: 0.05em;
+  padding-top: 0.00em;
 }
 .route-styling a:hover{  
   color: #ff5959; 

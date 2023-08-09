@@ -39,10 +39,15 @@
   <div style="padding-top: 0.5em">
     <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
-
       {{ addCommas(addInExtraMultiplicationSymbols(expression)) }}<span v-if="this.expression == ''"></span>
-      <span v-if="showText"> = <span style="font-size: 1.15em">
-          <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}</span></span>
+      <span v-if="showText">&nbsp;=&nbsp;
+        <br>
+        <div style="font-size: 1.15em; background-color: #6aff64; border-radius: 0.33em; display: inline-block;
+         padding-left: 0.25em; padding-right: 0.25em;">
+          <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}
+        </div>
+      </span>
+
       <span v-if="mooCounter > 0"><br />Number of Moos: <span style="">{{ mooCounter }}</span></span>
       <span v-if="superMoo"> <br />{{ mooPlication }}</span>
 
@@ -123,12 +128,11 @@ export default {
         if (number == null) {
           return "";
         } else {
+          // fixed this so it only adds commas to the left of the decimal point
           number = number.toString();
-          var parts = number.split(/([\d.]+)/g);
-          for (let i = 1; i < parts.length; i += 2) {
-            parts[i] = parts[i].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          }
-          return parts.join("");
+          var parts = number.split('.');
+          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          return parts.join('.');
         }
       },
     };

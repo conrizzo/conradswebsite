@@ -31,12 +31,12 @@
       >Dialogue Summarization using BART</a
     >
     paper, and a copy of the
-    <span style="font-size: 1.25em; color: #34B7F1;"><a
+    <span style="font-size: 1.25em;"><a class="text-links"
       style="text-decoration: none"
       href="https://colab.research.google.com/drive/15CvaaYz2nv_33bPbftM6JwQCuYp3lVm9"
       >Python code</a
-    >
-    we wrote for fine-tuning the model.</span>
+    ></span>
+    we wrote for fine-tuning the model.
   </p>
 
   <p class="homeview paragraph-text">

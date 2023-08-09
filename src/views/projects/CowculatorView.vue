@@ -1,17 +1,17 @@
 
 <template>
   <div
-    style="padding-top: 10vh;
+    style="padding-top: 6vh;
       background: linear-gradient(
         90deg,
         rgba(0, 255, 119) 29%,
         rgba(0, 224, 255) 100%
       );
     "
-  >
-    <h1 style="color: white; padding-bottom: 5vh; line-height: 1.2; font-size: 2.5em;">
-      <span v-html="title"></span>: <span v-html="header"></span>
-    </h1>
+  ><h1 style="color: white; font-size: 3em;">The Cowculator</h1>
+    <h2 style="color: white; padding-bottom: 1.3vh; padding-top: 0em; line-height: 1.1; font-size: 2em;">
+      <span v-html="header"></span>
+    </h2>
   </div>
   <!-- change background color of the cowculator main area -->
   <!--style="background-color:rgb(60,60,60);-->
@@ -101,7 +101,7 @@ export default {
   components: { AboutCalc, UseCalc, HelpGuide, FirstFooter },
   data() {
     return {
-      title: "Use the <u><i>Cow</i></u>-culator",
+      title: "<u><i>Cow</i></u>-culator",
       header:
         "<q>For the <u><i>moo</i></u>-st accurate <u><i>cow</i></u>-culations!</q>",
       text: "The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered.",
