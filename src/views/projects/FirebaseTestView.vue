@@ -1,8 +1,9 @@
 <template>
+  
     <!-- conflict with "firebase": "^10.0.0", security-->
     <!-- tried downgrading to "firebase": "9.0.2" -->
-    <div style="background: rgb(199, 253, 255); padding-bottom: 2em; padding-top: 2.7em;">
-    <h2 style="padding-top: 1em;">This page is still under construction - actively working on this!</h2>
+    <div style="background: rgb(255, 255, 255); padding-bottom: 2em; padding-top: 2.7em;">
+    <h2 style="padding-top: 5em;">This page is still under construction - actively working on this!</h2>
     <p>This is just a place to learn more about setting up a login/sign out setup using a basic BaaS (Back end as a service) tools.<br>
     The goal will eventually be to create a more comprehensive backend once there is a need for it.</p>
       <div v-if="!isLoggedIn">
@@ -35,7 +36,7 @@
           <button @click="createUser" class="button-35">Add Entry</button>
         </form>
         <!-- message area -->
-        <h2 style="padding-bottom: 1em;">Public message posts:</h2>
+        
         <div class="submission-container">
         <ul style="list-style: none;">
           <li v-for="submission in submissions" :key="submission.id">
@@ -55,6 +56,7 @@
     </div>
     
     <FirstFooter></FirstFooter>
+
   </template>
   
   <script>
@@ -77,6 +79,7 @@
       return {
         isLoggedIn: false,
         showLogin: true,
+        userName : '',
         name: '',
         description: '',    
         submissions: [],  
@@ -95,10 +98,14 @@
       async createUser(){
         try{
           //if (auth.currentUser) {
-          // set local 'displayName' to user's displayName
+          // set local 'displayName' to user's displayName          
           this.displayName = auth.currentUser
-          
-          this.sendMessage();
+          if (this.isLoggedIn){
+            this.sendMessage();
+          }
+          else{
+            alert("You must be logged in to submit a message!")
+          }
           
         } catch (err) {
           console.error("Error adding document!: ", err);
@@ -138,15 +145,18 @@
         console.log("Document written with ID: ", docRef.id);
       },
       handleLogin() {
+        // set login to true to confirm a user logged in
         this.isLoggedIn = true;
         document.cookie = 'isLoggedIn=true; SameSite=Strict';
         localStorage.setItem('isLoggedIn', 'true'); // store the authentication state in local storage
+        
+        document.cookie = `userName=${this.username}; SameSite=Strict`; // store the username in a cookie
+        localStorage.setItem('userName', this.username); // store the username in local storage        
       },
       // needs to be invoked from firebase - this is why it said signOut function didnt exist before
     signOut() {
         try {
-            signOut(auth);
-            console.log("User signed out");
+            signOut(auth);            
         } catch (err) {
             console.error("Error signing out user: ", err);
         }
@@ -155,7 +165,9 @@
         this.signOut();
         this.isLoggedIn = false;
         document.cookie = 'isLoggedIn=false; SameSite=Strict';
+        document.cookie = `userName=${""}; SameSite=Strict`;
         localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
+        localStorage.removeItem('userName'); // remove the authentication state from local storage
       },    
       
   }, // add a closing curly brace here
@@ -192,8 +204,8 @@
         margin:1em auto;        
     }
     input{font-size: 1.25em; border-radius: 0.25em; border-width: 1px; outline: none; 
-        border: 1px solid #ff5959; padding: 0.25em; margin-bottom: -0.5em;}
-    textarea{font-size: 1.25em; border-radius: 0.25em; border-width: 1px; outline: none; border: 1px solid #ff5959; padding: 0.25em;}
+        border: 1px solid #252525; padding: 0.25em; margin-bottom: -0.5em;}
+    textarea{font-size: 1.25em; border-radius: 0.25em; border-width: 1px; outline: none; border: 1px solid #252525; padding: 0.25em;}
     button{width:fit-content; margin:auto}
 
     .submission-container{
@@ -201,7 +213,7 @@
         display: flex;
             flex-direction: column;
             align-items: center;
-             text-align: left; width: 40em; margin: 0 auto; padding: 2em; border-radius: 1em; border: 1px solid black;
+             text-align: left; width: 40em; margin: 0 auto; padding: 2em; border-radius: 1em; border: 1px solid #252525;
 
     }
     @media only screen and (max-width: 800px) {

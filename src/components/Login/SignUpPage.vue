@@ -53,7 +53,7 @@ export default {
           })
           .then(() => {
             // emit event
-            this.$emit('loggedIn')
+            this.$emit('loggedIn', this.username)
           })
           .catch((error) => {
             this.signUpError = error.message;

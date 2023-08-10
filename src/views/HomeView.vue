@@ -299,16 +299,14 @@ export default {
 .route-styling {
   /* to fix bootstrap link styling */  
   line-height: 1.11;
-
   text-decoration: none;
   display: block;
   text-align: left;
   font-size: 2.25em;
-  padding: 0.5em;
-  
+  padding: 0.5em;  
   border-radius: 0.33em;
   max-width: 11em;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 9, 139, 0.25);
   border: 2px solid rgba(255, 255, 255, 0.9);
 }
 .route-styling a{  
