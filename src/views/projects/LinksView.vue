@@ -1,9 +1,10 @@
 <template>
+    <body>
     <div class="fill-page-to-footer">
       <div class="background">
         <h1>Interesting Links</h1>
-        <p class="paragraph-text ">The goal here is to link interesting research papers, videos, webpages. This section is under development.
-            Will likely categorize this for NLP, useful code links, and other topics.
+        <p class="paragraph-text">The goal here is to link interesting research papers, videos, webpages. This section is under development. Any links that
+            I find particularly useful will go here soon...
         </p>
        
         <table>
@@ -29,6 +30,7 @@
    
 </div>
     <FirstFooter></FirstFooter>
+</body>
 </template>
 
 <script>
@@ -73,25 +75,30 @@ export default {
 h1 {
     color: black;
 }
+body{
+    background-color: rgb(40, 40, 40);
+}
 .background {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(80, 80, 80);
 }
 table {
     border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 2em;
+    width: 95%;    
+    margin: 1em auto;
+   
 }
 th,
 td {
     text-align: left;
-    padding: 8px;
+    padding: 0.5em;
+    color: #fff;
 }
 th {
-    background-color: #f2f2f2;
+    background-color: #252525;
     font-weight: bold;
 }
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #2c2c2c;
 }
 
 /* Testing article css styling for paragraphs - may use this globally on all pages */
@@ -100,6 +107,7 @@ p {
     line-height: 1.5;
     margin-bottom: 1.5em;
     text-align: justify;
+    color: #fff;
 }
 
 p:first-of-type {

@@ -3,7 +3,7 @@
     <!-- conflict with "firebase": "^10.0.0", security-->
     <!-- tried downgrading to "firebase": "9.0.2" -->
     <div style="background: rgb(255, 255, 255); padding-bottom: 2em; padding-top: 2.7em;">
-    <h2 style="padding-top: 5em;">This page is still under construction - actively working on this!</h2>
+    <h2 style="padding-top: 5em; padding-bottom: 1em;">This page is still under construction - actively working on this!</h2>
     <p>This is just a place to learn more about setting up a login/sign out setup using a basic BaaS (Back end as a service) tools.<br>
     The goal will eventually be to create a more comprehensive backend once there is a need for it.</p>
       <div v-if="!isLoggedIn">
@@ -22,7 +22,8 @@
       </div>
       <!-- is logged in -->
       <div v-else>
-        <h2 style="padding-top: 1em; font-size: 2em;">Welcome, you can submit a message now, you are logged in! {{ displayName }}</h2>
+        <h2 style="padding-top: 1em; font-size: 2em;">Welcome {{ displayName }}<br> You are logged in.</h2>
+        
         <button class="button-35" style="position: absolute;  top: 3em;
   right: 1em;" @click="handleLogout">Logout</button>
        
@@ -31,8 +32,8 @@
       <div style="padding-top: 2em;">
         <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
           <h2>Submit Message! - must be logged in for it to work.</h2>
-          <input type="text" placeholder="Name to post as" required v-model="name" name="submissionName">
-          <textarea type="text" placeholder="Description" required v-model="description" name="submissionDescription" cols="50" rows="10"></textarea>
+          <input type="text" placeholder="Subject" required v-model="name" name="submissionName" maxlength="20">
+          <textarea type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50" rows="10"></textarea>
           <button @click="createUser" class="button-35">Add Entry</button>
         </form>
         <!-- message area -->
@@ -41,13 +42,13 @@
         <ul style="list-style: none;">
           <li v-for="submission in submissions" :key="submission.id">
             <div>
-              <span style="font-weight: bold; font-size: 1em; color: rgb(3, 212, 142); display: inline-block; padding: 0.25em 0 0.25em 0;">{{ submission.name }}</span>  
-              <p style="padding-left: 0.5em; font-size: 0.8em; color: #ff6b6b; display: inline-block;" 
+              <span style="font-weight: bold; font-size: 1em; color: #ff6b6b; display: inline-block; padding: 0.25em 0 0.25em 0;">{{ submission.userName }} - {{ submission.name }} </span>  
+              <p style="padding-left: 0.5em; font-size: 0.8em; color: #ffffff; display: inline-block;" 
                 v-if="submission.timestamp">{{ submission.timestamp.toDate().toLocaleString() }}</p>
             </div>
             <p class="break-text" style="background-color: white; 
             display: inline-block; padding: 0.5em; margin-bottom: 0.5em; 
-            border-radius: 0.5em;">{{ submission.description }}</p> 
+            border-radius: 0.5em;">{{ submission.message }}</p> 
           </li>
         </ul>
     </div>
@@ -79,9 +80,9 @@
       return {
         isLoggedIn: false,
         showLogin: true,
-        userName : '',
+        userName: this.displayName,
         name: '',
-        description: '',    
+        message: '',    
         submissions: [],  
         displayName: '',   
         lastMessageSentTime: 0,
@@ -91,12 +92,35 @@
     beforeUpdate() {
       if (auth.currentUser) {
         // set local 'displayName' to user's displayName
-        this.displayName = auth.currentUser.displayName
+        this.displayName = auth.currentUser.displayName;
+
+        this.userName = this.displayName;
+      }
+    },
+    computed:{
+      // if user is logged in, set the userName to the displayName
+      nameLength(){
+        if (this.name.length > 15){         
+          console.log('test');
+          return false;
+        } else{
+          return true;
+        }
       }
     },
     methods:{
       async createUser(){
         try{
+          // if no name entered throw error
+          if (this.name == ''){
+            alert("Please enter a name!")
+            throw new Error("Please enter a name!")
+          }
+          // if no message entered throw error
+          if (this.message == ''){
+            alert("Please enter a message!")
+            throw new Error("Please enter a name!")
+          }
           //if (auth.currentUser) {
           // set local 'displayName' to user's displayName          
           this.displayName = auth.currentUser
@@ -137,7 +161,8 @@
         // Create an object with the data for the new item
         const dataObj = {
           name: this.name,
-          description: this.description,      
+          userName: this.userName,
+          message: this.message,      
           timestamp: serverTimestamp(),          
         }
         // Add the new item to the 'items' collection and get a reference to the new document          
@@ -150,8 +175,8 @@
         document.cookie = 'isLoggedIn=true; SameSite=Strict';
         localStorage.setItem('isLoggedIn', 'true'); // store the authentication state in local storage
         
-        document.cookie = `userName=${this.username}; SameSite=Strict`; // store the username in a cookie
-        localStorage.setItem('userName', this.username); // store the username in local storage        
+        document.cookie = `userName=${this.userName}; SameSite=Strict`; // store the username in a cookie
+        localStorage.setItem('userName', this.userName); // store the username in local storage        
       },
       // needs to be invoked from firebase - this is why it said signOut function didnt exist before
     signOut() {
@@ -209,7 +234,7 @@
     button{width:fit-content; margin:auto}
 
     .submission-container{
-        background-color: rgb(221, 250, 240); 
+        background-color: rgb(0, 171, 250); 
         display: flex;
             flex-direction: column;
             align-items: center;

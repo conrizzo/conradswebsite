@@ -2,10 +2,18 @@
   <form @submit.prevent="signUp">
 
     <h2 style="padding: 0.5em;">Sign Up</h2>
-
-    <input name="text" type="text"     placeholder="Username" required v-model="username">
+    <div style="display: flex; flex-direction: column;">
+    <label for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a username:</label>
+    <input name="text" type="text"     placeholder="User Name" required v-model="userName" maxlength="20">
+  </div>
+  <div style="display: flex; flex-direction: column;">
+    <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
     <input name="email" type="email"    placeholder="Email"    required v-model="email">
+  </div>
+  <div style="display: flex; flex-direction: column;">
+    <label for="password" style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
     <input name="password" type="password" placeholder="Password" required v-model="password">
+  </div>
     <button style="margin: 0.5em;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText }}</button>
     <div v-if="signUpError" style="color: red;">{{ signUpError }}</div>
   </form>
@@ -20,7 +28,7 @@ export default {
   emits: ['loggedIn'],
   data() {
     return {
-      username: '',
+      userName: '',
       email:    '',
       password: '',
       isSigningUp: false,
@@ -32,7 +40,7 @@ export default {
       return this.isSigningUp ? 'Signing Up...' : 'Sign Up';
     },
     isFormValid() {
-      return this.username && this.email && this.password;
+      return this.userName && this.email && this.password;
     }
   },
   methods: {
@@ -49,11 +57,11 @@ export default {
           .then(() => {
           // update 'displayName'
           updateProfile(auth.currentUser, {
-            displayName: this.username
+            displayName: this.userName
           })
           .then(() => {
             // emit event
-            this.$emit('loggedIn', this.username)
+            this.$emit('loggedIn', this.userName)
           })
           .catch((error) => {
             this.signUpError = error.message;

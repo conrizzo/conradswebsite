@@ -24,7 +24,7 @@ export default {
                 { text: 'Custom Weather', to: '/projects/weather' },
                 { text: 'Coffee Data', to: '/projects/datasets' },                
                 { text: 'Feed the cows (game)', to: '/projects/cowgame' },
-                { text: 'Firebase Stuff', to: '/projects/firebasetest'},
+                { text: 'Post Messages', to: '/projects/firebasetest'},
                 { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
                 { text: 'Project Descriptions', to: '/projects/' },    
                 { text: 'Rust Web Assembly', to: '/projects/rustwebassembly' },    
