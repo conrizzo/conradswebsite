@@ -85,5 +85,5 @@ export default {
 input{font-size: 1.25em; border-radius: 0.25em; border-width: 1px; outline: none; border: 1px solid #ff5959; padding: 0.25em; margin: 0.1em;}
 button{width:fit-content; margin:auto}
 
-form{width:20em; margin: auto;}   
+form{width:20em; margin: auto; color: #fff;}   
 </style>

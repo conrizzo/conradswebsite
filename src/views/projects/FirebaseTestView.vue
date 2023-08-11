@@ -2,32 +2,37 @@
   <!-- conflict with "firebase": "^10.0.0", security-->
   <!-- tried downgrading to "firebase": "9.0.2" -->
   
-  <div style="background: rgb(240, 240, 240); padding-bottom: 2em; padding-top: 2.7em;">
+  <div style="background: rgb(40, 40, 40); padding-bottom: 2em; padding-top: 2.7em;">
     
     <hr style="position: absolute; top: 7.6em; left: 0; right: 0; border: none; border-top: 1px solid black;">
-    <h2 style="padding-top: 5em; padding-bottom: 1em;">This page is still under construction - actively working on this!     
+    <h2 style="padding: 1em; margin-top: 3em; color: #fff;">Working on this page... 
     </h2>
-    <p>This is just a place to learn more about setting up a login/sign out setup using a basic BaaS (Back end as a
+    <div style="display: flex; justify-content: center; color: #fff;">
+      
+    <p class="paragraph-text">Here I am setting up a login/sign out setup using a basic BaaS (Back end as a
       service) tools.<br>
       The goal will eventually be to create a more comprehensive backend once there is a need for it.</p>
-    <div v-if="!isLoggedIn">
+    </div>
+    <div style="color: #fff;" v-if="!isLoggedIn">
       <!-- login -->
       <template v-if="showLogin">
         <!-- listen for event -->
         <LoginPage @loggedIn="handleLogin" />
-        <p style="padding: 1em;">No account yet? <span @click="showLogin = false">Sign up</span></p>
+        <p style="padding: 1em;">No account yet? <span style="cursor: pointer;" @click="showLogin = false">Sign up</span></p>
       </template>
       <!-- or register -->
       <template v-else>
         <!-- listen for event -->
         <SignUpPage @loggedIn="handleLogin" />
-        <p>Already registered? <span @click="showLogin = true">Login</span></p>
+        <p>Already registered? <span style="cursor: pointer;" @click="showLogin = true">Login</span></p>
       </template>
     </div>
     <!-- is logged in -->
     <div v-else>
-      <span style="color: black; position: absolute; left: 0.5em; top: 0.5em; margin-top: 1.7em; font-size: 1.5em;">Welcome, {{ displayName }}<br> You are logged in.</span>
-
+      <div style="cursor: auto; color: black; position: absolute; left: 0.5em; top: 0.5em; margin-top: 1.7em; font-size: 1.5em; font-weight: bold;">
+        <span>Welcome, {{ displayName }}!<br>
+         <span style="font-size: 0.75em; color: #808080;">You are logged in.</span></span>
+      </div>
       <button class="button-35" style="position: absolute;  top: 3em;
   right: 1em;" @click="handleLogout">Logout</button>
 
@@ -35,19 +40,19 @@
 
     <div style="padding-top: 2em;">
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
-        <h2>Submit Message! - must be logged in for it to work.</h2>
+        <h2 style="color: #fff;">Submit Message! - must be logged in for it to work.</h2>
           
           <div style="max-width: 40em;">
             <div style="display: flex; flex-direction: column;">
-            <label for="Subject" style="align-self: flex-start; padding-left: 0.25em;">Subject:</label>
+            <label for="Subject" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Subject:</label>
               <div style="display: flex;">
-                <input style="width: 23em; font-size: 1em;" type="text" placeholder="Subject" required v-model="name" name="submissionName" maxlength="{{this.messageLength}}">
+                <input style="width: 23em;" type="text" placeholder="Subject" required v-model="name" name="submissionName" maxlength="{{this.messageLength}}">
                 <span style="margin-left: 0.5em; padding-top: 0.5em;">{{ name.length }}/{{ this.messageLength }}</span> 
               </div>
             </div>
           </div>
           <div style="display: flex; flex-direction: column;">
-            <label for="Message" style="align-self: flex-start; padding-left: 0.25em;">Message:</label>
+            <label for="Message" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Message:</label>
             <textarea type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50"
               rows="10"></textarea>
           </div>
@@ -60,7 +65,7 @@
           <li v-for="submission in submissions" :key="submission.id">
             <div>
               <span
-                style="font-weight: bold; font-size: 1em; color: #b0ffa7; display: inline-block; padding: 0.25em 0 0.25em 0;">{{
+                style="font-weight: bold; font-size: 1em; color: #87ff7a; display: inline-block; padding: 0.25em 0 0.25em 0;">{{
                   submission.userName }} <br><span style="color: #d8d8d8; font-size: 0.9em;">Subject:</span> <span style='color:#ffffff;'>{{ submission.name }}</span> </span>
               <p style="padding-left: 0.5em; font-size: 0.8em; color: #ffffff; display: inline-block;"
                 v-if="submission.timestamp">{{ submission.timestamp.toDate().toLocaleString() }}</p>
@@ -237,8 +242,8 @@ export default {
   
 <style scoped>
 span {
-  cursor: pointer;
-  color: #ff6b6b
+  
+  color: #ff6b6b;
 }
 
 .addinput-form {
@@ -252,23 +257,24 @@ span {
 }
 
 input {  
-  
+  background-color: rgb(240, 240, 240);
   font-size: 1.25em;
   border-radius: 0.25em;
   border-width: 1px;
   outline: none;
-  border: 1px solid #252525;
+  border: 1px solid #ff6b6b;
   padding: 0.25em;
 }
 
 textarea {  
-  
-  font-size: 1.25em;
+  background-color: rgb(240, 240, 240);
+  font-size: 1.5em;
   border-radius: 0.25em;
   border-width: 1px;
   outline: none;
-  border: 1px solid #252525;
+  border: 1px solid #ff6b6b;
   padding: 0.25em;
+  
 }
 
 button {
@@ -277,7 +283,7 @@ button {
 }
 
 .submission-container {
-  background-color: rgb(0, 171, 250);
+  background-color: #20262d;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -286,8 +292,15 @@ button {
   margin: 0 auto;
   padding: 2em;
   border-radius: 1em;
-  border: 1px solid #252525;
+  border: 1px solid #fcfcfc;
 
+}
+
+input:focus {
+    border-width: 2px;
+}
+textarea:focus {
+    border-width: 2px;
 }
 
 @media only screen and (max-width: 800px) {
