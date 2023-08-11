@@ -3,11 +3,11 @@
 
     <h2 style="padding: 0.5em;">Sign Up</h2>
     <div style="display: flex; flex-direction: column;">
-    <label for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a username:</label>
+    <label for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a Username:</label>
     <input name="text" type="text"     placeholder="User Name" required v-model="userName" maxlength="20">
   </div>
   <div style="display: flex; flex-direction: column;">
-    <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
+    <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Enter an email:</label>
     <input name="email" type="email"    placeholder="Email"    required v-model="email">
   </div>
   <div style="display: flex; flex-direction: column;">
@@ -45,8 +45,9 @@ export default {
   },
   methods: {
     signUp() {
-      if (!this.isFormValid) {
-        return;
+      
+      if (!this.isFormValid || this.userName.trim() === '' || this.email.trim() === '' || this.password.trim() === '') {
+      return;
       }
 
       this.isSigningUp = true;
