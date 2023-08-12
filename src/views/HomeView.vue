@@ -298,7 +298,7 @@ export default {
 }
 .route-styling {
   /* to fix bootstrap link styling */  
-  line-height: 1.11;
+  line-height: 1.15;
   text-decoration: none;
   display: block;
   text-align: left;
@@ -315,7 +315,8 @@ export default {
 }
 .route-styling a:hover{  
   color: #ff5959; 
-  background-color: #fff;  
+  border-top: 2px solid #ff5959;
+  border-bottom: 2px solid #ff5959;
 }
 .main-text-container {
   display: flex;

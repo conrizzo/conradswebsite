@@ -2,16 +2,17 @@
   <!-- conflict with "firebase": "^10.0.0", security-->
   <!-- tried downgrading to "firebase": "9.0.2" -->
   
-  <div style="background: rgb(40, 40, 40); padding-bottom: 2em; padding-top: 2.7em;">
+  <div style="background: rgb(80, 80, 80); padding-bottom: 2em; padding-top: 2.7em;">
     
     <hr style="position: absolute; top: 7.6em; left: 0; right: 0; border: none; border-top: 1px solid black;">
     <h2 style="padding: 1em; margin-top: 3em; color: #fff;">Working on this page... 
     </h2>
     <div style="display: flex; justify-content: center; color: #fff;">
       
-    <p class="paragraph-text">Here I am setting up a login/sign out setup using a basic BaaS (Back end as a
-      service) tools.<br>
-      The goal will eventually be to create a more comprehensive backend once there is a need for it.</p>
+    <p class="paragraph-text">Here I am setting up a login/sign out setup using BaaS (Back end as a
+      service) to post messages and do more!<br>
+      The goal will eventually be to create a more comprehensive backend once there is a need for it.
+    This is all being built from scratch!</p>
     </div>
     <div style="color: #fff;" v-if="!isLoggedIn">
       <!-- login -->
@@ -134,7 +135,7 @@ export default {
       try {
         // if no name entered throw error
         if (this.name == '') {
-          alert("Please enter a name!")
+          alert("Please enter a subject!")
           throw new Error("Please enter a name!")
         }
         // if no message entered throw error
@@ -283,7 +284,7 @@ button {
 }
 
 .submission-container {
-  background-color: #20262d;
+  background-color: #3b4653;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -297,12 +298,13 @@ button {
 }
 
 input:focus {
-    border-width: 2px;
+    
+    border-color: rgb(0, 240, 0)
 }
 textarea:focus {
-    border-width: 2px;
+    
+    border-color: rgb(0, 240, 0)
 }
-
 @media only screen and (max-width: 800px) {
   .submission-container {
     width: 90%;

@@ -44,40 +44,34 @@ export default {
     }
   },
   methods: {
-    signUp() {
-      
-      if (!this.isFormValid || this.userName.trim() === '' || this.email.trim() === '' || this.password.trim() === '') {
+  async signUp() {
+    if (!this.isFormValid || this.userName.trim() === '' || this.email.trim() === '' || this.password.trim() === '') {
       return;
-      }
-
-      this.isSigningUp = true;
-      this.signUpError = null;
-
+    }
+    this.isSigningUp = true;
+    try {
       // register and login user
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-          .then(() => {
-          // update 'displayName'
-          updateProfile(auth.currentUser, {
-            displayName: this.userName
-          })
-          .then(() => {
-            // emit event
-            this.$emit('loggedIn', this.userName)
-          })
-          .catch((error) => {
-            this.signUpError = error.message;
-          })
-          .finally(() => {
-            this.isSigningUp = false;
-          });
-
-        })
-        .catch((error) => {
-          this.signUpError = error.message;
-          this.isSigningUp = false;
-        });
+      await createUserWithEmailAndPassword(auth, this.email, this.password);
+      // update 'displayName'
+      await updateProfile(auth.currentUser, {
+        displayName: this.userName
+      });
+      // emit event
+      this.$emit('loggedIn', this.userName);
+    } catch (error) {
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            this.signUpError = 'Error: Email already in use.';           
+            break;          
+          default:
+            this.signUpError = error.message;            
+            break;
+        }
+    } finally {
+      this.isSigningUp = false;
     }
   }
+}
 }
 </script>
 
