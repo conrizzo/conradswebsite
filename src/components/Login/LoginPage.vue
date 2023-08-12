@@ -5,7 +5,7 @@
     
     <div style="display: flex; flex-direction: column;">
       <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
-      <input name="email" type="email" placeholder="Email" required v-model="email" autocomplete="email">
+      <input name="email" type="email" placeholder="Email" required v-model="email" autocomplete="email" v-focus>
     </div>
     
     
@@ -26,8 +26,17 @@
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/firebase/init.js'
 
+
+// focus directive to the email input
+const focus = {
+  mounted: (el) => el.focus()
+}
+
 export default {
   emits: ["loggedIn"], // declare the loggedIn event here
+  directives: {
+    focus
+  },
   data() {
     return {
       email: '',
@@ -87,8 +96,8 @@ form {
 input {
   margin: 0.1em;
 }
-input:focus {
-   
+
+input:focus {   
     border-color: rgb(0, 240, 0)
 }
 

@@ -4,7 +4,7 @@
     <h2 style="padding: 0.5em;">Sign Up</h2>
     <div style="display: flex; flex-direction: column;">
     <label for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a Username:</label>
-    <input name="text" type="text"     placeholder="User Name" required v-model="userName" maxlength="20">
+    <input name="text" type="text"     placeholder="User Name" required v-model="userName" maxlength="20" v-focus>
   </div>
   <div style="display: flex; flex-direction: column;">
     <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Enter an email:</label>
@@ -23,9 +23,17 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '@/firebase/init.js'
 
+// focus directive to the user input
+const focus = {
+  mounted: (el) => el.focus()
+}
+
 export default {
   // register event to emit
   emits: ['loggedIn'],
+  directives: {
+    focus
+  },
   data() {
     return {
       userName: '',
@@ -76,6 +84,9 @@ export default {
 </script>
 
 <style scoped>
+input:focus {    
+    border-color: rgb(0, 240, 0)
+}
 input{font-size: 1.25em; border-radius: 0.25em; border-width: 1px; outline: none; border: 1px solid #ff5959; padding: 0.25em; margin: 0.1em;}
 button{width:fit-content; margin:auto}
 

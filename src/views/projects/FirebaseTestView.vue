@@ -19,13 +19,13 @@
       <template v-if="showLogin">
         <!-- listen for event -->
         <LoginPage @loggedIn="handleLogin" />
-        <p style="padding: 1em;">No account yet? <span style="cursor: pointer;" @click="showLogin = false">Sign up</span></p>
+        <p style="padding: 1em;">No account yet? <span class="login-sign-up" style="color: #87ff7a; cursor: pointer;" @click="showLogin = false">Sign up</span></p>
       </template>
       <!-- or register -->
       <template v-else>
         <!-- listen for event -->
         <SignUpPage @loggedIn="handleLogin" />
-        <p>Already registered? <span style="cursor: pointer;" @click="showLogin = true">Login</span></p>
+        <p>Already registered? <span class="login-sign-up" style="color: #87ff7a; cursor: pointer;" @click="showLogin = true">Login</span></p>
       </template>
     </div>
     <!-- is logged in -->
@@ -49,7 +49,7 @@
             <label for="Subject" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Subject:</label>
               <div style="display: flex;">
                 <input style="width: 23em;" type="text" placeholder="Subject" required v-model="name" name="submissionName" maxlength="{{this.messageLength}}">
-                <span style="margin-left: 0.5em; padding-top: 0.5em;">{{ name.length }}/{{ this.messageLength }}</span> 
+                <span style="color: #ff6b6b; margin-left: 0.5em; padding-top: 0.5em;">{{ name.length }}/{{ this.messageLength }}</span> 
               </div>
             </div>
           </div>
@@ -296,6 +296,10 @@ button {
   border-radius: 1em;
   border: 1px solid #fcfcfc;
 
+}
+
+.login-sign-up:hover{
+  text-decoration: underline;
 }
 
 input:focus {    
