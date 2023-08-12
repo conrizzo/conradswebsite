@@ -14,7 +14,7 @@
     <label for="password" style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
     <input name="password" type="password" placeholder="Password" required v-model="password">
   </div>
-    <button style="margin: 0.5em;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText }}</button>
+    <button style="margin: 0.5em; color:#87ff7a;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText }}</button>
     <div v-if="signUpError" style="color: red;">{{ signUpError }}</div>
   </form>
 </template>

@@ -35,12 +35,13 @@
          <span style="font-size: 0.75em; color: #808080;">You are logged in.</span></span>
       </div>
       <button class="button-35" style="position: absolute;  top: 3em;
-  right: 1em;" @click="handleLogout">Logout</button>
+  right: 1em; color:#87ff7a;" @click="handleLogout">Logout</button>
 
     </div>
 
     <div style="padding-top: 2em;">
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
+        <div style="color: #ff0000;"> {{ errorMessage }} </div>
         <h2 style="color: #fff;">Submit Message! - must be logged in for it to work.</h2>
           
           <div style="max-width: 40em;">
@@ -57,10 +58,12 @@
             <textarea type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50"
               rows="10"></textarea>
           </div>
-        <button @click="createUser" class="button-35">Add Entry</button>
+         
+        <button style="color:#87ff7a;" @click="createUser" class="button-35">Add Entry</button>
       </form>
+      
       <!-- message area -->
-
+     
       <div class="submission-container">
         <ul style="list-style: none;">
           <li v-for="submission in submissions" :key="submission.id">
@@ -112,6 +115,7 @@ export default {
       displayName: '',
       lastMessageSentTime: 0,
       timeElapsed: 0,
+      errorMessage: '',
     }
   },
   beforeUpdate() {
@@ -134,14 +138,14 @@ export default {
     async createUser() {
       try {
         // if no name entered throw error
-        if (this.name == '') {
-          alert("Please enter a subject!")
-          throw new Error("Please enter a name!")
+        if (this.name == '') {          
+          this.errorMessage = "Please enter a subject!"
+          throw new Error("Please enter a subject!")
         }
         // if no message entered throw error
         if (this.message == '') {
-          alert("Please enter a message!")
-          throw new Error("Please enter a name!")
+          this.errorMessage = "Please enter a message!"
+          throw new Error("Please enter a message!")
         }
         //if (auth.currentUser) {
         // set local 'displayName' to user's displayName          
@@ -242,10 +246,7 @@ export default {
 </script>
   
 <style scoped>
-span {
-  
-  color: #ff6b6b;
-}
+
 
 .addinput-form {
   display: flex;
@@ -297,12 +298,10 @@ button {
 
 }
 
-input:focus {
-    
+input:focus {    
     border-color: rgb(0, 240, 0)
 }
-textarea:focus {
-    
+textarea:focus {    
     border-color: rgb(0, 240, 0)
 }
 @media only screen and (max-width: 800px) {

@@ -78,7 +78,7 @@
         :helptext="helpText"
         @close="toggleHelpGuide"
       />
-    </div>
+    </div>      
   </div>
   <FirstFooter></FirstFooter>
 </template>
