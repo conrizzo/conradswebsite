@@ -101,7 +101,8 @@
       <div v-if="winningMessage">
           <span style="border-radius: 1em; padding: 0.5em; background-color: #ffd755; margin-right: 3em; margin-left: 3em; position: absolute; top: 3em; left: 1em; font-size: 3em; color: rgb(255, 255, 255);" class="unselectable">
              {{ customMessage }}<br><br>
-          <a class="text-links no-underline" href="https://www.youtube.com/watch?v=uA8dAnlD51o">{{ youTubeCowVideoLink }}</a>
+             {{ youTubeCowVideoLink }}
+             <iframe width="560" height="315" src="https://www.youtube.com/embed/uA8dAnlD51o?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </span>
       </div>
 

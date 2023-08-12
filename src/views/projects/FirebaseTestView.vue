@@ -30,7 +30,7 @@
     </div>
     <!-- is logged in -->
     <div v-else>
-      <div style="cursor: auto; color: black; position: absolute; left: 0.5em; top: 0.5em; margin-top: 1.7em; font-size: 1.5em; font-weight: bold;">
+      <div style="cursor: auto; color: #808080; position: absolute; left: 0.5em; top: 0.5em; margin-top: 1.7em; font-size: 1.5em; font-weight: bold;">
         <span>Welcome, {{ displayName }}!<br>
          <span style="font-size: 0.75em; color: #808080;">You are logged in.</span></span>
       </div>
@@ -48,8 +48,8 @@
             <div style="display: flex; flex-direction: column;">
             <label for="Subject" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Subject:</label>
               <div style="display: flex;">
-                <input style="width: 23em;" type="text" placeholder="Subject" required v-model="name" name="submissionName" maxlength="{{this.messageLength}}">
-                <span style="color: #ff6b6b; margin-left: 0.5em; padding-top: 0.5em;">{{ name.length }}/{{ this.messageLength }}</span> 
+                <input style="width: 23em;" type="text" placeholder="Subject" required v-model="name" name="submissionName" maxlength="{{this.messageLength}}" ref="subjectInput">
+                <span style="color: #ff6b6b; margin-left: 0.5em; padding-top: 0.5em;"><span :style="textStyle">{{ name.length }}/{{ this.messageLength }}</span></span> 
               </div>
             </div>
           </div>
@@ -101,8 +101,11 @@ import { auth } from '@/firebase/init.js'
 import { signOut } from 'firebase/auth'
 //import router from "@/router"; // import the router object
 
+
 export default {
+  
   components: { SignUpPage, LoginPage, FirstFooter },
+  
   data() {
     return {
       isLoggedIn: false,
@@ -115,22 +118,39 @@ export default {
       displayName: '',
       lastMessageSentTime: 0,
       timeElapsed: 0,
-      errorMessage: '',
+      errorMessage: '',      
+    }
+  },
+  computed: {
+    textStyle() {
+      return {
+        color: this.name.length > 0 ? '#87ff7a' : '#ff6b6b;'
+      }
     }
   },
   beforeUpdate() {
     if (auth.currentUser) {
       // set local 'displayName' to user's displayName
       this.displayName = auth.currentUser.displayName;
-
       this.userName = this.displayName;
     }
   },
   watch: {
     name(newName) {
       if (newName.length >= this.messageLength) {
-        alert("Subject cannot be longer than " + this.messageLength + " characters!");
+        this.errorMessage = "Subject cannot be longer than " + this.messageLength + " characters!";
         this.name = newName.slice(0, this.messageLength);
+      } else if (newName.length == 0) {
+        // change color back to red if the user deletes all the text
+        this.textStyle.color = '#ff6b6b';
+      }
+    },   
+    // this references the subject field by default if a user is logged in
+    isLoggedIn() {
+      if (this.isLoggedIn) {
+        this.$nextTick(() => {
+          this.$refs.subjectInput.focus();
+        });
       }
     }
   },
@@ -162,7 +182,6 @@ export default {
       }
     },
     async sendMessage() {
-
 
       // Get the current time in milliseconds
       const currentTime = new Date().getTime();
