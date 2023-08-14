@@ -3,6 +3,9 @@
   <!-- tried downgrading to "firebase": "9.0.2" -->
   
   <div style="background: rgb(80, 80, 80); padding-bottom: 2em; padding-top: 2.7em;">
+    <div style="justify-content: center; margin-top: 0.85em;">
+    <button class="button-35"><router-link class="text-links" style="text-decoration: none;" to="/authorized">Authorized User Page</router-link></button>
+  </div>
     
     <hr style="position: absolute; top: 7.6em; left: 0; right: 0; border: none; border-top: 1px solid black;">
     <h2 style="padding: 1em; margin-top: 3em; color: #fff;">Working on this page... 
@@ -10,10 +13,14 @@
     <div style="display: flex; justify-content: center; color: #fff;">
       
     <p class="paragraph-text">Here I am setting up a login/sign out setup using BaaS (Back end as a
-      service) to post messages and do more!<br>
+      service) to post messages and do more!
       The goal will eventually be to create a more comprehensive backend once there is a need for it.
-    This is all being built from scratch!</p>
-    </div>
+    This is all being built from scratch!
+    The "Authorized User Page" link won't take the user anywhere unless they are authorized. It stays on this page and does nothing.
+    If the user is authorized it routes to a locked user only page.  
+  </p>
+  </div>
+ 
     <div style="color: #fff;" v-if="!isLoggedIn">
       <!-- login -->
       <template v-if="showLogin">
@@ -124,7 +131,7 @@ export default {
   computed: {
     textStyle() {
       return {
-        color: this.name.length > 0 ? '#87ff7a' : '#ff6b6b;'
+        color: this.name.length > 0 ? '#87ff7a' : '#ff6b6b'
       }
     }
   },

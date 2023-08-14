@@ -32,7 +32,7 @@
         <!-- Title -->
 
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
-
+        
         <div style="position: relative; color: #fff; padding-bottom: 0.25em; padding-top: 0.25em; line-height: 1.4;">(The main heading tokens &uarr; are
           shuffled as each character is added using
           <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code

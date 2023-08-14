@@ -4,9 +4,10 @@
       <router-link class="move-first-nav-link-at-lower-resolution" to="/">Home</router-link> 
       <router-link to="/about">About</router-link> 
       <!--import the dropdown menu into the nav bar-->      
-      <DropDownMenu></DropDownMenu>    
+      <DropDownMenu></DropDownMenu>          
     </nav> 
   <router-view />
+  
 </template>
 
 <script>
