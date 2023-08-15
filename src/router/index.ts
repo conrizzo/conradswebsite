@@ -120,40 +120,32 @@ const router = createRouter({
   routes,
 });
 
-auth.onAuthStateChanged(user => {
-  if (user) {
-    // User is signed in, you can access the user object here
-    console.log("signed IN")
-    console.log(auth.currentUser)   
-   
-  } else {
-    // User is signed out
-    console.log("signed out")
-   
-  }
-});
+
 
 // Removed duplicate import statement
 
 
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const currentUser = auth.currentUser;
 
-  const currentRoute = window.location.pathname;
-  if (currentRoute === '/authorized') {
-    // if the user is on the authorized page and refreshes, or direct links to it, if they are logged in, stay there!
-    next(); // Allow access to authorized page
-  } 
-  else if (requiresAuth && !currentUser) {
-    next('/projects/firebasetest'); // Redirect to login if not authenticated
-  } else if (currentUser && to.path === '/authorized') {
-    next(); // Allow access to authorized page if user is authenticated and already on the authorized page
-  } else {
-    
-    next(); 
-  }
-});
+  // const currentRoute = window.location.pathname;
 
+  /* this auth.onAuthStateChanged checks on a direct url to the page, or refreshing it if the user is already logged in
+  in summary, the code below allows the user to refresh the page and not be redirected to the login page if 'user'
+  value is true */
+  auth.onAuthStateChanged(user => {
+      
+      if (requiresAuth && currentUser || user) {
+          next(); // Allow access to authorized page if user is authenticated
+        } else if (requiresAuth && !currentUser) {
+          next('/projects/firebasetest'); // Redirect to home page if user is not authenticated
+        } else {
+          next(); // Allow access to non-authorized pages
+        }
+      });
+
+  });
   
 export default router;

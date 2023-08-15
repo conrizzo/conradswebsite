@@ -3,8 +3,8 @@
   <!-- tried downgrading to "firebase": "9.0.2" -->
   
   <div style="background: rgb(80, 80, 80); padding-bottom: 2em; padding-top: 2.7em;">
-    <div style="justify-content: center; margin-top: 0.85em;">
-    <button class="button-35"><router-link class="text-links" style="text-decoration: none;" to="/authorized">Authorized User Page</router-link></button>
+    <div style="justify-content: center; margin-top: 6em;">
+    <button class="button-35"><router-link class="text-links" style="text-decoration: none;" to="/authorized">Enter authorized user page</router-link></button>
   </div>
     
     <hr style="position: absolute; top: 7.6em; left: 0; right: 0; border: none; border-top: 1px solid black;">
@@ -16,8 +16,8 @@
       service) to post messages and do more!
       The goal will eventually be to create a more comprehensive backend once there is a need for it.
     This is all being built from scratch!
-    The "Authorized User Page" link won't take the user anywhere unless they are authorized. It stays on this page and does nothing.
-    If the user is authorized it routes to a locked user only page.  
+    The "Enter authorized user page" link won't take the user anywhere unless they are authorized. It stays on this page and does nothing.
+    If the user is authorized it routes to a locked user logged in only page.  
   </p>
   </div>
  
