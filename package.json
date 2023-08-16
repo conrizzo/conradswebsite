@@ -13,6 +13,7 @@
     "core-js": "^3.8.3",
     "firebase": "^10.0.0",
     "prismjs": "^1.29.0",
+    "protobufjs": "^7.2.4",
     "vue": "^3.3.4",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.3",
