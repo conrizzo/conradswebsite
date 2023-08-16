@@ -1,5 +1,5 @@
 <template>
-  <!-- click.self means only this item will activate this function-->
+   <!-- click.self means only this item will activate this function-->
   <div class="backdrop" @click.self="closeModal">
     <div class="aboutCowculator">
       <button class="close" @click.self="closeModal"></button>

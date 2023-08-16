@@ -2,7 +2,7 @@
 
 <template>   
 
-<body>
+<body>  
   <div class="main-content background-color-about-page">
     <!-- Main area -->
     <div class="text-container">
@@ -150,8 +150,9 @@ export default {
         document.body.appendChild(link);
         link.click();
       });
-  },
+  },  
   mounted() {
+    document.title = "About Conrad's Website";
     Prism.highlightAll();
   },
 };

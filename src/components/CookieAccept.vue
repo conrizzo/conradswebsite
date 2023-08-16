@@ -6,15 +6,18 @@
 
 
             <h2>Privacy Policy</h2>
-            <p class="text">This site is being developed and currently is hosted on <a class="text-links" href="https://pages.github.com/">GitHub Pages</a>, by using this site you agree to the use of basic cookies
-                stored locally for functionality.
-                The site optionally connects to <a class="text-links" href=https://firebase.google.com>Firebase</a> for
-                user authentication and database storage.
-                No data is transmitted to 3rd party websites.
-                The only cookies used are those necessary for the site to function. They do not store any personally
-                identifiable information other than those stored by Github pages.
+            <p class="text">This site is being developed and currently is hosted on <a class="text-links" href="https://pages.github.com/">GitHub Pages</a>. By 
+                using this site you agree to the use of essential <a class="text-links" href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
+                stored locally in the browser for website functionality.
+                This site optionally (with a user made account) connects to <a class="text-links" href=https://firebase.google.com>Firebase</a> for
+                user authentication and backend database storage. Other than Firebase, no other data is transmitted to 3rd party websites or services.
+                The only cookies used are those essential for the site to function.
             </p>
-            <button style="margin-top: 0.5em; background-color: #42b883; color: #fff;" class='button-35' @click="acceptCookies">Accept</button>
+
+            <!-- Can link to a longer privacy page in the future: There are few websites with advanced features that do not need to reference or store some
+                basic form of data locally on the client side as cookies. This website itself does not store any personally
+                identifiable information.  If you do not agree to minimal essential cookies, please do not use this website. -->
+            <button style="" class='button-35' @click="acceptCookies">Accept</button>
         </div>
     </div>
 </template>
@@ -57,7 +60,7 @@ h1 {
 
 .cookie-modal {
     width: 80%;
-    max-width: 800px;
+    max-width: 50em;
     padding-top: 0.75em;
     padding-bottom: 1em;
     padding-left: 25px;
@@ -66,9 +69,16 @@ h1 {
     background: rgb(255, 255, 255);
     border-radius: 10px;
     position: absolute;
-    bottom: 1em;
+    bottom: 25%;
     left: 50%;
     transform: translateX(-50%);
+}
+.button-35{
+    margin-top: 0.5em; background-color: #42b883; color: #fff;
+}
+.button-35:hover{
+    box-shadow: none;
+    background-color: #57c996;
 }
 
 .backdrop {

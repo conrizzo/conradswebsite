@@ -57,7 +57,7 @@
             <li>
               <span style="color: #fff; font-size: 1.25em;">
                 <a class="text-links" style="color: #ff5959;"
-                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ helped make this website 🐦Yay! coffee!
+                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ helped make this website 🐦Yay coffee!
               </span>
             </li>
           </ul>

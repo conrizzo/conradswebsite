@@ -120,32 +120,28 @@ const router = createRouter({
   routes,
 });
 
-
+auth.onAuthStateChanged(user => {
 
 // Removed duplicate import statement
 
+});
 
-router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
 
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const currentUser = auth.currentUser;
+  
 
   // const currentRoute = window.location.pathname;
 
-  /* this auth.onAuthStateChanged checks on a direct url to the page, or refreshing it if the user is already logged in
-  in summary, the code below allows the user to refresh the page and not be redirected to the login page if 'user'
-  value is true */
-  auth.onAuthStateChanged(user => {
-      
-      if (requiresAuth && currentUser || user) {
-          next(); // Allow access to authorized page if user is authenticated
-        } else if (requiresAuth && !currentUser) {
-          next('/projects/firebasetest'); // Redirect to home page if user is not authenticated
-        } else {
-          next(); // Allow access to non-authorized pages
-        }
-      });
-
+  // this should fix it invoking the next() function multiple times.
+  router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+    
+    // Wait for Firebase authentication to initialize
+    auth.onAuthStateChanged(user => {
+      if (requiresAuth && !user) {
+        next('/projects/firebasetest'); // Redirect to home page if user is not authenticated
+      } else {
+        next(); // Allow access to authorized or non-authorized pages
+      }
+    });
   });
-  
 export default router;
