@@ -2,12 +2,10 @@
   <footer class="footer">
     <div>
       <span>
-        Conrad's account on <a
+        <router-link class="footer-links" to="/about">About&nbsp;&nbsp;</router-link>&nbsp;&nbsp;<a
           class="footer-links"
           href="https://github.com/conrizzo"
-          >GitHub</a
-        >
-        | conradswebsite.com © {{ getCurrentYear }}<br />
+          >GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;conradswebsite.com © {{ getCurrentYear }}<br />
         unless mentioned otherwise, licensing is
         <a
           class="footer-links"

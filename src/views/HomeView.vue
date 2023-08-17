@@ -108,8 +108,8 @@
           <p class="aside-text loading">Nothing in this section</p>
           <figure style="display: inline-block;">
             <img style="max-width: 250px;" :src="birdDrawing" alt="Bird Drawing">
-            <figcaption class="aside-text" style="display: block;"><i>Except this quickly doodled bird drawing made in ms
-                paint!</i><br>Chirp chirp chirp!</figcaption>
+            <figcaption class="aside-text" style="display: block;"><i>Except this bird generated with some fancy Python code using stable diffusion!
+                </i><br>Chirp chirp chirp!</figcaption>
           </figure>
         </template>
       </AsideContent>
@@ -149,7 +149,7 @@ export default {
   data() {
     return {
       itemsLength: 0,
-      birdDrawing: require("@/images/bird_drawing.jpg"), // Add the image path to the data object
+      birdDrawing: require("@/images/StableDiffusionBird.jpg"), // Add the image path to the data object
 
       moveTheClouds: false,
       i1: null,

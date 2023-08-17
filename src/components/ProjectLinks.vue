@@ -23,7 +23,7 @@ export default {
                 { text: 'Cowculator', to: '/projects/cowculator' },
                 { text: 'Custom Weather', to: '/projects/weather' },
                 { text: 'Coffee Data', to: '/projects/datasets' },                
-                { text: 'Feed the cows (game)', to: '/projects/cowgame' },
+                { text: 'Cow Game', to: '/projects/cowgame' },
                 { text: 'Post Messages', to: '/projects/firebasetest'},
                 { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
                 { text: 'Project Descriptions', to: '/projects/' },    

@@ -133,7 +133,7 @@ export default {
       tree: {},
       expressionTree: this.treeNodeCalculations,
       showTooltip: "Making this work with my code was interesting! If the user does an expression like 2*2^2+2 the actual expression being evaluated is 2*(2^2)+2",
-      adjustViewBoxSize: 600,
+      adjustViewBoxSize: 400,
       //svgContent: '',
       // Adds commas to the result or expression shown on the screen to increase readability
       addCommas(number) {
@@ -288,8 +288,8 @@ export default {
 
     drawTree() {
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      svg.setAttribute("width", "800");
-      svg.setAttribute("height", "800");
+      svg.setAttribute("width", "400");
+      svg.setAttribute("height", "400");
       svg.setAttribute("viewBox", `0 0 470 ${this.adjustViewBoxSize}`);
 
       const startX = 235;
@@ -749,6 +749,8 @@ export default {
 
       this.formattedNumber = ""; // expression with commas
       this.formattedResult = ""; // final result with commas
+
+      this.adjustViewBoxSize = 400; // reset tree scale
 
       // reset tree graphic
       this.tree = {};

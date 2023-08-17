@@ -73,7 +73,7 @@ export default {
     margin-left: -0.2em;
     text-align: left;
     padding:0.15em;    
-    width: 13em;
+    width: 10.4em;
     background-color: white;        
     box-shadow: 0px -2px 8px rgba(0,0,0,0.4);    
     z-index: 1;       

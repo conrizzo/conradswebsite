@@ -161,5 +161,10 @@ h2 {
   padding-bottom: 0em;
   color: #808080;
 }
+@media only screen and (max-width: 600px) {
+  .professor-cow-figure {
+    width: 21.25em;
+  }
+}
 </style>
   
