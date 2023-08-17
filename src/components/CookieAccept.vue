@@ -6,13 +6,21 @@
 
 
             <h2>Privacy Policy</h2>
-            <p class="text">This site is being developed and currently is hosted on <a class="text-links" href="https://pages.github.com/">GitHub Pages</a>. By 
-                using this site you agree to the use of essential <a class="text-links" href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
+           
+
+            <p class="text">By
+                using this site you agree to the use of essential <a class="text-links"
+                    href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
                 stored locally in the browser for website functionality.
-                This site optionally (with a user made account) connects to <a class="text-links" href=https://firebase.google.com>Firebase</a> for
-                user authentication and backend database storage. Other than Firebase, no other data is transmitted to 3rd party websites or services.
-                The only cookies used are those essential for the site to function.
+                This site optionally (with a user made account) connects to <a class="text-links"
+                    href=https://firebase.google.com>Firebase</a> for
+                user authentication and backend database storage. Other than Firebase, no other data is transmitted to 3rd
+                party websites or services. The only cookies used are those essential for the site to function.
             </p>
+            <br>
+            <p class="text"><span style="color: #ff5959;">Also:</span> This site is being developed and currently is hosted using <a class="text-links"
+                    href="https://pages.github.com/">GitHub Pages</a>. In case the site is not loading or certain features do not work, the code on this site is targeted toward modern web
+                browsers, and the solution may be to update your browser to the newest version!</p>
 
             <!-- Can link to a longer privacy page in the future: There are few websites with advanced features that do not need to reference or store some
                 basic form of data locally on the client side as cookies. This website itself does not store any personally
@@ -23,6 +31,10 @@
 </template>
   
 <script>
+
+// check to see if this makes the css load faster.
+import "@/assets/globalCSS.css";
+
 export default {
     data() {
         return {
@@ -73,10 +85,14 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
 }
-.button-35{
-    margin-top: 0.5em; background-color: #42b883; color: #fff;
+
+.button-35 {
+    margin-top: 0.5em;
+    background-color: #42b883;
+    color: #fff;
 }
-.button-35:hover{
+
+.button-35:hover {
     box-shadow: none;
     background-color: #57c996;
 }

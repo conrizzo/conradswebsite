@@ -25,15 +25,26 @@
     </button>
   </div>
 
+  <div style="display: flex; justify-content: center; align-items: center;">
   <div>
     <button style="margin-right: 0.25em" class="button-35" @click="clearField">
       Reset
     </button>
 
-    <button class="button-35" @click="copyToClipboard">
+    <button style="margin-right: 0.25em" class="button-35" @click="copyToClipboard">
       Copy Result
     </button>
   </div>
+
+  <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+    <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35" @click="adjustTreeSize('+')">
+      + Binary Tree Size
+    </button>
+    <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em;" class="button-35" @click="adjustTreeSize('-')">
+      - Binary Tree Size
+    </button>
+  </div>
+</div>
   <!-- {{ cleanedExpression }} -->
   <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
   <div style="padding-top: 0.5em">
@@ -58,7 +69,7 @@
     <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
 
   </div>
-  <div style="margin-top: 5.4em; padding: 0.25em; padding-top: 1em">
+  <div style="padding: 0.25em; padding-top: 1em">
     <div class=".dark-color-text" v-if="showDescriptionText"
       style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em">
       <b style="color: #42b883">Final Node Cowculation:</b><br />
@@ -122,6 +133,7 @@ export default {
       tree: {},
       expressionTree: this.treeNodeCalculations,
       showTooltip: "Making this work with my code was interesting! If the user does an expression like 2*2^2+2 the actual expression being evaluated is 2*(2^2)+2",
+      adjustViewBoxSize: 600,
       //svgContent: '',
       // Adds commas to the result or expression shown on the screen to increase readability
       addCommas(number) {
@@ -253,6 +265,21 @@ export default {
     },
   },
   methods: {
+    
+    adjustTreeSize(operator) {
+
+      if (this.result != null){
+        
+        if (operator === "+") {
+          this.adjustViewBoxSize -= 100;
+        } else if (operator === "-") {
+          this.adjustViewBoxSize += 100;
+        }        
+        this.setOutputs(this.result);
+      }
+
+      
+    },
     findInfinity2() {
       if (this.result == "Infinity") {
         this.result = "Moo-Infinity!";
@@ -263,7 +290,7 @@ export default {
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       svg.setAttribute("width", "800");
       svg.setAttribute("height", "800");
-      svg.setAttribute("viewBox", "0 0 470 800");
+      svg.setAttribute("viewBox", `0 0 470 ${this.adjustViewBoxSize}`);
 
       const startX = 235;
       const startY = 50;
@@ -302,8 +329,10 @@ export default {
         this.drawTreeTwo(svg, node.right, rightX, rightY, dx / 1.6, dy);
       }
 
+      // dominant-baseline="middle" seems to work better at vertical centering across browsers, alignment-baseline wasn't centering the
+      // text vertically in firefox browser - 17/08/2023
       svg.innerHTML += `<circle cx="${x}" cy="${y}" r="15" fill="white" stroke="#42b883" stroke-opacity="0.5" />`;
-      svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" alignment-baseline="central" font-family="Arial" font-size="14">${node.value}</text>`;
+      svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="1em">${node.value}</text>`;
     },    
     printTree(node, level = 1, isRoot = true) {
       if (node === null) {

@@ -40,6 +40,7 @@
       </div>
       <!-- loads in cowculator -->
       <UseCalc></UseCalc>
+
       <div class="main-cow-figure">
         <figure>
           <img
@@ -47,13 +48,16 @@
             alt="Professor Cow Image"
             class="professor-cow-figure"
           />
-          <figcaption class="professor-cow-figure-text">
-            <strong>"I certify that this Cowculator cowculates!"</strong> -
+          <figcaption class="professor-cow-figure-text"> 
+
+            <b><span style="color: #42b883;"><q>I certify that this Cowculator cowculates!</q></span></b> -
             Professor Maximillian "Cowculus" Cowington, Distinguished Professor
-            of Cowculating.
+            of Cowculating.          
+
           </figcaption>
         </figure>
       </div>
+
       <div style="padding-bottom: 1em; margin-left: 0.2em; margin-right: 0.2em">
         <button
           class="button-35"
@@ -131,23 +135,26 @@ export default {
   margin-top: 1em;
 }
 .professor-cow-figure {
-  width: 300px;
+  width: 23em;
   background-color: #515151;
   text-align: left;
   margin-bottom: 0em;
 
-  padding: 10px;
-  border-radius: 5px;
+  padding: 0.5em;
+  border-radius: 0.5em;
 }
 .professor-cow-figure-text {
   background: rgb(255, 255, 255);
-  width: 300px;
-  text-align: left;
+  width: 23em;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
+  
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 0.66em;
+  font-family: arial;
+  color: rgb(40, 40, 40);
 }
 h2 {
   padding-top: 2em;
