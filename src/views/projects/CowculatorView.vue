@@ -50,8 +50,8 @@
           />
           <figcaption class="professor-cow-figure-text"> 
 
-            <b><span style="color: #42b883;"><q>I certify that this Cowculator cowculates!</q></span></b> -
-            Professor Maximillian "Cowculus" Cowington, Distinguished Professor
+            <b><span style="color: #42b883;"><q>I certify that this Cowculator cowculates!</q></span></b><br>
+            &nbsp;Professor Maximillian "Cowculus" Cowington, &nbsp;Distinguished Professor
             of Cowculating.          
 
           </figcaption>

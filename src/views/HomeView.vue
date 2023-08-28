@@ -51,13 +51,13 @@
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
                 For more specific info about this website please read the <router-link class="text-links"
-                  style="color: #ff5959;" to="/about">About page</router-link>!
+                  style="color: #ff5959;" to="/about">About page</router-link>
                 </span>
             </li>
             <li>
               <span style="color: #fff; font-size: 1.25em;">
                 <a class="text-links" style="color: #ff5959;"
-                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ helped make this website 🐦Yay coffee!
+                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and enthusiasm helped make this website
               </span>
             </li>
           </ul>
@@ -108,7 +108,7 @@
           <p class="aside-text loading">Nothing in this section</p>
           <figure style="display: inline-block;">
             <img style="max-width: 250px;" :src="birdDrawing" alt="Bird Drawing">
-            <figcaption class="aside-text" style="display: block;"><i>Except this bird generated with some fancy Python code using stable diffusion!
+            <figcaption class="aside-text" style="display: block;"><i>Except this bird I created using some customized Python code and a stable diffusion model!
                 </i><br>Chirp chirp chirp!</figcaption>
           </figure>
         </template>
@@ -279,14 +279,16 @@ export default {
 .on-hover-projects {
   text-decoration: none;
   padding-right: 0.25em;
-  padding-left: 0.25em;
+  padding-left: 0.25em;  
 }
 .on-hover-projects:visited {
   text-decoration: none;
+  
   color: #fff;
 }
 .on-hover-projects:hover {  
   color: #ffffff;
+  background-color: rgb(255, 89, 89,0.8);
 }
 
 .on-hover-projects:nth-child(odd) {
@@ -314,7 +316,7 @@ export default {
   padding-top: 0.00em;
 }
 .route-styling a:hover{  
-  color: #ff5959; 
+  color: #ffffff; 
   border-top: 2px solid #ff5959;
   border-bottom: 2px solid #ff5959;
 }

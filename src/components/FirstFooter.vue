@@ -2,7 +2,7 @@
   <footer class="footer">
     <div>
       <span>
-        <router-link class="footer-links" to="/about">About&nbsp;&nbsp;</router-link>&nbsp;&nbsp;<a
+        <router-link class="footer-links" to="/about">About</router-link>&nbsp;&nbsp;&nbsp;&nbsp;<a
           class="footer-links"
           href="https://github.com/conrizzo"
           >GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;conradswebsite.com © {{ getCurrentYear }}<br />
@@ -35,7 +35,7 @@ export default {
 }
 
 .footer-links:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .footer-links:visited {
