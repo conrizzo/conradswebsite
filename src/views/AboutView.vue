@@ -31,8 +31,7 @@
 
         <li class="paragraph-text break-text">Have been working on this website using Vue.js, JavaScript,
           TypeScript, CSS, HTML. Starting to
-          learn more about backend development and databases.
-          
+          learn more about backend development and databases.          
         </li>
 
         <li class="paragraph-text break-text">
@@ -68,9 +67,10 @@
       </figure>
 
       <br>
-      <h2 style="text-align: left;">About the Vue Routing with GitHub Pages:</h2>
-      <div>
 
+      <h2 style="text-align: left;">About the Vue Routing with GitHub Pages:</h2>
+
+      <div>
         <p class="paragraph-text break-text" style="padding-top: 1em; border-top: 1px solid rgb(170, 170, 170);">
           Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods
           to work properly.
@@ -104,6 +104,7 @@
         <h3 class="aside-text" style="margin-top: 1em; color: #c7c7c7;">
           This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html">slot</a>:
         </h3>
+
         <img style="border-radius: 0.5em; width: 200px;" :src="birdPicture" alt="Kohlmeise picture">
         <p class="aside-text" style="color: #c7c7c7"><a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
           (name in German, English name is Great Tit)
@@ -137,6 +138,7 @@ export default {
       imagePath: require("@/images/languages_july_17_2023.jpg"), // Add the image path to the data object
     }
   },
+
   downloadPDF() {
     const url = 'https://raw.githubusercontent.com/username/repo/branch/path/to/file.pdf';
 
@@ -151,6 +153,7 @@ export default {
         link.click();
       });
   },  
+
   mounted() {
     document.title = "About Conrad's Website";
     Prism.highlightAll();
@@ -184,7 +187,6 @@ figure {
   border-radius: 5px;
   line-height: 1.2;
 }
-
 .center-figure {
   display: flex;
   justify-content: center;
@@ -205,24 +207,21 @@ figure {
   border-radius: 0.2em;
   /* margin-top: -0.33em;  */
   text-decoration: underline;
-  text-decoration-color: #ff5959;
- 
+  text-decoration-color: #ff5959; 
 }
+
 h2 {
   padding-left: 4em;
   color: #fff;
 }
-
 .background-color-about-page {
   background-color: #ffffff;
 }
-
 .adjust-title-font-size {
   font-size: 3em;
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
-
 .text-container {
   padding-left: 10em;
   padding-right: 10em;
@@ -233,23 +232,24 @@ h2 {
   margin-left: 6em;
   margin-left: 6em;
 }
+
 @media only screen and (max-width: 1200px) {
   .text-container {
     padding-left: 1em;
     padding-right: 1em;
-  }  s
+  }
   .img-container {
     margin-bottom: 0.25em;
   } 
 }
+
 @media only screen and (max-width: 1000px) {
   h2 {
-    padding-left: 1.3em;
-  }
-  .figure-caption{  
-  margin-left: 1.6em;
-  margin-right: 1.6em;
-}  
-
+      padding-left: 1.3em;
+    }
+    .figure-caption{  
+    margin-left: 1.6em;
+    margin-right: 1.6em;
+  }  
 }
 </style>

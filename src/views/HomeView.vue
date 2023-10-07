@@ -85,7 +85,6 @@
               </template>
             </ProjectLinks>
           </div>
-
           <!--
         <div style="padding-top: 3em; background-color: #fff;">
           <h2 style="color: black;"> Featuring the Cowculator </h2>
@@ -93,15 +92,9 @@
             for the full experience.</p>
           <UseCalc></UseCalc>
           </div>
-        -->
-        
-         
-         
-
+        --> 
         </div>
-
       </div>
-
       <!-- Aside area begins  #2d2d2d; slate black color -->
       <AsideContent class="aside-low-resolution" style="background: #fff; z-index: 1;">
         <template v-slot:aside-content>
@@ -117,9 +110,11 @@
   </div>
   
   <FirstFooter />
+
 </template>
 
 <script>
+
 import Prism from "prismjs";
 
 import AsideContent from "@/components/FirstAside.vue";
@@ -130,10 +125,7 @@ import ProjectLinks from '@/components/ProjectLinks.vue'
 
 import "@/assets/globalCSS.css";
 //import UseCalc from "@/components/UseCalc.vue";
-
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
-
-
 
 export default {
   name: "HomeView",
@@ -150,14 +142,12 @@ export default {
     return {
       itemsLength: 0,
       birdDrawing: require("@/images/StableDiffusionBird.jpg"), // Add the image path to the data object
-
       moveTheClouds: false,
       i1: null,
       i2: null,
       i3: null,
       clouds: [],
       coordX: [6, 9, 2],
-
       inputString: "Welcome to Conrad's Website",
       name: "",
       inputStringShuffled: "",
@@ -165,6 +155,7 @@ export default {
   },
 
   methods: {
+
     runRustArrayRandomizer() {
       init().then(() => {
         const arr = this.name.split(" ");
@@ -176,6 +167,7 @@ export default {
         //document.getElementById("randomizedArray").textContent = mainFunction;
       });
     },
+
     addLettersIntoInput() {
       let i = 0;
       const intervalId = setInterval(() => {
@@ -192,6 +184,7 @@ export default {
         }
       }, 125);
     },
+
     toggleClouds() {
 
       if (this.moveTheClouds === false) {
@@ -205,6 +198,7 @@ export default {
       this.moveTheClouds = !this.moveTheClouds;
 
     },
+    
     moveClouds() {
       const cloudOne = document.getElementById("cloudOne");
       let marginLeftCloudOne = this.coordX[0]
@@ -247,12 +241,14 @@ export default {
         this.clouds.push(this.i1, this.i2, this.i3);
       }
     },
+
     stopClouds() {
       for (const cloudId of this.clouds) {
         clearInterval(cloudId);
       }
     },
   },
+
   mounted() {
     Prism.highlightAll();
     this.addLettersIntoInput();
@@ -262,11 +258,9 @@ export default {
 
 <style scoped>
 /* @import "~bootstrap/dist/css/bootstrap.css"; */
-
 #body {
   background: rgb(240, 240, 240);
 }
-
 .custom-background-home-page {
   background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
 }
@@ -275,22 +269,19 @@ export default {
   padding-right: 1em;
   display: inline-block;
 }
-
 .on-hover-projects {
   text-decoration: none;
   padding-right: 0.25em;
   padding-left: 0.25em;  
 }
 .on-hover-projects:visited {
-  text-decoration: none;
-  
+  text-decoration: none;  
   color: #fff;
 }
 .on-hover-projects:hover {  
   color: #ffffff;
-  background-color: rgb(255, 89, 89,0.8);
+  background-color: rgba(0, 0, 0, 0.1);
 }
-
 .on-hover-projects:nth-child(odd) {
   border-right: 2px solid #ff5959; 
   padding-left: 0.315em; 
