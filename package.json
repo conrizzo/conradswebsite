@@ -20,7 +20,7 @@
     "word-wrap": "^1.2.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
+    "@babel/core": "^7.23.0",
     "@babel/eslint-parser": "^7.12.16",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

@@ -318,6 +318,7 @@ export default defineComponent({
         this.winningMessage = true;
         if (this.timeLeft >= 15) {
           this.customMessage = "You WIN! You are a PROFESSIONAL FARMER! It only took you " + (30 - this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
+          
         }
         else if (this.timeLeft >= 5) {
           this.customMessage = "You WIN! You are a RESPECTABLE FARMER! It only took you " + (30 - this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
@@ -481,6 +482,12 @@ export default defineComponent({
       if (this.timeLeft === 30) {
         this.startGameTimerCountDown();
       }
+      // Stop interaction with the game loop once a user wins
+      if (this.winningMessage) {
+        return;
+      }
+      
+
       // get the food object from the cowFoodObjects array - this is like a getter
       //const foodObject = this.cowFoodObjects[index] as cowFoodObjectsData;
       // update the rect position of the food object in the cowFoodObjects array to this function parameter rect  - this is like a setter

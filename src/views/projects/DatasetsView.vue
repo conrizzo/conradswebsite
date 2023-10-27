@@ -122,7 +122,6 @@ export default {
     const owner = "conrizzo";
     const repo = "conradswebsite";
     const path = "src/data/data.tsv";
-
     const rawFileURL = `https://raw.githubusercontent.com/${owner}/${repo}/master/${path}`;
 
     fetch(rawFileURL)
@@ -286,7 +285,6 @@ export default {
 table {
   width: calc(100% - 1em);
   /* Subtract 1em from 100% to account for the 0.5em margins on both sides */
-
   margin-left: 0.5em;
   margin-right: 0.5em;
   border-collapse: collapse;
@@ -315,10 +313,8 @@ tbody {
 
 td {
   text-align: left;
-
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
-
   padding-left: 0.5em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -327,14 +323,6 @@ td {
 /* Alternate Row Color */
 tr:nth-child(even) {
   background-color: #ededed96;
-}
-
-.responsive-link {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
 }
 
 .table-column-buttons {
@@ -351,9 +339,7 @@ tr:nth-child(even) {
     padding: 0.25em;
   }
 
-  .responsive-link {
-    display: block;
-  }
+  
 }
 
 p.homeview {
@@ -369,7 +355,6 @@ p.homeview {
   color: #000000;
   background: #fff;
   border-radius: 5px;
-
   margin-bottom: 1em;
   margin-top: 1em;
 }</style>
