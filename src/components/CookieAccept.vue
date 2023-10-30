@@ -2,7 +2,7 @@
     <!-- click.self means only this item will activate this function-->
     <div class="backdrop" v-if="showModal">
         <div class="cookie-modal">
-            <button class="close"></button>
+            <button class="close" @click="acceptCookies"></button>
 
 
             <h2>Privacy Policy</h2>
@@ -15,7 +15,8 @@
                 This site optionally (with a user made account) connects to <a class="text-links"
                     href=https://firebase.google.com>Firebase</a> for
                 user authentication and backend database storage. Other than Firebase, no other data is transmitted to 3rd
-                party websites or services. The only cookies used are those essential for the site to function.
+                party websites or services. The only cookies used are those essential for the site to function. By clicking "Accept" or closing
+                this modal, you agree to these terms.
             </p>
             <br>
             <p class="text"><span style="color: #ff5959;">Also:</span> This site is being developed and currently is hosted using <a class="text-links"
@@ -25,7 +26,7 @@
             <!-- Can link to a longer privacy page in the future: There are few websites with advanced features that do not need to reference or store some
                 basic form of data locally on the client side as cookies. This website itself does not store any personally
                 identifiable information.  If you do not agree to minimal essential cookies, please do not use this website. -->
-            <button style="" class='button-35' @click="acceptCookies">Accept</button>
+            <button class='button-35' @click="acceptCookies">Accept</button>
         </div>
     </div>
 </template>
