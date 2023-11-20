@@ -84,14 +84,19 @@
   </div>
 
   <FastQuickSort ref="fastQuickSort"/>
+  <NodeGraph></NodeGraph>
   <FirstFooter></FirstFooter>
 </template>
 
 <script>
 import FastQuickSort from "@/components/SortingAlgorithms/FastQuickSort.vue"
 
-import "@/assets/globalCSS.css";
 import FirstFooter from "@/components/FirstFooter.vue";
+
+
+
+import "@/assets/globalCSS.css";
+
 export default {
   name: "DatasetsView",
   components: {

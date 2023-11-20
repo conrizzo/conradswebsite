@@ -28,9 +28,9 @@ export default {
                 { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
                 { text: 'Project Descriptions', to: '/projects/' },    
                 { text: 'Rust Web Assembly', to: '/projects/rustwebassembly' },    
-                { text: 'Various Links', to: '/projects/Links' },          
-                   
-                
+                { text: 'Various Links', to: '/projects/Links' },                          
+                { text: 'Cards', to: '/projects/cards' },       
+                    
             ]
         },       
     }   
