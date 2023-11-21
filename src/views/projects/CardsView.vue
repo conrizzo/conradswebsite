@@ -4,24 +4,32 @@
     <div>
       <!-- Your HTML goes here -->
       <h1 style="padding-top: 1.5em; color: #000;"> Welcome to the cards page! German game Skat </h1>
-      The cat says {{ cat }} 
+      <br>
+      The cat says {{ cat }}, this project was started 20/11/2023.
+      Working on the logic of how to make the opponents make decisions. The dealer is randomly selected. 
       <br>
       <br>
-      <div class="cards"> Deck of cards is: <br> {{ this.shallowFirstDeckCopy  }}</div>
-      {{ firstCardDeck.length }}
+      <div class="cards"></div>
+      
 <br>
       <p>
         Initially the goal will be to play against the computer.     
       
       </p>
       <br>
-      <b>Player 1:</b> {{ player1 }}
+      <div v-if="dealer===0"><b>(Dealer) Player 1:</b> {{ player1 }}</div>
+      <div v-else><b>Player 1:</b> {{ player1 }}</div>
       <br>
       <br>
-      <b>Player 2:</b> {{ player2 }}
+      <div v-if="dealer===1"><b>(Dealer) Player 2:</b> {{ player1 }}</div>
+      <div v-else><b>Player 2:</b> {{ player2 }}</div>
       <br>
       <br>
-      <b>Player 3:</b> {{ player3 }}
+      <div v-if="dealer===2"><b>(Dealer) Player 3:</b> {{ player3 }}</div>
+      <div v-else><b>Player 3:</b> {{ player3 }}</div>
+
+    
+      
 <br>
 <br>
       {{ skat }}
@@ -33,6 +41,7 @@
 <br>
 <br>
      {{ bid }}
+     <div v-if="validBid">You submitted a valid bid of: {{ bid }}</div>
     </div>
 
   </template>
@@ -52,9 +61,11 @@
         player1: [],
         player2: [],
         player3: [],
+        dealer: 0,
         skat: [],
         bidsAllowed: [18, 20, 22, 23, 24, 27, 30, 33, 35, 36, 40, 44, 45, 46, 48, 50, 54, 55, 59, 60],
         bid: 0,
+        validBid: false,
       };
     },
     methods: {
@@ -87,20 +98,28 @@
     return array;
    },
    placeBid(){
+    if (this.bidsAllowed.includes(parseInt(this.bid))){
+      this.validBid = true;
       // logic to make bid
-   },
+    } else{
+      alert("Please enter a valid bid, they are: " + this.bidsAllowed)
+    }
+  }
     },
     computed: {
       // Your computed properties go here
       updateCards() {
         return this.firstCardDeck;
       },
+      
     },
     mounted() {
       // Code to run when the component is mounted goes here
       this.createCards();
       this.shuffle(this.firstCardDeck);
       this.shallowFirstDeckCopy = this.firstCardDeck;
+
+      this.dealer = Math.floor(Math.random() * (2 - 0 + 1)) + 0; 
       // Deal the cards
       this.player1 = this.firstCardDeck.splice(0, 10);
       this.player2 = this.firstCardDeck.splice(0, 10);
