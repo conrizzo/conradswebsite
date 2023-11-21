@@ -1,7 +1,7 @@
 
 
 <template>
-    <div>
+    <div style="background-color: rgb(255, 255, 255);">
       <!-- Your HTML goes here -->
       <h1 style="padding-top: 1.5em; color: #000;"> Welcome to the cards page! German game Skat </h1>
       <br>
@@ -17,22 +17,19 @@
       
       </p>
       <br>
-      <div v-if="dealer===0"><b>(Dealer) Player 1:</b> {{ player1 }}</div>
-      <div v-else><b>Player 1:</b> {{ player1 }}</div>
-      <br>
-      <br>
+      <div v-if="dealer===0"><b>(Dealer) You:</b> {{ player1 }}</div>
+      <div v-else><b>You:</b> {{ player1 }}</div>
+  <br>
+  <br>
       <div v-if="dealer===1"><b>(Dealer) Player 2:</b> {{ player1 }}</div>
       <div v-else><b>Player 2:</b> {{ player2 }}</div>
-      <br>
-      <br>
+  <br>
+  <br>
       <div v-if="dealer===2"><b>(Dealer) Player 3:</b> {{ player3 }}</div>
-      <div v-else><b>Player 3:</b> {{ player3 }}</div>
-
-    
-      
+      <div v-else><b>Player 3:</b> {{ player3 }}</div>      
 <br>
 <br>
-      {{ skat }}
+     <b>Skat cards:</b> {{ skat }}
 <br>
 <br>
       <label for="textBox">Make your bid: </label>
@@ -41,9 +38,15 @@
 <br>
 <br>
      {{ bid }}
-     <div v-if="validBid">You submitted a valid bid of: {{ bid }}</div>
+     <div v-if="validBid">You submitted a valid bid of: {{ bid }}
+      <br>
+      <br>
+      Your opponent bids: <b>{{ opponentBid }}</b>
+    
     </div>
+     
 
+    </div>
   </template>
   
   <script>
@@ -100,12 +103,32 @@
    placeBid(){
     if (this.bidsAllowed.includes(parseInt(this.bid))){
       this.validBid = true;
+      // run logic for opponents bid
+      this.firstOpponentBid();
       // logic to make bid
     } else{
       alert("Please enter a valid bid, they are: " + this.bidsAllowed)
     }
-  }
+  },
+    firstOpponentBid(){
+      // decide if they pass or not
+      let pass = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+      if (pass === 0){
+        this.opponentBid = "pass";
+      } else{
+
+      // logic to make bid, default player 2 for now
+      let index = this.bidsAllowed.indexOf(parseInt(this.bid));
+      console.log(index)
+      // where index is the minimum
+      let randomIndex = Math.floor(Math.random() * (this.bidsAllowed.length - index)) + index;
+      this.opponentBid = this.bidsAllowed[randomIndex];
+
+
+      }
     },
+    },
+
     computed: {
       // Your computed properties go here
       updateCards() {
