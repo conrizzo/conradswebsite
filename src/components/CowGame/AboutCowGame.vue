@@ -4,11 +4,7 @@
     <div class="aboutCowGame">
       <button class="close" @click.self="closeModal"></button>
 
-
       <h2>This is a game project!</h2>
-
-
-
 
       <ul>
         <li>This was started June 19th 2023, and is built from scratch for fun and to learn!</li>
@@ -21,11 +17,12 @@
       </ul>
 
       <p class="about-modal-text">Code for main page:
-      <a class="text-links"
-        href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/CowGameView.vue">My GitHub</a>
-      <br>Components that are imported:
-      <a class="text-links" href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/CowGame">in the
-        cowgame folder.</a></p>
+        <a class="text-links"
+          href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/CowGameView.vue">My GitHub</a>
+        <br>Components that are imported:
+        <a class="text-links" href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/CowGame">in the
+          cowgame folder.</a>
+      </p>
 
       <p class="about-modal-text">
         One nice fix to this was changing:
@@ -50,8 +47,6 @@
           <img style="max-width: 15em" :src="imagePath" alt="Image" />
         </div>
          -->
-
-
     </div>
   </div>
 </template>
@@ -184,4 +179,5 @@ ul {
   h2 {
     font-size: 1.1em;
   }
-}</style>
+}
+</style>

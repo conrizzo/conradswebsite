@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    
+    "outDir": "./dist",
+
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -36,7 +39,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/components/DirectedGraphing/Cards.js"  ],
   "exclude": [
     "node_modules"
   ]
