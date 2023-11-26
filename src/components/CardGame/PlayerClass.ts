@@ -1,3 +1,17 @@
+
+export interface Player {
+  name: string;
+  cards: any[];
+  card_values: number;
+  displayInfo(): void;
+}
+
+export interface DeckOfCards {
+  theDeckOfCards: any[];
+  createCards(): void;
+  shuffle(): any[];
+}
+
 // class to create a player
 export class Player {
   name: string;
@@ -13,7 +27,6 @@ export class Player {
   displayInfo() {
     console.log(`Player: ${this.name}, Cards: ${this.cards}, Values: ${this.card_values}`);
   } 
-
 }
 
 // class to create a deck of cards

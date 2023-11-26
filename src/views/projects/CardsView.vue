@@ -1,95 +1,111 @@
 
 
 <template>
-  <div style="background-color: rgb(255, 255, 255);">
+  
+  <div class="body">
     <!-- Your HTML goes here -->
-    <h1 style="padding-top: 1.5em; color: #000;"> Welcome to the cards page! German game Skat, and perhaps other card games. </h1>
-    <br>
-    <p class="paragraph-text">
-    The cat says {{ cat }}, this project was started <b>20/11/2023</b>... 
-    This is using Vue.js, JavaScript, TypeScript, object oriented programming, and multiple classes to create players in a game of Skat.
-  </p>
-    <br>
-    <br>
-   <p class="paragraph-text">
-    Working on the logic of how to make the opponents make decisions. The dealer is randomly selected. The logic to make this work takes
-    some thinking, also because I don't even know the specific rules to play Skat and all the variations of it I need to look these up and verify I'm making this correctly. 
-    Making things look beautiful will be a further step here.
-    Once a winning bid is placed the user can't input anymore into the bid box.
-    
-    
-      Initially the goal will be to play against the computer.
+    <div>
+        <h1 style="padding-top: 1.5em; color: #000;"> Welcome to the cards page! German game Skat, and perhaps other card games. </h1>
+        <br>
+        <p class="paragraph-text">
+        The cat says {{ cat }}, this project was started <b>20/11/2023</b>... 
+        This is using Vue.js, JavaScript, TypeScript, object oriented programming, and multiple classes to create players in a game of Skat.
+      </p>
+        <br>
+        <br>
+      <p class="paragraph-text">
+        Working on the logic of how to make the opponents make decisions (This is the hard part). The dealer is randomly selected. The logic to make this work takes
+        some thinking, also because I don't even know the specific rules to play Skat and all the variations of it I need to look these up and verify I'm making this correctly. 
+        Making things look beautiful will be part of the process.
+        Once a winning bid is placed the user can't input anymore into the bid box.
+        
+        
+          Initially the goal will be to play against the computer.
 
-    </p>
+        </p>
    
-    
+    </div>
    
    
     
   
-    <div class="card-info">
-    <div v-if="dealer === 1"><b>(Dealer) Player 2</b> is holding {{ player2.cards.length }} cards.</div>
-    <div v-else><b>Player 2</b> is holding {{ player2.cards.length }} cards.</div>
-    <br>
-    <div v-if="dealer === 2"><b>(Dealer) Player 3</b> is holding {{ player2.cards.length }} cards.</div>
-    <div v-else><b>Player 3</b> is holding {{ player3.cards.length }} cards.</div>
-    <br>
-    <b>Skat cards:</b> Unbekannt! Unknown! {{ skat.length }} cards
-  </div>
-
+    
     <br>
     <br>
     The card point values: {{ cardValues }} <!-- cardValues['K'] -->
     <br>
     <br>
-    <label for="inputField"><b>Make your bid:</b> </label>
-    <input type="text" id="inputField" v-model="bid" :disabled="winningBid" />
-    <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
-      @click="placeBid()">{{ submitButtonText }}</button>
-    <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
-    @click="passBid()">Pass</button>
-    <br>
-    <br>
-    <div v-if="winningBid" style="color: blue;">{{ informationMessage }}  
-    <br>
+    <div class="input-container">
+      <div>
+          <label style="margin-right: 0.3em;" for="inputField"><b>Make your bid:</b></label>
+          <input class="custom-input" type="text" id="inputField" v-model="bid" :disabled="winningBid"/>
 
-    <button @click="takeCardsOrPass();" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Take cards</button>
-    <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Pass, don't take cards</button>
+          <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
+            @click="placeBid()">{{ submitButtonText }}</button>
+          <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
+          @click="passBid()">Pass</button>
+      </div>
+        <br>
+        <br>
+        <div v-if="winningBid" style="color: blue;">{{ informationMessage }}  
+        <br>
 
-   </div>   
-    <div v-if="validBid">You submitted a valid bid of: <b>{{ bid }}</b>
-      <br>
-      <br>
-      Player 2 bids: <b>{{ opponentBid }}</b>
-      <br>
-      <br>
-      Player 3 bids: <b>{{ opponentTwoBid }}</b>
-      <br>
-      <br>
-      
-    </div>
-    <div v-if="winningBid">Your bid of {{ bid }} wins!</div>
-    <div v-else-if="opponentBid !== 'pass' || opponentTwoBid !== 'pass'">
-      {{ biddingMessage }}
-      <button class="button-35" style="margin-left: 0.25em; height: 0.5em;" @click="this.stopBid();">Stop bidding</button>
-    </div>
-    <div v-if="dealer === 0"><b>(Dealer) Your cards:</b></div>
-    <div v-else><b>Your cards:</b></div>
-    <br>
+        <button @click="takeCardsOrPass();" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Take cards</button>
+        <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Pass, don't take cards</button>
 
-    <div style=""><b>{{ player1.cards.length }} cards are in your hand.</b>
+      </div>   
+        <div v-if="validBid">You submitted a valid bid of: <b>{{ bid }}</b>
+          <br>
+          <br>
+          Player 2 bids: <b>{{ opponentBid }}</b>
+          <br>
+          <br>
+          Player 3 bids: <b>{{ opponentTwoBid }}</b>
+          <br>
+          <br>
+          
+        </div>
+        <div v-if="winningBid">Your bid of {{ bid }} wins!</div>
+        <div v-else-if="opponentBid !== 'pass' || opponentTwoBid !== 'pass'">
+          {{ biddingMessage }}
+          <button class="button-35" style="margin-left: 0.25em; height: 0.5em;" @click="this.stopBid();">Stop bidding</button>
+        </div>
+        <div v-if="dealer === 0"><b>(Dealer) Your cards:</b></div>
+        <div v-else><b>Your cards:</b></div>
+        <br>
+        
+        <div><b>{{ player1.cards.length }} cards are in your hand.</b>
+        </div>
     </div>
     <div class="cards">
       
       <div class="card-container">
-        
-        <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" class="card-item" :style="{ marginTop: `${index * (Math.random() - 0.1) * 0.1}em`, transform: `rotate(${(index-4) * 3}deg)` }">
-          <img :src="svgFile" alt="SVG Image" />
-      </div>  
+
+    <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
+    <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" class="card-item" :style="cardStyles[index]">
+      <img :src="svgFile" alt="SVG Image" />
+    </div>
     </div>
   </div>
-  
+    <div class='interactions' >
+        <img class="saloon-image" :src="saloonImage" alt="Saloon Image" />
+        
+        <div class="card-info" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.6);">      
+          <div v-if="dealer === 1"><b>(Dealer) Player 2</b> is holding {{ player2.cards.length }} cards.</div>
+          <div v-else><b>Player 2</b> is holding {{ player2.cards.length }} cards.</div>
+          <br>
+          <div v-if="dealer === 2"><b>(Dealer) Player 3</b> is holding {{ player2.cards.length }} cards.</div>
+          <div v-else><b>Player 3</b> is holding {{ player3.cards.length }} cards.</div>
+          <br>
+          <b>Skat cards:</b> Unbekannt! Unknown! {{ skat.length }} cards
+        
+        </div>
   </div>
+<div class="footer-space-vertical">
+  <FirstFooter></FirstFooter>
+</div>
+</div>
+
 </template>
   
 <script>
@@ -97,11 +113,18 @@
 import { Player, DeckOfCards } from "@/components/CardGame/PlayerClass.ts";
 import "@/assets/globalCSS.css";
 
+import saloonImage from '@/components/CardGame/decoration_images/Saloon.jpg';
+import FirstFooter from "@/components/FirstFooter.vue";
+
 export default {
   name: 'YourComponentName',
+  components: {
+    FirstFooter,
+  },
   
   data() {
     return {
+      saloonImage: saloonImage,
 
       svgFiles: [],
       imagesOfCardsInhand: [],
@@ -162,6 +185,16 @@ export default {
       
 
     };
+  },
+  computed:{
+    cardStyles()
+      // '_' as a placeholder to indicate never used
+      {
+      return this.imagesOfCardsInhand.map((_, index) => ({
+        marginTop: `${index * (Math.random() - 0.1) * 0.1}em`,
+        transform: `rotate(${(index - 4) * 3}deg)`
+      }));
+    }
   },
   methods: {
     updateCards() {
@@ -287,14 +320,10 @@ export default {
       this.biddingMessage = "You have decided to stop bidding!"
     },
   },
-  computed: {
-    // Your computed properties go here
-    
-
-
-  },
+ 
   mounted() {
     
+
     const svgContext = require.context("@/components/CardGame/card_images", false, /\.svg$/);
     this.svgFiles = svgContext.keys().map(svgContext);
     //console.log(this.svgFiles.map(svgFile => svgFile.match(/\/([^/]+)\./)[1]));
@@ -349,6 +378,28 @@ export default {
 </script>
   
 <style scoped>
+
+
+
+.body {  
+  /* background-color: rgb(100, 100, 100); */
+  background-color: rgb(255, 255, 255);
+  
+}
+.interactions{
+  margin-top: 20em;
+}
+
+.custom-input{  
+  width: 4em;
+  font-size: 1.5em;
+  border-radius: 0.25em;
+  margin-right: 1em;
+  border: none;
+  outline: none;
+}
+
+
 /* Your CSS goes here */
 .cards {
   margin: 0 auto;
@@ -368,28 +419,64 @@ export default {
   width: 50px; /* Adjust the width as desired */  
 }
 
+
 .card-info {
   border: 0.1em solid #ccc; /* Add border around the content */
   border-radius: 0.5em;
+ 
   padding: 10px; /* Add padding to create space between the content and the border */
-  text-align: left; /* Align the text to the left */
-  width: 20em;
-  margin-left: 1em;
+  text-align: left; /* Align the text to the left */ 
+  position: absolute;
+  top: 60%;
+  left: 4.5%;
+  
+  z-index: 2;
 }
 
 .paragraph-text{
   max-width: 50em;
 }
 
-@media screen and (max-width: 600px) {
+.input-container{
+  background: rgba(0,0,0,0.5); 
+  color: #fff;
+  width: 25em;
+  margin: 0 auto;
+  padding: 0.5em;
+  border-radius: 1em;  
+  margin-top: 20em;
+}
+
+.saloon-image{
+  position: absolute; left: 0; bottom: 0; z-index: 1; border-radius: 2em;
+}
+
+@media screen and (max-width: 1650px) {
   .card-item {
     margin-right: 10px; /* Optional: Add margin between cards */
     width: 20px; /* Adjust the width as desired */  
   }
   .cards {
   margin-left: -1em;
-  margin-top: 2em;
+  margin-top: 10em;
+  z-index: 2;
+  position: absolute;
   }
+  .input-container{
+    
+    z-index: 4;
+    position: absolute;
+  }
+  .footer-space-vertical{
+    padding-top: 25em;
+
+  }
+
+  .saloon-image{
+   
+    position: absolute; left: 0; top: 40em; z-index: 1; border-radius: 2em;
+  }
+
 }
 
 </style>
