@@ -2,17 +2,17 @@
   <!-- conflict with "firebase": "^10.0.0", security-->
   <!-- tried downgrading to "firebase": "9.0.2" -->
   
-  <div style="background: rgb(80, 80, 80); padding-bottom: 2em; padding-top: 2.7em;">
-    <div style="justify-content: center; margin-top: 6em;">
-    <button class="button-35"><router-link class="text-links" style="text-decoration: none;" to="/authorized">Enter authorized user page</router-link></button>
+  <div style="background: rgb(140, 140, 140); padding-bottom: 2em; padding-top: 2.7em;">
+    <div style="justify-content: center; margin-top: 8em;">
+    <button class="button-35"><router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">Enter authorized user page</router-link></button>
   </div>
     
-    <hr style="position: absolute; top: 7.6em; left: 0; right: 0; border: none; border-top: 1px solid black;">
-    <h2 style="padding: 1em; margin-top: 3em; color: #fff;">Working on this page... 
+    <hr style="position: absolute; top: 7.6em; left: 0; right: 0; border: none; border-top: 1px solid rgb(210, 210, 210);">
+    <h2 style="padding: 1em; margin-top: 1em; color: #fff;">Post messages and login!
     </h2>
     <div style="display: flex; justify-content: center; color: #fff;">
       
-    <p class="paragraph-text">Here I am setting up a login/sign out setup using BaaS (Back end as a
+    <p class="paragraph-text">Here is a login/sign out setup using BaaS (Back end as a
       service) to post messages and do more!
       The goal will eventually be to create a more comprehensive backend once there is a need for it.
     This is all being built from scratch!
@@ -48,7 +48,7 @@
 
     <div style="padding-top: 2em;">
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
-        <div style="color: #ff0000;"> {{ errorMessage }} </div>
+        <div style="color: #ff4a4a;"> {{ errorMessage }} </div>
         <h2 style="color: #fff;">Submit Message! - must be logged in for it to work.</h2>
           
           <div style="max-width: 40em;">
@@ -272,6 +272,9 @@ export default {
 </script>
   
 <style scoped>
+.button-35{
+  background-color: rgb(130, 130, 130);
+}
 
 
 .addinput-form {
@@ -311,7 +314,7 @@ button {
 }
 
 .submission-container {
-  background-color: #3b4653;
+  background-color: #4e4e4e;
   display: flex;
   flex-direction: column;
   align-items: center;

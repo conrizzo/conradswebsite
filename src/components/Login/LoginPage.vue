@@ -73,6 +73,10 @@ export default {
   }
 </script>
 <style scoped>
+.button-35{
+  background-color: rgb(130, 130, 130);
+}
+
 input {
   font-size: 1.25em;
   border-radius: 0.25em;

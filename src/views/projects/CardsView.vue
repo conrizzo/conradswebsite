@@ -3,50 +3,40 @@
 <template>
   <div style="background-color: rgb(255, 255, 255);">
     <!-- Your HTML goes here -->
-    <h1 style="padding-top: 1.5em; color: #000;"> Welcome to the cards page! German game Skat </h1>
+    <h1 style="padding-top: 1.5em; color: #000;"> Welcome to the cards page! German game Skat, and perhaps other card games. </h1>
     <br>
-    The cat says {{ cat }}, this project was started 20/11/2023.
+    <p class="paragraph-text">
+    The cat says {{ cat }}, this project was started <b>20/11/2023</b>... 
+    This is using Vue.js, JavaScript, TypeScript, object oriented programming, and multiple classes to create players in a game of Skat.
+  </p>
+    <br>
+    <br>
+   <p class="paragraph-text">
     Working on the logic of how to make the opponents make decisions. The dealer is randomly selected. The logic to make this work takes
-    some thinking, also because I don't even know the specific rules to play Skat I need to look these up and verify I'm making this correctly. 
+    some thinking, also because I don't even know the specific rules to play Skat and all the variations of it I need to look these up and verify I'm making this correctly. 
     Making things look beautiful will be a further step here.
     Once a winning bid is placed the user can't input anymore into the bid box.
-    <br>
-    <br>
-    <div class="cards"></div>
-
-    <br>
-    <p>
+    
+    
       Initially the goal will be to play against the computer.
 
     </p>
    
-    <br>
-    <div v-if="dealer === 0"><b>(Dealer) You:</b> {{ this.player1.cards }}</div>
-    <div v-else><b>Your cards:</b> {{ this.player1.cards }}</div>
-    <br>
-    <div style=""><b>{{ player1.cards.length }} cards are in your hand.</b></div>
-    <br>
-    <hr>
-  
-    <br>
-    <br>
-    <div v-if="dealer === 1"><b>(Dealer) Player 2</b> is holding {{ this.player2.length}} cards.</div>
-    <div v-else><b>Player 2</b> is holding {{ player2.cards.length  }} cards.</div>
-    <br>
     
-    <br>
-    <div v-if="dealer === 2"><b>(Dealer) Player 3</b> is holding {{ player3.length }} cards.</div>
-    <div v-else><b>Player 3</b> is holding {{ player3.length  }} cards.</div>
-    <!-- <div v-if="dealer === 1"><b>(Dealer) Player 2:</b> {{ player2 }}</div>
-    <div v-else><b>Player 2:</b> {{ player2 }}</div>
-    <br>
-    <br>
-    <div v-if="dealer === 2"><b>(Dealer) Player 3:</b> {{ player3 }}</div>
-    <div v-else><b>Player 3:</b> {{ player3 }}</div> -->
-    <br>
-    <br>
    
-    <b>Skat cards:</b> Unbekannt! Unknown! <!-- {{ skat }} -->
+   
+    
+  
+    <div class="card-info">
+    <div v-if="dealer === 1"><b>(Dealer) Player 2</b> is holding {{ player2.cards.length }} cards.</div>
+    <div v-else><b>Player 2</b> is holding {{ player2.cards.length }} cards.</div>
+    <br>
+    <div v-if="dealer === 2"><b>(Dealer) Player 3</b> is holding {{ player2.cards.length }} cards.</div>
+    <div v-else><b>Player 3</b> is holding {{ player3.cards.length }} cards.</div>
+    <br>
+    <b>Skat cards:</b> Unbekannt! Unknown! {{ skat.length }} cards
+  </div>
+
     <br>
     <br>
     The card point values: {{ cardValues }} <!-- cardValues['K'] -->
@@ -83,6 +73,21 @@
       {{ biddingMessage }}
       <button class="button-35" style="margin-left: 0.25em; height: 0.5em;" @click="this.stopBid();">Stop bidding</button>
     </div>
+    <div v-if="dealer === 0"><b>(Dealer) Your cards:</b></div>
+    <div v-else><b>Your cards:</b></div>
+    <br>
+
+    <div style=""><b>{{ player1.cards.length }} cards are in your hand.</b>
+    </div>
+    <div class="cards">
+      
+      <div class="card-container">
+        
+        <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" class="card-item" :style="{ marginTop: `${index * (Math.random() - 0.1) * 0.1}em`, transform: `rotate(${(index-4) * 3}deg)` }">
+          <img :src="svgFile" alt="SVG Image" />
+      </div>  
+    </div>
+  </div>
   
   </div>
 </template>
@@ -90,12 +95,17 @@
 <script>
 
 import { Player, DeckOfCards } from "@/components/CardGame/PlayerClass.ts";
+import "@/assets/globalCSS.css";
 
 export default {
   name: 'YourComponentName',
   
   data() {
     return {
+
+      svgFiles: [],
+      imagesOfCardsInhand: [],
+
       players: [],
       
       // Your data properties go here
@@ -154,6 +164,21 @@ export default {
     };
   },
   methods: {
+    updateCards() {
+      // for now set the associated image values for each card in hand to empty and update all the image values below
+      this.imagesOfCardsInhand = [];
+
+      this.svgFiles.forEach(svgFile => {
+        const fileName = svgFile.slice(0, -13);  // Remove the last 12 characters 'iwoeruwru.svg' (including the dot)
+       
+        this.player1.cards.forEach(card => {
+          if (fileName.includes(card[0]) && fileName.includes(card[1]) && !fileName.includes('2')) {
+            console.log(svgFile);
+            this.imagesOfCardsInhand.push(svgFile);
+          }
+        })
+      });
+    },
    
     
     
@@ -182,7 +207,7 @@ export default {
       } else {
         alert("Please enter a valid bid, they are: " + this.bidsAllowed)
       }
-      console.log(this.currentOpponentBids)
+      
 
     },
     takeCardsOrPass() {
@@ -191,7 +216,9 @@ export default {
           this.informationMessage = "You took the SKAT cards! They are the [" + this.skat[0][0] + " of " + this.skat[0][1] + 
           "] and the [" + this.skat[1][0] + " of " + this.skat[1][1] + "]";
           this.player1.cards = this.player1.cards.concat(this.skat);
+          this.updateCards();
           this.skat = [];
+
           
         
     },
@@ -240,7 +267,7 @@ export default {
       } else {
         // set this to 1 higher than the bid
         let index = this.bidsAllowed.indexOf(parseInt(this.bid)) + 1;
-        console.log(index)
+       
         // where index is the minimum
         let randomIndex = index + 1;
         this.opponentTwoBid = this.bidsAllowed[randomIndex];
@@ -262,13 +289,18 @@ export default {
   },
   computed: {
     // Your computed properties go here
-    updateCards() {
-      return this.firstCardDeck;
-    },
+    
 
 
   },
   mounted() {
+    
+    const svgContext = require.context("@/components/CardGame/card_images", false, /\.svg$/);
+    this.svgFiles = svgContext.keys().map(svgContext);
+    //console.log(this.svgFiles.map(svgFile => svgFile.match(/\/([^/]+)\./)[1]));
+
+   
+    
     
     this.DeckOfCards = new DeckOfCards([]);    
     
@@ -276,7 +308,7 @@ export default {
     this.DeckOfCards.shuffle();    
 
     // Code to run when the component is mounted goes here
-    console.log(this.DeckOfCards.theDeckOfCards)    
+    
 
     this.dealer = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
 
@@ -300,8 +332,18 @@ export default {
     this.player3.cards = this.DeckOfCards.theDeckOfCards.splice(0, 10);
     this.skat = this.DeckOfCards.theDeckOfCards.splice(0, 2);
 
-    console.log(this.player1)
+    
     this.player1.displayInfo();
+
+    this.updateCards();
+   
+      
+   
+
+   
+  
+
+    
   },
 };
 </script>
@@ -309,11 +351,45 @@ export default {
 <style scoped>
 /* Your CSS goes here */
 .cards {
-
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Align the content to the left */
   align-items: center;
-  max-width: 25em;
+  max-width: 25em;  
 }
+
+.card-container {
+  display: flex;
+  margin-top: 2em;
+}
+
+.card-item {
+  margin-right: 10px; /* Optional: Add margin between cards */
+  width: 50px; /* Adjust the width as desired */  
+}
+
+.card-info {
+  border: 0.1em solid #ccc; /* Add border around the content */
+  border-radius: 0.5em;
+  padding: 10px; /* Add padding to create space between the content and the border */
+  text-align: left; /* Align the text to the left */
+  width: 20em;
+  margin-left: 1em;
+}
+
+.paragraph-text{
+  max-width: 50em;
+}
+
+@media screen and (max-width: 600px) {
+  .card-item {
+    margin-right: 10px; /* Optional: Add margin between cards */
+    width: 20px; /* Adjust the width as desired */  
+  }
+  .cards {
+  margin-left: -1em;
+  margin-top: 2em;
+  }
+}
+
 </style>

@@ -57,15 +57,15 @@
         working on integrating backend development. In July, 2023 I also started learning Rust and some of this website
         now uses Rust compiled into Web Assembly.
       </p>
-
-      <figure class="center-figure">
-        <img class="img-container" :src="imagePath" alt="Coding Languages used" />
-        <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June
-          2023, currently starting to add in TypeScript support.
-          Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
-        </figcaption>
-      </figure>
-
+      <div>
+        <figure class="center-figure">
+          <img class="img-container float-left" :src="imagePath" alt="Coding Languages used" />
+          <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June
+            2023, currently starting to add in TypeScript support.
+            Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
+          </figcaption>
+        </figure>
+      </div>
       <br>
 
       <h2 style="text-align: left;">About the Vue Routing with GitHub Pages:</h2>
@@ -101,7 +101,7 @@
     <AsideContent style="background-color: rgb(40, 40, 40);">
       <template v-slot:aside-content >
         
-        <h3 class="aside-text" style="margin-top: 1em; color: #c7c7c7;">
+        <h3 class="aside-text" style="margin-top: 4.5em; color: #c7c7c7;">
           This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html">slot</a>:
         </h3>
 
@@ -191,11 +191,14 @@ figure {
   display: flex;
   justify-content: center;
   align-items: center;  
+  
 }
 .img-container {
   max-width: 350px;
   border-radius: 0.5em;  
-  margin-bottom: 0.25em;  
+  margin-bottom: 0.33em;  
+  
+  
 }
 .h1-title {
   text-align: center;
@@ -223,10 +226,12 @@ h2 {
   margin-right: 0.5em;
 }
 .text-container {
-  padding-left: 10em;
-  padding-right: 10em;
+  padding-left: 7em;
+  padding-right: 7em;
   background-color: rgb(40, 40, 40);
 }
+
+
 .figure-caption{
   text-align: left;  
   margin-left: 6em;
@@ -235,8 +240,8 @@ h2 {
 
 @media only screen and (max-width: 1200px) {
   .text-container {
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
   }
   .img-container {
     margin-bottom: 0.25em;
