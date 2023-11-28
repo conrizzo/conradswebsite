@@ -114,7 +114,7 @@ body {
   z-index: 3;
   left: 0; 
   position: absolute;
-  border-bottom-right-radius: 0.25em;
+  
 }
 
 @media only screen and (max-width: 1000px) {

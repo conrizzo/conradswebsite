@@ -51,7 +51,7 @@
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
                 For more specific info about this website please read the <router-link class="text-links"
-                   to="/about">About page</router-link>
+                   to="/about">About</router-link> page
                 </span>
             </li>
             <li>
@@ -421,10 +421,7 @@ export default {
 }
 
 @media only screen and (max-width: 800px) {
-  .links-div-container {
-   
-    
-  }
+  
   .route-styling {
     font-size: 1.75em;
     min-width: 66vw;

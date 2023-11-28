@@ -102,7 +102,7 @@
     <div class='interactions' >
         <img class="saloon-image" :src="saloonImage" alt="Saloon Image" />
         
-        <div class="card-info" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.6);">      
+        <div class="card-info" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.33);">      
           <div v-if="dealer === 1"><b>(Dealer) Player 2</b> is holding {{ player2.cards.length }} cards.</div>
           <div v-else><b>Player 2</b> is holding {{ player2.cards.length }} cards.</div>
           <br>
@@ -129,6 +129,9 @@ import { Player, DeckOfCards } from "@/components/CardGame/PlayerClass.ts";
 import "@/assets/globalCSS.css";
 
 import saloonImage from '@/components/CardGame/decoration_images/Saloon.jpg';
+
+
+
 import FirstFooter from "@/components/FirstFooter.vue";
 
 export default {
@@ -144,6 +147,7 @@ export default {
      
 
       saloonImage: saloonImage,
+      
 
       svgFiles: [],
       imagesOfCardsInhand: [],
@@ -436,9 +440,10 @@ export default {
   font-family: 'Helvetica';
 }
 #body {  
-  /* background-color: rgb(100, 100, 100); */
-  background-color: rgb(198, 111, 58);
-  
+  /*
+  background-color: rgb(198, 111, 58); */
+  background-image:  url('@/components/CardGame/decoration_images/pexels-pixabay-326311.jpg');
+  background-size: 100% 100%;
 }
 .button-35{
   border-radius: 0.4em;
@@ -478,7 +483,7 @@ export default {
   justify-content: center; /* Align the content to the left */
   align-items: center;  
   z-index: 4;  
-  top: 75vh;
+  top: 60vh;
   position: relative;
 }
 
@@ -496,13 +501,13 @@ export default {
 
 .card-info {
   border: 0.1em solid #ccc; /* Add border around the content */
-
+  left: 4.5%;
   border-radius: 0.5em;
   padding: 1em; /* Add padding to create space between the content and the border */
   text-align: left; /* Align the text to the left */ 
   position: absolute;
-  top: 50svh;
-  left: 4.5%;
+  top: 43svh;
+  
   
   z-index: 2;
 }
@@ -513,7 +518,7 @@ export default {
 }
 
 .input-container{
-  background: rgba(0, 0, 0, 0.7); 
+  background: rgba(0, 0, 0, 0.33); 
   color: #fff;
   width: 25em;
   margin: 0 auto;
@@ -531,7 +536,7 @@ export default {
 }
 
 .select-options{
-  background: rgba(0, 0, 0, 0.7); 
+  background: rgba(0, 0, 0, 0.33); 
   color: #fff;
   width: 25em;
   margin: 0 auto;
@@ -571,11 +576,11 @@ export default {
   .card-item {    
     width: 1.25em; /* Adjust the width as desired */  
   }
-  .cards {
- 
+  .cards { 
   top: 130vh; 
   position: absolute;
-  overflow: hidden; /* good to know */
+  overflow: hidden;
+  
   width: calc(100% + 11em);
   
   }
@@ -590,11 +595,12 @@ export default {
   .saloon-image{   
     border-radius: 2em;
     top: 100vh;
-    width: 100%;
+    max-width: 100%;
+    
   }
   .card-info {
     position: relative;
-    top: 1svh;
+    top: -8svh;
     display: grid;
     place-items: center;
     left: initial; /* reset */

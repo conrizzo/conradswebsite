@@ -79,7 +79,7 @@ export default {
     width: 10.4em;
     background-color: white;        
     box-shadow: 0px -2px 8px rgba(0,0,0,0.4);   
-    border-radius: 0.5em;    
+     
 }
 
 .dropdown-content a {
