@@ -61,35 +61,40 @@ export default {
     background-color: rgb(255, 255, 255);
     font-weight: normal;
     font-size: 1em;
-    border: none;       
+    border: none;     
+    border-bottom-right-radius: 1em;    
 }
+
 .dropdown {
     position: relative;
-    display: inline-block;       
+    display: inline-block;         
 }
-.dropdown-content {
-    display: none;
+
+.dropdown-content {    
+    display: none; /* this removes it when not over it */
     position: absolute;
     margin-left: -0.2em;
     text-align: left;
     padding:0.15em;    
     width: 10.4em;
     background-color: white;        
-    box-shadow: 0px -2px 8px rgba(0,0,0,0.4);    
-    z-index: 1;       
+    box-shadow: 0px -2px 8px rgba(0,0,0,0.4);   
+    border-radius: 0.5em;    
 }
+
 .dropdown-content a {
     color: rgb(128, 128, 128);
     padding: 0.5em 0.6em 0.5em 0.6em; 
     text-decoration: none;
     display: block;   
-    margin-right: 0;     
+    margin-right: 0;           
 }
+
 /* #00b3ff; */
 .dropdown-content a:hover:not(.active) {
     background-color: none; 
     color: #000; 
-    background-color: rgb(235, 235, 235);   
+    background-color: rgb(235, 235, 235);       
 }
 
 .dropdown:hover .dropdown-content {display: block;}

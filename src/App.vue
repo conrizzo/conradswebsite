@@ -44,11 +44,11 @@ export default {
 
 /* how to pin the nav to the top of the page */
 nav {  
-  padding-left: 1em;
+  padding-left: 1em;  
   /* padding: 0.3em 0.25em 0.3em 0.25em; */
   font-size: 1.25em;
   background-color: rgb(255, 255, 255);
-  line-height: 1.1;
+  line-height: 1.1;  
 }
 
 nav a {
@@ -56,7 +56,7 @@ nav a {
   color: rgb(128, 128, 128);
   margin-right: 0.2em;
   padding: 0.4em 0.6em 0.4em 0.6em;
-  border-radius: 0.3em;
+  border-radius: 0.4em;  
 }
 
 nav a:hover {
@@ -111,9 +111,10 @@ body {
 /* ABOVE this comment adjusts the default scrollbar on the right */
 
 .nav-space-at-lower-resolution {
-  z-index: 2;
-  left: 0;
+  z-index: 3;
+  left: 0; 
   position: absolute;
+  border-bottom-right-radius: 0.25em;
 }
 
 @media only screen and (max-width: 1000px) {
