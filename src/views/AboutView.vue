@@ -6,9 +6,7 @@
   <div class="main-content background-color-about-page">
     <!-- Main area -->
     <div class="text-container">
-
       <h1 class="h1-title">About</h1>
-
       <ul>
         <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is
           totally self-made by me (Conrad) using primarily

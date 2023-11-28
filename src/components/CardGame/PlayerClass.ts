@@ -24,9 +24,7 @@ export class Player {
     this.card_values = card_values;
   }
 
-  displayInfo() {
-    console.log(`Player: ${this.name}, Cards: ${this.cards}, Values: ${this.card_values}`);
-  } 
+  
 }
 
 // class to create a deck of cards

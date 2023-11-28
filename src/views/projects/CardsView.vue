@@ -2,26 +2,21 @@
 
 <template>
   
-  <div class="body">
+  <div id="body">
     <!-- Your HTML goes here -->
     <div>
-        <h1 style="padding-top: 1.5em; color: #6b490b; font-size: 3em; font-family: 'Helvetica';"> <span style="color: #fff;">Welcome</span> to the card game page! Current game is Skat! </h1>
-        <br>
+        <h1 class="title">Skat (under construction...)</h1>
         <br>
       <div style="background-color: rgba(0,0,0,0.5); padding: 0.5em; padding-top: 1.5em; max-width: auto;">
         <p style="color: #fff;" class="paragraph-text">
-        The cat says {{ cat }}, this project was started <b>20/11/2023</b>... 
-        This is using Vue.js, JavaScript, TypeScript, object oriented programming, and multiple classes to create players in a game of Skat.
+        This project was started <b>20/11/2023</b>... 
+        <br>&nbsp;&nbsp;Made with Vue.js, JavaScript, TypeScript, and object oriented programming
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Will be a <a class="text-links" href="https://en.wikipedia.org/wiki/Skat_(card_game)">Skat</a> game when finished?
         </p>
 
         <p style="color: #fff;" class="paragraph-text">
-          Working on the logic of how to make the opponents make decisions (This is the hard part). The dealer is randomly selected. The logic to make this work takes
-          some thinking, also because I don't even know the specific rules to play Skat and all the variations of it I need to look these up and verify I'm making this correctly. 
-          Making things look beautiful will be part of the process.
-          Once a winning bid is placed the user can't input anymore into the bid box.
           
-          
-            Initially the goal will be to play against the computer.
 
         </p>
       </div>
@@ -44,17 +39,19 @@
 
           <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
             @click="placeBid()">{{ submitButtonText }}</button>
-          <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
+          <button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
           @click="passBid()">Pass</button>
           
       </div>
         <br>
         <br>
-        <div v-if="winningBid" style="color: blue;">{{ informationMessage }}  
+        <div v-if="winningBid" 
+        style="color: #ffffff; background-color: rgb(198, 111, 58); border-radius: 1em; padding-top: 0.5em; margin-bottom: 0.5em;">
+        <b> {{ informationMessage }} </b> 
         <br>
 
-        <button @click="takeCardsOrPass();" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Take cards</button>
-        <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Pass, don't take cards</button>
+        <button type="button" @click="takeCardsOrPass();" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Take cards</button>
+        <button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Pass, don't take cards</button>
 
       </div>   
         <div v-if="validBid">You submitted a valid bid of: <b>{{ bid }}</b>
@@ -71,30 +68,37 @@
         <div v-if="winningBid">Your bid of {{ bid }} wins!</div>
         <div v-else-if="opponentBid !== 'pass' || opponentTwoBid !== 'pass'">
           {{ biddingMessage }}
-          <button class="button-35" style="margin-left: 0.25em; height: 0.5em;" @click="this.stopBid();">Stop bidding</button>
+          <button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em;" @click="this.stopBid();">Stop bidding</button>
         </div>
+        <br>
         <div v-if="dealer === 0"><b>(Dealer) Your cards:</b></div>
         <div v-else><b>Your cards:</b></div>
         <br>
         
         <div><b>{{ player1.cards.length }} cards are in your hand.</b>
         </div>
-        <button @click="increaseMarginLeft('+');" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">+ card space</button>
-          <button @click="increaseMarginLeft('-');" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">- card space</button>
-          <button @click="dealCards();" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">Deal new cards</button>
+       
     </div>
     <div class="cards">
       
       <div class="card-container">
 
-    <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
-    <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" class="card-item" :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
-      <img :src="svgFile" alt="SVG Image" />
-    </div>
+          <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
+          <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" class="card-item" :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
+            <img :src="svgFile" alt="SVG Image" />
+          </div>
     
-    </div>
-
+      </div>
+      
   </div>
+  <div class=select-options>
+        <h2><u>Options</u></h2>
+        <div class="button-container">
+          <button type="button" @click="increaseMarginLeft('+');" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">+ spacing</button>
+            <button type="button" @click="increaseMarginLeft('-');" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">- spacing</button>
+          </div>
+            <button type="button" @click="dealCards()" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">Deal new cards</button>
+        </div>
     <div class='interactions' >
         <img class="saloon-image" :src="saloonImage" alt="Saloon Image" />
         
@@ -108,6 +112,8 @@
           <b>Skat cards:</b> Unbekannt! Unknown! {{ skat.length }} cards
         
         </div>
+
+        
       
   </div>
 <div class="footer-space-vertical">
@@ -126,7 +132,8 @@ import saloonImage from '@/components/CardGame/decoration_images/Saloon.jpg';
 import FirstFooter from "@/components/FirstFooter.vue";
 
 export default {
-  name: 'YourComponentName',
+  name: 'SkatGame',
+  
   components: {
     FirstFooter,
   },
@@ -134,6 +141,8 @@ export default {
   data() {
     return {
       marginLeft: '0.5em',
+     
+
       saloonImage: saloonImage,
 
       svgFiles: [],
@@ -226,7 +235,7 @@ export default {
        
         this.player1.cards.forEach(card => {
           if (fileName.includes(card[0]) && fileName.includes(card[1]) && !fileName.includes('2')) {
-            console.log(svgFile);
+            //console.log(svgFile);
             this.imagesOfCardsInhand.push(svgFile);
           }
         })
@@ -265,13 +274,14 @@ export default {
     },
     takeCardsOrPass() {
       // if they take the cards, add them to their hand
-      // if they pass, add them to the skat
+      // if user presses button more than once when there are no skat cards does nothing else
+      if (this.skat.length !== 0) {
           this.informationMessage = "You took the SKAT cards! They are the [" + this.skat[0][0] + " of " + this.skat[0][1] + 
           "] and the [" + this.skat[1][0] + " of " + this.skat[1][1] + "]";
           this.player1.cards = this.player1.cards.concat(this.skat);
           this.updateCards();
           this.skat = [];
-
+      }
           
         
     },
@@ -335,6 +345,10 @@ export default {
         //this.winningBid = false;
       }
     },
+    displayInfo(p,c,v) {
+     console.log('Player Information: \n' + `Player: ${p}\nCards: ${c}\nValues: ${v}`);
+     
+    } ,
 
     stopBid() {
       this.biddingMessage = "You have decided to stop bidding!"
@@ -359,11 +373,13 @@ export default {
       this.skat = this.DeckOfCards.theDeckOfCards.splice(0, 2);     
 
       this.updateCards();
-      
+      this.displayInfo(this.player1.name, this.player1.cards, this.player1.card_values);
       },
   },
  
   mounted() {
+    document.title = "Skat"; // Set the document title to the value of the `title` property
+
     const svgContext = require.context("@/components/CardGame/card_images", false, /\.svg$/);
     this.svgFiles = svgContext.keys().map(svgContext);
 
@@ -394,7 +410,7 @@ export default {
     
 
     
-    this.player1.displayInfo();
+    //this.player1.displayInfo();
 
     this.updateCards();
    
@@ -412,10 +428,16 @@ export default {
 <style scoped>
 
 
-
-.body {  
+.title{
+  padding-top: 1.5em; 
+  color: rgb(255, 255, 255); 
+  font-size: 2.5em; 
+  line-height: 1.1em; 
+  font-family: 'Helvetica';
+}
+#body {  
   /* background-color: rgb(100, 100, 100); */
-  background-color: rgb(236, 156, 51);
+  background-color: rgb(198, 111, 58);
   
 }
 .button-35{
@@ -426,6 +448,11 @@ export default {
 }
 .interactions{
   margin-top: 20em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Add a defined width to the container */
+  width: 100%;
 }
 
 .custom-input{  
@@ -435,19 +462,24 @@ export default {
   margin-right: 1em;
   border: none;
   outline: none;
+  text-align: center;
 }
 
+.button-container {
+  display: flex;
+  gap: 0.25em;
+  margin-top: 0.5em;
+}
 
 /* Your CSS goes here */
 .cards {
-  margin: 0 auto;
-  padding-top: 2em;
+  left: -8em;
   display: flex;
   justify-content: center; /* Align the content to the left */
-  align-items: center;
-  max-width: 25em;  
-  z-index: 2;
-
+  align-items: center;  
+  z-index: 4;  
+  top: 75vh;
+  position: relative;
 }
 
 .card-container {
@@ -456,20 +488,20 @@ export default {
 }
 
 .card-item {
-  margin-right: 10px; /* Optional: Add margin between cards */
-  width: 50px; /* Adjust the width as desired */
-  margin-left: 0.5em;  
+  
+  width: 5em; /* Adjust the width as desired */
+  margin-left: 1em;  
 }
 
 
 .card-info {
   border: 0.1em solid #ccc; /* Add border around the content */
+
   border-radius: 0.5em;
- 
-  padding: 10px; /* Add padding to create space between the content and the border */
+  padding: 1em; /* Add padding to create space between the content and the border */
   text-align: left; /* Align the text to the left */ 
   position: absolute;
-  top: 60%;
+  top: 50svh;
   left: 4.5%;
   
   z-index: 2;
@@ -477,48 +509,102 @@ export default {
 
 .paragraph-text{
   max-width: 80em;
+  font-size: 1.5em;
 }
 
 .input-container{
-  background: rgba(0,0,0,0.5); 
+  background: rgba(0, 0, 0, 0.7); 
   color: #fff;
   width: 25em;
   margin: 0 auto;
   padding: 0.5em;
   border-radius: 1em;  
-  margin-top: 0em;
+  margin-top: -0.25em;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  
+}
+
+.select-options{
+  background: rgba(0, 0, 0, 0.7); 
+  color: #fff;
+  width: 25em;
+  margin: 0 auto;
+  padding: 0.5em;
+  border-radius: 1em;  
+  margin-top: -0.25em;
+  position: absolute;
+  top: 130vh;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  z-index: 5;  
 }
 
 .saloon-image{
-  position: absolute; left: 0; bottom: 0; z-index: 1; border-radius: 2em;
+  border-radius: 2em;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
 }
 
-@media screen and (max-width: 1650px) {
-  .card-item {
-    margin-right: 10px; /* Optional: Add margin between cards */
-    width: 20px; /* Adjust the width as desired */  
+.footer-space-vertical{
+    margin-top: 75vh;
+  }
+
+@media screen and (max-width: 1000px) {
+
+  .paragraph-text{
+  max-width: 80em;
+  font-size: 1em;
+ }
+
+  .card-item {    
+    width: 1.25em; /* Adjust the width as desired */  
   }
   .cards {
-  margin-left: -1em;
-  margin-top: 10em;
  
+  top: 130vh; 
   position: absolute;
+  overflow: hidden; /* good to know */
+  width: calc(100% + 11em);
+  
   }
-  .input-container{
-    
+  .input-container{    
     z-index: 4;
     position: absolute;
+    top: 112vh;
   }
   .footer-space-vertical{
-    padding-top: 25em;
-
+    margin-top: 150vh;
+  }
+  .saloon-image{   
+    border-radius: 2em;
+    top: 100vh;
+    width: 100%;
+  }
+  .card-info {
+    position: relative;
+    top: 1svh;
+    display: grid;
+    place-items: center;
+    left: initial; /* reset */
+    width: 24em;
   }
 
-  .saloon-image{
-   
-    position: absolute; left: 0; top: 40em; z-index: 1; border-radius: 2em;
+  .select-options{
+    left: 50%;
+    top: 170vh;
+    z-index: 5;
   }
-
 }
-
 </style>

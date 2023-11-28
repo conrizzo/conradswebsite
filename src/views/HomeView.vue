@@ -44,19 +44,19 @@
           <ul style="text-align: left; color: white;" class="mb-3">
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
-                This is a website project made by <a class="text-links" style="color: #ff5959;"
-                  href="https://github.com/conrizzo">Conrad</a>
+                This is a website project made by <a class="text-links"
+                  href="https://github.com/conrizzo"><b>Conrad</b></a>
               </span>
             </li>
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
                 For more specific info about this website please read the <router-link class="text-links"
-                  style="color: #ff5959;" to="/about">About page</router-link>
+                   to="/about">About page</router-link>
                 </span>
             </li>
             <li>
               <span style="color: #fff; font-size: 1.25em;">
-                <a class="text-links" style="color: #ff5959;"
+                <a class="text-links"
                   href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and enthusiasm helped make this website
               </span>
             </li>
@@ -65,19 +65,18 @@
         </div>
        
         <div>
-
           <div class="links-div-container" style="position: relative; z-index: 1;">
             <!-- Projects ({{ this.itemsLength }})</h3> -->
             <ProjectLinks :links="links">
-              <template v-slot="{ links }">
+              <template  v-slot="{ links }">
                 <h3
-                  style="font-size: 2em; padding-bottom: 0.25em; padding-top: 0.5em; padding-left: 1.05em; color:#fff; text-align: left;">
+                  class="projects-header">
                   Projects: {{ links.length }}
                 </h3>
 
                 <div class="route-styling">
-                 <router-link class="on-hover-projects" v-for="(item, index) in links" :key="index" :to="item.to"
-                    :class="{ active: $route.path === item.to }">
+                 <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index" :to="item.to"
+                    :class="{ active: $route.path === item.to }" style="">
                     {{ item.text }}<br>
                  </router-link>
                 </div>
@@ -85,24 +84,17 @@
               </template>
             </ProjectLinks>
           </div>
-          <!--
-        <div style="padding-top: 3em; background-color: #fff;">
-          <h2 style="color: black;"> Featuring the Cowculator </h2>
-          <p> Go to the <router-link class="text-links-no-underline" to="/projects/cowculator">cowculator page</router-link>
-            for the full experience.</p>
-          <UseCalc></UseCalc>
-          </div>
-        --> 
+         
         </div>
       </div>
       <!-- Aside area begins  #2d2d2d; slate black color -->
       <AsideContent class="aside-low-resolution" style="background: #fff; z-index: 1;">
         <template v-slot:aside-content>
-          <p class="aside-text loading">Nothing in this section</p>
+          <p class="aside-text loading">Aside area</p>
           <figure style="display: inline-block;">
             <img style="max-width: 250px;" :src="birdDrawing" alt="Bird Drawing">
-            <figcaption class="aside-text" style="display: block;"><i>Except this bird I created using some customized Python code and a stable diffusion model!
-                </i><br>Chirp chirp chirp!</figcaption>
+            <figcaption class="aside-text" style="display: block;"><i>
+                Chirp chirp chirp!</i></figcaption>
           </figure>
         </template>
       </AsideContent>
@@ -259,20 +251,35 @@ export default {
 <style scoped>
 /* @import "~bootstrap/dist/css/bootstrap.css"; */
 #body {
-  background: rgb(240, 240, 240);
+  background:  #fff;
 }
 .custom-background-home-page {
   background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
 }
-.links-div-container {  
-  padding-left: 1em;
-  padding-right: 1em;
-  display: inline-block;
+
+.custom-color{
+  color: rgb(255, 255, 255) !important; /* overrides the components default values of '#fff' */
+}
+
+.projects-header{
+  font-size: 2em; padding-bottom: 0.25em; padding-top: 0.5em; padding-left: 1.05em; color:#fff; text-align: left;
+}
+
+.button-35:hover {
+  box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;  
+}
+
+.text-links {
+  color: rgb(240, 197, 117);  
+}
+.links-div-container {    
+  display: inline-block;  
 }
 .on-hover-projects {
   text-decoration: none;
   padding-right: 0.25em;
-  padding-left: 0.25em;  
+  padding-left: 0.25em;   
+  color: red;
 }
 .on-hover-projects:visited {
   text-decoration: none;  
@@ -280,27 +287,27 @@ export default {
 }
 .on-hover-projects:hover {  
   color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.33);
 }
 .on-hover-projects:nth-child(odd) {
-  border-right: 2px solid #ff5959; 
+  border-right: 2px solid rgb(240, 197, 117); 
   padding-left: 0.315em; 
 }
 .on-hover-projects:nth-child(even) {
-  border-left: 2px solid #ff5959;  
+  border-left: 2px solid rgb(240, 197, 117);;  
 }
-.route-styling {
-  /* to fix bootstrap link styling */  
+.route-styling {  
+  min-width: 20vw;
+
   line-height: 1.15;
   text-decoration: none;
   display: block;
   text-align: left;
   font-size: 2.25em;
   padding: 0.5em;  
-  border-radius: 0.33em;
-  max-width: 11em;
-  background: rgba(0, 9, 139, 0.25);
-  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 0.33em;  
+  background: rgba(0, 0, 75, 0.5);
+  border: 0.15rem solid rgba(255, 255, 255, 1);
 }
 .route-styling a{  
   color: rgb(255, 255, 255);  
@@ -308,8 +315,8 @@ export default {
 }
 .route-styling a:hover{  
   color: #ffffff; 
-  border-top: 2px solid #ff5959;
-  border-bottom: 2px solid #ff5959;
+  border-top: 2px solid rgb(240, 197, 117);
+  border-bottom: 2px solid rgb(240, 197, 117);
 }
 .main-text-container {
   display: flex;
@@ -338,7 +345,8 @@ export default {
 }
 .loading {
   font-family: sans-serif;
-  font-size: 1.25em;
+  font-size: 1.25em;  
+  padding-left: 1em;
 }
 .loading:after {
   display: inline-block;
@@ -414,19 +422,19 @@ export default {
 
 @media only screen and (max-width: 800px) {
   .links-div-container {
-    padding-left: 1em;
-    padding-right: 1em;
-    display: inline-block;
+   
+    
   }
   .route-styling {
     font-size: 1.75em;
+    min-width: 66vw;
   }
   .hide-button-low-resolution {
     display: none;
   }
   .main-text-container {
-    border-right: 8px solid rgba(255, 255, 255, 0.9);
-    border-left: 8px solid rgba(255, 255, 255, 0.9);
+    border-right: 1em solid rgba(255, 255, 255, 0.9);
+    border-left: 1em solid rgba(255, 255, 255, 0.9);
   }
 }
 </style>

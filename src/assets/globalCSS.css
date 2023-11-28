@@ -160,7 +160,7 @@ h1 {
   touch-action: manipulation;
 }
 .button-35:hover {
-  box-shadow: #6aff64 0 0 0 2px, transparent 0 0 0 0;  
+  box-shadow: #00ddff 0 0 0 2px, transparent 0 0 0 0;  
 }
 .box {
   padding: 80px 0;

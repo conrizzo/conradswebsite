@@ -17,7 +17,7 @@ export default {
 <style scoped>
 aside {
   background-color: #ffffff;
-  border-left: 2px solid #ff5959;  
+  border-left: 2px solid rgb(240, 197, 117);;  
   padding: 2em;
 }
 

@@ -43,19 +43,12 @@ export default {
 }
 
 /* how to pin the nav to the top of the page */
-nav {
-  top: 0;
-  /* Position the navbar at the top of the page */
-  width: 100%;
-  /* Full width */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
+nav {  
+  padding-left: 1em;
   /* padding: 0.3em 0.25em 0.3em 0.25em; */
   font-size: 1.25em;
   background-color: rgb(255, 255, 255);
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 nav a {
