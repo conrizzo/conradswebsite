@@ -8,14 +8,13 @@
         <h1 class="title">Skat (under construction...)</h1>
         <br>
       <div style="background-color: rgba(0,0,0,0.5); padding: 0.5em; padding-top: 1.5em; max-width: auto;">
-        <p style="color: #fff;" class="paragraph-text">
-        This project was started <b>20/11/2023</b>... 
-        <br>&nbsp;&nbsp;Made with Vue.js, JavaScript, TypeScript, and object oriented programming
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Will be a <a class="text-links" href="https://en.wikipedia.org/wiki/Skat_(card_game)">Skat</a> game when finished?
+
+        <p style="color: #fff;" class="paragraph-text">This project was started <b>20/11/2023</b>... 
+          <br><span style="margin-left: 1em; display: inline-block;">Made with Vue.js, JavaScript, TypeScript and Object-oriented programming</span>
+          <br><span style="margin-left: 2em; display: inline-block;">Will be a <a class="text-links" href="https://en.wikipedia.org/wiki/Skat_(card_game)">Skat</a> game when finished?</span>
         </p>
 
-        <p style="color: #fff;" class="paragraph-text">
+          <p style="color: #fff;" class="paragraph-text">
           
 
         </p>
@@ -34,7 +33,7 @@
     <div class="input-container">
       <div>
           <label style="margin-right: 0.3em;" for="inputField"><b>Make your bid:</b></label>
-          <input class="custom-input" type="text" id="inputField" v-model="bid" :disabled="winningBid"/>
+          <input class="custom-input" type="text" id="inputField" v-model="this.player1.bid" :disabled="winningBid"/>
           
 
           <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
@@ -54,19 +53,19 @@
         <button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Pass, don't take cards</button>
 
       </div>   
-        <div v-if="validBid">You submitted a valid bid of: <b>{{ bid }}</b>
+        <div v-if="validBid">You submitted a valid bid of: <b>{{ this.player1.bid }}</b>
           <br>
           <br>
-          Player 2 bids: <b>{{ opponentBid }}</b>
+          Player 2 bids: <b>{{ this.player2.bid }}</b>
           <br>
           <br>
-          Player 3 bids: <b>{{ opponentTwoBid }}</b>
+          Player 3 bids: <b>{{ this.player3.bid}}</b>
           <br>
           <br>
           
         </div>
         <div v-if="winningBid">Your bid of {{ bid }} wins!</div>
-        <div v-else-if="opponentBid !== 'pass' || opponentTwoBid !== 'pass'">
+        <div v-else-if="this.player1.pass !== true || this.player2.pass !== true">
           {{ biddingMessage }}
           <button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em;" @click="this.stopBid();">Stop bidding</button>
         </div>
@@ -178,20 +177,15 @@ export default {
       player2: {cards:[]},
       player3: {cards:[]},
       
-      player1Cards: [],
-      player2Cards: [],
-      player3Cards: [],
-      player1Pass: false,
-      player2Pass: false,
-      player3Pass: false,
+     
+    
       dealer: 0,
       bidsAllowed: [18, 20, 22, 23, 24, 27, 30, 33, 35, 36, 40, 44, 45, 46, 48, 50, 54, 55, 59, 60],
       currentOpponentBids: [],
       bid: 0,
       lastBid: -1,
       validBid: false,
-      opponentBid: 'pass',
-      opponentTwoBid: 'pass',
+      
 
       winningBid: false,
 
@@ -240,7 +234,9 @@ export default {
         return !(holder.includes(card[0]) && holder.includes(card[1]));
       });
 
+      // remove actual visual card from the screen
       this.imagesOfCardsInhand.splice(index, 1);
+
       //console.log(this.imagesOfCardsInhand);
       /*
       for (let i = 0; i < this.imagesOfCardsInhand.length; i++) {
@@ -295,18 +291,19 @@ export default {
       let isSixtyIncluded = this.currentOpponentBids.includes(60);
       // opponenet computers bid until one wins or passes
       while ((this.opponentBid !== 'pass' || this.opponentTwoBid !== 'pass') || isSixtyIncluded) {
-        this.firstOpponentBid();
+        this.opponent();
       }
       
 
     },
     placeBid() {   
-
-      if (this.bidsAllowed.includes(parseInt(this.bid)) && (this.bid > this.lastBid)) {
+      console.log(this.player1.bid)
+      if (this.bidsAllowed.includes(parseInt(this.player1.bid)) && (this.player1.bid > this.lastBid)) {
+        // reveals more information for step 2 of the game
         this.validBid = true;
-        this.lastBid = this.bid;
+        this.lastBid = this.player1.bid;
         // run logic for opponents bid
-        this.firstOpponentBid();
+        this.opponent(2);
         // logic to make bid
 
       } else if (this.bid <= this.lastBid) {
@@ -315,6 +312,20 @@ export default {
         alert("Please enter a valid bid, they are: " + this.bidsAllowed)
       }     
 
+    },
+    generateRandomBoolean() {
+      const randomBoolean = Math.random() < 0.5; // Generates random true or false
+      return randomBoolean;
+    },
+    opponent(player) {
+      console.log(player)
+      this.player1.bid
+      // player 2 is the computer
+      // player 3 is the computer
+      
+      const randomBoolean = this.generateRandomBoolean();
+      console.log("Random", randomBoolean)
+       
     },
     takeCardsOrPass() {
       // if they take the cards, add them to their hand
@@ -328,66 +339,8 @@ export default {
       }         
         
     },
-    firstOpponentBid() {
-      // decide if they pass or not
-      if (this.player2Pass !== true) {
-        this.secondOpponentBid();        
-        return;
-      }
-
-      let pass = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
-      if (pass === 0) {
-        this.opponentBid = "pass";
-        this.secondOpponentBid();
-      } else {
-
-        // set this to 1 higher than the bid
-        let index = this.bidsAllowed.indexOf(parseInt(this.bid));
-
-        // where index is the minimum
-        //let randomIndex = Math.floor(Math.random() * (this.bidsAllowed.length - index)) + index;
-        let randomIndex = index + 1;
-        this.opponentBid = this.bidsAllowed[randomIndex];
-
-        this.currentOpponentBids.push(['p2', this.opponentBid]);
-
-
-        this.submitButtonText = "Submit a new higher bid?";
-
-        if (this.player3Pass !== true) {
-          this.secondOpponentBid();
-        }
-      }
-    },
-    secondOpponentBid() {
-      // decide if they pass or not
-      let pass = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
-      if (pass === 1) {
-        this.opponentTwoBid = "pass";
-        this.player3Pass = true;
-
-        if (this.opponentBid === 'pass' & this.opponentTwoBid === 'pass') {
-          this.winningBid = true;
-        }
-        
-      } else {
-        // set this to 1 higher than the bid
-        let index = this.bidsAllowed.indexOf(parseInt(this.bid)) + 1;
-       
-        // where index is the minimum
-        let randomIndex = index + 1;
-        this.opponentTwoBid = this.bidsAllowed[randomIndex];
-
-        this.currentOpponentBids.push(['p3', this.opponentTwoBid]);
-
-        // change message 
-        this.submitButtonText = "Submit a new higher bid?";
-      }
-      // compare bids
-      if ((this.opponentBid > this.bid) || (this.opponentTwoBid > this.bid)) {
-        //this.winningBid = false;
-      }
-    },
+    
+    
     displayInfo(p,c,v) {
      console.log('Player Information: \n' + `Player: ${p}\nCards: ${c}\nValues: ${v}`);
      

@@ -3,6 +3,8 @@ export interface Player {
   name: string;
   cards: any[];
   card_values: number;
+  pass: boolean;
+  bid: number;
   displayInfo(): void;
 }
 
@@ -17,12 +19,18 @@ export class Player {
   name: string;
   cards: any[];  
   card_values: number;
+  pass: boolean;
+  bid: number;
 
-  constructor(name: string, cards: any[], card_values: number) {
+  constructor(name: string, cards: any[], card_values: number, pass: boolean = false, bid: number = 0) {
     this.name = name;
     this.cards = cards;    
     this.card_values = card_values;
+    this.pass = pass;
+    this.bid = bid;
   }
+
+  
 
   
 }

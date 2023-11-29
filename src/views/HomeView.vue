@@ -76,8 +76,8 @@
 
                 <div class="route-styling">
                  <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index" :to="item.to"
-                    :class="{ active: $route.path === item.to }" style="">
-                    {{ item.text }}<br>
+                  :class="{ active: $route.path === item.to }">
+                  <span v-html="item.text"></span><br> <!-- Renders html in the project links too! -->
                  </router-link>
                 </div>
 
@@ -258,6 +258,11 @@ export default {
 }
 
 .custom-color{
+  color: #606060 !important; /* overrides the components default values of '#fff' */
+  
+}
+
+.custom-color:hover{
   color: rgb(255, 255, 255) !important; /* overrides the components default values of '#fff' */
 }
 
@@ -279,7 +284,7 @@ export default {
   text-decoration: none;
   padding-right: 0.25em;
   padding-left: 0.25em;   
-  color: red;
+  
 }
 .on-hover-projects:visited {
   text-decoration: none;  
@@ -287,14 +292,14 @@ export default {
 }
 .on-hover-projects:hover {  
   color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.33);
+  background-color: rgb(74, 162, 242) ;
 }
 .on-hover-projects:nth-child(odd) {
-  border-right: 2px solid rgb(240, 197, 117); 
+  border-right: 2px solid #606060; 
   padding-left: 0.315em; 
 }
 .on-hover-projects:nth-child(even) {
-  border-left: 2px solid rgb(240, 197, 117);;  
+  border-left: 2px solid #606060;  
 }
 .route-styling {  
   min-width: 20vw;
@@ -306,7 +311,7 @@ export default {
   font-size: 2.25em;
   padding: 0.5em;  
   border-radius: 0.33em;  
-  background: rgba(0, 0, 75, 0.5);
+  background: rgb(255, 255, 255);
   border: 0.15rem solid rgba(255, 255, 255, 1);
 }
 .route-styling a{  
@@ -315,8 +320,8 @@ export default {
 }
 .route-styling a:hover{  
   color: #ffffff; 
-  border-top: 2px solid rgb(240, 197, 117);
-  border-bottom: 2px solid rgb(240, 197, 117);
+  border-top: 2px solid #606060;
+  border-bottom: 2px solid #606060;
 }
 .main-text-container {
   display: flex;

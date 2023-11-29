@@ -7,7 +7,7 @@
                 
                     <router-link v-for="(item, index) in links" :key="index" :to="item.to"
                     :class="{ active: $route.path === item.to }">
-                    {{ item.text }}<br>
+                    <span v-html='item.text'></span><br>
                     </router-link>            
 
                 </template>
