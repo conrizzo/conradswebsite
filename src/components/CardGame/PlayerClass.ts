@@ -22,7 +22,7 @@ export class Player {
   pass: boolean;
   bid: number;
 
-  constructor(name: string, cards: any[], card_values: number, pass: boolean = false, bid: number = 0) {
+  constructor(name: string, cards: any[], card_values: number, pass: boolean = false, bid: number = 18) {
     this.name = name;
     this.cards = cards;    
     this.card_values = card_values;

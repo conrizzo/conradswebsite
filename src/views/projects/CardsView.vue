@@ -53,18 +53,25 @@
         <button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Pass, don't take cards</button>
 
       </div>   
-        <div v-if="validBid">You submitted a valid bid of: <b>{{ this.player1.bid }}</b>
+        <div v-if="validBid">You submitted a valid bid of: 
+          <b>{{ this.player1.bid }}</b>
           <br>
           <br>
-          Player 2 bids: <b>{{ this.player2.bid }}</b>
+                <div v-if="this.player2.pass === false">
+                  Player 2 bids: <b>{{ this.player2.bid }}</b>
+                </div>
+                <div v-else> Player 2: Pass</div>
           <br>
           <br>
-          Player 3 bids: <b>{{ this.player3.bid}}</b>
+                <div v-if="this.player3.pass === false">
+                  Player 3 bids: <b>{{ this.player2.bid }}</b>
+                </div>
+                <div v-else> Player 3: Pass</div>
           <br>
           <br>
           
         </div>
-        <div v-if="winningBid">Your bid of {{ bid }} wins!</div>
+        <div v-if="winningBid">Your bid of {{ this.player1.bid }} wins!</div>
         <div v-else-if="this.player1.pass !== true || this.player2.pass !== true">
           {{ biddingMessage }}
           <button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em;" @click="this.stopBid();">Stop bidding</button>
@@ -319,12 +326,32 @@ export default {
     },
     opponent(player) {
       console.log(player)
-      this.player1.bid
+      
       // player 2 is the computer
       // player 3 is the computer
       
-      const randomBoolean = this.generateRandomBoolean();
+      let randomBoolean = this.generateRandomBoolean();
+      
+      let highestBid = Math.max(this.player1.bid, this.player2.bid, this.player3.bid);
+
       console.log("Random", randomBoolean)
+      if (randomBoolean === true && this.player2.bid !== "Pass!") {
+        this.player2.bid = this.bidsAllowed.find(bid => bid > highestBid);
+      } else {
+        this.player2.pass = true;
+        
+      }
+
+      randomBoolean = this.generateRandomBoolean();
+      if (randomBoolean === true && this.player3.bid !== "Pass!") {
+        this.player3.bid = this.bidsAllowed.find(bid => bid > highestBid);
+      } else {
+        this.player3.pass = true;        
+      }
+
+      if (this.player2.pass === true && this.player3.pass === true) {
+        this.winningBid = true;
+      }
        
     },
     takeCardsOrPass() {

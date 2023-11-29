@@ -23,7 +23,7 @@
           <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
         </div>
 
-        <div id="cloudThree" style="position: absolute; margin-left: 6em; margin-top:10em; opacity: 0.9; z-index: 0;">
+        <div id="cloudThree" style="position: absolute; margin-left: 14em; margin-top:9.5em; opacity: 0.9; z-index: 0;">
           <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
           <div style="transform: rotateY(150deg); float: right; margin-left: 1em; margin-top: 1em; position: absolute;"
@@ -82,7 +82,9 @@
                 </div>
 
               </template>
+              
             </ProjectLinks>
+            
           </div>
          
         </div>
@@ -278,7 +280,7 @@ export default {
   color: rgb(240, 197, 117);  
 }
 .links-div-container {    
-  display: inline-block;  
+  display: inline-block;    
 }
 .on-hover-projects {
   text-decoration: none;
@@ -302,17 +304,17 @@ export default {
   border-left: 2px solid #606060;  
 }
 .route-styling {  
-  min-width: 20vw;
+  min-width: 15vw;
 
   line-height: 1.15;
   text-decoration: none;
   display: block;
   text-align: left;
-  font-size: 2.25em;
+  font-size: 1.8em;
   padding: 0.5em;  
   border-radius: 0.33em;  
   background: rgb(255, 255, 255);
-  border: 0.15rem solid rgba(255, 255, 255, 1);
+  border: 2px solid #606060;
 }
 .route-styling a{  
   color: rgb(255, 255, 255);  
