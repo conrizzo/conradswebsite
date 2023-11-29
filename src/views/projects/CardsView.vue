@@ -76,17 +76,23 @@
         <br>
         
         <div><b>{{ player1.cards.length }} cards are in your hand.</b>
+          <br>
+          {{ this.player1.cards }}
         </div>
        
     </div>
+   
     <div class="cards">
       
       <div class="card-container">
 
           <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
-          <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" class="card-item" :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
-            <img :src="svgFile" alt="SVG Image" />
+          <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" @click="removeImage(index)" class="card-item" :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
+            <img :src="svgFile" alt="" />
+            <!-- alt="" for now so after clicking it is empty -->
+            
           </div>
+          
     
       </div>
       
@@ -110,7 +116,7 @@
           <div v-else><b>Player 3</b> is holding {{ player3.cards.length }} cards.</div>
           <br>
           <b>Skat cards:</b> Unbekannt! Unknown! {{ skat.length }} cards
-        
+          
         </div>
 
         
@@ -193,7 +199,10 @@ export default {
 
       // as object
       //cardValues: {'J': 2,'A': 11,'10': 10,'K': 4,'Q': 3,'9': 0,'8': 0,'7': 0},
+      cardSuitValues: {'spades': 2, 'hearts': 3, 'diamonds': 4, 'clubs': 1},
 
+      // in Skat jack is the trump card in this game format
+      cardRankValues: {'J': 100,'A': 13,'10': 10,'K': 12,'Q': 11,'9': 9,'8': 8,'7': 7},
       // as map
       cardValues: new Map([
         ['J', 2],
@@ -220,6 +229,38 @@ export default {
     }
   },
   methods: {
+    removeImage(index) {
+      
+      console.log('------------', this.imagesOfCardsInhand[index].slice(0, -13).slice(5));
+      // Removes element at the index of the array of images
+      //this.imagesOfCardsInhand.splice(index, 1);
+
+      const holder = this.imagesOfCardsInhand[index].slice(0, -13).slice(5);
+      this.player1.cards = this.player1.cards.filter(card => {
+        return !(holder.includes(card[0]) && holder.includes(card[1]));
+      });
+
+      this.imagesOfCardsInhand.splice(index, 1);
+      //console.log(this.imagesOfCardsInhand);
+      /*
+      for (let i = 0; i < this.imagesOfCardsInhand.length; i++) {
+        
+        let holder = this.imagesOfCardsInhand[index].slice(0, -13).slice(5);
+        this.imagesOfCardsInhand[index].slice(0, -13).slice(5);
+        console.log(holder)
+        if (this.player1.cards && this.player1.cards[i] && (holder.includes(this.player1.cards[i][0]) && holder.includes(this.player1.cards[i][1]))){
+          console.log(holder, this.player1.cards[i][0], this.player1.cards[i][1])
+          
+          
+          //this.player1.cards.slice(i, 1);
+          console.log("TEST", this.player1.cards[i][0], this.player1.cards[i][1], this.player1.cards[i])
+          this.player1.cards.splice(i, 1);
+        }
+        
+      }
+      console.log(this.player1.cards)
+      */
+},
     increaseMarginLeft(symbol) {
       const currentMarginLeft = parseFloat(this.marginLeft);
       if (symbol === '+'){
@@ -272,8 +313,7 @@ export default {
         alert("You need to enter a higher valid bid, it can't be the same number, or lower than the opponents bid: " + this.bidsAllowed)
       } else {
         alert("Please enter a valid bid, they are: " + this.bidsAllowed)
-      }
-      
+      }     
 
     },
     takeCardsOrPass() {
@@ -285,8 +325,7 @@ export default {
           this.player1.cards = this.player1.cards.concat(this.skat);
           this.updateCards();
           this.skat = [];
-      }
-          
+      }         
         
     },
     firstOpponentBid() {
@@ -493,9 +532,12 @@ export default {
 }
 
 .card-item {
-  
+  cursor: grab;
   width: 5em; /* Adjust the width as desired */
   margin-left: 1em;  
+}
+.card-item:hover{
+  filter: brightness(80%);
 }
 
 

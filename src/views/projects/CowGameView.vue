@@ -7,43 +7,32 @@
     <h2 style="z-index: 4; position: absolute; color: #ff5959; float: left; top: 0em;">This page is not currently designed
       for mobile/touchscreen!</h2>
     <!-- @food-returned="handleFoodReturned" -->
-    <CowFood v-for="(object, index) in cowFoodObjects" 
-    :style="{ zIndex: 2 }" 
-    :key="index" 
-    :label="object.label"
-    :initialPosition="object.position" @rect-updated="updateCowFoodRect(index, $event)" 
-    ref="foodObjects" />
+    <CowFood v-for="(object, index) in cowFoodObjects" :style="{ zIndex: 2 }" :key="index" :label="object.label"
+      :initialPosition="object.position" @rect-updated="updateCowFoodRect(index, $event)" ref="foodObjects" />
 
     <!-- @position-updated="updateBallPosition(index, $event)" -->
-    <CowMovingBall v-for="(object, index) in bouncingBallObjects" 
-    :key="index" 
-    :initial-position="object.position"
-    :speed="object.speed" 
-    :setMovementDirection="object.setMovementDirection"
-    @rect-updated="updateBallRect(index, $event)" 
-    ref="ballObjects">
+    <CowMovingBall v-for="(object, index) in bouncingBallObjects" :key="index" :initial-position="object.position"
+      :speed="object.speed" :setMovementDirection="object.setMovementDirection"
+      @rect-updated="updateBallRect(index, $event)" ref="ballObjects">
     </CowMovingBall>
 
     <div v-if="showAboutCowGame">
       <AboutCowGame @close="toggleAboutCowGame" />
     </div>
 
-    <h1 class="unselectable cow-game-text"
-      style="font-size: 1.5em; top: 0em; float: left; position: absolute;"> This is
+    <h1 class="unselectable cow-game-text" style="font-size: 1.5em; top: 0em; float: left; position: absolute;"> This is
       still under
       construction!<br>
     </h1>
-    <p class="unselectable cow-game-text"
-      style="width: 25em; color: #fff;  top: 8em; float: left; position: absolute;">
+    <p class="unselectable cow-game-text" style="width: 25em; color: #fff;  top: 8em; float: left; position: absolute;">
       <b>How to play:</b><br><br>Don't hit the cow food
-      on the electric fence or the fireball! You can only lose if you run out of time or are moving something! 
+      on the electric fence or the fireball! You can only lose if you run out of time or are moving something!
       <br>
       <br>For example: If moving the Onion Rings and the fireball hits the Peanut butter, you lose! Pay attention to where
       all the cowfood is at all times!
     </p>
 
-    <p class="unselectable cow-game-text"
-      style="width: 25em; color: white; top: 25em; position: absolute; ">
+    <p class="unselectable cow-game-text" style="width: 25em; color: white; top: 25em; position: absolute; ">
       Once you move the cow food, a timer starts:
       <b style="color: greenyellow; font-size: 2em;">{{ timeLeft }}</b>
       <br><br>Don't run out of time before the cows get the food or they will be hangry cows! MOOOO!
@@ -65,14 +54,16 @@
         :style="{ left: cowFoodObjects[0].rect?.left + 'px', top: cowFoodObjects[0].rect?.top + 'px' }"
         style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;"
         class="unselectable">
-        <h1 style="color: #ff5959;">The {{ cowFoodObjects[0].label }} collided with the electric fence or fireball! <br>The
+        <h1 style="color: #ff5959;">The {{ cowFoodObjects[0].label }} collided with the electric fence or fireball!
+          <br>The
           cows are sad! You are a bad cow farmer!</h1>
       </div>
       <div v-else-if="hitCowFence && peanutButterHitCowFence"
         :style="{ left: cowFoodObjects[1].rect?.left + 'px', top: cowFoodObjects[1].rect?.top + 'px' }"
         style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;"
         class="unselectable">
-        <h1 style="color: #ff5959;">The {{ cowFoodObjects[1].label }} collided with the electric fence or fireball! <br>The
+        <h1 style="color: #ff5959;">The {{ cowFoodObjects[1].label }} collided with the electric fence or fireball!
+          <br>The
           cows are sad! You are a bad cow farmer!</h1>
       </div>
       <div v-else-if="onionRingsHitCowFence"
@@ -99,24 +90,31 @@
 
     <div style=" margin-left: 27em; padding-top: 54vh;">
       <div v-if="winningMessage">
-          <span style="border-radius: 1em; padding: 0.5em; background-color: #ffd755; margin-right: 3em; margin-left: 3em; position: absolute; top: 3em; left: 1em; font-size: 3em; color: rgb(255, 255, 255);" class="unselectable">
-             {{ customMessage }}<br><br>
-             {{ youTubeCowVideoLink }}
-             <iframe width="560" height="315" src="https://www.youtube.com/embed/uA8dAnlD51o?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </span>
+        <span
+          style="border-radius: 1em; padding: 0.5em; background-color: #ffd755; margin-right: 3em; margin-left: 3em; position: absolute; top: 3em; left: 1em; font-size: 3em; color: rgb(255, 255, 255);"
+          class="unselectable">
+          {{ customMessage }}<br><br>
+          {{ youTubeCowVideoLink }}
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/uA8dAnlD51o?autoplay=1&mute=1"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </span>
       </div>
 
       <!-- generate the pasture -->
       <div class="farm unselectable">
-        <h1 style="padding-top: 1em;" >Cow Pasture</h1>
+        <h1 style="padding-top: 1em;">Cow Pasture</h1>
         <p class="paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow
           pasture filled with hungry cows! (Danger: Some cows may be hangry!)<br>
           The Cows need their food delivered!<br>Deliver the correct food to make the cows happy!</p>
-          <div style="font-size: 2em; padding-right: 5em; color: rgb(179, 255, 0);" v-if="showCowPastureMessage">
-            {{cowPastureMessage}} 
-          </div>
-          <div v-if="showCowPastureMessage===false" style="font-size: 2em; color: rgb(179, 255, 0); padding-left: 5em;">{{ cowPastureMessage }}</div>
-          <div v-if="showCowPastureMessage===false" style="font-size: 2em; color: rgb(179, 255, 0); padding-left: 10em;">Moo!</div>
+        <div style="font-size: 2em; padding-right: 5em; color: rgb(179, 255, 0);" v-if="showCowPastureMessage">
+          {{ cowPastureMessage }}
+        </div>
+        <div v-if="showCowPastureMessage === false" style="font-size: 2em; color: rgb(179, 255, 0); padding-left: 5em;">{{
+          cowPastureMessage }}</div>
+        <div v-if="showCowPastureMessage === false" style="font-size: 2em; color: rgb(179, 255, 0); padding-left: 10em;">
+          Moo!</div>
       </div>
 
 
@@ -125,8 +123,8 @@
     </div>
 
     <button style="background-color: #ff5959; position: absolute; bottom: 1vh; right: 1em;" class="button-35"
-   @click="toggleAboutCowGame">About</button>
-   <!--<button style="background-color: #ff5959; position: absolute; bottom: calc(2vh + 3em); right: 1em;" class="button-35"
+      @click="toggleAboutCowGame">About</button>
+    <!--<button style="background-color: #ff5959; position: absolute; bottom: calc(2vh + 3em); right: 1em;" class="button-35"
     @click="refreshPage">Reset Page</button> -->
   </div>
 </template>
@@ -196,7 +194,7 @@ export default defineComponent({
 
       // if timeLeft is changed make sure to change the first invocation in the updatecowfoodrect function
       timeLeft: 30,
-      cowPastureMessage:"Moo!",
+      cowPastureMessage: "Moo!",
       showCowPastureMessage: false,
 
 
@@ -262,8 +260,8 @@ export default defineComponent({
       }, 1500);
     }, 3000);
 
-    
-  
+
+
   },
   methods: {
     startGameTimerCountDown() {
@@ -318,7 +316,7 @@ export default defineComponent({
         this.winningMessage = true;
         if (this.timeLeft >= 15) {
           this.customMessage = "You WIN! You are a PROFESSIONAL FARMER! It only took you " + (30 - this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
-          
+
         }
         else if (this.timeLeft >= 5) {
           this.customMessage = "You WIN! You are a RESPECTABLE FARMER! It only took you " + (30 - this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
@@ -473,6 +471,7 @@ export default defineComponent({
       }
     },
     /**
+    * This is basically the game loop, it is called every time the user moves a cowFood object
     * Updates the `rect` property of a food object in the `cowFoodObjects` array with a new `DOMRect` value.
     * @param {number} index - The index of the food object in the `cowFoodObjects` array.
     * @param {DOMRect} rect - The new `DOMRect` value of the food object.
@@ -486,7 +485,8 @@ export default defineComponent({
       if (this.winningMessage) {
         return;
       }
-      
+      // Get and set the rect property of the food object in the cowFoodObjects array
+      this.cowFoodObjects[index].rect = rect;
 
       // get the food object from the cowFoodObjects array - this is like a getter
       //const foodObject = this.cowFoodObjects[index] as cowFoodObjectsData;
@@ -496,9 +496,12 @@ export default defineComponent({
       //retrieve the position
       //console.log(this.cowFoodObjects[index].rect?.x, this.cowFoodObjects[index].rect?.y)
 
-      // Get and set the rect property of the food object in the cowFoodObjects array
-      this.cowFoodObjects[index].rect = rect;
+
       //console.log(index, foodObject.rect)
+
+
+      // Limit the food object's position within the viewport
+
 
       // As the user drags the cowFood objects we check for collisions and interactions
       // This could also be called the "game loop" - but it is not a loop, it is a function that is called every time the user moves a cowFood object
@@ -530,12 +533,13 @@ export default defineComponent({
   top: 13vh;
   left: 400px;
   width: 1em;
-  height: 87vh;
+  height: 91vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
   border-radius: 3px;
   opacity: 0.9;
+  overflow: hidden;
 }
 
 .vertical-line-two {
@@ -633,7 +637,7 @@ export default defineComponent({
   position: absolute;
 }
 
-.cow-game-text{
+.cow-game-text {
   line-height: 1.5em;
   font-size: 0.9em;
   padding-left: 2em;
@@ -688,5 +692,6 @@ h2 {
   h2 {
     display: block;
   }
-}</style>
+}
+</style>
 
