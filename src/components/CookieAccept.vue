@@ -9,7 +9,7 @@
            
 
             <p class="text">By
-                using this site you agree to the use of essential <a class="text-links"
+                using this page you agree to the use of essential <a class="text-links"
                     href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
                 stored locally in the browser for website functionality.
                 This site optionally (with a user made account) connects to <a class="text-links"
@@ -21,7 +21,7 @@
             <br>
             <p class="text"><span style="color: #ff5959;">Also:</span> This site is being developed and currently is hosted using <a class="text-links"
                     href="https://pages.github.com/">GitHub Pages</a>. In case the site is not loading or certain features do not work, the code on this site is targeted toward modern web
-                browsers, and the solution may be to update your browser to the newest version!</p>
+                browsers, and the solution may be to update your browser to the newest version.</p>
 
             <!-- Can link to a longer privacy page in the future: There are few websites with advanced features that do not need to reference or store some
                 basic form of data locally on the client side as cookies. This website itself does not store any personally

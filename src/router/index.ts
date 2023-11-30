@@ -20,7 +20,7 @@ const FirebaseTestView = () => import('../views/projects/FirebaseTestView.vue');
 const SortingAlgorithmsView = () => import('../views/projects/SortingAlgorithmsView.vue');
 const RustWebAssemblyView = () => import('../views/projects/RustWebAssemblyView.vue');
 const CardsView = () => import('../views/projects/CardsView.vue');
-
+const GalleryView = () => import('../views/projects/GalleryView.vue');
 
 
 
@@ -104,6 +104,12 @@ const routes = [
     path: '/projects/cards',
     name: 'CardsView',
     component: CardsView,    
+  },
+
+  {
+    path: '/projects/gallery',
+    name: 'Gallery',
+    component: GalleryView,    
   },
 
   {

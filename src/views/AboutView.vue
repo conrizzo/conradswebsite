@@ -7,10 +7,11 @@
     <!-- Main area -->
     <div class="text-container">
       <h1 class="h1-title">About</h1>
+      <article>
       <ul>
         <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is
           totally self-made by me (Conrad) using primarily
-          <a class="text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
+          <a class="text-links" style="background-color: #fff; color: #42b883; padding: 3px; border-radius: 5px;" href="https://vuejs.org/guide/introduction.html"><b>Vue
               3</b></a>
           (Vue.js). It is hosted on
           <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
@@ -38,10 +39,10 @@
           Have practiced more German too, so it is <u>a lot</u> of language learning!
         </li>
       </ul>
-
-      <h2 style="text-align: left;">More info if interested:</h2>
-
-      <p class="paragraph-text break-text" style="padding-top: 1em; border-top: 1px solid rgb(170, 170, 170);">
+      </article>
+      <h2>More info if interested:</h2>
+      <div class="horizontal-line"></div>
+      <p class="paragraph-text break-text">
         This websites focus is to show some projects and other work, plus it's fun to have a website
         made in
         a framework (Vue.js) and be able to build stuff.
@@ -55,21 +56,21 @@
         working on integrating backend development. In July, 2023 I also started learning Rust and some of this website
         now uses Rust compiled into Web Assembly.
       </p>
-      <div>
-        <figure class="center-figure">
+
+      
+        <figure class="figure-location">
           <img class="img-container float-left" :src="imagePath" alt="Coding Languages used" />
           <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly Vue.js. As of June
             2023, currently starting to add in TypeScript support.
             Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
           </figcaption>
         </figure>
-      </div>
-      <br>
-
-      <h2 style="text-align: left;">About the Vue Routing with GitHub Pages:</h2>
-
+      
+      
+      <h2>About the Vue Routing with GitHub Pages:</h2>
+      <div class="horizontal-line"></div>
       <div>
-        <p class="paragraph-text break-text" style="padding-top: 1em; border-top: 1px solid rgb(170, 170, 170);">
+        <p class="paragraph-text break-text">
           Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods
           to work properly.
           For example, in order to deploy this website, the command <i>"deploy": "copy dist\index.html dist\404.html
@@ -99,11 +100,11 @@
     <AsideContent style="background-color: rgb(40, 40, 40);">
       <template v-slot:aside-content >
         
-        <h3 class="aside-text" style="margin-top: 4.5em; color: #c7c7c7;">
-          This aside is a <a class="text-links" href="https://vuejs.org/guide/components/slots.html">slot</a>:
+        <h3 class="" style="">
+          Bird of the Month: Kohlmeise
         </h3>
 
-        <img style="border-radius: 0.5em; width: 200px;" :src="birdPicture" alt="Kohlmeise picture">
+        <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
         <p class="aside-text" style="color: #c7c7c7"><a class="text-links" href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
           (name in German, English name is Great Tit)
           photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
@@ -170,13 +171,15 @@ nav{
   background-color: rgb(40, 40, 40);
 }
 
+
+
 figure {
+  float: right;
   display: flex;
   flex-flow: column;
-  padding: 0.5em;
-  
+  padding: 0.5em;  
   padding-bottom: 0em;
-  max-width: auto;
+  max-width: 22rem;
   margin: auto;
   font-size: 0.9em;
   text-align: center;
@@ -185,12 +188,7 @@ figure {
   border-radius: 5px;
   line-height: 1.2;
 }
-.center-figure {
-  display: flex;
-  justify-content: center;
-  align-items: center;  
-  
-}
+
 .img-container {
   max-width: 350px;
   border-radius: 0.5em;  
@@ -199,11 +197,11 @@ figure {
   
 }
 .h1-title {
-  text-align: center;
+  
   margin-top: 1em;
   margin-bottom: 0em;
   color: #ffffff;
-  /*background: rgb(0, 204, 95);*/
+ 
   font-size: 3em;
   border-radius: 0.2em;
   /* margin-top: -0.33em;  */
@@ -212,9 +210,15 @@ figure {
 }
 
 h2 {
-  padding-left: 4em;
+  text-align: left;
   color: #fff;
 }
+.horizontal-line {
+  border: none;
+  border-top: 1px solid #ffffff;
+  margin: 0.5em 0;
+}
+
 .background-color-about-page {
   background-color: #ffffff;
 }
@@ -224,19 +228,41 @@ h2 {
   margin-right: 0.5em;
 }
 .text-container {
-  padding-left: 7em;
-  padding-right: 7em;
+  padding-left: 4em;
+  padding-right: 4em;
   background-color: rgb(40, 40, 40);
 }
 
-
-.figure-caption{
-  text-align: left;  
-  margin-left: 6em;
-  margin-left: 6em;
+.figure-location{
+  padding: 1em;
 }
 
-@media only screen and (max-width: 1200px) {
+.figure-caption{
+  
+  text-align: left;
+ 
+ 
+}
+
+.bird {
+  border-radius: 0.5em; width: 100%;
+}
+
+h3{
+  margin-top: 4.5em; 
+  color: #c7c7c7;
+}
+
+@media only screen and (max-width: 1600px){
+  .bird{
+    max-width: 20rem;
+  }
+  h3{
+    margin-top: 0em;
+  }
+}
+
+@media only screen and (max-width: 40vw) {
   .text-container {
     padding-left: 0.25em;
     padding-right: 0.25em;
@@ -247,12 +273,10 @@ h2 {
 }
 
 @media only screen and (max-width: 1000px) {
-  h2 {
-      padding-left: 1.3em;
-    }
-    .figure-caption{  
-    margin-left: 1.6em;
-    margin-right: 1.6em;
-  }  
+  
+   figure{
+    float: none;
+   }
+   
 }
 </style>

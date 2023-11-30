@@ -2,14 +2,14 @@
   <div id="body" style="padding-top: 2.7em;">
     <!-- negative margin here to fill in space in nav on home page -->    
     <!-- Main area -->
-    <div class="main-content custom-background-home-page">
-  
-      <!-- generate clouds -->
+    <main class="main-content custom-background-home-page">
+    
+        <!-- generate clouds -->
       <div style="margin-bottom: 3em;">
 
-        <button class="button-35 hide-button-low-resolution"
-          style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
-          @click="toggleClouds"><span v-if='moveTheClouds'>Stop</span><span v-else>Move</span>&nbsp;Clouds</button>
+          <button class="button-35 hide-button-low-resolution"
+            style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
+            @click="toggleClouds"><span v-if='moveTheClouds'>Stop</span><span v-else>Move</span>&nbsp;Clouds</button>
 
         <div id="cloudOne" style="position: absolute; margin-left: 2em; margin-top: 3em; opacity: 0.8;">
           <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
@@ -29,80 +29,80 @@
           <div style="transform: rotateY(150deg); float: right; margin-left: 1em; margin-top: 1em; position: absolute;"
             class="cloud"></div>
         </div>
-        <!-- Title -->
+          <!-- Title -->
 
-        <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
-        
+          <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
+          
         <div style="position: relative; color: #fff; padding-bottom: 0.25em; padding-top: 0.25em; line-height: 1.4;">(The main heading tokens &uarr; are
           shuffled as each character is added using
           <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code
           compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>)
         </div>
-        <!-- Main bullets -->
+          <!-- Main bullets -->
         <div class="main-text-container">
 
-          <ul style="text-align: left; color: white;" class="mb-3">
-            <li style="margin-bottom: 1em">
-              <span style="color: #fff; font-size: 1.25em;">
-                This is a website project made by <a class="text-links"
-                  href="https://github.com/conrizzo"><b>Conrad</b></a>
-              </span>
-            </li>
-            <li style="margin-bottom: 1em">
-              <span style="color: #fff; font-size: 1.25em;">
-                For more specific info about this website please read the <router-link class="text-links"
-                   to="/about">About</router-link> page
+            <ul style="text-align: left; color: white;" class="mb-3">
+              <li style="margin-bottom: 1em">
+                <span style="color: #fff; font-size: 1.25em;">
+                  This is a website project made by <a class="text-links"
+                    href="https://github.com/conrizzo"><b>Conrad</b></a>
                 </span>
-            </li>
-            <li>
-              <span style="color: #fff; font-size: 1.25em;">
-                <a class="text-links"
-                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and enthusiasm helped make this website
-              </span>
-            </li>
-          </ul>
-
+              </li>
+              <li style="margin-bottom: 1em">
+                <span style="color: #fff; font-size: 1.25em;">
+                  For more specific info about this website please read the <router-link class="text-links"
+                    to="/about">About</router-link> page
+                  </span>
+              </li>
+              <li>
+                <span style="color: #fff; font-size: 1.25em;">
+                  <a class="text-links"
+                    href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and enthusiasm helped make this website
+                </span>
+              </li>
+            </ul>
         </div>
-       
+        
         <div>
           <div class="links-div-container" style="position: relative; z-index: 1;">
             <!-- Projects ({{ this.itemsLength }})</h3> -->
             <ProjectLinks :links="links">
               <template  v-slot="{ links }">
+
                 <h3
                   class="projects-header">
                   Projects: {{ links.length }}
                 </h3>
 
                 <div class="route-styling">
-                 <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index" :to="item.to"
+                  <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index" :to="item.to"
                   :class="{ active: $route.path === item.to }">
                   <span v-html="item.text"></span><br> <!-- Renders html in the project links too! -->
-                 </router-link>
+                  </router-link>
                 </div>
 
               </template>
-              
             </ProjectLinks>
             
-          </div>
-         
+          </div>         
         </div>
-      </div>
-      <!-- Aside area begins  #2d2d2d; slate black color -->
-      <AsideContent class="aside-low-resolution" style="background: #fff; z-index: 1;">
-        <template v-slot:aside-content>
-          <p class="aside-text loading">Aside area</p>
-          <figure style="display: inline-block;">
-            <img style="max-width: 250px;" :src="birdDrawing" alt="Bird Drawing">
-            <figcaption class="aside-text" style="display: block;"><i>
-                Chirp chirp chirp!</i></figcaption>
-          </figure>
-        </template>
-      </AsideContent>
-    </div>
+
+        </div>
+        <!-- Aside area begins  #2d2d2d; slate black color -->
+        <AsideContent class="aside-low-resolution" style="background: #fff; z-index: 1;">
+          <template v-slot:aside-content>
+            <p class="aside-text loading">Aside area</p>
+            <figure style="display: inline-block;">
+              <img style="max-width: 80%; border-radius: 1em;" :src="birdDrawing" alt="Bird Drawing">
+              <figcaption class="aside-text" style="display: block;"><i>
+                  Chirp chirp chirp!</i></figcaption>
+            </figure>
+          </template>
+        </AsideContent>
+    </main>
   </div>
   
+    
   <FirstFooter />
 
 </template>
@@ -115,7 +115,7 @@ import AsideContent from "@/components/FirstAside.vue";
 
 import FirstFooter from "@/components/FirstFooter.vue";
 
-import ProjectLinks from '@/components/ProjectLinks.vue'
+import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
 
 import "@/assets/globalCSS.css";
 //import UseCalc from "@/components/UseCalc.vue";
@@ -254,6 +254,7 @@ export default {
 /* @import "~bootstrap/dist/css/bootstrap.css"; */
 #body {
   background:  #fff;
+  min-height: 88.9vh;
 }
 .custom-background-home-page {
   background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
@@ -281,6 +282,7 @@ export default {
 }
 .links-div-container {    
   display: inline-block;    
+  
 }
 .on-hover-projects {
   text-decoration: none;
@@ -294,7 +296,7 @@ export default {
 }
 .on-hover-projects:hover {  
   color: #ffffff;
-  background-color: rgb(74, 162, 242) ;
+  background-color: rgb(200, 200, 200);
 }
 .on-hover-projects:nth-child(odd) {
   border-right: 2px solid #606060; 

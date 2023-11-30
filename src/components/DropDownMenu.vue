@@ -16,7 +16,7 @@
         </div>
     </template>
 <script>
-import ProjectLinks from '@/components/ProjectLinks.vue'
+import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
 
 export default {
     name: "DropdownMenu",

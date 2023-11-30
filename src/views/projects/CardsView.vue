@@ -497,13 +497,14 @@ export default {
 
 /* Your CSS goes here */
 .cards {
-  left: -8em;
+  
   display: flex;
   justify-content: center; /* Align the content to the left */
   align-items: center;  
   z-index: 4;  
-  top: 60vh;
+  top: 55vh;
   position: relative;
+  transform:scale(0.8); 
 }
 
 .card-container {
@@ -515,6 +516,7 @@ export default {
   cursor: grab;
   width: 5em; /* Adjust the width as desired */
   margin-left: 1em;  
+  
 }
 .card-item:hover{
   filter: brightness(80%);
@@ -600,10 +602,18 @@ export default {
   }
   .cards { 
   top: 130vh; 
+  width: 130%;
+  left: -17vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+  
   position: absolute;
   overflow: hidden;
   
-  width: calc(100% + 11em);
+  /*min-width: calc(100% + 10em); */
   
   }
   .input-container{    

@@ -12,18 +12,20 @@
   <router-view />
 
   <!-- user accepts privacy agreement -->
-  <CookieAccept />
+  <!-- Removed this for now, the only cookies the site has is if someone uses firebase so I will put this notification on that page exclusively -->
+  <!-- <CookieAccept /> -->
 </template>
 
 <script>
 // import the dropdown menu into the nav bar
 import DropDownMenu from "@/components/DropDownMenu.vue";
-import CookieAccept from "@/components/CookieAccept.vue";
+
+//import CookieAccept from "@/components/CookieAccept.vue";
 
 export default {
   name: "App",
   components: {
-    DropDownMenu, CookieAccept,
+    DropDownMenu, /*CookieAccept,*/
   }, computed: {
     showNav() {
       // Check if the current route is not the cowGame route
@@ -76,6 +78,7 @@ body {
   /* padding-top: 1.33em; */
   /* background-color: rgb(100, 100, 100); */
   background-color: rgb(240, 240, 240);
+  min-height: 100vh;
 }
 
 /* BELOW this comment adjusts the default scrollbar on the right */
