@@ -73,7 +73,7 @@
 
         <div class="grid-container">
           <div class="grid-item">
-            <div>
+            <div class="project-area">
                 <!-- Projects ({{ this.itemsLength }})</h3> -->
                 <ProjectLinks :links="links">
                   <template v-slot="{ links }">
@@ -95,7 +95,7 @@
           </div>
           <div class="grid-item">
             
-              <img v-if="isHovered" style="max-height: 18.3em; padding-top: 2.15em; max-width: 100%; display: block;" class="hover-image" :src="hoveredImage" alt="Hover Image">
+              <img v-if="isHovered" style="" class="hover-image" :src="hoveredImage" alt="Hover Image">
            
           </div>
         </div>
@@ -390,18 +390,37 @@ export default {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   /* Two columns with equal width */
   gap: 1em;
   /* No gap between grid items */
 }
-
+.hover-image{
+  max-height: 18.3em; padding-top: 2.15em; max-width: 100%; display: block;
+}
+@media (max-width: 50em) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+  .hover-image{
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+  }
+  .project-area{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  }
+}
 /* Style for grid items */
 .grid-item {
-  border: none;
+  border: 1px solid red;;
   /* Border for visualization */
-
+ 
 }
+
 
 .title-spacing {
   position: relative;
