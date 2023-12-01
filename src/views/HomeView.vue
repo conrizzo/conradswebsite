@@ -23,7 +23,7 @@
           <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
         </div>
 
-        <div id="cloudThree" style="position: absolute; margin-left: 14em; margin-top:9.5em; opacity: 0.9; z-index: 0;">
+        <div id="cloudThree" >
           <div style="margin-left: 3em; position: absolute;" class="cloud"></div>
           <div style="float: right; margin-right: 2em; position: absolute;" class="cloud"></div>
           <div style="transform: rotateY(150deg); float: right; margin-left: 1em; margin-top: 1em; position: absolute;"
@@ -89,7 +89,7 @@
 
         </div>
         <!-- Aside area begins  #2d2d2d; slate black color -->
-        <AsideContent class="aside-low-resolution" style="background: #fff; z-index: 1;">
+        <AsideContent style="background: #fff; z-index: 1;">
           <template v-slot:aside-content>
             <p class="aside-text loading">Aside area</p>
             <figure style="display: inline-block;">
@@ -141,7 +141,7 @@ export default {
       i2: null,
       i3: null,
       clouds: [],
-      coordX: [6, 9, 2],
+      coordX: [15, 9, 2],
       inputString: "Welcome to Conrad's Website",
       name: "",
       inputStringShuffled: "",
@@ -412,28 +412,27 @@ export default {
   right: 20px;
 }
 
-/* Adjust the padding for mobile resolution for this block */
-@media only screen and (max-width: 1500px) {
-  .main-text-container {
-    padding-right: 0.5em;
-    padding-left: 1.25em;
-  }
+#cloudThree {
+  position: absolute; margin-left: 15em; margin-top:9.5em; opacity: 0.9; z-index: 0;
 }
 
-@media only screen and (max-width: 880px) {
+
+
+@media only screen and (max-width: 50rem) {
   .title-spacing {
     color: #fff;
     text-align: center;
     margin-left: 0em;
     margin-top: 3.5em;
   }
-}
 
-@media only screen and (max-width: 800px) {
+  #cloudThree {
+  position: absolute; margin-left: 0em; margin-top:9.5em; opacity: 0.9; z-index: 0;
+  }
   
   .route-styling {
     font-size: 1.75em;
-    min-width: 66vw;
+    
   }
   .hide-button-low-resolution {
     display: none;

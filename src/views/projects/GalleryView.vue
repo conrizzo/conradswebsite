@@ -1,7 +1,7 @@
 <template>
     
     <main id="body" class="testimonial-grid">
-    <article class="testimonial grid-col-span-2 flow bg-primary-400 quote text-neutral-100">
+    <article class="testimonial  flow bg-primary-400 quote text-neutral-100">
       <div class="flex">
         <div>
             <img src="@/images/Kohlenmeise.jpg" alt="Kohlmeise picture">
@@ -58,7 +58,7 @@
         while doing something I love. ”
       </p>
     </article>
-    <article class="testimonial grid-col-span-2 flow bg-secondary-500 text-neutral-100">
+    <article class="testimonial  flow bg-secondary-500 text-neutral-100">
       <div class="flex">
         <div>
           <img class="border-primary-400" src="" alt="">
@@ -103,7 +103,7 @@
         100% recommend! ”
       </p>
     </article>
-    <h1 style="color: red;"> Learning things with grid with this code </h1>
+    <h1 style="color: red;"> Using this to format things - and set up code </h1>
   </main>
 </template>
   
@@ -316,8 +316,9 @@ h3 {
       grid-template-areas:
       "one one"
       "two three"
-      "five five"
-      "four four";
+      "four five";
+      
+      
   }
 }
 
@@ -325,26 +326,27 @@ h3 {
   .testimonial-grid {
     grid-template-areas:
      'one one'
-     'two five'
-     'three five'
-     'four four';
+     'two three'
+     'two three'
+     'four five'
+     'four five';
   }
 }
 
 @media screen and (min-width: 54em) {
   .testimonial-grid {
       grid-template-areas:
-      "one one two"
-      "five five five"
-      "three four four";
+      "one one two two"
+      "three three four four"
+      "five five five five";
   }
 }
 
 @media screen and (min-width: 75em) {
   .testimonial-grid {
       grid-template-areas:
-      "one one two five"
-      "three four four five";
+      "one two three four"
+      "five five five five";
   }
 }
 

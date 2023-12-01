@@ -68,7 +68,7 @@
   text-align: left;
 }
 
-@media only screen and (max-width: 1500px) {  
+@media only screen and (max-width: 100rem) {  
   .main-content {
     grid-template-columns: 100%;
     margin-left: 0em;
@@ -120,7 +120,7 @@ h1 {
 .dark-color-text{
   color: #303030;
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 70rem) {
   .paragraph-text {
     max-width: 100%;
     margin-left: 2em;

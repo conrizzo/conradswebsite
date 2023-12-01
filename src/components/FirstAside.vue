@@ -17,16 +17,14 @@ export default {
 <style scoped>
 aside {
   background-color: #ffffff;
-  border-left: 2px solid rgb(240, 197, 117);;  
-  padding: 2em;
+  border-left: 2px solid rgb(240, 197, 117);  
+  border-right: 2px solid rgb(240, 197, 117);  
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
-p.aside {
-  text-align: left;
-  padding-left: 1em;
-}
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 70rem) {
   aside {
     /*display: none;*/
     border: none;

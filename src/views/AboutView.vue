@@ -253,7 +253,13 @@ h3{
   color: #c7c7c7;
 }
 
-@media only screen and (max-width: 1600px){
+
+  
+@media only screen and (max-width: 95rem) {
+  
+  .img-container {
+    margin-bottom: 0.25em;
+  } 
   .bird{
     max-width: 20rem;
   }
@@ -262,21 +268,17 @@ h3{
   }
 }
 
-@media only screen and (max-width: 40vw) {
-  .text-container {
-    padding-left: 0.25em;
-    padding-right: 0.25em;
-  }
-  .img-container {
-    margin-bottom: 0.25em;
-  } 
-}
 
-@media only screen and (max-width: 1000px) {
+
+@media only screen and (max-width: 50rem) {
   
    figure{
     float: none;
    }
+   .text-container {
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+  }
    
 }
 </style>
