@@ -18,13 +18,12 @@ export default {
 aside {
   background-color: #ffffff;
   border-left: 2px solid rgb(240, 197, 117);  
-  border-right: 2px solid rgb(240, 197, 117);  
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
 
 
-@media only screen and (max-width: 70rem) {
+@media only screen and (max-width: 100rem) {
   aside {
     /*display: none;*/
     border: none;

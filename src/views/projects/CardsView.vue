@@ -111,6 +111,7 @@
           </div>
             <button type="button" @click="dealCards()" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">Deal new cards</button>
         </div>
+
     <div class='interactions' >
         <img class="saloon-image" :src="saloonImage" alt="Saloon Image" />
         
@@ -471,7 +472,7 @@ export default {
   box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;  
 }
 .interactions{
-  margin-top: 20em;
+  margin-top: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -542,7 +543,7 @@ export default {
 }
 
 .input-container{
-  background: rgba(0, 0, 0, 0.33); 
+  background: rgba(0, 0, 0, 0.4); 
   color: #fff;
   width: 25em;
   margin: 0 auto;
@@ -590,7 +591,7 @@ export default {
     margin-top: 75vh;
   }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 77rem) {
 
   .paragraph-text{
   max-width: 80em;

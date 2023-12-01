@@ -95,6 +95,9 @@ button {
 form {
   width: 20em;
   margin: auto;
+  border: 1px solid #cecece; 
+  border-radius: 1em;
+  padding: 0 1em 0em 1em;
 }
 
 input {

@@ -87,8 +87,23 @@ export default {
 input:focus {    
     border-color: rgb(0, 240, 0)
 }
-input{font-size: 1.25em; border-radius: 0.25em; border-width: 1px; outline: none; border: 1px solid #ff5959; padding: 0.25em; margin: 0.1em;}
+input{font-size: 1.25em; 
+  border-radius: 0.25em; 
+  border-width: 1px; 
+  outline: none; 
+  border: 1px solid #ff5959; 
+  padding: 0.25em; 
+  margin: 0.1em;
+}
+
 button{width:fit-content; margin:auto}
 
-form{width:20em; margin: auto; color: #fff;}   
+form{
+  width:20em; 
+  margin: auto; 
+  color: #fff;
+  border: 1px solid #cecece; 
+  border-radius: 1em;
+  padding: 0 1em 0em 1em;
+}   
 </style>

@@ -22,11 +22,11 @@
   </article>
   </div>
  
-    <div style="color: #fff;" v-if="!isLoggedIn">
+    <div style="color: #fff; border: 2px #000;" v-if="!isLoggedIn">
       <!-- login -->
       <template v-if="showLogin">
         <!-- listen for event -->
-        <LoginPage @loggedIn="handleLogin" />
+        <LoginPage @loggedIn="handleLogin"  />
         <p style="padding: 1em;">No account yet? <span class="login-sign-up" style="color: #87ff7a; cursor: pointer;" @click="showLogin = false">Sign up</span></p>
       </template>
       <!-- or register -->
