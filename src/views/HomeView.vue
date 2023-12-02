@@ -5,7 +5,7 @@
     <main class="main-content custom-background-home-page">
 
       <!-- generate clouds -->
-      <div style="margin-bottom: 3em;">
+      <div style="">
 
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
@@ -94,9 +94,9 @@
             </div>
           </div>
           <div class="grid-item">
-            
+            <div class="image-container">
               <img v-if="isHovered" style="" class="hover-image" :src="hoveredImage" alt="Hover Image">
-           
+            </div>
           </div>
         </div>
 
@@ -178,6 +178,11 @@ export default {
           break;
         case "Card Game <span style=\"color: #ff5959;\">(New!)</span>":
           this.hoveredImage = require("@/images/CardGame.jpg");
+          this.isHovered = true;
+          console.log(this.hoveredImage);
+          break;
+        case "The Cow Game":
+          this.hoveredImage = require("@/images/CowGame.jpg");
           this.isHovered = true;
           console.log(this.hoveredImage);
           break;
@@ -378,7 +383,7 @@ export default {
   justify-content: center;
   background: rgba(0, 0, 0, 0.05);
   display: inline-block;
-  max-width: 800px;
+  max-width: 40em;
   margin: 0 auto;
   /* padding-right: 0.5em;
   padding-top: 1em; */
@@ -393,30 +398,44 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   /* Two columns with equal width */
   gap: 1em;
+  margin-bottom: 10em;
   /* No gap between grid items */
 }
 .hover-image{
-  max-height: 18.3em; padding-top: 2.15em; max-width: 100%; display: block;
+  max-height: 18.3em; margin-top: 2.15em; max-width: 100%; display: block; border-radius: 1em;  
 }
+
 @media (max-width: 50em) {
   .grid-container {
     grid-template-columns: 1fr;
   }
-  .hover-image{
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0 auto;
+  .image-container {
+  width: 100%;
+  max-height: 18.3em; /* Set a fixed height for the container */  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  padding-bottom: 1em;
+
   }
+  .hover-image{
+    border-radius: 1em;
+    max-width: 17.5em;
+    position: absolute;
+    top: 111.8vh;
+    z-index: 2;
+  }
+  
   .project-area{
     display: flex;
   justify-content: center;
-  align-items: center;
-  
+  align-items: center;  
   }
 }
 /* Style for grid items */
 .grid-item {
-  border: 1px solid red;;
+  border: none;
   /* Border for visualization */
  
 }

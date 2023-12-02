@@ -1,17 +1,12 @@
 <template>
   <footer class="footer">
-    <div>
+    <div class="alignment">
       <span>
-        <router-link class="footer-links" to="/about">About</router-link>&nbsp;&nbsp;&nbsp;&nbsp;<a
-          class="footer-links"
-          href="https://github.com/conrizzo"
-          >GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;conradswebsite.com © {{ getCurrentYear }}<br />
-        unless mentioned otherwise, licensing is
-        <a
-          class="footer-links"
-          href="https://creativecommons.org/licenses/by-nc/4.0/"
-          >CC BY NC 4.0</a
-        >. 
+        <router-link class="footer-links" to="/about">About</router-link>&nbsp;&nbsp;&nbsp;&nbsp;<a class="footer-links"
+          href="https://github.com/conrizzo">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;<router-link class="footer-links"
+          to="/">ConradsWebsite.com</router-link> © {{ getCurrentYear }}<br />
+        Licensed under <a class="footer-links" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
+        unless noted otherwise.
       </span>
     </div>
   </footer>
@@ -32,6 +27,7 @@ export default {
 .footer-links:link {
   text-decoration: none;
   color: #34B7F1;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .footer-links:hover {
@@ -42,11 +38,23 @@ export default {
   color: #34B7F1;
 }
 
+
+.alignment {
+  max-width: 25em;
+  background-color: rgb(12, 12, 12);
+  padding-left: 1em;
+  border-radius: 6px;
+}
+
 footer {
-  padding-top: 0.3em;
-  padding-bottom: 0.3em;
-  
+  background-color: rgb(81, 81, 81);
+  color: #fff;
+  height: 3em;
+  text-align: left;
   font-size: 0.9em;
   line-height: 1.5;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 </style>

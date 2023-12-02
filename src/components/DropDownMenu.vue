@@ -62,7 +62,8 @@ export default {
     font-weight: normal;
     font-size: 1em;
     border: none;     
-    border-bottom-right-radius: 1em;    
+    border-bottom-right-radius: 1em;   
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
 }
 
 .dropdown {
@@ -87,7 +88,8 @@ export default {
     padding: 0.5em 0.6em 0.5em 0.6em; 
     text-decoration: none;
     display: block;   
-    margin-right: 0;           
+    margin-right: 0;    
+           
 }
 
 /* #00b3ff; */

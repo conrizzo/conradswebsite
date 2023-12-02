@@ -2,8 +2,8 @@
 <template>
   <!-- createa nav bar on every page-->
   <nav class="nav-space-at-lower-resolution" v-if="showNav">
-    <router-link class="move-first-nav-link-at-lower-resolution" to="/">Home</router-link>
-    <router-link to="/about">About</router-link>
+    <!-- <router-link class="move-first-nav-link-at-lower-resolution" to="/">Home</router-link> -->
+    <router-link class="text-shadow" to="/about">About</router-link>
     <!--import the dropdown menu into the nav bar-->
     <DropDownMenu></DropDownMenu>
   </nav>
@@ -118,6 +118,10 @@ body {
   left: 0; 
   position: absolute;
   
+}
+
+.text-shadow{
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media only screen and (max-width: 1000px) {
