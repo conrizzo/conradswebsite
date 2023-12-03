@@ -112,11 +112,12 @@
           </figure>
         </template>
       </AsideContent>
+      
     </main>
   </div>
 
 
-  <FirstFooter />
+  
 </template>
 
 <script>
@@ -125,7 +126,7 @@ import Prism from "prismjs";
 
 import AsideContent from "@/components/FirstAside.vue";
 
-import FirstFooter from "@/components/FirstFooter.vue";
+
 
 import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
 
@@ -137,7 +138,7 @@ export default {
   name: "HomeView",
   components: {
     AsideContent,
-    FirstFooter,
+   
     ProjectLinks,
     //UseCalc, 
   },
@@ -402,7 +403,7 @@ export default {
   /* No gap between grid items */
 }
 .hover-image{
-  max-height: 18.3em; margin-top: 2.15em; max-width: 100%; display: block; border-radius: 1em;  
+  max-height: 18.3em; margin-top: 3em; max-width: 100%; display: block; border-radius: 1em;  
 }
 
 @media (max-width: 50em) {

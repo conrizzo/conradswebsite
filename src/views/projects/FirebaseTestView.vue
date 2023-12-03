@@ -92,11 +92,11 @@
 
   </div>
 
-  <FirstFooter></FirstFooter>
+
 </template>
   
 <script>
-import FirstFooter from "@/components/FirstFooter.vue";
+
 
 import SignUpPage from '@/components/Login/SignUpPage.vue'
 import LoginPage from '@/components/Login/LoginPage.vue'
@@ -114,7 +114,7 @@ import CookieAccept from "@/components/CookieAccept.vue";
 
 export default {
   
-  components: { SignUpPage, LoginPage, FirstFooter, CookieAccept },
+  components: { SignUpPage, LoginPage, CookieAccept },
   
   data() {
     return {

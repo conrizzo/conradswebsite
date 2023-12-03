@@ -29,18 +29,18 @@
     </div>
    
 </div>
-    <FirstFooter></FirstFooter>
+    <MainFooter></MainFooter>
 </body>
 </template>
 
 <script>
 import "@/assets/globalCSS.css";
-import FirstFooter from "@/components/FirstFooter.vue";
+import MainFooter from "@/components/MainFooter.vue";
 
 export default {
     name: "NLP",
     components: {
-        FirstFooter,
+        MainFooter,
     },
     data() {
         return {

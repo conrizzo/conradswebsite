@@ -57,13 +57,13 @@ export default {
 .dropbtn {    
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
     padding: 0.5em 0.6em 0.5em 0.6em;  
-    color: rgb(128, 128, 128);
+    color: rgb(100, 100, 100);
+    text-decoration: underline #ff5959;
     background-color: rgb(255, 255, 255);
     font-weight: normal;
     font-size: 1em;
-    border: none;     
-    border-bottom-right-radius: 1em;   
-    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+    border: none;          
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.33); 
 }
 
 .dropdown {
@@ -79,12 +79,11 @@ export default {
     padding:0.15em;    
     width: 10.4em;
     background-color: white;        
-    box-shadow: 0px -2px 8px rgba(0,0,0,0.4);   
-     
+    box-shadow: 0px -2px 8px rgba(0,0,0,0.4);      
 }
 
 .dropdown-content a {
-    color: rgb(128, 128, 128);
+    color: rgb(12, 12, 12);
     padding: 0.5em 0.6em 0.5em 0.6em; 
     text-decoration: none;
     display: block;   

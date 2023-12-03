@@ -84,7 +84,7 @@
       />
     </div>      
   </div>
-  <FirstFooter></FirstFooter>
+ 
 </template>
   
   
@@ -97,12 +97,12 @@ import UseCalc from "@/components/UseCalc.vue";
 
 import HelpGuide from "@/components/HelpGuide.vue";
 
-import FirstFooter from "@/components/FirstFooter.vue";
+
 
 /* generally will use a component object */
 export default {
   name: "App",
-  components: { AboutCalc, UseCalc, HelpGuide, FirstFooter },
+  components: { AboutCalc, UseCalc, HelpGuide},
   data() {
     return {
       title: "<u><i>Cow</i></u>-culator",

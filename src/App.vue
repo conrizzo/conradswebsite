@@ -1,31 +1,26 @@
 <!-- This page mostly just sets the default values across the whole website, and whether to omit nav bar such as on the cow game -->
 <template>
-  <!-- createa nav bar on every page-->
-  <nav class="nav-space-at-lower-resolution" v-if="showNav">
-    <!-- <router-link class="move-first-nav-link-at-lower-resolution" to="/">Home</router-link> -->
-    <router-link class="text-shadow" to="/about">About</router-link>
-    <!--import the dropdown menu into the nav bar-->
-    <DropDownMenu></DropDownMenu>
-  </nav>
+  
+  <!-- Don't show header or footer on CowGame -->
+  <TheMainHeader v-if="showNav"></TheMainHeader>  
+  <router-view></router-view> <!-- main code of a page -->  
+  <TheMainFooter v-if="showNav"></TheMainFooter>
 
-  <!-- main code of a page -->
-  <router-view />
-
-  <!-- user accepts privacy agreement -->
-  <!-- Removed this for now, the only cookies the site has is if someone uses firebase so I will put this notification on that page exclusively -->
-  <!-- <CookieAccept /> -->
 </template>
 
 <script>
 // import the dropdown menu into the nav bar
-import DropDownMenu from "@/components/DropDownMenu.vue";
+
+
+import TheMainHeader from "@/components/MainHeader.vue";
+import TheMainFooter from "@/components/MainFooter.vue";
 
 //import CookieAccept from "@/components/CookieAccept.vue";
 
 export default {
   name: "App",
   components: {
-    DropDownMenu, /*CookieAccept,*/
+    TheMainHeader, TheMainFooter  /*CookieAccept,*/
   }, computed: {
     showNav() {
       // Check if the current route is not the cowGame route
@@ -36,103 +31,10 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Helvetica, Arial, sans-serif;
+#app {  
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale;   
   text-align: center;
-  color: #2d2d2d;
 }
 
-/* how to pin the nav to the top of the page */
-nav {  
-  padding-left: 1em;  
-  /* padding: 0.3em 0.25em 0.3em 0.25em; */
-  font-size: 1.25em;
-  background-color: rgb(255, 255, 255);
-  line-height: 1.1;  
-}
-
-nav a {
-  text-decoration: none;
-  color: rgb(128, 128, 128);
-  margin-right: 0.2em;
-  padding: 0.4em 0.6em 0.4em 0.6em;
-  border-radius: 0.4em;  
-}
-
-nav a:hover {
-  color: #000;
-  text-decoration: none;
-  background-color: rgb(235, 235, 235);
-  /*background-color:rgb(235, 235, 235);*/
-}
-
-nav a.router-link-exact-active {
-  color: #ffffff;
-  background-color: #ff5959;
-}
-
-html,
-body {
-  /* padding-top: 1.33em; */
-  /* background-color: rgb(100, 100, 100); */
-  background-color: rgb(240, 240, 240);
-  min-height: 100vh;
-}
-
-/* BELOW this comment adjusts the default scrollbar on the right */
-/* Set the width of the scrollbar */
-::-webkit-scrollbar {
-  width: 0.75em;
-  background-color: #fff;
-  margin-right: 5px;
-  height: 1.5em;
-}
-
-/* Set the color of the scrollbar track */
-::-webkit-scrollbar-track {
-  background-color: #ffffff;
-  width: 0.5em;
-  margin-right: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgb(172, 172, 172);
-  border-right: 0.25em white solid;
-  border-top: 0.25em white solid;
-  border-bottom: 0.25em white solid;
-  background-clip: padding-box;
-  border-radius: 0.5em;
-}
-
-/* Set the color of the scrollbar thumb on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: #888888;
-}
-
-/* ABOVE this comment adjusts the default scrollbar on the right */
-
-.nav-space-at-lower-resolution {
-  z-index: 3;
-  left: 0; 
-  position: absolute;
-  
-}
-
-.text-shadow{
-  text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
-}
-
-@media only screen and (max-width: 1000px) {
-  .nav-space-at-lower-resolution {
-    position: absolute;
-    justify-content: left;
-  }
-
-  /* This creates space on the left of the home button in the nav at low resolutions */
-  .move-first-nav-link-at-lower-resolution {
-    margin-left: 0.5em;
-  }
-
-}</style>
+</style>

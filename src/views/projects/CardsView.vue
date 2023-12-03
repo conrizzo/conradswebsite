@@ -129,9 +129,7 @@
         
       
   </div>
-<div class="footer-space-vertical">
-  <FirstFooter></FirstFooter>
-</div>
+
 </div>
 
 </template>
@@ -145,13 +143,13 @@ import saloonImage from '@/components/CardGame/decoration_images/Saloon.jpg';
 
 
 
-import FirstFooter from "@/components/FirstFooter.vue";
+
 
 export default {
   name: 'SkatGame',
   
   components: {
-    FirstFooter,
+    
   },
   
   data() {
@@ -464,6 +462,7 @@ export default {
   background-color: rgb(198, 111, 58); */
   background-image:  url('@/components/CardGame/decoration_images/pexels-pixabay-326311.jpg');
   background-size: 100% 100%;
+  height: 150vh;
 }
 .button-35{
   border-radius: 0.4em;
@@ -593,6 +592,9 @@ export default {
 
 @media screen and (max-width: 77rem) {
 
+  #body{
+    height: 200vh;
+  }
   .paragraph-text{
   max-width: 80em;
   font-size: 1em;

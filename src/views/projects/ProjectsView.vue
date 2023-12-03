@@ -22,15 +22,15 @@
       <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
     </div>
   </div>
-  <FirstFooter></FirstFooter>
+  <MainFooter></MainFooter>
 </template>
 
 <script>
-import FirstFooter from "@/components/FirstFooter.vue";
+import MainFooter from "@/components/MainFooter.vue";
 import "@/assets/globalCSS.css";
 export default {
   components: {
-    FirstFooter,
+    MainFooter,
   },
 
   // Don't use id: 1 for some reason if 1 is an option it loops the first character of details:, not sure why?

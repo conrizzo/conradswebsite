@@ -20,6 +20,7 @@ aside {
   border-left: 2px solid rgb(240, 197, 117);  
   padding-left: 0.5em;
   padding-right: 0.5em;
+  
 }
 
 

@@ -84,14 +84,14 @@
   </div>
 
   <FastQuickSort ref="fastQuickSort"/>
-  <NodeGraph></NodeGraph>
-  <FirstFooter></FirstFooter>
+  
+  
 </template>
 
 <script>
 import FastQuickSort from "@/components/SortingAlgorithms/FastQuickSort.vue"
 
-import FirstFooter from "@/components/FirstFooter.vue";
+
 
 
 
@@ -100,7 +100,7 @@ import "@/assets/globalCSS.css";
 export default {
   name: "DatasetsView",
   components: {
-    FirstFooter, FastQuickSort
+    FastQuickSort
   },
   data() {
     return {
@@ -293,7 +293,7 @@ table {
   margin-left: 0.5em;
   margin-right: 0.5em;
   border-collapse: collapse;
-  margin-bottom: 1em;
+  
 }
 
 /* Table Header */
