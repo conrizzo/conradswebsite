@@ -150,9 +150,11 @@ h1 {
   font-size: 1em;
   text-align: left;
   word-break: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   margin-bottom: 1em;
 }
+
 .white-color-text {
   color: #ffffff;
 }
@@ -198,7 +200,7 @@ h1 {
   touch-action: manipulation;
 }
 .button-35:hover {
-  box-shadow: #00ddff 0 0 0 2px, transparent 0 0 0 0;  
+  box-shadow: rgb(35, 55, 255) 0 0 0 2px, transparent 0 0 0 0;  
 }
 .box {
   padding: 80px 0;
@@ -247,31 +249,31 @@ h1 {
 /* links styling with underline on hover */
 .text-links:link {
   text-decoration: none;
-  color: #34B7F1;
+  color: rgb(75, 90, 255);
 }
 .text-links:hover {
   text-decoration: underline;
 }
 .text-links:visited {
-  color: #34B7F1;
+  color: rgb(75, 90, 255);
 }
 .text-links:active {
-  color: #34B7F1;
+  color: rgb(75, 90, 255);
 }
 
 /* links styling with NO underline on hover */
 .text-links-no-underline:link {
   text-decoration: none;
-  color: #34B7F1;
+  color: rgb(98, 111, 255);
 }
 .text-links-no-underline:hover {
   text-decoration: none;
 }
 .text-links-no-underline:visited {
-  color: #34B7F1;
+  color: rgb(50, 67, 255);
 }
 .text-links-no-underline:active {
-  color: #34B7F1;
+  color: rgb(50, 67, 255);
 }
 /* make space to push footer down on short pages */
 .push-footer {

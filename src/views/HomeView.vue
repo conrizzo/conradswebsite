@@ -5,8 +5,7 @@
     <main class="main-content custom-background-home-page">
 
       <!-- generate clouds -->
-      <div style="">
-
+      <div>
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
           @click="toggleClouds"><span v-if='moveTheClouds'>Stop</span><span v-else>Move</span>&nbsp;Clouds</button>
@@ -74,23 +73,23 @@
         <div class="grid-container">
           <div class="grid-item">
             <div class="project-area">
-                <!-- Projects ({{ this.itemsLength }})</h3> -->
-                <ProjectLinks :links="links">
-                  <template v-slot="{ links }">
-                    <div style="max-width: 20em; float: right;">
-                      <span style="color: white; font-size: 1.8em;">
-                        Projects: {{ links.length }}
-                      </span>
-                      <div class="route-styling">
-                        <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
-                          :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
-                          @mouseleave="hideImage">
-                          <span v-html="item.text"></span><br>
-                        </router-link>
-                      </div>
+              <!-- Projects ({{ this.itemsLength }})</h3> -->
+              <ProjectLinks :links="links">
+                <template v-slot="{ links }">
+                  <div style="max-width: 20em; float: right;">
+                    <span style="color: white; font-size: 1.8em;">
+                      Projects: {{ links.length }}
+                    </span>
+                    <div class="route-styling">
+                      <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
+                        :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
+                        @mouseleave="hideImage">
+                        <span v-html="item.text"></span><br>
+                      </router-link>
                     </div>
-                  </template>
-                </ProjectLinks>                
+                  </div>
+                </template>
+              </ProjectLinks>
             </div>
           </div>
           <div class="grid-item">
@@ -112,35 +111,24 @@
           </figure>
         </template>
       </AsideContent>
-      
+
     </main>
   </div>
-
-
-  
 </template>
 
 <script>
 
 import Prism from "prismjs";
-
 import AsideContent from "@/components/FirstAside.vue";
-
-
-
 import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
-
 import "@/assets/globalCSS.css";
-//import UseCalc from "@/components/UseCalc.vue";
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
 
 export default {
   name: "HomeView",
   components: {
     AsideContent,
-   
     ProjectLinks,
-    //UseCalc, 
   },
   props: {
     links: {
@@ -169,7 +157,6 @@ export default {
       return this.links; // Assuming `links` is the array of project links
     },
   },
-
   methods: {
     showImage(item) {
       switch (item.text) {
@@ -208,7 +195,6 @@ export default {
         //document.getElementById("randomizedArray").textContent = mainFunction;
       });
     },
-
     addLettersIntoInput() {
       let i = 0;
       const intervalId = setInterval(() => {
@@ -225,9 +211,7 @@ export default {
         }
       }, 125);
     },
-
     toggleClouds() {
-
       if (this.moveTheClouds === false) {
         this.moveClouds();
       }
@@ -235,12 +219,10 @@ export default {
       if (this.moveTheClouds === true) {
         this.stopClouds();
       }
-
       this.moveTheClouds = !this.moveTheClouds;
-
     },
-
     moveClouds() {
+
       const cloudOne = document.getElementById("cloudOne");
       let marginLeftCloudOne = this.coordX[0]
 
@@ -312,14 +294,12 @@ export default {
 .custom-color {
   color: #606060 !important;
   /* overrides the components default values of '#fff' */
-
 }
 
 .custom-color:hover {
   color: rgb(255, 255, 255) !important;
   /* overrides the components default values of '#fff' */
 }
-
 
 .button-35:hover {
   box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;
@@ -333,7 +313,6 @@ export default {
   text-decoration: none;
   padding-right: 0.25em;
   padding-left: 0.25em;
-
 }
 
 .on-hover-projects:visited {
@@ -356,7 +335,6 @@ export default {
 }
 
 .route-styling {
-
   line-height: 1.15;
   text-decoration: none;
   display: block;
@@ -402,45 +380,50 @@ export default {
   margin-bottom: 10em;
   /* No gap between grid items */
 }
-.hover-image{
-  max-height: 18.3em; margin-top: 3em; max-width: 100%; display: block; border-radius: 1em;  
+
+.hover-image {
+  max-height: 18.3em;
+  margin-top: 3em;
+  max-width: 100%;
+  display: block;
+  border-radius: 1em;
 }
 
 @media (max-width: 50em) {
   .grid-container {
     grid-template-columns: 1fr;
   }
-  .image-container {
-  width: 100%;
-  max-height: 18.3em; /* Set a fixed height for the container */  
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
-  padding-bottom: 1em;
 
+  .image-container {
+    width: 100%;
+    max-height: 18.3em;
+    /* Set a fixed height for the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1em;
   }
-  .hover-image{
+
+  .hover-image {
     border-radius: 1em;
     max-width: 17.5em;
     position: absolute;
     top: 111.8vh;
     z-index: 2;
   }
-  
-  .project-area{
+
+  .project-area {
     display: flex;
-  justify-content: center;
-  align-items: center;  
+    justify-content: center;
+    align-items: center;
   }
 }
+
 /* Style for grid items */
 .grid-item {
   border: none;
   /* Border for visualization */
- 
 }
-
 
 .title-spacing {
   position: relative;
@@ -532,8 +515,6 @@ export default {
   z-index: 0;
 }
 
-
-
 @media only screen and (max-width: 50rem) {
   .title-spacing {
     color: #fff;
@@ -552,7 +533,6 @@ export default {
 
   .route-styling {
     font-size: 1.75em;
-
   }
 
   .hide-button-low-resolution {

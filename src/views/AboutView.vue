@@ -2,57 +2,61 @@
 
 <template>
   <body>
-    <main class="main-content background-color-about-page">
+    <main class="main-content">
       <!-- Main area -->
       <div class="text-container">
         <h1 class="h1-title">About</h1>
         <article>
           <ul>
-            <li class="paragraph-text break-text">This iteration of the website was started in March, 2023 and is
+            <li>This iteration of the website was started March, 2023 and is
               totally self-made by me (Conrad) using primarily
-              <a class="text-links" style="background-color: #fff; color: #42b883; padding: 3px; border-radius: 5px;"
-                href="https://vuejs.org/guide/introduction.html"><b>Vue
-                  3</b></a>
-              (Vue.js). It is hosted on
+              <a class="text-links" style="color: #42b883;"
+                href="https://vuejs.org/guide/introduction.html"><b>Vue 3</b></a>
+              (Vue.js) for its reactivity and interactivity. This site is hosted on
               <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
                 my GitHub</a> with
               <a class="text-links" href="https://pages.github.com/">
                 GitHub pages</a>.
             </li>
 
-            <li class="paragraph-text break-text">I started learning about Vue.js when I worked on the Bioinformatics
+            <li>I started learning about Vue.js when I worked on the Bioinformatics
               Toolkit at <i>Max-Planck-Institut für Biologie</i> in Tübingen, Germany.</li>
 
-            <li class="paragraph-text break-text">I hold a degree in Computational Linguistics from the
+            <li>Programming languages/frameworks I used to make this website include: Vue.js, JavaScript, TypeScript, HTML, CSS,
+              Rust into Web Assembly, and more!
+
+            </li>
+
+            <!--<li>I hold a degree in Computational Linguistics from the
               University of Tübingen in Germany,
               and previously completed a Bachelor of Science in Biology from the University of North Carolina at
               Wilmington, Wilmington, NC, USA.</li>
 
-            <li class="paragraph-text break-text">Have been working on this website using Vue.js, JavaScript,
+            <li>Have been working on this website using Vue.js, JavaScript,
               TypeScript, CSS, HTML. Starting to
               learn more about backend development and databases.
             </li>
 
-            <li class="paragraph-text break-text">
+            <li>
               Started learning <a class="text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as
               well.
               Have practiced more German too, so it is <u>a lot</u> of language learning!
-            </li>
+            </li> -->
           </ul>
         </article>
         <h2>More info if interested:</h2>
         <div class="horizontal-line"></div>
-        <p class="paragraph-text break-text">
-          This websites focus is to show some projects and other work, plus it's fun to have a website
-          made in
-          a framework (Vue.js) and be able to build stuff.
-        </p>
+        
 
-        <p class="paragraph-text break-text">Much of this website was originally written in Vue 3 and straight
-          JavaScript, however I converted it to have TypeScript support
-          later on, and new projects such as the
+        <p class=" ">This websites focus is to show some projects and do fun website stuff.
+          This website was originally written in Vue 3 and straight
+          JavaScript. Later on I converted it to have TypeScript support, and new projects such as the
           <router-link class="text-links" to="/projects/cowgame">Cow Game</router-link> heavily use
-          TypeScript. <a class="text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
+          TypeScript. The <router-link class="text-links" to="/projects/cards">Card Game</router-link> 
+          also uses TypeScript. Recently I've been reviewing code I wrote and upgrading it to be simpler 
+          and more professional. There is a lot one can learn by reviewing their own code and seeing what could be improved 
+          after seeing how other developers write code.
+          <a class="text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
             written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. As of July,
           2023, have been
           working on integrating backend development. In July, 2023 I also started learning Rust and some of this website
@@ -73,7 +77,7 @@
         <h2>About the Vue Routing with GitHub Pages:</h2>
         <div class="horizontal-line"></div>
         <div>
-          <p class="paragraph-text break-text">
+          <p class=" ">
             Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods
             to work properly.
             For example, in order to deploy this website, the command <i>"deploy": "copy dist\index.html dist\404.html
@@ -85,7 +89,7 @@
             'dist'
             folder.</p>
 
-          <p class="paragraph-text break-text">
+          <p class=" ">
             A copy of the index.html file that is built in the 'dist' folder is created and renamed to 404.html.
             This is a workaround that allows router-linking in vue.js to work correctly for all routes. Without this
             workaround, direct URL links such as https://conradswebsite.com/projects/cowculator would not work and
@@ -103,12 +107,13 @@
       <AsideContent style="background-color: rgb(40, 40, 40);">
 
         <template v-slot:aside-content>
+          <div class="bird-container">
+            <h3>
+              Bird of the Month: Kohlmeise
+            </h3>
 
-          <h3>
-            Bird of the Month: Kohlmeise
-          </h3>
-
-          <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
+            <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
+          </div>
           <p class="aside-text" style="color: #c7c7c7"><a class="text-links"
               href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
             (name in German, English name is Great Tit)
@@ -167,8 +172,27 @@ export default {
 
 
 <style scoped>
-.paragraph-text {
-  color: #e0e0e0;
+p {
+  color: #e0e0e0; 
+  line-height: 1.65em;
+  font-size: 1.1em;
+  text-align: left;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-weight: 400;
+  margin-bottom: 1em;
+  padding: 0 2em 0 2em;
+}
+
+li{
+  color: #fff;
+  margin-bottom: 0.25rem;
+  margin-left: 2.1rem;
+  font-size: 1.1em;
+}
+
+.aside-text{
+  font-size: 0.9em;
 }
 
 body {
@@ -223,13 +247,8 @@ h2 {
 .horizontal-line {
   border: none;
   border-top: 1px solid #ffffff;
-  margin: 0.5em 0;
+  margin: 0 0 0.5rem 0;
 }
-
-.background-color-about-page {
-  background-color: #ffffff;
-}
-
 .adjust-title-font-size {
   font-size: 3em;
   margin-left: 0.5em;
@@ -252,6 +271,17 @@ h2 {
 .bird {
   border-radius: 0.5em;
   width: 100%;
+}
+
+.bird-container{
+ 
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0.5rem;
+
 }
 
 h3 {
