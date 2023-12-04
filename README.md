@@ -2,7 +2,7 @@
 
 ### This is a personal website project made from scratch by Conrad Lundberg written in Vue.js
 ### The point is to practice Vue.js to build some useful web applications and make a nice personal website
-### Anyone is welcome to use code from this to learn or make their own project as long as this repository is referenced.
+### Anyone is welcome to use code from this to learn or make their own project.
 
 ## Project setup
 ```
