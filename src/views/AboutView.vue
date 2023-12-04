@@ -23,9 +23,9 @@
               Toolkit at <i>Max-Planck-Institut für Biologie</i> in Tübingen, Germany.</li>
 
             <li>Programming languages/frameworks I used to make this website include: Vue.js, JavaScript, TypeScript, HTML, CSS,
-              Rust into Web Assembly, and more!
+              Rust into Web Assembly, and more!</li>
 
-            </li>
+            <li>Currently experimenting with <a class="text-links" href='https://conrizzo.github.io/ConradsBlog/'>Astro</a> as well to make a blogging site!</li>
 
             <!--<li>I hold a degree in Computational Linguistics from the
               University of Tübingen in Germany,
