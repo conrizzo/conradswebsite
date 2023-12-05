@@ -255,7 +255,7 @@ h1 {
   text-decoration: underline;
 }
 .text-links:visited {
-  color: rgb(168, 55, 247);
+  color: #6A5ACD;
 }
 .text-links:active {
   color: rgb(168, 55, 247);
@@ -264,16 +264,16 @@ h1 {
 /* links styling with NO underline on hover */
 .text-links-no-underline:link {
   text-decoration: none;
-  color: rgb(98, 111, 255);
+  color: rgb(168, 55, 247);
 }
 .text-links-no-underline:hover {
   text-decoration: none;
 }
 .text-links-no-underline:visited {
-  color: rgb(50, 67, 255);
+  color: rgb(168, 55, 247);
 }
 .text-links-no-underline:active {
-  color: rgb(50, 67, 255);
+  color: rgb(168, 55, 247);
 }
 /* make space to push footer down on short pages */
 .push-footer {

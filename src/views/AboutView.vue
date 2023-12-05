@@ -25,8 +25,11 @@
             <li>Programming languages/frameworks I used to make this website include: Vue.js, JavaScript, TypeScript, HTML, CSS,
               Rust into Web Assembly, and more!</li>
 
-            <li>Currently experimenting with <a class="text-links" href='https://conrizzo.github.io/ConradsBlog/'>Astro</a> as well to make a blogging site!</li>
-
+            <li>Currently experimenting with a personal <b><a class="text-links" href='https://blog.conradswebsite.com'>blog</a></b> that 
+              is using <a class="text-links" href='https://astro.build/'>Astro</a>.
+            
+            </li>
+            
             <!--<li>I hold a degree in Computational Linguistics from the
               University of Tübingen in Germany,
               and previously completed a Bachelor of Science in Biology from the University of North Carolina at

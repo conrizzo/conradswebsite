@@ -158,6 +158,7 @@ export default {
     },
   },
   methods: {
+    
     showImage(item) {
       switch (item.text) {
         case "Cowculator":
