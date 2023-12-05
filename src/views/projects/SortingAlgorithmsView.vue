@@ -343,8 +343,18 @@ p {
   text-align: left;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 90rem) {
   .paragraph-text {
-    font-size: 0.9em;
+    width: calc(100% - 8rem);
+    
+    
   }
-}</style>
+}
+@media only screen and (max-width: 40rem) {
+  .paragraph-text {
+    width: calc(100% - 4rem);
+    font-size: 0.9em;    
+  }
+}
+
+</style>
