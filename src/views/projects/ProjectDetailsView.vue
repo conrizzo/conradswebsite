@@ -31,7 +31,7 @@
 </div>
    
 
-<MainFooter></MainFooter>
+
 
 </template>
 
@@ -44,11 +44,11 @@ import BartProject from "@/components/ProjectDescriptions/BartProject.vue";
 
 import "@/assets/globalCSS.css";
 import Prism from "prismjs";
-import MainFooter from "@/components/MainFooter.vue";
+
 
 export default {
   components: {
-    MainFooter, CoffeeFunction, CowculatorDescription, BartProject
+     CoffeeFunction, CowculatorDescription, BartProject
   },
   props: {
     title: String,

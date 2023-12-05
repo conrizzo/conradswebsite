@@ -249,16 +249,16 @@ h1 {
 /* links styling with underline on hover */
 .text-links:link {
   text-decoration: none;
-  color: rgb(75, 90, 255);
+  color: rgb(168, 55, 247);
 }
 .text-links:hover {
   text-decoration: underline;
 }
 .text-links:visited {
-  color: rgb(75, 90, 255);
+  color: rgb(168, 55, 247);
 }
 .text-links:active {
-  color: rgb(75, 90, 255);
+  color: rgb(168, 55, 247);
 }
 
 /* links styling with NO underline on hover */

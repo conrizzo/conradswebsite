@@ -134,9 +134,7 @@
   </div>
   <!-- testing features END -->
 
-  <div class="push-footer-low-res">
-    <!-- Force the footer to the bottom of this page, can make this a better fix later!!!!!! -->
-  </div>
+ 
 </template>
   
 <script>
