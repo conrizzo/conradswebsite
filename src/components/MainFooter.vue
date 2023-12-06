@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" v-show="isLoaded">
     <div class="alignment">
       <span>
         <router-link class="footer-links" to="/about">About</router-link>&nbsp;&nbsp;&nbsp;&nbsp;<a class="footer-links"
@@ -15,15 +15,26 @@
 <script>
 export default {
   name: "MainFooter",
+  data() {
+    return {
+      isLoaded: false,
+    };
+  },
   computed: {
     getCurrentYear() {
       return new Date().getFullYear();
     },
   },
+  mounted() {
+    // For the moment add a slight delay for the footer to appear so it doesn't blink at the top when loading pages
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 50); // Adjust the delay time as needed in milliseconds
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .footer-links:link {
   text-decoration: none;
   color: #34B7F1;
@@ -38,27 +49,19 @@ export default {
   color: #34B7F1;
 }
 
-
 .alignment {
   max-width: 25em;
   background-color: rgb(12, 12, 12);
   padding-left: 1em;
-  padding-top: 0.5em;
-  
-  padding-bottom: 0em;
-  
-  justify-content: center;
-  height: calc(100% - 0.5em);
+  padding-top: 0.5em;  
+  padding-bottom: 0.5em; 
 }
 
 footer {
   background-color: rgb(81, 81, 81);
-  color: #fff;
-  
+  color: #fff;  
   text-align: left;
   font-size: 0.9em;
-  line-height: 1.5;
-  height: calc(100% - 0.5em);
-  
+  line-height: 1.5;  
 }
 </style>

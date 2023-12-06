@@ -2,7 +2,7 @@
 <template>
   <div style="padding-top: 2.7em; background-color: rgb(93, 76, 29); padding-bottom: 1em;">
 
-    <h2 style="font-size:3em; color: rgb(87, 101, 255);" class="homeview"><span style="background-color: rgb(255, 255, 255); border-radius: 0.25em; padding: 0.2em;">Coffee Consumers
+    <h2 style="" class="homeview"><span style="background-color: rgb(255, 255, 255); border-radius: 0.25em; padding: 0.2em;">Coffee Consumers
       by country</span></h2>
     
     <div style="margin-left: 8px; margin-right: 8px; text-align: left; width: width: calc(100% - 16px);">
@@ -293,6 +293,10 @@ export default {
 };
 </script>
 <style scoped>
+h2{
+  font-size:3em; color: rgb(87, 101, 255);
+  padding-top: 0.5em;
+}
 /* Table */
 table {
   width: calc(100% - 1em);
@@ -345,11 +349,16 @@ tr:nth-child(even) {
   background-color: #9dffbe;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 50rem) {
   table {
     font-size: 0.7em;
     padding: 0.25em;
   }
+
+  h2{
+  font-size:2em; 
+  color: rgb(87, 101, 255);
+}
 
   
 }

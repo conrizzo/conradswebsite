@@ -275,15 +275,8 @@ h1 {
 .text-links-no-underline:active {
   color: rgb(168, 55, 247);
 }
-/* make space to push footer down on short pages */
-.push-footer {
-  padding-bottom: 40vh;
-}
-.fill-page-to-footer{
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+
+
 /* make elements unselectable */
 .unselectable {
   -webkit-touch-callout: none;
