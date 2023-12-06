@@ -33,9 +33,9 @@
         </p><br>
         </div>
         <div style="display: inline-block;">
-          <button @click="bogoSort" class="button-35" style="background: #424242;">Click me to Bogosort</button>
+          <button @click="bogoSort" class="button-35">Click me to Bogosort</button>
           <button @click="arrayOfArrays = [], bogoSortArrayButtonClicked = false" class="button-35"
-            style="background: #424242; margin-left: 0.5em;">Reset</button>
+            style="margin-left: 0.5em;">Reset</button>
       </div>
 
       <br><br><label style="padding-right: 1em; color: #fff;" for="number-input">Enter length of array to
@@ -150,7 +150,7 @@
       <div style="display: inline-block;">
         <button class="button-35" @click="quickSort">Quick Sort</button>
         <button @click="quickSortArrays = [], averageTimeTaken = 0" class="button-35"
-          style="background: #424242; margin-left: 0.5em;">Reset</button>
+          style="margin-left: 0.5em;">Reset</button>
       </div>
       <br><br><label style="padding-right: 1em; color: #fff;" for="number-input">Enter length of array to
         Quicksort!</label>
@@ -317,9 +317,8 @@ p {
   border: 4px solid #d46f2b;
 }
 
-.main-content-area {
-  padding-left: 8em;
-  padding-right: 8em;
+.button-35:hover{
+  box-shadow: rgb(255, 255, 255) 0 0 0 2px, transparent 0 0 0 0;  
 }
 
 .background-color {

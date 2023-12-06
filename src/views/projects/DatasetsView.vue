@@ -1,11 +1,11 @@
 
 <template>
-  <div style="padding-top: 2.7em; background-color: rgb(129, 104, 35); ">
+  <div style="padding-top: 2.7em; background-color: rgb(93, 76, 29); padding-bottom: 1em;">
 
-    <h2 style="font-size:3em; padding-top: 1em; padding-bottom: 0.33em; color: rgb(129, 104, 35);" class="homeview"><span style="background-color: rgb(255, 255, 255); border-radius: 0.25em; padding: 0.1em;">Coffee Consumers
+    <h2 style="font-size:3em; color: rgb(87, 101, 255);" class="homeview"><span style="background-color: rgb(255, 255, 255); border-radius: 0.25em; padding: 0.2em;">Coffee Consumers
       by country</span></h2>
-    <!-- how do i output the graph here? -->
-    <div style=" margin-left: 8px; margin-right: 8px; text-align: left; width: width: calc(100% - 16px);">
+    
+    <div style="margin-left: 8px; margin-right: 8px; text-align: left; width: width: calc(100% - 16px);">
 
       <div id="chartContainer"></div>
     </div>
@@ -40,9 +40,10 @@
       </tbody>
     </table>
     
-    <div style="padding-top: 2em; padding-bottom: 2em;"></div>
-
-    <p class="paragraph-text homeview break-text" >The functions/graphical formatting using this data table are self-made.
+   
+    <!--
+      
+    <p class="paragraph-text homeview break-text">The functions/graphical formatting using this data table are self-made.
       Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the
       sorted values.
       Note: all 0 values are removed for the column that is sorted. The graph now uses an SVG format output. The coffee
@@ -56,6 +57,9 @@
 
     </p>
 
+    -->
+    <!--
+
     <h1 class="homeview" style="color: #fff;">
       Convenient area to test anything else dataset related here...
     </h1>
@@ -68,6 +72,7 @@
       as a TSV file.
     </p>
     <br>
+    
     <table>
       <thead>
         <tr>
@@ -81,6 +86,8 @@
         </tr>
       </tbody>
     </table>
+
+  -->
   </div>
 
   <FastQuickSort ref="fastQuickSort"/>
@@ -359,7 +366,6 @@ p.homeview {
   margin-right: 0.5em;
   color: #000000;
   background: #fff;
-  border-radius: 5px;
-  margin-bottom: 1em;
+  border-radius: 5px;  
   margin-top: 1em;
 }</style>

@@ -74,7 +74,10 @@ export default {
 </script>
 <style scoped>
 .button-35{
-  background-color: rgb(130, 130, 130);
+  background-color: rgb(130, 130, 130);  
+}
+.button-35:hover{
+  box-shadow: rgb(255, 255, 255) 0 0 0 2px, transparent 0 0 0 0;  
 }
 
 input {

@@ -35,15 +35,13 @@
 
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
 
-        <div style="position: relative; color: #fff; padding-bottom: 0.25em; padding-top: 0.25em; line-height: 1.4;">(The
-          main heading tokens &uarr; are
-          generated using
+        <div class='under-title-caption'>Main heading tokens &uarr; are generated using
           <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code
-          compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>)
+          compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>
         </div>
+
         <!-- Main bullets -->
         <div class="main-text-container">
-
           <ul style="text-align: left; color: white;" class="mb-3">
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
@@ -66,30 +64,23 @@
           </ul>
         </div>
 
-
-
-
-
-
-
-
         <div class="grid-container">
           <div class="grid-item">
             <div class="project-area">
               <!-- Projects ({{ this.itemsLength }})</h3> -->
               <ProjectLinks :links="links">
                 <template v-slot="{ links }">
-                  <div style="max-width: 20em; float: right;">
-                    <span style="color: white; font-size: 1.8em;">
-                      Projects: {{ links.length }}
-                    </span>
-                    <div class="route-styling">
-                      <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
-                        :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
-                        @mouseleave="hideImage">
-                        <span v-html="item.text"></span><br>
-                      </router-link>
-                    </div>
+                  <div class="links-area">
+                      <span style="color: white; font-size: 1.8em;">
+                        Project Links: 
+                      </span>
+                      <div class="route-styling">
+                        <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
+                          :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
+                          @mouseleave="hideImage">
+                          <span v-html="item.text"></span><br>
+                        </router-link>
+                      </div>
                   </div>
                 </template>
               </ProjectLinks>
@@ -106,11 +97,10 @@
       <!-- Aside area begins  #2d2d2d; slate black color -->
       <AsideContent style="background: #fff; z-index: 1;">
         <template v-slot:aside-content>
-          <p class="aside-text loading">Aside area</p>
+          <p class="aside-text loading"></p>
           <figure style="display: inline-block;">
             <img style="max-width: 80%; border-radius: 1em;" :src="birdDrawing" alt="Bird Drawing">
-            <figcaption class="aside-text" style="display: block;"><i>
-                Chirp chirp chirp!</i></figcaption>
+            <figcaption class="aside-text" style="display: block;"><i></i></figcaption>
           </figure>
         </template>
       </AsideContent>
@@ -364,16 +354,15 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
   display: inline-block;
   max-width: 40em;
   margin: 0 auto;
   /* padding-right: 0.5em;
   padding-top: 1em; */
   padding: 1em;
-  padding-left: 2em;
-  border-right: 2px solid rgba(255, 255, 255, 0.9);
-  border-left: 2px solid rgba(255, 255, 255, 0.9);
+  padding-left: 2em;  
 }
 
 .grid-container {
@@ -383,6 +372,10 @@ export default {
   gap: 1em;
   margin-bottom: 10em;
   /* No gap between grid items */
+}
+
+.links-area{
+  width: 21em; float: right;
 }
 
 .hover-image {
@@ -431,14 +424,26 @@ export default {
 
 .title-spacing {
   position: relative;
+
   line-height: 1;
-  padding-top: 1.5em;
+  padding-top: 0em;
   padding-left: 0.25em;
   padding-right: 0.25em;
+
   margin-top: 2em;
+
   color: #ffffff;
-  font-size: 3em;
+  font-size: 4em;
   z-index: 1;
+}
+
+.under-title-caption{
+  position: relative; 
+  color: #fff; 
+  padding-bottom: 0.25em; 
+  padding-top: 0.25em; 
+  line-height: 1.5;
+  font-size: 0.9em;
 }
 
 .loading {
@@ -524,7 +529,13 @@ export default {
     color: #fff;
     text-align: center;
     margin-left: 0em;
-    margin-top: 3.5em;
+    margin-top: 0em;
+    padding-top: 0.5em;
+    font-size: 2.5em;
+  }
+
+  .under-title-caption{
+    padding: 0 1em 0 1em;    
   }
 
   #cloudThree {
@@ -544,7 +555,6 @@ export default {
   }
 
   .main-text-container {
-    border-right: 1em solid rgba(255, 255, 255, 0.9);
-    border-left: 1em solid rgba(255, 255, 255, 0.9);
+   width: calc(100% - 5em);
   }
 }</style>

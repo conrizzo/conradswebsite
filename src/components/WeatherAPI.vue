@@ -4,9 +4,7 @@
   padding-bottom: 9em;
   ">
     <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>
-    <p class="paragraph-text white-color-text"> All the locations here are easily customizable! Data is queried as JSON
-      using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
-      then formatted and displayed here in a custom made table.</p>
+    
     <table>
       <thead>
         <tr>
@@ -86,7 +84,11 @@
                 Projected High Today:
                 <span class="high-temp-text-coloring">{{ cityWeather.weather.weather[0].maxtempC }}°C&nbsp;{{
                   cityWeather.weather.weather[0].maxtempF }}°F</span><br>
-
+              </div>
+              <div style="margin-bottom: 0.25em;">
+                Projected Low Today:
+                <span class="low-temp-text-coloring">{{ cityWeather.weather.weather[0].mintempC }}°C&nbsp;{{
+                  cityWeather.weather.weather[0].mintempC }}°F</span><br>
               </div>
               Recent Temperature: <b>{{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
                 cityWeather.weather.current_condition[0].temp_F }}°F</b><br><br>
@@ -94,13 +96,13 @@
               - - - -<br>
               <span class="">
                 {{ formatDate(cityWeather.weather.weather[1].date) }}:
-                <span class="high-temp-text-coloring-1">{{ cityWeather.weather.weather[1].maxtempC }}°C&nbsp;{{
-                  cityWeather.weather.weather[1].maxtempF }}°F</span><br>
+                <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[1].maxtempC }}°C&nbsp;{{
+                  cityWeather.weather.weather[1].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{ cityWeather.weather.weather[1].mintempC }}°C</span><br>
               </span>- - - -<br>
               <span class="">
                 {{ formatDate(cityWeather.weather.weather[2].date) }}:
-                <span class="high-temp-text-coloring-2">{{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{
-                  cityWeather.weather.weather[2].maxtempF }}°F</span><br>
+                <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{
+                  cityWeather.weather.weather[2].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{ cityWeather.weather.weather[2].mintempC }}°C</span><br>
               </span>
 
 
@@ -134,7 +136,9 @@
         </tr>
       </tbody>
     </table>
-
+    <p class="white-color-text"> All the locations here are easily customizable! Data is queried as JSON
+      using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
+      then formatted and displayed here in a custom made table.</p>
   </div>
 </template>
 
@@ -145,7 +149,7 @@ export default {
   data() {
     return {
       cityWeathers: [
-        { city: "Death Valley, CA", weather: "" },
+        //{ city: "Death Valley, CA", weather: "" },
         { city: "Tübingen, Germany", weather: "" },
         { city: "STR, Stuttgart Airport, Germany", weather: "" },
         { city: "Cary, NC", weather: "" },
@@ -220,18 +224,31 @@ export default {
 <style scoped>
 /* Table */
 table {
-  width: 99%;
-  margin-right: 0.5%;
-  margin-left: 0.5%;
-  border-collapse: collapse;
+  padding: 0 0.5em 0 0.5em;
+  width: 100%;
+  border-collapse: separate;
   margin-bottom: 1em;
+  
 
+}
+
+/* Table border radius with CSS only https://stackoverflow.com/questions/4932181/rounded-table-corners-css-only 3rd answer */
+th:first-of-type {
+  border-top-left-radius: 10px;
+}
+th:last-of-type {
+  border-top-right-radius: 10px;
+}
+tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: 10px;
+}
+tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: 10px;
 }
 
 /* Table Header */
 thead {
   background-color: #f5f5f5;
-
 }
 
 th {
@@ -263,29 +280,20 @@ td {
 /* Alternate Row Color 
 tr:nth-child(even) {
   background-color: #ededed96;
-
 }
 */
-.responsive-link {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-
-.background-text-coloring {
-  color: #000000;
-  padding: 0.2em;
-  background-color: #69ff76;
-  border-radius: 0.3em;
-}
 
 .high-temp-text-coloring {
   color: #000;
-  padding-right: 0.1em;
-  padding-left: 0.1em;
-  background-color: #5eff00;
+  padding: 3px;
+  background-color: #ff803b;
+  border-radius: 0.2em;
+}
+
+.low-temp-text-coloring {
+  color: #ffffff;
+  padding: 3px;
+  background-color: #2b1cfc;
   border-radius: 0.2em;
 }
 

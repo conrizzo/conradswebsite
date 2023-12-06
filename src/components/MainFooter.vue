@@ -43,10 +43,12 @@ export default {
   max-width: 25em;
   background-color: rgb(12, 12, 12);
   padding-left: 1em;
-
-  padding-top: 0.33em;
+  padding-top: 0.5em;
+  
+  padding-bottom: 0em;
+  
   justify-content: center;
-  height: 3.2em;
+  height: calc(100% - 0.5em);
 }
 
 footer {
@@ -56,7 +58,7 @@ footer {
   text-align: left;
   font-size: 0.9em;
   line-height: 1.5;
-  
+  height: calc(100% - 0.5em);
   
 }
 </style>

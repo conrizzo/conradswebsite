@@ -10,8 +10,8 @@
           <ul>
             <li>This iteration of the website was started March, 2023 and is
               totally self-made by me (Conrad) using primarily
-              <a class="text-links" style="color: #42b883;"
-                href="https://vuejs.org/guide/introduction.html"><b>Vue 3</b></a>
+              <a class="text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
+                  3</b></a>
               (Vue.js) for its reactivity and interactivity. This site is hosted on
               <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
                 my GitHub</a> with
@@ -19,17 +19,26 @@
                 GitHub pages</a>.
             </li>
 
-            <li>I started learning about Vue.js when I worked on the Bioinformatics
-              Toolkit at <i>Max-Planck-Institut für Biologie</i> in Tübingen, Germany.</li>
+            <li>This websites focus is to make and showcase some projects.
 
-            <li>Programming languages/frameworks I used to make this website include: Vue.js, JavaScript, TypeScript, HTML, CSS,
-              Rust into Web Assembly, and more!</li>
-
-            <li>Currently experimenting with a personal <b><a class="text-links" href='https://blog.conradswebsite.com'>blog</a></b> that 
-              is using <a class="text-links" href='https://astro.build/'>Astro</a>.
-            
             </li>
-            
+
+            <li>I started learning about Vue.js when I worked on the Bioinformatics
+              Toolkit at <i>Max-Planck-Institut für Biologie</i> in Tübingen, Germany.
+            </li>            
+
+            <li>Programming languages/frameworks I used to make this website include: Vue.js, JavaScript, TypeScript,
+              HTML, CSS, Rust into Web Assembly, and more!
+            </li>
+
+
+
+            <li>I also started a blog site <b><a class="text-links"
+                  href='https://blog.conradswebsite.com'>blog.conradswebsite.com</a></b> that
+              uses the <a class="text-links" href='https://astro.build/'>Astro</a> framework.
+            </li>
+
+
             <!--<li>I hold a degree in Computational Linguistics from the
               University of Tübingen in Germany,
               and previously completed a Bachelor of Science in Biology from the University of North Carolina at
@@ -49,21 +58,22 @@
         </article>
         <h2>More info if interested:</h2>
         <div class="horizontal-line"></div>
-        
 
-        <p class=" ">This websites focus is to show some projects and do fun website stuff.
+
+        <p>
           This website was originally written in Vue 3 and straight
           JavaScript. Later on I converted it to have TypeScript support, and new projects such as the
           <router-link class="text-links" to="/projects/cowgame">Cow Game</router-link> heavily use
-          TypeScript. The <router-link class="text-links" to="/projects/cards">Card Game</router-link> 
-          also uses TypeScript. Recently I've been reviewing code I wrote and upgrading it to be simpler 
-          and more professional. There is a lot one can learn by reviewing their own code and seeing what could be improved 
-          after seeing how other developers write code.
+          TypeScript. The <router-link class="text-links" to="/projects/cards">Card Game</router-link>
+          also uses TypeScript.
           <a class="text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
-            written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. As of July,
-          2023, have been
-          working on integrating backend development. In July, 2023 I also started learning Rust and some of this website
-          now uses Rust compiled into Web Assembly.
+            written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. In July,
+          2023, started
+          working on integrating backend development services. In July, 2023 I also started learning Rust and some of this website
+          now uses Rust compiled into Web Assembly. Recently I've been reviewing code I wrote and upgrading it to be simpler
+          and more professional. There is a lot one can learn by reviewing their own code and seeing what could be
+          improved
+          after seeing how other developers write code.
         </p>
 
 
@@ -80,7 +90,11 @@
         <h2>About the Vue Routing with GitHub Pages:</h2>
         <div class="horizontal-line"></div>
         <div>
-          <p class=" ">
+          <p>December 6th 2023 - Next item for deployment will be to convert this process below to use GitHub actions and a .yaml file to automate it. Lately I've 
+            been making many small commits so I may not need to deploy the website everytime I make small adjustments with an automated process but the 
+            auto deployment using GitHub actions is a nice tool.            
+          </p>
+          <p>
             Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods
             to work properly.
             For example, in order to deploy this website, the command <i>"deploy": "copy dist\index.html dist\404.html
@@ -92,7 +106,7 @@
             'dist'
             folder.</p>
 
-          <p class=" ">
+          <p>
             A copy of the index.html file that is built in the 'dist' folder is created and renamed to 404.html.
             This is a workaround that allows router-linking in vue.js to work correctly for all routes. Without this
             workaround, direct URL links such as https://conradswebsite.com/projects/cowculator would not work and
@@ -176,7 +190,7 @@ export default {
 
 <style scoped>
 p {
-  color: #e0e0e0; 
+  color: #e0e0e0;
   line-height: 1.65em;
   font-size: 1.1em;
   text-align: left;
@@ -187,14 +201,14 @@ p {
   padding: 0 2em 0 2em;
 }
 
-li{
+li {
   color: #fff;
   margin-bottom: 0.25rem;
   margin-left: 2.1rem;
   font-size: 1.1em;
 }
 
-.aside-text{
+.aside-text {
   font-size: 0.9em;
 }
 
@@ -252,6 +266,7 @@ h2 {
   border-top: 1px solid #ffffff;
   margin: 0 0 0.5rem 0;
 }
+
 .adjust-title-font-size {
   font-size: 3em;
   margin-left: 0.5em;
@@ -276,8 +291,8 @@ h2 {
   width: 100%;
 }
 
-.bird-container{
- 
+.bird-container {
+
   display: flex;
   flex-direction: column;
   /*justify-content: center;*/
