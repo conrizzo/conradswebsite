@@ -33,7 +33,7 @@
     <div class="input-container">
       <div>
           <label style="margin-right: 0.3em;" for="inputField"><b>Make your bid:</b></label>
-          <input class="custom-input" type="text" id="inputField" v-model="this.player1.bid" :disabled="winningBid"/>
+          <input class="custom-input" type="text" id="inputField" v-model="this.player1.bid" :disabled="winningBid" placeholder="0"/>
           
 
           <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
@@ -179,7 +179,7 @@ export default {
 
       // player actions
       // initialize an empty hand for the object to begin with
-      player1: {cards:[]},
+      player1: {cards:[], bid: 0},
       player2: {cards:[]},
       player3: {cards:[]},
       
@@ -188,7 +188,7 @@ export default {
       dealer: 0,
       bidsAllowed: [18, 20, 22, 23, 24, 27, 30, 33, 35, 36, 40, 44, 45, 46, 48, 50, 54, 55, 59, 60],
       currentOpponentBids: [],
-      bid: 0,
+      
       lastBid: -1,
       validBid: false,
       
@@ -480,13 +480,13 @@ export default {
 }
 
 .custom-input{  
-  width: 4em;
+  width: 3em;
   font-size: 1.5em;
   border-radius: 0.25em;
   margin-right: 1em;
   border: none;
   outline: none;
-  text-align: center;
+  padding-left: 1em;
 }
 
 .button-container {

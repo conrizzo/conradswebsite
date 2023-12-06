@@ -5,7 +5,9 @@
     <main class="main-content custom-background-home-page">
 
       <!-- generate clouds -->
+      
       <div>
+        <!--
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
           @click="toggleClouds"><span v-if='moveTheClouds'>Stop</span><span v-else>Move</span>&nbsp;Clouds</button>
@@ -28,13 +30,14 @@
           <div style="transform: rotateY(150deg); float: right; margin-left: 1em; margin-top: 1em; position: absolute;"
             class="cloud"></div>
         </div>
+      -->
         <!-- Title -->
 
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
 
         <div style="position: relative; color: #fff; padding-bottom: 0.25em; padding-top: 0.25em; line-height: 1.4;">(The
           main heading tokens &uarr; are
-          shuffled as each character is added using
+          generated using
           <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code
           compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>)
         </div>
@@ -145,7 +148,7 @@ export default {
       i3: null,
       clouds: [],
       coordX: [15, 9, 2],
-      inputString: "Welcome to Conrad's Website",
+      inputString: "Welcome",
       name: "",
       inputStringShuffled: "",
       isHovered: false,
