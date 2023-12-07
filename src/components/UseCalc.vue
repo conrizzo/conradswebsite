@@ -760,8 +760,9 @@ export default {
 };
 </script>
 <style scoped>
-button.active {
-  background: rgb(66, 184, 131, 0.5);
+
+.button-35:hover{
+  box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;  
 }
 .grid-container {
   display: grid;

@@ -131,6 +131,9 @@ export default {
 </script>
   
   <style scoped>
+.button-35:hover{
+  box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;  
+}
 .main-cow-figure {
   margin-top: 1em;
 }
@@ -139,9 +142,9 @@ export default {
   background-color: #515151;
   text-align: left;
   margin-bottom: 0em;
-
+  
   padding: 0.5em;
-  border-radius: 0.5em;
+  border-radius: 1em;
 }
 .professor-cow-figure-text {
   background: rgb(255, 255, 255);

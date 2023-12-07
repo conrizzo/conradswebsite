@@ -33,8 +33,8 @@
 
 
 
-            <li>I also started a blog site <b><a class="text-links"
-                  href='https://blog.conradswebsite.com'>blog.conradswebsite.com</a></b> that
+            <li>I also started a <b><a class="text-links"
+                  href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>blog site</a></b> that
               uses the <a class="text-links" href='https://astro.build/'>Astro</a> framework.
             </li>
 
@@ -196,6 +196,10 @@ export default {
   
   background-size: 100% 120%;
   background-attachment: fixed;   
+}
+
+.text-links {
+  color: rgb(255, 224, 150);
 }
 
 p {
