@@ -131,7 +131,7 @@
 
             <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
           </div>
-          <p class="aside-text" style="color: #c7c7c7"><a class="text-links"
+          <p class="bird-text" style="color: #c7c7c7;"><a class="text-links"
               href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
             (name in German, English name is Great Tit)
             photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
@@ -305,14 +305,15 @@ h2 {
 }
 
 .bird-container {
-
   display: flex;
   flex-direction: column;
   /*justify-content: center;*/
   align-items: center;
   text-align: center;
   margin-bottom: 0.5rem;
-
+}
+.bird-text{
+  padding-left: 0em;
 }
 
 h3 {
@@ -329,6 +330,11 @@ h3 {
     max-width: 20rem;
   }
 
+  .bird-text{
+  padding-left: 2em;
+}
+
+
   h3 {
     margin-top: 0em;
   }
@@ -342,7 +348,7 @@ h3 {
   }
 }
 
-@media only screen and (max-width: 50rem) {
+@media only screen and (max-width: 80rem) {
 
   figure {
     float: none;
