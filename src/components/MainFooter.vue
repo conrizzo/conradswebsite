@@ -1,6 +1,6 @@
 <template>
-  <footer class="footer" v-show="isLoaded">
-    <div class="alignment">
+  <footer class="footer">
+    <div class="text-area">
       <span>
         <router-link class="footer-links" to="/about">About</router-link>&nbsp;&nbsp;&nbsp;&nbsp;<a class="footer-links"
           href="https://github.com/conrizzo/conradswebsite">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;<router-link class="footer-links"
@@ -17,20 +17,14 @@ export default {
   name: "MainFooter",
   data() {
     return {
-      isLoaded: false,
+     
     };
   },
   computed: {
     getCurrentYear() {
       return new Date().getFullYear();
     },
-  },
-  mounted() {
-    // For the moment add a slight delay for the footer to appear so it doesn't blink at the top when loading pages
-    setTimeout(() => {
-      this.isLoaded = true;
-    }, 50); // Adjust the delay time as needed in milliseconds
-  },
+  },  
 };
 </script>
 
@@ -49,7 +43,7 @@ export default {
   color: #34B7F1;
 }
 
-.alignment {
+.text-area {
   max-width: 25em;
   background-color: rgb(12, 12, 12);
   padding-left: 1em;
@@ -57,7 +51,7 @@ export default {
   padding-bottom: 0.5em; 
 }
 
-footer {
+footer {    
   background-color: rgb(81, 81, 81);
   color: #fff;  
   text-align: left;

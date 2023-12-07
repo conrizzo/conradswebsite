@@ -1,6 +1,6 @@
 <template>
   <!-- this 1st div does a nice background color, and puts padding between this element and the footer-->
-  <div style="background: linear-gradient(0deg, rgba(1,239,249,1) 0%, rgba(0,112,255,0.5746673669467788) 38%, rgba(23,50,143,0.8155637254901961) 78%); 
+  <div style="background: linear-gradient(0deg, rgba(1,239,249,1) 0%, rgba(0,112,255,0.5746673669467788) 38%, rgb(11, 87, 208) 78%); 
   padding-bottom: 9em;
   ">
     <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>

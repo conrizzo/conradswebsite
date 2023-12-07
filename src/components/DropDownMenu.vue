@@ -57,8 +57,7 @@ export default {
 .dropbtn {    
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
     padding: 0.5em 0.6em 0.5em 0.6em;  
-    color: rgb(100, 100, 100);
-    text-decoration: underline #ff5959;
+    color: rgb(100, 100, 100);    
     background-color: rgb(255, 255, 255);
     font-weight: normal;
     font-size: 1em;
@@ -91,6 +90,11 @@ export default {
            
 }
 
+nav a.router-link-exact-active {
+    color: #ffffff;
+    background-color: rgb(11, 87, 208);
+}  
+  
 /* #00b3ff; */
 .dropdown-content a:hover:not(.active) {
     background-color: none; 

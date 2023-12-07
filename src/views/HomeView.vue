@@ -36,8 +36,8 @@
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
 
         <div class='under-title-caption'>Main heading tokens &uarr; are generated using
-          <a class="text-links" href="https://www.rust-lang.org/">Rust</a> code
-          compiled into <a class="text-links" href="https://webassembly.org/">Web Assembly</a>
+          <a class="home-text-links" href="https://www.rust-lang.org/">Rust</a> code
+          compiled into <a class="home-text-links" href="https://webassembly.org/">Web Assembly</a>
         </div>
 
         <!-- Main bullets -->
@@ -45,19 +45,19 @@
           <ul style="text-align: left; color: white;" class="mb-3">
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
-                This is a website project made by <a class="text-links"
+                This is a website project made by <a class="home-text-links"
                   href="https://github.com/conrizzo"><b>Conrad</b></a>
               </span>
             </li>
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
-                For more specific info about this website please read the <router-link class="text-links"
+                For more specific info about this website please read the <router-link class="home-text-links"
                   to="/about">About</router-link> page
               </span>
             </li>
             <li>
               <span style="color: #fff; font-size: 1.25em;">
-                <a class="text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and enthusiasm helped make
+                <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and enthusiasm helped make
                 this website
               </span>
             </li>
@@ -80,6 +80,7 @@
                           @mouseleave="hideImage">
                           <span v-html="item.text"></span><br>
                         </router-link>
+                        
                       </div>
                   </div>
                 </template>
@@ -277,8 +278,7 @@ export default {
 <style scoped>
 /* @import "~bootstrap/dist/css/bootstrap.css"; */
 #body {
-  background: #fff;
-  min-height: 88.9vh;
+  background: #fff;  
 }
 
 .custom-background-home-page {
@@ -299,9 +299,22 @@ export default {
   box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;
 }
 
-.text-links {
-  color: rgb(240, 197, 117);
+.home-text-links {
+  color: rgb(255, 208, 0);
+  text-decoration: none;
 }
+
+.home-text-links:hover {
+  text-decoration: underline;
+}
+.home-text-links:visited {
+  color: rgb(255, 208, 0);
+}
+.home-text-links:active {
+  color: rgb(255, 208, 0);
+}
+
+
 
 .on-hover-projects {
   text-decoration: none;

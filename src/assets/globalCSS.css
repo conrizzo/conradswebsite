@@ -8,6 +8,7 @@ body {
     overflow-wrap: break-word;
     color: rgb(var(--gray-dark));	
     line-height: 1.6;
+    
 }
 
 /* BELOW this comment adjusts the default scrollbar on the right */
@@ -255,7 +256,7 @@ h1 {
   text-decoration: underline;
 }
 .text-links:visited {
-  color: #6A5ACD;
+  color: rgb(133, 45, 195);
 }
 .text-links:active {
   color: rgb(168, 55, 247);
