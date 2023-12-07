@@ -33,7 +33,7 @@
 
 
 
-            <li>I also started a <b><a class="text-links"
+            <li>I also started a <b><a class="blog-link"
                   href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>blog site</a></b> that
               uses the <a class="text-links" href='https://astro.build/'>Astro</a> framework.
             </li>
@@ -200,6 +200,15 @@ export default {
 
 .text-links {
   color: rgb(255, 224, 150);
+}
+
+.blog-link{
+  color: rgb(168, 55, 247);
+  text-decoration: none;
+}
+
+.blog-link:hover{  
+  text-decoration: underline;
 }
 
 p {
