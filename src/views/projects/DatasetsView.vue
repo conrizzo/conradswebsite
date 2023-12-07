@@ -294,7 +294,7 @@ export default {
 </script>
 <style scoped>
 h2{
-  font-size:3em; color: rgb(87, 101, 255);
+  font-size:3em; color: rgb(60, 60, 60);
   padding-top: 0.5em;
 }
 /* Table */

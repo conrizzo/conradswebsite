@@ -88,7 +88,7 @@
               <div style="margin-bottom: 0.25em;">
                 Projected Low Today:
                 <span class="low-temp-text-coloring">{{ cityWeather.weather.weather[0].mintempC }}°C&nbsp;{{
-                  cityWeather.weather.weather[0].mintempC }}°F</span><br>
+                  cityWeather.weather.weather[0].mintempF }}°F</span><br>
               </div>
               Recent Temperature: <b>{{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
                 cityWeather.weather.current_condition[0].temp_F }}°F</b><br><br>

@@ -139,7 +139,7 @@ export default {
       i3: null,
       clouds: [],
       coordX: [15, 9, 2],
-      inputString: "Welcome",
+      inputString: "_ Welcome",
       name: "",
       inputStringShuffled: "",
       isHovered: false,
@@ -276,9 +276,13 @@ export default {
 </script>
 
 <style scoped>
-/* @import "~bootstrap/dist/css/bootstrap.css"; */
+
 #body {
-  background: #fff;  
+  /* Winter background */
+  background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
+  background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
+  background-size: 100% 100%;
+  background-attachment: fixed;   
 }
 
 .custom-background-home-page {
@@ -286,7 +290,7 @@ export default {
 }
 
 .custom-color {
-  color: #606060 !important;
+  color: #ffffff !important;
   /* overrides the components default values of '#fff' */
 }
 
@@ -329,7 +333,7 @@ export default {
 
 .on-hover-projects:hover {
   color: #ffffff;
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(75, 75, 75);
 }
 
 .on-hover-projects:nth-child(odd) {
@@ -349,13 +353,8 @@ export default {
   font-size: 1.8em;
   padding: 0.5em;
   border-radius: 0.33em;
-  background: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.25);
   border: 1px solid #606060;
-}
-
-.route-styling a {
-  color: rgb(255, 255, 255);
-  padding-top: 0.00em;
 }
 
 .route-styling a:hover {
@@ -370,7 +369,7 @@ export default {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 1em;
   display: inline-block;
-  max-width: 40em;
+  width: 40em;
   margin: 0 auto;
   /* padding-right: 0.5em;
   padding-top: 1em; */
@@ -388,7 +387,7 @@ export default {
 }
 
 .links-area{
-  width: 21em; float: right;
+  width: 21em; float: right;  
 }
 
 .hover-image {
