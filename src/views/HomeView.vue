@@ -334,6 +334,7 @@ export default {
 .on-hover-projects:hover {
   color: #ffffff;
   background-color: rgb(75, 75, 75);
+  /* test */
 }
 
 .on-hover-projects:nth-child(odd) {
@@ -353,7 +354,7 @@ export default {
   font-size: 1.8em;
   padding: 0.5em;
   border-radius: 0.33em;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.4);
   border: 1px solid #606060;
 }
 
