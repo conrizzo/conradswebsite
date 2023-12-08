@@ -38,6 +38,10 @@ const routes = [
     name: 'about',
     component: AboutView,
   },
+
+
+
+  
   {
     path: '/projects',
     name: 'projects',
@@ -49,7 +53,8 @@ const routes = [
     component: CowculatorView,
   },
   {
-    path: '/projects/:id/:title/:details',
+    path: '/projects/:id/',
+    /* path: '/projects/:id/:title/:details',     --- Dynamic routing */
     name: 'ProjectDetailsView',
     component: ProjectDetailsView,
     props: true,

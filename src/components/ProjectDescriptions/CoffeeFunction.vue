@@ -4,7 +4,7 @@
     <p>{{ CoffeeDescription }}</p>
     <!-- PROJECT 2 -->
 
-    <pre v-bind:class="'language-python'" class="code-format">
+    <pre class="language-python code-format">
     <code>DRINK_COFFEE = True
     website_finished = False
     while website_finished is False:
@@ -17,7 +17,7 @@
       continue.
     </p>
 
-    <pre v-bind:class="'language-python'" class="code-format">
+    <pre class="language-python code-format">
     <code># Defines a Python function to describe coffee
     def describe_coffee(roast_level, origin, flavor_notes):
         """
@@ -38,10 +38,15 @@
 
 
 <script>
+
 import Prism from "prismjs";
 import 'prismjs/components/prism-python';
+
 export default {
   name: "CoffeeFunction",
+  mounted() {
+    Prism.highlightAll();
+  },
   components: Prism,
   props: {
     CoffeeTitle: {
@@ -79,7 +84,7 @@ p.homeview {
 .code-format {
   margin-top: 0.25em;
   font-weight: normal;
-  font-size: 1em;
+  font-size: 1.2em;
   page-break-inside: avoid;
   font-family: monospace;
 

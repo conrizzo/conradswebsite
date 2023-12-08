@@ -192,9 +192,8 @@ export default {
 
 #body {
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
-  background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
-  
-  background-size: 100% 120%;
+  background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
+  background-size: 100% 120%;  
   background-attachment: fixed;   
 }
 
@@ -203,7 +202,7 @@ export default {
 }
 
 .blog-link{
-  color: rgb(168, 55, 247);
+  color: rgb(255,127,80);
   text-decoration: none;
 }
 

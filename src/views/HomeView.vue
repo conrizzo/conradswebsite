@@ -1,11 +1,9 @@
 <template>
-  <div id="body" style="padding-top: 2.7em;">
+  <div id="body">
     <!-- negative margin here to fill in space in nav on home page -->
     <!-- Main area -->
     <main class="main-content custom-background-home-page">
-
-      <!-- generate clouds -->
-      
+      <!-- generate clouds -->      
       <div>
         <!--
         <button class="button-35 hide-button-low-resolution"
@@ -71,9 +69,8 @@
               <ProjectLinks :links="links">
                 <template v-slot="{ links }">
                   <div class="links-area">
-                      <span style="color: white; font-size: 1.8em;">
-                        Project Links: 
-                      </span>
+                      <span class="project-title">
+                        Project Links:</span>
                       <div class="route-styling">
                         <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
                           :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
@@ -275,6 +272,11 @@ export default {
 };
 </script>
 
+
+
+
+
+
 <style scoped>
 
 #body {
@@ -283,22 +285,19 @@ export default {
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background-size: 100% 100%;
   background-attachment: fixed;   
+ 
 }
-
 .custom-background-home-page {
   background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
 }
-
 .custom-color {
-  color: #ffffff !important;
-  /* overrides the components default values of '#fff' */
-}
-
-.custom-color:hover {
   color: rgb(255, 255, 255) !important;
   /* overrides the components default values of '#fff' */
 }
-
+.custom-color:hover {
+  color: rgb(229, 229, 229) !important;
+  /* overrides the components default values of '#fff' */
+}
 .button-35:hover {
   box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;
 }
@@ -307,7 +306,6 @@ export default {
   color: rgb(255, 208, 0);
   text-decoration: none;
 }
-
 .home-text-links:hover {
   text-decoration: underline;
 }
@@ -318,7 +316,9 @@ export default {
   color: rgb(255, 208, 0);
 }
 
-
+.project-title{
+  color: #fff; font-size: 1.8em; text-decoration: underline;
+}
 
 .on-hover-projects {
   text-decoration: none;
@@ -333,17 +333,19 @@ export default {
 
 .on-hover-projects:hover {
   color: #ffffff;
-  background-color: rgb(75, 75, 75);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #ffffff;
+  
   /* test */
 }
 
 .on-hover-projects:nth-child(odd) {
-  border-right: 1px solid #606060;
+  border-right: 1px solid #ffffff;
   padding-left: 0.315em;
 }
 
 .on-hover-projects:nth-child(even) {
-  border-left: 1px solid #606060;
+  border-left: 1px solid  #ffffff;
 }
 
 .route-styling {
@@ -353,17 +355,16 @@ export default {
   text-align: left;
   font-size: 1.8em;
   padding: 0.5em;
-  border-radius: 0.33em;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid #606060;
+  border-radius: 0.33em; 
+  background: rgba(7, 0, 116,0.33);
+  border: 1px solid #606060; 
 }
 
 .route-styling a:hover {
   color: #ffffff;
-  border-top: 1px solid #606060;
-  border-bottom: 1px solid #606060;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
 }
-
 .main-text-container {
   display: flex;
   justify-content: center;
@@ -399,36 +400,6 @@ export default {
   border-radius: 1em;
 }
 
-@media (max-width: 50em) {
-  .grid-container {
-    grid-template-columns: 1fr;
-  }
-
-  .image-container {
-    width: 100%;
-    max-height: 18.3em;
-    /* Set a fixed height for the container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 1em;
-  }
-
-  .hover-image {
-    border-radius: 1em;
-    max-width: 17.5em;
-    position: absolute;
-    top: 111.8vh;
-    z-index: 2;
-  }
-
-  .project-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
 /* Style for grid items */
 .grid-item {
   border: none;
@@ -439,12 +410,8 @@ export default {
   position: relative;
 
   line-height: 1;
-  padding-top: 0em;
-  padding-left: 0.25em;
-  padding-right: 0.25em;
-
+  padding: 0em 0.25em 0em 0.25em;
   margin-top: 2em;
-
   color: #ffffff;
   font-size: 4em;
   z-index: 1;
@@ -497,7 +464,8 @@ export default {
   }
 }
 
-/* Make some happy clouds */
+/* Make some happy clouds
+- these are old designs, but I removed them for now to make site look more professional and formal. */
 .cloud {
   width: 200px;
   height: 50px;
@@ -537,19 +505,53 @@ export default {
   z-index: 0;
 }
 
-@media only screen and (max-width: 50rem) {
-  .title-spacing {
-    color: #fff;
-    text-align: center;
-    margin-left: 0em;
-    margin-top: 0em;
-    padding-top: 0.5em;
-    font-size: 2.5em;
+@media (max-width: 50em) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  } 
+  .image-container {
+    width: 100%;
+    max-height: 18.3em;
+    /* Set a fixed height for the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1em;
+  }
+  .hover-image {
+    border-radius: 1em;
+    max-width: 17.5em;
+    position: absolute;
+    top: 111.8vh;
+    z-index: 2;
   }
 
+  .project-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 50rem) {
+  .title-spacing {
+    color: #fff;      
+    padding-top: 2em;
+    font-size: 2.5em;
+  }
   .under-title-caption{
     padding: 0 1em 0 1em;    
   }
+  
+  .route-styling {
+    font-size: 1.75em;
+  }
+  .hide-button-low-resolution {
+    display: none;
+  }
+  .main-text-container {
+   width: calc(100% - 5em);
+  } 
 
   #cloudThree {
     position: absolute;
@@ -558,16 +560,13 @@ export default {
     opacity: 0.9;
     z-index: 0;
   }
+}
 
-  .route-styling {
-    font-size: 1.75em;
+@media only screen and (max-width: 35rem) {
+  .links-area{
+  width: calc(100% - 2em); 
   }
+}
 
-  .hide-button-low-resolution {
-    display: none;
-  }
 
-  .main-text-container {
-   width: calc(100% - 5em);
-  }
-}</style>
+</style>

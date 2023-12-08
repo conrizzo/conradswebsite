@@ -292,6 +292,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 h2{
   font-size:3em; color: rgb(60, 60, 60);
