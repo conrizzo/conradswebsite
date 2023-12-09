@@ -89,10 +89,10 @@ export default {
     margin-right: 0;    
            
 }
-
+/* Can make this the page color for the respective page if I set all pages to follow a page color value */
 nav a.router-link-exact-active {
     color: #ffffff;
-    background-color: rgb(11, 87, 208);
+    background-color: rgb(40, 40, 40); /*changes the background color of the active link */
 }  
   
 /* #00b3ff; */

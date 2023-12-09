@@ -67,7 +67,7 @@
   
   nav a.router-link-exact-active {
     color: #ffffff;
-    background-color: rgb(11, 87, 208);
+    background-color: rgb(40, 40, 40);
   }  
 
   .home-link.active-home-link {

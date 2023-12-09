@@ -7,13 +7,13 @@
   <!-- build the cowculator buttons and their functions using v-for with conditions for each button type -->
   <div class="grid-container cow-image">
     <button v-for="button in buttonList" :key="button" :class="['grid-item', {
-      'grid-item-symbols': button === '+' || button === '-' || button == '\u00F7' || button == '\u00D7', 'tooltip' : button === 'power',
+      'grid-item-symbols': button === '+' || button === '-' || button == '\u00F7' || button == '\u00D7', 'tooltip': button === 'power',
       active: isActive[button]
     }]" @click="addNumber(button)">
 
       <div v-if="button === '<-'" class="arrow-position">
         <div class="left-arrow"></div>
-      </div>      
+      </div>
       <div v-else-if="button === 'power'">
         <i>x<sup>y</sup></i>
         <span class="tooltiptext">{{ showTooltip }}</span>
@@ -26,25 +26,27 @@
   </div>
 
   <div style="display: flex; justify-content: center; align-items: center;">
-  <div>
-    <button style="margin-right: 0.25em" class="button-35" @click="clearField">
-      Reset
-    </button>
+    <div>
+      <button style="margin-right: 0.25em" class="button-35" @click="clearField">
+        Reset
+      </button>
 
-    <button style="margin-right: 0.25em" class="button-35" @click="copyToClipboard">
-      Copy Result
-    </button>
-  </div>
+      <button style="margin-right: 0.25em" class="button-35" @click="copyToClipboard">
+        Copy Result
+      </button>
+    </div>
 
-  <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-    <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35" @click="adjustTreeSize('+')">
-      + Binary Tree Size
-    </button>
-    <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em;" class="button-35" @click="adjustTreeSize('-')">
-      - Binary Tree Size
-    </button>
+    <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+      <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35"
+        @click="adjustTreeSize('+')">
+        + Binary Tree Size
+      </button>
+      <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em;" class="button-35"
+        @click="adjustTreeSize('-')">
+        - Binary Tree Size
+      </button>
+    </div>
   </div>
-</div>
   <!-- {{ cleanedExpression }} -->
   <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
   <div style="padding-top: 0.5em">
@@ -70,22 +72,22 @@
 
   </div>
   <div style="padding: 0.25em; padding-top: 1em">
-    <div class=".dark-color-text" v-if="showDescriptionText"
-      style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em">
-      <b style="color: #42b883">Final Node Cowculation:</b><br />
-      Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{
-        operator }}</span>&nbsp; Right node:
-      <span class="node-display">{{ addCommas(rightNode) }}</span><br />
-      <b style="color: #42b883">Full Binary Tree Structure in JSON:</b><br />
-      <div>
-        <span>{{ treeNodeCalculations }}</span>
-      </div>
-    </div>
-    <div>
-      <pre v-if="showText">{{ treeString }}</pre>
-    </div>
-    <!-- attempt to draw svg here of binary tree -->
-    <div ref="svgContainer"></div>
+        <div class=".dark-color-text" v-if="showDescriptionText"
+            style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em">
+              <b style="color: #42b883">Final Node Cowculation:</b><br />
+              Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{
+                operator }}</span>&nbsp; Right node:
+              <span class="node-display">{{ addCommas(rightNode) }}</span><br />
+              <b style="color: #42b883">Full Binary Tree Structure in JSON:</b><br />
+              <div>
+                <span>{{ treeNodeCalculations }}</span>
+              </div>
+        </div>
+        <div>
+          <pre v-if="showText">{{ treeString }}</pre>
+        </div>
+      <!-- attempt to draw svg here of binary tree -->
+      <div ref="svgContainer"></div>
   </div>
   <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
@@ -113,7 +115,7 @@ export default {
       mooTimer: null,
       mooCounter: null,
       superMoo: false,
-      mooPlication: "",      
+      mooPlication: "",
       buttonList: ["\u00D7", "1", "2", "3", "\u00F7", "4", "5", "6", "-", "7", "8", "9", "+", "<-", ".", "0", "power", "(", ")", "Moo"],
       isActive: [false, false, false, false, false, false, false, false, false, false,],
       // isActive: [ false,   false,  false,  false,  false, false,  false,  false,   false,  false,],
@@ -265,20 +267,20 @@ export default {
     },
   },
   methods: {
-    
+
     adjustTreeSize(operator) {
 
-      if (this.result != null){
-        
+      if (this.result != null) {
+
         if (operator === "+") {
           this.adjustViewBoxSize -= 100;
         } else if (operator === "-") {
           this.adjustViewBoxSize += 100;
-        }        
+        }
         this.setOutputs(this.result);
       }
 
-      
+
     },
     findInfinity2() {
       if (this.result == "Infinity") {
@@ -333,7 +335,7 @@ export default {
       // text vertically in firefox browser - 17/08/2023
       svg.innerHTML += `<circle cx="${x}" cy="${y}" r="15" fill="white" stroke="#42b883" stroke-opacity="0.5" />`;
       svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="1em">${node.value}</text>`;
-    },    
+    },
     printTree(node, level = 1, isRoot = true) {
       if (node === null) {
         return "";
@@ -636,7 +638,7 @@ export default {
       } else if (lastDigitIndex === "9") {
         this.isActive[9] = true;
       }
-    setTimeout(() => {
+      setTimeout(() => {
         for (let i = 0; i < 10; i++) {
           this.isActive[i] = false;
         }
@@ -651,7 +653,7 @@ export default {
         this.mooMessage = false;
       }, 1500);
     },
-     // this decides what each button type does
+    // this decides what each button type does
     addNumber(buttonValueToAdd) {
       if (buttonValueToAdd === "<-") {
         this.removeEntry();
@@ -664,13 +666,13 @@ export default {
       } else {
         this.expression += buttonValueToAdd;
       }
-    },    
+    },
     addMoo() {
       this.expression += "Moo";
     },
-    squared() {     
-      this.expression += "^";      
-    }, 
+    squared() {
+      this.expression += "^";
+    },
     addInExtraMultiplicationSymbols(input) {
       let output = input.replace(/(\d)\(/g, '$1\u00D7(').replace(/\)\(/g, ')\u00D7(');
       //console.log(output)
@@ -686,31 +688,31 @@ export default {
       return addMultParenthesis;
     },
     autoFixIncorrectInput(str) {
-  // This code was updated from a long if-else chain to just regex so could have some bugs, likely its good!
+      // This code was updated from a long if-else chain to just regex so could have some bugs, likely its good!
 
-  // If someone types 5-+2 or 5-/2 or 5-*2 or other incorrect inputs this will fix them.
-  const lastTwoChars = str.slice(-2);
-  const lastThreeChars = str.slice(-3);
+      // If someone types 5-+2 or 5-/2 or 5-*2 or other incorrect inputs this will fix them.
+      const lastTwoChars = str.slice(-2);
+      const lastThreeChars = str.slice(-3);
 
-  const regexPatterns = [
-    { pattern: /-\+|-\/|-\\|\+\+|\+\/|\+\*|\*\+|\*\/|\*\*|\+\\|\/\+|\/\/|\/\*/, replacement: '' },
-    { pattern: /---/, replacement: '-' },
-    { pattern: /-\*/, replacement: '*' }
-  ];
+      const regexPatterns = [
+        { pattern: /-\+|-\/|-\\|\+\+|\+\/|\+\*|\*\+|\*\/|\*\*|\+\\|\/\+|\/\/|\/\*/, replacement: '' },
+        { pattern: /---/, replacement: '-' },
+        { pattern: /-\*/, replacement: '*' }
+      ];
 
-  for (const regex of regexPatterns) {
-    if (regex.pattern.test(lastTwoChars) || regex.pattern.test(lastThreeChars)) {
-      this.expression = str.slice(0, -2) + str.slice(-1)
-        .replaceAll("/", "\u00F7")
+      for (const regex of regexPatterns) {
+        if (regex.pattern.test(lastTwoChars) || regex.pattern.test(lastThreeChars)) {
+          this.expression = str.slice(0, -2) + str.slice(-1)
+            .replaceAll("/", "\u00F7")
+            .replaceAll("*", "\u00D7")
+            .replace(regex.pattern, regex.replacement);
+          break;
+        }
+      }
+      // for output to screen to show x instead of * and ÷ instead of /
+      this.expression = this.expression.replaceAll("/", "\u00F7")
         .replaceAll("*", "\u00D7")
-        .replace(regex.pattern, regex.replacement);
-      break;
-    }
-  }
-  // for output to screen to show x instead of * and ÷ instead of /
-  this.expression = this.expression.replaceAll("/", "\u00F7")
-        .replaceAll("*", "\u00D7")
-},
+    },
     removeEntry() {
       if (this.expression != "") {
         if (this.expression.slice(-3) == "Moo") {
@@ -760,10 +762,10 @@ export default {
 };
 </script>
 <style scoped>
-
-.button-35:hover{
-  box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;  
+.button-35:hover {
+  box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;
 }
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -779,7 +781,7 @@ export default {
 }
 
 .grid-item {
-  background-color: rgba(30, 30, 30, 0.6);
+  background-color: rgba(30, 30, 30, 0.66);
   border: none;
   padding: 0.8em 0.8em 0.8em 0.8em;
   font-size: 1.5em;
@@ -788,6 +790,7 @@ export default {
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
 }
+
 .grid-item-symbols {
   background-color: rgba(198, 198, 198, 0.6);
   border: none;
@@ -799,12 +802,15 @@ export default {
   color: rgba(0, 0, 0, 1);
   cursor: pointer;
 }
+
 .grid-item-symbols:hover {
-  background-color: rgba(186, 186, 186, 0.318);
+  background-color: 	rgba(66, 184, 131,0.7) !important;
 }
+
 .grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
+
 .moo-cows-go-moo {
   top: 102%;
   left: 50%;
@@ -816,6 +822,7 @@ export default {
   position: absolute;
   color: #42b883;
 }
+
 .input-field {
   width: 10.6115em;
   font-size: 2.25em;
@@ -824,17 +831,20 @@ export default {
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 }
+
 /* doesn't highlight when clicking on input field */
 select:focus,
 button:focus {
   outline: none;
 }
+
 /* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
 input:focus {
   outline: none !important;
   border: 1px solid #42b883;
   box-shadow: 0 0 10px #42b883;
 }
+
 @media only screen and (max-width: 600px) {
   .moo-cows-go-moo {
     top: 100%;
@@ -851,16 +861,18 @@ input:focus {
     padding: 0.1em;
   }
 }
+
 .cowculate-result {
   padding-top: 1em;
   text-align: center;
   margin-top: 0.05em;
-  font-size: 1.5em; 
+  font-size: 1.5em;
   left: 0em;
   right: 0em;
-  padding: 0em;  
+  padding: 0em;
   border-radius: 4px 4px 4px 4px;
 }
+
 /* back arrow start */
 .arrow {
   border: solid rgb(255, 255, 255);
@@ -868,20 +880,24 @@ input:focus {
   display: inline-block;
   padding: 3px;
 }
+
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+
 .left-arrow {
   border-right: 0.6em solid #ffffff;
   border-bottom: 0.4em solid transparent;
   border-top: 0.4em solid transparent;
   position: absolute;
 }
+
 .arrow-position {
   margin-bottom: 0.8em;
   margin-left: 0.75em;
 }
+
 /* back arrow end */
 
 /* notification menu when copy to clipboard */
@@ -902,13 +918,14 @@ input:focus {
   width: 300px;
   opacity: 1;
 }
+
 .notification.hide {
   opacity: 0;
 }
+
 .node-display {
   font-size: 1.3em;
   background-color: #e3e3e3;
   padding-right: 0.33em;
   padding-left: 0.33em;
-}
-</style>
+}</style>

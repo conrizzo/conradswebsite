@@ -10,12 +10,12 @@
           <ul>
             <li>This iteration of the website was started March, 2023 and is
               totally self-made by me (Conrad) using primarily
-              <a class="text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
+              <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
                   3</b></a>
               (Vue.js) for its reactivity and interactivity. This site is hosted on
-              <a class="text-links" href="https://github.com/conrizzo/conradswebsite">
+              <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                 my GitHub</a> with
-              <a class="text-links" href="https://pages.github.com/">
+              <a class="home-text-links" href="https://pages.github.com/">
                 GitHub pages</a>.
             </li>
 
@@ -33,9 +33,9 @@
 
 
 
-            <li>I also started a <b><a class="blog-link"
+            <li>I also started a <b><a class="home-text-links"
                   href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>blog site</a></b> that
-              uses the <a class="text-links" href='https://astro.build/'>Astro</a> framework.
+              uses the <a class="home-text-links" href='https://astro.build/'>Astro</a> framework.
             </li>
 
 
@@ -50,7 +50,7 @@
             </li>
 
             <li>
-              Started learning <a class="text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as
+              Started learning <a class="home-text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as
               well.
               Have practiced more German too, so it is <u>a lot</u> of language learning!
             </li> -->
@@ -63,10 +63,10 @@
         <p>
           This website was originally written in Vue 3 and straight
           JavaScript. Later on I converted it to have TypeScript support, and new projects such as the
-          <router-link class="text-links" to="/projects/cowgame">Cow Game</router-link> heavily use
-          TypeScript. The <router-link class="text-links" to="/projects/cards">Card Game</router-link>
+          <router-link class="home-text-links" to="/projects/cowgame">Cow Game</router-link> heavily use
+          TypeScript. The <router-link class="home-text-links" to="/projects/cards">Card Game</router-link>
           also uses TypeScript.
-          <a class="text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
+          <a class="home-text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
             written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. In July,
           2023, started
           working on integrating backend development services. In July, 2023 I also started learning Rust and some of this website
@@ -131,7 +131,7 @@
 
             <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
           </div>
-          <p class="bird-text" style="color: #c7c7c7;"><a class="text-links"
+          <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
               href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
             (name in German, English name is Great Tit)
             photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
@@ -197,18 +197,17 @@ export default {
   background-attachment: fixed;   
 }
 
-.text-links {
-  color: rgb(255, 224, 150);
-}
-
-.blog-link{
-  color: rgb(255,127,80);
+.home-text-links {
+  color: rgb(204, 179, 79);
   text-decoration: none;
+
+  transition: 0.33s ease-in-out; /* Add transition for smooth animation */
+}
+.home-text-links:hover {
+  text-decoration: underline;
+  color: rgb(255, 89, 89);
 }
 
-.blog-link:hover{  
-  text-decoration: underline;
-}
 
 p {
   color: #e0e0e0;

@@ -86,7 +86,7 @@
           </div>
           <div class="grid-item">
             <div class="image-container">
-              <img v-if="isHovered" style="" class="hover-image" :src="hoveredImage" alt="Hover Image">
+              <img v-if="isHovered" style="" class="hover-image" :src="hoveredImage"  alt="Hover Image">
             </div>
           </div>
         </div>
@@ -139,8 +139,11 @@ export default {
       inputString: "_ Welcome",
       name: "",
       inputStringShuffled: "",
+      // image logic
       isHovered: false,
       hoveredImage: "",
+      
+
     };
   },
   computed: {
@@ -279,6 +282,8 @@ export default {
 
 <style scoped>
 
+
+
 #body {
   /* Winter background */
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
@@ -295,7 +300,7 @@ export default {
   /* overrides the components default values of '#fff' */
 }
 .custom-color:hover {
-  color: rgb(229, 229, 229) !important;
+  color: rgb(255, 255, 255) !important;
   /* overrides the components default values of '#fff' */
 }
 .button-35:hover {
@@ -305,13 +310,14 @@ export default {
 .home-text-links {
   color: rgb(255, 208, 0);
   text-decoration: none;
+
+  transition: 0.33s ease-in-out; /* Add transition for smooth animation */
 }
 .home-text-links:hover {
   text-decoration: underline;
+  color: rgb(255, 89, 89);
 }
-.home-text-links:visited {
-  color: rgb(255, 208, 0);
-}
+
 .home-text-links:active {
   color: rgb(255, 208, 0);
 }
@@ -322,48 +328,32 @@ export default {
 
 .on-hover-projects {
   text-decoration: none;
-  padding-right: 0.25em;
-  padding-left: 0.25em;
-}
-
-.on-hover-projects:visited {
-  text-decoration: none;
-  color: #fff;
+  padding: 0 0.25em 0 0.25em;
+  
 }
 
 .on-hover-projects:hover {
   color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-right: 1px solid #ffffff;
-  
-  /* test */
+  background-color: rgba(0, 0, 0, 0.33); 
+  border-radius: 0.25em;    
+  margin-left: -0.1em;
 }
 
-.on-hover-projects:nth-child(odd) {
-  border-right: 1px solid #ffffff;
-  padding-left: 0.315em;
-}
-
-.on-hover-projects:nth-child(even) {
-  border-left: 1px solid  #ffffff;
-}
 
 .route-styling {
-  line-height: 1.15;
+  line-height: 1.11;
   text-decoration: none;
   display: block;
   text-align: left;
   font-size: 1.8em;
   padding: 0.5em;
-  border-radius: 0.33em; 
-  background: rgba(7, 0, 116,0.33);
-  border: 1px solid #606060; 
+  border-radius: 0.5em; 
+  background: rgba(7, 0, 116,0.33);  
+  border: 1px solid rgb(229, 229, 229);
 }
 
 .route-styling a:hover {
-  color: #ffffff;
-  border-top: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
+  color: #ffffff;  
 }
 .main-text-container {
   display: flex;
@@ -393,11 +383,14 @@ export default {
 }
 
 .hover-image {
-  max-height: 18.3em;
-  margin-top: 3em;
+  max-height: 18em;
+  margin-top: 2.85em;
   max-width: 100%;
+
   display: block;
-  border-radius: 1em;
+  border-radius: 1em;  
+
+  
 }
 
 /* Style for grid items */
