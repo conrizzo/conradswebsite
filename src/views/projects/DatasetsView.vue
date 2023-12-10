@@ -357,8 +357,9 @@ tr:nth-child(even) {
   }
 
   h2{
-  font-size:2em; 
-  color: rgb(87, 101, 255);
+  font-size:1.25em; 
+  margin-top: 1em;
+ 
 }
 
   

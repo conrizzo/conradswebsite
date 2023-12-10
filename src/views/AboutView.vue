@@ -1,11 +1,13 @@
 
 
 <template>
-  <body id="body">
+  <body v-show="languageButtonText === 'Deutsch wechseln'" id="body">
     <main class="main-content">
       <!-- Main area -->
       <div class="text-container">
-        <h1 class="h1-title">About</h1>  <button @click="language();" class="language-button">{{languageButtonText}}</button>
+        <div>
+        <h1 class="h1-title">About</h1><button @click="language();" class="language-button button-35">{{languageButtonText}}</button>
+        </div>
         <article>
          
           <ul>
@@ -17,10 +19,10 @@
               <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                 my GitHub</a> with
               <a class="home-text-links" href="https://pages.github.com/">
-                GitHub pages</a>.
+                GitHub Pages</a>.
             </li>
 
-            <li>This websites focus is to make and showcase some projects.
+            <li>This website's primary aim is to create and exhibit various projects.
 
             </li>
 
@@ -37,6 +39,152 @@
             <li>I also started a <b><a class="home-text-links"
                   href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>blog site</a></b> that
               uses the <a class="home-text-links" href='https://astro.build/'>Astro</a> framework.
+            </li>
+
+
+            <!--<li>I hold a degree in Computational Linguistics from the
+              University of Tübingen in Germany,
+              and previously completed a Bachelor of Science in Biology from the University of North Carolina at
+              Wilmington, Wilmington, NC, USA.</li>
+
+            <li>Have been working on this website using Vue.js, JavaScript,
+              TypeScript, CSS, HTML. Starting to
+              learn more about backend development and databases.
+            </li>
+
+            <li>
+              Started learning <a class="home-text-links" href=https://doc.rust-lang.org/book/title-page.html>Rust</a> as
+              well.
+              Have practiced more German too, so it is <u>a lot</u> of language learning!
+            </li> -->
+          </ul>
+        </article>
+        <h2>More info if interested:</h2>
+        <div class="horizontal-line"></div>
+
+
+        <p>
+          This website was originally written in Vue 3 and straight
+          JavaScript. Later on I converted it to have TypeScript support, and new projects such as the
+          <router-link class="home-text-links" to="/projects/cowgame">Cow Game</router-link> heavily use
+          TypeScript. The <router-link class="home-text-links" to="/projects/cards">Card Game</router-link>
+          also uses TypeScript.
+          <a class="home-text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
+            written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. In July,
+          2023, started
+          working on integrating backend development services. In July, 2023 I also started learning Rust and some of this website
+          now uses Rust compiled into Web Assembly. Recently I've been reviewing code I wrote and upgrading it to be simpler
+          and more professional. There is a lot one can learn by reviewing their own code and seeing what could be
+          improved
+          after seeing how other developers write code.
+        </p>
+
+
+        <figure class="figure-location">
+          <img class="img-container float-left" :src="imagePath" alt="Coding Languages used" />
+          <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly
+            Vue.js. As of June
+            2023, currently starting to add in TypeScript support.
+            Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
+          </figcaption>
+        </figure>
+
+
+        <h2>About the Vue Routing with GitHub Pages:</h2>
+        <div class="horizontal-line"></div>
+        <div>
+          <p>December 6th 2023 - Next item for deployment will be to convert this process below to use GitHub actions and a .yaml file to automate it. Lately I've 
+            been making many small commits so I may not need to deploy the website everytime I make small adjustments with an automated process but the 
+            auto deployment using GitHub actions is a nice tool.            
+          </p>
+          <p>
+            Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods
+            to work properly.
+            For example, in order to deploy this website, the command <i>"deploy": "copy dist\index.html dist\404.html
+              &
+              gh-pages -d dist"</i> is used, and this command is added to the package.json file.
+            To publish modifications to the website, one can run the command "npm run deploy". This will first build
+            the
+            vue.js application by running "npm run build", and then put the production build of the website into the
+            'dist'
+            folder.</p>
+
+          <p>
+            A copy of the index.html file that is built in the 'dist' folder is created and renamed to 404.html.
+            This is a workaround that allows router-linking in vue.js to work correctly for all routes. Without this
+            workaround, direct URL links such as https://conradswebsite.com/projects/cowculator would not work and
+            instead
+            show a 404 error on GitHub Pages.
+            However, by creating a copy of index.html and renaming it to 404.html whenever the site is updated, all
+            addresses
+            now work properly by falling back to the index.html page. This solution may not be ideal, but it is
+            necessary when
+            using gh-pages.</p>
+        </div>
+
+      </div>
+      <!-- Aside area -->
+      <AsideContent style="background-color: rgb(40, 40, 40);">
+
+        <template v-slot:aside-content>
+          <div class="bird-container">
+            <h3>
+              Bird of the Month: Kohlmeise
+            </h3>
+
+            <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
+          </div>
+          <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
+              href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
+            (name in German, English name is Great Tit)
+            photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
+            They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
+            peanuts!</p>
+
+        </template>
+      </AsideContent>
+
+    </main>
+
+  </body>
+  <!-- Deutsch -->
+  <body v-show="languageButtonText === 'Switch to English'" id="body">
+    <main class="main-content">
+      <!-- Main area -->
+      <div class="text-container">
+        <h1 class="h1-title">Über mich</h1><button @click="language();" class="language-button button-35">{{languageButtonText}}</button>
+        <article>
+         
+          <ul>
+            <li>Diese Version der Website wurde im März 2023 gestartet und komplett von mir (Conrad) selbst erstellt, hauptsächlich mit
+              <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
+                  3</b></a>
+              (Vue.js) für seine Reaktivität und Interaktivität. Die Seite ist auf
+              <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
+                meinem GitHub</a> mit
+              <a class="home-text-links" href="https://pages.github.com/">
+                GitHub Pages</a> gehostet.
+            </li>
+
+            <li>Das Hauptziel dieser Website besteht darin, verschiedene Projekte zu erstellen und auszustellen.
+
+            </li>
+
+            <li> Ich habe damit begonnen, Vue.js zu lernen, als ich am Bioinformatik-Toolkit am 
+              <i>Max-Planck-Institut für Biologie</i> in Tübingen, Deutschland, gearbeitet habe.
+            </li>            
+
+            <li>
+              Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, 
+              sind Vue.js, JavaScript, TypeScript, HTML, CSS, Rust für Web Assembly und mehr!
+            </li>
+
+
+
+            <li>Außerdem habe ich begonnen, eine 
+                 <b><a class="home-text-links"
+                  href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>Blogseite</a></b> zu erstellen, die das
+              <a class="home-text-links" href='https://astro.build/'>Astro</a> framework verwendet.
             </li>
 
 
@@ -164,7 +312,7 @@ export default {
       birdPicture: require('@/images/Kohlenmeise.jpg'),
       imagePath: require("@/images/languages_july_17_2023.jpg"), // Add the image path to the data object
       languageChange: false,
-      languageButtonText: "Auf Deutsch wechseln",
+      languageButtonText: "Deutsch wechseln",
     }
   },
 
@@ -189,10 +337,10 @@ export default {
   },
   methods: {
     language() {
-      if (this.languageButtonText == "Auf Deutsch wechseln") {
+      if (this.languageButtonText == "Deutsch wechseln") {
         this.languageButtonText = "Switch to English";
       } else {
-        this.languageButtonText = "Auf Deutsch wechseln";
+        this.languageButtonText = "Deutsch wechseln";
       }
     }
   }
@@ -209,12 +357,22 @@ export default {
   background-size: 100% 120%;  
   background-attachment: fixed;   
 }
-.h1-title,
-.language-button {
+.h1-title,.language-button {
   display: inline-block;
-  vertical-align: middle;
- 
+  vertical-align: middle;  
 }
+.language-button{
+  margin-top: 4em;
+  margin-left: 1em; 
+  padding: 0.4em 0.4em 0.2em 0.4em;
+  border-radius: 0.66em;
+  font-size: 0.8em;
+}
+.language-button:hover{
+  box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;  
+}
+
+
 
 .home-text-links {
   color: rgb(204, 179, 79);

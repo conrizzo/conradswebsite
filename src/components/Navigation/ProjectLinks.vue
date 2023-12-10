@@ -22,8 +22,8 @@ export default {
 
                 { text: 'Cowculator', to: '/projects/cowculator' },
                 { text: 'Custom Weather', to: '/projects/weather' },
-                { text: 'Coffee Data', to: '/projects/datasets' },                
-                { text: 'The Cow Game', to: '/projects/cowgame' },
+                { text: 'Coffee Usage', to: '/projects/datasets' },                
+                { text: 'Cow Food Game', to: '/projects/cowgame' },
                 { text: 'Post Messages', to: '/projects/firebasetest'},
                 { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
                 // { text: 'Project Descriptions', to: '/projects/' },    
