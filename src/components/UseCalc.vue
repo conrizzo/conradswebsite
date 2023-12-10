@@ -1,60 +1,62 @@
 <template>
-  
-  <div>
-    <!-- checkInput highlights key presses -->
-    <input class="input-field" v-model="expression" type="text" @input="checkInput(); cursorIndex();" @keydown="getLastKey" @selectionchange="handleSelectionChange" ref="inputField" />
-  </div>
-
-  <!-- build the cowculator buttons and their functions using v-for with conditions for each button type -->
-  <div class="grid-container cow-image">
-
-    <button v-for="button in buttonList" :key="button" :class="['grid-item', {
-      'grid-item-symbols': button === '+' || button === '-' || button == '\u00F7' || button == '\u00D7', 'tooltip': button === 'power',
-      active: isActive[button]
-    }]" @click="addNumber(button)">
-
-        <div v-if="button === '<-'" class="arrow-position">
-          <div class="left-arrow"></div>
+  <div class="cowculator-position">
+        <div>
+          <!-- checkInput highlights key presses -->
+          <input class="input-field" v-model="expression" type="text" @input="checkInput(); cursorIndex();" @keydown="getLastKey" @selectionchange="handleSelectionChange" ref="inputField" />
         </div>
 
-        <div v-else-if="button === 'power'">
-          <i>x<sup>y</sup></i>
-          <span class="tooltiptext">{{ showTooltip }}</span>
+        <!-- build the cowculator buttons and their functions using v-for with conditions for each button type -->
+        <div class="grid-container cow-image">
+
+          <button v-for="button in buttonList" :key="button" :class="['grid-item', {
+            'grid-item-symbols': button === '+' || button === '-' || button == '\u00F7' || button == '\u00D7', 'tooltip': button === 'power',
+            active: isActive[button]
+          }]" @click="addNumber(button)">
+
+              <div v-if="button === '<-'" class="arrow-position">
+                <div class="left-arrow"></div>
+              </div>
+
+              <div v-else-if="button === 'power'">
+                <i>x<sup>y</sup></i>
+                <span class="tooltiptext">{{ showTooltip }}</span>
+              </div>
+
+              <div v-else>
+                {{ button }}
+              </div>
+
+          </button>
         </div>
 
-        <div v-else>
-          {{ button }}
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <div>
+
+            <button style="margin-right: 0.25em" class="button-35" @click="clearField">
+              Reset
+            </button>
+
+            <button style="margin-right: 0.25em" class="button-35" @click="copyToClipboard">
+              Copy Result
+            </button>
+
+          </div>
+        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+          <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35"
+            @click="adjustTreeSize('+')">
+            + Binary Tree Size
+          </button>
+          <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em;" class="button-35"
+            @click="adjustTreeSize('-')">
+            - Binary Tree Size
+          </button>
         </div>
 
-    </button>
-  </div>
-
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <div>
-
-      <button style="margin-right: 0.25em" class="button-35" @click="clearField">
-        Reset
-      </button>
-
-      <button style="margin-right: 0.25em" class="button-35" @click="copyToClipboard">
-        Copy Result
-      </button>
-
-    </div>
-    <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-      <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35"
-        @click="adjustTreeSize('+')">
-        + Binary Tree Size
-      </button>
-      <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em;" class="button-35"
-        @click="adjustTreeSize('-')">
-        - Binary Tree Size
-      </button>
-    </div>
-
+      </div>
   </div>
   <!-- {{ cleanedExpression }} -->
   <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
+<div class="binary-tree-and-outputs-area">
   <div style="padding-top: 0.5em">
     <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
@@ -77,7 +79,8 @@
     <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
 
   </div>
-  <div style="padding: 0.25em; padding-top: 1em">
+
+  <div style="padding: 0.25em; padding-top: 1em;">
     <div class=".dark-color-text" v-if="showDescriptionText"
       style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em">
       <b style="color: #42b883">Final Node Cowculation:</b><br />
@@ -107,6 +110,7 @@
         Moo cows go moo, moo, moo!</span>
     </h2>
   </div>
+</div>  
 </template>
 <script>
 
@@ -818,6 +822,25 @@ export default {
 <style scoped>
 .button-35:hover {
   box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;
+}
+.cowculator-position{
+  position: absolute; left: 5em;
+}
+.binary-tree-and-outputs-area{
+  margin-left: 30em;
+  padding-right: 2em;
+  padding-left: 0em;
+}
+@media screen and (max-width: 110rem) {
+  .cowculator-position{
+    position: relative; 
+    left: 0em;
+  }
+  .binary-tree-and-outputs-area{
+  margin-left: 0em;
+  padding-left: 2em;
+  }
+  
 }
 .grid-container {
   display: grid;

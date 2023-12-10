@@ -10,10 +10,10 @@
       </p>
       <ul style="text-align: left; padding-left: 2em">
         <li>
-          <router-link
+          <a
             class="text-links"
-            to="/projects/1/Cowculator/A%20working%20calculator"
-            ><b>Actual code that does the calculations here!</b></router-link
+            href="https://github.com/conrizzo/conradswebsite/blob/master/src/components/UseCalc.vue"
+            ><b>Main Cowculator code</b></a
           >
         </li>
         <li>
