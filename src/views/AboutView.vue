@@ -5,8 +5,9 @@
     <main class="main-content">
       <!-- Main area -->
       <div class="text-container">
-        <h1 class="h1-title">About</h1>
+        <h1 class="h1-title">About</h1>  <button @click="language();" class="language-button">{{languageButtonText}}</button>
         <article>
+         
           <ul>
             <li>This iteration of the website was started March, 2023 and is
               totally self-made by me (Conrad) using primarily
@@ -162,6 +163,8 @@ export default {
     return {
       birdPicture: require('@/images/Kohlenmeise.jpg'),
       imagePath: require("@/images/languages_july_17_2023.jpg"), // Add the image path to the data object
+      languageChange: false,
+      languageButtonText: "Auf Deutsch wechseln",
     }
   },
 
@@ -184,6 +187,16 @@ export default {
     document.title = "About Conrad's Website";
     Prism.highlightAll();
   },
+  methods: {
+    language() {
+      if (this.languageButtonText == "Auf Deutsch wechseln") {
+        this.languageButtonText = "Switch to English";
+      } else {
+        this.languageButtonText = "Auf Deutsch wechseln";
+      }
+    }
+  }
+  
 };
 </script>
 
@@ -195,6 +208,12 @@ export default {
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
   background-size: 100% 120%;  
   background-attachment: fixed;   
+}
+.h1-title,
+.language-button {
+  display: inline-block;
+  vertical-align: middle;
+ 
 }
 
 .home-text-links {

@@ -105,6 +105,11 @@
 
     </main>
   </div>
+
+  <div style="padding-top: 5em; background-color: #515151;">
+    <!-- spacer -->
+  </div>
+
 </template>
 
 <script>
@@ -336,8 +341,9 @@ export default {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.33); 
   border-radius: 0.25em;    
-  margin-left: -0.1em;
+  
 }
+
 
 
 .route-styling {
