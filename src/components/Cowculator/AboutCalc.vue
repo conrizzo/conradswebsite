@@ -5,19 +5,27 @@
       <button class="close" @click.self="closeModal"></button>
       <h2 style="padding-top: 0.5em"><span v-html="title"></span>, why?</h2>
 
-      <p class="about-modal-text" style="padding-bottom: 5px; text-align: left">
-        {{ text }}
+      <p class="about-modal-text">
+        The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. This is not some simple calculator tutorial
+        people write. It uses real parsing.  
+        It displays a binary tree of the output, correctly follows the order of operations, and displays the current math operation node being performed. 
+        The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. 
+        The current left node, math operator node, and right node in the tree are shown as calculations are entered. 
+        This has mostly been a learning project so there are some extra unused functions and comments.
       </p>
-      <ul style="text-align: left; padding-left: 2em">
+
+
+
+      <ul>
         <li>
-          <a
+          - <a
             class="text-links"
-            href="https://github.com/conrizzo/conradswebsite/blob/master/src/components/UseCalc.vue"
-            ><b>Main Cowculator code</b></a
+            href="https://github.com/conrizzo/conradswebsite/blob/master/src/components/Cowculator/UseCalc.vue"
+            ><b>Main Cowculator Code</b></a
           >
         </li>
         <li>
-          <a class="text-links" :href="url"><b>Conrad's GitHub</b></a>
+          - <a class="text-links" :href="url"><b>Conrad's GitHub</b></a>
         </li>
       </ul>
       <!--
@@ -25,7 +33,7 @@
         <img style="max-width: 15em" :src="imagePath" alt="Image" />
       </div>
        -->
-
+  <!--
       <p class="about-modal-text">
         Without a doubt, other calculators are simply inadequate. They lack the
         one essential feature that sets the Cow-culator apart: the Moo function.
@@ -35,6 +43,7 @@
         users who demand the very best from their cow-culations. Don't be square
         - use the Cow-culator!
       </p>
+    -->
     </div>
   </div>
 </template>
@@ -82,13 +91,27 @@ h1 {
   z-index: 1000;
 }
 
+.text-links {
+  color: #42b883;  
+}
+
+ul{
+  text-align: left; 
+  padding-left: 4em;
+  font-size: 1.3em;
+  list-style: none;
+}
+
+
 .about-modal-text {
   display: inline-block;
   max-width: 500px;
   text-align: left;
-  padding: 10px;
-  font-size: 0.8em;
-  line-height: 1.7;
+  padding: 1em;
+  font-size: 1em;
+  line-height: 1.5;
+  padding-bottom: 1em; 
+  
 }
 
 h2 {
@@ -129,11 +152,9 @@ h2 {
   top: 0.5em;
   left: 1.4em;
 }
-
 .close:before {
   transform: rotate(45deg);
 }
-
 .close:after {
   transform: rotate(-45deg);
 }

@@ -152,7 +152,7 @@
     <main class="main-content">
       <!-- Main area -->
       <div class="text-container">
-        <h1 class="h1-title">Über mich</h1><button @click="language();" class="language-button button-35">{{languageButtonText}}</button>
+        <h1 class="h1-title">Über</h1><button @click="language();" class="language-button button-35">{{languageButtonText}}</button>
         <article>
          
           <ul>
@@ -358,15 +358,16 @@ export default {
   background-attachment: fixed;   
 }
 .h1-title,.language-button {
-  display: inline-block;
-  vertical-align: middle;  
+  display: inline-block;  
 }
 .language-button{
-  margin-top: 4em;
-  margin-left: 1em; 
+  margin-top: 6.4em;
+  margin-right: 1em;
   padding: 0.4em 0.4em 0.2em 0.4em;
   border-radius: 0.66em;
-  font-size: 0.8em;
+  font-size: 0.7em;
+  float: right;
+  box-shadow: #f7c800 0 0 0 2px, transparent 0 0 0 0; 
 }
 .language-button:hover{
   box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;  

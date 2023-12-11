@@ -17,7 +17,7 @@
   <!--style="background-color:rgb(60,60,60);-->
   <div style="background: rgb(255, 255, 255);">
     <h2>
-      Now shows binary tree graphic of calculations as svg! Built in
+      Now shows binary tree graphic of calculations as svg! 100% self-made in
       <a style="color: #42b883" class="text-links" href="https://vuejs.org/"
         >Vue.js</a
       >
@@ -31,8 +31,7 @@
       <div v-if="showAboutCalc">
         <AboutCalc
           :title="title"
-          :header="header"
-          :text="text"
+          :header="header"         
           :imagePath="imagePath"
           :url="url"
           @close="toggleAboutCalc"
@@ -91,11 +90,11 @@
   <script>
 import "@/assets/globalCSS.css";
 
-import AboutCalc from "@/components/AboutCalc.vue";
+import AboutCalc from "@/components/Cowculator/AboutCalc.vue";
 
-import UseCalc from "@/components/UseCalc.vue";
+import UseCalc from "@/components/Cowculator/UseCalc.vue";
 
-import HelpGuide from "@/components/HelpGuide.vue";
+import HelpGuide from "@/components/Cowculator/HelpGuide.vue";
 
 
 
@@ -108,7 +107,7 @@ export default {
       title: "<u><i>Cow</i></u>-culator",
       header:
         "<q>For the <u><i>moo</i></u>-st accurate <u><i>cow</i></u>-culations!</q>",
-      text: "The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. It utilizes a self-made tree structure, correctly follows the order of operations, and displays the current math operation node being performed. The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice. The current left node, math operator node, and right node in the tree are shown as calculations are entered.",
+      
       url: "https://github.com/conrizzo/conradswebsite",
       showAboutCalc: false,
       helpTitle: "How to use:",

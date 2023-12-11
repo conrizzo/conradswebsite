@@ -4,7 +4,7 @@
   <div class="my-page">
     <!-- @position-updated="updatePosition(index, $event)" -->
 
-    <h2 style="z-index: 4; position: absolute; color: #ff5959; float: left; top: 0em;">This page is not currently designed
+    <h2 style="z-index: 4; position: absolute; background: #000; color: #04ff00; float: left; top: 40vh;">Sorry! This page is not designed
       for mobile/touchscreen!</h2>
     <!-- @food-returned="handleFoodReturned" -->
     <CowFood v-for="(object, index) in cowFoodObjects" :style="{ zIndex: 2 }" :key="index" :label="object.label"

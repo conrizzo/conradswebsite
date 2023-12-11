@@ -16,13 +16,10 @@ export default {
   
 <style scoped>
 aside {
-  background-color: #ffffff;
-  
+  background-color: #ffffff;  
   padding-left: 0.5em;
-  padding-right: 0.5em;
-  
+  padding-right: 0.5em;  
 }
-
 
 @media only screen and (max-width: 100rem) {
   aside {

@@ -90,8 +90,9 @@
                 <span class="low-temp-text-coloring">{{ cityWeather.weather.weather[0].mintempC }}°C&nbsp;{{
                   cityWeather.weather.weather[0].mintempF }}°F</span><br>
               </div>
+              <br>
               Recent Temperature: <b>{{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
-                cityWeather.weather.current_condition[0].temp_F }}°F</b><br><br>
+                cityWeather.weather.current_condition[0].temp_F }}°F</b><br>
               Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
               - - - -<br>
               <span class="">
@@ -215,7 +216,6 @@ export default {
       const date = new Date(convertDate);
       const options = { weekday: 'long', month: 'long', day: 'numeric' };
       const formattedDate = date.toLocaleDateString('en-US', options);
-
       return formattedDate;
     }
   },
@@ -224,23 +224,28 @@ export default {
 <style scoped>
 /* Table */
 table {
-  padding: 0 0.5em 0 0.5em;
-  width: 100%;
+  
+  margin-left: .5em;
+  margin-right: .5em;
+  width: calc(100% - 1em);
   border-collapse: separate;
   margin-bottom: 1em;
-  
+
 
 }
 
 /* Table border radius with CSS only https://stackoverflow.com/questions/4932181/rounded-table-corners-css-only 3rd answer */
 th:first-of-type {
   border-top-left-radius: 10px;
+  
 }
 th:last-of-type {
   border-top-right-radius: 10px;
+  
 }
 tr:last-of-type td:first-of-type {
   border-bottom-left-radius: 10px;
+  
 }
 tr:last-of-type td:last-of-type {
   border-bottom-right-radius: 10px;
@@ -248,7 +253,7 @@ tr:last-of-type td:last-of-type {
 
 /* Table Header */
 thead {
-  background-color: #f5f5f5;
+  background-color: #e6c78b;
 }
 
 th {
@@ -259,6 +264,7 @@ th {
   text-align: left;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
+  
 }
 
 /* Table Body */
@@ -268,7 +274,7 @@ tbody {
 
 td {
   text-align: left;
-
+  
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
 
@@ -286,14 +292,14 @@ tr:nth-child(even) {
 .high-temp-text-coloring {
   color: #000;
   padding: 3px;
-  background-color: #ff803b;
+  background-color: #ff9a9a;
   border-radius: 0.2em;
 }
 
 .low-temp-text-coloring {
   color: #ffffff;
   padding: 3px;
-  background-color: #2b1cfc;
+  background-color: #a8a2ff;
   border-radius: 0.2em;
 }
 

@@ -30,7 +30,7 @@
   
   <script>
   // import the dropdown menu into the nav bar
-  import DropDownMenu from "@/components/DropDownMenu.vue";  
+  import DropDownMenu from "@/components/Navigation/DropDownMenu.vue";  
   
   
   export default {
@@ -71,7 +71,7 @@
   }  
 
   .home-link.active-home-link {
-  color: rgb(11, 87, 208);
+  color: #ff5959;
   background: none;  
   /* Additional styles for the active home link */
 }

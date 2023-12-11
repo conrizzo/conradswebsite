@@ -16,10 +16,10 @@
       </p>
       <p class="help-guide-text">
         Currently, it is set to automatically perform calculations. Operations like 2(2)=4, (2)2=4, and (2)(2)=4 function correctly.
-        The operations -(2+2) or 2*-(2+2) where the value inside paranthesis needs to be negated also now work!
+        The operations -(2+2) or 2*-(2+2) where the value inside parentheses needs to be negated also now work!
         This was solved by pushing a new Node to the stack with the value 0 and performing 0 minus the value in
-        paranthesis. For example, with the expression "2*-(2+2)" the math this calculator performs is 2*(0-(2+2)) = -8. Another interesting
-        challenge that was solved in a surprisingly simple way is adding in a math.pow() function. To do this correclty in my code, paranthesis are added around the base and exponent values, but the user 
+        parenthesis. For example, with the expression "2*-(2+2)" the math this calculator performs is 2*(0-(2+2)) = -8. Another interesting
+        challenge that was solved in a surprisingly simple way is adding in a math.pow() function. To do this correclty in my code, parenthesis are added around the base and exponent values, but the user 
         doesn't see them added in! For example the user would see 2*2^2+2 = 10 but the actual expression that is evaluated is 2*(2^2)+2 = 10.
       </p>
       <!-- <h1>{{ helptitletwo }}</h1> -->

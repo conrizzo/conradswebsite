@@ -2,9 +2,9 @@
 <template>
   <div>
       <!-- Don't show header or footer on CowGame -->
-      <TheMainHeader v-show="showHeader"></TheMainHeader>  
+      <TheMainHeader v-show="showHeader" v-if="showNav"></TheMainHeader>  
       <router-view></router-view> <!-- main code of a page -->  
-      <TheMainFooter v-show="showFooter"></TheMainFooter>
+      <TheMainFooter v-show="showFooter" v-if="showNav"></TheMainFooter>
   </div>
 </template>
 

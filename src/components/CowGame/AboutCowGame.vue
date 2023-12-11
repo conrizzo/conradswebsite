@@ -77,16 +77,17 @@ h1 {
 }
 
 .aboutCowGame {
-  width: 80%;
-  max-width: 500px;
+  
+  max-width: 35em;
   padding-top: 0.75em;
-  padding-bottom: 25px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-bottom: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
   margin: 1em auto;
   background: rgb(255, 255, 255);
   border-radius: 10px;
   position: relative;
+  
 }
 
 .backdrop {

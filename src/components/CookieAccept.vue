@@ -4,23 +4,25 @@
         <div class="cookie-modal">
             <button class="close" @click="acceptCookies"></button>
 
-
             <h2>Privacy Policy</h2>
-           
 
-            <p class="text">By
-                using this page you agree to the use of essential <a class="text-links"
+            <p class="text">
+                By using this page you agree to the use of essential <a class="text-links"
                     href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
                 stored locally in the browser for website functionality.
                 This site optionally (with a user made account) connects to <a class="text-links"
                     href=https://firebase.google.com>Firebase</a> for
                 user authentication and backend database storage. Other than Firebase, no other data is transmitted to 3rd
-                party websites or services. The only cookies used are those essential for the site to function. By clicking "Accept" or closing
+                party websites or services. The only cookies used are those essential for the site to function. By clicking
+                "Accept" or closing
                 this modal, you agree to these terms.
-            </p>
+            </p>    
+
             <br>
-            <p class="text"><span style="color: #ff5959;">Also:</span> This site is being developed and currently is hosted using <a class="text-links"
-                    href="https://pages.github.com/">GitHub Pages</a>. In case the site is not loading or certain features do not work, the code on this site is targeted toward modern web
+
+            <p class="text"><span style="color: #ff5959;">Also:</span> This site is being developed and currently is hosted
+                using <a class="text-links" href="https://pages.github.com/">GitHub Pages</a>. In case the site is not
+                loading or certain features do not work, the code on this site is targeted toward modern web
                 browsers, and the solution may be to update your browser to the newest version.</p>
 
             <!-- Can link to a longer privacy page in the future: There are few websites with advanced features that do not need to reference or store some
@@ -70,7 +72,6 @@ h1 {
     border: none;
     padding: 0;
 }
-
 .cookie-modal {
     width: 80%;
     max-width: 50em;
@@ -86,18 +87,15 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
 }
-
 .button-35 {
     margin-top: 0.5em;
     background-color: #42b883;
     color: #fff;
 }
-
 .button-35:hover {
     box-shadow: none;
     background-color: #57c996;
 }
-
 .backdrop {
     top: 0;
     position: fixed;
@@ -107,18 +105,13 @@ h1 {
     /* bring this in front of all other elements */
     z-index: 1000;
 }
-
-
-
 h2 {
     color: #42b883;
     margin-bottom: 0.5em;
 }
-
 .text {
     text-align: left;
 }
-
 /* CSS FOR MODAL "X" Close button*/
 .close {
     position: absolute;

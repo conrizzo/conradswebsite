@@ -830,6 +830,7 @@ export default {
   margin-left: 30em;
   padding-right: 2em;
   padding-left: 0em;
+  
 }
 @media screen and (max-width: 110rem) {
   .cowculator-position{
