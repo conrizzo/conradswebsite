@@ -1,13 +1,14 @@
 <template>
-  <div class="cowculator-position">
+<div class="cowculator-position">
+        
         <div>
           <!-- checkInput highlights key presses -->
-          <input class="input-field" v-model="expression" type="text" @input="checkInput(); cursorIndex();" @keydown="getLastKey" @selectionchange="handleSelectionChange" ref="inputField" />
+          <input class="input-field" v-model="expression" type="text" @input="checkInput(); cursorIndex();"
+           @keydown="getLastKey" @selectionchange="handleSelectionChange" ref="inputField" />
         </div>
 
         <!-- build the cowculator buttons and their functions using v-for with conditions for each button type -->
         <div class="grid-container cow-image">
-
           <button v-for="button in buttonList" :key="button" :class="['grid-item', {
             'grid-item-symbols': button === '+' || button === '-' || button == '\u00F7' || button == '\u00D7', 'tooltip': button === 'power',
             active: isActive[button]
@@ -31,16 +32,14 @@
 
         <div style="display: flex; justify-content: center; align-items: center;">
           <div>
-
             <button style="margin-right: 0.25em" class="button-35" @click="clearField">
               Reset
             </button>
-
             <button style="margin-right: 0.25em" class="button-35" @click="copyToClipboard">
               Copy Result
             </button>
-
           </div>
+
         <div style="display: flex; flex-direction: column; justify-content: flex-end;">
           <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35"
             @click="adjustTreeSize('+')">
@@ -53,9 +52,8 @@
         </div>
 
       </div>
-  </div>
-  <!-- {{ cleanedExpression }} -->
-  <!-- {{ addParenthesisAroundPowerSymbol(this.expression) }} -->
+</div>
+
 <div class="binary-tree-and-outputs-area">
   <div style="padding-top: 0.5em">
     <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
@@ -77,7 +75,6 @@
 
   <div v-if="showNotification" class="notification">
     <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
-
   </div>
 
   <div style="padding: 0.25em; padding-top: 1em;">
@@ -112,8 +109,8 @@
   </div>
 </div>  
 </template>
-<script>
 
+<script>
 export default {
   data() {
     return {
@@ -122,7 +119,6 @@ export default {
       expressionOneStepBehind: "",
       lastKey: "",
       indexOfCursor: 0, // offically called the 'text cursor'
-
       cleanedExpression: "",
       result: null,
       mooMessage: false,
@@ -164,7 +160,7 @@ export default {
         }
       },
     };
-  },
+  },  
   computed: {
     treeString() {
       return this.printTree(this.tree);
@@ -181,16 +177,21 @@ export default {
       return this.result == "Infinity" ? "Moooooooo! You have reached " : "";
     }
   },
+   /*
+      For section immediately below: 
+
+      This expression(userInput) works by taking whatever the user input is from buttons/text field.
+      The number of Moo's are counted and saved to mooCounter
+      the math symbols that are displayed but don't actually work in calculations are replaced, along with
+      the moos.
+      If the regular expression of a number followed by a math operator is followed such as 3.45*5 then
+      calculations will be performed automatically!
+      mathOperators checks for this regex sequence, then if true the text is shown, a cleanedExpression is
+      used in the cowculate function to evaluate the result! 
+    */
   watch: {
     expression(userInput) {
-      // This expression(userInput) works by taking whatever the user input is from buttons/text field.
-      // The number of Moo's are counted and saved to mooCounter
-      // the math symbols that are displayed but don't actually work in calculations are replaced, along with
-      // the moos.
-      // If the regular expression of a number followed by a math operator is followed such as 3.45*5 then
-      // calculations will be performed automatically!
-      // mathOperators checks for this regex sequence, then if true the text is shown, a cleanedExpression is
-      // used in the cowculate function to evaluate the result!
+     
       let str = userInput;
 
       this.mooCounter = (str.match(/Moo/g) || []).length;
@@ -235,11 +236,7 @@ export default {
 
       // The following is largely pre-processing for the string to go into the cowculate() function
       str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*");
-
-      // This decides whether calculatons can actully be done
-      // regular expression for +, -, /, and * operators before any actual parsing is done (saves useless calculations)
-      //const mathOperators = /([-+*/%^!()]|\d+(\.\d+)?)/g;
-
+    
       // invoke function to autocorrect bad entries such as -/ or */ or -+
       if (
         !this.expression.includes("Moo\u00D7Moo") ||
@@ -248,18 +245,7 @@ export default {
         // the string contains "Moo×Moo" or "Moo+Moo"
         this.autoFixIncorrectInput(str);
       }
-      /*
-      if the sequence ")(" occurs a simple way to do this multiplication is just insert a multiplication "*" \u00D7 symbol 
-      to the input expression be ")*("
-      */
-      /*
-            if (str.indexOf(")(") !== -1) {
-              this.expression = str
-                .replaceAll(")(", ")\u00D7(")
-                .replaceAll("*", "\u00D7")
-                .replaceAll("/", "\u00F7");
-            }
-      */
+    
       // remove Moo's for number calculations
       str = str.replaceAll("Moo", "");
 
@@ -535,20 +521,25 @@ export default {
       }
       // IMPORTANT - THIS IS WHERE ALL THE OUTPUTS ARE COMPUTED!
       else if (!Number.isNaN(result)) {
+
         // show equal sign and results
         this.showText = true;
+
         // create the binary tree structure
-        this.treeNodeCalculations = this.userTokens[0];
-        //const myJSON = JSON.stringify(this.treeNodeCalculations);
+        this.treeNodeCalculations = this.userTokens[0];        
         this.treeData = this.treeNodeCalculations;
         this.tree = this.treeNodeCalculations;
         this.showDescriptionText = true;
+
         // this puts the final calculation into a variable to be copied from the clipboard
         this.message = result;
+
         // this outputs the FINAL calculation
         this.result = result;
+
         // At the moment this is a bit of a hack to get the svg to clear and redraw
         this.clearSVG();
+
         // Append new SVG content
         const svgContainer = this.$refs.svgContainer;
         svgContainer.appendChild(this.svgContent);
@@ -595,66 +586,15 @@ export default {
       while (svgContainer.firstChild) {
         svgContainer.removeChild(svgContainer.firstChild);
       }
-    },
-
-    /*
-    setFactorialize(num) {
-    
-      console.log(typeof num)
-      if (!Number.isNaN(num)) {
-
-        num = Number(num)
-        console.log(typeof num)
-        try {
-          var factorializeAnswer = this.factorialize(num);
-          console.log(typeof factorializeAnswer)
-         
-            this.result = factorializeAnswer;
-
-          this.showText = true;
-        } catch (error) {
-          this.result = "";
-          factorializeAnswer = 0;
-        }
-      }
-    },
-    factorialize(num) {
-      if (num < 0) return -1;
-      else if (num == 0) return 1;
-      else {
-        return num * this.factorialize(num - 1);
-      }
-    },
-    */
-
-    diffingAlgorithm(originalExpression, modifiedExpression) {
-      let removedCharacter = '';
-      let removedIndex = -1;
-
-      for (let i = 0; i < originalExpression.length; i++) {
-        if (originalExpression[i] !== modifiedExpression[i]) {
-          removedCharacter = originalExpression[i];
-          removedIndex = i;
-          break;
-        }
-      }
-
-      return {
-        removedCharacter,
-        removedIndex
-      };
-    },
+    },    
     // This function will highlight the buttons as a user types input, or as a user hits the back button on their input to delete it
     checkInput() {
-
       
       /* this.expression is what the user sees at the top of the cowculator */
       let str = this.expression;   
       
       /* take the last digit of the expression */
-      let lastDigitIndex = str.slice(-1);
-      //console.log(this.expression, this.expressionOneStepBehind);
-      //console.log(this.diffingAlgorithm(this.expression, this.expressionOneStepBehind));
+      let lastDigitIndex = str.slice(-1);    
 
       /* highlighting of the digits when something is deleted or backarrow is pressed */      
       this.buttonList.forEach((_, index) => {
@@ -679,20 +619,16 @@ export default {
     // this decides what each button type does
     addNumber(buttonValueToAdd) {
       if (buttonValueToAdd === "<-") {
-
         /* The order of these functions and expressions in this block below is important! 
         If the checkInput() function is called after the removeEntry() 
         function then rightmost digit will not be highlighted
-        */     
-         
+        */              
         this.checkInput();
         // set the expression one step behind for comparison to see where an item is removed between 2 strings
         this.expressionOneStepBehind = this.expression;
         // Remove the value
         this.removeEntry();
         // update this value after doing operations to be 1 step behind the 
-        
-
       } else if (buttonValueToAdd === "power") {        
         this.squared();
       }
@@ -719,8 +655,7 @@ export default {
           }
 
           cursorIndex--; // Move the cursor to the left
-        }
-        
+        }        
         this.$nextTick(() => {
           this.$refs.inputField.selectionStart = cursorIndex; // Restore the cursor index
           this.$refs.inputField.selectionEnd = cursorIndex;
@@ -760,7 +695,6 @@ export default {
         { pattern: /---/, replacement: '-' },
         { pattern: /-\*/, replacement: '*' }
       ];
-
       for (const regex of regexPatterns) {
         if (regex.pattern.test(lastTwoChars) || regex.pattern.test(lastThreeChars)) {
           this.expression = str.slice(0, -2) + str.slice(-1)
@@ -794,6 +728,7 @@ export default {
       this.userTokens = []; // global array to update numbers - probably doesnt need to be global
       this.operators = []; // global array to update math operators - probably doesnt need to be global
 
+      // Nodes for the binary tree
       this.treeNodeCalculations = null; //show the whole parse tree
       this.currentNode = null; //show only the current node math operation being done
       this.leftNode = null;
@@ -804,7 +739,6 @@ export default {
 
       this.formattedNumber = ""; // expression with commas
       this.formattedResult = ""; // final result with commas
-
       this.adjustViewBoxSize = 400; // reset tree scale
 
       // reset tree graphic
@@ -829,8 +763,7 @@ export default {
 .binary-tree-and-outputs-area{
   margin-left: 30em;
   padding-right: 2em;
-  padding-left: 0em;
-  
+  padding-left: 0em;  
 }
 @media screen and (max-width: 110rem) {
   .cowculator-position{
@@ -840,8 +773,7 @@ export default {
   .binary-tree-and-outputs-area{
   margin-left: 0em;
   padding-left: 2em;
-  }
-  
+  }  
 }
 .grid-container {
   display: grid;
@@ -885,11 +817,9 @@ export default {
   font-weight: bold;
   color: rgba(0, 0, 0, 1);
   cursor: pointer;
-}
-.grid-item-symbols:hover {
+}.grid-item-symbols:hover {
   background-color: rgba(66, 184, 131, 0.7) !important;
-}
-.grid-item:hover {
+}.grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
 .moo-cows-go-moo {
