@@ -41,6 +41,14 @@
               uses the <a class="home-text-links" href='https://astro.build/'>Astro</a> framework.
             </li>
 
+            <li>This website has mostly been about improving my knowledge of web programming. 
+              The point has been to learn.
+            </li>
+
+            <!--<span style="color: #a335ee;">Education:  -->
+              
+
+
             <!--<li>I hold a degree in Computational Linguistics from the
               University of Tübingen in Germany,
               and previously completed a Bachelor of Science in Biology from the University of North Carolina at
@@ -182,6 +190,11 @@
                  <b><a class="home-text-links"
                   href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>Blogseite</a></b> zu erstellen, die das
               <a class="home-text-links" href='https://astro.build/'>Astro</a> framework verwendet.
+            </li>
+
+            <li>
+              Diese Website handelt größtenteils davon, mein Wissen im Bereich Webprogrammierung zu verbessern. 
+              Der Zweck bestand darin zu lernen.
             </li>
 
             <!--<li>I hold a degree in Computational Linguistics from the
@@ -362,7 +375,7 @@ export default {
   padding: 0.5em;
   border-radius: 0.66em;
   font-size: 0.7em;    
-  box-shadow: #f7c800 0 0 0 2px, transparent 0 0 0 0; 
+  box-shadow: #a335ee 0 0 0 2px, transparent 0 0 0 0; 
 }
 .language-button:hover{
   box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;  
@@ -396,7 +409,7 @@ p {
 
 li {
   color: #fff;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
   margin-left: 2.1rem;
   font-size: 1.1em;
 }
@@ -414,7 +427,7 @@ nav {
 }
 
 figure {
-  float: right;
+  float: inline-end;
   display: flex;
   flex-flow: column;
   padding: 0.5em;

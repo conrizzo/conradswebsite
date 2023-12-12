@@ -142,10 +142,7 @@ auth.onAuthStateChanged(user => {
 
 // Removed duplicate import statement
 
-});
-
-
-  
+});  
 
   // const currentRoute = window.location.pathname;
 
@@ -162,4 +159,5 @@ auth.onAuthStateChanged(user => {
       }
     });
   });
+
 export default router;

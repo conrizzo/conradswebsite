@@ -63,15 +63,22 @@
         </div>
 
         <div class="grid-container">
+          <div class="grid-item" style="grid-column: 1;">
+            <div class="image-container">
+              <img v-if="isHovered" style="" class="hover-image" :src="hoveredImage"  alt="Hover Image">
+            </div>
+          </div>
           <div class="grid-item">
             <div class="project-area">
               <!-- Projects ({{ this.itemsLength }})</h3> -->
               <ProjectLinks :links="links">
                 <template v-slot="{ links }">
                   <div class="links-area">
-                      <span class="project-title">
-                        Project Links:</span>
+
+                      <span class="project-title">Project Links:</span>
+
                       <div class="route-styling">
+
                         <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
                           :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
                           @mouseleave="hideImage">
@@ -84,23 +91,23 @@
               </ProjectLinks>
             </div>
           </div>
-          <div class="grid-item">
-            <div class="image-container">
-              <img v-if="isHovered" style="" class="hover-image" :src="hoveredImage"  alt="Hover Image">
-            </div>
-          </div>
+          
         </div>
 
       </div>
       <!-- Aside area begins  #2d2d2d; slate black color -->
       <AsideContent style="background: #fff; z-index: 1;">
+
         <template v-slot:aside-content>
-          <p class="aside-text loading"></p>
-          <figure style="display: inline-block;">
-            <img style="max-width: 80%; border-radius: 1em;" :src="birdDrawing" alt="Bird Drawing">
-            <figcaption class="aside-text" style="display: block;"><i></i></figcaption>
-          </figure>
+
+            <p class="aside-text loading"></p>
+
+            <figure style="display: inline-block;">
+              <img style="max-width: 80%; border-radius: 1em;" :src="birdDrawing" alt="Bird Drawing">
+              <figcaption class="aside-text" style="display: block;"><i></i></figcaption>
+            </figure>          
         </template>
+        
       </AsideContent>
 
     </main>
@@ -169,7 +176,7 @@ export default {
           this.isHovered = true;
           console.log(this.hoveredImage);
           break;
-        case "The Cow Game":
+        case "Cow Food Game":
           this.hoveredImage = require("@/images/CowGame.jpg");
           this.isHovered = true;
           console.log(this.hoveredImage);
@@ -354,7 +361,7 @@ export default {
   font-size: 1.8em;
   padding: 0.5em;
   border-radius: 0.5em; 
-  background: rgba(7, 0, 116,0.33);  
+  background: rgb(75, 198, 255);  
   border: 1px solid rgb(229, 229, 229);
 }
 
@@ -371,7 +378,7 @@ export default {
   margin: 0 auto;
   /* padding-right: 0.5em;
   padding-top: 1em; */
-  padding: 1em;
+  padding: 0.5em;
   padding-left: 2em;  
 }
 
@@ -385,7 +392,7 @@ export default {
 }
 
 .links-area{
-  width: 21em; float: right;  
+  width: 20.8em;  
 }
 
 .hover-image {
@@ -402,6 +409,7 @@ export default {
 /* Style for grid items */
 .grid-item {
   border: none;
+  
   /* Border for visualization */
 }
 
@@ -504,18 +512,19 @@ export default {
   z-index: 0;
 }
 
-@media (max-width: 50em) {
+.image-container {    
+    float: inline-end;   
+    max-height: 18.3em;
+    padding-left: 2em;
+  }
+
+@media (max-width: 52em) {
   .grid-container {
     grid-template-columns: 1fr;
   } 
-  .image-container {
-    width: 100%;
-    max-height: 18.3em;
+  .image-container {   
     /* Set a fixed height for the container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 1em;
+    display: none;    
   }
   .hover-image {
     border-radius: 1em;
@@ -563,7 +572,7 @@ export default {
 
 @media only screen and (max-width: 35rem) {
   .links-area{
-  width: calc(100% - 2em); 
+  width: calc(100% - 2.66em); 
   }
 }
 

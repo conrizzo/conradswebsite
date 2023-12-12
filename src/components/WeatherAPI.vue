@@ -3,144 +3,148 @@
   <div style="background: linear-gradient(0deg, rgba(1,239,249,1) 0%, rgba(0,112,255,0.5746673669467788) 38%, rgb(11, 87, 208) 78%); 
   padding-bottom: 9em;
   ">
-    <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>City / Country / Region</th>
-          <th>Sun Rise/Sun Set</th>
-          <th>Weather Conditions</th>
-          <th>Temperature °C</th>
-          <th>Temperature °C (Feels Like)</th>
-          <th>Wind Speed</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="cityWeather in cityWeathers" :key="cityWeather.city">
-          <!-- 1 -->
-          <td><b>{{ cityWeather.city }}</b>
-            <br><br>
-            <template v-if="cityWeather.weather && cityWeather.weather.request[0].query">
-              <span style="color: rgb(0, 149, 255);">Country:</span> {{
-                cityWeather.weather.nearest_area[0].country[0].value }}<br>
-              <span style="color: rgb(255, 133, 133);">Region:</span> {{
-                cityWeather.weather.nearest_area[0].region[0].value }}<br>
-              {{ cityWeather.weather.request[0].query }}<br>
-              <div style="margin-top: 0.25em;"><br>
-                <span style="color: rgb(123, 123, 123);">Query Date:</span> {{
-                  cityWeather.weather.current_condition[0].observation_time }} -
-                {{ formatDate(cityWeather.weather.weather[0].date) }}
+  <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>
+    <div class="center-content">
+      
+      
+      <table>
+        <thead>
+          <tr>
+            <th>City / Country / Region</th>
+            <th>Sun Rise/Sun Set</th>
+            <th>Weather Conditions</th>
+            <th>Temperature °C</th>
+            <th>Temperature °C (Feels Like)</th>
+            <th>Wind Speed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="cityWeather in cityWeathers" :key="cityWeather.city">
+            <!-- 1 -->
+            <td><b>{{ cityWeather.city }}</b>
+              <br><br>
+              <template v-if="cityWeather.weather && cityWeather.weather.request[0].query">
+                <span style="color: rgb(0, 149, 255);">Country:</span> {{
+                  cityWeather.weather.nearest_area[0].country[0].value }}<br>
+                <span style="color: rgb(255, 133, 133);">Region:</span> {{
+                  cityWeather.weather.nearest_area[0].region[0].value }}<br>
+                {{ cityWeather.weather.request[0].query }}<br>
+                <div style="margin-top: 0.25em;"><br>
+                  <span style="color: rgb(123, 123, 123);">Query Date:</span> {{
+                    cityWeather.weather.current_condition[0].observation_time }} -
+                  {{ formatDate(cityWeather.weather.weather[0].date) }}
 
-              </div>
-            </template>
-          </td>
-          <!-- 2 -->
-          <td>
-            <template v-if="cityWeather.weather && cityWeather.weather.weather[0].astronomy[0].sunrise">
-              <span class="sunny-background">{{ cityWeather.weather.weather[0].astronomy[0].sunrise }} - {{
-                cityWeather.weather.weather[0].astronomy[0].sunset }}</span><br>
-              Astronomical Sun Hours: <span class="sun-hour-background">{{
-                this.calculateDaylightTime(cityWeather.weather.weather[0].astronomy[0].sunrise,
-                  cityWeather.weather.weather[0].astronomy[0].sunset) }}</span><br>
-              Estimated actual sun hours: <span class="sun-hour-background">{{
-                parseInt(cityWeather.weather.weather[0].sunHour) }} hours {{
-    (Math.round((cityWeather.weather.weather[0].sunHour -
-      parseInt(cityWeather.weather.weather[0].sunHour)) * 60) * 100) / 100 }} minutes</span>
-            </template>
-            <template v-else>
-              N/A
-            </template>
-          </td>
-          <!-- 3 -->
+                </div>
+              </template>
+            </td>
+            <!-- 2 -->
+            <td>
+              <template v-if="cityWeather.weather && cityWeather.weather.weather[0].astronomy[0].sunrise">
+                <span class="sunny-background">{{ cityWeather.weather.weather[0].astronomy[0].sunrise }} - {{
+                  cityWeather.weather.weather[0].astronomy[0].sunset }}</span><br>
+                Astronomical Sun Hours: <span class="sun-hour-background">{{
+                  this.calculateDaylightTime(cityWeather.weather.weather[0].astronomy[0].sunrise,
+                    cityWeather.weather.weather[0].astronomy[0].sunset) }}</span><br>
+                Estimated actual sun hours: <span class="sun-hour-background">{{
+                  parseInt(cityWeather.weather.weather[0].sunHour) }} hours {{
+      (Math.round((cityWeather.weather.weather[0].sunHour -
+        parseInt(cityWeather.weather.weather[0].sunHour)) * 60) * 100) / 100 }} minutes</span>
+              </template>
+              <template v-else>
+                N/A
+              </template>
+            </td>
+            <!-- 3 -->
 
-          <!-- This sets the table cell to have a different color background on a condition  -->
-          <td v-bind:class="{
-            'gray-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy',
-            'rain-showers-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain shower',
-            'overcast-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Overcast',
-            'cloudy-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Cloudy',
-            'sunny-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Sunny',
-            'light-rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Light rain',
-            'rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain',
-            'clear-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Clear'
-          }">
-            <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
-              <div v-if="cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy'">
-                {{ cityWeather.weather.current_condition[0].weatherDesc[0].value }}
-              </div>
-              <div v-else>
-                {{ cityWeather.weather.current_condition[0].weatherDesc[0].value }}
-              </div>
-            </template>
-            <template v-else>
-              N/A
-            </template>
-          </td>
-          <!-- 5 -->
-          <td>
-            <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0].temp_C">
-              <div style="margin-bottom: 0.25em;">
-                Projected High Today:
-                <span class="high-temp-text-coloring">{{ cityWeather.weather.weather[0].maxtempC }}°C&nbsp;{{
-                  cityWeather.weather.weather[0].maxtempF }}°F</span><br>
-              </div>
-              <div style="margin-bottom: 0.25em;">
-                Projected Low Today:
-                <span class="low-temp-text-coloring">{{ cityWeather.weather.weather[0].mintempC }}°C&nbsp;{{
-                  cityWeather.weather.weather[0].mintempF }}°F</span><br>
-              </div>
-              <br>
-              Recent Temperature: <b>{{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
-                cityWeather.weather.current_condition[0].temp_F }}°F</b><br>
-              Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
-              - - - -<br>
-              <span class="">
-                {{ formatDate(cityWeather.weather.weather[1].date) }}:
-                <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[1].maxtempC }}°C&nbsp;{{
-                  cityWeather.weather.weather[1].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{ cityWeather.weather.weather[1].mintempC }}°C</span><br>
-              </span>- - - -<br>
-              <span class="">
-                {{ formatDate(cityWeather.weather.weather[2].date) }}:
-                <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{
-                  cityWeather.weather.weather[2].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{ cityWeather.weather.weather[2].mintempC }}°C</span><br>
-              </span>
-
-
-            </template>
-            <template v-else>
-              N/A
-            </template>
-          </td>
-          <!-- 6 -->
-          <td>
-            <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
-              {{ cityWeather.weather.current_condition[0].FeelsLikeC }}°C<br>
-              {{ cityWeather.weather.current_condition[0].FeelsLikeF }}°F
-            </template>
-            <template v-else>
-              N/A
-            </template>
-          </td>
-          <!-- 7 -->
-          <td>
-            <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
-              {{ cityWeather.weather.current_condition[0].windspeedKmph }} km/h
-            </template>
-            <template v-else>
-              N/A
-            </template>
-          </td>
-          <!-- 8 -->
+            <!-- This sets the table cell to have a different color background on a condition  -->
+            <td v-bind:class="{
+              'gray-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy',
+              'rain-showers-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain shower',
+              'overcast-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Overcast',
+              'cloudy-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Cloudy',
+              'sunny-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Sunny',
+              'light-rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Light rain',
+              'rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain',
+              'clear-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Clear'
+            }">
+              <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
+                <div v-if="cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy'">
+                  {{ cityWeather.weather.current_condition[0].weatherDesc[0].value }}
+                </div>
+                <div v-else>
+                  {{ cityWeather.weather.current_condition[0].weatherDesc[0].value }}
+                </div>
+              </template>
+              <template v-else>
+                N/A
+              </template>
+            </td>
+            <!-- 5 -->
+            <td>
+              <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0].temp_C">
+                <div style="margin-bottom: 0.25em;">
+                  Projected High Today:
+                  <span class="high-temp-text-coloring">{{ cityWeather.weather.weather[0].maxtempC }}°C&nbsp;{{
+                    cityWeather.weather.weather[0].maxtempF }}°F</span><br>
+                </div>
+                <div style="margin-bottom: 0.25em;">
+                  Projected Low Today:
+                  <span class="low-temp-text-coloring">{{ cityWeather.weather.weather[0].mintempC }}°C&nbsp;{{
+                    cityWeather.weather.weather[0].mintempF }}°F</span><br>
+                </div>
+                <br>
+                Recent Temperature: <b>{{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
+                  cityWeather.weather.current_condition[0].temp_F }}°F</b><br>
+                Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
+                - - - -<br>
+                <span class="">
+                  {{ formatDate(cityWeather.weather.weather[1].date) }}:
+                  <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[1].maxtempC }}°C&nbsp;{{
+                    cityWeather.weather.weather[1].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{ cityWeather.weather.weather[1].mintempC }}°C</span><br>
+                </span>- - - -<br>
+                <span class="">
+                  {{ formatDate(cityWeather.weather.weather[2].date) }}:
+                  <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{
+                    cityWeather.weather.weather[2].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{ cityWeather.weather.weather[2].mintempC }}°C</span><br>
+                </span>
 
 
-        </tr>
-      </tbody>
-    </table>
-    <p class="white-color-text"> All the locations here are easily customizable! Data is queried as JSON
-      using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
-      then formatted and displayed here in a custom made table.</p>
-  </div>
+              </template>
+              <template v-else>
+                N/A
+              </template>
+            </td>
+            <!-- 6 -->
+            <td>
+              <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
+                {{ cityWeather.weather.current_condition[0].FeelsLikeC }}°C<br>
+                {{ cityWeather.weather.current_condition[0].FeelsLikeF }}°F
+              </template>
+              <template v-else>
+                N/A
+              </template>
+            </td>
+            <!-- 7 -->
+            <td>
+              <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
+                {{ cityWeather.weather.current_condition[0].windspeedKmph }} km/h
+              </template>
+              <template v-else>
+                N/A
+              </template>
+            </td>
+            <!-- 8 -->
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <p class="white-color-text"> All the locations here are easily customizable! Data is queried as JSON
+        using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
+        then formatted and displayed here in a custom made table.</p>
+    </div>
+  
 </template>
 
 
@@ -222,16 +226,19 @@ export default {
 };
 </script>
 <style scoped>
+
+/* The right padding forces it into the center */
+.center-content{ 
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* Table */
-table {
-  
-  margin-left: .5em;
-  margin-right: .5em;
-  width: calc(100% - 1em);
+table {     
   border-collapse: separate;
-  margin-bottom: 1em;
-
-
+  margin-bottom: 1em;  
 }
 
 /* Table border radius with CSS only https://stackoverflow.com/questions/4932181/rounded-table-corners-css-only 3rd answer */
@@ -257,10 +264,7 @@ thead {
 }
 
 th {
-  padding-right: 0em;
-  padding-left: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding: 0.5em;
   text-align: left;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
@@ -362,13 +366,12 @@ tr:nth-child(even) {
 
 
 @media (max-width: 768px) {
+
   table {
-    font-size: 0.7em;
-    padding: 0.25em;
+    font-size: 0.6em;
+    padding: 0.1em;       
   }
 
-  .responsive-link {
-    display: block;
-  }
+ 
 
 }</style>

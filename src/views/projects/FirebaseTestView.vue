@@ -2,25 +2,40 @@
   <!-- conflict with "firebase": "^10.0.0", security-->
   <!-- tried downgrading to "firebase": "9.0.2" -->
   <CookieAccept />
+
   <div style="background: rgb(140, 140, 140); padding-bottom: 2em; padding-top: 2.7em;">
     <div style="justify-content: center; margin-top: 8em;">
-    <button class="button-35"><router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">Enter authorized user page</router-link></button>
+      <button v-if="isLoggedIn" class="button-35">
+      <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
+        Enter authorized user page
+      </router-link>
+    </button>
   </div>
     
-    <hr style="position: absolute; top: 7.6em; left: 0; right: 0; border: none; border-top: 1px solid rgb(210, 210, 210);">
-    <h2 style="padding: 1em; margin-top: 1em; color: #fff;">Post messages and login!
-    </h2>
-    <div style="display: flex; justify-content: center; color: #fff;">
-   <article>
-      <p class="paragraph-text">Here is a login/sign out setup using BaaS (Back end as a
-        service) to post messages and do more!
-        The goal will eventually be to create a more comprehensive backend once there is a need for it.
-      This is all being built from scratch!
-      The "Enter authorized user page" link won't take the user anywhere unless they are authorized. It stays on this page and does nothing.
-      If the user is authorized it routes to a locked user logged in only page.  
-      </p>
+  <hr style="position: absolute; top: 7.6em; left: 0; right: 0; border: none; border-top: 1px solid rgb(210, 210, 210);">
+    
+ 
+
+ 
+
+  <article class="top-text-container">
+      <div class="top-text-sub-container">
+
+        <h2 style="color: #fff;">Post messages and login! This is a fully 
+          functional login system I made which connects with <a class="text-links" style="color: #87ff7a;" href="https://firebase.google.com/">https://firebase.google.com/</a>
+        </h2>      
+       
+        <p>Here is a login/sign out setup using BaaS (Back end as a
+          service) to post messages and do more!
+          The goal will eventually be to create a more comprehensive backend once there is a need for it.
+        This is all being built from scratch!
+        The "Enter authorized user page" link won't take the user anywhere unless they are authorized. It stays on this page and does nothing.
+        If the user is authorized it routes to a locked user logged in only page.  
+        </p>
+
+      </div>
   </article>
-  </div>
+  
  
     <div style="color: #fff; border: 2px #000;" v-if="!isLoggedIn">
       <!-- login -->
@@ -275,6 +290,22 @@ export default {
 </script>
   
 <style scoped>
+
+h2{
+  line-height: 1.4em;
+}
+
+.top-text-sub-container{
+  max-width: calc(100% - 20em);
+  margin: 0 auto;
+  text-align: left;
+}
+.top-text-container{
+  display: flex;
+  justify-content: center;
+  color: #fff;
+}
+
 .button-35{
   background-color: rgb(130, 130, 130);  
 }
@@ -353,6 +384,13 @@ textarea:focus {
     padding-right: 1em;
     padding-left: 1em;
   }
+
+  .top-text-sub-container{
+    max-width: none;
+  }
+
+
+  
   
 }
 </style>
