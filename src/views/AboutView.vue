@@ -7,24 +7,24 @@
       <div class="text-container">
 
          <div class="title-container">
-            <h1 class="h1-title">About</h1>
+            <h1>About</h1>
             <button @click="language();" class="language-button">{{ languageButtonText }}</button>
         </div>
 
-        <article>         
+        <div class="bullets">                   
           <ul>
             <li>This iteration of the website was started March, 2023 and is
               totally self-made by me (Conrad) using primarily
               <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
                   3</b></a>
-              (Vue.js) for its reactivity and interactivity. This site is hosted on
+              (Vue.js) for its reactivity and interactivity.
+            </li>
+
+            <li>This website's primary aim is to create and exhibit various projects. It is hosted on
               <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                 my GitHub</a> with
               <a class="home-text-links" href="https://pages.github.com/">
                 GitHub Pages</a>.
-            </li>
-
-            <li>This website's primary aim is to create and exhibit various projects.
 
             </li>
 
@@ -65,12 +65,34 @@
               Have practiced more German too, so it is <u>a lot</u> of language learning!
             </li> -->
           </ul>
-        </article>
+         
+        </div>
+        <h2>Motivation:</h2>       
 
-        <h2>More info if interested:</h2>
+        <div class="horizontal-line">          
+        </div>
 
-        <div class="horizontal-line"></div>
+        <p>   
 
+          This website is constantly being updated and improved. I am always learning new things. All projects here are not meant to be text-book
+          examples of how to do things, but rather examples of how I learned to make things. The fun thing about this website is it is entirely made
+          from scratch by me, so I understand it well, and if I make some mistakes or something explodes it's just science.
+
+        </p>
+        
+        
+        <h2>Progression:</h2>
+
+        <div class="horizontal-line">          
+        </div>        
+        <figure class="figure-location">
+          <img class="img-container" :src="imagePath" alt="Coding Languages used" />
+          <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly
+            Vue.js. As of June
+            2023, currently starting to add in TypeScript support.
+            Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
+          </figcaption>
+        </figure>
         <p>
           This website was originally written in Vue 3 and straight
           JavaScript. Later on I converted it to have TypeScript support, and new projects such as the
@@ -80,21 +102,17 @@
           <a class="home-text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
             written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. In July,
           2023, started
-          working on integrating backend development services. In July, 2023 I also started learning Rust and some of this website
+          working on integrating some minor backend services for experimenting. In July, 2023 I also started learning how 
+          to use Rust with Web Assembly, so some of this website
           now uses Rust compiled into Web Assembly. Recently I've been reviewing code I wrote and upgrading it to be simpler
           and more professional. There is a lot one can learn by reviewing their own code and seeing what could be
           improved
           after seeing how other developers write code.
         </p>
-
-        <figure class="figure-location">
-          <img class="img-container float-left" :src="imagePath" alt="Coding Languages used" />
-          <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly
-            Vue.js. As of June
-            2023, currently starting to add in TypeScript support.
-            Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
-          </figcaption>
-        </figure>
+        
+        
+     
+        
 
         <h2>About the Vue Routing with GitHub Pages:</h2>
 
@@ -162,19 +180,19 @@
             <h1 class="h1-title">Über</h1>
             <button @click="language();" class="language-button">{{ languageButtonText }}</button>
         </div>
-        <article>         
+        <div class="bullets">      
           <ul>
             <li>Diese Version der Website wurde im März 2023 gestartet und komplett von mir (Conrad) selbst erstellt, hauptsächlich mit
               <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
                   3</b></a>
-              (Vue.js) für seine Reaktivität und Interaktivität. Die Seite ist auf
+              (Vue.js) für seine Reaktivität und Interaktivität.
+            </li>
+
+            <li>Das Hauptziel dieser Website ist es, verschiedene Projekte zu erstellen und auszustellen. Sie wird auf
               <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                 meinem GitHub</a> mit
               <a class="home-text-links" href="https://pages.github.com/">
                 GitHub Pages</a> gehostet.
-            </li>
-
-            <li>Das Hauptziel dieser Website besteht darin, verschiedene Projekte zu erstellen und auszustellen.
             </li>
 
             <li> Ich habe damit begonnen, Vue.js zu lernen, als ich am Bioinformatik-Toolkit am 
@@ -212,74 +230,92 @@
               Have practiced more German too, so it is <u>a lot</u> of language learning!
             </li> -->
           </ul>
-        </article>
-          <h2>More info if interested:</h2>
-
-          <div class="horizontal-line"></div>
-
-          <p>
-            This website was originally written in Vue 3 and straight
-            JavaScript. Later on I converted it to have TypeScript support, and new projects such as the
-            <router-link class="home-text-links" to="/projects/cowgame">Cow Game</router-link> heavily use
-            TypeScript. The <router-link class="home-text-links" to="/projects/cards">Card Game</router-link>
-            also uses TypeScript.
-            <a class="home-text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
-              written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. In July,
-            2023, started
-            working on integrating backend development services. In July, 2023 I also started learning Rust and some of this website
-            now uses Rust compiled into Web Assembly. Recently I've been reviewing code I wrote and upgrading it to be simpler
-            and more professional. There is a lot one can learn by reviewing their own code and seeing what could be
-            improved
-            after seeing how other developers write code.
-          </p>
-
-
-          <figure class="figure-location">
-            <img class="img-container float-left" :src="imagePath" alt="Coding Languages used" />
-            <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly
-              Vue.js. As of June
-              2023, currently starting to add in TypeScript support.
-              Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
-            </figcaption>
-          </figure>
-
-
-          <h2>About the Vue Routing with GitHub Pages:</h2>
-          <div class="horizontal-line"></div>
-          <div>
-            <p>December 6th 2023 - Next item for deployment will be to convert this process below to use GitHub actions and a .yaml file to automate it. Lately I've 
-              been making many small commits so I may not need to deploy the website everytime I make small adjustments with an automated process but the 
-              auto deployment using GitHub actions is a nice tool.            
-            </p>
-            <p>
-              Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods
-              to work properly.
-              For example, in order to deploy this website, the command <i>"deploy": "copy dist\index.html dist\404.html
-                &
-                gh-pages -d dist"</i> is used, and this command is added to the package.json file.
-              To publish modifications to the website, one can run the command "npm run deploy". This will first build
-              the
-              vue.js application by running "npm run build", and then put the production build of the website into the
-              'dist'
-              folder.</p>
-
-            <p>
-              A copy of the index.html file that is built in the 'dist' folder is created and renamed to 404.html.
-              This is a workaround that allows router-linking in vue.js to work correctly for all routes. Without this
-              workaround, direct URL links such as https://conradswebsite.com/projects/cowculator would not work and
-              instead
-              show a 404 error on GitHub Pages.
-              However, by creating a copy of index.html and renaming it to 404.html whenever the site is updated, all
-              addresses
-              now work properly by falling back to the index.html page. This solution may not be ideal, but it is
-              necessary when
-              using gh-pages.</p>
-          </div>
         </div>
+        <h2>Motivation:</h2>       
+
+<div class="horizontal-line">          
+</div>
+
+<p>   
+
+  This website is constantly being updated and improved. I am always learning new things. All projects here are not meant to be text-book
+  examples of how to do things, but rather examples of how I learned to make things. The fun thing about this website is it is entirely made
+  from scratch by me, so I understand it well, and if I make some mistakes or something explodes it's just science.
+
+</p>
+
+
+<h2>Progression:</h2>
+
+<div class="horizontal-line">          
+</div>        
+<figure class="figure-location">
+  <img class="img-container" :src="imagePath" alt="Coding Languages used" />
+  <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly
+    Vue.js. As of June
+    2023, currently starting to add in TypeScript support.
+    Some pages (such as the Cowculator) are pure Vue/JavaScript and no TypeScript.
+  </figcaption>
+</figure>
+<p>
+  This website was originally written in Vue 3 and straight
+  JavaScript. Later on I converted it to have TypeScript support, and new projects such as the
+  <router-link class="home-text-links" to="/projects/cowgame">Cow Game</router-link> heavily use
+  TypeScript. The <router-link class="home-text-links" to="/projects/cards">Card Game</router-link>
+  also uses TypeScript.
+  <a class="home-text-links" href="https://vuejs.org/guide/typescript/overview.html">Vue.js itself is
+    written in TypeScript</a> so one could also say using Vue.js is using TypeScript to an extent. In July,
+  2023, started
+  working on integrating some minor backend services for experimenting. In July, 2023 I also started learning how 
+  to use Rust with Web Assembly, so some of this website
+  now uses Rust compiled into Web Assembly. Recently I've been reviewing code I wrote and upgrading it to be simpler
+  and more professional. There is a lot one can learn by reviewing their own code and seeing what could be
+  improved
+  after seeing how other developers write code.
+</p>
+
+
+
+
+
+<h2>About the Vue Routing with GitHub Pages:</h2>
+
+<div class="horizontal-line"></div>
+
+<div>
+  <p>December 6th 2023 - Next item for deployment will be to convert this process below to use GitHub actions and a .yaml file to automate it. Lately I've 
+    been making many small commits so I may not need to deploy the website everytime I make small adjustments with an automated process but the 
+    auto deployment using GitHub actions is a nice tool.            
+  </p>
+  <p>
+    Since this site is using Vue.JS router-linking and hosted with GitHub Pages, it requires special methods
+    to work properly.
+    For example, in order to deploy this website, the command <i>"deploy": "copy dist\index.html dist\404.html
+      &
+      gh-pages -d dist"</i> is used, and this command is added to the package.json file.
+    To publish modifications to the website, one can run the command "npm run deploy". This will first build
+    the
+    vue.js application by running "npm run build", and then put the production build of the website into the
+    'dist'
+    folder.</p>
+
+  <p>
+    A copy of the index.html file that is built in the 'dist' folder is created and renamed to 404.html.
+    This is a workaround that allows router-linking in vue.js to work correctly for all routes. Without this
+    workaround, direct URL links such as https://conradswebsite.com/projects/cowculator would not work and
+    instead
+    show a 404 error on GitHub Pages.
+    However, by creating a copy of index.html and renaming it to 404.html whenever the site is updated, all
+    addresses
+    now work properly by falling back to the index.html page. This solution may not be ideal, but it is
+    necessary when
+    using gh-pages.</p>
+</div>
+
+</div>
 
       <!-- Aside area -->
       <AsideContent style="background-color: rgb(40, 40, 40);">
-
           <template v-slot:aside-content>
             <div class="bird-container">
               <h3>
@@ -296,15 +332,13 @@
               peanuts!</p>
         </template>
       </AsideContent>
-
     </main>
-
   </body>
 </template>
 
 <script>
-import AsideContent from "@/components/FirstAside.vue";
 
+import AsideContent from "@/components/FirstAside.vue";
 import Prism from "prismjs";
 import "@/assets/globalCSS.css";
 
@@ -312,12 +346,11 @@ export default {
   name: "HomeView",
   components: {
     AsideContent,
-
   },
   data() {
     return {
       birdPicture: require('@/images/Kohlenmeise.jpg'),
-      imagePath: require("@/images/languages_july_17_2023.jpg"), // Add the image path to the data object
+      imagePath: require("@/images/project_languages.jpg"), // Add the image path to the data object
       languageChange: false,
       languageButtonText: "Deutsch wechseln",
     }
@@ -357,10 +390,29 @@ export default {
 <style scoped>
 
 #body {
+  /*
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
+  */
+  background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background-size: 100% 120%;  
   background-attachment: fixed;   
+}
+h1 {
+  margin-top: 1em;
+  margin-bottom: 0em;
+  color: #343434;
+
+  font-size: 3em;
+  border-radius: 0.2em;
+  /* margin-top: -0.33em;  */
+  text-decoration: underline;
+  text-decoration-color: #ff5959;
+}
+h2 {
+  text-align: left;
+  color: #2c2c2c;
 }
 .title-container {
   display: flex;
@@ -368,35 +420,33 @@ export default {
   align-items: center;
 }
 .language-button{
-  margin-top: 5em;  
+  background-color: #ffffff;
+  margin-top: 4.5em;  
   margin-left: 1em;
   margin-right: 1em;
   width: auto;
   padding: 0.5em;
   border-radius: 0.66em;
-  font-size: 0.7em;    
-  box-shadow: #a335ee 0 0 0 2px, transparent 0 0 0 0; 
+  font-size: 0.8em;    
+  
 }
 .language-button:hover{
   box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;  
 }
-
-
-
+.bullets{
+  padding-right: 1em;
+}
 .home-text-links {
-  color: rgb(204, 179, 79);
+  color: rgb(67, 82, 255);
   text-decoration: none;
-
   transition: 0.33s ease-in-out; /* Add transition for smooth animation */
 }
 .home-text-links:hover {
   text-decoration: underline;
   color: rgb(255, 89, 89);
 }
-
-
 p {
-  color: #e0e0e0;
+  color: rgb(15, 18, 25);
   line-height: 1.65em;
   font-size: 1.1em;
   text-align: left;
@@ -406,20 +456,14 @@ p {
   margin-bottom: 1em;
   padding: 0 2em 0 2em;
 }
-
 li {
-  color: #fff;
+  color: #2c2c2c;
   margin-bottom: 0.75rem;
   margin-left: 2.1rem;
-  font-size: 1.1em;
+  font-size: 1.1em;  
 }
-
 .aside-text {
   font-size: 0.9em;
-}
-
-body {
-  background-color: rgb(40, 40, 40);
 }
 
 nav {
@@ -429,9 +473,7 @@ nav {
 figure {
   float: inline-end;
   display: flex;
-  flex-flow: column;
-  padding: 0.5em;
-  padding-bottom: 0em;
+  flex-flow: column; 
   max-width: 22rem;
   margin: auto;
   font-size: 0.9em;
@@ -441,62 +483,38 @@ figure {
   border-radius: 5px;
   line-height: 1.2;
 }
-
 .img-container {
-  max-width: 350px;
+  max-width: 30em;
   border-radius: 0.5em;
   margin-bottom: 0.33em;
 }
 
 
-
-.h1-title {
-  margin-top: 1em;
-  margin-bottom: 0em;
-  color: #ffffff;
-
-  font-size: 3em;
-  border-radius: 0.2em;
-  /* margin-top: -0.33em;  */
-  text-decoration: underline;
-  text-decoration-color: #ff5959;
-}
-
-h2 {
-  text-align: left;
-  color: #fff;
-}
-
 .horizontal-line {
   border: none;
-  border-top: 1px solid #ffffff;
+  border-top: 2px solid #c0c0c0;
   margin: 0 0 0.5rem 0;
 }
-
 .adjust-title-font-size {
   font-size: 3em;
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
-
 .text-container {
-  background-color: rgb(40, 40, 40);
+  background-color: rgb(246, 247, 250);
   padding: 0 10em 0 10em;
 }
-
 .figure-location {
-  padding: 1em;
+  padding: 0.5em;  
+  margin: 1em;
 }
-
 .figure-caption {
   text-align: left;
 }
-
 .bird {
   border-radius: 0.5em;
   width: 100%;
 }
-
 .bird-container {
   display: flex;
   flex-direction: column;
@@ -518,15 +536,12 @@ h3 {
   .img-container {
     margin-bottom: 0.25em;
   }
-
   .bird {
     max-width: 20rem;
   }
-
   .bird-text{
   padding-left: 2em;
 }
-
 
   h3 {
     margin-top: 0em;
@@ -541,14 +556,27 @@ h3 {
   }
 }
 
-@media only screen and (max-width: 80rem) {
-
-  figure {
-    float: none;
-  }
-
+@media only screen and (max-width: 80rem) { 
   .text-container {
     padding-left: 0.25em;
     padding-right: 0.25em;
   }
-}</style>
+}
+@media only screen and (max-width: 45rem) { 
+
+    figure {
+      float: none;   
+     
+    }
+    .figure-location{    
+      margin: auto;  
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+}
+
+
+
+
+
+</style>

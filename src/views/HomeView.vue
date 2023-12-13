@@ -34,8 +34,8 @@
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
 
         <div class='under-title-caption'>Main heading tokens &uarr; are generated using
-          <a class="home-text-links" href="https://www.rust-lang.org/">Rust</a> code
-          compiled into <a class="home-text-links" href="https://webassembly.org/">Web Assembly</a>
+          Rust code
+          compiled into Web Assembly
         </div>
 
         <!-- Main bullets -->
@@ -44,7 +44,7 @@
             <li style="margin-bottom: 1em">
               <span style="color: #fff; font-size: 1.25em;">
                 This is a website project made by <a class="home-text-links"
-                  href="https://github.com/conrizzo"><b>Conrad</b></a>
+                  href="https://github.com/conrizzo">Conrad</a>
               </span>
             </li>
             <li style="margin-bottom: 1em">
@@ -293,19 +293,17 @@ export default {
 
 
 <style scoped>
-
-
-
 #body {
-  /* Winter background */
-  background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
-  background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
+  /* Winter background 
+  background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  */
   background-size: 100% 100%;
-  background-attachment: fixed;   
- 
+  background-attachment: fixed;  
 }
 .custom-background-home-page {
-  background: linear-gradient(0deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
+  background: linear-gradient(-1deg,rgb(54, 23, 34), 10%, rgba(161, 71, 78, 0.9), 20%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  
 }
 .custom-color {
   color: rgb(255, 255, 255) !important;
@@ -318,11 +316,13 @@ export default {
 .button-35:hover {
   box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;
 }
-
 .home-text-links {
-  color: rgb(255, 208, 0);
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  background-color: rgb(107, 99, 98);
   text-decoration: none;
-
+  padding: 0.1em 0.25em 0.1em 0.25em;
+  border-radius: 5px;
   transition: 0.33s ease-in-out; /* Add transition for smooth animation */
 }
 .home-text-links:hover {
@@ -335,24 +335,21 @@ export default {
 }
 
 .project-title{
-  color: #fff; font-size: 1.8em; text-decoration: underline;
+  color: rgb(107, 99, 98);
+  font-size: 1.8em; 
+  text-decoration: underline;  
+  text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2); 
+  padding: 0.25em;
 }
-
 .on-hover-projects {
   text-decoration: none;
-  padding: 0 0.25em 0 0.25em;
-  
+  padding: 0 0.25em 0 0.25em;  
 }
-
 .on-hover-projects:hover {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.33); 
-  border-radius: 0.25em;    
-  
+  color: #000000 !important;
+  background-color: rgb(240, 240, 240);
+  border-radius: 0.25em;      
 }
-
-
-
 .route-styling {
   line-height: 1.11;
   text-decoration: none;
@@ -361,10 +358,9 @@ export default {
   font-size: 1.8em;
   padding: 0.5em;
   border-radius: 0.5em; 
-  background: rgb(75, 198, 255);  
+  background: rgba(0, 0, 0, 0.33);
   border: 1px solid rgb(229, 229, 229);
 }
-
 .route-styling a:hover {
   color: #ffffff;  
 }
@@ -381,7 +377,6 @@ export default {
   padding: 0.5em;
   padding-left: 2em;  
 }
-
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -390,36 +385,30 @@ export default {
   margin-bottom: 10em;
   /* No gap between grid items */
 }
-
 .links-area{
   width: 20.8em;  
 }
-
 .hover-image {
   max-height: 18em;
   margin-top: 2.85em;
   max-width: 100%;
 
   display: block;
-  border-radius: 1em;  
-
-  
+  border-radius: 1em;    
 }
 
 /* Style for grid items */
 .grid-item {
-  border: none;
-  
+  border: none;  
   /* Border for visualization */
 }
 
 .title-spacing {
   position: relative;
-
   line-height: 1;
   padding: 0em 0.25em 0em 0.25em;
   margin-top: 2em;
-  color: #ffffff;
+  color: #ffffff;  
   font-size: 4em;
   z-index: 1;
 }
@@ -489,21 +478,18 @@ export default {
   background-color: #ffffff;
   border-radius: 100%;
 }
-
 .cloud::before {
   width: 100px;
   height: 70px;
   top: -20px;
   left: 20px;
 }
-
 .cloud::after {
   width: 100px;
   height: 70px;
   top: -30px;
   right: 20px;
 }
-
 #cloudThree {
   position: absolute;
   margin-left: 15em;
@@ -533,7 +519,6 @@ export default {
     top: 111.8vh;
     z-index: 2;
   }
-
   .project-area {
     display: flex;
     justify-content: center;
@@ -575,6 +560,5 @@ export default {
   width: calc(100% - 2.66em); 
   }
 }
-
 
 </style>

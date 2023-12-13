@@ -20,9 +20,7 @@
       <AboutCowGame @close="toggleAboutCowGame" />
     </div>
 
-    <h1 class="unselectable cow-game-text" style="font-size: 1.5em; top: 0em; float: left; position: absolute;"> This is
-      still under
-      construction!<br>
+    <h1 class="unselectable cow-game-text" style="font-size: 1.5em; top: 0em; float: left; position: absolute;">Click on the cowfood squares!<br>
     </h1>
     <p class="unselectable cow-game-text" style="width: 25em; color: #fff;  top: 8em; float: left; position: absolute;">
       <b>How to play:</b><br><br>Don't hit the cow food
