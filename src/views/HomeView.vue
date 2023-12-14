@@ -1,5 +1,5 @@
 <template>
-  <div id="body">
+    <div id="body">
     <!-- negative margin here to fill in space in nav on home page -->
     <!-- Main area -->
     <main class="main-content custom-background-home-page">
@@ -34,7 +34,7 @@
 
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
 
-        <div class='under-title-caption'>Main heading tokens &uarr; are generated using
+        <div class='under-title-caption'>Title animations &uarr; are generated with
           Rust code
           compiled into Web Assembly
         </div>
@@ -106,11 +106,9 @@
       </AsideContent>
 
     </main>
-  </div>
-
-  <div style="padding-top: 5em; background-color: #515151;">
-    <!-- spacer -->
-  </div>
+  </div> 
+  
+  
 
 </template>
 
@@ -149,8 +147,6 @@ export default {
       // image logic
       isHovered: false,
       hoveredImage: "",
-      
-
     };
   },
   computed: {
@@ -293,13 +289,14 @@ export default {
   background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
+
   background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;  
 }
-.custom-background-home-page {
-
+.custom-background-home-page {  
+  
   background: linear-gradient(0deg,rgb(226, 254, 255), 5%, rgba(228, 253, 255, 0.7), 15%,rgba(81, 209, 255, 0.7) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(191, 234, 247) 100%);
  /*
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
@@ -335,7 +332,7 @@ export default {
 }
 
 .project-title{
-  color: rgb(75, 75, 75);
+  color: rgb(15, 18, 25);
   font-size: 1.8em; 
   text-decoration: underline;  
   text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2); 
@@ -358,7 +355,7 @@ export default {
   font-size: 1.8em;
   padding: 0.5em;
   border-radius: 0.5em; 
-  background: rgba(0, 0, 0, 0.33);
+  background: rgba(0, 0, 0, 0.1);
   border: 1px solid rgb(229, 229, 229);
 }
 .route-styling a:hover {
@@ -367,7 +364,7 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.33);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 1em;
   display: inline-block;
   width: 40em;
@@ -409,9 +406,9 @@ export default {
   position: relative;
   line-height: 1;
   padding: 0em 0.25em 0em 0.25em;
-  margin-top: 2em;
+  margin-top: 15rem;
   color: #ffffff;  
-  font-size: 4em;
+  font-size: 2.25em;
   z-index: 1;
 }
 
@@ -530,9 +527,8 @@ export default {
 
 @media only screen and (max-width: 50rem) {
   .title-spacing {
-    color: #fff;      
-    padding-top: 2em;
-    font-size: 2.5em;
+    color: #fff;     
+    margin-top: 5rem;    
   }
   .under-title-caption{
     padding: 0 1em 0 1em;    

@@ -76,7 +76,7 @@
 
           This website is constantly being updated and improved. I am always learning new things. All projects here are not meant to be text-book
           examples of how to do things, but rather examples of how I learned to make things. The fun thing about this website is it is entirely made
-          from scratch by me, so I understand it well, and if I make some mistakes or something explodes it's just science.
+          from scratch by me, so I understand it well.
 
         </p>
         
@@ -482,7 +482,7 @@ figure {
   color: #cacaca;
   background-color: rgb(40, 40, 40);
 
-  border-radius: 5px;
+  border-radius: 15px;
   line-height: 1.2;  
 }
 
@@ -514,7 +514,7 @@ figure {
   text-align: left;
 }
 .bird {
-  border-radius: 0.5em;
+  border-radius: 15px;
   width: 90%;
 }
 .bird-text{
