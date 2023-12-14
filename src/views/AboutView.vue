@@ -476,19 +476,21 @@ figure {
   flex-flow: column; 
   max-width: 22rem;
   margin: auto;
+
   font-size: 0.9em;
   text-align: center;
   color: #cacaca;
   background-color: rgb(40, 40, 40);
+
   border-radius: 5px;
-  line-height: 1.2;
+  line-height: 1.2;  
 }
+
 .img-container {
   max-width: 30em;
   border-radius: 0.5em;
   margin-bottom: 0.33em;
 }
-
 
 .horizontal-line {
   border: none;
@@ -513,7 +515,10 @@ figure {
 }
 .bird {
   border-radius: 0.5em;
-  width: 100%;
+  width: 90%;
+}
+.bird-text{
+  padding-left: 10%; 
 }
 .bird-container {
   display: flex;
@@ -522,10 +527,9 @@ figure {
   align-items: center;
   text-align: center;
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
-.bird-text{
-  padding-left: 0em;
-}
+
 
 h3 {
   margin-top: 4.5em;

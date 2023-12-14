@@ -61,15 +61,15 @@ export default {
     background-color: rgb(255, 255, 255);
     font-weight: normal;
     font-size: 1em;
-    border: none;          
-    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.33); 
+    border: none;      
+    /*    
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.33);  ### this optional is the shadow for the text
+    */
 }
-
 .dropdown {
     position: relative;
     display: inline-block;         
 }
-
 .dropdown-content {    
     display: none; /* this removes it when not over it */
     position: absolute;
@@ -80,14 +80,12 @@ export default {
     background-color: white;        
     box-shadow: 0px -2px 8px rgba(0,0,0,0.4);      
 }
-
 .dropdown-content a {
     color: rgb(12, 12, 12);
     padding: 0.5em 0.6em 0.5em 0.6em; 
     text-decoration: none;
     display: block;   
-    margin-right: 0;    
-           
+    margin-right: 0;               
 }
 /* Can make this the page color for the respective page if I set all pages to follow a page color value */
 nav a.router-link-exact-active {
@@ -101,7 +99,6 @@ nav a.router-link-exact-active {
     color: #000; 
     background-color: rgb(235, 235, 235);       
 }
-
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: none; cursor: pointer; color: #000;}

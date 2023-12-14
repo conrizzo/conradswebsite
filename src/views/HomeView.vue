@@ -3,8 +3,9 @@
     <!-- negative margin here to fill in space in nav on home page -->
     <!-- Main area -->
     <main class="main-content custom-background-home-page">
-      <!-- generate clouds -->      
+        
       <div>
+         <!-- generate clouds -->   
         <!--
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
@@ -40,24 +41,18 @@
 
         <!-- Main bullets -->
         <div class="main-text-container">
-          <ul style="text-align: left; color: white;" class="mb-3">
-            <li style="margin-bottom: 1em">
-              <span style="color: #fff; font-size: 1.25em;">
+          <ul>
+            <li>              
                 This is a website project made by <a class="home-text-links"
-                  href="https://github.com/conrizzo">Conrad</a>
-              </span>
+                  href="https://github.com/conrizzo">Conrad</a>             
             </li>
-            <li style="margin-bottom: 1em">
-              <span style="color: #fff; font-size: 1.25em;">
+            <li >              
                 For more specific info about this website please read the <router-link class="home-text-links"
-                  to="/about">About</router-link> page
-              </span>
+                  to="/about">About</router-link> page             
             </li>
-            <li>
-              <span style="color: #fff; font-size: 1.25em;">
+            <li>             
                 <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and enthusiasm helped make
-                this website
-              </span>
+                this website           
             </li>
           </ul>
         </div>
@@ -298,12 +293,17 @@ export default {
   background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
+  background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;  
 }
 .custom-background-home-page {
-  background: linear-gradient(-1deg,rgb(54, 23, 34), 10%, rgba(161, 71, 78, 0.9), 20%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-  
+
+  background: linear-gradient(0deg,rgb(226, 254, 255), 5%, rgba(228, 253, 255, 0.7), 15%,rgba(81, 209, 255, 0.7) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(191, 234, 247) 100%);
+ /*
+  background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  */
 }
 .custom-color {
   color: rgb(255, 255, 255) !important;
@@ -319,7 +319,7 @@ export default {
 .home-text-links {
   color: rgb(255, 255, 255);
   font-weight: 500;
-  background-color: rgb(107, 99, 98);
+  background-color: rgba(107, 99, 98, 0.5);
   text-decoration: none;
   padding: 0.1em 0.25em 0.1em 0.25em;
   border-radius: 5px;
@@ -335,7 +335,7 @@ export default {
 }
 
 .project-title{
-  color: rgb(107, 99, 98);
+  color: rgb(75, 75, 75);
   font-size: 1.8em; 
   text-decoration: underline;  
   text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2); 
@@ -367,7 +367,7 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.33);
   border-radius: 1em;
   display: inline-block;
   width: 40em;
@@ -376,6 +376,8 @@ export default {
   padding-top: 1em; */
   padding: 0.5em;
   padding-left: 2em;  
+
+  color: #fff; font-size: 1.25em; text-align: left;
 }
 .grid-container {
   display: grid;

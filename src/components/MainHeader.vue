@@ -96,10 +96,11 @@
     position: absolute;    
   }
   
+  /*
   .text-shadow{
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
     color: rgb(100, 100, 100);    
   }
-  
+  */
   </style>
   
