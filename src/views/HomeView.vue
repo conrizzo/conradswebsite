@@ -5,6 +5,7 @@
     <main class="main-content custom-background-home-page">
         
       <div>
+        
          <!-- generate clouds -->   
         <!--
         <button class="button-35 hide-button-low-resolution"
@@ -31,12 +32,12 @@
         </div>
       -->
         <!-- Title -->
-
+      <div class="main-area-box">
         <h2 class="title-spacing">{{ inputStringShuffled }}</h2>
 
-        <div class='under-title-caption'>Title animations &uarr; are generated with
+        <div class='under-title-caption'>Title animations are generated with
           Rust code
-          compiled into Web Assembly
+          compiled into Web Assembly &uarr;
         </div>
 
         <!-- Main bullets -->
@@ -72,7 +73,7 @@
 
                       <span class="project-title">Project Links:</span>
 
-                      <div class="route-styling">
+                      <div class="routes-area">
 
                         <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
                           :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
@@ -90,26 +91,66 @@
         </div>
 
       </div>
+    </div>
+    
+
       <!-- Aside area begins  #2d2d2d; slate black color -->
-      <AsideContent style="background: #fff; z-index: 1;">
+    <AsideContent style="background: #fff; z-index: 1; padding: 0em;">
 
         <template v-slot:aside-content>
 
-            <p class="aside-text loading"></p>
-
+            
+            
             <figure style="display: inline-block;">
-              <img style="max-width: 80%; border-radius: 1em;" :src="birdDrawing" alt="Bird Drawing">
+              <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">
+             
               <figcaption class="aside-text" style="display: block;"><i></i></figcaption>
-            </figure>          
+            </figure>     
+            
         </template>
         
-      </AsideContent>
+    </AsideContent>   
+    <div class="second-main-area">
+     
+           
+     <div class="second-area-grid-container">              
+           <div class="grid-item-second-first">Coffee</div>
+           <div class="grid-item-coffee">
+             <img class="coffee-image" :src="coffee_image" alt="Image">
+           </div>
+           
+             <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>
+           
+           <div class="grid-item-coffee-text">
+             <p>                  
+            
+               Inspired by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a> and
+               anything else that tastes good with coffee. Biscotti, croissants, donuts, coffee cake, bagels, muffins, 
+               scones, toast (with jam, butter, or spreads), pancakes or waffles (with butter and maple syrup), granola or cereal bars<span class="loading"></span>
+                
+               
 
+             </p>
+           </div>
+           <div class="grid-item-second-third">Café</div>
+     </div>            
+
+</div>
+<AsideContent style="z-index: 1; background: #000; padding: 0em;">
+
+      <template v-slot:aside-content>          
+                    <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image">        
+          
+      </template>
+
+</AsideContent>   
+   
     </main>
+    
   </div> 
   
   
-
+  
 </template>
 
 <script>
@@ -119,6 +160,8 @@ import AsideContent from "@/components/FirstAside.vue";
 import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
 import "@/assets/globalCSS.css";
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
+import coffee_image from '@/images/coffee_time.jpg';
+
 
 export default {
   name: "HomeView",
@@ -126,7 +169,7 @@ export default {
     AsideContent,
     ProjectLinks,
   },
-  props: {
+  props: {   
     links: {
       type: Array,
     },
@@ -135,12 +178,16 @@ export default {
     return {
       itemsLength: 0,
       birdDrawing: require("@/images/StableDiffusionBird.jpg"), // Add the image path to the data object
+      coffee_image: coffee_image, // Assign the imported image to the "image" data property
+      //########## This logic only does cloud animations - not used anymore.
       moveTheClouds: false,
       i1: null,
       i2: null,
       i3: null,
       clouds: [],
       coordX: [15, 9, 2],
+      //######### End cloud animations area.
+
       inputString: "_ Welcome",
       name: "",
       inputStringShuffled: "",
@@ -290,17 +337,27 @@ export default {
   background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
 
-  background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-  background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  background: linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
-  background-attachment: fixed;  
+  background-attachment: fixed;
 }
-.custom-background-home-page {  
-  
-  background: linear-gradient(0deg,rgb(226, 254, 255), 5%, rgba(228, 253, 255, 0.7), 15%,rgba(81, 209, 255, 0.7) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(191, 234, 247) 100%);
+.custom-background-home-page {    
+  background: linear-gradient(0deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.7), 15%,rgba(81, 209, 255, 0.7) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255) 90%);
  /*
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
+}
+
+.second-main-area {
+ background: rgb(0, 0, 0);
+ height: 100vh;
+ color: #fff;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding-left: 2em;
+ padding-right: 2em; 
 }
 .custom-color {
   color: rgb(255, 255, 255) !important;
@@ -313,10 +370,20 @@ export default {
 .button-35:hover {
   box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;
 }
+
+/*
+.main-area-box{
+  background: rgba(31, 42, 85, 0.2);  
+  padding: 1em 8em 1em 8em;
+  max-width: 53em;
+  margin-bottom: 2em;
+  margin: 0 auto; 
+}
+*/
 .home-text-links {
-  color: rgb(255, 255, 255);
+  color: rgb(34, 41, 57);
   font-weight: 500;
-  background-color: rgba(107, 99, 98, 0.5);
+  background-color: rgb(229, 233, 240);
   text-decoration: none;
   padding: 0.1em 0.25em 0.1em 0.25em;
   border-radius: 5px;
@@ -332,11 +399,11 @@ export default {
 }
 
 .project-title{
-  color: rgb(15, 18, 25);
+  color: rgb(245, 245, 245);
   font-size: 1.8em; 
   text-decoration: underline;  
   text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2); 
-  padding: 0.25em;
+  
 }
 .on-hover-projects {
   text-decoration: none;
@@ -345,9 +412,9 @@ export default {
 .on-hover-projects:hover {
   color: #000000 !important;
   background-color: rgb(240, 240, 240);
-  border-radius: 0.25em;      
+  border-radius: 0.33em;      
 }
-.route-styling {
+.routes-area {
   line-height: 1.11;
   text-decoration: none;
   display: block;
@@ -355,25 +422,24 @@ export default {
   font-size: 1.8em;
   padding: 0.5em;
   border-radius: 0.5em; 
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgb(229, 229, 229);
+  background: rgba(34, 60, 138, 0.2);
+ /* border: 1px solid rgb(229, 229, 229);  */
 }
-.route-styling a:hover {
+.routes-area a:hover {
   color: #ffffff;  
 }
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(34, 60, 138, 0.2);
   border-radius: 1em;
   display: inline-block;
-  width: 40em;
+  width: 31.3em;
   margin: 0 auto;
   /* padding-right: 0.5em;
   padding-top: 1em; */
   padding: 0.5em;
-  padding-left: 2em;  
-
+  padding-left: 2em; 
   color: #fff; font-size: 1.25em; text-align: left;
 }
 .grid-container {
@@ -382,7 +448,144 @@ export default {
   /* Two columns with equal width */
   gap: 1em;
   margin-bottom: 10em;
-  /* No gap between grid items */
+ 
+}
+/* 2nd page grid */
+.second-area-grid-container{ 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 2em; /* Adjust the gap between grid items as needed */  
+ 
+}
+
+.grid-item-second-first{  
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;  
+  border-radius: 0.3em 0.3em 0.3em 0.3em;
+  padding: 0.25em;  
+ 
+  color: #bababa;
+  border: 1px rgb(51, 51, 51) solid;
+  font-size: 4em;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}.grid-item-second-first:hover{ 
+  color: #aa8334;
+}
+
+.grid-item-coffee{
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;    
+  color: #000000;
+  max-height: 4em;
+   
+}
+.grid-item-second-second{  
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  background:  #CD853F;
+  color: #000000;
+  border-radius: 0.2em;
+  padding: 0.25em;  
+  font-size: 4em;  
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}.grid-item-second-second:hover{
+  
+  color: #dedede;
+}
+
+.grid-item-coffee-text{  
+  grid-column: 3 / 3;
+  grid-row: 1 / 3;  
+  color: #ffffff;
+  border-radius: 0.2em;
+  padding: 0.25em;  
+  font-size: 1.5em;
+  
+  text-align: left; 
+}
+.grid-item-second-third{  
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;  
+  background: #A0522D;
+  border-radius: 0.2em;
+  padding: 0.25em;
+  color: #000000;
+  font-size: 4em;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}.grid-item-second-third:hover{  
+  color: #dedede; /* Gradient from coffee brown to lighter shades */
+}
+
+.aside-coffee-image {
+  max-width: 100%;
+  
+}
+
+@media only screen and (max-width: 50rem) {
+
+
+  /* Stack the grid items on top of each other vertically */
+.grid-item-second-first,
+.grid-item-second-second,
+.grid-item-second-third, .grid-item-coffee-text {
+    grid-template-columns: repeat(1);
+    grid-template-rows: repeat(1);
+    grid-column: 1;     
+    
+}
+.second-area-grid-container {
+    grid-template-columns: 1fr; /* Change to a single column */
+    grid-template-rows: auto; /* Allow rows to adjust automatically */
+    grid-gap: 1em; /* Adjust the gap between grid items as needed */
+  }
+
+  .grid-item-coffee{
+    grid-column: 1;
+    grid-row: none;  
+    color: #000000;
+    
+    
+    
+  }
+
+  .grid-item-coffee-text{   
+  grid-row: 4 / 5;  
+  color: #ffffff;   
+  background: rgb(0, 0, 0);
+  font-size: 1.5em;
+  font-family: 'Nimbus Sans L', sans-serif;
+  }
+
+/* Remove the right margin from the third grid item */
+.grid-item-second-third{
+  margin-right: 0em;
+}
+
+.coffee-image {
+  display: none;
+}
+
+.aside-coffee-image {
+ 
+}
+
+
+}
+
+/* image zoom effect */
+/* [1] The container */
+.coffee-image {  
+  border-radius: 1em;
+  width: 90%;
+}
+.bird-image{
+  max-width: 75%; 
+  border-radius: 1em; 
+  margin-top: 1em;
 }
 .links-area{
   width: 20.8em;  
@@ -405,10 +608,10 @@ export default {
 .title-spacing {
   position: relative;
   line-height: 1;
-  padding: 0em 0.25em 0em 0.25em;
+  padding: 0.5em 0.25em 0em 0.25em;
   margin-top: 15rem;
   color: #ffffff;  
-  font-size: 2.25em;
+  font-size: 3em;
   z-index: 1;
 }
 
@@ -423,8 +626,7 @@ export default {
 
 .loading {
   font-family: sans-serif;
-  font-size: 1.25em;
-  padding-left: 1em;
+  font-size: 1.25em;  
 }
 
 .loading:after {
@@ -534,14 +736,14 @@ export default {
     padding: 0 1em 0 1em;    
   }
   
-  .route-styling {
+  .routes-area {
     font-size: 1.75em;
   }
   .hide-button-low-resolution {
     display: none;
   }
   .main-text-container {
-   width: calc(100% - 5em);
+   width: calc(100% - 4.8em);
   } 
 
   #cloudThree {

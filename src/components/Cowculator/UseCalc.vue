@@ -757,14 +757,17 @@ export default {
 .button-35:hover {
   box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;
 }
+/*
 .cowculator-position{
   position: absolute; left: 5em;
 }
+
 .binary-tree-and-outputs-area{
   margin-left: 30em;
   padding-right: 2em;
   padding-left: 0em;  
 }
+
 @media screen and (max-width: 110rem) {
   .cowculator-position{
     position: relative; 
@@ -775,6 +778,7 @@ export default {
   padding-left: 2em;
   }  
 }
+*/
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;

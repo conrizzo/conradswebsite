@@ -12,8 +12,8 @@
 // import the dropdown menu into the nav bar
 
 
-import TheMainHeader from "@/components/MainHeader.vue";
-import TheMainFooter from "@/components/MainFooter.vue";
+import TheMainHeader from "@/components/Navigation/MainHeader.vue";
+import TheMainFooter from "@/components/Navigation/MainFooter.vue";
 
 //import CookieAccept from "@/components/CookieAccept.vue";
 

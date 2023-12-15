@@ -41,13 +41,13 @@ pub fn greet(name: &str) -> String {
     <p class="paragraph-text">What you typed: {{ name }}{{runRustArrayRandomizer()}}</p>
     <div style="font-size: 1.5em; text-align: center; padding-left: 1em; padding-right: 1em; padding-bottom: 2em;" id="randomizedArray"></div>
     
-  <MainFooter></MainFooter>
+
 </template>
   
 <script>
 
 import "@/assets/globalCSS.css";
-import MainFooter from "@/components/MainFooter.vue";
+
 import Prism from "prismjs";
 import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-rust.min.js';
@@ -57,7 +57,7 @@ import init, {greet, main} from "@/rust_web_assembly/hello_wasm.js";
 export default {
   name: 'rustWebAssemblyView',
   components: {
-    MainFooter,
+    
   },
   data() {
     return {      

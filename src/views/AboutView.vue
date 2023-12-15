@@ -118,7 +118,7 @@
 
         <div class="horizontal-line"></div>
 
-        <div>
+     
           <p>December 6th 2023 - Next item for deployment will be to convert this process below to use GitHub actions and a .yaml file to automate it. Lately I've 
             been making many small commits so I may not need to deploy the website everytime I make small adjustments with an automated process but the 
             auto deployment using GitHub actions is a nice tool.            
@@ -146,7 +146,7 @@
             now work properly by falling back to the index.html page. This solution may not be ideal, but it is
             necessary when
             using gh-pages.</p>
-        </div>
+       
 
       </div>
       <!-- Aside area -->
@@ -504,7 +504,7 @@ figure {
 }
 .text-container {
   background-color: rgb(246, 247, 250);
-  padding: 0 10em 0 10em;
+  padding: 1em 10em 2em 10em;
 }
 .figure-location {
   padding: 0.5em;  
