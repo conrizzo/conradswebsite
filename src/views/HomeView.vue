@@ -91,9 +91,10 @@
         </div>
 
       </div>
+      
     </div>
     
-
+    
       <!-- Aside area begins  #2d2d2d; slate black color -->
     <AsideContent style="background: #fff; z-index: 1; padding: 0em;">
 
@@ -114,32 +115,42 @@
      
            
      <div class="second-area-grid-container">              
-           <div class="grid-item-second-first">Coffee</div>
+           <div class="grid-item-second-first">
+            Coffee
+           </div>
            <div class="grid-item-coffee">
-             <img class="coffee-image" :src="coffee_image" alt="Image">
+              <div class="hidden" ref="content" :class="{ 'show': isContentVisible }">
+                <img  class="coffee-image" :src="coffee_image" alt="Image">
+              </div>
            </div>
            
              <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>
            
            <div class="grid-item-coffee-text">
-             <p>                  
+             <p class="hidden" ref="content" :class="{ 'show': isContentVisible }">                  
             
-               Inspired by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a> and
-               anything else that tastes good with coffee. Biscotti, croissants, donuts, coffee cake, bagels, muffins, 
-               scones, toast (with jam, butter, or spreads), pancakes or waffles (with butter and maple syrup), granola or cereal bars<span class="loading"></span>
+               Website fueled by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a> and
+               anything else that tastes good with coffee. Croissants, donuts, cake, bagels, muffins, 
+               scones, toast (with jam, butter), pancakes or waffles (with butter and maple syrup), granola or cereal bars<span class="loading"></span>
                 
                
 
              </p>
+              
            </div>
-           <div class="grid-item-second-third">Café</div>
-     </div>            
+           <a href="https://fr.wikipedia.org/wiki/Caf%C3%A9" class="grid-item-second-third">Café</a>
+     </div>      
+
+     
 
 </div>
+
 <AsideContent style="z-index: 1; background: #000; padding: 0em;">
 
       <template v-slot:aside-content>          
-                    <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image">        
+                    
+            <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->   
+            <img class="aside-coffee-image" :src="secondCoffee" alt="Coffee image"> 
           
       </template>
 
@@ -179,6 +190,9 @@ export default {
       itemsLength: 0,
       birdDrawing: require("@/images/StableDiffusionBird.jpg"), // Add the image path to the data object
       coffee_image: coffee_image, // Assign the imported image to the "image" data property
+      secondCoffee: require("@/images/second_coffee.jpg"), // Add the image path to the data object
+
+      isContentVisible: false,
       //########## This logic only does cloud animations - not used anymore.
       moveTheClouds: false,
       i1: null,
@@ -202,6 +216,15 @@ export default {
     },
   },
   methods: {
+    handleIntersection(entries) {
+      entries.forEach(entry => {
+        console.log(entry);
+        if (entry.isIntersecting) {          
+                  this.isContentVisible = true;        
+        }
+      });
+    },
+   
     
     showImage(item) {
       switch (item.text) {
@@ -321,6 +344,18 @@ export default {
     Prism.highlightAll();
     this.addLettersIntoInput();
 
+    //#####
+    const options = {
+      root: null, // Use the viewport as the root
+      rootMargin: '0px', // No margin applied to the root
+      threshold: 0.5 // Trigger when 50% of the element is visible
+    };
+    // Intersection Observer API -- this is used to load the handleIntersection method which
+    // loads items on the screen as they are scrolled to with a transition effect.
+    const observer = new IntersectionObserver(this.handleIntersection, options);
+    observer.observe(this.$refs.content);
+     //#####
+
   },
 };
 </script>
@@ -331,6 +366,15 @@ export default {
 
 
 <style scoped>
+.hidden {
+  opacity: 0;
+  transition: all 3s;
+}
+.show {
+  opacity: 1;
+}
+
+
 #body {
   /* Winter background 
   background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
@@ -350,14 +394,16 @@ export default {
 }
 
 .second-main-area {
- background: rgb(0, 0, 0);
+ background: rgb(18, 18, 18);
  height: 100vh;
  color: #fff;
  display: flex;
  justify-content: center;
  align-items: center;
+
  padding-left: 2em;
  padding-right: 2em; 
+ padding-top: 2em;
 }
 .custom-color {
   color: rgb(255, 255, 255) !important;
@@ -419,7 +465,7 @@ export default {
   text-decoration: none;
   display: block;
   text-align: left;
-  font-size: 1.8em;
+  font-size: 2.1em;
   padding: 0.5em;
   border-radius: 0.5em; 
   background: rgba(34, 60, 138, 0.2);
@@ -440,7 +486,7 @@ export default {
   padding-top: 1em; */
   padding: 0.5em;
   padding-left: 2em; 
-  color: #fff; font-size: 1.25em; text-align: left;
+  color: #fff; font-size: 1.6em; text-align: left;
 }
 .grid-container {
   display: grid;
@@ -456,22 +502,24 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 2em; /* Adjust the gap between grid items as needed */  
- 
+  
 }
 
 .grid-item-second-first{  
   grid-column: 1 / 2;
   grid-row: 1 / 2;  
-  border-radius: 0.3em 0.3em 0.3em 0.3em;
+  border-radius: 0.3em 0.3em 0.3em 0.3em;  
+
   padding: 0.25em;  
+  max-height: 1.5em;  
+  font-size: 3em;  
  
   color: #bababa;
-  border: 1px rgb(51, 51, 51) solid;
-  font-size: 4em;
+  border: 1px rgb(51, 51, 51) solid;  
   text-align: center;
   transition: 0.3s ease-in-out;
 }.grid-item-second-first:hover{ 
-  color: #aa8334;
+  color: #ffffff;
 }
 
 .grid-item-coffee{
@@ -484,16 +532,16 @@ export default {
 .grid-item-second-second{  
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  background:  #CD853F;
-  color: #000000;
+  border: 1px rgb(51, 51, 51) solid;
+  color: #bababa;
   border-radius: 0.2em;
   padding: 0.25em;  
-  font-size: 4em;  
+  max-height: 1.5em;  
+  font-size: 3em;  
   text-decoration: none;
   transition: 0.3s ease-in-out;
-}.grid-item-second-second:hover{
-  
-  color: #dedede;
+}.grid-item-second-second:hover{  
+  color: #ffffff;
 }
 
 .grid-item-coffee-text{  
@@ -502,86 +550,82 @@ export default {
   color: #ffffff;
   border-radius: 0.2em;
   padding: 0.25em;  
-  font-size: 1.5em;
-  
+  font-size: 1.5em;  
   text-align: left; 
 }
 .grid-item-second-third{  
   grid-column: 3 / 4;
   grid-row: 3 / 4;  
-  background: #A0522D;
+  border: 1px rgb(51, 51, 51) solid;
   border-radius: 0.2em;
-  padding: 0.25em;
-  color: #000000;
-  font-size: 4em;
+  padding: 0.25em;  
+  max-height: 1.5em;  
+  font-size: 3em;  
+  color: #bababa;  
   text-align: center;
+  text-decoration: none;
   transition: 0.3s ease-in-out;
 }.grid-item-second-third:hover{  
-  color: #dedede; /* Gradient from coffee brown to lighter shades */
+  color: #ffffff; /* Gradient from coffee brown to lighter shades */
 }
 
 .aside-coffee-image {
   max-width: 100%;
-  
+  margin-top: 1em;
+  border-radius: 1em;
 }
 
 @media only screen and (max-width: 50rem) {
 
-
-  /* Stack the grid items on top of each other vertically */
-.grid-item-second-first,
-.grid-item-second-second,
-.grid-item-second-third, .grid-item-coffee-text {
-    grid-template-columns: repeat(1);
-    grid-template-rows: repeat(1);
-    grid-column: 1;     
-    
-}
-.second-area-grid-container {
-    grid-template-columns: 1fr; /* Change to a single column */
-    grid-template-rows: auto; /* Allow rows to adjust automatically */
-    grid-gap: 1em; /* Adjust the gap between grid items as needed */
+    /* Stack the grid items on top of each other vertically */
+  .grid-item-second-first,
+  .grid-item-second-second,
+  .grid-item-second-third, .grid-item-coffee-text {
+      grid-template-columns: repeat(1);
+      grid-template-rows: repeat(1);
+      grid-column: 1;     
+      
   }
+  .second-area-grid-container {
+      grid-template-columns: 1fr; /* Change to a single column */
+      grid-template-rows: auto; /* Allow rows to adjust automatically */
+      grid-gap: 1em; /* Adjust the gap between grid items as needed */
+    }
 
   .grid-item-coffee{
     grid-column: 1;
     grid-row: none;  
-    color: #000000;
-    
-    
-    
+    color: #000000;    
+  }
+  .grid-item-coffee-text{     
+    grid-row: 4 / 5;  
+    color: #ffffff;   
+    background: rgb(0, 0, 0);
+    font-size: 1.5em;
+    font-family: 'Nimbus Sans L', sans-serif;
+  }
+  /* Remove the right margin from the third grid item */
+  .grid-item-second-third{
+    margin-right: 0em;
+  }
+  .coffee-image {
+    display: none;
+  }
+  .aside-coffee-image {
+   margin-top: -4em;
   }
 
-  .grid-item-coffee-text{   
-  grid-row: 4 / 5;  
-  color: #ffffff;   
-  background: rgb(0, 0, 0);
-  font-size: 1.5em;
-  font-family: 'Nimbus Sans L', sans-serif;
-  }
-
-/* Remove the right margin from the third grid item */
-.grid-item-second-third{
-  margin-right: 0em;
-}
-
-.coffee-image {
-  display: none;
-}
-
-.aside-coffee-image {
- 
-}
-
 
 }
 
-/* image zoom effect */
-/* [1] The container */
+
 .coffee-image {  
   border-radius: 1em;
-  width: 90%;
+  width: 99%;
+  padding: 0.5%;
+  background: rgb(229, 233, 240);
 }
+
 .bird-image{
   max-width: 75%; 
   border-radius: 1em; 
@@ -591,7 +635,7 @@ export default {
   width: 20.8em;  
 }
 .hover-image {
-  max-height: 18em;
+  max-height: 20.8em;
   margin-top: 2.85em;
   max-width: 100%;
 
@@ -609,7 +653,7 @@ export default {
   position: relative;
   line-height: 1;
   padding: 0.5em 0.25em 0em 0.25em;
-  margin-top: 15rem;
+  margin-top: 10rem;
   color: #ffffff;  
   font-size: 3em;
   z-index: 1;
@@ -727,7 +771,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 50rem) {
+@media only screen and (max-width: 57rem) {
   .title-spacing {
     color: #fff;     
     margin-top: 5rem;    
@@ -743,7 +787,7 @@ export default {
     display: none;
   }
   .main-text-container {
-   width: calc(100% - 4.8em);
+   width: calc(100% - 4.2em);
   } 
 
   #cloudThree {
