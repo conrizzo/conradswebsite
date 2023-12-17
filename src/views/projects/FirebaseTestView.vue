@@ -21,14 +21,14 @@
   <article class="top-text-container">
       <div class="top-text-sub-container">
 
-        <h2 style="color: #fff;">Post messages and login! This is a fully 
-          functional login system I made which connects with <a class="text-links" style="color: #87ff7a;" href="https://firebase.google.com/">https://firebase.google.com/</a>
-        </h2>      
+        <h1 style="color: #fff;">Post messages and login! This is a fully 
+          functional login system I made which connects with: <a class="text-links" style="color: rgb(0, 227, 227);" href="https://firebase.google.com/">https://firebase.google.com/</a>
+        </h1>      
        
         <p>Here is a login/sign out setup using BaaS (Back end as a
           service) to post messages and do more!
           The goal will eventually be to create a more comprehensive backend once there is a need for it.
-        This is all being built from scratch!
+        This has all been built from scratch to learn how to set up different aspects of this!
         The "Enter authorized user page" link won't take the user anywhere unless they are authorized. It stays on this page and does nothing.
         If the user is authorized it routes to a locked user logged in only page.  
         </p>
@@ -42,13 +42,13 @@
       <template v-if="showLogin">
         <!-- listen for event -->
         <LoginPage @loggedIn="handleLogin"  />
-        <p style="padding: 1em;">No account yet? <span class="login-sign-up" style="color: #87ff7a; cursor: pointer;" @click="showLogin = false">Sign up</span></p>
+        <p style="padding: 1em;">No account yet? <span class="login-sign-up" style="color:cursor: pointer;" @click="showLogin = false">Sign up</span></p>
       </template>
       <!-- or register -->
       <template v-else>
         <!-- listen for event -->
         <SignUpPage @loggedIn="handleLogin" />
-        <p>Already registered? <span class="login-sign-up" style="color: #87ff7a; cursor: pointer;" @click="showLogin = true">Login</span></p>
+        <p>Already registered? <span class="login-sign-up" style="color:cursor: pointer;" @click="showLogin = true">Login</span></p>
       </template>
     </div>
     <!-- is logged in -->
@@ -58,7 +58,7 @@
          <span style="font-size: 0.75em; color: #808080;">You are logged in.</span></span>
       </div>
       <button class="button-35" style="position: absolute;  top: 3em;
-  right: 1em; color:#87ff7a;" @click="handleLogout">Logout</button>
+  right: 1em; " @click="handleLogout">Logout</button>
 
     </div>
 
@@ -82,12 +82,13 @@
               rows="10"></textarea>
           </div>
          
-        <button style="color:#87ff7a;" @click="createUser" class="button-35">Add Entry</button>
+        <button @click="createUser" class="button-35">Add Entry</button>
       </form>
       
       <!-- message area -->
      
       <div class="submission-container">
+        <h3 style="color: rgb(0, 227, 227);">Messages will appear publicly here.</h3>
         <ul style="list-style: none;">
           <li v-for="submission in submissions" :key="submission.id">
             <div>

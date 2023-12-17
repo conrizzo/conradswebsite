@@ -7,8 +7,7 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
     color: rgb(var(--gray-dark));	
-    line-height: 1.6;
-    
+    line-height: 1.6;    
 }
 
 /* BELOW this comment adjusts the default scrollbar on the right */
@@ -134,14 +133,14 @@ body {
   padding: 0;
 }
 
-/* Set height and background color of header and footer */
+
 
 
 /* buttons and stuff */
-h1 {
-  color: rgba(255, 255, 255, 0.873);
+h1 {  
   line-height: 1.5;
 }
+
 .top-most-paragraph-space{
   padding-top: 1em;
 }
@@ -162,6 +161,7 @@ h1 {
 .dark-color-text{
   color: #303030;
 }
+
 @media only screen and (max-width: 70rem) {
   .paragraph-text {
     max-width: 100%;
@@ -201,7 +201,7 @@ h1 {
   touch-action: manipulation;
 }
 .button-35:hover {
-  box-shadow: rgb(35, 55, 255) 0 0 0 2px, transparent 0 0 0 0;  
+  box-shadow: rgb(0, 227, 227) 0 0 0 2px, transparent 0 0 0 0;  
 }
 .box {
   padding: 80px 0;
@@ -286,4 +286,64 @@ h1 {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+/* buttons */
+
+/* CSS  apparently this is based on GitHub buttons */
+.clean-button {
+  appearance: none;
+  background-color: #ebebeb;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 8px;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292E;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 0.5em 1.1em;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.clean-button:hover {
+  background-color: #F3F4F6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.clean-button:disabled {
+  background-color: #FAFBFC;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+}
+
+.clean-button:active {
+  background-color: #EDEFF2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.clean-button:focus {
+  outline: 1px transparent;
+}
+
+.clean-button:before {
+  display: none;
+}
+
+.clean-button:-webkit-details-marker {
+  display: none;
 }

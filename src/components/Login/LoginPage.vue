@@ -14,7 +14,7 @@
       <input name="password" type="password" placeholder="Password" required v-model="password">
     </div>
       
-      <button style="margin-top: 0.5em; color:#87ff7a;" class="button-35">Log in</button>
+      <button style="margin-top: 0.5em;" class="button-35">Log in</button>
 
       <div style="margin-top: 1em;">
         <span style="color: red;">{{ errorMessage }}</span>

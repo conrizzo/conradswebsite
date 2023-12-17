@@ -8,19 +8,19 @@
 
          <div class="title-container">
             <h1>About</h1>
-            <button @click="language();" class="language-button">{{ languageButtonText }}</button>
+            <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
         </div>
 
         <div class="bullets">                   
           <ul>
-            <li>This iteration of the website was started March, 2023 and is
+            <li>This website version was started March, 2023 and is
               totally self-made by me (Conrad) using primarily
               <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
                   3</b></a>
               (Vue.js) for its reactivity and interactivity.
             </li>
 
-            <li>This website's primary aim is to create and exhibit various projects. It is hosted on
+            <li>The primary aim is to create and exhibit various projects. It is hosted on
               <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                 my GitHub</a> with
               <a class="home-text-links" href="https://pages.github.com/">
@@ -42,7 +42,7 @@
             </li>
 
             <li>This website has mostly been about improving my knowledge of web programming. 
-              The point has been to learn.
+              The point has also been to have fun building this.
             </li>
 
             <!--<span style="color: #a335ee;">Education:  -->
@@ -69,22 +69,18 @@
         </div>
         <h2>Motivation:</h2>       
 
-        <div class="horizontal-line">          
-        </div>
-
         <p>   
 
           This website is constantly being updated and improved. I am always learning new things. All projects here are not meant to be text-book
-          examples of how to do things, but rather examples of how I learned to make things. The fun thing about this website is it is entirely made
-          from scratch by me, so I understand it well.
+          examples of how to do things, but rather examples of how I learned to make things. The fun thing about this website is it is self-made 
+          so I understand it well.
 
         </p>
         
         
         <h2>Progression:</h2>
 
-        <div class="horizontal-line">          
-        </div>        
+             
         <figure class="figure-location">
           <img class="img-container" :src="imagePath" alt="Coding Languages used" />
           <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly
@@ -116,7 +112,7 @@
 
         <h2>About the Vue Routing with GitHub Pages:</h2>
 
-        <div class="horizontal-line"></div>
+        
 
      
           <p>December 6th 2023 - Next item for deployment will be to convert this process below to use GitHub actions and a .yaml file to automate it. Lately I've 
@@ -163,7 +159,10 @@
           <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
               href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
             (name in German, English name is Great Tit)
-            photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
+            photo taken in Tübingen, Germany. 
+            <br>
+            <br>
+            It is a species of bird that is native to Europe.
             They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
             peanuts!</p>
 
@@ -178,7 +177,7 @@
       <div class="text-container">
         <div class="title-container">
             <h1 class="h1-title">Über</h1>
-            <button @click="language();" class="language-button">{{ languageButtonText }}</button>
+            <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
         </div>
         <div class="bullets">      
           <ul>
@@ -188,7 +187,7 @@
               (Vue.js) für seine Reaktivität und Interaktivität.
             </li>
 
-            <li>Das Hauptziel dieser Website ist es, verschiedene Projekte zu erstellen und auszustellen. Sie wird auf
+            <li>Das Hauptziel ist verschiedene Projekte zu erstellen und auszustellen. Sie wird auf
               <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                 meinem GitHub</a> mit
               <a class="home-text-links" href="https://pages.github.com/">
@@ -212,7 +211,7 @@
 
             <li>
               Diese Website handelt größtenteils davon, mein Wissen im Bereich Webprogrammierung zu verbessern. 
-              Der Zweck bestand darin zu lernen.
+              Der Zweck besteht auch darin, Spaß beim Bauen zu haben.
             </li>
 
             <!--<li>I hold a degree in Computational Linguistics from the
@@ -231,24 +230,25 @@
             </li> -->
           </ul>
         </div>
+
+
         <h2>Motivation:</h2>       
 
-<div class="horizontal-line">          
-</div>
 
-<p>   
 
-  This website is constantly being updated and improved. I am always learning new things. All projects here are not meant to be text-book
-  examples of how to do things, but rather examples of how I learned to make things. The fun thing about this website is it is entirely made
-  from scratch by me, so I understand it well, and if I make some mistakes or something explodes it's just science.
+                <p>   
 
-</p>
+                  This website is constantly being updated and improved. I am always learning new things. All projects here are not meant to be text-book
+                  examples of how to do things, but rather examples of how I learned to make things. The fun thing about this website is it is self-made so I
+                  understand it well.
+
+                </p>
 
 
 <h2>Progression:</h2>
 
-<div class="horizontal-line">          
-</div>        
+   
+       
 <figure class="figure-location">
   <img class="img-container" :src="imagePath" alt="Coding Languages used" />
   <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly
@@ -280,7 +280,7 @@
 
 <h2>About the Vue Routing with GitHub Pages:</h2>
 
-<div class="horizontal-line"></div>
+
 
 <div>
   <p>December 6th 2023 - Next item for deployment will be to convert this process below to use GitHub actions and a .yaml file to automate it. Lately I've 
@@ -327,11 +327,15 @@
             <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
                 href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
               (name in German, English name is Great Tit)
-              photo taken in Tübingen, Germany. It is a species of bird that is native to Europe.
-              They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
-              peanuts!</p>
+              photo taken in Tübingen, Germany. 
+            <br>
+            <br>
+            It is a species of bird that is native to Europe.
+            They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
+            peanuts!</p>
         </template>
       </AsideContent>
+      
     </main>
   </body>
 </template>
@@ -393,77 +397,81 @@ export default {
   /*
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
-  */
-  background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  */  
   background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);  
   background-size: 100% 120%;  
   background-attachment: fixed;   
 }
+
 h1 {
   margin-top: 1em;
   margin-bottom: 0em;
   color: #343434;
-
   font-size: 3em;
-  border-radius: 0.2em;
-  /* margin-top: -0.33em;  */
+  border-radius: 0.2em;  
   text-decoration: underline;
   text-decoration-color: #ff5959;
 }
+
 h2 {
   text-align: left;
   color: #2c2c2c;
+
+  border-bottom: 1px solid rgb(18,18,18);
+  
 }
+
+h3 {
+  margin-top: 4.5em;
+  color: #c7c7c7;
+}
+
 .title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.language-button{
-  background-color: #ffffff;
-  margin-top: 4.5em;  
-  margin-left: 1em;
-  margin-right: 1em;
-  width: auto;
-  padding: 0.5em;
-  border-radius: 0.66em;
-  font-size: 0.8em;    
-  
+.language-button{ 
+  margin-top: 4em;  
+ 
 }
 .language-button:hover{
   box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;  
 }
+
 .bullets{
   padding-right: 1em;
 }
-.home-text-links {
+
+.home-text-links{
   color: rgb(67, 82, 255);
-  text-decoration: none;
+  font-weight: 500;  
+  text-decoration: none;   
   transition: 0.33s ease-in-out; /* Add transition for smooth animation */
 }
-.home-text-links:hover {
+
+.home-text-links:hover{
   text-decoration: underline;
   color: rgb(255, 89, 89);
 }
+
 p {
   color: rgb(15, 18, 25);
-  line-height: 1.65em;
-  font-size: 1.1em;
+  line-height: 1.7em;
+  font-size: 1em;
   text-align: left;
   word-break: break-word;
   overflow-wrap: break-word;
-  font-weight: 400;
-  margin-bottom: 1em;
-  padding: 0 2em 0 2em;
+  font-weight: 400;  
+  padding: 0.5em 2em 0.5em 2em;
 }
+
 li {
   color: #2c2c2c;
   margin-bottom: 0.75rem;
   margin-left: 2.1rem;
   font-size: 1.1em;  
-}
-.aside-text {
-  font-size: 0.9em;
 }
 
 nav {
@@ -492,16 +500,6 @@ figure {
   margin-bottom: 0.33em;
 }
 
-.horizontal-line {
-  border: none;
-  border-top: 2px solid #c0c0c0;
-  margin: 0 0 0.5rem 0;
-}
-.adjust-title-font-size {
-  font-size: 3em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-}
 .text-container {
   background-color: rgb(246, 247, 250);
   padding: 1em 10em 2em 10em;
@@ -531,11 +529,6 @@ figure {
 }
 
 
-h3 {
-  margin-top: 4.5em;
-  color: #c7c7c7;
-}
-
 @media only screen and (max-width: 95rem) {
   .img-container {
     margin-bottom: 0.25em;
@@ -545,11 +538,7 @@ h3 {
   }
   .bird-text{
   padding-left: 2em;
-}
-
-  h3 {
-    margin-top: 0em;
-  }
+ }  
 
   h1 {
     padding-left: 0.7em;
@@ -557,6 +546,10 @@ h3 {
 
   h2 {
     padding-left: 1.4em;
+  }
+
+  h3 {
+    margin-top: 0em;
   }
 }
 
@@ -566,6 +559,7 @@ h3 {
     padding-right: 0.25em;
   }
 }
+
 @media only screen and (max-width: 45rem) { 
 
     figure {
@@ -578,9 +572,4 @@ h3 {
       margin-bottom: 1em;
     }
 }
-
-
-
-
-
 </style>
