@@ -13,7 +13,7 @@
 
         <div class="bullets">                   
           <ul>
-            <li>This website version was started March, 2023 and is
+            <li>This website was started March, 2023 and is
               totally self-made by me (Conrad) using primarily
               <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
                   3</b></a>
@@ -181,7 +181,7 @@
         </div>
         <div class="bullets">      
           <ul>
-            <li>Diese Version der Website wurde im März 2023 gestartet und komplett von mir (Conrad) selbst erstellt, hauptsächlich mit
+            <li>Diese Website wurde im März 2023 gestartet und komplett von mir (Conrad) selbst erstellt, hauptsächlich mit
               <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
                   3</b></a>
               (Vue.js) für seine Reaktivität und Interaktivität.

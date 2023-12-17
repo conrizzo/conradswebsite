@@ -1,12 +1,11 @@
 <template>
-    <div id="body">
+  <div id="body">
     <!-- negative margin here to fill in space in nav on home page -->
     <!-- Main area -->
-    <main class="main-content custom-background-home-page">
-        
+    <main class="main-content custom-background-home-page">        
       <div>
         
-         <!-- generate clouds -->   
+      <!-- generate clouds -->   
         <!--
         <button class="button-35 hide-button-low-resolution"
           style="background-color: rgba(255, 255, 255, 0); float: right; margin-right: 1em; margin-top: 1em; z-index: 3; color: #fff; opacity: 1;"
@@ -31,19 +30,17 @@
             class="cloud"></div>
         </div>
       -->
-        <!-- Title -->
+
+      <!-- Title -->
       <div class="main-area-box">
         <h1 class="title">
           <div style="text-align: left; margin-left: 20%;">
-            <span>{{ inputStringShuffled.slice(0, 7) }}</span>
+            <span style="font-size: 1.5em;">{{ inputStringShuffled.slice(0, 7) }}</span>
           </div>          
           <span>{{ inputStringShuffled.slice(7) }}</span>
         </h1>
-        <div class='under-title-caption'>Title animations are generated with
-          Rust code
-          compiled into Web Assembly &uarr;
+        <div class='under-title-caption'>
         </div>
-
         <!-- Main bullets -->
         <div class="main-text-container">
           <ul>
@@ -52,15 +49,15 @@
                   href="https://github.com/conrizzo">Conrad</a>          
             </li>           
             <li >              
-                  For more information <router-link class="home-text-links"
-                  to="/about">About</router-link> ConradsWebsite  
+                  The <router-link class="home-text-links"
+                  to="/about">About</router-link> page has additional info
             </li>
             <li>             
-                Made with <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>☕ and enthusiasm        
+              Crafted under the influence of <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>  
             </li>
           </ul>
         </div>
-
+          <!-- Grid for project links and image to appear on hover -->
         <div class="grid-container">
           <div class="grid-item" style="grid-column: 1;">
             <div class="image-container">
@@ -69,32 +66,25 @@
           </div>
           <div class="grid-item">
             <div class="project-area">
-              <!-- Projects ({{ this.itemsLength }})</h3> -->
+              <!-- Projects ({{ this.itemsLength }})</h3> optionall show how many projcets -->
               <ProjectLinks :links="links">
                 <template v-slot="{ links }">
                   <div class="links-area">
-
                       <span class="project-title">Project Links:</span>
-
                       <div class="routes-area">
-
                         <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
                           :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
                           @mouseleave="hideImage">
                           <span v-html="item.text"></span><br>
-                        </router-link>
-                        
+                        </router-link>                        
                       </div>
                   </div>
                 </template>
               </ProjectLinks>
             </div>
-          </div>
-          
+          </div>          
         </div>
-
-      </div>
-      
+      </div>      
     </div>
     
     
@@ -115,16 +105,15 @@
             Coffee
            </div>
            <div class="grid-item-coffee">              
-                <img  class="coffee-image" :src="coffee_image" alt="Image">                
-           </div>          
-           
-             <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>
-           
+              <img  class="coffee-image" :src="coffee_image" alt="Image">                
+           </div>               
+           <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>           
            <div class="grid-item-coffee-text">
              <p>             
                Website fueled by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a> and
-               anything else that tastes good with coffee. Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
-               buttermilk biscuits, toast (with jam, butter, cinnamon), pancakes or waffles (with butter and maple syrup), granola bars<span class="loading"></span>
+               food, but mostly coffee. Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
+               buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
+               granola bars<span class="loading"></span>
             </p>              
            </div>
           <a href="https://fr.wikipedia.org/wiki/Caf%C3%A9" class="grid-item-second-third">Café</a>             
@@ -424,7 +413,7 @@ export default {
 }
 .custom-background-home-page {    
  
-  background: linear-gradient(0deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.7), 15%,rgba(81, 209, 255, 0.7) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255) 90%);
+  background: linear-gradient(0deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8), 15%,rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255,0.8) 90%);
   /*
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
@@ -510,7 +499,7 @@ export default {
 .home-text-links {
   color: rgb(34, 41, 57);
   font-weight: 500;
-  background-color: rgb(229, 233, 240);
+  background-color: rgb(255, 255, 255);
   text-decoration: none;
   padding: 0.1em 0.25em 0.1em 0.25em;
   border-radius: 5px;
@@ -566,7 +555,7 @@ export default {
 }
 .on-hover-projects:hover {
   color: #000000 !important;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(0, 255, 200);
   border-radius: 0.33em;      
 }
 
@@ -750,7 +739,7 @@ export default {
 .title {
   position: relative;
   line-height: 1;
-  padding: 0.5em 0.25em 0em 0.25em;
+  padding: 0.5em 0.25em 0.25em 0.25em;
   margin-top: 10rem;
   color: rgb(255, 255, 255);
   font-size: 3em;

@@ -32,7 +32,7 @@
 
         <div style="display: flex; justify-content: center; align-items: center;">
           <div>
-            <button style="margin-right: 0.25em" class="button-35" @click="clearField">
+            <button style="margin-right: 0.25em" class="button-35" @click="resetAllData">
               Reset
             </button>
             <button style="margin-right: 0.25em" class="button-35" @click="copyToClipboard">
@@ -41,13 +41,13 @@
           </div>
 
         <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-          <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35"
+          <button style="font-size: 0.75em; padding: 0.25em 0.66em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35"
             @click="adjustTreeSize('+')">
-            + Binary Tree Size
+            Binary Tree Size (<span style="color: #42b883; font-size: 1.5em;">+</span>)
           </button>
-          <button style="font-size: 0.75em; padding: 0.5em; border-radius: 0.75em;" class="button-35"
+          <button style="font-size: 0.75em; padding: 0.25em 0.66em; border-radius: 0.75em;" class="button-35"
             @click="adjustTreeSize('-')">
-            - Binary Tree Size
+            Binary Tree Size (<span style="color: #42b883; font-size: 1.5em;">-</span>)
           </button>
         </div>
 
@@ -56,7 +56,7 @@
 
 <div class="binary-tree-and-outputs-area">
   <div style="padding-top: 0.5em">
-    <b v-if="showDescriptionText" style="color: #42b883">Cowculation</b>
+    <b v-if="showDescriptionText" style="color: #42b883;">Cowculation</b>
     <div class=".dark-color-text cowculate-result">
       {{ addCommas(addInExtraMultiplicationSymbols(expression)) }}<span v-if="this.expression == ''"></span>
       <span v-if="showText">&nbsp;=&nbsp;
@@ -80,12 +80,12 @@
   <div style="padding: 0.25em; padding-top: 1em;">
     <div class=".dark-color-text" v-if="showDescriptionText"
       style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em">
-      <b style="color: #42b883">Final Node Cowculation:</b><br />
+      <b style="color: #42b883;">Final Node Cowculation:</b><br />
       Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{
         operator }}</span>&nbsp; Right node:
       <span class="node-display">{{ addCommas(rightNode) }}</span><br />
-      <b style="color: #42b883">Full Binary Tree Structure in JSON:</b><br />
-      <div>
+      <b style="color: #42b883;">Full Binary Tree Structure in JSON:</b><br />
+      <div style="font-size: 0.8em; max-width: 66%; text-align: center; margin: 0 auto;">
         <span>{{ treeNodeCalculations }}</span>
       </div>
     </div>
@@ -147,21 +147,11 @@ export default {
       showTooltip: "Making this work with my code was interesting! If the user does an expression like 2*2^2+2 the actual expression being evaluated is 2*(2^2)+2",
       adjustViewBoxSize: 400,
       //svgContent: '',
-      // Adds commas to the result or expression shown on the screen to increase readability
-      addCommas(number) {
-        if (number == null) {
-          return "";
-        } else {
-          // fixed this so it only adds commas to the left of the decimal point
-          number = number.toString();
-          let parts = number.split('.');
-          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          return parts.join('.');
-        }
-      },
+      
     };
   },  
   computed: {
+    
     treeString() {
       return this.printTree(this.tree);
     },
@@ -190,6 +180,7 @@ export default {
       used in the cowculate function to evaluate the result! 
     */
   watch: {
+    
     expression(userInput) {
      
       let str = userInput;
@@ -267,6 +258,18 @@ export default {
     },
   },
   methods: {
+    // Adds commas to the result or expression shown on the screen to increase readability
+    addCommas(number) {
+        if (number == null) {
+          return "";
+        } else {
+          // fixed this so it only adds commas to the left of the decimal point
+          number = number.toString();
+          let parts = number.split('.');
+          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          return parts.join('.');
+        }
+      },
     cursorIndex() {
       this.indexOfCursor = this.$refs.inputField.selectionStart;
       //console.log("Cursor index:", this.indexOfCursor);
@@ -373,29 +376,31 @@ export default {
       )}${this.printTree(node.right, level + 1, false)}`;
     },
     cowculate() {
-      /* Cow Moo cowculations */      
+      // Cow Moo cowculations   
       this.userTokens = [];
       this.operators = [];
       
       this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);
+
       try {   
         let input = this.cleanedExpression;
         let currentNumber = "";
 
         for (let i = 0; i < input.length; i++) {
           const char = input.charAt(i);
-          // Check for expressions like -(2+2) and 2*-(2+2) where a negative sign precedes a "(" parenthesis
-          // such as "-(" To solve this the expression in parenthesis is subtracted from 0
+          // Check for expressions where a negative sign precedes a "left paranthesis"
+          // such as "- left paranthesis" To solve this the expression in parenthesis is subtracted from 0
+         
           if (
             char === "-" &&
             (i === 0 || isNaN(input.charAt(i - 1))) &&
             input.charAt(i + 1) === "("
           ) {
-            // access helper function to push a 0 to the stack, this is for the use case such as "-(" To solve this the expression in parenthesis is subtracted from 0
+            // access helper function to push a 0 to the stack, this is for the use case such as "- left paranthesis" To solve this the expression in parenthesis is subtracted from 0
             this.userTokens.push(this.createNodes(true, 0));
             this.operators.push("-");
           }
-          // (char === "-" && (i === 0 || isNaN(input.charAt(i - 1))  ) checks that it's not 4-4 and is 4--4 for example!
+          // not double --
           else if (
             !isNaN(char) || char === "." || (char === "-" && (i === 0 || (isNaN(input.charAt(i - 1)) && input.charAt(i - 1) !== ")" && input.charAt(i + 1) !== "(")))
           ) {
@@ -462,9 +467,7 @@ export default {
               }
             }
           }
-          // This was an array for testing each number addition to the expression
-          // this.arrayOfNumbersOnly.push(currentNumber);
-          // console.log(this.arrayOfNumbersOnly)
+        
         }
         // Add the last number if there is one
         if (currentNumber !== "") {
@@ -717,7 +720,7 @@ export default {
       }, 1000);
     },
     /* Reset all input fields - if some error happens or want to restart */
-    clearField() {
+    resetAllData() {
       this.expression = ""; // an unfiltered raw user input
       this.cleanedExpression = ""; // a cleaned version of user input
       this.showText = false; // shows main results
