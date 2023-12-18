@@ -5,7 +5,14 @@
       <button class="close" @click.self="closeModal"></button>
       <h1>{{ helptitle }}</h1>
 
-      <!-- <p style="padding-bottom: 5px; text-align: left">{{ helptext }}</p> -->
+      <p class="help-guide-text">
+        Start enting numbers into the input using the keypad or by typing!
+        <br> <br>
+        This uses a stack and self-written parsing to evaluate the expression.
+        Shows a binary tree representation and the JSON data of the tree.
+      </p>
+
+      <!--
       <p class="help-guide-text">
         Enter numbers into the input field below using the keypad or by typing.
         The Cow-culator will perform mathematical operations on the numbers and
@@ -22,7 +29,7 @@
         challenge that was solved in a surprisingly simple way is adding in a math.pow() function. To do this correclty in my code, parenthesis are added around the base and exponent values, but the user 
         doesn't see them added in! For example the user would see 2*2^2+2 = 10 but the actual expression that is evaluated is 2*(2^2)+2 = 10.
       </p>
-      <!-- <h1>{{ helptitletwo }}</h1> -->
+      -->
     </div>
   </div>
 </template>
@@ -75,8 +82,9 @@ h1 {
   max-width: 500px;
   text-align: left;
   padding: 10px;
-  font-size: 0.8em;  
+  font-size: 1em;  
   line-height: 1.7;
+  color: #000000;
 }
 
 /* CSS FOR MODAL "X" Close button*/

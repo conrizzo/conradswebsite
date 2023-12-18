@@ -32,7 +32,6 @@
   // import the dropdown menu into the nav bar
   import DropDownMenu from "@/components/Navigation/DropDownMenu.vue";  
   
-  
   export default {
     name: "MainHeader",
     components: {
@@ -41,14 +40,16 @@
   };
   </script>
   
-  <style scoped>  
-  
+
+  <style scoped>    
   /* how to pin the nav to the top of the page */
   nav {  
     padding-left: 0em;  
     /* padding: 0.3em 0.25em 0.3em 0.25em; */
     font-size: 1.25em;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);   
+    border-right: 1px solid rgb(0, 0, 0);  
+   
     line-height: 1.1;  
   }
   
@@ -73,8 +74,15 @@
   .home-link.active-home-link {
   color: #ff5959;
   background: none;  
+  }
+  .nav-space-at-lower-resolution {
+    z-index: 3;
+    left: 0; 
+    position: absolute;    
+  }
+
   /* Additional styles for the active home link */
-}
+
   
   /*
   nav a.router-link-home-active {
@@ -88,13 +96,8 @@
   }  
   */
   
-  /* ABOVE this comment adjusts the default scrollbar on the right */
-  
-  .nav-space-at-lower-resolution {
-    z-index: 3;
-    left: 0; 
-    position: absolute;    
-  }
+ 
+ 
   
   /*
   .text-shadow{

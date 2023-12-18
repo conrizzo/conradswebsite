@@ -23,14 +23,14 @@ export default {
                 { text: 'Cowculator', to: '/projects/cowculator' },
                 { text: 'Weather', to: '/projects/weather' },
                 { text: 'Coffee Data', to: '/projects/datasets' },                
-                { text: 'Cow Food Game', to: '/projects/cowgame' },
+                { text: 'Game', to: '/projects/cowgame' },
                 { text: 'Login Page', to: '/projects/firebasetest'},
                 { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
                 // { text: 'Project Descriptions', to: '/projects/' },    
                 // { text: 'Rust Web Assembly', to: '/projects/rustwebassembly' },    
                 // { text: 'Various Links', to: '/projects/Links' },                          
                 { text: 'Card Game <span style="color: #ff5959;">(New!)</span>', to: '/projects/cards' },     
-                { text: 'Gallery', to: '/projects/gallery' },  
+                // { text: 'Gallery', to: '/projects/gallery' },  
                 
                 
                     

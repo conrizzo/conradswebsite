@@ -174,55 +174,43 @@ export default defineComponent({
       winningMessage: false,
       customMessage: "",
       youTubeCowVideoLink: "Your reward for winning is a happy cow video!",
-
       isThereACollision: false,
       collisionMessage: "",
       collisionCowPasture: false,
       cowPastureCollisionMessage: "",
-
       onionLeavesCowPasture: false,
-
       showAboutCowGame: false,
-
       isBlocked: false,
-
       hitCowFence: false,
       onionRingsHitCowFence: false,
       peanutButterHitCowFence: false,
-
       // if timeLeft is changed make sure to change the first invocation in the updatecowfoodrect function
       timeLeft: 30,
       cowPastureMessage: "Moo!",
       showCowPastureMessage: false,
 
-
       // all these values can be set to defaults, or not, the interface shows what is allowed here
       // position values set the initial location of the objects
-
       bouncingBallObjects: [
         {
           id: 'ball1',
           position: { top: 50, left: 350 },
           setMovementDirection: { directionX: 3, directionY: 0 },
           speed: 2,
-
         },
         {
           id: 'ball2',
           position: { top: 250, left: 350 },
           setMovementDirection: { directionX: 3, directionY: 0 },
           speed: 2,
-
         },
         {
           id: 'ball3',
           position: { top: 450, left: 350 },
           setMovementDirection: { directionX: 3, directionY: 0 },
           speed: 2,
-
         },
       ] as ballObjectData[],
-
 
       cowFoodObjects: [
         {
@@ -257,18 +245,12 @@ export default defineComponent({
         this.showCowPastureMessage = false;
       }, 1500);
     }, 3000);
-
-
-
   },
   methods: {
     startGameTimerCountDown() {
       let seconds = this.timeLeft;
 
       let timer = setInterval(() => {
-        // Display the remaining seconds
-
-
         // Reduce the remaining seconds by 1
         seconds--;
         //console.log(seconds);
@@ -285,18 +267,12 @@ export default defineComponent({
           }, 3000);
         }
       }, 1000);
-
     },
     toggleAboutCowGame() {
       this.showAboutCowGame = !this.showAboutCowGame;
     },
-    updateBallRect(index: number, rect: DOMRect) {
-      //const ballObject = this.bouncingBallObjects[index] as ballObjectData;
-      //ballObject.rect = rect;
-
-      this.bouncingBallObjects[index].rect = rect;
-
-      //console.log(index, ballObject.rect)      
+    updateBallRect(index: number, rect: DOMRect) {     
+      this.bouncingBallObjects[index].rect = rect;      
     },
     cowFenceHit() {
       this.hitCowFence = true;
@@ -314,7 +290,6 @@ export default defineComponent({
         this.winningMessage = true;
         if (this.timeLeft >= 15) {
           this.customMessage = "You WIN! You are a PROFESSIONAL FARMER! It only took you " + (30 - this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
-
         }
         else if (this.timeLeft >= 5) {
           this.customMessage = "You WIN! You are a RESPECTABLE FARMER! It only took you " + (30 - this.timeLeft) + " seconds! The Cows love " + this.cowFoodObjects[1].label + " and " + this.cowFoodObjects[0].label + "!";
@@ -361,7 +336,7 @@ export default defineComponent({
         }
       }
       return false;
-    }, checkGreenAreaCollisions() {
+    }, checkForObjectCollisions() {
       const greenArea = document.querySelector('.farm') as HTMLElement;
       const greenAreaRect = greenArea.getBoundingClientRect();
       const verticalLine = document.querySelector('.vertical-line') as HTMLElement;
@@ -376,15 +351,10 @@ export default defineComponent({
       const verticalLineFourRect = verticalLineFour.getBoundingClientRect();
       const verticalLineFive = document.querySelector('.vertical-line-five') as HTMLElement;
       const verticalLineFiveRect = verticalLineFive.getBoundingClientRect();
-
       const spinningRectangle = document.querySelector('.spinning-rectangle') as HTMLElement;
       const spinningRectangleRect = spinningRectangle.getBoundingClientRect();
-
       const verticalMovingRectangle = document.querySelector('.vertical-rectangle') as HTMLElement;
       const verticalMovingRectangleRect = verticalMovingRectangle.getBoundingClientRect();
-
-
-
 
       const inPasture: string[] = [];
       // this LOOP will  check for collisions with any objects
@@ -470,6 +440,7 @@ export default defineComponent({
     },
     /**
     * This is basically the game loop, it is called every time the user moves a cowFood object
+    * As the user drags the cowfood objects we check for collisions with other objects
     * Updates the `rect` property of a food object in the `cowFoodObjects` array with a new `DOMRect` value.
     * @param {number} index - The index of the food object in the `cowFoodObjects` array.
     * @param {DOMRect} rect - The new `DOMRect` value of the food object.
@@ -486,33 +457,18 @@ export default defineComponent({
       // Get and set the rect property of the food object in the cowFoodObjects array
       this.cowFoodObjects[index].rect = rect;
 
-      // get the food object from the cowFoodObjects array - this is like a getter
-      //const foodObject = this.cowFoodObjects[index] as cowFoodObjectsData;
-      // update the rect position of the food object in the cowFoodObjects array to this function parameter rect  - this is like a setter
-      //foodObject.rect = rect;
-
       //retrieve the position
       //console.log(this.cowFoodObjects[index].rect?.x, this.cowFoodObjects[index].rect?.y)
-
-
-      //console.log(index, foodObject.rect)
-
-
-      // Limit the food object's position within the viewport
-
-
-      // As the user drags the cowFood objects we check for collisions and interactions
-      // This could also be called the "game loop" - but it is not a loop, it is a function that is called every time the user moves a cowFood object
+      //console.log(index, foodObject.rect)      
+     
       this.checkCollisions();
-      this.checkGreenAreaCollisions();
+      this.checkForObjectCollisions();
       this.areGrassAndPeanutButterInPasture();
     },
   },
 
 });
 </script>
-
-
 
 
 
@@ -539,7 +495,6 @@ export default defineComponent({
   opacity: 0.9;
   overflow: hidden;
 }
-
 .vertical-line-two {
   position: absolute;
   top: 0;
@@ -567,7 +522,6 @@ export default defineComponent({
   border-radius: 3px;
   opacity: 0.9;
 }
-
 .vertical-line-four {
   position: absolute;
   top: 0;

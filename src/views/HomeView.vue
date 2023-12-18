@@ -34,8 +34,8 @@
       <!-- Title -->
       <div class="main-area-box">
         <h1 class="title">
-          <div style="text-align: left; margin-left: 20%;">
-            <span style="font-size: 1.5em;">{{ inputStringShuffled.slice(0, 7) }}</span>
+          <div class="top-string-slice-of-title">
+            <span>{{ inputStringShuffled.slice(0, 7) }}</span>
           </div>          
           <span>{{ inputStringShuffled.slice(7) }}</span>
         </h1>
@@ -49,8 +49,8 @@
                   href="https://github.com/conrizzo">Conrad</a>          
             </li>           
             <li >              
-                  The <router-link class="home-text-links"
-                  to="/about">About</router-link> page has additional info
+                  View the <router-link class="home-text-links"
+                  to="/about">About</router-link> page for more information
             </li>
             <li>             
               Crafted under the influence of <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>  
@@ -94,7 +94,9 @@
             <figure style="display: inline-block;">
               <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">             
               <figcaption class="aside-text" style="display: block;"><i></i></figcaption>
-            </figure>                 
+            </figure>       
+            
+                    
         </template>        
     </AsideContent>   
     
@@ -110,8 +112,8 @@
            <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>           
            <div class="grid-item-coffee-text">
              <p>             
-               Website fueled by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a> and
-               food, but mostly coffee. Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
+               Website fueled by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>. 
+               Good foods to eat with coffee are: Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
                buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
                granola bars<span class="loading"></span>
             </p>              
@@ -204,10 +206,11 @@ export default {
   data() {
     return {
       itemsLength: 0,
-      birdDrawing: require("@/images/StableDiffusionBird.jpg"), // Add the image path to the data object
+      birdDrawing: require("@/images/StableDiffusionBird.jpg"), 
       coffee_image: coffee_image, // Assign the imported image to the "image" data property
-      secondCoffee: require("@/images/second_coffee.jpg"), // Add the image path to the data object
-      foodImage: require("@/images/coffee_food.jpg"), // Add the image path to the data object
+      secondCoffee: require("@/images/second_coffee.jpg"), 
+      foodImage: require("@/images/coffee_food.jpg"), 
+      //conradImage: require("@/images/conrad.jpg"), 
 
       // Intersection Observer to show items when they are scrolled to
       isContentVisible: false,
@@ -264,7 +267,7 @@ export default {
           this.isHovered = true;
           console.log(this.hoveredImage);
           break;
-        case "Cow Food Game":
+        case "Game":
           this.hoveredImage = require("@/images/CowGame.jpg");
           this.isHovered = true;
           console.log(this.hoveredImage);
@@ -497,16 +500,16 @@ export default {
 }
 */
 .home-text-links {
-  color: rgb(34, 41, 57);
+  color: rgb(255, 255, 255);
   font-weight: 500;
-  background-color: rgb(255, 255, 255);
+  border-bottom: 3px solid rgb(255, 89, 89);  
   text-decoration: none;
-  padding: 0.1em 0.25em 0.1em 0.25em;
-  border-radius: 5px;
-  transition: 0.33s ease-in-out; /* Add transition for smooth animation */
+  /*padding: 0.1em 0.2em;  */
+  
+  /*  transition: 0.33s ease-in-out; Add transition for smooth animation */
 }
 .home-text-links:hover {
-  text-decoration: underline;
+  border-bottom: none;  
   color: rgb(255, 89, 89);
 }
 
@@ -555,7 +558,7 @@ export default {
 }
 .on-hover-projects:hover {
   color: #000000 !important;
-  background-color: rgb(0, 255, 200);
+  background-color: rgb(255, 255, 255);
   border-radius: 0.33em;      
 }
 
@@ -722,7 +725,7 @@ export default {
   width: 20.8em;  
 }
 .hover-image {
-  max-height: 20.8em;
+  max-height: 18em;
   margin-top: 2.85em;
   max-width: 100%;
 
@@ -739,22 +742,20 @@ export default {
 .title {
   position: relative;
   line-height: 1;
+  height: 3em;
   padding: 0.5em 0.25em 0.25em 0.25em;
-  margin-top: 10rem;
+  margin-top: 2em;
+  
   color: rgb(255, 255, 255);
   font-size: 3em;
   z-index: 1;
 }
-
-
-.under-title-caption{
-  position: relative; 
-  color: #ffe2e2; 
-  padding-bottom: 0.25em; 
-  padding-top: 0.25em; 
-  line-height: 1.5;
-  font-size: 0.9em;
+.top-string-slice-of-title{
+  padding-bottom: 0.3em; 
+  font-size: 1.5em;
 }
+
+
 
 .loading {
   font-family: sans-serif;
@@ -847,7 +848,7 @@ export default {
   }
   .hover-image {
     border-radius: 1em;
-    max-width: 17.5em;
+   
     position: absolute;
     top: 111.8vh;
     z-index: 2;
@@ -860,13 +861,14 @@ export default {
 }
 
 @media only screen and (max-width: 57rem) {
-  .title {
-     
-    margin-top: 5rem;    
-  }
-  .under-title-caption{
-    padding: 0 1em 0 1em;    
-  }
+  .title {     
+    margin-bottom: 5rem;    
+  }  
+.top-string-slice-of-title{
+  padding-bottom: 0.3em; 
+  font-size: 1.5em;
+ }
+ 
   
   .routes-area {
     font-size: 1.75em;

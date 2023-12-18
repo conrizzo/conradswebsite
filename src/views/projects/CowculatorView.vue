@@ -18,7 +18,7 @@
   <div style="background: rgb(255, 255, 255);">
     <h2>
       Now shows binary tree graphic of calculations as svg! 100% self-made in
-      <a style="color: #42b883" class="text-links" href="https://vuejs.org/"
+      <a style="color: #42b883;" class="text-links" href="https://vuejs.org/"
         >Vue.js</a
       >
       <br />
@@ -27,7 +27,7 @@
       >Moo = Moooooooooooooooo
     </h2>
 
-    <div style="padding-top: 3em">
+    <div style="padding-top: 3em;">
       <div v-if="showAboutCalc">
         <AboutCalc
           :title="title"
@@ -114,7 +114,7 @@ export default {
       helpTitleTwo: "Why use the cowculator?",
       helpText: "",
       showHelpGuide: false,
-      imagePath: require("@/images/languages_july_17_2023.jpg"), // Add the image path to the data object
+      imagePath: require("@/images/project_languages.jpg"), // Add the image path to the data object
     };
   },
 

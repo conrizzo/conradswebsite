@@ -3,7 +3,7 @@
   <div style="background: linear-gradient(0deg, rgba(1,239,249,1) 0%, rgba(0,112,255,0.5746673669467788) 38%, rgb(11, 87, 208) 78%); 
   padding-bottom: 9em;
   ">
-  <h1 style="padding-top: 1em; padding-bottom: 1em;">Weather</h1>
+  <h1 style="padding-top: 1em; padding-bottom: 1em; color: #ffffff; font-size: 5em;">Weather</h1>
     <div class="center-content">
       
       
@@ -21,12 +21,13 @@
         <tbody>
           <tr v-for="cityWeather in cityWeathers" :key="cityWeather.city">
             <!-- 1 -->
-            <td><b>{{ cityWeather.city }}</b>
+            <td><b><u>{{ cityWeather.city }}</u></b>
               <br><br>
               <template v-if="cityWeather.weather && cityWeather.weather.request[0].query">
-                <span style="color: rgb(0, 149, 255);">Country:</span> {{
+                <span style="color: rgb(0, 149, 255); font-weight: 600; background: rgb(0, 0, 0); padding: 0.2rem 0.4rem; border-radius: 4px;">Country:</span> {{
                   cityWeather.weather.nearest_area[0].country[0].value }}<br>
-                <span style="color: rgb(255, 133, 133);">Region:</span> {{
+                <span style="color: rgb(255, 133, 133); font-weight: 600; background: rgb(0, 0, 0); padding: 0.2rem 0.4rem; border-radius: 4px;
+                ">Region:</span> {{
                   cityWeather.weather.nearest_area[0].region[0].value }}<br>
                 {{ cityWeather.weather.request[0].query }}<br>
                 <div style="margin-top: 0.25em;"><br>
@@ -158,16 +159,16 @@ export default {
         { city: "Tübingen, Germany", weather: "" },
         { city: "STR, Stuttgart Airport, Germany", weather: "" },
         { city: "Cary, NC", weather: "" },
-        { city: "Wilmington, NC", weather: "" },
-        { city: "Albuquerque, New Mexico", weather: "" },
-        { city: "Shamokin, PA", weather: "" },
-        { city: "Temecula, CA", weather: "" },
-        { city: "Albany WA, Australia", weather: "" },
-        { city: "RDU, Raleigh Durham Airport, USA", weather: "" },
+        //{ city: "Wilmington, NC", weather: "" },
+        //{ city: "Albuquerque, New Mexico", weather: "" },
+        //{ city: "Shamokin, PA", weather: "" },
+        //{ city: "Temecula, CA", weather: "" },
+        // { city: "Albany WA, Australia", weather: "" },
+        //{ city: "RDU, Raleigh Durham Airport, USA", weather: "" },
         { city: "Uppsala, Sweden", weather: "" },
         { city: "Miami, Florida", weather: "" },
-        { city: "Madrid", weather: "" },
-        { city: "Helsinki", weather: "" },
+        //{ city: "Madrid", weather: "" },
+        //{ city: "Helsinki", weather: "" },
 
       ],
       jsonData: null,
@@ -243,13 +244,12 @@ table {
 
 /* Table border radius with CSS only https://stackoverflow.com/questions/4932181/rounded-table-corners-css-only 3rd answer */
 th:first-of-type {
-  border-top-left-radius: 10px;
-  
+  border-top-left-radius: 10px;  
 }
 th:last-of-type {
-  border-top-right-radius: 10px;
-  
+  border-top-right-radius: 10px;  
 }
+
 tr:last-of-type td:first-of-type {
   border-bottom-left-radius: 10px;
   
@@ -260,7 +260,7 @@ tr:last-of-type td:last-of-type {
 
 /* Table Header */
 thead {
-  background-color: #e6c78b;
+  background-color: #ffffff;
 }
 
 th {
@@ -349,7 +349,8 @@ tr:nth-child(even) {
 }
 
 .sunny-background {
-  background: #fef88b;
+  background: #fffc47;
+  padding: 0.25em;
 }
 
 .clear-background {

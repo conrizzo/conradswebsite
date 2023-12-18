@@ -1,14 +1,14 @@
 
 <template>
-  <div style="padding-top: 2.7em; background-color: rgb(93, 76, 29); padding-bottom: 1em;">
+  <div class="coffee-data-background">
 
-    <h2 style="" class="homeview"><span style="background-color: rgb(255, 255, 255); border-radius: 0.25em; padding: 0.2em;">Coffee Consumers
-      by country</span></h2>
+    <h1>Coffee Consumers by country</h1>
     
-    <div style="margin-left: 8px; margin-right: 8px; text-align: left; width: width: calc(100% - 16px);">
-
-      <div id="chartContainer"></div>
+    <div class="container-for-svg-graph">
+      <div id="chartContainer" >        
+      </div>
     </div>
+    
     <h4 style="margin-top: 0.3em; text-align: left; margin-left: 0.5em; margin-right: 0.5em; color: #fff;">
       <b class="main-red-color">Note:</b> click on the column titles in the table below for each column to sort data
       numerically/alphabetically. The graph will update to the sorted values.
@@ -256,7 +256,7 @@ export default {
         };
       });
 
-      const svgWidth = window.innerWidth * 0.95; // Set the width to 90% of the viewport width
+      const svgWidth = window.innerWidth * 0.9; // Set the width to 90% of the viewport width
       const barHeight = 20;
       const barSpacing = 4;
       const maxValue = Math.max(...data.map((item) => item.value));
@@ -267,7 +267,7 @@ export default {
 
       // Draw the title
       svg += `<text x="${svgWidth / 2
-        }" y="20" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">${title}</text>`;
+        }" y="15" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">${title}</text>`;
 
       // Draw the bars and labels
       let startY = 30;
@@ -294,8 +294,18 @@ export default {
 </script>
 
 <style scoped>
-h2{
-  font-size:3em; color: rgb(60, 60, 60);
+
+.coffee-data-background{
+  padding-top: 3em;   
+  background: linear-gradient(to top left, rgb(38, 61, 80) 30%, rgb(95, 120, 130) 80%,rgb(35, 84, 125) 100% ); 
+  padding-bottom: 1em;
+}
+
+
+
+h1{
+  font-size: 3em; 
+  color:rgb(255, 255, 255);
   padding-top: 0.5em;
 }
 /* Table */
@@ -310,7 +320,8 @@ table {
 
 /* Table Header */
 thead {
-  background-color: #f5f5f5;
+  background-color: #e9e9e9;
+ 
 }
 
 th {
@@ -319,19 +330,20 @@ th {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   text-align: left;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
 }
 
 /* Table Body */
 tbody {
-  background-color: #fff;
+  background-color: rgb(84, 109, 166);
+  color: #ffffff;
 }
 
 td {
   text-align: left;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
   padding-left: 0.5em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -339,7 +351,7 @@ td {
 
 /* Alternate Row Color */
 tr:nth-child(even) {
-  background-color: #ededed96;
+  background-color: rgb(58, 84, 145);
 }
 
 .table-column-buttons {
@@ -352,11 +364,11 @@ tr:nth-child(even) {
 
 @media (max-width: 50rem) {
   table {
-    font-size: 0.7em;
+    font-size: 0.8em;
     padding: 0.25em;
   }
 
-  h2{
+  h1{
   font-size:1.25em; 
   margin-top: 1em;
  
@@ -365,18 +377,4 @@ tr:nth-child(even) {
   
 }
 
-p.homeview {
-  padding-top: 0.75em;
-  padding-bottom: 0.75em;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  color: #000000;
-  background: #fff;
-  border-radius: 5px;  
-  margin-top: 1em;
-}</style>
+</style>
