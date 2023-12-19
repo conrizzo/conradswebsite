@@ -1,3 +1,6 @@
+// The important fix for the direct links to work on GitHub pages was copying the generated build from the dist
+// folder and renaming the copy 404.html  
+
 //firebase authorization import
 import { auth } from '@/firebase/init.js';
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
@@ -37,11 +40,7 @@ const routes = [
     path: '/about',
     name: 'about',
     component: AboutView,
-  },
-
-
-
-  
+  },  
   {
     path: '/projects',
     name: 'projects',
@@ -124,18 +123,25 @@ const routes = [
   },
 
   // Keep this at the end of the array so only unmatched paths go here
-  // This is important, otherwise direct links to pages a user enters will not work on the web!
-  // The important fix for the direct links to work on GitHub pages was copying the generated build from the dist
-  // folder and renaming the copy 404.html  
+  // This is important, otherwise incorrect direct links to pages a user enters will not work  
   {
     path: '/:catchAll(.*)',
     redirect: '/',
   },
 ];
 
+// Does web history, and also routes to the saved position on a page if the user hits Refresh
+// As documented in the 4th option down https://router.vuejs.org/guide/advanced/scroll-behavior.html
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalized, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 auth.onAuthStateChanged(user => {

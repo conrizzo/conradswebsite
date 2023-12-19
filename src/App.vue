@@ -29,9 +29,15 @@ export default {
     }
   },
   mounted() {
+
+    // Prevent page from scrolling to top on refresh
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
     setTimeout(() => {
       this.showHeader = true;
-    }, 100);
+    }, 200);
 
     setTimeout(() => {
       this.showFooter = true;

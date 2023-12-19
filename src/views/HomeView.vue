@@ -89,7 +89,7 @@
     
     
       <!-- Aside area begins  #2d2d2d; slate black color -->
-    <AsideContent style="background: #121212; z-index: 1; padding: 0em;">
+    <AsideContent class="first-aside-home-page">
         <template v-slot:aside-content>                   
             <figure style="display: inline-block;">
               <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">             
@@ -115,7 +115,7 @@
                Website fueled by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>. 
                Good foods to eat with coffee are: Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
                buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
-               granola bars<span class="loading"></span>
+               granola bars, apple pie, chocolate<span class="loading"></span>
             </p>              
            </div>
           <a href="https://fr.wikipedia.org/wiki/Caf%C3%A9" class="grid-item-second-third">Café</a>             
@@ -509,8 +509,8 @@ export default {
   /*  transition: 0.33s ease-in-out; Add transition for smooth animation */
 }
 .home-text-links:hover {
-  border-bottom: none;  
-  color: rgb(255, 89, 89);
+  border-bottom: 3px solid rgb(0, 255, 170);
+  color: rgb(255, 255, 255);
 }
 
 .home-text-links:active {
@@ -651,6 +651,14 @@ export default {
   background: #ffffff;
 }
 
+.first-aside-home-page{
+  background: rgba(255, 255, 255, 0.1); 
+  z-index: 1; 
+  padding: 1em; 
+  margin-top: 10em;
+   border-top-left-radius: 2em
+}
+
 .aside-coffee-image {
   max-width: 100%;
   padding-top: 33vmin; 
@@ -662,6 +670,10 @@ export default {
   .second-main-area {
     padding-top: 0em;
   }
+  .first-aside-home-page{
+    margin-top: 0em;
+  }
+  
 
     /* Stack the grid items on top of each other vertically */
   .grid-item-second-first,
@@ -708,7 +720,6 @@ export default {
  }
 }
 
-
 .coffee-image {  
   border-radius: 1em;
   width: 99%;
@@ -719,7 +730,7 @@ export default {
 .bird-image{
   max-width: 75%; 
   border-radius: 1em; 
-  margin-top: 1em;
+  margin-top: 2em;
 }
 .links-area{
   width: 20.8em;  

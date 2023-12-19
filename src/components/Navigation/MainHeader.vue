@@ -1,9 +1,11 @@
 <!-- This page mostly just sets the default values across the whole website, and whether to omit nav bar such as on the cow game -->
 <template>
+  <div class="full-main-header-div">
     <!-- createa nav bar on every page-->
     <nav class="nav-space-at-lower-resolution">
       <!-- <router-link class="move-first-nav-link-at-lower-resolution" to="/">Home</router-link> -->      
       <!-- House icon -->
+
       <router-link to="/" exact class="home-link" active-class="active-home-link">
          <!-- <img src="@/images/Home_Icon.jpg" alt="Logo" style="width: 20px; height: 20px;"> -->
          <svg style="height: 1.3em; width: 1.3em;" xmlns="http://www.w3.org/2000/svg">
@@ -12,17 +14,25 @@
               <line x1="2" y1="9" x2="0" y2="200" stroke="currentColor" style="stroke-width:2" stroke-linecap="round" />
               <line x1="2" y1="20" x2="25" y2="20"  stroke="currentColor" style="stroke-width:2"  />
             </g>
-         </svg>
+         </svg>         
       </router-link>  
-      <router-link class="text-shadow" to="/about">About</router-link>
+
+      <router-link class="text-shadow" to="/about">
+        About
+      </router-link>
 
       <!--import the dropdown menu into the nav bar-->
-      <DropDownMenu></DropDownMenu>
-      
+      <DropDownMenu>        
+      </DropDownMenu>      
     </nav>
   
-   
-  
+    <!--adds a bar across the top behind hte navigation  --> 
+    <div style="height: 2.7em; border-bottom: solid rgb(218, 220, 224) 1px;">
+    </div>
+    <div style="height: 1px;">
+    </div>
+    
+  </div>
     <!-- user accepts privacy agreement -->
     <!-- Removed this for now, the only cookies the site has is if someone uses firebase so I will put this notification on that page exclusively -->
     <!-- <CookieAccept /> -->
@@ -48,8 +58,8 @@
     /* padding: 0.3em 0.25em 0.3em 0.25em; */
     font-size: 1.25em;
     background-color: rgb(255, 255, 255);   
-    border-right: 1px solid rgb(0, 0, 0);  
-   
+    border-right: 1px solid rgb(218, 220, 224);  
+    
     line-height: 1.1;  
   }
   

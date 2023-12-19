@@ -1,14 +1,19 @@
 <template>
+  
   <footer class="footer">
-    <div class="text-area">
-      <span>
-        <router-link class="footer-links" to="/about">About</router-link>&nbsp;&nbsp;&nbsp;&nbsp;<a class="footer-links"
-          href="https://github.com/conrizzo/conradswebsite">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;<router-link class="footer-links"
-          to="/">ConradsWebsite.com</router-link> © {{ getCurrentYear }}<br />
-        Licensed under <a class="footer-links" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
-        unless noted otherwise.
-      </span>
-    </div>
+    <div class="footer-border-line-div"></div>
+      <div class="text-area footer-right-border">
+        
+        <span>
+          <router-link class="footer-links footer-right-border" to="/about">About</router-link>&nbsp;<a class="footer-links footer-right-border"
+            href="https://github.com/conrizzo/conradswebsite">GitHub</a>&nbsp;<router-link class="footer-links"
+            to="/">ConradsWebsite.com</router-link> © {{ getCurrentYear }}
+          <br><a class="footer-links" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
+          unless noted otherwise.
+        </span>
+      </div>
+    <!--adds a bar across the top behind hte navigation  --> 
+    
   </footer>
 </template>
 
@@ -31,8 +36,10 @@ export default {
 <style scoped>
 .footer-links:link {
   text-decoration: none;
-  color: #34B7F1;
-  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4);
+  color: rgb(11, 87, 208);
+  
+  
+  /* text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4); */
 }
 
 .footer-links:hover {
@@ -40,22 +47,33 @@ export default {
 }
 
 .footer-links:visited {
-  color: #34B7F1;
+  color: rgb(11, 87, 208);
+}
+
+.footer-right-border{
+  border-right: 1px solid rgb(218, 220, 224);  
+  padding-right: 0.4em;
 }
 
 .text-area {
   max-width: 25em;
-  background-color: rgb(12, 12, 12);
+  background-color: rgb(255, 255, 255);
   padding-left: 1em;
-  padding-top: 0.5em;  
-  padding-bottom: 0.5em; 
+  padding-top: 0.5em; 
+  color:black;
+  
+}
+
+.footer-border-line-div{
+  border-bottom: solid rgb(218, 220, 224) 1px;
+  height: 1px; 
 }
 
 footer {    
-  background-color: rgb(81, 81, 81);
+  background-color: rgb(255, 255, 255);
   color: #fff;  
   text-align: left;
-  font-size: 0.9em;
-  line-height: 1.5;  
+  font-size: 1em;
+  line-height: 1.5;    
 }
 </style>

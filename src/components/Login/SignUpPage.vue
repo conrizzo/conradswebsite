@@ -2,6 +2,7 @@
   <form @submit.prevent="signUp">
 
     <h2 style="padding: 0.5em;">Sign Up</h2>
+
     <div style="display: flex; flex-direction: column;">
     <label for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a Username:</label>
     <input name="text" type="text"     placeholder="User Name" required v-model="userName" maxlength="20" v-focus>
@@ -84,6 +85,10 @@ export default {
 </script>
 
 <style scoped>
+h2{
+  color: rgb(18,18,18);
+}
+
 input:focus {    
     border-color: rgb(0, 240, 0)
 }
@@ -105,5 +110,6 @@ form{
   border: 1px solid #cecece; 
   border-radius: 1em;
   padding: 0 1em 0em 1em;
+  margin-top: 3em;
 }   
 </style>

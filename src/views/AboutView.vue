@@ -249,11 +249,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
-h1 {
-  margin-top: 1em;
+h1 {  
   margin-bottom: 0em;
   color: #343434;
   font-size: 3em;
@@ -279,8 +278,8 @@ h3 {
 
 
 .language-button{ 
-  margin-top: 4em;  
- 
+  margin-right:1em;
+  font-size: 0.6em;
 }
 .language-button:hover{
   box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;  
@@ -303,18 +302,12 @@ li {
   padding-bottom: 0.5rem;
   
 }
-
 /*
 li::before{
   content: "• ";
   color: rgb(255, 89, 89);
 }
 */
-
-
-
-
-
 .home-text-links{
   color: rgb(67, 82, 255);
   font-weight: 500;  
@@ -338,7 +331,6 @@ p{
   padding: 0.5em 2em 0.5em 2em;
 }
 
-
 nav {
   background-color: rgb(40, 40, 40);
 }
@@ -349,22 +341,18 @@ figure {
   flex-flow: column; 
   max-width: 22rem;
   margin: auto;
-
   font-size: 0.9em;
   text-align: center;
   color: #cacaca;
   background-color: rgb(40, 40, 40);
-
   border-radius: 15px;
   line-height: 1.2;  
 }
-
 .img-container {
   max-width: 30em;
   border-radius: 0.5em;
   margin-bottom: 0.33em;
 }
-
 .text-container {
   background-color: rgb(246, 247, 250);
   padding: 6.7em 10em 2em 10em;

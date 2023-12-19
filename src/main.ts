@@ -5,11 +5,7 @@ import router from './router';
 
 
 import 'prismjs';
-
 /* import 'prismjs/themes/prism.css'; */
-
-
-
 createApp(App).use(router).mount('#app');
 
 

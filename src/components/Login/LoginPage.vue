@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="login">
     
-    <h2 style="padding: 0.5em;">Log in</h2>    
+    <h2 style="padding: 0.5em; color: rgb(18,18,18);">Log in</h2>    
     
     <div style="display: flex; flex-direction: column;">
       <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
@@ -77,7 +77,7 @@ export default {
   background-color: rgb(130, 130, 130);  
 }
 .button-35:hover{
-  box-shadow: rgb(255, 255, 255) 0 0 0 2px, transparent 0 0 0 0;  
+  box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;  
 }
 
 input {
@@ -97,10 +97,13 @@ button {
 
 form {
   width: 20em;
+ 
   margin: auto;
   border: 1px solid #cecece; 
   border-radius: 1em;
   padding: 0 1em 0em 1em;
+
+  margin-top: 3em;
 }
 
 input {
