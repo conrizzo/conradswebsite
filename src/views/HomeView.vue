@@ -550,8 +550,9 @@ export default {
 }
 .project-title{
   color: rgb(255, 255, 255);
-  font-size: 1.8em; 
-  text-decoration: underline;  
+  font-size: 2.5em; 
+  border-bottom: 3px solid rgb(255, 89, 89); 
+  padding-bottom: 2px;
   /* text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3); */  
 }
 .on-hover-projects {
@@ -569,6 +570,7 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   /* Two columns with equal width */
   gap: 1em;
+  padding-top: 2em;
   margin-bottom: 10em; 
 }
 /* 2nd page grid */
@@ -669,7 +671,7 @@ export default {
 }
 
 .bird-image{
-  max-width: 18%; 
+  max-width: 14%; 
   border-radius: 1em; 
   position: absolute;
   top: 50%; /* Position the element at the vertical center */

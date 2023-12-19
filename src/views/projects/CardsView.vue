@@ -5,7 +5,7 @@
   <div id="body">
     <!-- Your HTML goes here -->
     <div>
-        <h1 class="title">Skat (under construction...)</h1>
+        <h1 class="title">Skat</h1>
         <br>
       <div style="background-color: rgba(0,0,0,0.5); padding: 0.5em; padding-top: 1.5em; max-width: auto;">
 
@@ -542,7 +542,7 @@ export default {
 }
 
 .input-container{
-  background: rgba(0, 0, 0, 0.4); 
+  background: rgba(0, 0, 0, 0.66); 
   color: #fff;
   width: 25em;
   margin: 0 auto;

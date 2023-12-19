@@ -54,10 +54,11 @@ export default {
 </script>
 
 <style>
+
 .dropbtn {    
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
-    padding: 0.5em 0.6em 0.5em 0.6em;  
-    color: rgb(100, 100, 100);    
+    padding: 0.5em 0.5em 0.5em 0em;  
+    color: rgb(128, 128, 128); 
     background-color: rgb(255, 255, 255);
     font-weight: normal;
     font-size: 1em;
@@ -68,7 +69,8 @@ export default {
 }
 .dropdown {
     position: relative;
-    display: inline-block;         
+    display: inline-block;     
+    z-index: 5;    
 }
 .dropdown-content {    
     display: none; /* this removes it when not over it */
@@ -89,8 +91,8 @@ export default {
 }
 /* Can make this the page color for the respective page if I set all pages to follow a page color value */
 nav a.router-link-exact-active {
-    color: #ffffff;
-    background-color: rgb(40, 40, 40); /*changes the background color of the active link */
+    color: #ff5959;
+    
 }  
   
 /* #00b3ff; */

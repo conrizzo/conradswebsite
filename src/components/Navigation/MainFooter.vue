@@ -1,7 +1,7 @@
 <template>
   
   <footer class="footer">
-    <div class="footer-border-line-div"></div>
+    
       <div class="text-area footer-right-border">
         
         <span>
@@ -60,14 +60,12 @@ export default {
   background-color: rgb(255, 255, 255);
   padding-left: 1em;
   padding-top: 0.5em; 
+  padding-bottom: 0.5em;
   color:rgb(18,18,18);
   
 }
 
-.footer-border-line-div{
-  border-bottom: solid rgb(218, 220, 224) 1px;
-  height: 1px; 
-}
+
 
 footer {    
   background-color: rgb(255, 255, 255);
@@ -75,5 +73,6 @@ footer {
   text-align: left;
   font-size: 1em;
   line-height: 1.5;    
+  border-top: 1px solid rgb(218, 220, 224);
 }
 </style>
