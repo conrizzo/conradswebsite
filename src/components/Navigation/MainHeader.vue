@@ -1,19 +1,20 @@
 <!-- This page mostly just sets the default values across the whole website, and whether to omit nav bar such as on the cow game -->
 <template>
-  <header style="border-bottom: 1px solid rgb(218, 220, 224);">
+  <header style="border-bottom: 1px solid rgb(218, 220, 224); position: sticky; top: 0; z-index: 5;">
     <!-- createa nav bar on every page-->
     <nav class="nav-menu-class">
 
-          
+        <router-link style="padding: 0;" to="/">
           <h2 class="header-h2">ConradsWebsite.com</h2>
+        </router-link> 
           <div class="navigation-menu">
               <!-- <router-link class="move-first-nav-link-at-lower-resolution" to="/">Home</router-link> -->      
-              <!-- House icon -->              
-              <router-link to="/" exact class="home-link" active-class="active-home-link">
-                <!-- <img src="@/images/Home_Icon.jpg" alt="Logo" style="width: 20px; height: 20px;"> -->
+              <!-- House icon            
+              <router-link to="/" exact class="home-link" active-class="active-home-link">                
                 Home      
               </router-link>  
-              <router-link class="text-shadow" to="/about">
+              -->   
+              <router-link class="about-link-styling" to="/about">
                 About
               </router-link>
               <!--import the dropdown menu into the nav bar-->
@@ -66,17 +67,25 @@
     margin-bottom: 0;
     border-right: 1px solid rgb(218, 220, 224);
   }
+  .about-link-styling{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    
+  }
+
   /* how to pin the nav to the top of the page */  
  .nav-menu-class{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
  }
 
 .navigation-menu{
+  
   border-left: 1px solid rgb(218, 220, 224);
   border-right: 1px solid rgb(218, 220, 224);
-  margin-right: 10%;
+  margin-right: 13%;
 }
  
 
@@ -89,9 +98,7 @@
   
   nav a {
     text-decoration: none;
-    color: rgb(128, 128, 128);    
-    padding: 0.5em 1em 0em 0em;    
-    
+    color: rgb(128, 128, 128);      
   }
   
   nav a:hover {
