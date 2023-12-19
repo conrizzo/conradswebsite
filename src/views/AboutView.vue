@@ -273,11 +273,8 @@ h3 {
   margin-top: 4.5em;
   color: #c7c7c7;
 }
-
-
-
-
 .language-button{ 
+  margin-top: 1em;
   margin-right:1em;
   font-size: 0.6em;
 }
@@ -355,7 +352,7 @@ figure {
 }
 .text-container {
   background-color: rgb(246, 247, 250);
-  padding: 6.7em 10em 2em 10em;
+  padding: 3em 10em 2em 10em;
 }
 .figure-location {
   padding: 0.5em;  

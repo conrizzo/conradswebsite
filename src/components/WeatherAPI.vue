@@ -24,9 +24,9 @@
             <td><b><u>{{ cityWeather.city }}</u></b>
               <br><br>
               <template v-if="cityWeather.weather && cityWeather.weather.request[0].query">
-                <span style="color: rgb(0, 149, 255); font-weight: 600; background: rgb(0, 0, 0); padding: 0.2rem 0.4rem; border-radius: 4px;">Country:</span> {{
+                <span style="color: rgb(0, 149, 255); font-weight: 600; background: rgb(240, 240, 240); border: 1px solid rgb(227, 227, 227); padding: 0.2rem 0.4rem; border-radius: 4px;">Country:</span> {{
                   cityWeather.weather.nearest_area[0].country[0].value }}<br>
-                <span style="color: rgb(255, 133, 133); font-weight: 600; background: rgb(0, 0, 0); padding: 0.2rem 0.4rem; border-radius: 4px;
+                <span style="color: rgb(255, 133, 133); font-weight: 600; background: rgb(240, 240, 240); border: 1px solid rgb(227, 227, 227); padding: 0.2rem 0.4rem; border-radius: 4px;
                 ">Region:</span> {{
                   cityWeather.weather.nearest_area[0].region[0].value }}<br>
                 {{ cityWeather.weather.request[0].query }}<br>
@@ -238,7 +238,7 @@ export default {
 }
 /* Table */
 table {     
-  border-collapse: separate;
+  border-collapse: collapse;  
   margin-bottom: 1em;  
 }
 
@@ -277,11 +277,9 @@ tbody {
 }
 
 td {
-  text-align: left;
-  
+  text-align: left;  
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
-
   padding-left: 0.5em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -349,7 +347,8 @@ tr:nth-child(even) {
 }
 
 .sunny-background {
-  background: #fffc47;
+  background: linear-gradient(to bottom,yellow , #95dcff 30%);
+  
   padding: 0.25em;
 }
 

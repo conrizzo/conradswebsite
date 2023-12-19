@@ -7,125 +7,139 @@
 <template>
   <div class="background-color" style="padding-top: 3em;">
     <div class="">
-
-        <h1>Sorting algorithms: <p style="font-size: 0.5em;">This area is just a place to do stuff with sorting algorithms
+      <div class="main-title-sorting-algorithms">
+          <h1>Sorting Algorithm Examples</h1> 
+          <p>
+            This area is just a place to do stuff with sorting algorithms.
           </p>
-        </h1>
+      </div>
+      <div class="first-algorithm">
+         <h2>Bogosort</h2>
         <div class="text-container">
-        <p class="paragraph-text">What is <a class="bogo-link no-underlines" style="color: #fff;"
-            href="https://en.wikipedia.org/wiki/Bogosort">Bogosort?</a></p><br>
-        <p class="paragraph-text">This button below will Bogosort an array. There really is no limit on how bad a sorting
-          algorithm can be, they can
-          always be made worse.
-          Bogosort is nearly useless unless the goal is to heat up a room with a cpu.
-          This code will, with each iteration add an element (random integer 1-100) to an array of the user specified array
-          length. This is currently using the
-          performance.now() function to measure performance time it takes to sort each newly pushed element.
-          <b>Careful!</b> If the size of a 'bogosorted' (Bogosort as a past tense verb) array is 12 or higher it will likely
-          freeze the page. It uses
-          the time complexity of Θ(n &times; n!) which means that the algorithm's running time grows at a rate proportional
-          to n multiplied by the factorial of n.
-          This is an extremely high time complexity and is considered to be extremely, extremely inefficient.<br>
-          Next will be a Bogosorted array of Bogosorted arrays?
-          <br>
+          
+          <p class="paragraph-text">What is <a class="bogo-link no-underlines" style="color: #fff;"
+              href="https://en.wikipedia.org/wiki/Bogosort">Bogosort?</a></p><br>
+
+          <p class="paragraph-text">This button below will Bogosort an array. There really is no limit on how bad a sorting
+            algorithm can be, they can
+            always be made worse.
+            Bogosort is nearly useless unless the goal is to heat up a room with a cpu.
+            This code will, with each iteration add an element (random integer 1-100) to an array of the user specified array
+            length. This is currently using the
+            performance.now() function to measure performance time it takes to sort each newly pushed element.
+            <b>Careful!</b> If the size of a 'bogosorted' (Bogosort as a past tense verb) array is 12 or higher it will likely
+            freeze the page. It uses
+            the time complexity of Θ(n &times; n!) which means that the algorithm's running time grows at a rate proportional
+            to n multiplied by the factorial of n.
+            This is an extremely high time complexity and is considered to be extremely, extremely inefficient.<br>
+            Next will be a Bogosorted array of Bogosorted arrays?
+            <br>
 
 
-        </p><br>
+          </p><br>
+          
+          <div style="display: inline-block;">
+            <button @click="bogoSort" class="button-35">Click me to Bogosort</button>
+            <button @click="arrayOfArrays = [], bogoSortArrayButtonClicked = false" class="button-35"
+              style="margin-left: 0.5em;">Reset</button>
+          </div>
         </div>
-        <div style="display: inline-block;">
-          <button @click="bogoSort" class="button-35">Click me to Bogosort</button>
-          <button @click="arrayOfArrays = [], bogoSortArrayButtonClicked = false" class="button-35"
-            style="margin-left: 0.5em;">Reset</button>
-      </div>
 
-      <br><br><label style="padding-right: 1em; color: #fff;" for="number-input">Enter length of array to
-        Bogosort!</label>
-      <input style="font-size: 1.25em; margin-bottom: 1em;" type="text" id="number-input" v-model="arrayInput"
-        placeholder=""><br>
+        <br><br><label style="padding-right: 1em; color: #fff;" for="number-input">Enter length of array to
+          Bogosort!</label>
+        <input style="font-size: 1.25em; margin-bottom: 1em;" type="text" id="number-input" v-model="arrayInput"
+          placeholder=""><br>
 
-      <div v-show="bogoSortArrayButtonClicked" class="table-container">
-        <table style="color: #fff; text-align: left;">
-          <thead>
-            <tr>
-              <th style="width: 6em;">Array Size</th>
-              <th style="width: 15em;">Sorted Array</th>
-              <th style="width: 11em;">Number of Shuffles</th>
-              <th>Elapsed Time (ms)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in arrayOfArrays" :key="index">
-              <td style="padding-right: 1em;">{{ item[0] }}</td>
-              <td style="padding-right: 1em; padding-bottom: 0.5em;">{{ item[1] }}</td>
-              <td style="padding-bottom: 0.5em;">{{ item[2] }}</td>
-              <td>{{ "Milliseconds: " + item[3].toFixed(3) }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!-- https://vademon.github.io/steam2019emoticons/stickers-Winter2019.html png is from Steam 2019 winter collection -->
-      <img
-        src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1195690/4e2f1695d6cad53e90dbd8b481db806b49f6a56f.png"
-        alt="Bogo Sort GIF">
-      <pre v-bind:class="'language-JavaScript line-numbers'">
-<code>      
-  // Following section is BOGOSORT
-    bogoSort() {
-      let startTime = performance.now();
+        <div v-show="bogoSortArrayButtonClicked" class="table-container">
+          <table style="color: #fff; text-align: left;">
+            <thead>
+              <tr>
+                <th style="width: 6em;">Array Size</th>
+                <th style="width: 15em;">Sorted Array</th>
+                <th style="width: 11em;">Number of Shuffles</th>
+                <th>Elapsed Time (ms)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in arrayOfArrays" :key="index">
+                <td style="padding-right: 1em;">{{ item[0] }}</td>
+                <td style="padding-right: 1em; padding-bottom: 0.5em;">{{ item[1] }}</td>
+                <td style="padding-bottom: 0.5em;">{{ item[2] }}</td>
+                <td>{{ "Milliseconds: " + item[3].toFixed(3) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- https://vademon.github.io/steam2019emoticons/stickers-Winter2019.html png is from Steam 2019 winter collection -->
+        <img
+          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1195690/4e2f1695d6cad53e90dbd8b481db806b49f6a56f.png"
+          alt="Bogo Sort GIF">
+        <pre v-bind:class="'language-JavaScript line-numbers'">
+  <code>      
+    // Following section is BOGOSORT
+      bogoSort() {
+        let startTime = performance.now();
 
-      this.bogoSortArrayButtonClicked = true;
+        this.bogoSortArrayButtonClicked = true;
 
-      for (let i = 1; i &lt;= this.arrayInput; i++) {
-        const arr = [];
-        for (let j = 0; j &lt; i; j++) {
-          const randomNumber = this.getRandomInt(1, 100); // Adjust the range as needed
-          arr.push(randomNumber);
+        for (let i = 1; i &lt;= this.arrayInput; i++) {
+          const arr = [];
+          for (let j = 0; j &lt; i; j++) {
+            const randomNumber = this.getRandomInt(1, 100); // Adjust the range as needed
+            arr.push(randomNumber);
+          }
+          let number_of_shuffles = 0;
+          
+          while (!this.isSorted(arr)) {
+            number_of_shuffles++;
+            this.shuffle(arr);
+          }
+          let endTime = performance.now();
+          let elapsedTime = (endTime - startTime);
+
+          this.arrayOfArrays.push([i, arr, number_of_shuffles, elapsedTime]);
         }
-        let number_of_shuffles = 0;
-        
-        while (!this.isSorted(arr)) {
-          number_of_shuffles++;
-          this.shuffle(arr);
+      },
+      // Function to generate a random integer between min and max (inclusive)
+      getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      },
+      // This is an implementation of the Fisher-Yates shuffle algorithm, which is an efficient way to shuffle an array.
+      shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
         }
-        let endTime = performance.now();
-        let elapsedTime = (endTime - startTime);
-
-        this.arrayOfArrays.push([i, arr, number_of_shuffles, elapsedTime]);
-      }
-    },
-    // Function to generate a random integer between min and max (inclusive)
-    getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    },
-    // This is an implementation of the Fisher-Yates shuffle algorithm, which is an efficient way to shuffle an array.
-    shuffle(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-    },
-    isSorted(arr) {
-      for (let i = 1; i &lt; arr.length; i++) {
-        if (arr[i] &lt; arr[i - 1]) {
-          return false;
+      },
+      isSorted(arr) {
+        for (let i = 1; i &lt; arr.length; i++) {
+          if (arr[i] &lt; arr[i - 1]) {
+            return false;
+          }
         }
-      }
-      return true;
-    },
-</code>
-</pre>
+        return true;
+      },
+  </code>
+  </pre>
+</div>
+    <div class="second-algorithm">
       <div class="text-container">
+        <h2>Quicksort</h2>
+        
         <p style="padding-top: 1em;" class="paragraph-text">What is <a class="bogo-link no-underlines"
-            style="color: #fff;" href="https://en.wikipedia.org/wiki/Bogosort">Quicksort?</a></p><br>
+            style="color: #fff;" href="https://en.wikipedia.org/wiki/Bogosort">Quicksort?</a></p>            
+        <br>
         <p class="paragraph-text" style="padding-top: 1em;"> A professional recursive quicksort algorithm is much, much,
           much better than BogoSort! On my computer 1000 random integers
-          between 1-100 only takes about 0.53ms to sort.
-          <br>
-          What is interesting about this is with 1000 arrays each with a size of 1000, on the first button click, and
+          between 1-100 only takes about 0.53ms to sort. What is interesting about this is with 1000 arrays each with a size of 1000, 
+          on the first button click, and
           sometimes the first few it tends to take around 1.5ms on this computer for the sorting to complete,
           but then the time on subsequent clicks drops down to around 0.419ms. This is likely due to browser caching and
           the local computer operating system deciding how to allocate resources to the browser when new code is loaded to
-          run. Running 1000 arrays
+          run.
+        </p>
+        <p class="paragraph-text">
+          Running 1000 arrays
           generating 1000 random integers between 1-100 it takes Quicksort about 0.419 ms on this computer. This
           processing time will be faster or slower depending
           on the cpu speed, resources available, etc. What is also interesting is that the time it takes to sort these
@@ -134,15 +148,16 @@
           arrays of 1000 random integers between 1-100 using Quicksort.
           Resetting the variables after already running the sorting algorithm removes this initial lag time! The browser
           already knows what code to run so the first iterations immediately run fast.
-          <br>
+        </p>
+        <p class="paragraph-text">
           Quicksort is usually the fastest sorting algorithm there is for most applications. If one has a list
           that is already almost sorted insertion sort is faster. Quicksort will create an unncessary amount of pivots and
           waste time
           if given a long list/array that has 1 million items and only 2 items are not in order.
           Insertion sort will be faster than quickSort for a small set of data when based on the worst case scenario.
           Heap sort will be faster than quickSort with a large set of data when quickSort has the worst case scenario.
-          <br>
-          Good explanation of quickSort and other algorithms: <a class="text-links" style="color: #fff;"
+          <br><br>
+          <b>A very good explanation of quickSort and other algorithms:</b> <a class="text-links" style="color: #fff;"
             href="https://www.cs.auckland.ac.nz/software/AlgAnim/qsort1a.html">https://www.cs.auckland.ac.nz/software/AlgAnim/qsort1a.html</a>
         </p>
       </div>
@@ -152,6 +167,7 @@
         <button @click="quickSortArrays = [], averageTimeTaken = 0" class="button-35"
           style="margin-left: 0.5em;">Reset</button>
       </div>
+
       <br><br><label style="padding-right: 1em; color: #fff;" for="number-input">Enter length of array to
         Quicksort!</label>
       <input style="font-size: 1.25em; margin-bottom: 1em;" type="text" id="number-input" v-model="arrayInputQuickSort"
@@ -164,7 +180,6 @@
               <th style="width: 15em;">Sorted Array</th>
               <th>Elapsed Time (ms)</th>
               <th>Average</th>
-
             </tr>
           </thead>
           <tbody>
@@ -174,7 +189,6 @@
               <td style="vertical-align: top; padding-right: 1em;">{{ "Milliseconds: " + item[2].toFixed(3) }}</td>
               <td style="vertical-align: top; padding-bottom: 0.5em;">{{
                 (averageTimeTaken / quickSortArrays.length).toFixed(3) }}</td>
-
             </tr>
           </tbody>
         </table>
@@ -183,7 +197,7 @@
 
       <FastQuickSort ref="fastQuickSort" />
     </div>
-
+  </div>
 
   </div>
 </template>
@@ -299,14 +313,30 @@ export default {
   
 <style scoped>
 h1 {
-  font-size: 2em;
+  font-size: 4em;
   margin-bottom: 0.5em;
   padding-top: 1em;
+  color: #fff;  
+}
+h2{
+  font-size: 4em;
+  color: #fff;
+  padding: 1em;
+}
+
+.main-title-sorting-algorithms{
+  padding-bottom: 4em;
+  border-bottom: 1px solid #fff;
 }
 
 p {
   font-size: 1.25em;
   color: white;
+}
+
+.first-algorithm{
+  padding-top: 5em;
+
 }
 
 .bogo-link {
@@ -334,19 +364,20 @@ p {
 
 .text-container {
   display: grid;
-  place-items: center;  
+  place-items: center; 
+  
 }
 
 .paragraph-text {
   width: calc(100% - 40em);
   text-align: left;
+  border-left: 1px solid #fff;
+  padding-left: 1em;
 }
 
 @media only screen and (max-width: 90rem) {
   .paragraph-text {
-    width: calc(100% - 8rem);
-    
-    
+    width: calc(100% - 8rem);   
   }
 }
 @media only screen and (max-width: 40rem) {
@@ -354,6 +385,13 @@ p {
     width: calc(100% - 4rem);
     font-size: 0.9em;    
   }
+
+  h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  padding-top: 1em;
+  color: #fff;  
+}
 }
 
 </style>

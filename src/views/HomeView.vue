@@ -89,16 +89,18 @@
     
     
       <!-- Aside area begins  #2d2d2d; slate black color -->
-    <AsideContent class="first-aside-home-page">
-        <template v-slot:aside-content>                   
-            <figure style="display: inline-block;">
-              <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">             
-              <figcaption class="aside-text" style="display: block;"><i></i></figcaption>
-            </figure>       
-            
-                    
-        </template>        
-    </AsideContent>   
+    
+      <AsideContent class="first-aside-home-page">
+          <template v-slot:aside-content>    
+
+              <figure style="display: inline-block;">
+                <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">             
+                <figcaption class="aside-text" style="display: block;"><i></i></figcaption>
+              </figure>       
+              
+                      
+          </template>        
+      </AsideContent>   
     
     <div class="second-main-area">     
       <div class="hidden" ref="content" :class="{ 'show': isContentVisible }"> <!-- div to show/hide items within on scroll -->  
@@ -652,11 +654,12 @@ export default {
 }
 
 .first-aside-home-page{
-  background: rgba(255, 255, 255, 0.1); 
+  background: rgb(18, 18, 18);
   z-index: 1; 
   padding: 1em; 
-  margin-top: 10em;
-   border-top-left-radius: 2em
+  
+ 
+  
 }
 
 .aside-coffee-image {
@@ -665,13 +668,36 @@ export default {
   border-radius: 1em;
 }
 
+.bird-image{
+  max-width: 18%; 
+  border-radius: 1em; 
+  position: absolute;
+  top: 50%; /* Position the element at the vertical center */
+   /* Position the element at the horizontal center */
+  transform: translate(-50%, -50%); 
+  background: #ffffff;
+  padding: 1em;
+}
+
+@media only screen and (max-width: 100rem) {
+  .bird-image{
+  max-width: 75%; 
+  border-radius: 1em; 
+  position: static;
+  transform: none;
+  background: #586af8;
+  padding: 1em;
+}
+}
+
 @media only screen and (max-width: 50rem) {
 
   .second-main-area {
     padding-top: 0em;
   }
   .first-aside-home-page{
-    margin-top: 0em;
+    margin: 0;
+    border-radius: 0em;
   }
   
 
@@ -727,11 +753,7 @@ export default {
   background: rgb(229, 233, 240);
 }
 
-.bird-image{
-  max-width: 75%; 
-  border-radius: 1em; 
-  margin-top: 2em;
-}
+
 .links-area{
   width: 20.8em;  
 }
@@ -879,6 +901,7 @@ export default {
   padding-bottom: 0.3em; 
   font-size: 1.5em;
  }
+ 
  
   
   .routes-area {

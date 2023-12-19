@@ -60,7 +60,7 @@ export default {
   background-color: rgb(255, 255, 255);
   padding-left: 1em;
   padding-top: 0.5em; 
-  color:black;
+  color:rgb(18,18,18);
   
 }
 
