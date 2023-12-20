@@ -51,7 +51,7 @@ export default {
 }
 
 .footer-right-border{
-  border-right: 1px solid rgb(218, 220, 224);  
+
   padding-right: 0.4em;
 }
 
@@ -73,6 +73,6 @@ footer {
   text-align: left;
   font-size: 1em;
   line-height: 1.5;    
-  border-top: 1px solid rgb(218, 220, 224);
+  
 }
 </style>

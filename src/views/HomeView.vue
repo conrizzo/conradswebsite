@@ -64,114 +64,108 @@
               <img v-if="isHovered" style="" class="hover-image" :src="hoveredImage"  alt="Hover Image">
             </div>
           </div>
-          <div class="grid-item">
-            <div class="project-area">
-              <!-- Projects ({{ this.itemsLength }})</h3> optionall show how many projcets -->
-              <ProjectLinks :links="links">
-                <template v-slot="{ links }">
-                  <div class="links-area">
-                      <span class="project-title">Project Links:</span>
-                      <div class="routes-area">
-                        <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
-                          :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
-                          @mouseleave="hideImage">
-                          <span v-html="item.text"></span><br>
-                        </router-link>                        
-                      </div>
-                  </div>
-                </template>
-              </ProjectLinks>
-            </div>
-          </div>          
-        </div>
-      </div>      
-    </div>
-    
-    
-      <!-- Aside area begins  #2d2d2d; slate black color -->
-    
-      <AsideContent class="first-aside-home-page">
-          <template v-slot:aside-content>    
-
-              <figure style="display: inline-block;">
-                <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">             
-                <figcaption class="aside-text" style="display: block;"><i></i></figcaption>
-              </figure>       
-              
-                      
-          </template>        
-      </AsideContent>   
-    
-    <div class="second-main-area">     
-      <div class="hidden" ref="content" :class="{ 'show': isContentVisible }"> <!-- div to show/hide items within on scroll -->  
-        <div class="second-area-grid-container">       
-           <div class="grid-item-second-first">
-            Coffee
-           </div>
-           <div class="grid-item-coffee">              
-              <img  class="coffee-image" :src="coffee_image" alt="Image">                
-           </div>               
-           <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>           
-           <div class="grid-item-coffee-text">
-             <p>             
-               Website fueled by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>. 
-               Good foods to eat with coffee are: Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
-               buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
-               granola bars, apple pie, chocolate<span class="loading"></span>
-            </p>              
-           </div>
-          <a href="https://fr.wikipedia.org/wiki/Caf%C3%A9" class="grid-item-second-third">Café</a>             
-     </div>      
-    </div>
-     
-
-</div>
-      <!--
-            <AsideContent style="z-index: 1; background: #000; padding: 0em;">
-
-                  <template v-slot:aside-content>          
-                                
-                        <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image">   
-
-                      <img class="aside-coffee-image" :src="secondCoffee" alt="Coffee image"> 
-                        <img class="" style="" :src="foodImage" alt="Coffee image"> 
+            <div class="grid-item">
+              <div class="project-area">
+                <!-- Projects ({{ this.itemsLength }})</h3> optionall show how many projcets -->
+                <ProjectLinks :links="links">
+                  <template v-slot="{ links }">
+                    <div class="links-area">
+                        <span class="project-title">Project Links:</span>
+                        <div class="routes-area">
+                          <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
+                            :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
+                            @mouseleave="hideImage">
+                            <span v-html="item.text"></span><br>
+                          </router-link>                        
+                        </div>
+                    </div>
                   </template>
-
-            </AsideContent>   
-      -->
-      <div style="background-color: #121212">
-        
-      </div>
-      
-        <div class="third-main-area">   
-          <div class="hidden" ref="content2" :class="{ 'show': isContentVisible2 }"> <!-- div to show/hide items within on scroll -->  
-            <div class="third-area-grid-container" >       
-              <div class="grid-section-3-first-column">
-               
+                </ProjectLinks>
               </div>
-              <div class="grid-section-3-second-column">
-                
-            </div>       
+            </div>          
           </div>
-        </div>
+        </div>      
       </div>
-
       
-      <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
+      
+        <!-- Aside area begins  #2d2d2d; slate black color -->
+      
+        <AsideContent class="first-aside-home-page">
+            <template v-slot:aside-content>    
 
-        <template v-slot:aside-content>                         
-              <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->   
+                <figure style="display: inline-block;">
+                  <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">             
+                  <figcaption class="aside-text" style="display: block;">
+                    <i>Rust code that animates the title is here: </i>
+                    <a class="home-text-links" href="https://blog.conradswebsite.com/blog/rust-web-assembly-example/">here.</a>
+                  </figcaption>
+                </figure>       
+                
                         
-        </template>
+            </template>        
+        </AsideContent>   
+      
+      <div class="second-main-area">     
+        <div class="hidden" ref="content" :class="{ 'show': isContentVisible }"> <!-- div to show/hide items within on scroll -->  
+          <div class="second-area-grid-container">       
+            <div class="grid-item-second-first">
+              Coffee
+            </div>
+            <div class="grid-item-coffee">              
+                <img  class="coffee-image" :src="coffee_image" alt="Image">                
+            </div>               
+            <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>           
+            <div class="grid-item-coffee-text">
+              <p>             
+                Building this fueled by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>. 
+                As well as coffee compatible foods: Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
+                buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
+                granola bars, apple pie, chocolate<span class="loading"></span>
+              </p>              
+            </div>
+            <a href="https://fr.wikipedia.org/wiki/Caf%C3%A9" class="grid-item-second-third">Café</a>             
+          </div>      
+        </div>
+      
 
-      </AsideContent>   
+       </div>
+        <!--
+              <AsideContent style="z-index: 1; background: #000; padding: 0em;">
 
+                    <template v-slot:aside-content>          
+                                  
+                          <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image">   
 
+                        <img class="aside-coffee-image" :src="secondCoffee" alt="Coffee image"> 
+                          <img class="" style="" :src="foodImage" alt="Coffee image"> 
+                    </template>
 
+              </AsideContent>   
+        -->
+        <div style="background-color: #121212">
+          
+        </div>
+        
+          <div class="third-main-area">   
+            <div class="hidden" ref="content2" :class="{ 'show': isContentVisible2 }"> <!-- div to show/hide items within on scroll -->  
+              <div class="third-area-grid-container" >       
+                <div class="grid-section-3-first-column">
+                
+                </div>
+                <div class="grid-section-3-second-column">
+                  
+              </div>       
+            </div>
+          </div>
+        </div>        
+          <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
 
+              <template v-slot:aside-content>                         
+                    <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->   
+                              
+              </template>
 
-
-
+          </AsideContent>   
     </main>    
   </div>  
 </template>
@@ -409,15 +403,15 @@ export default {
   /* Winter background 
   background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-  */
+
   background: -webkit-linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background: linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-  
+    */
+  background: linear-gradient(180deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8), 15%,rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255,0.8) 90%);
   background-size: 100% 100%;
   background-attachment: fixed;
 }
 .custom-background-home-page {    
- 
   background: linear-gradient(0deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8), 15%,rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255,0.8) 90%);
   /*
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
@@ -469,7 +463,7 @@ export default {
   transition: 0.3s ease-in-out;
 }
 .second-main-area {
- background: rgb(18, 18, 18);
+ background: linear-gradient(0deg, rgb(49, 21, 32), 10%, rgba(161, 71, 78, 0.9), 30%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5)80%, rgb(139, 114, 188) 100%);
  height: 100vh;
  color: #fff;
  display: flex;
@@ -589,7 +583,7 @@ export default {
   max-height: 1.5em;  
   font-size: 3em;  
  background: rgb(187, 127, 64);
-  color: #bababa;
+  color: #ffffff;
   border: 1px rgb(51, 51, 51) solid;  
   text-align: center;
   transition: 0.3s ease-in-out;
@@ -632,8 +626,10 @@ export default {
   grid-column: 3 / 3;
   grid-row: 1 / 3;  
   color: #ffffff;
-  border-radius: 0.2em;
-  padding: 0.25em;  
+  background: rgb(18,18,18);
+ 
+  border-radius: 0.5em;
+  padding: 0.5em;  
   font-size: 1.5em;  
   text-align: left; 
 }
@@ -646,7 +642,7 @@ export default {
   padding: 0.25em;  
   max-height: 1.5em;  
   font-size: 3em;  
-  color: #bababa;  
+  color: #fff;
   text-align: center;
   text-decoration: none;
   transition: 0.3s ease-in-out;

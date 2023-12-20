@@ -6,9 +6,20 @@
       <!-- Main area -->
       <div class="text-container">
 
-         <div class="title-container">
+        <div class="title-container">
             <h1>About</h1>
-            <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
+            <div class="language-container">
+                  <div   style="transform: rotate(-55deg);">                   
+                    <div class="arrow-container">
+                      <div class="arrow">
+                        <div class="curve"></div>
+                        <div class="point"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
+              </div>
+
         </div>
 
         <div class="bullets">                   
@@ -106,9 +117,21 @@
       <!-- Main area -->
       <div class="text-container">
         <div class="title-container">
-            <h1 class="h1-title">Über</h1>
-            <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
+            <h1>Über</h1>
+            <div class="language-container">
+                  <div style="transform: rotate(-55deg);">
+                    <div class="arrow-container">
+                      <div class="arrow">
+                        <div class="curve"></div>
+                        <div class="point"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
+            </div>
+
         </div>
+       
 
         <div class="bullets">      
           <ul>
@@ -219,11 +242,11 @@ export default {
     Prism.highlightAll();
   },
   methods: {
-    language() {
+    language() {      
       if (this.languageButtonText == "Deutsch wechseln") {
-        this.languageButtonText = "Switch to English";
+        this.languageButtonText = "Switch to English";        
       } else {
-        this.languageButtonText = "Deutsch wechseln";
+        this.languageButtonText = "Deutsch wechseln";        
       }
     }
   }
@@ -273,6 +296,69 @@ h3 {
   margin-top: 4.5em;
   color: #c7c7c7;
 }
+
+/* start arrow area */
+.language-container{
+  display: flex;
+  align-items: center;
+}
+
+
+.arrow-container {
+  position: relative;
+}
+
+/* Main code for this graphic from https://codepen.io/zomgbre/pen/DdEWby */
+.arrow {
+  position: absolute;
+  top: -320px;
+  left: -60px;
+}
+
+
+.arrow .curve {
+  border: 4px solid #ff5959;
+  border-color: transparent transparent transparent #ff5959;
+  height: 360px;
+  width: 200px; /* Adjust the width as needed */
+  border-radius: 0 0 0 150px; /* Adjust the border-radius as needed */
+}
+
+.arrow .point {
+	position: absolute;
+	left: 40px;
+	top: 315px;
+}
+
+.arrow .point:before, .arrow .point:after {
+	border: 2px solid #ff5959;
+	height: 25px;
+	content: "";
+	position: absolute;
+}
+
+.arrow .point:before {
+	top: -11px;
+	left: -11px;
+	transform:rotate(-74deg);
+	-webkit-transform:rotate(-74deg);
+  -moz-transform:rotate(-74deg);
+  -ms-transform: rotate(-74deg);
+}
+
+.arrow .point:after {
+  top: -20px;
+	left: 5px;
+	transform:rotate(12deg);
+	-webkit-transform: rotate(12deg);
+  -moz-transform:rotate(12deg);
+  -ms-transform: rotate(12deg);
+}
+
+/* Add the following CSS to change the color of another element when hovering over the button */
+
+/* arrow code css end */
+
 .language-button{ 
   margin-top: 1em;
   margin-right:1em;

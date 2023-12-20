@@ -85,7 +85,7 @@
   
   border-left: 1px solid rgb(218, 220, 224);
   border-right: 1px solid rgb(218, 220, 224);
-  margin-right: 13%;
+  margin-right: 25%;
 }
  
 
@@ -138,7 +138,7 @@
   
   }
 
-  @media (max-width: 45rem) {
+  @media (max-width: 32.5rem) {
     .header-h2{
       display: none;
     }
