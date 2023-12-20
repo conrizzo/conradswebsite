@@ -117,8 +117,8 @@
             <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>           
             <div class="grid-item-coffee-text">
               <p>             
-                Building this fueled by <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>. 
-                As well as coffee compatible foods: Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
+                Website made with enthusiasm and <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>. 
+                Plus foods like Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
                 buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
                 granola bars, apple pie, chocolate<span class="loading"></span>
               </p>              
@@ -584,7 +584,7 @@ export default {
   font-size: 3em;  
  background: rgb(187, 127, 64);
   color: #ffffff;
-  border: 1px rgb(51, 51, 51) solid;  
+  border: 3px rgb(255, 255, 0) solid;  
   text-align: center;
   transition: 0.3s ease-in-out;
 }.grid-item-second-first:hover{ 
@@ -601,7 +601,7 @@ export default {
 .grid-item-second-second{  
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  border: 2px rgb(107, 60, 3) solid;
+  border: 3px rgb(0, 242, 255) solid;
   background: #121212;
   
   color: #ffffff;
@@ -636,7 +636,7 @@ export default {
 .grid-item-second-third{  
   grid-column: 3 / 4;
   grid-row: 3 / 4;  
-  border: 1px rgb(51, 51, 51) solid;
+  border: 3px rgb(255, 65, 65) solid;
   border-radius: 0.2em;
   background: rgb(67, 49, 45);
   padding: 0.25em;  

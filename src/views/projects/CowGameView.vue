@@ -1,6 +1,6 @@
 <template >
   <!-- this nav here fills in the empty space where we tell the vue router not to send the nav structure to the game page -->
-  <nav style="background-color: black; height: 2.3em;"></nav>
+  
   <div class="my-page">
     <!-- @position-updated="updatePosition(index, $event)" -->
 
@@ -20,22 +20,30 @@
       <AboutCowGame @close="toggleAboutCowGame" />
     </div>
 
-    <h1 class="unselectable cow-game-text" style="font-size: 1.5em; top: 0em; float: left; position: absolute;">Click on the cowfood squares!<br>
+    <h1 class="unselectable cow-game-text" style="color: #fff; font-size: 1.5em; top: 1em; float: left; position: absolute;">
+      Click and drag a Cow Food square to start!<br>They are interactive!<br>
     </h1>
-    <p class="unselectable cow-game-text" style="width: 25em; color: #fff;  top: 8em; float: left; position: absolute;">
-      <b>How to play:</b><br><br>Don't hit the cow food
-      on the electric fence or the fireball! You can only lose if you run out of time or are moving something!
-      <br>
-      <br>For example: If moving the Onion Rings and the fireball hits the Peanut butter, you lose! Pay attention to where
-      all the cowfood is at all times!
-    </p>
+    
+    <div style="width: 25em; color: #fff;  top: 8em; float: left; position: absolute;">
+          
 
-    <p class="unselectable cow-game-text" style="width: 25em; color: white; top: 25em; position: absolute; ">
-      Once you move the cow food, a timer starts:
-      <b style="color: greenyellow; font-size: 2em;">{{ timeLeft }}</b>
-      <br><br>Don't run out of time before the cows get the food or they will be hangry cows! MOOOO!
-    </p>
-
+      <h1 class="unselectable" style="color: #fff;">How to play:</h1>
+          <p class="unselectable cow-game-text">
+            
+            <br><br>Don't hit the cow food
+            on the electric fence or a fireball! You only lose if you run out of time or are moving something when
+            a collision occurs!
+            <br>
+            <br>For example: If moving the Onion Rings and the fireball hits the Peanut butter, you lose! Pay attention to where
+            all the cowfood is at all times!
+          </p>
+          <br>
+          <p class="unselectable cow-game-text" >
+            Once you move the cow food, a timer starts:
+            <b style="color: rgb(47, 196, 255); font-size: 2em;">{{ timeLeft }}</b>
+            <br><br>Don't run out of time before the cows get the food or they will be hangry cows! MOOOO!
+          </p>
+    </div>
     <div style="z-index: 1; position: absolute; right: 3em; top: 2.9em;" class="unselectable">
       <div v-if="isThereACollision">
         <h1>{{ collisionMessage }}</h1>
@@ -102,7 +110,9 @@
 
       <!-- generate the pasture -->
       <div class="farm unselectable">
-        <h1 style="padding-top: 1em;">Cow Pasture</h1>
+        <h1 style="font-size: 2.5em; padding-top: 1em; color: rgb(84, 255, 244); font-family: Arial, sans-serif;">
+          Cow Pasture        
+        </h1>
         <p class="paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow
           pasture filled with hungry cows! (Danger: Some cows may be hangry!)<br>
           The Cows need their food delivered!<br>Deliver the correct food to make the cows happy!</p>
@@ -477,7 +487,8 @@ export default defineComponent({
   border: 2px dashed rgb(255, 255, 255);
   z-index: -1;
   background:
-    rgba(0, 255, 119, 0.66) 29%;
+    rgba(0, 255, 119, 0.751) 29%;
+    border-radius: 1em;
   width: 35em;
   height: 20em;
 }
@@ -487,11 +498,11 @@ export default defineComponent({
   top: 13vh;
   left: 400px;
   width: 1em;
-  height: 91vh;
+  height: 87vh;
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
-  border-radius: 3px;
+  border-radius: 10px;
   opacity: 0.9;
   overflow: hidden;
 }
@@ -505,7 +516,7 @@ export default defineComponent({
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
-  border-radius: 3px;
+  border-radius: 10px;
   opacity: 0.9;
 }
 
@@ -519,7 +530,7 @@ export default defineComponent({
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
-  border-radius: 3px;
+  border-radius: 10px;
   opacity: 0.9;
 }
 .vertical-line-four {
@@ -532,7 +543,7 @@ export default defineComponent({
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
-  border-radius: 3px;
+  border-radius: 10px;
   opacity: 0.9;
 }
 
@@ -546,7 +557,7 @@ export default defineComponent({
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
-  border-radius: 3px;
+  border-radius: 10px;
   opacity: 0.9;
 }
 
@@ -559,7 +570,7 @@ export default defineComponent({
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   filter: blur(1px);
-  border-radius: 3px;
+  border-radius: 10px;
   left: 25.3em;
   opacity: 0.9;
 }
@@ -570,6 +581,7 @@ export default defineComponent({
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   animation: left-right 2s ease-in-out infinite;
+  border-radius: 10px;
   top: 50vh;
   right: 19vw;
   filter: blur(1px);
@@ -583,6 +595,7 @@ export default defineComponent({
   background-color: rgb(115, 129, 255);
   box-shadow: 0 0 10px 5px rgba(115, 129, 255, 0.5);
   animation: top-bottom 2s ease-in-out infinite;
+  border-radius: 10px;
   top: 50vh;
   right: 19vw;
   filter: blur(1px);
@@ -628,7 +641,7 @@ export default defineComponent({
 }
 
 .my-page {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(23, 29, 37);
   height: 100vh;
   /* Add this line to set the height to 100% of the window size */
 
@@ -636,6 +649,11 @@ export default defineComponent({
 
 h2 {
   display: none;
+}
+
+.paragraph-text {
+  font-size: 1.2em;
+  
 }
 
 @media (max-width: 1400px) {
