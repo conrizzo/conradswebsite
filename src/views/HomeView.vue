@@ -96,7 +96,7 @@
                 <figure style="display: inline-block;">
                   <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">             
                   <figcaption class="aside-text" style="display: block;">
-                    <i>Rust code that animates the title is here: </i>
+                    <i>Rust code that animates the title is: </i>
                     <a class="home-text-links" href="https://blog.conradswebsite.com/blog/rust-web-assembly-example/">here.</a>
                   </figcaption>
                 </figure>       
@@ -128,7 +128,7 @@
         </div>
       
 
-       </div>
+      </div>
         <!--
               <AsideContent style="z-index: 1; background: #000; padding: 0em;">
 
@@ -142,22 +142,22 @@
 
               </AsideContent>   
         -->
-        <div style="background-color: #121212">
-          
-        </div>
-        
-          <div class="third-main-area">   
-            <div class="hidden" ref="content2" :class="{ 'show': isContentVisible2 }"> <!-- div to show/hide items within on scroll -->  
-              <div class="third-area-grid-container" >       
-                <div class="grid-section-3-first-column">
-                
-                </div>
-                <div class="grid-section-3-second-column">
-                  
-              </div>       
-            </div>
+          <div style="background-color: #121212">
+            
           </div>
-        </div>        
+          
+            <div class="third-main-area">   
+              <div class="hidden" ref="content2" :class="{ 'show': isContentVisible2 }"> <!-- div to show/hide items within on scroll -->  
+                <div class="third-area-grid-container" >       
+                  <div class="grid-section-3-first-column">
+                  
+                  </div>
+                  <div class="grid-section-3-second-column">
+                    
+                </div>       
+              </div>
+            </div>
+          </div>        
           <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
 
               <template v-slot:aside-content>                         
@@ -165,7 +165,15 @@
                               
               </template>
 
-          </AsideContent>   
+          </AsideContent> 
+
+         
+              <ImageGallery>
+
+
+              </ImageGallery>  
+            
+
     </main>    
   </div>  
 </template>
@@ -188,11 +196,13 @@ import init, { main } from "@/rust_web_assembly/hello_wasm.js";
 
 import coffee_image from '@/images/coffee_time.jpg';
 
+import ImageGallery from "@/components/ImageGallery.vue";
+
 export default {
   name: "HomeView",
   components: {
     AsideContent,
-    ProjectLinks,
+    ProjectLinks, ImageGallery
   },
   props: {   
     links: {
@@ -584,7 +594,7 @@ export default {
   font-size: 3em;  
  background: rgb(187, 127, 64);
   color: #ffffff;
-  border: 3px rgb(255, 255, 0) solid;  
+  border: 3px rgb(242, 0, 255) solid;  
   text-align: center;
   transition: 0.3s ease-in-out;
 }.grid-item-second-first:hover{ 
@@ -756,8 +766,8 @@ export default {
   width: 20.8em;  
 }
 .hover-image {
-  max-height: 18em;
-  margin-top: 2.85em;
+  max-height: 18.33em;
+  margin-top: 4em;
   max-width: 100%;
 
   display: block;
@@ -869,7 +879,7 @@ export default {
     padding-left: 2em;
   }
 
-@media (max-width: 52em) {
+@media (max-width: 50em) {
   .grid-container {
     grid-template-columns: 1fr;
   } 
@@ -885,13 +895,14 @@ export default {
     z-index: 2;
   }
   .project-area {
+    
     display: flex;
     justify-content: center;
     align-items: center;
   }
 }
 
-@media only screen and (max-width: 57rem) {
+@media only screen and (max-width: 50rem) {
   .title {     
     margin-bottom: 5rem;    
   }  

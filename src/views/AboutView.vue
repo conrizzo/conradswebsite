@@ -9,12 +9,20 @@
         <div class="title-container">
             <h1>About</h1>
             <div class="language-container">
+              <span class="language-arrow-text tooltip">{{arrowText}}
+                <span class="tooltiptext">This is CSS and Vue.js, not an image or drawn arrow!</span>
+              
+              </span>
+              <span class="tooltiptext"></span>
                   <div   style="transform: rotate(-55deg);">                   
                     <div class="arrow-container">
+                      
                       <div class="arrow">
+                        
                         <div class="curve"></div>
                         <div class="point"></div>
                       </div>
+                      
                     </div>
                   </div>
                   <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
@@ -116,22 +124,28 @@
     <main class="main-content">
       <!-- Main area -->
       <div class="text-container">
+        
         <div class="title-container">
             <h1>Über</h1>
             <div class="language-container">
-                  <div style="transform: rotate(-55deg);">
+              <span class="language-arrow-text tooltip">{{arrowText}}
+                <span class="tooltiptext">Das ist CSS und Vue.js, keine Abbildung oder gezeichneter Pfeil!</span>
+              
+              </span>
+                  <div   style="transform: rotate(-55deg);">                   
                     <div class="arrow-container">
+                      
                       <div class="arrow">
+                        
                         <div class="curve"></div>
                         <div class="point"></div>
                       </div>
+                      
                     </div>
                   </div>
                   <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
-            </div>
-
+              </div>
         </div>
-       
 
         <div class="bullets">      
           <ul>
@@ -221,6 +235,7 @@ export default {
       imagePath: require("@/images/project_languages.jpg"), // Add the image path to the data object
       languageChange: false,
       languageButtonText: "Deutsch wechseln",
+      arrowText: "Deutsch",
     }
   },
   downloadPDF() {
@@ -244,9 +259,11 @@ export default {
   methods: {
     language() {      
       if (this.languageButtonText == "Deutsch wechseln") {
-        this.languageButtonText = "Switch to English";        
+        this.languageButtonText = "Switch to English";  
+        this.arrowText = "English";    
       } else {
         this.languageButtonText = "Deutsch wechseln";        
+        this.arrowText = "Deutsch";     
       }
     }
   }
@@ -303,18 +320,28 @@ h3 {
   align-items: center;
 }
 
+.language-arrow-text{
+  font-size: 0.9em; margin-top: -2.5em; margin-right: 4em; z-index: 5; transform: rotate(35deg);
+  border-bottom: none; 
+}
+
+.tooltip:before{
+  top: 1em;
+}
+.tooltip .tooltiptext{
+  top: 4em;
+}
 
 .arrow-container {
   position: relative;
 }
 
-/* Main code for this graphic from https://codepen.io/zomgbre/pen/DdEWby */
+/* Exclusively only the drawn arrow for this graphic from https://codepen.io/zomgbre/pen/DdEWby */
 .arrow {
   position: absolute;
   top: -320px;
   left: -60px;
 }
-
 
 .arrow .curve {
   border: 4px solid #ff5959;
@@ -354,10 +381,8 @@ h3 {
   -moz-transform:rotate(12deg);
   -ms-transform: rotate(12deg);
 }
-
-/* Add the following CSS to change the color of another element when hovering over the button */
-
 /* arrow code css end */
+
 
 .language-button{ 
   margin-top: 1em;
