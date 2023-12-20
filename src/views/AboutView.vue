@@ -9,11 +9,11 @@
         <div class="title-container">
             <h1>About</h1>
             <div class="language-container">
-              <span class="language-arrow-text tooltip">{{arrowText}}
-                <span class="tooltiptext">This is CSS and Vue.js, not an image or drawn arrow!</span>
-              
-              </span>
-              <span class="tooltiptext"></span>
+                <span class="language-arrow-text tooltip">{{arrowText}}
+                  <span class="tooltiptext">
+                    This is CSS and Vue.js, not an image or drawn arrow!
+                  </span>              
+                </span>             
                   <div   style="transform: rotate(-55deg);">                   
                     <div class="arrow-container">
                       
@@ -98,22 +98,25 @@
       <!-- Aside area -->
       <AsideContent style="background-color: rgb(40, 40, 40);">
         <template v-slot:aside-content>
-          <div class="bird-container">
-            <h3>
-              Bird of the Month: Kohlmeise
-            </h3>
+            <div class="bird-container">
+              <h3>
+                Bird of the Month: Kohlmeise
+              </h3>
 
-            <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
+              <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
+            </div>
+            <div class="aside-bird-caption">
+            <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
+                href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
+              (name in German, English name is Great Tit)
+              photo taken in Tübingen, Germany. 
+              <br>
+              <br>
+              It is a species of bird that is native to Europe.
+              They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
+              peanuts!
+            </p>
           </div>
-          <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
-              href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
-            (name in German, English name is Great Tit)
-            photo taken in Tübingen, Germany. 
-            <br>
-            <br>
-            It is a species of bird that is native to Europe.
-            They are known for their distinctive black and white plumage and their cheerful songs. They also love to eat
-            peanuts!</p>
         </template>
       </AsideContent>
     </main>
@@ -318,22 +321,29 @@ h3 {
 .language-container{
   display: flex;
   align-items: center;
+  position: absolute;
+  right: 30%;
+  
 }
 
 .language-arrow-text{
   font-size: 0.9em; margin-top: -2.5em; margin-right: 4em; z-index: 5; transform: rotate(35deg);
-  border-bottom: none; 
+  border-bottom: none;   
+  color: rgb(18,18,18);
 }
 
 .tooltip:before{
   top: 1em;
+ position: absolute;
 }
 .tooltip .tooltiptext{
   top: 4em;
+  position: absolute;
 }
 
 .arrow-container {
   position: relative;
+  
 }
 
 /* Exclusively only the drawn arrow for this graphic from https://codepen.io/zomgbre/pen/DdEWby */
@@ -476,9 +486,19 @@ figure {
   border-radius: 15px;
   width: 90%;
 }
-.bird-text{
-  padding-left: 10%; 
+.aside-bird-caption{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1em;
+  border-radius: 0em;
+}
+.bird-text{  
+  line-height: 1.6;
+  text-align: left;
+  padding-left: 0.5em;
   font-size: 1em;
+  border-left: 1px solid rgb(218, 220, 224);
 }
 .bird-container {
   display: flex;
@@ -499,8 +519,14 @@ figure {
     max-width: 22.5rem;
   }
   .bird-text{
-  padding-left: 2em;
+  
  }  
+
+ .aside-bird-caption{
+  padding: 1em;
+  margin-left: 2.25em;
+  border-radius: 0em; 
+}
 
   h1 {
     padding-left: 0.7em;
@@ -524,6 +550,10 @@ figure {
 
 @media only screen and (max-width: 45rem) { 
 
+  h1 {  
+  margin-top: 2em;
+}
+
     figure {
       float: none;   
      
@@ -532,6 +562,13 @@ figure {
       margin: auto;  
       margin-top: 1em;
       margin-bottom: 1em;
+    }
+    .language-container{
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 0%;
+      
     }
 }
 </style>

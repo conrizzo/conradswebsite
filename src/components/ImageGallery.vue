@@ -1,12 +1,14 @@
 <template>
-    <div class="image-gallery">
-      <div class="image-gallery-grid-container">
-        <div v-for="item in galleryItems" :key="item.id" class="grid-item">
-          <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
-          <figcaption>{{ item.caption }}</figcaption>
-        </div>
+   <div class="image-gallery">
+    <div class="gallery-button-left">&lt;</div>
+    <div class="image-gallery-grid-container">
+      <div v-for="item in galleryItems" :key="item.id" class="grid-item">
+        <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
+        <figcaption>{{ item.caption }}</figcaption>
       </div>
     </div>
+    <div class="gallery-button-right">></div>
+  </div>
   </template>
 
   <script>
@@ -25,9 +27,11 @@
             { id: 1, imageSrc: coffeeImage, altText: "Image 1", caption: "A Coffee Cup!" },
             { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "A Coffee Cup!" },
             { id: 3, imageSrc: coffeeImage, altText: "Image 3", caption: "A Coffee Cup!" },
-            { id: 4, imageSrc: coffeeImage, altText: "Image 1", caption: "A Coffee Cup!" },
-            { id: 5, imageSrc: coffeeImage, altText: "Image 2", caption: "A Coffee Cup!" },
-            { id: 6, imageSrc: coffeeImage, altText: "Image 3", caption: "A Coffee Cup!" },
+            { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "A Coffee Cup!" },
+            { id: 5, imageSrc: coffeeImage, altText: "Image 5", caption: "A Coffee Cup!" },
+            { id: 6, imageSrc: coffeeImage, altText: "Image 6", caption: "A Coffee Cup!" },
+            { id: 7, imageSrc: coffeeImage, altText: "Image 7", caption: "A Coffee Cup!" },
+            { id: 8, imageSrc: coffeeImage, altText: "Image 8", caption: "A Coffee Cup!" },
         // Add more items as needed :)
       ]
     };
@@ -38,8 +42,39 @@
   </script>
   
   <style scoped>
+
+.gallery-button-left {
+  position: absolute;
+  font-size: 4em;
+  top: 50%;
+  left: -1em;
+  transform: translateY(-50%);
+  color: #fff;
+  background: rgba(0,0,0,0.3);
+  cursor: pointer; 
+}
+
+.gallery-button-right {
+  position: absolute;
+  font-size: 4em;
+  top: 50%;
+  right: -1em;
+  transform: translateY(-50%);
+  color: #fff;
+  background: rgba(0,0,0,0.33);
+  cursor: pointer;
+}
+
+ .gallery-button-right:hover{
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.33));
+}
+.gallery-button-left:hover{
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.33));
+}
+
   .image-gallery{    
     margin: 0 auto;   
+    position: relative;
   }
 
  .image-gallery-grid-container {
@@ -59,9 +94,9 @@
  }
 
  .grid-item:hover{   
-    box-shadow: 0 0 10px 5px rgb(118, 223, 255);   
-    
+    box-shadow: 0 0 3px 2px rgb(255, 255, 255);      
     background-color: #ffffff;
+    cursor: pointer;
  }
 
 .gallery-component-image{   

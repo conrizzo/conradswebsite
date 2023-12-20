@@ -167,12 +167,12 @@
 
           </AsideContent> 
 
-         
+          <div class="hidden" style="margin: 0 auto;" ref="content2" :class="{ 'show': isContentVisible2 }"> 
               <ImageGallery>
 
 
               </ImageGallery>  
-            
+            </div>
 
     </main>    
   </div>  
