@@ -80,12 +80,12 @@
             </li> -->     
       
         <h2>More information about me</h2>    
-        <p>I studied <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> in Germany. Before this I completed a Biology degree in the USA. After some time to figure out what to do with my background, I'm 
-          eager to learn more programming languages and improve as a developer. I'm motivated and curious about solving challenging topics that expand my knowledge in front-end, back-end, full-stack, or potentially machine learning and NLP related work. 
+        <p>I studied <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> in Germany. Before this I completed a Biology degree in the USA. 
+          After some time to figure out what to do with my background, I'm 
+          eager to learn more programming languages and improve as a developer. 
+          I'm motivated and curious about solving challenging topics that expand my knowledge in front-end, back-end, full-stack, or potentially machine learning and NLP related work. 
           I'm excited about learning anything that adds to my skills as a developer, and confident in my ability to research and think through how to solve a problem using code.
-        
         </p>
-
                      
         <figure class="figure-location">
           <img class="img-container" :src="imagePath" alt="Coding Languages used" />
@@ -99,6 +99,7 @@
       <AsideContent style="background-color: rgb(40, 40, 40);">
         <template v-slot:aside-content>
             <div class="bird-container">
+
               <h3>
                 Bird of the Month: Kohlmeise
               </h3>
@@ -127,14 +128,14 @@
     <main class="main-content">
       <!-- Main area -->
       <div class="text-container">
-        
         <div class="title-container">
             <h1>Über</h1>
             <div class="language-container">
-              <span class="language-arrow-text tooltip">{{arrowText}}
-                <span class="tooltiptext">Das ist CSS und Vue.js, keine Abbildung oder gezeichneter Pfeil!</span>
-              
-              </span>
+                <span class="language-arrow-text tooltip">{{arrowText}}
+                  <span class="tooltiptext">
+                    Das ist CSS und Vue.js, keine Abbildung oder gezeichneter Pfeil!
+                  </span>              
+                </span>             
                   <div   style="transform: rotate(-55deg);">                   
                     <div class="arrow-container">
                       
@@ -148,7 +149,7 @@
                   </div>
                   <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
               </div>
-        </div>
+        </div>        
 
         <div class="bullets">      
           <ul>
@@ -195,9 +196,10 @@
     </figcaption>
   </figure>
 </div>
-      <!-- Aside area -->
-      <AsideContent style="background-color: rgb(40, 40, 40);">
-          <template v-slot:aside-content>
+      
+       <!-- Aside area -->
+       <AsideContent style="background-color: rgb(40, 40, 40);">
+        <template v-slot:aside-content>
             <div class="bird-container">
               <h3>
                 Vogel des Monats: Kohlmeise
@@ -205,15 +207,17 @@
 
               <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
             </div>
+            <div class="aside-bird-caption">
             <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
                 href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
-             
               Foto in Tübingen, Deutschland gemacht. 
-            <br>
-            <br>
-            Es ist eine Vogelart, die in Europa heimisch ist.
+              <br>
+              <br>
+              Es ist eine Vogelart, die in Europa heimisch ist.
             Sie sind bekannt für ihr charakteristisches schwarz-weißes Gefieder und ihre fröhlichen Lieder. 
-            Sie lieben es auch, Erdnüsse zu essen!</p>
+            Sie lieben es auch, Erdnüsse zu essen!
+            </p>
+          </div>
         </template>
       </AsideContent>
       
@@ -403,10 +407,10 @@ h3 {
   box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;  
 }
 
-.bullets{
-  
-  margin-left: 2rem;
-  padding-right: 0.5em;
+.bullets{  
+  margin-left: 1.8rem;
+  padding-right: 0.425em;
+  font-size: 1.2rem;  
 }
 
 li::marker {
@@ -415,10 +419,8 @@ li::marker {
 }
 
 li {
-  color: #2c2c2c; 
-  font-size: 1.4rem;  
-  padding-bottom: 0.5rem;
-  
+  color: #2c2c2c;   
+  padding-bottom: 0.5rem;  
 }
 /*
 li::before{
@@ -438,15 +440,15 @@ li::before{
   color: rgb(255, 89, 89);
 }
 
-p{
+p {
   color: rgb(15, 18, 25);
   line-height: 1.7em;
-  font-size: 1.25em;
+  font-size: 1.1em;
   text-align: left;
   word-break: break-word;
   overflow-wrap: break-word;
   font-weight: 400;  
-  padding: 0.5em 2em 0.5em 2em;
+  padding: 0.5em 1.65em 0.5em 1.65em;
 }
 
 nav {
@@ -533,7 +535,7 @@ figure {
   }
 
   h2 {
-    padding-left: 1.4em;
+    padding-left: 1.2em;
   }
 
   h3 {

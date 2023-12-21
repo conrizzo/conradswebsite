@@ -1,3 +1,5 @@
+<!-- This component is exclusively the menu that drops down in the header -->
+
 <template>
     <div class="dropdown" > <!-- @mouseleave="closeDropdown" -->
       <div class="dropbtn unselectable" @mouseover="openDropdown" @click="toggleDropdown">Projects</div>
@@ -45,7 +47,7 @@ export default {
             clearTimeout(this.openTimeout); // Clear any existing timeout
                 this.openTimeout = setTimeout(() => {
                     this.isDropdownOpen = true;
-                }, 250); // Set a new 250ms-second timeout
+                }, 150); 
                 // set to false after opening
                 this.isDropdownOpen = false;
         }
@@ -70,24 +72,28 @@ export default {
 .dropdown {
     position: relative;
     display: inline-block;     
-    z-index: 5;    
+    z-index: 5;      
 }
+
 .dropdown-content {    
     display: none; /* this removes it when not over it */
     position: absolute;
-    margin-left: -0.2em;
+    margin-left: -2.4em;
     text-align: left;
     padding:0.15em;    
     width: 10.4em;
     background-color: white;        
     box-shadow: 0px -2px 8px rgba(0,0,0,0.4);      
+   
 }
+
 .dropdown-content a {
     color: rgb(12, 12, 12);
     padding: 0.5em 0.6em 0.5em 0.6em; 
     text-decoration: none;
     display: block;   
-    margin-right: 0;               
+    margin-right: 0;        
+           
 }
 /* Can make this the page color for the respective page if I set all pages to follow a page color value */
 nav a.router-link-exact-active {
@@ -104,7 +110,4 @@ nav a.router-link-exact-active {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: none; cursor: pointer; color: #000;}
-
-
-
 </style>

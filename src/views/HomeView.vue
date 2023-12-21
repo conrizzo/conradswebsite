@@ -114,7 +114,7 @@
             <div class="grid-item-coffee">              
                 <img  class="coffee-image" :src="coffee_image" alt="Image">                
             </div>               
-            <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>           
+            <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Deutsch Kaffee</a>           
             <div class="grid-item-coffee-text">
               <p>             
                 Website made with enthusiasm and <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>. 
@@ -123,7 +123,7 @@
                 granola bars, apple pie, chocolate<span class="loading"></span>
               </p>              
             </div>
-            <a href="https://fr.wikipedia.org/wiki/Caf%C3%A9" class="grid-item-second-third">Café</a>             
+            <a href="https://fr.wikipedia.org/wiki/Caf%C3%A9" class="grid-item-second-third">Café Français</a>             
           </div>      
         </div>
       
@@ -167,12 +167,12 @@
 
           </AsideContent> 
 
-          <div class="hidden" style="margin: 0 auto;" ref="content2" :class="{ 'show': isContentVisible2 }"> 
+          <!--<div class="hidden" style="margin: 0 auto;" ref="content2" :class="{ 'show': isContentVisible2 }"> -->
               <ImageGallery>
 
 
               </ImageGallery>  
-            </div>
+           
 
     </main>    
   </div>  
@@ -417,12 +417,19 @@ export default {
   background: -webkit-linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background: linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
     */
-  background: linear-gradient(180deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8), 15%,rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255,0.8) 90%);
+    
+  background: linear-gradient(180deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8), 
+  15%,rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255,0.8) 90%);
   background-size: 100% 100%;
   background-attachment: fixed;
 }
 .custom-background-home-page {    
-  background: linear-gradient(0deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8), 15%,rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255,0.8) 90%);
+ 
+  
+  background: linear-gradient(0deg,rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8), 
+  15%,rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255,0.8) 90%);
+
+  
   /*
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
@@ -449,7 +456,7 @@ export default {
 .grid-section-3-first-column{
   grid-column: 1;
   grid-row: 1 / 3;
-  border: 1px rgb(51, 51, 51) solid;
+  border: 5px rgb(51, 51, 51) solid;
   background: rgb(0, 227, 227);
   color: #ffffff;
   border-radius: 0.2em;
@@ -473,7 +480,9 @@ export default {
   transition: 0.3s ease-in-out;
 }
 .second-main-area {
- background: linear-gradient(0deg, rgb(49, 21, 32), 10%, rgba(161, 71, 78, 0.9), 30%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5)80%, rgb(139, 114, 188) 100%);
+ /* background: linear-gradient(0deg, rgb(49, 21, 32), 10%, rgba(161, 71, 78, 0.9), 30%,  
+ rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5)80%, rgb(139, 114, 188) 100%); */
+ background: rgb(18,18,18);
  height: 100vh;
  color: #fff;
  display: flex;
@@ -592,11 +601,12 @@ export default {
   padding: 0.25em;  
   max-height: 1.5em;  
   font-size: 3em;  
- background: rgb(187, 127, 64);
+  background: rgb(187, 127, 64);
   color: #ffffff;
-  border: 3px rgb(242, 0, 255) solid;  
+  border: 3px rgb(0, 255, 166) solid;  
   text-align: center;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 }.grid-item-second-first:hover{ 
   color: #000000;
   background: #ffffff;
@@ -607,6 +617,7 @@ export default {
   grid-row: 2 / 3;    
   color: #000000;
   max-height: 4em;   
+  cursor: pointer;
 }
 .grid-item-second-second{  
   grid-column: 2 / 3;
@@ -756,9 +767,10 @@ export default {
 
 .coffee-image {  
   border-radius: 1em;
-  width: 99%;
-  padding: 0.5%;
+  width: 100%;
+  border: 4px solid rgb(0, 255, 166);
   background: rgb(229, 233, 240);
+  box-sizing: border-box;
 }
 
 
