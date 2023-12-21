@@ -1,5 +1,11 @@
 <template>
+  
   <div class="image-gallery">
+    <!-- 
+        This is an education thing to write about the h1 tag directly below this! 
+        Doing inline block to underline only the text in a span, then aligning the outside text to the left works nicely!
+    -->
+    <h1><span class='gallery-styling-h1-span'>SPECIAL OFFERS:</span></h1>
     <div class="gallery-button-left" @click="changeImageArray('left')">&lt;</div>
     <div class="image-gallery-grid-container">
       <div v-for="item in imageArrayChoice" :key="item.id" class="grid-item">
@@ -14,8 +20,7 @@
 </template>
 
 <script>
-import coffeeImage from '@/images/second_coffee.jpg';
-import coffeeFood from '@/images/coffee_food.jpg';
+
 
 export default {
   name: 'ImageGallery',
@@ -23,22 +28,21 @@ export default {
 
   },
   data() {
-    return {
-      coffeeImage: coffeeImage,
-      coffeeFood: coffeeFood,
-      
+      const coffeeImage = require('@/images/second_coffee.jpg');
+      const coffeeFood = require('@/images/coffee_food.jpg');
+      const diffusionBird = require('@/images/diffBird.jpg');
+    return {       
       imageArrayChoice: null,
-
       imgArrayOfArrays: [
           [
             { id: 1, imageSrc: coffeeFood, altText: "Image 1", caption: "Food!" },
-            { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "A Coffee Cup!" },
-            { id: 3, imageSrc: coffeeImage, altText: "Image 3", caption: "A Coffee Cup!" },
-            { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "A Coffee Cup!" },
-            { id: 5, imageSrc: coffeeImage, altText: "Image 5", caption: "A Coffee Cup!" },
-            { id: 6, imageSrc: coffeeImage, altText: "Image 6", caption: "A Coffee Cup!" },
-            { id: 7, imageSrc: coffeeImage, altText: "Image 7", caption: "A Coffee Cup!" },
-            { id: 8, imageSrc: coffeeImage, altText: "Image 8", caption: "A Coffee Cup!" },
+            { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "Coffee!" },
+            { id: 3, imageSrc: diffusionBird, altText: "Image 3", caption: "A bird!" },
+            { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "Coffee!" },
+            { id: 5, imageSrc: coffeeImage, altText: "Image 5", caption: "Coffee!" },
+            { id: 6, imageSrc: coffeeImage, altText: "Image 6", caption: "Coffee!" },
+            { id: 7, imageSrc: coffeeImage, altText: "Image 7", caption: "Coffee!" },
+            { id: 8, imageSrc: coffeeImage, altText: "Image 8", caption: "Coffee!" },
             // Add more items as needed :)
           ],
       ]
@@ -55,27 +59,31 @@ export default {
       ],
       [
         { id: 1, imageSrc: coffeeFood, altText: "Image 1", caption: "Food!" },
-        { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "A Coffee Cup!" },
+        { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "Coffee!" },
         { id: 3, imageSrc: coffeeFood, altText: "Image 3", caption: "Food!" },
-        { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "A Coffee Cup!" },
+        { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "Coffee!" },
         { id: 5, imageSrc: coffeeFood, altText: "Image 5", caption: "Food!" },
-        { id: 6, imageSrc: coffeeImage, altText: "Image 6", caption: "A Coffee Cup!" },
+        { id: 6, imageSrc: coffeeImage, altText: "Image 6", caption: "Coffee!" },
         { id: 7, imageSrc: coffeeFood, altText: "Image 7", caption: "Food!" },
-        { id: 8, imageSrc: coffeeImage, altText: "Image 8", caption: "A Coffee Cup!" },
+        { id: 8, imageSrc: coffeeImage, altText: "Image 8", caption: "Coffee!" },
       ],
       [
-        { id: 1, imageSrc: coffeeImage, altText: "Image 1", caption: "A Coffee Cup!" },
+        { id: 1, imageSrc: coffeeImage, altText: "Image 1", caption: "Coffee!" },
         { id: 2, imageSrc: coffeeFood, altText: "Image 2", caption: "Food!" },
-        { id: 3, imageSrc: coffeeImage, altText: "Image 3", caption: "A Coffee Cup!" },
+        { id: 3, imageSrc: coffeeImage, altText: "Image 3", caption: "Coffee!" },
         { id: 4, imageSrc: coffeeFood, altText: "Image 4", caption: "Food!" },
-        { id: 5, imageSrc: coffeeImage, altText: "Image 5", caption: "A Coffee Cup!" },
+        { id: 5, imageSrc: coffeeImage, altText: "Image 5", caption: "Coffee!" },
         { id: 6, imageSrc: coffeeFood, altText: "Image 6", caption: "Food!" },
-        { id: 7, imageSrc: coffeeImage, altText: "Image 7", caption: "A Coffee Cup!" },
+        { id: 7, imageSrc: coffeeImage, altText: "Image 7", caption: "Coffee!" },
         { id: 8, imageSrc: coffeeFood, altText: "Image 8", caption: "Food!" },
       ]*/
     
     };
-
+  },
+  mounted() {
+    // Set the initioanl image array to the galleryItems array
+    this.imageArrayChoice = this.imgArrayOfArrays[0]
+   
   },
   methods: {
     // This method will change the image array to the one passed in
@@ -108,17 +116,22 @@ export default {
       }
     }
   },
-
-  mounted() {
-    // Set the initioanl image array to the galleryItems array
-    this.imageArrayChoice = this.imgArrayOfArrays[0]
-  },
-
   // Component logic goes here
 }
 </script>
   
 <style scoped>
+h1{
+  font-size: 0.9em; 
+  margin-bottom: -1em;  
+  text-align: left;  
+}
+.gallery-styling-h1-span{
+  
+  display: inline-block;
+  border-bottom: 2px solid rgb(255, 89, 89);
+}
+
 .gallery-button-left {
   position: absolute;
   font-size: 4em;

@@ -117,8 +117,9 @@
             <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Deutsch Kaffee</a>           
             <div class="grid-item-coffee-text">
               <p>             
-                Website made with enthusiasm and <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>. 
-                Plus foods like Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
+                Website made with enthusiasm and <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>.
+                <br><br>
+                Foods that helped include: Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
                 buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
                 granola bars, apple pie, chocolate<span class="loading"></span>
               </p>              
@@ -169,9 +170,36 @@
 
           <!--<div class="hidden" style="margin: 0 auto;" ref="content2" :class="{ 'show': isContentVisible2 }"> -->
               <ImageGallery>
-
-
               </ImageGallery>  
+              <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
+
+                <template v-slot:aside-content>                         
+                      <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> --> 
+                      <div class="image-gallery-aside">
+                        <li>
+                          <span class="gallery-list-item">BEST FOODS:</span>
+                          <ul class="gallery-list-home">
+                              Coffee
+                          </ul>
+                          <ul class="gallery-list-home">
+                              Coffee
+                          </ul>
+                          <ul class="gallery-list-home">
+                             Foods that go with Coffee
+                          </ul>
+                          <span class="gallery-list-item">BEST DRINKS:</span>
+                          <ul class="gallery-list-home">
+                             Coffee
+                          </ul>
+                          <ul class="gallery-list-home">
+                            Wasser mit Kohlensäure
+                          </ul>
+                        </li>
+                     </div> 
+                                
+                </template>
+
+              </AsideContent> 
            
 
     </main>    
@@ -490,8 +518,8 @@ export default {
  align-items: center;
 
  padding-left: 2em;
- padding-right: 2em; 
- padding-top: 2em;
+ padding-right: 2em;  
+
 }
 .custom-color {
   color: rgb(255, 255, 255) !important;
@@ -585,13 +613,15 @@ export default {
   gap: 1em;
   padding-top: 2em;
   margin-bottom: 10em; 
+  
 }
 /* 2nd page grid */
 .second-area-grid-container{ 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-gap: 2em; /* Adjust the gap between grid items as needed */    
+  grid-gap: 2em; /* Adjust the gap between grid items as needed */   
+ 
 }
 .grid-item-second-first{  
   grid-column: 1 / 2;
@@ -707,12 +737,17 @@ export default {
   background: #586af8;
   padding: 1em;
 }
+
+.second-main-area{
+  padding-top: 6em;
+}
 }
 
 @media only screen and (max-width: 50rem) {
 
   .second-main-area {
     padding-top: 0em;
+    margin-top: -5em; 
   }
   .first-aside-home-page{
     margin: 0;
@@ -820,6 +855,23 @@ export default {
   animation: dotty 3s steps(1, end) infinite;
   content: '';
 }
+
+.image-gallery-aside{
+  list-style-type: none; text-align: left; color: #fff; padding: 1em; font-weight: bold;
+  
+}
+
+ul.gallery-list-home{
+  margin-left: 0.25em;
+  font-size: 0.85em;
+  color: rgb(0, 221, 255);
+}
+.gallery-list-item{
+  font-size:0.9em;
+}
+
+
+
 
 @keyframes dotty {
   0% {

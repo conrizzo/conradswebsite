@@ -80,7 +80,7 @@
             </li> -->     
       
         <h2>More information about me</h2>    
-        <p>I studied <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> in Germany. Before this I completed a Biology degree in the USA. 
+        <p>I studied <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> in Germany. Before this, I completed a Biology degree in the USA. 
           After some time to figure out what to do with my background, I'm 
           eager to learn more programming languages and improve as a developer. 
           I'm motivated and curious about solving challenging topics that expand my knowledge in front-end, back-end, full-stack, or potentially machine learning and NLP related work. 

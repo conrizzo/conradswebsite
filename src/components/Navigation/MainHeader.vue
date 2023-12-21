@@ -20,9 +20,13 @@
         <!--import the dropdown menu into the nav bar-->
         <DropDownMenu class="projects-menu">
         </DropDownMenu>
+        
       </div>
-
-
+      <div>
+      <router-link to="/">
+        <h2 class="small-resolution-h2">ConradsWebsite.com</h2>
+      </router-link>
+    </div>
       <div class="header-logo-container">
         <a class="github-logo-link" href="https://github.com/conrizzo/conradswebsite">
           <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
@@ -77,6 +81,10 @@ export default {
       padding-right: 0.5em;
       margin-bottom: 0;
       border-right: 1px solid rgb(218, 220, 224);
+    }
+
+    .small-resolution-h2{
+        display: none;
     }
 
     .about-link-styling {      
@@ -145,18 +153,24 @@ export default {
 
     @media (max-width: 32.7rem) {
       .header-h2 {
-        display: none;
+        display: none;        
       }
+
+      
     }
 
     @media (max-width: 30rem) {
       .github-logo-link {
         display: none;
       }
-
       .nav-menu-class {
         padding-left: 0.5em;
         justify-content: start;
+      }
+      .small-resolution-h2{
+        font-size: 0.8em; position: absolute; margin-top: -0.5em; right: 1em;
+        display: inline;
+        color: rgb(128, 128, 128);
       }
     }
 
