@@ -126,9 +126,11 @@ export default {
   left: -1em;
   transform: translateY(-50%);
   color: #fff;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.66);
   cursor: pointer;
   user-select: none;
+  width: 1em;
+  
 }
 
 .gallery-button-right {
@@ -138,9 +140,11 @@ export default {
   right: -1em;
   transform: translateY(-50%);
   color: #fff;
-  background: rgba(0, 0, 0, 0.33);
+  background: rgba(0, 0, 0, 0.66);
   cursor: pointer;
   user-select: none;
+  width: 1em;
+  
 }
 
 .gallery-button-right:hover {
@@ -154,6 +158,10 @@ export default {
 .image-gallery {
   margin: 0 auto;
   position: relative;
+  background: rgb(255, 255, 255);
+  padding: 1em;
+  padding-right: 2em;
+  padding-left: 2em;  
 }
 
 .image-gallery-grid-container {
@@ -166,23 +174,34 @@ export default {
 }
 
 .grid-item {
-  border-radius: 1em;
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-  background-color: #ffffff;
+  
+  
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 2;
 }
 
-.grid-item:hover {
-  box-shadow: 0 0 3px 2px rgb(255, 255, 255);
-  background-color: #ffffff;
+.grid-item:hover { 
   cursor: pointer;
 }
 
 .gallery-component-image {
-  border-top-left-radius: 1em;
-  border-top-right-radius: 1em;
+  border-radius: 1em;
   padding: 0em;
   margin: 0em;
   background-color: #ffffff;
+  transition: filter 0.5s ease;
+}
+.gallery-component-image:hover{
+  filter: brightness(90%); 
+}
+
+
+@media (max-width: 79rem) {
+
+  .gallery-button-left,
+  .gallery-button-right {
+    display: none;
+  }
 
 }
 
@@ -191,15 +210,14 @@ export default {
   .image-gallery-grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
   }
 
   .gallery-component-image {
-
     background-color: #ffffff;
-
-
   }
+
+  
+
 }
 
 @media (max-width: 53rem) {
@@ -223,10 +241,7 @@ export default {
     width: 100%;
   }
 
-  .gallery-button-left,
-  .gallery-button-right {
-    display: none;
-  }
+  
 
 }
 
@@ -236,8 +251,7 @@ figcaption {
   padding: 0.5em;
   margin: 0em;
 
-  border-bottom-left-radius: 1em;
-  border-bottom-right-radius: 1em;
+  background: rgba(0, 0, 0, 0);
   font-size: 0.8em;
   font-weight: bold;
   color: rgb(18, 18, 18);

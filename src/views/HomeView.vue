@@ -600,7 +600,7 @@ export default {
 
   padding: 0.25em;  
   max-height: 1.5em;  
-  font-size: 3em;  
+  font-size: 2em;  
   background: rgb(187, 127, 64);
   color: #ffffff;
   border: 3px rgb(0, 255, 166) solid;  
@@ -629,7 +629,7 @@ export default {
   border-radius: 0.2em;
   padding: 0.25em;  
   max-height: 1.5em;  
-  font-size: 3em;  
+  font-size: 2em;  
   text-decoration: none;
   transition: 0.3s ease-in-out;
 }.grid-item-second-second:hover{  
@@ -662,7 +662,7 @@ export default {
   background: rgb(67, 49, 45);
   padding: 0.25em;  
   max-height: 1.5em;  
-  font-size: 3em;  
+  font-size: 2em;  
   color: #fff;
   text-align: center;
   text-decoration: none;

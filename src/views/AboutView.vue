@@ -550,12 +550,16 @@ figure {
   }
 }
 
-@media only screen and (max-width: 45rem) { 
+@media only screen and (max-width: 48rem){
 
   h1 {  
-  margin-top: 2em;
+    margin-top: 2em;
+  } 
+
 }
 
+@media only screen and (max-width: 45rem) { 
+    
     figure {
       float: none;   
      
