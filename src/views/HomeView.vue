@@ -99,8 +99,17 @@
           </figure>
         </template>
       </AsideContent>
-      <CoffeeGridContent>
-      </CoffeeGridContent>
+      <div>
+      <FourWideImages></FourWideImages>
+      </div>
+
+      <div style="background: #fff;">
+      </div>
+      <CoffeeGridContent></CoffeeGridContent>
+      <div style="background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 
+      15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);">
+      </div>
+     
       <!--
               <AsideContent style="z-index: 1; background: #000; padding: 0em;">
 
@@ -114,8 +123,7 @@
 
               </AsideContent>   
         -->
-      <div style="background-color: #121212">
-      </div>
+      
 
       <div class="third-main-area">
         <div class="hidden" ref="content2" :class="{ 'show': isContentVisible2 }">
@@ -192,11 +200,13 @@ import ImageGallery from "@/components/ImageGallery.vue";
 
 import CoffeeGridContent from "@/components/CoffeeGridContent.vue";
 
+import FourWideImages from "@/components/FourWideImages.vue";
+
 export default {
   name: "HomeView",
   components: {
     AsideContent,
-    ProjectLinks, ImageGallery, CoffeeGridContent,
+    ProjectLinks, ImageGallery, CoffeeGridContent, FourWideImages
   },
   props: {
     links: {

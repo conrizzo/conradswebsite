@@ -209,7 +209,7 @@ h1{
 }
 
 
-@media (max-width: 79rem) {
+@media (max-width: 80rem) {
 
   .gallery-button-left,
   .gallery-button-right {
@@ -218,7 +218,7 @@ h1{
 
 }
 
-@media (max-width: 68rem) {
+@media (max-width: 80rem) {
 
   .image-gallery-grid-container {
     display: grid;
@@ -233,7 +233,7 @@ h1{
 
 }
 
-@media (max-width: 53rem) {
+@media (max-width: 65rem) {
 
   .image-gallery-grid-container {
     display: grid;
@@ -242,7 +242,7 @@ h1{
 
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 40rem) {
 
   .image-gallery-grid-container {
     display: grid;

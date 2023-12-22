@@ -80,11 +80,12 @@
             </li> -->     
       
         <h2>More information about me</h2>    
-        <p>I studied <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> in Germany. Before this, I completed a Biology degree in the USA. 
-          After some time to figure out what to do with my background, I'm 
-          eager to learn more programming languages and improve as a developer. 
-          I'm motivated and curious about solving challenging topics that expand my knowledge in front-end, back-end, full-stack, or potentially machine learning and NLP related work. 
-          I'm excited about learning anything that adds to my skills as a developer, and confident in my ability to research and think through how to solve a problem using code.
+        <p> 
+          In 2022 I completed studies in <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> 
+          at the University of Tübingen in Germany. Before this I obtained a biology degree in the USA. 
+          I am now keen on enhancing my programming language repertoire and advancing as a developer.
+          Motivated and curious, I seek challenges in front-end, back-end, full-stack, or potentially in machine learning and NLP. 
+          I am excited about learning, and confident in problem-solving through code and research.
         </p>
                      
         <figure class="figure-location">
@@ -187,6 +188,19 @@
             </li>          
           </ul>
         </div>
+
+        <h2>Mehr Informationen über mich</h2>    
+        <p> 
+          Im Jahr 2022 habe ich mein Studium der <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computerlinguistik</a> 
+          
+          an der Universität Tübingen in Deutschland abgeschlossen. Davor habe ich einen Abschluss in Biologie in den USA erworben.
+
+          Ich bin jetzt daran interessiert, meine Programmiersprachenkenntnisse zu erweitern und mich als Entwickler weiterzuentwickeln.
+
+          Motiviert und neugierig suche ich nach Herausforderungen im Bereich Front-End, Back-End, Full-Stack oder möglicherweise auch im Bereich des "machine learning" und der natürlichen natural language processing (NLP).
+
+          Ich freue mich darauf, Neues zu lernen, und bin zuversichtlich, Probleme mithilfe von Code und Forschung zu lösen.
+        </p>
    
        
   <figure class="figure-location">
