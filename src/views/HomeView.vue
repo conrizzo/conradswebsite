@@ -175,6 +175,11 @@
         </template>
       </AsideContent>
     </main>
+
+    
+        <imagesOneRow></imagesOneRow>
+    
+
   </div>
 </template>
 
@@ -202,11 +207,13 @@ import CoffeeGridContent from "@/components/CoffeeGridContent.vue";
 
 import FourWideImages from "@/components/FourWideImages.vue";
 
+import imagesOneRow from "@/components/ImagesOneRow.vue";
+
 export default {
   name: "HomeView",
   components: {
     AsideContent,
-    ProjectLinks, ImageGallery, CoffeeGridContent, FourWideImages
+    ProjectLinks, ImageGallery, CoffeeGridContent, FourWideImages, imagesOneRow
   },
   props: {
     links: {
