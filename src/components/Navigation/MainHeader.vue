@@ -29,21 +29,21 @@
       </div>
       
       <div style="display: flex; align-items: center;">
-        <router-link to="projects/firebasetest" style="margin-right: 0.25em; border-right: 1px rgb(218, 220, 224) solid; padding-right: 0.25em;">Sign In</router-link>
-        <div>
-        <div class="header-logo-container">
-          <a class="github-logo-link" href="https://github.com/conrizzo/conradswebsite">
-            <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
-              <path fill="currentColor"
-                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z">
-              </path>
-            </svg>            
-          </a>          
+        <router-link class="hide-sign-in-text-at-low-res" to="projects/firebasetest" style="border-right: 1px solid rgb(218, 220, 224); margin-right: 0.5em; padding-right: 0.4em;font-size: 1em; padding-left: 0.5em;">Sign In</router-link>
+          <div style=" box-sizing: border-box; padding-left: 0.25em; ">
+          <div class="header-logo-container">
+            <a class="github-logo-link" href="https://github.com/conrizzo/conradswebsite">
+              <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
+                <path fill="currentColor"
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+                </path>
+              </svg>            
+            </a>          
+          </div>
+          <a class="text-under-github-logo" href="https://github.com/conrizzo/conradswebsite">
+              <span style="font-size: 0.5em; padding-right: 0.4em; ">This websites code</span>
+          </a>
         </div>
-        <a class="" href="https://github.com/conrizzo/conradswebsite">
-            <span style="font-size: 0.5em; padding-right: 0.4em;">This websites code</span>
-        </a>
-      </div>
       </div>
     </nav>
 
@@ -151,7 +151,7 @@ export default {
 
     .github-logo-link {
       margin-right: 0em;
-      padding-right: 0.25em;
+      padding-right: 0.25em;     
       color: #000;
     }
 
@@ -160,9 +160,13 @@ export default {
 
     }
 
-    @media (max-width: 32.7rem) {
+    @media (max-width: 34rem) {
       .header-h2 {
         display: none;        
+      }
+
+      .hide-sign-in-text-at-low-res{
+        display: none;
       }
 
       
@@ -172,12 +176,16 @@ export default {
       .github-logo-link {
         display: none;
       }
+
+      .text-under-github-logo{
+        display: none;
+      }
       .nav-menu-class {
         padding-left: 0.5em;
         justify-content: start;
       }
       .small-resolution-h2{
-        font-size: 0.8em; position: absolute; margin-top: -0.5em; right: 1em;
+        font-size: 0.8em; position: absolute; margin-top: -0.5em; right: 0.5em;
         display: inline;
         color: rgb(128, 128, 128);
       }

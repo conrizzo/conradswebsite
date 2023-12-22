@@ -4,7 +4,7 @@
   <CookieAccept />
 
   <div style="background: rgb(255, 255, 255); padding-bottom: 2em; padding-top: 2.7em;">
-    <div style="justify-content: center; padding-bottom: 2em;">
+    <div style="justify-content: center;">
       <button v-if="isLoggedIn" class="button-35">
       <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
         Enter authorized user page
@@ -54,7 +54,7 @@
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
         <div style="color: #ff4a4a;"> {{ errorMessage }} </div>
         <h2 style="color: #181818;">Submit Message!</h2>
-        <h2 v-if="!isLoggedIn" style="color: rgb(255, 89, 89);">You are not logged in! must be logged in for it to work.</h2>
+        <h2 v-if="!isLoggedIn" style="color: rgb(255, 89, 89);">You are not logged in!</h2>
           
           <div style="max-width: 40em;">
             <div style="display: flex; flex-direction: column;">
