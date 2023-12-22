@@ -1,25 +1,29 @@
 <template>
-  <form @submit.prevent="login">
-    
-    <h2 style="padding: 0.5em; color: rgb(18,18,18);">Log in</h2>    
-    
-    <div style="display: flex; flex-direction: column;">
-      <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
-      <input name="email" type="email" placeholder="Email" required v-model="email" autocomplete="email" v-focus>
-    </div>
-    
-    
-    <div style="display: flex; flex-direction: column; ">
-      <label for="password" style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
-      <input name="password" type="password" placeholder="Password" required v-model="password">
-    </div>
-      
-      <button style="margin-top: 0.5em;" class="button-35">Log in</button>
+  <div class="login-form-container">
+    <div class="login-form-styling">
+        <form @submit.prevent="login">
+          
+          <h2 style="padding: 0.5em; color: rgb(18,18,18);">Log in</h2>    
+          
+          <div style="display: flex; flex-direction: column;">
+            <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
+            <input name="email" type="email" placeholder="Email" required v-model="email" autocomplete="email" v-focus>
+          </div>
+          
+          
+          <div style="display: flex; flex-direction: column; ">
+            <label for="password" style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
+            <input name="password" type="password" placeholder="Password" required v-model="password">
+          </div>
+            
+            <button style="margin-top: 0.5em;" class="button-35">Log in</button>
 
-      <div style="margin-top: 1em;">
-        <span style="color: red;">{{ errorMessage }}</span>
-      </div>
-  </form>
+            <div style="margin-top: 1em;">
+              <span style="color: red;">{{ errorMessage }}</span>
+            </div>
+        </form>
+    </div>
+  </div>
 </template>
   
 <script>
@@ -85,7 +89,7 @@ input {
   border-radius: 0.25em;
   border-width: 1px;
   outline: none;
-  border: 1px solid #ff5959;
+  border: 1px solid rgb(218, 220, 224);
   padding: 0.25em;
 }
 
@@ -96,14 +100,13 @@ button {
 
 
 form {
-  width: 20em;
- 
+  width: 20em; 
   margin: auto;
-  border: 1px solid #cecece; 
+  
   border-radius: 1em;
   padding: 0 1em 0em 1em;
 
-  margin-top: 3em;
+  
 }
 
 input {
@@ -112,6 +115,15 @@ input {
 
 input:focus {   
     border-color: rgb(0, 240, 0)
+}
+
+.login-form-container{
+  display: flex;
+  justify-content: center;
+}
+
+.login-form-styling{
+  padding: 2em; background: #ffc069; width: fit-content; border-radius: 1em; margin-top: 2em;
 }
 
 </style>

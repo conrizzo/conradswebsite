@@ -31,6 +31,7 @@
       -->
 
         <!-- Title -->
+      <div class="center-main-area-box">
         <div class="main-area-box">
           <h1 class="title">
             <div class="top-string-slice-of-title">
@@ -84,6 +85,7 @@
           </div>
         </div>
       </div>
+    </div>
       <!-- Aside area begins  #2d2d2d; slate black color -->
 
       <AsideContent class="first-aside-home-page">
@@ -397,7 +399,6 @@ export default {
   opacity: 0;
   transition: all 2s;
 }
-
 .show {
   opacity: 1;
 }
@@ -419,10 +420,8 @@ export default {
 
 .custom-background-home-page {
 
-
   background: linear-gradient(0deg, rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8),
       15%, rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255, 0.8) 90%);
-
 
   /*
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
@@ -442,7 +441,6 @@ export default {
   padding-right: 2em;
   padding-top: 2em;
 }
-
 .third-area-grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -450,7 +448,6 @@ export default {
   grid-gap: 1em;
   /* Adjust the gap between grid items as needed */
 }
-
 .grid-section-3-first-column {
   grid-column: 1;
   grid-row: 1 / 3;
@@ -464,7 +461,6 @@ export default {
   text-decoration: none;
   transition: 0.3s ease-in-out;
 }
-
 .grid-section-3-second-column {
   grid-column: 2;
   grid-row: 3 / 5;
@@ -483,25 +479,27 @@ export default {
   color: rgb(255, 255, 255) !important;
   /* overrides the components default values of '#fff' */
 }
-
 .custom-color:hover {
   color: rgb(255, 255, 255) !important;
   /* overrides the components default values of '#fff' */
 }
-
 .button-35:hover {
   box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;
 }
 
-/*
-.main-area-box{
-  background: rgba(31, 42, 85, 0.2);  
-  padding: 1em 8em 1em 8em;
-  max-width: 53em;
-  margin-bottom: 2em;
-  margin: 0 auto; 
+.center-main-area-box{
+  display: flex;
+  justify-content: center;   
+  margin-top: 3em;
+  margin-bottom: 3em;  
 }
-*/
+
+.main-area-box{
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 10%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
+  border-radius: 1em;
+  width: 70%; 
+}
+
 .home-text-links {
   color: rgb(255, 255, 255);
   font-weight: 500;
@@ -579,8 +577,8 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   /* Two columns with equal width */
   gap: 1em;
-  padding-top: 2em;
-  margin-bottom: 10em;
+  /* padding-top: 2em; */
+  margin-bottom: 2em;
 
 }
 
@@ -628,6 +626,18 @@ export default {
     padding: 1em;
   }
 
+.center-main-area-box{
+  margin-top: 5em;  
+  display: flex;
+  justify-content: center;  
+  padding: 0em; 
+}
+
+.main-area-box{  
+  width: auto; 
+  padding: 0.5em;
+}
+
 
 }
 
@@ -639,19 +649,20 @@ export default {
     border-radius: 0em;
   }
 
+    .main-area-box{
+    background: none;
+    border-radius: 0em;
+    width: auto; 
+  }
+
 
 
 
   /* Remove the right margin from the third grid item */
 
-  .coffee-image {
-    display: none;
-  }
+  
 
-  .aside-coffee-image {
-    margin-top: -12em;
-    padding-top: 0vmin;
-  }
+  
 }
 
 @media only screen and (max-width: 70rem) {}
@@ -689,7 +700,7 @@ export default {
   line-height: 1;
   height: 3em;
   padding: 0.5em 0.25em 0.25em 0.25em;
-  margin-top: 2em;
+  
 
   color: rgb(255, 255, 255);
   font-size: 3em;

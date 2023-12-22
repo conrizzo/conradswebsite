@@ -13,7 +13,7 @@
               <p>             
                 Website made with enthusiasm and <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>.
                 <br><br>
-                Foods that helped include: Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
+                Foods that helped include <span style="color:rgb(255, 247, 0);">&#8594;</span> Fresh bread with butter, croissants, donuts, cake, bagels, muffins,
                 buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
                 granola bars, apple pie, chocolate<span class="loading"></span>
               </p>              
@@ -214,7 +214,7 @@
 @media only screen and (max-width: 100rem) {
  
   .second-main-area{
-    padding-top: 6em;
+    padding-top: 3em;
   }
 }
 

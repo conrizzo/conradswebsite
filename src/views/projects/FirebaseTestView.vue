@@ -4,7 +4,7 @@
   <CookieAccept />
 
   <div style="background: rgb(255, 255, 255); padding-bottom: 2em; padding-top: 2.7em;">
-    <div style="justify-content: center;">
+    <div style="justify-content: center; padding-bottom: 2em;">
       <button v-if="isLoggedIn" class="button-35">
       <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
         Enter authorized user page
@@ -15,40 +15,34 @@
   <article class="top-text-container">
       <div class="top-text-sub-container">
 
-        <h1>Post messages and login! This is a fully 
-          functional login system I made which connects with: <a class="text-links" href="https://firebase.google.com/">https://firebase.google.com/</a>
-        </h1>      
-       
-        <p class="login-information">Login/sign out setup using BaaS (Back end as a
-          service) to post messages and do more!
-          
-          This has all been built from scratch to learn how to set up different aspects of this!
-          <br>
-          All of this works, anyone can make an account, and post a message!
-       
+        <h1 v-if="!isLoggedIn">Sign in here!</h1>      
+        <br>
+        <p class="login-information">
+          The sign in currently just allows message posting.
         </p>
 
       </div>
   </article>
   
  
-    <div style="color: #fff; border: 2px #000;" v-if="!isLoggedIn">
+    <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isLoggedIn">
       <!-- login -->
       <template v-if="showLogin">
         <!-- listen for event -->
         <LoginPage @loggedIn="handleLogin"  />
-        <p class="login-information" style="padding: 1em;">No account yet? <span class="login-sign-up" style="cursor: pointer;" @click="showLogin = false">Sign up</span></p>
+        <p class="login-information" style="padding: 1em;">No account yet? 
+        <span class="login-sign-up" @click="showLogin = false">Sign up</span></p>
       </template>
       <!-- or register -->
       <template v-else>
         <!-- listen for event -->
         <SignUpPage @loggedIn="handleLogin" />
-        <p>Already registered? <span class="login-sign-up" style="color:cursor: pointer;" @click="showLogin = true">Login</span></p>
+        <p class="login-information" style="padding: 1em;">Already registered? <span class="login-sign-up" style="color:cursor: pointer;" @click="showLogin = true">Login</span></p>
       </template>
     </div>
     <!-- is logged in -->
     <div v-else>
-      <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; font-weight: bold;">
+      <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; margin-top: 2em; font-weight: bold;">
         <span>Welcome, {{ displayName }}!<button class="button-35" style="float: inline-block; margin-left: 4em;" @click="handleLogout">Logout</button><br>
          <span style="font-size: 0.75em; color: #c4c4c4;">You are logged in.</span></span>
          
@@ -59,7 +53,8 @@
     <div style="padding-top: 2em;">
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
         <div style="color: #ff4a4a;"> {{ errorMessage }} </div>
-        <h2 style="color: #181818;">Submit Message! - must be logged in for it to work.</h2>
+        <h2 style="color: #181818;">Submit Message!</h2>
+        <h2 v-if="!isLoggedIn" style="color: rgb(255, 89, 89);">You are not logged in! must be logged in for it to work.</h2>
           
           <div style="max-width: 40em;">
             <div style="display: flex; flex-direction: column;">
@@ -287,6 +282,8 @@ export default {
 <style scoped>
 h1{
   color: rgb(18,18,18);
+  font-size: 3em; 
+  text-align: center;
 }
 
 h2{
@@ -336,7 +333,7 @@ input {
   border-radius: 0.25em;
   border-width: 1px;
   outline: none;
-  border: 1px solid #ff6b6b;
+  border: 1px solid rgb(218, 220, 224);
   padding: 0.25em;
 }
 
@@ -346,7 +343,7 @@ textarea {
   border-radius: 0.25em;
   border-width: 1px;
   outline: none;
-  border: 1px solid #ff6b6b;
+  border: 1px solid rgb(218, 220, 224);
   padding: 0.25em;
   
 }
@@ -369,9 +366,14 @@ button {
   border: 1px solid #fcfcfc;
 
 }
+.login-sign-up{
+  color: rgb(11, 87, 208);
+  cursor: pointer;  
+}
 
 .login-sign-up:hover{
   text-decoration: underline;
+  
 }
 
 input:focus {    
@@ -389,6 +391,7 @@ textarea:focus {
 
   .top-text-sub-container{
     max-width: none;
+    padding: 1em;
   }
 
 
