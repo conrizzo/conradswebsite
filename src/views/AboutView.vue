@@ -29,48 +29,49 @@
               </div>
 
         </div>
+        <div class="bullets-container">
+          <div class="bullets">                   
+            <ul>
+              <li>
+                This website is made by me (Conrad) using primarily
+                <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
+                    3</b></a>
+                (Vue.js) for its reactivity and interactivity.
+              </li>
 
-        <div class="bullets">                   
-          <ul>
-            <li>
-              This website is made by me (Conrad) using primarily
-              <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
-                  3</b></a>
-              (Vue.js) for its reactivity and interactivity.
-            </li>
+              <li>It has been an evolving project. It is hosted on
+                <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
+                  my GitHub</a> with
+                <a class="home-text-links" href="https://pages.github.com/">
+                  GitHub Pages</a>.
+              </li>
 
-            <li>This website has been an evolving project. It is hosted on
-              <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
-                my GitHub</a> with
-              <a class="home-text-links" href="https://pages.github.com/">
-                GitHub Pages</a>.
-            </li>
+              <li>Programming languages/frameworks I used to make this website include: Vue.js, JavaScript, TypeScript,
+                HTML, CSS, Rust into Web Assembly, and soon more projects in other languages such as Angular, Wordpress, Astro.
+              </li>
 
-            <li>Programming languages/frameworks I used to make this website include: Vue.js, JavaScript, TypeScript,
-              HTML, CSS, Rust into Web Assembly, and soon more projects in other languages such as Angular, Wordpress, Astro.
-            </li>
+              <li>I started learning about Vue.js when I worked on the Bioinformatics
+                Toolkit at <i>Max-Planck-Institut für Biologie</i> in Tübingen, Germany.
+              </li>                 
 
-            <li>I started learning about Vue.js when I worked on the Bioinformatics
-              Toolkit at <i>Max-Planck-Institut für Biologie</i> in Tübingen, Germany.
-            </li>                 
+              <li>I also started a <b><a class="home-text-links"
+                    href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>blog site</a></b> that
+                uses the <a class="home-text-links" href='https://astro.build/'>Astro</a> framework.
+              </li>
 
-            <li>I also started a <b><a class="home-text-links"
-                  href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>blog site</a></b> that
-              uses the <a class="home-text-links" href='https://astro.build/'>Astro</a> framework.
-            </li>
-
-            <li> 
-              The point has been to have fun and continue learning!
-            </li>
-          </ul>
-        </div>     
+              <li> 
+                The point has been to have fun and continue learning!
+              </li>
+            </ul>
+          </div>     
+        </div>
             <!--<span style="color: #a335ee;">Education:  -->
             <!--<li>I hold a degree in Computational Linguistics from the
               University of Tübingen in Germany,
               and previously completed a Bachelor of Science in Biology from the University of North Carolina at
               Wilmington, Wilmington, NC, USA.</li>
             <li>Have been working on this website using Vue.js, JavaScript,
-              TypeScript, CSS, HTML. Starting to
+              TypeScript, CSS, HTML. Starting torh2
               learn more about backend development and databases.
             </li>
             <li>
@@ -78,16 +79,26 @@
               well.
               Have practiced more German too, so it is <u>a lot</u> of language learning!
             </li> -->     
-      
-        <h2>More information about me</h2>    
+      <div class="more-information-about-me">
+        <h2><span class="bottom-border">More information about me</span></h2>    
         <p> 
           In 2022 I completed studies in <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> 
           at the University of Tübingen in Germany. Before this I obtained a biology degree in the USA. 
-          I am now keen on enhancing my programming language repertoire and advancing as a developer.
+          I am now keen on enhancing my programming language abilities and advancing as a developer.
           Motivated and curious, I seek challenges in front-end, back-end, full-stack, or potentially in machine learning and NLP. 
           I am excited about learning, and confident in problem-solving through code and research.
         </p>
-                     
+      </div>    
+      <div class="more-information-about-me" style="margin-top: 2em; background: rgb(239, 234, 229);">
+          <h2>Updates</h2>
+          <p>
+            I've been adding new components into this website and updating it - lots of refactoring and restructuring.
+            As one writes more code, abilities improve, and coming back to previously written code can be a good way to see
+            ones progression. There are always seemingly minor ways to improve code, ways to make it simpler and improve designs.
+            The restructuring has been ongoing, but final finished examples are coming together.
+          </p>
+
+      </div>          
         <figure class="figure-location">
           <img class="img-container" :src="imagePath" alt="Coding Languages used" />
           <figcaption class="figure-caption">Here is an approximation of the languages this website uses. It's mostly
@@ -151,7 +162,7 @@
                   <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
               </div>
         </div>        
-
+<div class="bullets-container">
         <div class="bullets">      
           <ul>
             <li>Diese Website wurde von mir (Conrad) selbst erstellt, hauptsächlich mit
@@ -160,7 +171,7 @@
               (Vue.js) für seine Reaktivität und Interaktivität.
             </li>
 
-            <li>Diese Website war ein sich entwickelndes Projekt. Sie wird auf
+            <li>Es handelt sich um ein sich entwickelndes Projekt. Sie wird auf
               <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                 meinem GitHub</a> mit
               <a class="home-text-links" href="https://pages.github.com/">
@@ -188,8 +199,10 @@
             </li>          
           </ul>
         </div>
+      </div>
 
-        <h2>Mehr Informationen über mich</h2>    
+      <div class="more-information-about-me">
+        <h2><span class="bottom-border"></span>Mehr Informationen über mich</h2>    
         <p> 
           Im Jahr 2022 habe ich mein Studium der <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computerlinguistik</a> 
           
@@ -201,7 +214,7 @@
 
           Ich freue mich darauf, Neues zu lernen, und bin zuversichtlich, Probleme mithilfe von Code und Forschung zu lösen.
         </p>
-   
+      </div>
        
   <figure class="figure-location">
     <img class="img-container" :src="imagePath" alt="Coding Languages used" />
@@ -325,15 +338,17 @@ h1 {
 h2 {
   text-align: left;
   color: #2c2c2c;
-
-  border-bottom: 1px solid rgb(18,18,18);
-  
+  padding-left: 1.2em; 
+}
+.bottom-border{
+ 
 }
 
 h3 {
   margin-top: 4.5em;
   color: #c7c7c7;
 }
+
 
 /* start arrow area */
 .language-container{
@@ -421,10 +436,26 @@ h3 {
   box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;  
 }
 
+.bullets-container{ 
+  border-radius: 1.25em;
+  background: rgb(239, 236, 229);
+  padding: 0.5em;
+  margin: 0.5em;
+}
 .bullets{  
   margin-left: 1.8rem;
   padding-right: 0.425em;
   font-size: 1.2rem;  
+  
+}
+
+.more-information-about-me{
+  border-radius: 1.25em;
+  background: rgb(227, 237, 247);
+  
+  margin: 0.5em;
+  margin-top: 2em;
+  padding-top: 0.5em;
 }
 
 li::marker {
@@ -435,6 +466,9 @@ li::marker {
 li {
   color: #2c2c2c;   
   padding-bottom: 0.5rem;  
+}
+li:last-child {
+  padding-bottom: 0;
 }
 /*
 li::before{
@@ -546,10 +580,6 @@ figure {
 
   h1 {
     padding-left: 0.7em;
-  }
-
-  h2 {
-    padding-left: 1.2em;
   }
 
   h3 {

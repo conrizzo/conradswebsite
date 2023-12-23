@@ -4,7 +4,7 @@
         <div class="image-gallery">     
         
             <div class="gallery-header">
-                <h1 class="gallery-styling-h1-span">The best stuff is here</h1>
+                <h1 class="gallery-styling-h1-span">Good choices</h1>
             </div>
 
         <div class="image-gallery-grid-container">

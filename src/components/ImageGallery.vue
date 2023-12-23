@@ -1,5 +1,6 @@
 <template>
-  
+  <div style="background: rgb(255, 255, 255);   justify-content: center;
+        display: flex;    ">
   <div class="image-gallery">
     <!-- 
         This is an education thing to write about the h1 tag directly below this! 
@@ -17,6 +18,7 @@
     </div>
     <div class="gallery-button-right" @click="changeImageArray('right')">></div>
   </div>
+</div>
 </template>
 
 <script>
