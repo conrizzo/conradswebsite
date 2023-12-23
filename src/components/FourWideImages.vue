@@ -1,6 +1,6 @@
 <template>
   
-    <div class="centerAll">
+  <div class="centerAll hidden" ref="content" :class="{ 'show': isContentVisible }">
         <div class="image-gallery">     
         
             <div class="gallery-header">
@@ -34,6 +34,7 @@
         const coffeeFood = require('@/images/coffee_food.jpg');
         const diffusionBird = require('@/images/diffBird.jpg');
       return {       
+        isContentVisible: false,
         imageArrayChoice: null,
         imgArrayOfArrays: [
             [
@@ -52,9 +53,35 @@
     mounted() {
       // Set the initioanl image array to the galleryItems array
       this.imageArrayChoice = this.imgArrayOfArrays[0]
+
+          //#####
+        const options = {
+          root: null, // Use the viewport as the root
+          rootMargin: '0px', // No margin applied to the root
+          threshold: 0.5, // Trigger when 50% of the element is visible
+        };
+        // Intersection Observer API -- this is used to load the handleIntersection method which
+        // loads items on the screen as they are scrolled to with a transition effect.
+        const observer = new IntersectionObserver(this.handleIntersection, options);
+
+        observer.observe(this.$refs.content);
+   
      
     },
     methods: {
+      handleIntersection(entries) {
+      entries.forEach(entry => {
+        console.log(entry);
+        if (entry.isIntersecting) {
+          if (entry.target === this.$refs.content) {
+            // Load content for first element
+            this.isContentVisible = true;
+          } 
+
+        }
+      });
+    },
+      
       
     },
     // Component logic goes here
@@ -62,6 +89,14 @@
   </script>
     
   <style scoped>
+    .hidden {
+      opacity: 0;
+      transition: all 2s;
+    }
+    .show {
+      opacity: 1;
+    }
+
   h1{
     font-size: 1.5em;     
   }

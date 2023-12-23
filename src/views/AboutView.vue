@@ -83,13 +83,15 @@
         <h2><span class="bottom-border">More information about me</span></h2>    
         <p> 
           In 2022 I completed studies in <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> 
-          at the University of Tübingen in Germany. Before this I obtained a biology degree in the USA. 
-          I am now keen on enhancing my programming language abilities and advancing as a developer.
-          Motivated and curious, I seek challenges in front-end, back-end, full-stack, or potentially in machine learning and NLP. 
-          I am excited about learning, and confident in problem-solving through code and research.
+          at the University of Tübingen in Germany. I take great pride in completing a German university degree.
+          The combination of computer science, statistics, linguistics, parsing/decision trees, logic, math, and machine learning
+          this subject encompassed made it challenging. Before this I obtained a Biology degree in the USA. 
+          I am now keen on enhancing my programming abilities and advancing as a developer.
+          Motivated and curious, I seek challenges in front-end, back-end, full-stack, or potentially in machine learning and NLP.  
+          I look forward to any new opportunity, am excited about learning, and confident in my ability to do problem-solving through code and research.
         </p>
       </div>    
-      <div class="more-information-about-me" style="margin-top: 2em; background: rgb(239, 234, 229);">
+      <div class="more-information-about-me" >
           <h2>Updates</h2>
           <p>
             I've been adding new components into this website and updating it - lots of refactoring and restructuring.
@@ -204,15 +206,12 @@
       <div class="more-information-about-me">
         <h2><span class="bottom-border"></span>Mehr Informationen über mich</h2>    
         <p> 
-          Im Jahr 2022 habe ich mein Studium der <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computerlinguistik</a> 
-          
-          an der Universität Tübingen in Deutschland abgeschlossen. Davor habe ich einen Abschluss in Biologie in den USA erworben.
-
-          Ich bin jetzt daran interessiert, meine Programmiersprachenkenntnisse zu erweitern und mich als Entwickler weiterzuentwickeln.
-
-          Motiviert und neugierig suche ich nach Herausforderungen im Bereich Front-End, Back-End, Full-Stack oder möglicherweise auch im Bereich des "machine learning" und der natürlichen natural language processing (NLP).
-
-          Ich freue mich darauf, Neues zu lernen, und bin zuversichtlich, Probleme mithilfe von Code und Forschung zu lösen.
+          Im Jahr 2022 habe ich mein Studium der <a class="home-text-links" href="https://de.wikipedia.org/wiki/Computerlinguistik\">Computerlinguistik</a> an der Universität Tübingen in Deutschland abgeschlossen. 
+          Ich bin sehr stolz darauf, einen deutschen Universitätsabschluss erreicht zu haben. 
+          Die Kombination aus Informatik, Statistik, Linguistik, Parsing/Entscheidungsbäumen, Logik, Mathematik und machine learning, die dieses Fach umfasste, machte es anspruchsvoll. 
+          Zuvor habe ich einen Abschluss in Biologie in den USA erworben. Ich bin nun darauf aus, meine Programmierkenntnisse zu verbessern und mich als Entwickler weiterzuentwickeln. 
+          Motiviert und neugierig strebe ich nach Herausforderungen im Bereich Frontend, Backend, Full-Stack oder möglicherweise im maschinellen Lernen und in der natürlichen Sprachverarbeitung (NLP). 
+          Ich freue mich auf jede neue Gelegenheit, bin begeistert vom Lernen und zuversichtlich in meiner Fähigkeit, Problemlösungen durch Code und Forschung zu finden.
         </p>
       </div>
        
@@ -449,10 +448,24 @@ h3 {
   
 }
 
-.more-information-about-me{
-  border-radius: 1.25em;
-  background: rgb(227, 237, 247);
+
+
+
+
+.more-information-about-me:nth-child(even) {
+  margin-top: 2em; 
+  background: rgb(239, 234, 229);
+  border-radius: 1.25em;  
+  margin: 0.5em;
+  margin-top: 2em;
+  padding-top: 0.5em;
+}
+
+.more-information-about-me:nth-child(odd) {
+  margin-top: 2em; 
   
+  border-radius: 1.25em;
+  background: rgb(222, 241, 255);
   margin: 0.5em;
   margin-top: 2em;
   padding-top: 0.5em;
@@ -460,7 +473,6 @@ h3 {
 
 li::marker {
   color: rgb(255, 89, 89);
-
 }
 
 li {

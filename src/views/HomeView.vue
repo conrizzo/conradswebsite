@@ -1,4 +1,7 @@
 <template>
+ 
+    
+  
   <div id="body">
     <!-- negative margin here to fill in space in nav on home page -->
     <!-- Main area -->
@@ -100,7 +103,7 @@
         </template>
       </AsideContent>
       <div>
-      <FourWideImages></FourWideImages>
+        <FourWideImages></FourWideImages>
       </div>
 
       <div style="background: #fff;">
@@ -232,6 +235,7 @@ export default {
       // Intersection Observer to show items when they are scrolled to
       isContentVisible: false,
       isContentVisible2: false,
+      isContentVisible3: false,
 
       //########## This logic only does cloud animations - not used anymore.
       moveTheClouds: false,
@@ -267,7 +271,11 @@ export default {
           } else if (entry.target === this.$refs.content2) {
             // Load content for second element
             this.isContentVisible2 = true;
+          }else if (entry.target === this.$refs.content3) {
+            // Load content for second element
+            this.isContentVisible3 = true;
           }
+
         }
       });
     },
@@ -402,6 +410,7 @@ export default {
     const observer = new IntersectionObserver(this.handleIntersection, options);
 
     observer.observe(this.$refs.content2);
+   
     //#####
 
   },
@@ -427,10 +436,11 @@ export default {
 
   background: -webkit-linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background: linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-    */
+   
 
   background: linear-gradient(180deg, rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8),
       15%, rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255, 0.8) 90%);
+       */
   background-size: 100% 100%;
   background-attachment: fixed;
 }
@@ -509,10 +519,11 @@ export default {
   justify-content: center;   
   margin-top: 3em;
   margin-bottom: 3em;  
+  
 }
 
 .main-area-box{
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 10%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 10%,rgba(255, 255, 255, 0), 50%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
   border-radius: 1em;
   width: 70%; 
 }
