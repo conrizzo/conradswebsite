@@ -5,8 +5,8 @@
   <div id="body">
     <!-- negative margin here to fill in space in nav on home page -->
     <!-- Main area -->
-    <main class="main-content custom-background-home-page">
-      <div>
+    <main class="main-content">
+      <div class="custom-background-home-page">
         <!-- generate clouds -->
         <!--
         <button class="button-35 hide-button-low-resolution"
@@ -447,8 +447,7 @@ export default {
 
 .custom-background-home-page {
 
-  background: linear-gradient(0deg, rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8),
-      15%, rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255, 0.8) 90%);
+  background: linear-gradient(180deg, rgb(93, 112, 255),rgb(93, 211, 255));
 
   /*
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
@@ -523,7 +522,10 @@ export default {
 }
 
 .main-area-box{
+  background: rgba(0, 0, 0, 0.1);
+  /* 
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 10%,rgba(255, 255, 255, 0), 50%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
+  */
   border-radius: 1em;
   width: 70%; 
 }
@@ -551,7 +553,7 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(18, 18, 18, 0.2);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 1em;
   display: inline-block;
   width: 24em;
@@ -573,7 +575,7 @@ export default {
   font-size: 2.1em;
   padding: 0.5em;
   border-radius: 0.5em;
-  background: rgba(18, 18, 18, 0.2);
+  background: rgba(0, 0, 0, 0.1);
   /* border: 1px solid rgb(229, 229, 229);  */
 }
 
