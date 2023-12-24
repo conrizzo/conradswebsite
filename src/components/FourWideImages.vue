@@ -1,22 +1,20 @@
 <template>
   
   <div class="centerAll hidden" ref="content" :class="{ 'show': isContentVisible }">
-        <div class="image-gallery">     
-        
+        <div class="image-gallery">            
             <div class="gallery-header">
                 <h1 class="gallery-styling-h1-span">Good choices</h1>
             </div>
-
-        <div class="image-gallery-grid-container">
-            
-            <div v-for="item in imageArrayChoice" :key="item.id" :title="item.id" class="grid-item">
-                <div>
-                <h2>{{item.altText}}</h2>
-                <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
-                <figcaption>{{ item.caption }}</figcaption>
+            <div class="image-gallery-grid-container">
+                
+                <div v-for="item in imageArrayChoice" :key="item.id" :title="item.id" class="grid-item">
+                    <div>
+                    <h2>{{item.altText}}</h2>
+                    <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
+                    <figcaption>{{ item.caption }}</figcaption>
+                    </div>
                 </div>
             </div>
-         </div>
        </div>
     </div>
   </template>
@@ -136,7 +134,7 @@
   .image-gallery-grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-gap: 1em;
     
     margin-bottom: 1em;
@@ -164,25 +162,17 @@
   }
   
   
-  @media (max-width: 79rem) {
+ 
   
-    .gallery-button-left,
-    .gallery-button-right {
-      display: none;
-    }
+  @media (max-width: 70rem) {
   
-  }
-  
-  @media (max-width: 79rem) {
-  
+    
     .image-gallery-grid-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
-  
-    .gallery-component-image {
-      background-color: #ffffff;
-    }
+   
+   
   
     
   
@@ -190,23 +180,24 @@
   
   @media (max-width: 53rem) {
   
-    .image-gallery-grid-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
+    
   }
   
   @media (max-width: 35rem) {
   
     .image-gallery-grid-container {
+      /*
       display: grid;
       grid-template-columns: repeat(1, 1fr);
-  
+      */      
+    }
+    .gallery-component-image{
+      width: 100%;
     }
   
     .grid-item {
       width: fit-content;
+      
     }
   
     

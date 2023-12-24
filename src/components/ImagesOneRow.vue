@@ -149,7 +149,7 @@
     margin: 0 auto;
     position: relative;
     background: rgb(255, 255, 255);
-    padding: 1em;
+    padding: 0em;
     
    
   }
@@ -185,7 +185,7 @@
   }
   
   
-  @media (max-width: 80rem) {
+  @media (max-width: 76rem) {
   
     .gallery-button-left,
     .gallery-button-right {
@@ -193,26 +193,15 @@
     }
   
   }
-  
-  @media (max-width: 80rem) {
-  
-   
-  
-    .gallery-component-image {
-      background-color: #ffffff;
-    }
-  
-    
-  
-  }
-  
-  @media (max-width: 65rem) {
+ 
+  @media (max-width: 71rem) {
    
   
     .image-gallery{
         max-height: 25em; /* Adjust the maximum height as needed */
         overflow-x: auto;
-        overflow-y: none;  
+        overflow-y: none; 
+        padding-left: 1em;
            
     }
     .image-gallery-grid-container {

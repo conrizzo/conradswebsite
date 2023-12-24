@@ -522,7 +522,7 @@ export default {
 }
 
 .main-area-box{
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.02);
   /* 
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 10%,rgba(255, 255, 255, 0), 50%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
   */
