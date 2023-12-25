@@ -297,7 +297,7 @@ export default {
 
 .coffee-data-background{
   padding-top: 3em;   
-  background: linear-gradient(to top left, rgb(38, 61, 80) 30%, rgb(95, 120, 130) 80%,rgb(35, 84, 125) 100% ); 
+  background: rgb(65, 77, 99);
   padding-bottom: 1em;
 }
 

@@ -56,7 +56,7 @@
         const options = {
           root: null, // Use the viewport as the root
           rootMargin: '0px', // No margin applied to the root
-          threshold: 0.5, // Trigger when 50% of the element is visible
+          threshold: 0.8, // Trigger when 50% of the element is visible
         };
         // Intersection Observer API -- this is used to load the handleIntersection method which
         // loads items on the screen as they are scrolled to with a transition effect.

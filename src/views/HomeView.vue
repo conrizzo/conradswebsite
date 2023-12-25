@@ -721,16 +721,7 @@ export default {
 
 
 
-.loading {
-  font-family: sans-serif;
-  font-size: 1.25em;
-}
 
-.loading:after {
-  display: inline-block;
-  animation: dotty 3s steps(1, end) infinite;
-  content: '';
-}
 
 .image-gallery-aside {
   list-style-type: none;
@@ -754,31 +745,7 @@ ul.gallery-list-home {
 
 
 
-@keyframes dotty {
-  0% {
-    content: '.';
-  }
 
-  20% {
-    content: '.';
-  }
-
-  40% {
-    content: '..';
-  }
-
-  60% {
-    content: '...';
-  }
-
-  80% {
-    content: '....';
-  }
-
-  100% {
-    content: '.';
-  }
-}
 
 /* Make some happy clouds
 - these are old designs, but I removed them for now to make site look more professional and formal. */

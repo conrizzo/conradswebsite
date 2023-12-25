@@ -72,7 +72,7 @@
             this.isContentVisible = true;
          
             }else if (entry.target === this.$refs.content_text) {
-              this.options.threshold = 0.5;
+              this.options.threshold = 0.8;
               this.isTextVisible = true;
             }
         }
@@ -87,6 +87,43 @@
 
 
 <style scoped>
+
+.loading {
+  font-family: sans-serif;
+  font-size: 1.25em;
+}
+
+.loading:after {
+  display: inline-block;
+  animation: dotty 3s steps(1, end) infinite;
+  content: '';
+}
+
+@keyframes dotty {
+  0% {
+    content: '.';
+  }
+
+  20% {
+    content: '.';
+  }
+
+  40% {
+    content: '..';
+  }
+
+  60% {
+    content: '...';
+  }
+
+  80% {
+    content: '....';
+  }
+
+  100% {
+    content: '.';
+  }
+}
 
 /* CSS for the home page */
 .hidden {
