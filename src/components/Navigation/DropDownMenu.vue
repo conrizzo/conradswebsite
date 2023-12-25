@@ -78,7 +78,7 @@ export default {
 .dropdown-content {    
     display: none; /* this removes it when not over it */
     position: absolute;
-    margin-left: -2.4em;
+    margin-left: -3.5em;
     text-align: left;
     padding:0.15em;    
     width: 10.4em;

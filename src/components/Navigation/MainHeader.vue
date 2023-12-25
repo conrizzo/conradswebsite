@@ -29,7 +29,7 @@
       </div>
       
       <div style="display: flex; align-items: center;">
-        <router-link class="hide-sign-in-text-at-low-res" to="projects/firebasetest" style="border-right: 1px solid rgb(218, 220, 224); margin-right: 0.5em; padding-right: 0.4em;font-size: 1em; padding-left: 0.5em;">Sign In</router-link>
+        <router-link class="hide-sign-in-text-at-low-res" to="projects/firebasetest">Sign In</router-link>
           <div style=" box-sizing: border-box; padding-left: 0.25em; ">
           <div class="header-logo-container">
             <a class="github-logo-link" href="https://github.com/conrizzo/conradswebsite">
@@ -41,7 +41,7 @@
             </a>          
           </div>
           <a class="text-under-github-logo" href="https://github.com/conrizzo/conradswebsite">
-              <span style="font-size: 0.5em; padding-right: 0.4em; ">This websites code</span>
+              <span style="font-size: 0.5em; margin-right: 1em; margin-left: -1em; ">This websites code</span>
           </a>
         </div>
       </div>
@@ -158,6 +158,10 @@ export default {
     .header-logo-container {
       margin-top: 0.25em;
 
+    }
+
+    .hide-sign-in-text-at-low-res{
+      border-right: 1px solid rgb(218, 220, 224); margin-right: 0.5em; padding-right: 0.4em;font-size: 1em; padding-left: 0.5em;
     }
 
     @media (max-width: 34rem) {

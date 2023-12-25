@@ -129,7 +129,7 @@
       
 
       <div class="third-main-area">
-        <div class="hidden" ref="content2" :class="{ 'show': isContentVisible2 }">
+       
           <!-- div to show/hide items within on scroll -->
           <div class="third-area-grid-container">
              <div class="grid-section-3-first-column">
@@ -137,7 +137,7 @@
              <div class="grid-section-3-second-column">
 
              </div>
-          </div>
+         
         </div>
       </div>
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
@@ -233,9 +233,7 @@ export default {
       //conradImage: require("@/images/conrad.jpg"), 
 
       // Intersection Observer to show items when they are scrolled to
-      isContentVisible: false,
-      isContentVisible2: false,
-      isContentVisible3: false,
+     
 
       //########## This logic only does cloud animations - not used anymore.
       moveTheClouds: false,
@@ -261,24 +259,7 @@ export default {
     },
   },
   methods: {
-    handleIntersection(entries) {
-      entries.forEach(entry => {
-        console.log(entry);
-        if (entry.isIntersecting) {
-          if (entry.target === this.$refs.content) {
-            // Load content for first element
-            this.isContentVisible = true;
-          } else if (entry.target === this.$refs.content2) {
-            // Load content for second element
-            this.isContentVisible2 = true;
-          }else if (entry.target === this.$refs.content3) {
-            // Load content for second element
-            this.isContentVisible3 = true;
-          }
-
-        }
-      });
-    },
+    
 
 
     showImage(item) {
@@ -399,17 +380,7 @@ export default {
     Prism.highlightAll();
     this.addLettersIntoInput();
 
-    //#####
-    const options = {
-      root: null, // Use the viewport as the root
-      rootMargin: '0px', // No margin applied to the root
-      threshold: 0.5, // Trigger when 50% of the element is visible
-    };
-    // Intersection Observer API -- this is used to load the handleIntersection method which
-    // loads items on the screen as they are scrolled to with a transition effect.
-    const observer = new IntersectionObserver(this.handleIntersection, options);
-
-    observer.observe(this.$refs.content2);
+    
    
     //#####
 
@@ -446,9 +417,15 @@ export default {
 }
 
 .custom-background-home-page {
-
+  /*
   background: linear-gradient(180deg, rgb(93, 112, 255),rgb(93, 211, 255));
+*/
 
+ background-image: url('../images/blue_sky2.jpg');
+
+ background-color: rgba(0, 0, 0, 0.1);
+ background-blend-mode: multiply;
+ background-attachment: fixed;
   /*
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
@@ -522,7 +499,7 @@ export default {
 }
 
 .main-area-box{
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.05);
   /* 
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 10%,rgba(255, 255, 255, 0), 50%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
   */
@@ -553,7 +530,7 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.33);
   border-radius: 1em;
   display: inline-block;
   width: 24em;
@@ -575,7 +552,7 @@ export default {
   font-size: 2.1em;
   padding: 0.5em;
   border-radius: 0.5em;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.33);
   /* border: 1px solid rgb(229, 229, 229);  */
 }
 
@@ -877,8 +854,10 @@ ul.gallery-list-home {
 }
 
 @media only screen and (max-width: 50rem) {
-  .title {
-    margin-bottom: 5rem;
+  .title {    
+    margin: 0.5em;
+    font-size: 2.5em;
+    margin-bottom: 2em;
   }
 
   .top-string-slice-of-title {

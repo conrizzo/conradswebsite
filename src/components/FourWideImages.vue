@@ -3,7 +3,7 @@
   <div class="centerAll hidden" ref="content" :class="{ 'show': isContentVisible }">
         <div class="image-gallery">            
             <div class="gallery-header">
-                <h1 class="gallery-styling-h1-span">Good choices</h1>
+                <h1 class="gallery-styling-h1-span">things to do</h1>
             </div>
             <div class="image-gallery-grid-container">
                 
@@ -36,10 +36,10 @@
         imageArrayChoice: null,
         imgArrayOfArrays: [
             [
-              { id: 1, imageSrc: coffeeFood, altText: "Good Food!", caption: "Food!" },
+              { id: 1, imageSrc: coffeeFood, altText: "Good Food", caption: "Food!" },
               { id: 2, imageSrc: coffeeImage, altText: "Coffee", caption: "Coffee!" },
-              { id: 3, imageSrc: diffusionBird, altText: "Bird", caption: "A bird!" },
-              { id: 4, imageSrc: coffeeImage, altText: "Tischtennis", caption: "Coffee!" },
+              { id: 3, imageSrc: diffusionBird, altText: "Bird Watching", caption: "A bird!" },
+              { id: 4, imageSrc: coffeeImage, altText: "Tischtennis", caption: "..while drinking coffee!" },
               
               // Add more items as needed :)
             ],
@@ -100,12 +100,16 @@
   }
 
   h2{
+    color: rgb(255, 255, 255);
     text-align: left;
     padding-left: 0.33em;
     font-size: 1em;
+    text-transform: uppercase;
   }
   .gallery-styling-h1-span{
     text-align: left;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
   }
 
   .gallery-header {
@@ -116,8 +120,8 @@
     .centerAll{
         justify-content: center;
         display: flex;    
-        padding-bottom: 1em;
-       
+        margin-bottom: 2em;
+        height: fit-content;
     }
   
   
@@ -137,13 +141,15 @@
     grid-template-rows: repeat(1, 1fr);
     grid-gap: 1em;
     
-    margin-bottom: 1em;
+    
   }
   
-  .grid-item {
-    
+  .grid-item {    
     width: fit-content;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgb(255, 89, 89);
+    border-top-right-radius: 0.33em;
+    border-top-left-radius: 0.33em;
+    border-radius: 0.33em;
   }
   
   .grid-item:hover { 
@@ -214,6 +220,7 @@
     font-size: 0.8em;
     font-weight: bold;
     color: rgb(18, 18, 18);
+    font-family: Arial, sans-serif;
   
   }
   </style>
