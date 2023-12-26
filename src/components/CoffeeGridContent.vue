@@ -1,56 +1,60 @@
 <template>
-  
-     <div class="second-main-area">     
-      
-        <div class="hidden" ref="content" :class="{ 'show': isContentVisible }"> <!-- div to show/hide items within on scroll --> 
-          
-          <div class="second-area-grid-container">       
-           
-            <div class="grid-item-coffee">       
-             
-                <img  class="coffee-image" :src="coffee_image" alt="Image">                
-            </div>   
-            <!--        
+  <div class="second-main-area">
+
+    <div class="hidden" ref="content" :class="{ 'show': isContentVisible }">
+      <!-- div to show/hide items within on scroll -->
+
+      <div class="second-area-grid-container">
+
+        <div class="grid-item-coffee">
+
+          <img class="coffee-image" :src="coffee_image" alt="Image">
+        </div>
+        <!--        
             <a href="https://de.wikipedia.org/wiki/Kaffee" class="grid-item-second-second">Kaffee</a>   
             <div class="grid-item-second-first"> Coffee</div>
             <a href="https://fr.wikipedia.org/wiki/Caf%C3%A9" class="grid-item-second-third">Café</a>  
-            -->    
-            <div class="grid-item-coffee-text">
-              <div class="hidden" ref="content_text" :class="{ 'show': isContentVisible }">
-                <h2>How was this website made?</h2> 
-              <p>             
-                <span style="border-bottom: 3px solid rgb(255, 255, 255);">Enthusiasm</span> and <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>.
-                <br><br>
-                Foods that helped also include fresh bread, croissants, donuts, cake, bagels, muffins,
-                buttermilk biscuits, toast (w/butter+cinnamon), pancakes or waffles (w/butter+<a style="color: rgb(216, 88, 14);" class="text-links" href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>), 
-                granola bars, apple pie, chocolate<span class="loading"></span>
-              </p>    
-              
-             </div>          
-            </div>
-                       
-          </div>      
-        </div>    
+            -->
+        <div class="grid-item-coffee-text">
+          <div class="hidden" ref="content_text" :class="{ 'show': isContentVisible }">
+            <h2>How was this website made?</h2>
+            <p>
+              1. <span style="border-bottom: 3px solid rgb(255, 255, 255);">Enthusiasm</span>
+              <br>2. <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
+              <br>3. A renewed interest to learn and develop on the web. 
+              <br><br>
+               Foods that helped include fresh bread, croissants, cake, bagels, muffins,
+              toast (w/butter+cinnamon), pancakes or waffles (w/butter+
+              <a style="color: rgb(216, 88, 14);" class="text-links"
+                href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>),
+               chocolate<span class="loading"></span>
+            </p>
+
+          </div>
+        </div>
 
       </div>
-  </template>
-  
-  <script>
- import coffee_image from '@/images/coffee_time.jpg';
+    </div>
 
-  export default {
-    name: 'CoffeeGridContent',
-    // Component logic goes here
-    data() {
-   
-      return {
-        coffee_image: coffee_image,
-        isContentVisible: false,
-        isTextVisible: false,
-      };
-    },
-    mounted() {
-      //#####
+  </div>
+</template>
+  
+<script>
+import coffee_image from '@/images/coffee_time.jpg';
+
+export default {
+  name: 'CoffeeGridContent',
+  // Component logic goes here
+  data() {
+
+    return {
+      coffee_image: coffee_image,
+      isContentVisible: false,
+      isTextVisible: false,
+    };
+  },
+  mounted() {
+    //#####
     const options = {
       root: null, // Use the viewport as the root
       rootMargin: '0px', // No margin applied to the root
@@ -60,34 +64,33 @@
     // loads items on the screen as they are scrolled to with a transition effect.
     const observer = new IntersectionObserver(this.handleIntersection, options);
     observer.observe(this.$refs.content);
-    
-    },
-    methods: {
+
+  },
+  methods: {
     handleIntersection(entries) {
       entries.forEach(entry => {
         console.log(entry);
-        if (entry.isIntersecting) {          
-            if (entry.target === this.$refs.content) {
+        if (entry.isIntersecting) {
+          if (entry.target === this.$refs.content) {
             // Load content for first element
             this.isContentVisible = true;
-         
-            }else if (entry.target === this.$refs.content_text) {
-              this.options.threshold = 0.8;
-              this.isTextVisible = true;
-            }
+
+          } else if (entry.target === this.$refs.content_text) {
+            this.options.threshold = 0.8;
+            this.isTextVisible = true;
+          }
         }
       });
-      },
     },
-  }
-  </script>
+  },
+}
+</script>
   
 
 
 
 
 <style scoped>
-
 .loading {
   font-family: sans-serif;
   font-size: 1.25em;
@@ -130,31 +133,35 @@
   opacity: 0;
   transition: all 2s;
 }
+
 .show {
   opacity: 1;
 }
-h1{
-  font-size: 3em;  
+
+h1 {
+  font-size: 3em;
   padding: 1em;
 }
-h2{
-  font-size: 2em;  
+
+h2 {
+  font-size: 1.6em;
   padding: 0em 0em 1em 0em;
- 
+
   line-height: 1.1em;
 }
-.second-main-area {
- /* background: linear-gradient(0deg, rgb(49, 21, 32), 10%, rgba(161, 71, 78, 0.9), 30%,  
- rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5)80%, rgb(139, 114, 188) 100%); */
- background: rgb(18, 18, 18);
 
- height: 100svh;
- color: #fff;
- display: flex;
- justify-content: center;
- align-items: center;
- 
- 
+.second-main-area {
+  /* background: linear-gradient(0deg, rgb(49, 21, 32), 10%, rgba(161, 71, 78, 0.9), 30%,  
+ rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5)80%, rgb(139, 114, 188) 100%); */
+  background: rgb(18, 18, 18);
+
+  height: 100svh;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
 }
 
 /*
@@ -169,12 +176,13 @@ h2{
 .home-text-links {
   color: rgb(255, 255, 255);
   font-weight: 500;
-  border-bottom: 3px solid rgb(255, 89, 89);  
+  border-bottom: 3px solid rgb(255, 89, 89);
   text-decoration: none;
   /*padding: 0.1em 0.2em;  */
-  
+
   /*  transition: 0.33s ease-in-out; Add transition for smooth animation */
 }
+
 .home-text-links:hover {
   border-bottom: 3px solid rgb(0, 255, 170);
   color: rgb(255, 255, 255);
@@ -187,191 +195,158 @@ h2{
 
 
 /* 2nd page grid */
-.second-area-grid-container{ 
+.second-area-grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-gap: 2em; /* Adjust the gap between grid items as needed */   
- 
+  grid-gap: 2em;
+  /* Adjust the gap between grid items as needed */
+
 }
-.grid-item-second-first{  
+
+.grid-item-second-first {
   grid-column: 2 / 3;
-  grid-row: 1 / 1;      
-  border-radius: 0.3em 0.3em 0.3em 0.3em;  
-  
-  padding: 0.25em;  
+  grid-row: 1 / 1;
+  border-radius: 0.3em 0.3em 0.3em 0.3em;
+
+  padding: 0.25em;
   margin-top: 3em;
-  max-height: 1.5em;  
-  font-size: 1.3em;  
-  
+  max-height: 1.5em;
+  font-size: 1.3em;
+
   color: #ffffff;
-  border: 3px rgb(0, 255, 166) solid;  
+  border: 3px rgb(0, 255, 166) solid;
   text-align: center;
   transition: 0.3s ease-in-out;
   cursor: pointer;
-}.grid-item-second-first:hover{ 
+}
+
+.grid-item-second-first:hover {
   color: #000000;
   background: #ffffff;
 }
 
-.grid-item-coffee{
+.grid-item-coffee {
   grid-column: 1 / 3;
-  grid-row: 1 / 3;    
+  grid-row: 1 / 3;
   color: #000000;
-  max-height: 4em;   
+  max-height: 4em;
   cursor: pointer;
 }
-.grid-item-second-second{  
+
+.grid-item-second-second {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   border: 3px rgb(0, 242, 255) solid;
   background: #121212;
- 
+
   color: #ffffff;
   border-radius: 0.2em;
-  padding: 0.25em;  
-  max-height: 1.5em;  
-  font-size: 1.3em;  
+  padding: 0.25em;
+  max-height: 1.5em;
+  font-size: 1.3em;
   text-decoration: none;
   transition: 0.3s ease-in-out;
-}.grid-item-second-second:hover{  
+}
+
+.grid-item-second-second:hover {
   color: #000000;
   background: #ffffff;
 }
 
 
-.grid-item-coffee-text{  
+.grid-item-coffee-text {
   grid-column: 3 / 3;
-  grid-row: 1 / -1;  
+  grid-row: 1 / -1;
   color: #ffffff;
-  
-  
-  padding: 0.5em;  
-  font-size: 1.5em;  
-  text-align: left; 
+
+
+  padding: 0.5em;
+  font-size: 1.5em;
+  text-align: left;
 }
-.grid-item-second-third{  
+
+.grid-item-second-third {
   grid-column: 2 / 3;
-  grid-row: 2 / 3;    
+  grid-row: 2 / 3;
   border: 3px rgb(255, 65, 65) solid;
   border-radius: 0.2em;
 
-  padding: 0.25em;  
+  padding: 0.25em;
   margin-top: 6em;
-  max-height: 1.5em;  
-  
-  font-size: 1.3em;   
+  max-height: 1.5em;
+
+  font-size: 1.3em;
   color: #fff;
-  
+
   text-decoration: none;
   transition: 0.3s ease-in-out;
-}.grid-item-second-third:hover{  
+}
+
+.grid-item-second-third:hover {
   color: #000000;
   background: #ffffff;
 }
 
-
-
-
-@media only screen and (max-width: 100rem) {
- 
-  .second-main-area{
-    
-  }
+.coffee-image {
+  border-radius: 1em;
 }
+
 
 @media only screen and (max-width: 50rem) {
 
   .second-main-area {
     padding-top: 0em;
-   
   }
-  h1{
-  padding-top: 3em;
-  font-size: 2em;    
 
+  h1 {
+    padding-top: 3em;
+    font-size: 2em;
   }
- 
-  
 
-    /* Stack the grid items on top of each other vertically */
+  /* Stack the grid items on top of each other vertically */
   .grid-item-second-first,
   .grid-item-second-second,
-  .grid-item-second-third, .grid-item-coffee-text {
-      grid-template-columns: repeat(1);
-      grid-template-rows: repeat(1);
-      grid-column: 1;     
-      
-  }
-  .second-area-grid-container {
-      grid-template-columns: 1fr; /* Change to a single column */
-      grid-template-rows: auto; /* Allow rows to adjust automatically */
-      grid-gap: 1em; /* Adjust the gap between grid items as needed */
-    }
-
-  .grid-item-coffee{
+  .grid-item-second-third,
+  .grid-item-coffee-text {
+    grid-template-columns: repeat(1);
+    grid-template-rows: 1 / -1;
     grid-column: 1;
-    grid-row: none;  
-    color: #000000;    
   }
-  .grid-item-coffee-text{     
-    grid-row: 4 / 5;  
-    color: #ffffff;   
-    background: rgb(18, 18, 18);    
+
+  .second-area-grid-container {
+    grid-template-columns: 1fr;
+    /* Change to a single column */
+    grid-template-rows: auto;
+    /* Allow rows to adjust automatically */
+    grid-gap: 1em;
+    /* Adjust the gap between grid items as needed */
+  }
+
+  .grid-item-coffee {
+    grid-column: 1;
+    grid-row: none;
+    color: #000000;
+  }
+
+  .grid-item-coffee-text {
+    grid-row: 4 / 5;
+    color: #ffffff;
+    background: rgb(18, 18, 18);
     font-family: 'Nimbus Sans L', sans-serif;
-     
   }
+
   /* Remove the right margin from the third grid item */
-  .grid-item-second-third{
-    margin-right: 0em;
-  }
+
+
   .coffee-image {
-    display: none;
+    max-width: 90%;
   }
- 
+
 }
 
-@media only screen and (max-width: 70rem){
-  .grid-item-coffee-text{     
+@media only screen and (max-width: 70rem) {
+  .grid-item-coffee-text {
     font-size: 1em;
- }
-}
-
-.coffee-image {  
-  border-radius: 1em;
-  height: 25em;
-  
-  
-  background: rgb(229, 233, 240);
-  box-sizing: border-box;
- 
-}
-
-
-
-
-
-
-.loading {
-  font-family: sans-serif;
-  font-size: 1.25em;  
-}
-
-.loading:after {
-  display: inline-block;
-  animation: dotty 3s steps(1, end) infinite;
-  content: '';
-}
-
-
-
-
-
-
-
-
-
-
-
-
-</style>
+  }
+}</style>
