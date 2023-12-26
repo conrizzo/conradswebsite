@@ -1,30 +1,30 @@
 <template>
   <!-- this 1st div does a nice background color, and puts padding between this element and the footer-->
-  <div style="background: linear-gradient(0deg, rgba(1,239,249,1) 0%, rgba(0,112,255,0.5746673669467788) 38%, rgb(11, 87, 208) 78%); 
-  padding-bottom: 9em;
-  ">
-  <h1 style="padding-top: 1em; padding-bottom: 1em; color: #ffffff; font-size: 5em;">Weather</h1>
+  <div class="weather-background">
+    <h1 style="padding-top: 1em; padding-bottom: 1em; color: #ffffff; font-size: 5em;">Weather</h1>
     <div class="center-content">
-      
-      
+
+
       <table>
         <thead>
           <tr>
             <th>City / Country / Region</th>
             <th>Sun Rise/Sun Set</th>
             <th>Weather Conditions</th>
-            <th>Temperature °C</th>
-            <th>Temperature °C (Feels Like)</th>
+            <th>High/Low °C</th>
+            <th>°C</th>
             <th>Wind Speed</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="cityWeather in cityWeathers" :key="cityWeather.city">
             <!-- 1 -->
-            <td><b><u>{{ cityWeather.city }}</u></b>
+            <td class="weather-location"><b><u>{{ cityWeather.city }}</u></b>
               <br><br>
               <template v-if="cityWeather.weather && cityWeather.weather.request[0].query">
-                <span style="color: rgb(0, 149, 255); font-weight: 600; background: rgb(240, 240, 240); border: 1px solid rgb(227, 227, 227); padding: 0.2rem 0.4rem; border-radius: 4px;">Country:</span> {{
+                <span
+                  style="color: rgb(0, 149, 255); font-weight: 600; background: rgb(240, 240, 240); border: 1px solid rgb(227, 227, 227); padding: 0.2rem 0.4rem; border-radius: 4px;">Country:</span>
+                {{
                   cityWeather.weather.nearest_area[0].country[0].value }}<br>
                 <span style="color: rgb(255, 133, 133); font-weight: 600; background: rgb(240, 240, 240); border: 1px solid rgb(227, 227, 227); padding: 0.2rem 0.4rem; border-radius: 4px;
                 ">Region:</span> {{
@@ -48,8 +48,8 @@
                     cityWeather.weather.weather[0].astronomy[0].sunset) }}</span><br>
                 Estimated actual sun hours: <span class="sun-hour-background">{{
                   parseInt(cityWeather.weather.weather[0].sunHour) }} hours {{
-      (Math.round((cityWeather.weather.weather[0].sunHour -
-        parseInt(cityWeather.weather.weather[0].sunHour)) * 60) * 100) / 100 }} minutes</span>
+    (Math.round((cityWeather.weather.weather[0].sunHour -
+      parseInt(cityWeather.weather.weather[0].sunHour)) * 60) * 100) / 100 }} minutes</span>
               </template>
               <template v-else>
                 N/A
@@ -81,46 +81,56 @@
               </template>
             </td>
             <!-- 5 -->
+
             <td>
+
               <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0].temp_C">
-                <div style="margin-bottom: 0.25em;">
-                  Projected High Today:
-                  <span class="high-temp-text-coloring">{{ cityWeather.weather.weather[0].maxtempC }}°C&nbsp;{{
-                    cityWeather.weather.weather[0].maxtempF }}°F</span><br>
+                
+                {{ formatDate(cityWeather.weather.weather[0].date) }}
+                <span class="high-temp-text-coloring">{{ cityWeather.weather.weather[0].maxtempC }}°C&nbsp;
+                  {{ cityWeather.weather.weather[0].maxtempF }}°F</span>
+                <span class="low-temp-text-coloring">{{ cityWeather.weather.weather[0].mintempC }}°C&nbsp;{{
+                  cityWeather.weather.weather[0].mintempF }}°F</span>
+                
+
+                <div>
+                  <span class="">
+                    {{ formatDate(cityWeather.weather.weather[1].date) }}:
+                    <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[1].maxtempC }}°C&nbsp;{{
+                      cityWeather.weather.weather[1].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{
+                      cityWeather.weather.weather[1].mintempC }}°C</span><br>
+                  </span>
                 </div>
-                <div style="margin-bottom: 0.25em;">
-                  Projected Low Today:
-                  <span class="low-temp-text-coloring">{{ cityWeather.weather.weather[0].mintempC }}°C&nbsp;{{
-                    cityWeather.weather.weather[0].mintempF }}°F</span><br>
-                </div>
-                <br>
-                Recent Temperature: <b>{{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
-                  cityWeather.weather.current_condition[0].temp_F }}°F</b><br>
-                Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
-                - - - -<br>
-                <span class="">
-                  {{ formatDate(cityWeather.weather.weather[1].date) }}:
-                  <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[1].maxtempC }}°C&nbsp;{{
-                    cityWeather.weather.weather[1].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{ cityWeather.weather.weather[1].mintempC }}°C</span><br>
-                </span>- - - -<br>
-                <span class="">
+                <span>
                   {{ formatDate(cityWeather.weather.weather[2].date) }}:
                   <span class="high-temp-text-coloring">H: {{ cityWeather.weather.weather[2].maxtempC }}°C&nbsp;{{
-                    cityWeather.weather.weather[2].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{ cityWeather.weather.weather[2].mintempC }}°C</span><br>
+                    cityWeather.weather.weather[2].maxtempF }}°F</span> <span class="low-temp-text-coloring">L: {{
+                    cityWeather.weather.weather[2].mintempC }}°C</span><br>
                 </span>
 
 
               </template>
               <template v-else>
                 N/A
+
               </template>
+
             </td>
+
             <!-- 6 -->
-            <td>
+            <td class="feels-like-temperature-color">
               <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
-                {{ cityWeather.weather.current_condition[0].FeelsLikeC }}°C<br>
+                <div>
+                  Most recent:&nbsp;<b> {{ cityWeather.weather.current_condition[0].temp_C }}°C&nbsp;{{
+                    cityWeather.weather.current_condition[0].temp_F }}°F</b>
+                  Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
+                </div>
+                Feels like:
+                {{ cityWeather.weather.current_condition[0].FeelsLikeC }}°C
                 {{ cityWeather.weather.current_condition[0].FeelsLikeF }}°F
+                
               </template>
+              
               <template v-else>
                 N/A
               </template>
@@ -141,11 +151,10 @@
         </tbody>
       </table>
     </div>
-      <p class="white-color-text"> All the locations here are easily customizable! Data is queried as JSON
-        using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
-        then formatted and displayed here in a custom made table.</p>
-    </div>
-  
+    <p class="white-color-text"> All the locations here are easily customizable! Data is queried as JSON
+      using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
+      then formatted and displayed here in a custom made table.</p>
+  </div>
 </template>
 
 
@@ -227,33 +236,44 @@ export default {
 };
 </script>
 <style scoped>
-
 /* The right padding forces it into the center */
-.center-content{ 
+
+.weather-background {
+  background-image: url('../images/blue_sky2.jpg');
+  background-color: rgba(0, 0, 0, 0.1);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+}
+
+.center-content {
   padding-left: 0.5em;
   padding-right: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 /* Table */
-table {     
-  border-collapse: collapse;  
-  margin-bottom: 1em;  
+table {
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  border: none;
 }
 
 /* Table border radius with CSS only https://stackoverflow.com/questions/4932181/rounded-table-corners-css-only 3rd answer */
 th:first-of-type {
-  border-top-left-radius: 10px;  
+  border-top-left-radius: 10px;
 }
+
 th:last-of-type {
-  border-top-right-radius: 10px;  
+  border-top-right-radius: 10px;
 }
 
 tr:last-of-type td:first-of-type {
   border-bottom-left-radius: 10px;
-  
+
 }
+
 tr:last-of-type td:last-of-type {
   border-bottom-right-radius: 10px;
 }
@@ -261,6 +281,7 @@ tr:last-of-type td:last-of-type {
 /* Table Header */
 thead {
   background-color: #ffffff;
+
 }
 
 th {
@@ -268,7 +289,10 @@ th {
   text-align: left;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
-  
+}
+
+th:last-child {
+  border-right: none;
 }
 
 /* Table Body */
@@ -277,12 +301,10 @@ tbody {
 }
 
 td {
-  text-align: left;  
+  text-align: left;
   border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  padding-left: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+
+  padding: 0.5em;
 }
 
 /* Alternate Row Color 
@@ -305,20 +327,19 @@ tr:nth-child(even) {
   border-radius: 0.2em;
 }
 
-.high-temp-text-coloring-1 {
-  color: #000;
-  padding-right: 0.1em;
-  padding-left: 0.1em;
-  background-color: #e0ffcd;
-  border-radius: 0.2em;
+.feels-like-temperature-color {
+  background: rgb(206, 255, 206);
+  text-align: center;
 }
 
-.high-temp-text-coloring-2 {
-  color: #000;
-  padding-right: 0.1em;
-  padding-left: 0.1em;
-  background-color: #e0ffcd;
-  border-radius: 0.2em;
+.weather-location {
+  background: rgb(231, 250, 255);
+}
+
+.temperature-grid-weather {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-gap: 0em;
 }
 
 
@@ -347,8 +368,8 @@ tr:nth-child(even) {
 }
 
 .sunny-background {
-  background: linear-gradient(to bottom,yellow , #95dcff 30%);
-  
+  background: linear-gradient(to bottom, rgb(255, 255, 255) 50%, #b8f0ff 100%);
+
   padding: 0.25em;
 }
 
@@ -369,9 +390,9 @@ tr:nth-child(even) {
 
   table {
     font-size: 0.6em;
-    padding: 0.1em;       
+    padding: 0.1em;
   }
 
- 
+
 
 }</style>

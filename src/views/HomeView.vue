@@ -46,7 +46,9 @@
                   <ProjectLinks :links="links">
                     <template v-slot="{ links }">
                       <div class="links-area">
-                        <span class="project-title">Project Links:</span>
+                        <span class="project-title"> 
+                          Project Links
+                        </span>
                         <div class="routes-area">
                           <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
                             :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
@@ -80,7 +82,7 @@
       <!-- 2nd section -->
 
       <div>
-        <FourWideImages>          
+        <FourWideImages>    
         </FourWideImages>
       </div>
       <div style="background: rgb(18,18,18);">
@@ -106,7 +108,7 @@
 
               </AsideContent>   
         -->
-     For now, have some components I made to select items here.
+    
 
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
@@ -114,21 +116,12 @@
         </template>
       </AsideContent>
 
-      <!--<div class="hidden" style="margin: 0 auto;" ref="content2" :class="{ 'show': isContentVisible2 }"> -->
-      <ImageGallery>
-      </ImageGallery>
+      
 
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
           <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
-          <div class="image-gallery-aside">
-            <li v-for="(category, index) in categories" :key="index">
-              <span class="gallery-list-item">{{ category.title }}</span>
-              <ul class="gallery-list-home">
-                <li v-for="(item, itemIndex) in category.items" :key="itemIndex">{{ item }}</li>
-              </ul>
-            </li>
-          </div>
+         
         </template>
       </AsideContent>
     </main>
@@ -158,7 +151,7 @@ import init, { main } from "@/rust_web_assembly/hello_wasm.js";
 
 import coffee_image from '@/images/coffee_time.jpg';
 
-import ImageGallery from "@/components/ImageGallery.vue";
+
 
 import CoffeeGridContent from "@/components/CoffeeGridContent.vue";
 
@@ -170,7 +163,7 @@ export default {
   name: "HomeView",
   components: {
     AsideContent,
-    ProjectLinks, ImageGallery, CoffeeGridContent, FourWideImages, imagesOneRow
+    ProjectLinks, CoffeeGridContent, FourWideImages, imagesOneRow
   },
   props: {
     links: {
@@ -203,16 +196,7 @@ export default {
         "Fixed.",
         ":)"
       ],
-      categories: [
-        {
-          title: "BEST FOODS:",
-          items: ["Coffee", "Coffee", "Foods that go with Coffee"],
-        },
-        {
-          title: "BEST DRINKS:",
-          items: ["Coffee", "Wasser mit Kohlensäure"],
-        },
-      ],
+      
 
     };
   },
@@ -319,7 +303,6 @@ export default {
 }
 
 
-
 .custom-color {
   color: rgb(255, 255, 255) !important;
   /* overrides the components default values of '#fff' */
@@ -348,21 +331,18 @@ export default {
   */
   border-radius: 2em;
   width: 70%;
-  border: 1px solid rgb(32, 49, 67);
+ 
 }
 
 .home-text-links {
   color: rgb(255, 255, 255);
   font-weight: 500;
-  border-bottom: 3px solid rgb(11, 87, 208);
-  text-decoration: none;
-  /*padding: 0.1em 0.2em;  */
-
-  /*  transition: 0.33s ease-in-out; Add transition for smooth animation */
+  border-bottom: 3px solid rgb(0, 255, 204);
+  text-decoration: none; 
 }
 
 .home-text-links:hover {
-  border-bottom: 3px solid rgb(0, 255, 170);
+  border-bottom: 3px solid rgb(255, 89, 89);
   color: rgb(255, 255, 255);
 }
 
@@ -373,7 +353,7 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(13, 17, 23,0.7);
+  background: rgba(13, 17, 23,0.3);
   border-radius: 1em;
   display: inline-block;
   width: 24em;
@@ -382,7 +362,7 @@ export default {
   padding-top: 1em; */
   padding: 0.5em;
   padding-left: 2em;
-  color: #fff;
+  color: #ffffff;
   font-size: 1.6em;
   text-align: left;
 }
@@ -394,8 +374,8 @@ export default {
   text-align: left;
   font-size: 2.1em;
   padding: 0.5em;
-  border-radius: 0.5em;
-  background: rgba(13, 17, 23,0.7);
+  border-radius: 0.5em;  
+  background: rgba(13, 17, 23,0.3);
   /* border: 1px solid rgb(229, 229, 229);  */
 }
 
@@ -414,6 +394,7 @@ export default {
 .on-hover-projects {
   text-decoration: none;
   padding: 0 0.25em 0 0.25em;
+
 }
 
 .on-hover-projects:hover {
@@ -436,11 +417,7 @@ export default {
   padding: 1em;
 }
 
-.aside-coffee-image {
-  max-width: 100%;
-  padding-top: 33vmin;
-  border-radius: 1em;
-}
+
 
 .bird-image {
   max-width: 14%;
@@ -465,7 +442,7 @@ export default {
   }
 
   .center-main-area-box {
-    margin-top: 5em;
+    
     display: flex;
     justify-content: center;
     padding: 0em;
@@ -481,7 +458,9 @@ export default {
 }
 
 @media only screen and (max-width: 50rem) {
-
+  .center-main-area-box {
+    margin-top: 0em;
+  }
 
   .first-aside-home-page {
     margin: 0;
@@ -524,25 +503,6 @@ export default {
 .top-string-slice-of-title {  
   font-size: 2em;
 }
-.image-gallery-aside {
-  text-align: left;
-  color: #fff;
-  padding: 1em;
-  font-weight: bold;
-  list-style-type: none;
-}
-ul.gallery-list-home {
-  margin-left: 0.25em;
-  font-size: 0.85em;
-  color: rgb(0, 221, 255);
-  list-style-type: none;
-}
-
-li.gallery-list-item {
-  font-size: 0.9em;
-  padding-left: 0.25em;
-  list-style-type: none;
-}
 
 .image-container {
   float: inline-end;
@@ -575,10 +535,8 @@ li.gallery-list-item {
 }
 
 @media only screen and (max-width: 50rem) {
-  .title {
-    margin: 0.5em;
-    font-size: 2.5em;
-    margin-bottom: 2em;
+  .title {    
+    font-size: 2.5em;    
   }
 
   .top-string-slice-of-title {

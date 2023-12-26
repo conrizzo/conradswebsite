@@ -6,7 +6,7 @@
           This is an education thing to write about the h1 tag directly below this! 
           Doing inline block to underline only the text in a span, then aligning the outside text to the left works nicely!
       -->
-      <h1><span class='gallery-styling-h1-span'>BEST SELLER:</span></h1>
+      <h1><span class='gallery-styling-h1-span'>MAKE A SELECTION</span></h1>
       <div class="gallery-button-left" @click="changeImageArray('left')">&lt;</div>
       <div class="image-gallery-grid-container">
         <div v-for="item in imageArrayChoice" :key="item.id" class="grid-item">
@@ -38,10 +38,10 @@
         imageArrayChoice: null,
         imgArrayOfArrays: [
             [
-              { id: 1, imageSrc: coffeeFood, altText: "Image 1", caption: "Food!" },
-              { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "Coffee!" },
-              { id: 3, imageSrc: diffusionBird, altText: "Image 3", caption: "A bird!" },
-              { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "Coffee!" },
+              { id: 1, imageSrc: coffeeFood, altText: "Image 1", caption: "Delicious Food!" },
+              { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "Fresh Coffee!" },
+              { id: 3, imageSrc: diffusionBird, altText: "Image 3", caption: "Look, a bird!" },
+              { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "More Coffee!" },
            
               // Add more items as needed :)
             ],
@@ -99,6 +99,11 @@
   .gallery-styling-h1-span{    
     display: inline-block;
     border-bottom: 2px solid rgb(255, 89, 89);
+    background: #fff;
+    
+    padding: 3px;
+    padding-bottom: none;
+    border-bottom: none;
   }
 
   
@@ -107,6 +112,7 @@
     justify-content: center;
     display: flex;  
     background:rgb(255, 255, 255);
+    
   }
   
   .gallery-button-left {
@@ -148,7 +154,7 @@
   .image-gallery {
     margin: 0 auto;
     position: relative;
-    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0);
     padding: 0em;
     
    
@@ -233,10 +239,11 @@
     padding: 0.5em;
     margin: 0em;
   
-    background: rgba(0, 0, 0, 0);
+    background: rgba(255, 255, 255, 0.8);
     font-size: 0.8em;
     font-weight: bold;
     color: rgb(18, 18, 18);
+    
   
   }
   </style>

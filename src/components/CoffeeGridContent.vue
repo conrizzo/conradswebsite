@@ -21,7 +21,7 @@
             <p>
               1. <span style="border-bottom: 3px solid rgb(255, 255, 255);">Enthusiasm</span>
               <br>2. <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-              <br>3. A renewed interest to learn and develop on the web. 
+              <br>3. Website code
               <br><br>
                Foods that helped include fresh bread, croissants, cake, bagels, muffins,
               toast (w/butter+cinnamon), pancakes or waffles (w/butter+
@@ -153,15 +153,11 @@ h2 {
 .second-main-area {
   /* background: linear-gradient(0deg, rgb(49, 21, 32), 10%, rgba(161, 71, 78, 0.9), 30%,  
  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5)80%, rgb(139, 114, 188) 100%); */
-  background: rgb(18, 18, 18);
-
-  height: 100svh;
+  background: rgb(18, 18, 18);  
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 }
 
 /*
@@ -290,6 +286,8 @@ h2 {
 
 .coffee-image {
   border-radius: 1em;
+  width: 80%;
+ 
 }
 
 
@@ -341,6 +339,7 @@ h2 {
 
   .coffee-image {
     max-width: 90%;
+    
   }
 
 }

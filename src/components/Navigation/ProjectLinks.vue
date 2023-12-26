@@ -24,7 +24,7 @@ export default {
                 { text: 'Weather', to: '/projects/weather' },
                 { text: 'Coffee Data', to: '/projects/datasets' },                
                 { text: 'Game', to: '/projects/cowgame' },
-                { text: 'Login Page', to: '/projects/firebasetest'},
+                // { text: 'Login Page', to: '/projects/firebasetest'},
                 { text: 'Sorting Algorithms', to: '/projects/sortingalgorithms' },    
                 // { text: 'Project Descriptions', to: '/projects/' },    
                 // { text: 'Rust Web Assembly', to: '/projects/rustwebassembly' },    
