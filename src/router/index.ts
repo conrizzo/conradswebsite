@@ -24,7 +24,7 @@ const SortingAlgorithmsView = () => import('../views/projects/SortingAlgorithmsV
 const RustWebAssemblyView = () => import('../views/projects/RustWebAssemblyView.vue');
 const CardsView = () => import('../views/projects/CardsView.vue');
 const GalleryView = () => import('../views/projects/GalleryView.vue');
-
+const StoreView = () => import('../views/projects/StoreView.vue');
 
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
@@ -115,6 +115,13 @@ const routes = [
     name: 'Gallery',
     component: GalleryView,    
   },
+
+  {
+    path: '/projects/store',
+    name: 'Store',
+    component: StoreView,    
+  },
+
 
   {
     path: '/yadhtriByppah',

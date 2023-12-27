@@ -29,7 +29,8 @@ export default {
                 { text: 'Project Descriptions', to: '/projects/' },    
                 { text: 'Rust Web Assembly', to: '/projects/rustwebassembly' },    
                 { text: 'Various Links', to: '/projects/Links' },                          
-                { text: 'Card Game <span style="color: #ff5959;">(New!)</span>', to: '/projects/cards' },       
+                { text: 'Card Game <span style="color: #ff5959;">(New!)</span>', to: '/projects/cards' },   
+                { text: 'Store Project', to: '/projects/store' },      
                     
             ]
         },       

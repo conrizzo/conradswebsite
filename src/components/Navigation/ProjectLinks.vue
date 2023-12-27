@@ -31,6 +31,7 @@ export default {
                 // { text: 'Various Links', to: '/projects/Links' },                          
                 { text: 'Card Game <span style="color: #ff5959;">(New!)</span>', to: '/projects/cards' },     
                 // { text: 'Gallery', to: '/projects/gallery' },  
+                { text: 'Store Project', to: '/projects/store' },   
                 
                 
                     
