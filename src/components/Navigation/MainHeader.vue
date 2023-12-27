@@ -24,7 +24,7 @@
       </div>
       <div class="small-resolution-h2">
         <router-link to="/">
-          <h2 class="small-resolution-h2">ConradsWebsite.com</h2>
+          <h2 class="small-font-website-name">ConradsWebsite.com</h2>
         </router-link>
       </div>
       
@@ -41,7 +41,7 @@
             </a>          
           </div>
           <a class="text-under-github-logo" href="https://github.com/conrizzo/conradswebsite">
-              <span style="font-size: 0.5em; margin-right: 1em; margin-left: -1em; ">This websites code</span>
+              <span style="font-size: 0.5em; margin-right: 0.5em; margin-left: -0.5em; ">This websites code</span>
           </a>
         </div>
       </div>
@@ -181,9 +181,13 @@ export default {
         justify-content: start;
       }
       .small-resolution-h2{
-        font-size: 0.8em; position: absolute; margin-top: -0.5em; right: 0.5em;
+        font-size: 0.8em; position: absolute; right: 0.5em;
         display: inline;
         color: rgb(128, 128, 128);
+      }
+
+      .small-font-website-name{
+        font-size: 1em;
       }
     }
 

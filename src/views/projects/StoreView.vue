@@ -1,41 +1,36 @@
 <template>
   <div class="store-background-color">
+
     <div class="main-banner">
       <h1> Buy awesome things here...</h1>
     </div>
-
-
-
-
-
     <!-- <button @click="makeInventory">Make Inventory</button> -->
 
     <!-- <button @click="resetInventory()">Reset</button> -->
 
     <ProductGallery @add-to-cart="handleAddItemToCart"></ProductGallery>
-    <div v-if="runningTotal === 0">
-      <h2>Your Shopping Cart is empty!</h2>
+    <div class="shopping-cart-area">
+        <div v-if="runningTotal === 0">
+          <h2>Your Shopping Cart is empty!</h2>
+        </div>
+        <div v-else>
+          <h2>Your Shopping Cart</h2>
+          <br>
+          <div>
+          <b>You just added "{{ showLastAddedItem }}" to your cart!</b>
+          <button style="margin-left: 1em;" @click="emptyShoppingCart()" class="clean-button">Empty shopping cart</button>
+        </div>
+          <br>
+        </div>
+        <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
+        
+          {{ item.name }} --- {{ item.price }} <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Remove Item</button>
+               
+        </div>
+        <div class="total-shopping-cart-area">
+          <p><b>Total: €{{ runningTotal.toFixed(2) }} </b></p>      
+        </div>
     </div>
-    <div v-else>
-      <h2>Your Shopping Cart</h2>
-      <br>
-      <div>
-      <b>You just added "{{ showLastAddedItem }}" to your cart!</b>
-      <button style="margin-left: 1em;" @click="emptyShoppingCart()" class="clean-button">Empty shopping cart</button>
-    </div>
-      <br>
-    </div>
-
-
-    <div v-for="item in userCart" :key="item.id" class="cart-item">
-      <p>{{ item.name }}</p>
-      <p>{{ item.price }}</p>
-    </div>
-    <div>
-      <p><b>Total: {{ runningTotal }} </b></p>
-      
-    </div>
-   
   </div>
 </template>
 
@@ -87,10 +82,10 @@ export default {
       const inventory = this.storeInventory;
 
       // Usage example
-      const item1 = { id: 1, name: "Bread", price: 15 };
-      const item2 = { id: 2, name: "Fresh Coffee", price: 15 };
-      const item3 = { id: 3, name: "Bird Food", price: 10 };
-      const item4 = { id: 4, name: "Cake", price: 300 };
+      const item1 = { id: 1, name: "Bread", price: 2.99 };
+      const item2 = { id: 2, name: "Fresh Coffee", price: 15.99 };
+      const item3 = { id: 3, name: "10kg of Bird Food", price: 39.99 };
+      const item4 = { id: 4, name: "Cake", price: 8.99 };
 
       inventory.addItem(item1);
       inventory.addItem(item2);
@@ -123,6 +118,13 @@ export default {
     emptyShoppingCart() {
       this.userCart = [];
       this.runningTotal = 0;
+    },
+    removeItem(index) {
+      if (index === null) {
+        return
+      }
+      this.runningTotal = this.runningTotal - this.userCart[index].price;
+      this.userCart.splice(index, 1);      
     }
 
   }
@@ -138,7 +140,7 @@ h1 {
 .main-banner {
   background-color: #f44336; /* Replace with your desired background color */
   color: white; /* Replace with your desired text color */
-  padding: 20px;
+  padding: 1em;
   text-align: center;
 }
 .store-background-color {
@@ -146,10 +148,40 @@ h1 {
   padding: 2em;
 }
 
+.shopping-cart-area {
+  background-color: #ffffff;
+  padding: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.cart-item{
+  text-align: left;
+  padding: 0.25em;
+}
+
+.shopping-modified-clean-button{
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.25em;
+  border-radius: 0.5em;
+  margin-left: 1em;
+}
+.shopping-modified-clean-button:hover{
+  background-color: #ff6c62;
+}
+
+.total-shopping-cart-area{
+  text-align: right;
+  padding: 2em;
+}
+
+
+
 @media (max-width: 60em) {
   h1 {
   font-size: 2em;
-  padding: 2em;
+  padding: 0.5em;
 }
 }
 

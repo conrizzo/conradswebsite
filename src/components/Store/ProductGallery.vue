@@ -12,7 +12,8 @@
           <div v-for="(item, index) in imageArrayChoice" :key="item.id" class="grid-item">
             
                 <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
-                <figcaption>{{ item.caption }}</figcaption> <button  @click="showArray(index, item.id);" class="clean-button">Add to cart</button>
+                <figcaption>{{ item.caption }} €{{ item.price }}</figcaption> 
+                <button  @click="showArray(index, item.id);" class="clean-button">Add to cart</button>
             
           </div>
         </div>
@@ -45,10 +46,11 @@
           imageArrayChoice: null,
           imgArrayOfArrays: [
               [
-                { id: 1, imageSrc: coffeeFood, name: "Image 1", caption: "Bread" },
-                { id: 2, imageSrc: coffeeImage, name: "Image 2", caption: "Fresh Coffee" },
-                { id: 3, imageSrc: diffusionBird, name: "Image 3", caption: "Bird Food" },
-                { id: 4, imageSrc: cakeFood, name: "Image 4", caption: "Cake" },
+                { id: 1, imageSrc: coffeeFood, name: "Image 1", caption: "Bread", price: 2.99, altText: "Bread" },
+                { id: 2, imageSrc: coffeeImage, name: "Image 2", caption: "Fresh Coffee", price: 15.99, altText: "Fresh Coffee" },
+                { id: 3, imageSrc: diffusionBird, name: "Image 3", caption: "10kg of Bird Food", price: 39.99, altText: "Bird Food" },
+                { id: 4, imageSrc: cakeFood, name: "Image 4", caption: "Artisan Cake", price: 8.99, altText: "Cake" },
+               
              
                 // Add more items as needed :)
               ],
@@ -267,7 +269,7 @@
       margin: 0em;
     
       background: rgba(255, 255, 255, 0.8);
-      font-size: 0.8em;
+      font-size: 1em;
       font-weight: bold;
       color: rgb(18, 18, 18);
       
