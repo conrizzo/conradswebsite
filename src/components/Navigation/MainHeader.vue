@@ -1,6 +1,6 @@
 <!-- This page mostly just sets the default values across the whole website, and whether to omit nav bar such as on the cow game -->
 <template>
-  <header style="border-bottom: 1px solid rgb(218, 220, 224); position: sticky; top: 0em; z-index: 5;">
+  <header>
     <!-- create a nav bar on every page-->
     <nav class="nav-menu-class">
       <router-link style="padding: 0;" to="/">
@@ -22,7 +22,7 @@
         </DropDownMenu>
         
       </div>
-      <div>
+      <div class="small-resolution-h2">
         <router-link to="/">
           <h2 class="small-resolution-h2">ConradsWebsite.com</h2>
         </router-link>
@@ -72,17 +72,19 @@ export default {
 
 <style scoped>    
 
+    header{
+      border-bottom: 1px solid rgb(218, 220, 224); position: sticky; top: 0em; z-index: 5;
+    }
+
     .about-menu:hover {
       outline: 2px solid rgb(255, 89, 89);
     }
-
     .projects-menu{
       box-sizing: border-box; padding-left: 0.45em;
     }
     .projects-menu:hover {
       outline: 2px solid rgb(255, 89, 89);
     }
-
     .header-h2 {
       font-size: 0.8em;
       color: rgb(128, 128, 128);
@@ -91,15 +93,12 @@ export default {
       margin-bottom: 0;
       border-right: 1px solid rgb(218, 220, 224);
     }
-
     .small-resolution-h2{
         display: none;
-    }
-
+     }
     .about-link-styling {      
       padding: 0.5em 0.25em 0.5em 0.5em;
     }
-
     /* how to pin the nav to the top of the page */
     .nav-menu-class {
       display: flex;
@@ -108,10 +107,8 @@ export default {
       height: 3em;
     }
     .navigation-menu {
-      border-left: 1px solid rgb(218, 220, 224);
-      border-right: 1px solid rgb(218, 220, 224);
-     
-    }
+   
+    }   
 
     nav {
       font-size: 1.25em;
@@ -143,9 +140,7 @@ export default {
       color: #ff5959;
       background: none;
     }
-
     .nav-menu-class {
-
       z-index: 3;
     }
 
@@ -157,7 +152,6 @@ export default {
 
     .header-logo-container {
       margin-top: 0.25em;
-
     }
 
     .hide-sign-in-text-at-low-res{
@@ -171,9 +165,7 @@ export default {
 
       .hide-sign-in-text-at-low-res{
         display: none;
-      }
-
-      
+      }      
     }
 
     @media (max-width: 30rem) {

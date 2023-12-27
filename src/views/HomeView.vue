@@ -21,8 +21,8 @@
             <div class="main-text-container">
               <ul>
                 <li>
-                  This is a website project made by <a class="home-text-links"
-                    href="https://github.com/conrizzo">Conrad</a>
+                  Welcome to <a class="home-text-links"
+                    href="https://github.com/conrizzo">Conrad's</a> Website
                 </li>
                 <li>
                   View the <router-link class="home-text-links" to="/about">About</router-link> page for more information
@@ -47,7 +47,7 @@
                     <template v-slot="{ links }">
                       <div class="links-area">
                         <span class="project-title"> 
-                          Project Links
+                          Project Links <span style="font-size: 1.5em; position: absolute; margin-top: 0.1em; margin-left: -0.2em; transform: rotate(80deg); display: inline-block;">&#8631;</span>
                         </span>
                         <div class="routes-area">
                           <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
@@ -129,6 +129,15 @@
 
     <imagesOneRow></imagesOneRow>
 
+    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne">   
+    </TwoColumnsGridContentTemplate>
+
+
+    <div style="height: 600px; background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 
+      15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);">
+    </div>
+      
+    
 
   </div>
 </template>
@@ -159,11 +168,13 @@ import FourWideImages from "@/components/FourWideImages.vue";
 
 import imagesOneRow from "@/components/ImagesOneRow.vue";
 
+import TwoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
+
 export default {
   name: "HomeView",
   components: {
     AsideContent,
-    ProjectLinks, CoffeeGridContent, FourWideImages, imagesOneRow
+    ProjectLinks, CoffeeGridContent, FourWideImages, imagesOneRow, TwoColumnsGridContentTemplate
   },
   props: {
     links: {
@@ -196,6 +207,16 @@ export default {
         "Fixed.",
         ":)"
       ],
+
+      parentTitleTextOne: "What is the goal of this website?",
+      parentTextOne: "The goal of this website at the moment is to keep\
+                      experimenting and learning. \
+                      Make some fun projects."
+                      
+    
+      // hello
+      
+      
       
 
     };
@@ -479,10 +500,10 @@ export default {
   width: 20.8em;
 }
 .hover-image {
-  max-height: 18.33em;
+ 
   margin-top: 4em;
-  max-width: 100%;
-
+  
+  max-height: 16.25em;
   display: block;
   border-radius: 1em;
 }

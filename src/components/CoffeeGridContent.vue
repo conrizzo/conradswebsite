@@ -17,12 +17,16 @@
             -->
         <div class="grid-item-coffee-text">
           <div class="hidden" ref="content_text" :class="{ 'show': isContentVisible }">
-            <h2>How was this website made?</h2>
-            <p>
-              1. <span style="border-bottom: 3px solid rgb(255, 255, 255);">Enthusiasm</span>
-              <br>2. <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-              <br>3. Website code
-              <br><br>
+            <h2>Website Ingredients</h2>
+           
+              <ul>
+                <li><span style="border-bottom: 3px solid rgb(255, 255, 255);">Enthusiasm</span></li>
+                <li><a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></li>
+                <li>Website code</li>
+              </ul>
+              <br>
+              <br>
+              <p>
                Foods that helped include fresh bread, croissants, cake, bagels, muffins,
               toast (w/butter+cinnamon), pancakes or waffles (w/butter+
               <a style="color: rgb(216, 88, 14);" class="text-links"
@@ -158,6 +162,8 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 /*
@@ -224,10 +230,11 @@ h2 {
 
 .grid-item-coffee {
   grid-column: 1 / 3;
-  grid-row: 1 / 3;
+  grid-row: 0 / 3;
   color: #000000;
   max-height: 4em;
   cursor: pointer;
+  text-align: right;
 }
 
 .grid-item-second-second {
@@ -252,7 +259,7 @@ h2 {
 
 
 .grid-item-coffee-text {
-  grid-column: 3 / 3;
+  grid-column: 3;
   grid-row: 1 / -1;
   color: #ffffff;
 
@@ -286,8 +293,7 @@ h2 {
 
 .coffee-image {
   border-radius: 1em;
-  width: 80%;
- 
+  width: 45%; 
 }
 
 
@@ -348,4 +354,12 @@ h2 {
   .grid-item-coffee-text {
     font-size: 1em;
   }
-}</style>
+  .grid-item-coffee{
+    text-align: center;
+  }
+
+}
+
+
+
+</style>

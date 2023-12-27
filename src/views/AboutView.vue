@@ -83,8 +83,8 @@
         <h2><span class="bottom-border">More information about me</span></h2>    
         <p> 
           In 2022 I completed studies in <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> 
-          at the University of Tübingen in Germany. I take great pride in completing a German university degree.
-          The combination of computer science, statistics, linguistics, parsing/decision trees, logic, math, and machine learning
+          at the University of Tübingen in Germany. I am pleased to have successfully earned a degree from a German university.
+          The combination of computer science, statistics, linguistics, parsing, logic, math, and machine learning
           this subject encompassed made it challenging. Before this I obtained a Biology degree in the USA. 
           I am now keen on enhancing my programming abilities and advancing as a developer.
           Motivated and curious, I seek challenges in front-end, back-end, full-stack, or potentially in machine learning and NLP.  
@@ -96,10 +96,10 @@
           <p>
             I've been adding new components into this website and updating it - lots of refactoring and restructuring.
             As one writes more code, abilities improve, and coming back to previously written code can be a good way to see
-            ones progression. There are always seemingly minor ways to improve code, ways to make it simpler and improve designs.
-            The restructuring has been ongoing, but final finished examples are coming together.
+            ones progression. There are often minor ways to improve code, ways to make it simpler and improve the design.
+            One also gains a continually better understanding of how to use language syntax to structure code better.
+            Final finished examples are coming together.
           </p>
-
       </div>          
         <figure class="figure-location">
           <img class="img-container" :src="imagePath" alt="Coding Languages used" />
@@ -164,56 +164,56 @@
                   <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
               </div>
         </div>        
-<div class="bullets-container">
-        <div class="bullets">      
-          <ul>
-            <li>Diese Website wurde von mir (Conrad) selbst erstellt, hauptsächlich mit
-              <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
-                  3</b></a>
-              (Vue.js) für seine Reaktivität und Interaktivität.
-            </li>
+        <div class="bullets-container">
+          <div class="bullets">      
+            <ul>
+              <li>Diese Website wurde von mir (Conrad) selbst erstellt, hauptsächlich mit
+                <a class="home-text-links" style="color: #42b883;" href="https://vuejs.org/guide/introduction.html"><b>Vue
+                    3</b></a>
+                (Vue.js) für seine Reaktivität und Interaktivität.
+              </li>
 
-            <li>Es handelt sich um ein sich entwickelndes Projekt. Sie wird auf
-              <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
-                meinem GitHub</a> mit
-              <a class="home-text-links" href="https://pages.github.com/">
-                GitHub Pages</a> gehostet.
-            </li>
+              <li>Es handelt sich um ein sich entwickelndes Projekt. Sie wird auf
+                <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
+                  meinem GitHub</a> mit
+                <a class="home-text-links" href="https://pages.github.com/">
+                  GitHub Pages</a> gehostet.
+              </li>
 
-            <li>
-              Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind Vue.js, 
-              JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly. 
-              In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen.
-            </li>
+              <li>
+                Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind Vue.js, 
+                JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly. 
+                In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen.
+              </li>
 
-            <li> Ich habe damit begonnen, Vue.js zu lernen, als ich am Bioinformatik-Toolkit am 
-              <i>Max-Planck-Institut für Biologie</i> in Tübingen, Deutschland, gearbeitet habe.
-            </li>             
+              <li> Ich habe damit begonnen, Vue.js zu lernen, als ich am Bioinformatik-Toolkit am 
+                <i>Max-Planck-Institut für Biologie</i> in Tübingen, Deutschland, gearbeitet habe.
+              </li>             
 
-            <li>Außerdem habe ich begonnen, eine 
-                 <b><a class="home-text-links"
-                  href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>Blogseite</a></b> die das
-              <a class="home-text-links" href='https://astro.build/'>Astro</a> framework verwendet.
-            </li>
+              <li>Außerdem habe ich begonnen, eine 
+                  <b><a class="home-text-links"
+                    href='https://blog.conradswebsite.com/blog/using-var-and-let-in-javascript/'>Blogseite</a></b> die das
+                <a class="home-text-links" href='https://astro.build/'>Astro</a> framework verwendet.
+              </li>
 
-            <li>
-              Der Sinn war, Spaß daran zu haben, dabei mehr zu lernen.
-            </li>          
-          </ul>
+              <li>
+                Der Sinn war, Spaß daran zu haben, dabei mehr zu lernen.
+              </li>          
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="more-information-about-me">
-        <h2><span class="bottom-border"></span>Mehr Informationen über mich</h2>    
-        <p> 
-          Im Jahr 2022 habe ich mein Studium der <a class="home-text-links" href="https://de.wikipedia.org/wiki/Computerlinguistik\">Computerlinguistik</a> an der Universität Tübingen in Deutschland abgeschlossen. 
-          Ich bin sehr stolz darauf, einen deutschen Universitätsabschluss erreicht zu haben. 
-          Die Kombination aus Informatik, Statistik, Linguistik, Parsing/Entscheidungsbäumen, Logik, Mathematik und machine learning, die dieses Fach umfasste, machte es anspruchsvoll. 
-          Zuvor habe ich einen Abschluss in Biologie in den USA erworben. Ich bin nun darauf aus, meine Programmierkenntnisse zu verbessern und mich als Entwickler weiterzuentwickeln. 
-          Motiviert und neugierig strebe ich nach Herausforderungen im Bereich Frontend, Backend, Full-Stack oder möglicherweise im maschinellen Lernen und in der natürlichen Sprachverarbeitung (NLP). 
-          Ich freue mich auf jede neue Gelegenheit, bin begeistert vom Lernen und zuversichtlich in meiner Fähigkeit, Problemlösungen durch Code und Forschung zu finden.
-        </p>
-      </div>
+        <div class="more-information-about-me">
+          <h2><span class="bottom-border"></span>Mehr Informationen über mich</h2>    
+          <p> 
+            Im Jahr 2022 habe ich mein Studium der <a class="home-text-links" href="https://de.wikipedia.org/wiki/Computerlinguistik\">Computerlinguistik</a> an der Universität Tübingen in Deutschland abgeschlossen. 
+            Ich freue mich, einen deutschen Universitätsabschluss erreicht zu haben.
+            Die Kombination aus Informatik, Statistik, Linguistik, Parsing, Logik, Mathematik und machine learning, die dieses Fach umfasste, machte es anspruchsvoll. 
+            Zuvor habe ich einen Abschluss in Biologie in den USA erworben. Ich bin nun darauf aus, meine Programmierkenntnisse zu verbessern und mich als Entwickler weiterzuentwickeln. 
+            Motiviert und neugierig strebe ich nach Herausforderungen im Bereich Frontend, Backend, Full-Stack oder möglicherweise im maschinellen Lernen und in der natürlichen Sprachverarbeitung (NLP). 
+            Ich freue mich auf jede neue Gelegenheit, bin begeistert vom Lernen und zuversichtlich in meiner Fähigkeit, Problemlösungen durch Code und Forschung zu finden.
+          </p>
+        </div>
        
   <figure class="figure-location">
     <img class="img-container" :src="imagePath" alt="Coding Languages used" />
@@ -339,9 +339,7 @@ h2 {
   color: #2c2c2c;
   padding-left: 1.2em; 
 }
-.bottom-border{
- 
-}
+
 
 h3 {
   margin-top: 4.5em;
@@ -580,10 +578,7 @@ figure {
   .bird {
     max-width: 22.5rem;
   }
-  .bird-text{
-  
- }  
-
+ 
  .aside-bird-caption{
   padding: 1em;
   margin-left: 2.25em;

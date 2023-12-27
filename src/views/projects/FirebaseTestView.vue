@@ -15,10 +15,10 @@
   <article class="top-text-container">
       <div class="top-text-sub-container">
 
-        <h1 v-if="!isLoggedIn">Sign in here!</h1>      
+        <h1 v-if="!isLoggedIn">Sign In</h1>      
         <br>
         <p class="login-information">
-          The sign in currently just allows message posting.
+          The sign in currently just allows message posting and routing to user authorized pages.
         </p>
 
       </div>
