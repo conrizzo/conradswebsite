@@ -24,16 +24,30 @@
                 <br>
               </div>
           </div>
+         
           <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
            
               <div class="each-item-area-formatting">
+                 <image>
+                    <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText" width="128" height="128">
+                  </image>    
                 <span class="name-price-cart-formatting">
+                  
                   <span class="product-name">{{ item.name }}</span><br>
-                  Price: {{ item.price }}<br>
-                  Quantity: {{ item.quantity }}<br>
-                  <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText" width="128" height="128">
-                                    </span>        
-                <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Remove Item</button>     
+                    Price: {{ item.price }}<br>
+                    Quantity: <input
+                    type="number"
+                    v-model="item.quantity"
+                    min="0"
+                    max="100"
+                    step="1"
+                    @input="updateQuantityInCart(item)"
+                    @keydown="handleIncrementDecrement" style="width: 2.5rem; font-size: 1.2rem;" class="custom-input">
+                    <br><br>Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity*item.price).toFixed(2)) }}
+                </span>   
+                             
+                <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Remove Item</button> 
+                    
               </div>
           </div>
         
@@ -67,7 +81,9 @@ export default {
       userCart: [],
       runningTotal: 0,
       lastItemAddedToCart: null,
-     
+      item: {
+        quantity: 0 // Initialize with your default quantity
+      }
 
     };
   },
@@ -107,15 +123,32 @@ export default {
   
   },
   methods: {
-    
+    handleIncrementDecrement(event) {
+      if (event.keyCode === 38) {
+        event.preventDefault();
+        this.item.quantity += 1;
+        this.updateQuantityInCart(this.item);
+      } else if (event.keyCode === 40) {
+        event.preventDefault();
+        if (this.item.quantity > 0) {
+          this.item.quantity -= 1;
+          this.updateQuantityInCart(this.item);
+        }
+      }
+    },
+    /*
     updateQuantityInCart(item) {
       
       const matchingCartItem = this.userCart.find(cartItem => cartItem.id === item.id);
     
        this.runningTotal = this.runningTotal + matchingCartItem.price;
     },
-  
-  
+  */
+    updateQuantityInCart(item) {
+      console.log('Updated quantity:', item.quantity);
+      this.runningTotal = item.quantity * item.price;
+      // You can add your logic here to update the cart or perform other actions
+    },
     
     // Your methods here
     makeInventory() {
@@ -152,11 +185,18 @@ export default {
       // looks for the product ID that is scrolled in the gallery and matches it to the product ID in the inventory
       console.log("TEST", matchingItemId);
 
-      if (!this.userCart.includes(matchingItemId)) {
-        matchingItemId.quantity = 1;
-        this.userCart.push(matchingItemId);        
-      }else{
-        matchingItemId.quantity++;
+      this.addItemToShoppingCartIfNotAlreadyThere(matchingItemId);      
+    },
+    addItemToShoppingCartIfNotAlreadyThere(item) {
+      if (item === null) {
+        return
+      }
+
+      if (!this.userCart.includes(item)) {
+        item.quantity = 1;
+        this.userCart.push(item);
+      } else {
+        item.quantity++;
       }
     },
 
@@ -211,10 +251,9 @@ h1 {
   background-color: #f44336;
   color: white;
   border: none;
- 
- 
+  
   border-radius: 0.5em;
-  margin-left: 0em;
+  margin: 0.5em;
 }
 .shopping-modified-clean-button:hover{
   background-color: #ff6c62;
@@ -228,6 +267,7 @@ h1 {
 .name-price-cart-formatting{
   display: inline-block;
   width: 20em;
+  padding-left: 1em;
 }
 
 .each-item-area-formatting{
@@ -236,6 +276,7 @@ h1 {
   border-radius: 1em;
   max-width: 30em;
   display: flex;
+  flex-direction: row;
   align-items: center;
   background: rgb(255, 255, 255);
  
@@ -248,6 +289,7 @@ h1 {
 .each-item-in-cart-image{
   border-radius: 1em;
   margin-top: 0.25em;
+ 
 }
 .product-name{
   font-weight: 600;
@@ -255,7 +297,14 @@ h1 {
 }
 
 
+
+
 @media (max-width: 60em) {
+  .each-item-area-formatting{
+      
+      flex-direction: column;
+    
+  }
   h1 {
   font-size: 2em;
   padding: 0.5em;
