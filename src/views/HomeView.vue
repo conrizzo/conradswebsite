@@ -9,12 +9,14 @@
         <!-- Title -->
         <div class="center-main-area-box">
           <div class="main-area-box">
-            <h1 class="title">
-              <span class="top-string-slice-of-title">
-                <span>{{ inputStringShuffled.slice(0, 7) }}</span>
-              </span>
-              <!--<span>{{ inputStringShuffled.slice(7) }}</span>-->
-            </h1>
+            <Transition>
+              <h1 class="title">
+                <span class="top-string-slice-of-title">
+                  <span>{{ inputStringShuffled.slice(0, 7) }}</span>
+                </span>
+                <!--<span>{{ inputStringShuffled.slice(7) }}</span>-->
+              </h1>
+            </Transition>
             <div class='under-title-caption'>
             </div>
             <!-- Main bullets -->

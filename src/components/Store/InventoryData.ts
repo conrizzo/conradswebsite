@@ -5,10 +5,14 @@ export interface Item {
     id: number;
     name: string;
     price: number;
+    quantityAvailable: number;
+
+    caption: string;
+    altText: string;
   }
   
   // Define your classes or functions here
-export class Inventory {
+  export class Inventory {
     private items: Item[];
   
     constructor() {
@@ -16,14 +20,19 @@ export class Inventory {
     }
   
     addItem(item: Item): void {
-      this.items.push(item);
+      const existingItem = this.items.find((i) => i.id === item.id);
+      if (existingItem) {
+        existingItem.quantityAvailable++;
+      } else {
+        
+        this.items.push(item);
+      }
     }
   
     getItems(): Item[] {
       return this.items;
     }
   }
-
 
 
   /*

@@ -10,25 +10,36 @@
 
     <ProductGallery @add-to-cart="handleAddItemToCart"></ProductGallery>
     <div class="shopping-cart-area">
-        <div v-if="runningTotal === 0">
-          <h2>Your Shopping Cart is empty!</h2>
-        </div>
-        <div v-else>
-          <h2>Your Shopping Cart</h2>
-          <br>
-          <div>
-          <b>You just added "{{ showLastAddedItem }}" to your cart!</b>
-          <button style="margin-left: 1em;" @click="emptyShoppingCart()" class="clean-button">Empty shopping cart</button>
-        </div>
-          <br>
-        </div>
-        <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
+         <div class="shopping-cart-title">
+            <div v-if="runningTotal === 0">
+                <h2>Your Shopping Cart is empty!</h2>
+              </div>
+              <div v-else>
+                <h2>Your Shopping Cart</h2>
+                  <br>
+                    <div>
+                    <b>You last added "{{ showLastAddedItem }}" to your cart!</b>
+                   
+                  </div>
+                <br>
+              </div>
+          </div>
+          <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
+           
+              <div class="each-item-area-formatting">
+                <span class="name-price-cart-formatting">
+                  <span class="product-name">{{ item.name }}</span><br>
+                  Price: {{ item.price }}<br>
+                  Quantity: {{ item.quantity }}<br>
+                  <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText" width="128" height="128">
+                                    </span>        
+                <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Remove Item</button>     
+              </div>
+          </div>
         
-          {{ item.name }} --- {{ item.price }} <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Remove Item</button>
-               
-        </div>
         <div class="total-shopping-cart-area">
-          <p><b>Total: €{{ runningTotal.toFixed(2) }} </b></p>      
+          <button style="margin-bottom: 1em;" @click="emptyShoppingCart()" class="clean-button">Empty shopping cart</button>                
+          <p><b>Subtotal ({{ totalQuantity }} items): €{{ Math.abs(runningTotal.toFixed(2)) }} </b></p>      
         </div>
     </div>
   </div>
@@ -39,6 +50,7 @@
 <script>
 import ProductGallery from "@/components/Store/ProductGallery.vue";
 import { Inventory } from "@/components/Store/InventoryData.ts";
+import { productInventory } from '@/components/Store/productInventoryOptionsData';
 import "@/assets/globalCSS.css";
 export default {
   name: "StoreView",
@@ -64,6 +76,9 @@ export default {
     this.makeInventory();
   },
   computed: {
+    totalQuantity() {
+      return this.userCart.reduce((total, item) => total + item.quantity, 0);
+    },
     showLastAddedItem() {
       const lastItemIndex = this.userCart.length - 1;
       const lastItem = this.userCart[lastItemIndex]
@@ -73,36 +88,59 @@ export default {
       }     
       return lastItem['name']
     },
+
+    itemQuantities() {
+      const quantities = {};
+      for (const item of this.userCart) {
+        if (item.id in quantities) {
+          quantities[item.id].quantity++;
+        } else {
+          quantities[item.id] = {
+            quantity: 1,
+            name: item.name,
+            price: item.price
+          };
+        }
+      }
+      return quantities;
+    }
+  
   },
   methods: {
+    
+    updateQuantityInCart(item) {
+      
+      const matchingCartItem = this.userCart.find(cartItem => cartItem.id === item.id);
+    
+       this.runningTotal = this.runningTotal + matchingCartItem.price;
+    },
+  
+  
     
     // Your methods here
     makeInventory() {
 
-      const inventory = this.storeInventory;
+      // sets this local constant to the global TypeScript array of product inventory objects
+      const inventory = this.storeInventory;        
 
-      // Usage example
-      const item1 = { id: 1, name: "Bread", price: 2.99 };
-      const item2 = { id: 2, name: "Fresh Coffee", price: 15.99 };
-      const item3 = { id: 3, name: "10kg of Bird Food", price: 39.99 };
-      const item4 = { id: 4, name: "Cake", price: 8.99 };
+      // Loops through each item in the productInventory array and adds it to the inventory
+      productInventory.forEach((item) => {
+        inventory.addItem(item);
+      });
 
-      inventory.addItem(item1);
-      inventory.addItem(item2);
-      inventory.addItem(item3);
-      inventory.addItem(item4);
-
+      // sets store inventory to the updated inventory object
       this.storeInventory = inventory;
 
+      // gets the items available, this is just for testing, shows them in the console
       const items = inventory.getItems();
       console.log(items);
-
-
     },
+
     resetInventory() {
       console.log("reset");
       this.storeInventory = new Inventory();
     },
+
     handleAddItemToCart(selectedItem, actualProductID) {
       if (selectedItem === null || actualProductID === null || this.storeInventory.getItems().length === 0) {
         return
@@ -113,17 +151,25 @@ export default {
       this.runningTotal += matchingItemId.price;
       // looks for the product ID that is scrolled in the gallery and matches it to the product ID in the inventory
       console.log("TEST", matchingItemId);
-      this.userCart.push(matchingItemId);
+
+      if (!this.userCart.includes(matchingItemId)) {
+        matchingItemId.quantity = 1;
+        this.userCart.push(matchingItemId);        
+      }else{
+        matchingItemId.quantity++;
+      }
     },
+
     emptyShoppingCart() {
       this.userCart = [];
       this.runningTotal = 0;
     },
+
     removeItem(index) {
       if (index === null) {
         return
       }
-      this.runningTotal = this.runningTotal - this.userCart[index].price;
+      this.runningTotal = this.runningTotal - this.userCart[index].price * this.userCart[index].quantity;
       this.userCart.splice(index, 1);      
     }
 
@@ -142,6 +188,7 @@ h1 {
   color: white; /* Replace with your desired text color */
   padding: 1em;
   text-align: center;
+  
 }
 .store-background-color {
   background-color: #f5f5f5;
@@ -153,6 +200,7 @@ h1 {
   padding: 2em;
   margin-top: 2em;
   margin-bottom: 2em;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 .cart-item{
   text-align: left;
@@ -163,9 +211,10 @@ h1 {
   background-color: #f44336;
   color: white;
   border: none;
-  padding: 0.25em;
+ 
+ 
   border-radius: 0.5em;
-  margin-left: 1em;
+  margin-left: 0em;
 }
 .shopping-modified-clean-button:hover{
   background-color: #ff6c62;
@@ -176,6 +225,34 @@ h1 {
   padding: 2em;
 }
 
+.name-price-cart-formatting{
+  display: inline-block;
+  width: 20em;
+}
+
+.each-item-area-formatting{
+  border: 1px solid #f44336;
+  padding: 1em;
+  border-radius: 1em;
+  max-width: 30em;
+  display: flex;
+  align-items: center;
+  background: rgb(255, 255, 255);
+ 
+}
+.shopping-cart-title {
+  text-align: left;
+  padding: 1em;
+}
+
+.each-item-in-cart-image{
+  border-radius: 1em;
+  margin-top: 0.25em;
+}
+.product-name{
+  font-weight: 600;
+  font-size: 1.1em;
+}
 
 
 @media (max-width: 60em) {
@@ -183,6 +260,18 @@ h1 {
   font-size: 2em;
   padding: 0.5em;
 }
+.name-price-cart-formatting{
+  font-size: 0.9em;
+  
+
+}
+.shopping-modified-clean-button{
+  font-size: 0.9em;
+}
+.shopping-cart-area {
+  padding: 0.5em;
+}
+
 }
 
 /* Your styles here */
