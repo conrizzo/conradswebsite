@@ -121,7 +121,7 @@
               <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
             </div>
             <div class="aside-bird-caption">
-            <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
+            <p class="bird-text"><a class="home-text-links"
                 href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
               (name in German, English name is Great Tit)
               photo taken in Tübingen, Germany. 
@@ -559,6 +559,7 @@ figure {
   padding-left: 0.5em;
   font-size: 1em;
   border-left: 1px solid rgb(218, 220, 224);
+  color: #91d7ff;
 }
 .bird-container {
   display: flex;

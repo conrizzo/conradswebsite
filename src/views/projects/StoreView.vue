@@ -1,5 +1,5 @@
 <template>
-  <div class="store-background-color">
+  <div class="store-background">
 
     <div class="main-banner">
       <div class="main-banner-text-container">
@@ -13,50 +13,74 @@
 
     <ProductGallery @add-to-cart="handleAddItemToCart"></ProductGallery>
     <div class="shopping-cart-area">
-      <div class="shopping-cart-title">
-        <div v-if="runningTotal === 0">
+      <div class="grid-shopping-cart">
+        <div class="grid-shopping-cart-left">
+            <div class="shopping-cart-title">
+              <div v-if="runningTotal === 0">
 
-          <h2>Your Shopping Cart is empty!</h2>
+                <h2>No items selected</h2>
 
-        </div>
-        <div class="shopping-cart-border" v-else>
+              </div>
+              <div class="shopping-cart-border" v-else>
+                <h2>Shopping Cart <i class="arrow down"></i></h2>
+                
+                <div>
+                  <p>Last added "{{ showLastAddedItem }}" to your cart!</p>
+                </div>
+                <br>
+              </div>
+            </div>
+        
+      
+          <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
+            <div class="each-item-area-formatting">
+              <image>
+                <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText" width="128" height="128">
+              </image>
+              <span class="name-price-cart-formatting">
 
-          <h2>Your Shopping Cart</h2>
+                <span class="product-name">{{ item.name }}</span><br>
+                €{{ item.price }}<br><br>
+                Quantity: <input type="number" v-model="item.quantity" min="0" max="100" step="1"
+                  @input="updateQuantityInCart(item)" @keydown="handleIncrementDecrement"
+                  style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;" class="number-input-quantity">
+                <br>Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity * item.price).toFixed(2)) }}                
+              </span>
 
-          <br>
-          <div>
+              <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Delete</button>
 
-            <p>You last added "{{ showLastAddedItem }}" to your cart!</p>
-
+              </div>
+            </div>
           </div>
-          <br>
-        </div>
-      </div>
-
-      <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
-
-        <div class="each-item-area-formatting">
-          <image>
-            <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText" width="128" height="128">
-          </image>
-          <span class="name-price-cart-formatting">
-
-            <span class="product-name">{{ item.name }}</span><br>
-            Price: {{ item.price }}<br>
-            Quantity: <input type="number" v-model="item.quantity" min="0" max="100" step="1"
-              @input="updateQuantityInCart(item)" @keydown="handleIncrementDecrement"
-              style="width: 2.5rem; font-size: 1.2rem;" class="custom-input">
-            <br><br>Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity * item.price).toFixed(2)) }}
-          </span>
-
-          <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Remove Item</button>
-
-        </div>
+          <div class="grid-shopping-cart-right">
+            <div class="special-offer">
+              <h2>Special Offer!&nbsp;&#9733;</h2>
+              <p>Buy 5 or more items and get 10% off your order!</p>             
+              <transition>
+                <div style="text-align: left;" v-if="totalQuantity >= 5"><p>You have 5 or more items!<br>10% discount has been applied.</p></div>
+              </transition>
+            </div>
+         </div>
       </div>
 
       <div class="total-shopping-cart-area">
-        <button style="margin-bottom: 1em;" @click="emptyShoppingCart()" class="clean-button">Empty shopping cart</button>
-        <p><b>Subtotal ({{ totalQuantity }} items): €{{ Math.abs(runningTotal.toFixed(2)) }} </b></p>
+        
+        
+        <div style="margin-left: auto;">
+          <p><b>Subtotal ({{ totalQuantity }} items): €{{ Math.abs(runningTotal.toFixed(2)) }} </b></p>
+          <transition>
+            <div style="font-size: 1.6rem;" v-if="totalQuantity >= 5">After 10% discount: ({{ totalQuantity }} items): 
+              <span>€{{ Math.abs((runningTotal*.9).toFixed(2)) }}</span>
+            </div>
+          </transition>
+          <div style="padding-top: 1em;">
+            <button v-show="runningTotal > 0" style="" @click="emptyShoppingCart()"
+              class="clean-button">Empty Cart</button>        
+            <button v-show="runningTotal > 0" style="margin-left: 1em;" 
+              class="clean-button">Go to Checkout</button>
+          </div>
+        </div>
+      
       </div>
     </div>
   </div>
@@ -138,15 +162,7 @@ export default {
           this.updateQuantityInCart(this.item);
         }
       }
-    },
-    /*
-    updateQuantityInCart(item) {
-      
-      const matchingCartItem = this.userCart.find(cartItem => cartItem.id === item.id);
-    
-       this.runningTotal = this.runningTotal + matchingCartItem.price;
-    },
-  */
+    },    
     updateQuantityInCart(item) {
       const matchingCartItem = this.userCart.find(cartItem => cartItem.id === item.id);
       if (matchingCartItem) {
@@ -167,7 +183,6 @@ export default {
     },
     // Your methods here
     makeInventory() {
-
       // sets this local constant to the global TypeScript array of product inventory objects
       const inventory = this.storeInventory;
 
@@ -202,6 +217,7 @@ export default {
 
       this.addItemToShoppingCartIfNotAlreadyThere(matchingItemId);
     },
+
     addItemToShoppingCartIfNotAlreadyThere(item) {
       if (item === null) {
         return
@@ -227,10 +243,11 @@ export default {
       this.runningTotal = this.runningTotal - this.userCart[index].price * this.userCart[index].quantity;
       this.userCart.splice(index, 1);
     }
-
   }
 }
 </script>
+
+
 
 <style scoped>
 h1 {
@@ -242,19 +259,16 @@ h1 {
   /* Replace with your desired background color */
   color: white;
   /* Replace with your desired text color */
-
   text-align: center;
-
-  p.main-banner {
-    font-size: 0.8em;
-  }
-
-
 }
 
-.store-background-color {
+p.main-banner {
+  font-size: 0.8em;
+}
+
+.store-background {
   background-color: #f5f5f5;
-  padding: 2em;
+  padding: 2.5em 5em 5em 5em;
 }
 
 .shopping-cart-area {
@@ -265,18 +279,34 @@ h1 {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
+.grid-shopping-cart {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0em;
+}
+
+.grid-shopping-cart-left {
+
+  
+  grid-column: 1;
+}
+.grid-shopping-cart-right {
+  border-bottom: 1px solid #f44336;
+  padding-right: 1em;
+  grid-column: 2;
+}
+
 .cart-item {
   text-align: left;
   
-  padding-bottom: 1.1rem;
 }
 
 .shopping-modified-clean-button {
   background-color: #f44336;
+  align-self: flex-start;
   color: white;
   border: none;
-
-  border-radius: 0.5em;
+  border-radius: 0.5em; 
   margin: 0.5em;
 }
 
@@ -285,9 +315,13 @@ h1 {
 }
 
 .total-shopping-cart-area {
-  border-top: 1px solid rgb(218, 220, 224);
-  text-align: right;
-  padding: 2em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-right: 2em;
+ 
 }
 
 .name-price-cart-formatting {
@@ -297,55 +331,119 @@ h1 {
 }
 
 .each-item-area-formatting {
-  border: 1px solid #f44336;
+  border-bottom: 1px solid #f44336;
   padding: 1em;
-  border-radius: 1em;
-  max-width: 30em;
+  margin-left: 1em;  
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: row;  
   background: rgb(255, 255, 255);
-
 }
 
 .shopping-cart-title {
   text-align: left;
-  padding: 1em;
+  
+  margin-left: 1em;
   font-size: 1.1em;
+  border-bottom: 1px solid #f44336;
 }
-
 .each-item-in-cart-image {
   border-radius: 1em;
   margin-top: 0.25em;
-
 }
 
 .product-name {
-  font-weight: 600;
+  
   font-size: 1.1em;
 }
-
 .shopping-cart-border {
-  border-bottom: 1px solid rgb(218, 220, 224);
-
-
+  /* border-bottom: 1px solid rgb(218, 220, 224); */
   background: rgb(255, 255, 255);
 }
-
 .main-banner-text-container {
   padding: 10em;
 }
 
+.arrow {
+  border: solid black;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 5px;
+  margin-bottom: 0.15em;
+  margin-left: 0.2em;
+}
 
-@media (max-width: 60em) {
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.special-offer{
+  
+  background: lightgreen;
+  border-radius: 1em;
+  max-width: calc(100% - 3em);
+  max-height: 20em;
+  margin: 1em;
+  float: inline-end;
+}
+.special-offer p{
+  font-size: 1rem;
+  text-align: left;
+  padding: 1em;
+  
+}
+.special-offer h2{
+  border-bottom: 6px solid #ffffff;
+  font-size: 2rem;
+  padding-top: 0.5rem;  
+  text-align: left;
+  padding-left: 1rem;
+  
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+@media screen and (max-width: 80rem) {
+  .grid-shopping-cart {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-shopping-cart-right {
+    grid-column: 1;    
+  }
+  .special-offer{
+    width: calc(100% - 3em);
+  
+  }
+  
+}
+
+
+@media screen and (max-width: 60rem) {
+  .special-offer h2{
+  font-size: 1rem;
+  padding-top: 0.5em;  
+  text-align: left;
+  padding-left: 1rem;
+  
+}
+
+  .store-background {
+    background-color: #f5f5f5;
+    padding: 1em;
+  }
   .main-banner-text-container {
     padding: 1em;
   }
-
   .each-item-area-formatting {
-
     flex-direction: column;
-
   }
 
   h1 {
@@ -353,11 +451,9 @@ h1 {
     padding: 0.5em;
   }
 
-  .name-price-cart-formatting {
-    font-size: 0.9em;
-
-
-  }
+  .name-price-cart-formatting {  
+  padding-left: 0em;
+}
 
   .shopping-modified-clean-button {
     font-size: 0.9em;
@@ -366,7 +462,8 @@ h1 {
   .shopping-cart-area {
     padding: 0.5em;
   }
-
+  
 }
 
-/* Your styles here */</style>
+/* Your styles here */
+</style>
