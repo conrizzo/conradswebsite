@@ -35,20 +35,23 @@
             <transition-group>
           <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
             <div class="each-item-area-formatting">
+              
               <image>
                 <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText" width="128" height="128">
               </image>
+              
               <span class="name-price-cart-formatting">
 
                 <span class="product-name">{{ item.name }}</span><br>
-                €{{ item.price }}<br><br>
+                
+                €{{ item.price }} <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Delete</button><br>
                 Quantity: <input type="number" v-model="item.quantity" min="0" max="100" step="1"
                   @input="updateQuantityInCart(item)" @keydown="handleIncrementDecrement"
                   style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;" class="number-input-quantity">
                 <br>Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity * item.price).toFixed(2)) }}                
               </span>
               
-              <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Delete</button>
+             
 
               </div>
             </div>
@@ -297,7 +300,7 @@ p.main-banner {
 }
 .grid-shopping-cart-right {
   
-  padding-right: 1em;
+  
   grid-column: 2;
 }
 
@@ -308,11 +311,13 @@ p.main-banner {
 
 .shopping-modified-clean-button {
   background-color: #f44336;
-  align-self: flex-start;
+
+  align-self: flex-end;
   color: white;
   border: none;
   border-radius: 0.5em; 
   margin: 0.5em;
+  margin-left: 0rem;
 }
 
 .shopping-modified-clean-button:hover {
@@ -322,7 +327,7 @@ p.main-banner {
 .total-shopping-cart-area {
 
   display: flex;
-  justify-content: space-between;
+  
   align-items: center;
 
   
@@ -331,7 +336,7 @@ p.main-banner {
 
 .name-price-cart-formatting {
   display: inline-block;
-  width: 20em;
+  
   padding-left: 1em;
 }
 
@@ -420,7 +425,7 @@ p.main-banner {
   opacity: 0;
 }
 
-@media screen and (max-width: 80rem) {
+@media screen and (max-width: 65rem) {
   .grid-shopping-cart {
     grid-template-columns: 1fr;
   }
@@ -449,9 +454,7 @@ p.main-banner {
   .main-banner-text-container {
     padding: 1em;
   }
-  .each-item-area-formatting {
-    flex-direction: column;
-  }
+ 
 
   h1 {
     font-size: 2em;
@@ -459,7 +462,8 @@ p.main-banner {
   }
 
   .name-price-cart-formatting {  
-  padding-left: 0em;
+  padding-left: 1rem;
+  padding-top: 0.6rem;
 }
 
   .shopping-modified-clean-button {
@@ -470,6 +474,12 @@ p.main-banner {
     padding: 0.5em;
   }
   
+}
+
+@media  screen and (max-width: 10rem) {
+  .each-item-area-formatting {
+    flex-direction: column;
+  }
 }
 
 /* Your styles here */
