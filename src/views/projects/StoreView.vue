@@ -70,8 +70,8 @@
 
       <div class="total-shopping-cart-area">
         
-        
-        <div style="margin-left: auto;">
+      
+        <div style="padding-top: 1em; margin: 0 auto;">
           <p><b>Subtotal ({{ totalQuantity }} items): €{{ Math.abs(runningTotal.toFixed(2)) }} </b></p>
           <transition>
             <div style="font-size: 1.6rem;" v-if="totalQuantity >= 5">After 10% discount: ({{ totalQuantity }} items): 
@@ -325,7 +325,7 @@ p.main-banner {
   justify-content: space-between;
   align-items: center;
 
-  padding-right: 2em;
+  
  
 }
 
@@ -337,7 +337,7 @@ p.main-banner {
 
 .each-item-area-formatting {
   border-bottom: 1px solid #f44336;
-  padding: 1em;
+  
   margin-left: 1em;  
   margin-right: 1em;  
   display: flex;
@@ -390,9 +390,10 @@ p.main-banner {
   border-radius: 1em;
   max-width: 20rem;
   max-height: 20em;
-  margin: 1em;
+
+  margin: 0 auto;
+  margin-top: 1em;
   
-  float: inline-end;
 }
 .special-offer p{
   font-size: 1rem;
