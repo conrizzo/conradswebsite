@@ -5,6 +5,7 @@
       <div class="main-banner-text-container">
         <h1> Buy awesome things here...</h1>
         <p class="main-banner">A simple modular store layout made in Vue.js and TypeScript</p>
+        
       </div>
     </div>
     <!-- <button @click="makeInventory">Make Inventory</button> -->
@@ -31,7 +32,7 @@
               </div>
             </div>
         
-      
+            <transition-group>
           <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
             <div class="each-item-area-formatting">
               <image>
@@ -46,19 +47,23 @@
                   style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;" class="number-input-quantity">
                 <br>Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity * item.price).toFixed(2)) }}                
               </span>
-
+              
               <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Delete</button>
 
               </div>
             </div>
+          </transition-group>
           </div>
           <div class="grid-shopping-cart-right">
-            <div class="special-offer">
-              <h2>Special Offer!&nbsp;&#9733;</h2>
-              <p>Buy 5 or more items and get 10% off your order!</p>             
-              <transition>
-                <div style="text-align: left;" v-if="totalQuantity >= 5"><p>You have 5 or more items!<br>10% discount has been applied.</p></div>
-              </transition>
+           <div class="special-offer">
+              <h2>&#9733;&nbsp;Special Offer!&nbsp;&#9733;</h2>
+                     
+            
+                <div>
+                  <p style="text-align: left;" v-if="totalQuantity >= 5">You have 5 or more items!<br>10% discount has been applied.</p>
+                  <p v-else>Buy 5 or more items and get 10% off!</p>
+                </div>
+
             </div>
          </div>
       </div>
@@ -291,7 +296,7 @@ p.main-banner {
   grid-column: 1;
 }
 .grid-shopping-cart-right {
-  border-bottom: 1px solid #f44336;
+  
   padding-right: 1em;
   grid-column: 2;
 }
@@ -334,6 +339,7 @@ p.main-banner {
   border-bottom: 1px solid #f44336;
   padding: 1em;
   margin-left: 1em;  
+  margin-right: 1em;  
   display: flex;
   flex-direction: row;  
   background: rgb(255, 255, 255);
@@ -343,6 +349,7 @@ p.main-banner {
   text-align: left;
   
   margin-left: 1em;
+  margin-right: 1em;
   font-size: 1.1em;
   border-bottom: 1px solid #f44336;
 }
@@ -378,31 +385,33 @@ p.main-banner {
 }
 
 .special-offer{
-  
-  background: lightgreen;
+  color: #fff;
+  background: rgb(244, 67, 54);
   border-radius: 1em;
-  max-width: calc(100% - 3em);
+  max-width: 20rem;
   max-height: 20em;
   margin: 1em;
+  
   float: inline-end;
 }
 .special-offer p{
   font-size: 1rem;
   text-align: left;
   padding: 1em;
+  font-style: italic;
   
 }
 .special-offer h2{
-  border-bottom: 6px solid #ffffff;
-  font-size: 2rem;
+ 
+  font-size: 1.25rem;
   padding-top: 0.5rem;  
-  text-align: left;
-  padding-left: 1rem;
+  text-align: center;
+  
   
 }
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 1.5s ease;
+  transition: opacity 1s ease;
 }
 
 .v-enter-from,
@@ -418,10 +427,7 @@ p.main-banner {
   .grid-shopping-cart-right {
     grid-column: 1;    
   }
-  .special-offer{
-    width: calc(100% - 3em);
   
-  }
   
 }
 
@@ -430,8 +436,8 @@ p.main-banner {
   .special-offer h2{
   font-size: 1rem;
   padding-top: 0.5em;  
-  text-align: left;
-  padding-left: 1rem;
+  
+  
   
 }
 
