@@ -1,7 +1,7 @@
 <template>
   <div class="centerAll">
     <div class="image-gallery">
-      <h1><span class='gallery-styling-h1-span'>MAKE A SELECTION</span></h1>
+      <h1>MAKE A SELECTION</h1>
       <div class="gallery-button-left" @click="changeImageArray('left')">&lt;</div>
 
       <div class="image-gallery-grid-container">
@@ -86,22 +86,11 @@ export default {
       
 <style scoped>
 h1 {
+  padding-top: 0.5em;
   font-size: 0.9em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0em;
   text-align: left;
 }
-
-.gallery-styling-h1-span {
-  display: inline-block;
-  border-bottom: 2px solid rgb(255, 89, 89);
-  background: #fff;
-
-  padding: 3px;
-  padding-bottom: none;
-  border-bottom: none;
-}
-
-
 
 .centerAll {
   justify-content: center;
