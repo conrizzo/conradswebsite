@@ -31,31 +31,35 @@
                 <br>
               </div>
             </div>
-        
-            <transition-group>
-          <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
-            <div class="each-item-area-formatting">
-              
-              <image>
-                <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText" width="128" height="128">
-              </image>
-              
-              <span class="name-price-cart-formatting">
-
-                <span class="product-name">{{ item.name }}</span><br>
-                
-                €{{ item.price }} <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Delete</button><br>
-                Quantity: <input type="number" v-model="item.quantity" min="0" max="100" step="1"
-                  @input="updateQuantityInCart(item)" @keydown="handleIncrementDecrement"
-                  style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;" class="number-input-quantity">
-                <br>Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity * item.price).toFixed(2)) }}                
-              </span>
-              
-             
-
-              </div>
-            </div>
-          </transition-group>
+            <!-- Each cart item is outputted here with v-for loop -->
+             <transition-group>
+                <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">              
+                  <div class="each-item-area-formatting">                      
+                      <div class="cart-image-container">
+                          <image>
+                            <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText" width="128" height="128">
+                          </image>
+                      </div>                   
+                      <div class="name-price-cart-formatting">
+                        <span class="product-name">
+                          {{ item.name }}
+                        </span>
+                        <br>                    
+                          <span class="cart-item-price-formatting">
+                            €{{ item.price }}
+                          </span>
+                        <br>
+                        Quantity: <input type="number" v-model="item.quantity" min="0" max="100" step="1"
+                          @input="updateQuantityInCart(item)" @keydown="handleIncrementDecrement"
+                          style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;"
+                          class="number-input-quantity">
+                          <br>
+                          Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity * item.price).toFixed(2)) }}<br>                
+                        <button @click="removeItem(index)" class="clean-button shopping-modified-clean-button">Delete</button>
+                      </div>                 
+                  </div>                  
+                </div>
+              </transition-group>
           </div>
           <div class="grid-shopping-cart-right">
            <div class="special-offer">
@@ -63,7 +67,7 @@
                      
             
                 <div>
-                  <p style="text-align: left;" v-if="totalQuantity >= 5">You have 5 or more items!<br>10% discount has been applied.</p>
+                  <p style="text-align: left;" v-if="totalQuantity >= 5">With 5 or more items in the shopping basket a 10% discount has been applied!</p>
                   <p v-else>Buy 5 or more items and get 10% off!</p>
                 </div>
 
@@ -71,24 +75,23 @@
          </div>
       </div>
 
-      <div class="total-shopping-cart-area">
-        
+      <div class="total-shopping-cart-area">        
       
         <div style="padding-top: 1em; margin: 0 auto;">
-          <p><b>Subtotal ({{ totalQuantity }} items): €{{ Math.abs(runningTotal.toFixed(2)) }} </b></p>
+          <span v-if="totalQuantity < 5"><b>Subtotal ({{ totalQuantity }} items): €{{ Math.abs(runningTotal.toFixed(2)) }} </b></span>
+          <span v-else-if="totalQuantity > 4"><b>Subtotal ({{ totalQuantity }} items): <s>€{{ Math.abs(runningTotal.toFixed(2)) }}</s></b></span>
           <transition>
-            <div style="font-size: 1.6rem;" v-if="totalQuantity >= 5">After 10% discount: ({{ totalQuantity }} items): 
+            <div style="font-size: 1.6rem;" v-if="totalQuantity >= 5">With 10% discount: ({{ totalQuantity }} items): 
               <span>€{{ Math.abs((runningTotal*.9).toFixed(2)) }}</span>
             </div>
           </transition>
-          <div style="padding-top: 1em;">
+          <div style="">
             <button v-show="runningTotal > 0" style="" @click="emptyShoppingCart()"
               class="clean-button">Empty Cart</button>        
             <button v-show="runningTotal > 0" style="margin-left: 1em;" 
               class="clean-button">Go to Checkout</button>
           </div>
-        </div>
-      
+        </div>      
       </div>
     </div>
   </div>
@@ -310,14 +313,13 @@ p.main-banner {
 }
 
 .shopping-modified-clean-button {
-  background-color: #f44336;
-
-  align-self: flex-end;
+  background-color: #f44336; 
+  float: inline-start;
+ 
   color: white;
   border: none;
-  border-radius: 0.5em; 
-  margin: 0.5em;
-  margin-left: 0rem;
+  border-radius: 0.5em;  
+  margin-left: 0rem; 
 }
 
 .shopping-modified-clean-button:hover {
@@ -326,9 +328,9 @@ p.main-banner {
 
 .total-shopping-cart-area {
 
-  display: flex;
-  
+  display: flex;  
   align-items: center;
+
 
   
  
@@ -342,12 +344,11 @@ p.main-banner {
 
 .each-item-area-formatting {
   border-bottom: 1px solid #f44336;
-  
-  margin-left: 1em;  
-  margin-right: 1em;  
+  margin: 0 1rem 0 1rem;
+  padding: 1rem 1rem 1rem 1rem;
   display: flex;
-  flex-direction: row;  
   background: rgb(255, 255, 255);
+  
 }
 
 .shopping-cart-title {
@@ -360,7 +361,10 @@ p.main-banner {
 }
 .each-item-in-cart-image {
   border-radius: 1em;
-  margin-top: 0.25em;
+
+}
+.cart-image-container{
+   
 }
 
 .product-name {
@@ -415,14 +419,22 @@ p.main-banner {
   
   
 }
-.v-enter-active,
-.v-leave-active {
+.v-enter-active{
   transition: opacity 1s ease;
+}
+
+.v-leave-active {
+  transition: opacity 0.2s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.cart-item-price-formatting{
+  font-weight: 600;
+  font-size: 1.1em;
 }
 
 @media screen and (max-width: 65rem) {
@@ -463,7 +475,7 @@ p.main-banner {
 
   .name-price-cart-formatting {  
   padding-left: 1rem;
-  padding-top: 0.6rem;
+  padding-top: 0rem;
 }
 
   .shopping-modified-clean-button {
