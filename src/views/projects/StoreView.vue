@@ -219,12 +219,12 @@ export default {
       if (selectedItem === null || actualProductID === null || this.storeInventory.getItems().length === 0) {
         return
       }
-      console.log("TEST", this.storeInventory.getItems()[selectedItem]);
-
+      //this.storeInventory.getItems()[selectedItem]);
+      console.log("GalleryID, ProductID",selectedItem, actualProductID);
       const matchingItemId = this.storeInventory.getItems().find(item => item.id === actualProductID)
       this.runningTotal += matchingItemId.price;
       // looks for the product ID that is scrolled in the gallery and matches it to the product ID in the inventory
-      console.log("TEST", matchingItemId);
+      
 
       this.addItemToShoppingCartIfNotAlreadyThere(matchingItemId);
     },
@@ -258,13 +258,10 @@ export default {
 }
 </script>
 
-
-
 <style scoped>
 h1 {
   font-size: 4em;
 }
-
 .main-banner {
   background-color: #f44336;
   /* Replace with your desired background color */
@@ -272,7 +269,6 @@ h1 {
   /* Replace with your desired text color */
   text-align: center;
 }
-
 p.main-banner {
   font-size: 0.8em;
 }
@@ -296,26 +292,19 @@ p.main-banner {
   grid-gap: 0em;
 }
 
-.grid-shopping-cart-left {
-
-  
+.grid-shopping-cart-left {  
   grid-column: 1;
 }
-.grid-shopping-cart-right {
-  
-  
+.grid-shopping-cart-right {  
   grid-column: 2;
 }
 
 .cart-item {
-  text-align: left;
-  
+  text-align: left;  
 }
-
 .shopping-modified-clean-button {
   background-color: #f44336; 
-  float: inline-start;
- 
+  float: inline-start; 
   color: white;
   border: none;
   border-radius: 0.5em;  
@@ -327,18 +316,12 @@ p.main-banner {
 }
 
 .total-shopping-cart-area {
-
   display: flex;  
-  align-items: center;
-
-
-  
- 
+  align-items: center;  
 }
 
 .name-price-cart-formatting {
-  display: inline-block;
-  
+  display: inline-block;  
   padding-left: 1em;
 }
 
@@ -347,13 +330,11 @@ p.main-banner {
   margin: 0 1rem 0 1rem;
   padding: 1rem 1rem 1rem 1rem;
   display: flex;
-  background: rgb(255, 255, 255);
-  
+  background: rgb(255, 255, 255);  
 }
 
 .shopping-cart-title {
-  text-align: left;
-  
+  text-align: left;  
   margin-left: 1em;
   margin-right: 1em;
   font-size: 1.1em;
@@ -361,14 +342,12 @@ p.main-banner {
 }
 .each-item-in-cart-image {
   border-radius: 1em;
-
 }
 .cart-image-container{
    
 }
 
-.product-name {
-  
+.product-name {  
   font-size: 1.1em;
 }
 .shopping-cart-border {
@@ -387,42 +366,33 @@ p.main-banner {
   margin-bottom: 0.15em;
   margin-left: 0.2em;
 }
-
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
-
 .special-offer{
   color: #fff;
   background: rgb(244, 67, 54);
   border-radius: 1em;
   max-width: 20rem;
   max-height: 20em;
-
   margin: 0 auto;
-  margin-top: 1em;
-  
+  margin-top: 1em;  
 }
 .special-offer p{
   font-size: 1rem;
   text-align: left;
   padding: 1em;
-  font-style: italic;
-  
+  font-style: italic;  
 }
-.special-offer h2{
- 
+.special-offer h2{ 
   font-size: 1.25rem;
   padding-top: 0.5rem;  
-  text-align: center;
-  
-  
+  text-align: center;    
 }
 .v-enter-active{
   transition: opacity 1s ease;
 }
-
 .v-leave-active {
   transition: opacity 0.2s ease;
 }
@@ -444,20 +414,15 @@ p.main-banner {
   
   .grid-shopping-cart-right {
     grid-column: 1;    
-  }
-  
-  
-}
+  }  
 
+}
 
 @media screen and (max-width: 60rem) {
   .special-offer h2{
   font-size: 1rem;
-  padding-top: 0.5em;  
-  
-  
-  
-}
+  padding-top: 0.5em;    
+  }
 
   .store-background {
     background-color: #f5f5f5;
@@ -465,8 +430,7 @@ p.main-banner {
   }
   .main-banner-text-container {
     padding: 1em;
-  }
- 
+  } 
 
   h1 {
     font-size: 2em;
@@ -476,7 +440,7 @@ p.main-banner {
   .name-price-cart-formatting {  
   padding-left: 1rem;
   padding-top: 0rem;
-}
+  }
 
   .shopping-modified-clean-button {
     font-size: 0.9em;
@@ -484,8 +448,7 @@ p.main-banner {
 
   .shopping-cart-area {
     padding: 0.5em;
-  }
-  
+  }  
 }
 
 @media  screen and (max-width: 10rem) {

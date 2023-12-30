@@ -48,10 +48,6 @@
     </nav>
 
   </header>
-  <!--adds a bar across the top behind hte navigation  -->
-
-
-
   <!-- user accepts privacy agreement -->
   <!-- Removed this for now, the only cookies the site has is if someone uses firebase so I will put this notification on that page exclusively -->
   <!-- <CookieAccept /> -->
@@ -67,15 +63,13 @@ export default {
     DropDownMenu,
   },
 };
-</script>
-  
+</script>  
 
 <style scoped>    
 
     header{
       border-bottom: 1px solid rgb(218, 220, 224); position: sticky; top: 0em; z-index: 5;
     }
-
     .about-menu:hover {
       outline: 2px solid rgb(255, 89, 89);
     }
@@ -188,6 +182,7 @@ export default {
 
       .small-font-website-name{
         font-size: 1em;
+        color: rgb(128, 128, 128);
       }
     }
 
