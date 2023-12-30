@@ -1,11 +1,10 @@
 <template>
-    <div class="store-background">  
-      
+  
       <!-- <button @click="makeInventory">Make Inventory</button> -->
   
       <!-- <button @click="resetInventory()">Reset</button> -->
   
-      <ProductGallery @add-to-cart="handleAddItemToCart"></ProductGallery>
+      <!--<ProductGallery @add-to-cart="handleAddItemToCart"></ProductGallery>-->
       <div class="shopping-cart-area">
       <div class="grid-shopping-cart">
         <div class="grid-shopping-cart-left">
@@ -19,7 +18,9 @@
                 <h2>Shopping Cart <i class="arrow down"></i></h2>
                 
                 <div>
-                  <p>Last added "{{ showLastAddedItem }}" to your cart!</p>
+                  <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to your cart!</span>
+                  ( Product ID: {{ propValue2 }} Item Position: {{ propValue }} )<br>
+                  
                 </div>
                 <br>
               </div>
@@ -57,7 +58,7 @@
           <div class="grid-shopping-cart-right">
            <div class="special-offer">
               <h2>&#9733;&nbsp;Special Offer!&nbsp;&#9733;</h2>
-                     
+              
             
                 <div>
                   <p style="text-align: left;" v-if="totalQuantity >= 5">With 5 or more items in the shopping basket a 10% discount has been applied!</p>
@@ -83,18 +84,20 @@
               class="clean-button">Empty Cart</button>        
             <button v-show="runningTotal > 0" style="margin-left: 1em;" 
               class="clean-button">Go to Checkout</button>
-          </div>
+          </div>         
         </div>      
       </div>
     </div>
-    </div>
+   
+   
+    
     
   </template>
   
   
   
   <script>
-  import ProductGallery from "@/components/Store/ProductGallery.vue";
+  // import ProductGallery from "@/components/Store/ProductGallery.vue";
   import { Inventory } from "@/components/Store/InventoryData.ts";
   import { productInventory } from '@/components/Store/productInventoryOptionsData';
   import "@/assets/globalCSS.css";
@@ -103,11 +106,23 @@
   export default {
     name: "StoreView",
     components: {
-      ProductGallery,
+      //ProductGallery,
     },
     props: {
-      // Your props here
-    },
+        propValue: {
+            type: Number,
+            default: 0
+        },
+        propValue2: {
+            type: Number,
+            default: 0
+        },
+        propUpdate:{
+            type: Boolean,    
+            default: false        
+        }
+   },
+   
     // Your script logic here
     data() {
       return {
@@ -116,28 +131,34 @@
         runningTotal: 0,
         lastItemAddedToCart: null,
         item: {
-          quantity: 0 // Initialize with your default quantity
+          quantity: 0, // Initialize with your default quantity
         }
   
       };
     },
     mounted() {
       // Your mounted logic here
+     
       this.makeInventory();
+    },
+
+    // This solves the issue I had with the architecture, didn't expect to use a watcher here.
+    watch: {
+
+        propUpdate() {
+
+            this.addItemToCart();
+
+        }
     },
   
     computed: {
+     
       totalQuantity() {
         return this.userCart.reduce((total, item) => total + item.quantity, 0);
       },
-      showLastAddedItem() {
-        const lastItemIndex = this.userCart.length - 1;
-        const lastItem = this.userCart[lastItemIndex]
-        // guard statement for null / undefined
-        if (lastItem === undefined) {
-          return
-        }
-        return lastItem['name']
+      showLastAddedItem() {       
+        return this.userCart.find(item => item.id === this.propValue2)?.name || '';
       },
       itemQuantities() {
         const quantities = {};
@@ -155,8 +176,14 @@
         return quantities;
       }
     },
+   
   
     methods: {
+        
+        addItemToCart() {
+      // Invoke the handleAddItemToCart method with propValue and propValue2
+      this.handleAddItemToCart(this.propValue, this.propValue2);
+    },
       handleIncrementDecrement(event) {
         if (event.keyCode === 38) {
           event.preventDefault();
@@ -209,6 +236,9 @@
       },
   
       handleAddItemToCart(selectedItem, actualProductID) {
+        
+        
+
         if (selectedItem === null || actualProductID === null || this.storeInventory.getItems().length === 0) {
           return
         }

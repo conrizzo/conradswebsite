@@ -159,9 +159,7 @@ h1 {
   z-index: 2;
 }
 
-.grid-item:hover {
-  cursor: pointer;
-}
+
 
 .gallery-component-image {
   border-radius: 1em;
@@ -173,6 +171,7 @@ h1 {
 
 .gallery-component-image:hover {
   filter: brightness(90%);
+  cursor: pointer;
 }
 
 
