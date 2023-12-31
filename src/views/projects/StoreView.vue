@@ -46,13 +46,7 @@ export default {
       // this.$emit('add-item-to-cart', newValue, newValue2);      
     },
 
-    navigateToCheckout() {
-      const cartItems = ['item1', 'item2', 'item3']; // Replace this with your actual cart items
-      this.$router.push({
-        name: '/checkout',
-        params: { items: cartItems }
-      });
-    }
+   
     // Your methods here    
   }
 }

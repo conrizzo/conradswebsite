@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 .dropbtn {    
     /* padding: 0.72em 0.6em 0.72em 0.6em; */

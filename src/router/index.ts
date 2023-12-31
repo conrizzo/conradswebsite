@@ -126,7 +126,7 @@ const routes = [
     path: '/projects/checkout',
     name: 'checkout',
     component: StoreCheckOutView,    
-    props: true // Allows passing props via route parameters
+     props: true // Allows passing props via route parameters
   },
 
 

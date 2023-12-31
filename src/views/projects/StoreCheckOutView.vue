@@ -1,35 +1,87 @@
 <template>
     <div>
-      <h1 style="padding: 1em;">Checkout - deciding how to proceed here.</h1>
-      <p>The goal will likely be to carry the user cart items as cookies here.</p>
-      <!-- Your content here -->
-      <CheckOut :propValue="propValue" :propValue2="propValue2" :propUpdate="updated"></CheckOut>
-        {{ items }}
-      <div v-for="item in userCart" :key="item.id">
-      {{ item.name }}
-    </div>
+        <div class="main-banner">
+        <h1 style="padding: 1em; font-size: 3em;">Checkout</h1>
+        </div>      
+    
+      <CheckOut 
+      :propValue="propValue" 
+      :propValue2="propValue2" 
+      :propUpdate="updated" 
+      :itemTotalProp="itemTotal" 
+      :showGoToCheckOutButton="false">
+      </CheckOut>
+       
+      
     </div>
   </template>
   
   <script>
   import "@/assets/globalCSS.css";
   import CheckOut from "@/components/Store/CheckOut.vue";
+
+   // make cookies for the products in the user cart
+   import VueCookies from 'vue-cookie';
+
   export default {
     // Component options
     components: {
       CheckOut
     },
-    
-    props: ['items'], // Define props to accept items passed from the route
+    subtotalProp: {
+     type: Number,
+     required: true
+    },
+    data() {
+      return {
+       
+        userCart: [],
+        
+      };
+    },
+
+
+ 
 
   created() {
-    // Access the passed items
-    console.log('Cart items:', this.items);
+    // Retrieve the userCart cookie
+    const userCartCookie = VueCookies.get('userCart');
+    if (userCartCookie) {
+      const userCart = JSON.parse(userCartCookie);
+        this.userCart = userCart;
+      // Use the userCart data as needed
+    }
+    
+  },
+  mounted(){
+   
   }
   
   }
   </script>
   
-  <style>
+  <style scoped>
+  .main-banner {
+  background: linear-gradient(to right, orange, red, pink);
+  /* Replace with your desired background color */
+  color: white;
+  /* Replace with your desired text color */
+  text-align: center;
+  position: relative;
+}
+
+.main-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%,
+      transparent 25%, transparent 70%, rgba(255, 255, 255, 0.1) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%, transparent);
+}
   /* Your component styles here */
+
+
+
   </style>

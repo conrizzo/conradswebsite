@@ -16,6 +16,7 @@
     "protobufjs": "^7.2.4",
     "vue": "^3.3.4",
     "vue-class-component": "^8.0.0-0",
+    "vue-cookie": "^1.1.4",
     "vue-cookies": "^1.8.3",
     "vue-router": "^4.0.3",
     "word-wrap": "^1.2.3"

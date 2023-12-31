@@ -79,32 +79,47 @@
               <span>€{{ Math.abs((runningTotal*.9).toFixed(2)) }}</span>
             </div>
           </transition>
-          <div style="">
+
+          <div class="bottom-checkout-button-container">
+
             <button v-show="runningTotal > 0" style="" @click="emptyShoppingCart()"
-              class="clean-button">Empty Cart</button>        
-              <RouterLink to="/projects/checkout">
+              class="clean-button">Empty Cart
+            </button>  
+
+            <div v-if="showGoToCheckOutButton">
+              <RouterLink   to="/projects/checkout">
                 <button v-show="runningTotal > 0" style="margin-left: 1em;"            
                 class="clean-button">Go to Checkout 
                </button>
               </RouterLink>
-            
-          </div>         
+            </div>
+
+            <div v-else>        
+                <RouterLink to="/projects/store">
+                    <button v-show="runningTotal > 0" style="margin-left: 1em;"            
+                        class="clean-button">Go Back
+                    </button>   
+                </RouterLink>      
+                <button v-show="runningTotal > 0" style="margin-left: 1em;"            
+                class="clean-button">Purchase Items
+               </button>            
+            </div>
+
+          </div>               
+
         </div>      
       </div>
-    </div>
-   
-   
-    
-    
-  </template>
-  
-  
+    </div>   
+  </template>  
   
   <script>
   // import ProductGallery from "@/components/Store/ProductGallery.vue";
   import { Inventory } from "@/components/Store/InventoryData.ts";
   import { productInventory } from '@/components/Store/productInventoryOptionsData';
   import "@/assets/globalCSS.css";
+
+  // make cookies for the products in the user cart
+  import VueCookies from 'vue-cookie';
   
  
   export default {
@@ -123,8 +138,17 @@
         },
         propUpdate:{
             type: Boolean,    
-            default: false        
+            default: false,     
+        },
+       
+         showGoToCheckOutButton: {
+            type: Boolean,
+            default: true,
+            
         }
+    
+  
+        
    },
    
     // Your script logic here
@@ -137,13 +161,26 @@
         item: {
           quantity: 0, // Initialize with your default quantity
         }
-  
+        
       };
+    },
+    created() {
+        // Retrieve the userCart array from cookies
+        const cartItems = VueCookies.get('userCart');
+        if (cartItems) {
+          this.userCart = JSON.parse(cartItems);
+        }
+        console.log("CART", this.userCart)
     },
     mounted() {
       // Your mounted logic here
      
       this.makeInventory();
+
+      // NOTE: There is definitely a better way to solve this problem than this, but for now
+      // This line of code below updates the runningtotal of the local cookies automatically.
+      this.runningTotal = this.userCart.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
+   
     },
 
     // This solves the issue I had with the architecture, didn't expect to use a watcher here.
@@ -152,11 +189,22 @@
         propUpdate() {
 
             this.addItemToCart();
-
-        }
+         
+        },
+    // watch userCart array for changes to add or remove local cookies of what is in the cart
+    userCart: {
+            handler(newCart) {
+                VueCookies.set('userCart', JSON.stringify(newCart));
+            },
+            deep: true // Watch for changes in nested properties of userCart
+        },
+   
     },
   
     computed: {
+      itemTotal() {
+        return this.userCart.map(item => Math.abs((item.quantity * item.price).toFixed(2)));
+      },
      
       totalQuantity() {
         return this.userCart.reduce((total, item) => total + item.quantity, 0);
@@ -184,11 +232,18 @@
   
     methods: {
         
-        addItemToCart() {
+   addItemToCart() {
       // Invoke the handleAddItemToCart method with propValue and propValue2
       this.handleAddItemToCart(this.propValue, this.propValue2);
+      
     },
-      handleIncrementDecrement(event) {
+
+    saveUserCartToCookies() {
+      // Store the userCart array in cookies
+      VueCookies.set('userCart', JSON.stringify([this.userCart]), { expires: 3 });
+    },
+
+    handleIncrementDecrement(event) {
         if (event.keyCode === 38) {
           event.preventDefault();
           this.item.quantity += 1;
@@ -439,6 +494,12 @@
   .cart-item-price-formatting{
     font-weight: 600;
     font-size: 1.1em;
+  }
+
+  .bottom-checkout-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   @media screen and (max-width: 65rem) {
