@@ -5,7 +5,7 @@
       <!-- <button @click="resetInventory()">Reset</button> -->
   
       <!--<ProductGallery @add-to-cart="handleAddItemToCart"></ProductGallery>-->
-      <div class="shopping-cart-area">
+    <div class="shopping-cart-area">
       <div class="grid-shopping-cart">
         <div class="grid-shopping-cart-left">
             <div class="shopping-cart-title">
@@ -82,8 +82,12 @@
           <div style="">
             <button v-show="runningTotal > 0" style="" @click="emptyShoppingCart()"
               class="clean-button">Empty Cart</button>        
-            <button v-show="runningTotal > 0" style="margin-left: 1em;" 
-              class="clean-button">Go to Checkout</button>
+              <RouterLink to="/projects/checkout">
+                <button v-show="runningTotal > 0" style="margin-left: 1em;"            
+                class="clean-button">Go to Checkout 
+               </button>
+              </RouterLink>
+            
           </div>         
         </div>      
       </div>

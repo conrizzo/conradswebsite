@@ -11,27 +11,28 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "firebase": "^10.0.0",
+    "firebase": "^10.7.1",
     "prismjs": "^1.29.0",
     "protobufjs": "^7.2.4",
     "vue": "^3.3.4",
     "vue-class-component": "^8.0.0-0",
+    "vue-cookies": "^1.8.3",
     "vue-router": "^4.0.3",
     "word-wrap": "^1.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
     "@babel/eslint-parser": "^7.12.16",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "^5.0.8",
     "@vue/cli-service": "~5.0.0",
-    "@vue/eslint-config-typescript": "^9.1.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
+    "@vue/eslint-config-typescript": "^12.0.0",
+    "eslint": "^8.32.0",
+    "eslint-plugin-vue": "^9.0.3",
     "typescript": "^5.1.3"
   }
 }

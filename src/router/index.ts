@@ -25,6 +25,7 @@ const RustWebAssemblyView = () => import('../views/projects/RustWebAssemblyView.
 const CardsView = () => import('../views/projects/CardsView.vue');
 const GalleryView = () => import('../views/projects/GalleryView.vue');
 const StoreView = () => import('../views/projects/StoreView.vue');
+const StoreCheckOutView = () => import('../views/projects/StoreCheckOutView.vue');
 
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
@@ -121,6 +122,12 @@ const routes = [
     name: 'Store',
     component: StoreView,    
   },
+  {
+    path: '/projects/checkout',
+    name: 'checkout',
+    component: StoreCheckOutView,    
+    props: true // Allows passing props via route parameters
+  },
 
 
   {
@@ -150,13 +157,13 @@ const router = createRouter({
     }
   },
 });
-
+/*
 auth.onAuthStateChanged(user => {
 
-// Removed duplicate import statement
+
 
 });  
-
+*/
   // const currentRoute = window.location.pathname;
 
   // this should fix it invoking the next() function multiple times.

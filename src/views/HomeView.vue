@@ -1,22 +1,20 @@
 <template>
   <div id="body">
-    <!-- negative margin here to fill in space in nav on home page -->
     <!-- Main area -->
     <main class="main-content">
-      <div class="custom-background-home-page">
-       
+      <div class="custom-background-home-page">      
 
         <!-- Title -->
         <div class="center-main-area-box">
           <div class="main-area-box">
-            <Transition>
+      
               <h1 class="title">
                 <span class="top-string-slice-of-title">
                   <span>{{ inputStringShuffled.slice(0, 7) }}</span>
                 </span>
                 <!--<span>{{ inputStringShuffled.slice(7) }}</span>-->
               </h1>
-            </Transition>
+       
             <div class='under-title-caption'>
             </div>
             <!-- Main bullets -->
@@ -67,6 +65,7 @@
           </div>
         </div>
       </div>
+
       <!-- Aside area begins  #2d2d2d; slate black color -->
 
       <AsideContent class="first-aside-home-page">
@@ -97,6 +96,7 @@
       <div style="background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 
       15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);">
       </div>
+
       <!--
               <AsideContent style="z-index: 1; background: #000; padding: 0em;">
 
@@ -109,16 +109,13 @@
                     </template>
 
               </AsideContent>   
-        -->
-    
-
+        -->    
+main-banner-sub-text
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
           <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
         </template>
-      </AsideContent>
-
-      
+      </AsideContent>      
 
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
@@ -128,16 +125,10 @@
       </AsideContent>
     </main>
 
-
     <imagesOneRow></imagesOneRow>
 
     <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne">   
-    </TwoColumnsGridContentTemplate>
-
-
- 
-      
-    
+    </TwoColumnsGridContentTemplate>   
 
   </div>
 </template>
@@ -159,8 +150,6 @@ import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
 
 import coffee_image from '@/images/coffee_time.jpg';
-
-
 
 import CoffeeGridContent from "@/components/CoffeeGridContent.vue";
 
@@ -189,9 +178,7 @@ export default {
       secondCoffee: require("@/images/second_coffee.jpg"),
       foodImage: require("@/images/coffee_food.jpg"),
       //conradImage: require("@/images/conrad.jpg"), 
-
-      // Intersection Observer to show items when they are scrolled to    
-
+      // Intersection Observer to show items when they are scrolled to  
       inputString: "_ Hello",
       name: "",
       inputStringShuffled: "",
@@ -212,21 +199,17 @@ export default {
       parentTextOne: "The goal of this website at the moment is to keep\
                       experimenting and learning. \
                       Make some fun projects."
-                      
-    
-      // hello
-      
-      
-      
-
     };
   },
   computed: {
+
     projectLinks() {
       return this.links; // Assuming `links` is the array of project links
     },
+
   },
   methods: {
+
     showImage(item) {
       switch (item.text) {
         case "Cowculator":
@@ -249,10 +232,12 @@ export default {
           break;
       }
     },
+
     hideImage() {
       this.isHovered = false;
       this.hoveredImage = "";
     },
+
     runRustArrayRandomizer() {
       init().then(() => {
         const arr = this.name.split(" ");
@@ -264,6 +249,7 @@ export default {
         //document.getElementById("randomizedArray").textContent = mainFunction;
       });
     },
+
     addLettersIntoInput() {
       let i = 0;
       const intervalId = setInterval(() => {
@@ -279,16 +265,13 @@ export default {
           }, 1000);
         }
       }, 200);
-    },
-    
+    },    
   },
 
   mounted() {
     Prism.highlightAll();
     this.addLettersIntoInput();
-
     //#####
-
   },
 };
 </script>
@@ -317,12 +300,22 @@ export default {
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
 
+  /* background-image: url('../images/blue_sky2.jpg'); */
   background-image: url('../images/blue_sky2.jpg');
   background-color: rgba(0, 0, 0, 0.1);
   background-blend-mode: multiply;
   background-attachment: fixed; 
+  position: relative;
 }
-
+.custom-background-home-page::before{  
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(10deg, rgba(0, 0, 0, 0.1) 20%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.1) 80%), linear-gradient(100deg, rgba(0, 0, 0, 0.1) 10%, transparent 10%, transparent 90%, rgba(0, 0, 0, 0.1) 90%);
+}
 
 .custom-color {
   color: rgb(255, 255, 255) !important;
@@ -346,13 +339,13 @@ export default {
 }
 
 .main-area-box {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.05);
   /* 
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 10%,rgba(255, 255, 255, 0), 50%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
   */
   border-radius: 2em;
   width: 70%;
- 
+  z-index: 2;
 }
 
 .home-text-links {
@@ -374,7 +367,7 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(13, 17, 23,0.3);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 1em;
   display: inline-block;
   width: 24em;
@@ -396,7 +389,7 @@ export default {
   font-size: 2.1em;
   padding: 0.5em;
   border-radius: 0.5em;  
-  background: rgba(13, 17, 23,0.3);
+  background: rgba(0, 0, 0, 0.2);
   /* border: 1px solid rgb(229, 229, 229);  */
 }
 
