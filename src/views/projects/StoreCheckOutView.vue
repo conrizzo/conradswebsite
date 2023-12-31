@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="main-banner">
-        <h1 style="padding: 1em; font-size: 3em;">Checkout</h1>
+          <h1 style="padding: 1em; font-size: 3em;">Checkout</h1>
         </div>      
     
       <CheckOut 
@@ -10,8 +10,7 @@
       :propUpdate="updated" 
       :itemTotalProp="itemTotal" 
       :showGoToCheckOutButton="false">
-      </CheckOut>
-       
+      </CheckOut>       
       
     </div>
   </template>
@@ -38,50 +37,40 @@
         userCart: [],
         
       };
-    },
-
-
- 
+    }, 
 
   created() {
     // Retrieve the userCart cookie
     const userCartCookie = VueCookies.get('userCart');
     if (userCartCookie) {
       const userCart = JSON.parse(userCartCookie);
-        this.userCart = userCart;
-      // Use the userCart data as needed
+        this.userCart = userCart;     
     }
     
   },
-  mounted(){
-   
+  mounted(){   
   }
   
   }
   </script>
   
   <style scoped>
-  .main-banner {
-  background: linear-gradient(to right, orange, red, pink);
-  /* Replace with your desired background color */
-  color: white;
-  /* Replace with your desired text color */
-  text-align: center;
-  position: relative;
-}
+    .main-banner {
+    background: linear-gradient(to right, orange, red, pink);
+    color: white;
+    text-align: center;
+    position: relative;
+    }
 
-.main-banner::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%,
-      transparent 25%, transparent 70%, rgba(255, 255, 255, 0.1) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%, transparent);
-}
-  /* Your component styles here */
-
-
-
+    .main-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%,
+        transparent 25%, transparent 70%, rgba(255, 255, 255, 0.1) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%, transparent);
+    }
+   
   </style>

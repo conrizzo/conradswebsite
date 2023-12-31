@@ -4,6 +4,7 @@
       <div class="main-banner-text-container">
         <h1> Buy awesome things here...</h1>
         <p class="main-banner-sub-text">A simple modular store layout made in Vue.js and TypeScript</p>
+      
       </div>
     </div>
     <!-- <button @click="makeInventory">Make Inventory</button> -->
@@ -11,7 +12,9 @@
     <ProductGallery @add-to-cart="updateValue"></ProductGallery>
     <CheckOut :propValue="propValue" :propValue2="propValue2" :propUpdate="updated"></CheckOut>
     <!-- <CheckOut :active-selection="activeSelection"></CheckOut> -->
-   
+    <a class="text-links" href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/Store">View the component and TypeScript source code on GitHub</a><br>
+    <a class="text-links" href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/StoreView.vue">Store page view</a><br>
+    <a class="text-links" href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/StoreCheckOutView.vue">Checkout page view</a>
   </div>
 </template>
 
