@@ -300,14 +300,16 @@ export default {
         addItemToShoppingCartIfNotAlreadyThere(item) {
             if (item === null) {
                 return
-            }
-
-            if (!this.userCart.includes(item)) {
+            }           
+            // Here we check to make sure the item is not in the user-defined array AND the local cookies array
+            // This is an important fix to the previous version.
+            const itemIndex = this.userCart.findIndex(cartItem => cartItem.id === item.id);
+                if (itemIndex === -1) {
                 item.quantity = 1;
                 this.userCart.push(item);
-            } else {
-                item.quantity++;
-            }
+                } else {
+                this.userCart[itemIndex].quantity++;
+                }
         },
 
         emptyShoppingCart() {

@@ -305,7 +305,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.1);
   background-blend-mode: multiply;
   background-attachment: fixed; 
-  position: relative;
+  position: relative;  
 }
 .custom-background-home-page::before{  
   content: "";
@@ -494,11 +494,16 @@ export default {
 }
 .hover-image {
  
-  margin-top: 4em;
-  
-  max-height: 16.25em;
+  margin-right: 2rem;
+  margin-top: 4rem;
   display: block;
-  border-radius: 1em;
+  width: 18.5rem;
+  
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  
+ 
+  border-radius: 1.2em;
 }
 /* Style for grid items */
 .grid-item {

@@ -167,6 +167,9 @@ h1 {
   margin: 0em;
   background-color: #ffffff;
   transition: filter 0.5s ease;
+  width: 100%;
+  object-fit: contain;
+  aspect-ratio: 1/1;
 }
 
 .gallery-component-image:hover {
