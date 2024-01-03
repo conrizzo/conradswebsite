@@ -202,9 +202,10 @@ h1 {
     /* Adjust the maximum height as needed */
     overflow-x: auto;
     overflow-y: none;
-    padding-left: 1em;
-
+    padding-left: 1em;   
   }
+
+
 
   .image-gallery-grid-container {
     margin: 0em;
@@ -214,6 +215,16 @@ h1 {
 }
 
 @media (max-width: 40rem) {
+
+  .image-gallery{
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS devices */   
+    padding-bottom: 1em;
+  }
+  .image-gallery::-webkit-scrollbar {
+     display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+  }  
 
   .image-gallery-grid-container {
     margin-left: 1.37em;

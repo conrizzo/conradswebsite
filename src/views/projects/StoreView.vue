@@ -10,7 +10,7 @@
     <!-- <button @click="makeInventory">Make Inventory</button> -->
     <!-- <button @click="resetInventory()">Reset</button> -->
     <ProductGallery @add-to-cart="updateValue"></ProductGallery>
-    <CheckOut :propValue="propValue" :propValue2="propValue2" :propUpdate="updated"></CheckOut>
+    <CheckOut :propProductIndexInGallery="propProductIndexInGallery" :propProductIdentificationNumber="propProductIdentificationNumber" :propUpdate="updated"></CheckOut>
     <!-- <CheckOut :active-selection="activeSelection"></CheckOut> -->   
     <div style="background: #fff;">
     <button @click="showDiagramAndSourceCode, toggleDiagramModal()" class='clean-button store-show-diagram-button'>{{ showDiagramButtonText }}</button>
@@ -42,8 +42,8 @@ export default {
   },
   data() {
     return {
-      propValue: 0,
-      propValue2: 0,
+      propProductIdentificationNumber: 0,
+      propProductIndexInGallery: 0,
       updated: false, //dummy value to force the child component watcher to update
       openDiagramAndSourceCodeLinks: false,
       showDiagramButtonText: "Show Diagram and Source Code",
@@ -53,10 +53,10 @@ export default {
 
   methods: {
     updateValue(newValue, newValue2) {
-      this.propValue = newValue,
-        this.propValue2 = newValue2;
+      this.propProductIdentificationNumber = newValue,
+        this.propProductIndexInGallery = newValue2;
       this.updated = !this.updated; // NOTE! This is a dummy value to force the child component watcher to update
-      console.log("VALUE", this.propValue, this.propValue2);
+      console.log("VALUE", this.propProductIdentificationNumber, this.propProductIndexInGallery);
       // this.$emit('add-item-to-cart', newValue, newValue2);      
     },
     showDiagramAndSourceCode() {

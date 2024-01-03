@@ -17,7 +17,7 @@
                         <div>
                             <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to your
                                 cart!</span>
-                            ( Product ID: {{ propValue2 }} Item Position: {{ propValue }} )<br>
+                            ( Product ID: {{ propProductIndexInGallery }} Item Position: {{ propProductIdentificationNumber }} )<br>
 
                         </div>
                         <br>
@@ -73,14 +73,14 @@
 
         <div class="total-shopping-cart-area">
 
-            <div style="padding-top: 1em; margin: 0 auto;">
-                <div style="height: 4.5em;">
+            <div style="margin: 0 auto;">
+                <div :class="['total-cost-area', { 'lower-height-total-cost-area': totalQuantity < 5 }]">
                     <span v-if="totalQuantity < 5"><b>Subtotal ({{ totalQuantity }} items): €{{
                         Math.abs(runningTotal.toFixed(2)) }} </b></span>
                     <span v-else-if="totalQuantity > 4"><b>Subtotal ({{ totalQuantity }} items): <s>€{{
                         Math.abs(runningTotal.toFixed(2)) }}</s></b></span>
                     <transition>
-                        <div style="font-size: 1.6rem;" v-if="totalQuantity >= 5">With 10% discount: ({{ totalQuantity }}
+                        <div class="discount-text" v-if="totalQuantity >= 5">With 10% discount: ({{ totalQuantity }}
                             items):
                             <span>€{{ Math.abs((runningTotal * .9).toFixed(2)) }}</span>
                         </div>
@@ -127,11 +127,11 @@ export default {
         //ProductGallery,
     },
     props: {
-        propValue: {
+        propProductIdentificationNumber: {
             type: Number,
             default: 0
         },
-        propValue2: {
+        propProductIndexInGallery: {
             type: Number,
             default: 0
         },
@@ -163,7 +163,7 @@ export default {
         if (cartItems) {
             this.userCart = JSON.parse(cartItems);
         }
-        console.log("CART", this.userCart)
+        //console.log("CART", this.userCart)
     },
     mounted() {
         // Your mounted logic here     
@@ -200,7 +200,7 @@ export default {
             return this.userCart.reduce((total, item) => total + item.quantity, 0);
         },
         showLastAddedItem() {
-            return this.userCart.find(item => item.id === this.propValue2)?.name || '';
+            return this.userCart.find(item => item.id === this.propProductIndexInGallery)?.name || '';
         },
         itemQuantities() {
             const quantities = {};
@@ -222,8 +222,8 @@ export default {
     methods: {
 
         addItemToCart() {
-            // Invoke the handleAddItemToCart method with propValue and propValue2
-            this.handleAddItemToCart(this.propValue, this.propValue2);
+            // Invoke the handleAddItemToCart method with propProductIdentificationNumber and propProductIndexInGallery
+            this.handleAddItemToCart(this.propProductIdentificationNumber, this.propProductIndexInGallery);
 
         },
 
@@ -275,11 +275,12 @@ export default {
             this.storeInventory = inventory;
             // gets the items available, this is just for testing, shows them in the console
             const items = inventory.getItems();
+
             console.log(items);
         },
 
         resetInventory() {
-            console.log("reset");
+            //console.log("reset");
             this.storeInventory = new Inventory();
         },
 
@@ -288,12 +289,12 @@ export default {
             if (selectedItem === null || actualProductID === null || this.storeInventory.getItems().length === 0) {
                 return
             }
-            console.log("TEST", this.storeInventory.getItems()[selectedItem]);
+            //console.log("TEST", this.storeInventory.getItems()[selectedItem]);
 
             const matchingItemId = this.storeInventory.getItems().find(item => item.id === actualProductID)
             this.runningTotal += matchingItemId.price;
             // looks for the product ID that is scrolled in the gallery and matches it to the product ID in the inventory
-            console.log("TEST", matchingItemId);
+            //console.log("TEST", matchingItemId);
 
             this.addItemToShoppingCartIfNotAlreadyThere(matchingItemId);
         },
@@ -486,6 +487,18 @@ p.main-banner {
     align-items: center;
 }
 
+.discount-text{
+    font-size: 1.6rem;
+    
+}
+
+.total-cost-area {
+    height: 4.5em;
+    padding-top: 3em;
+}
+
+
+
 
 
 @media screen and (max-width: 65rem) {
@@ -527,6 +540,18 @@ p.main-banner {
 
     .shopping-cart-area {
         padding: 0.5em;
+    }
+
+    .total-cost-area {
+        height: 6em;
+    }
+
+    .lower-height-total-cost-area{
+        height: 4em;
+    }
+
+    .discount-text{
+        font-size: 1.2rem;        
     }
 
 }
