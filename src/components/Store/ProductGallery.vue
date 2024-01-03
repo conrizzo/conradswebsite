@@ -5,7 +5,7 @@
       <div class="gallery-button-left" @click="changeImageArray('left')">&lt;</div>
 
       <div class="image-gallery-grid-container">
-        <div v-for="(item, index) in productInventoryArray.slice(0, 4)" :key="item.id" class="grid-item">
+        <div v-for="(item, index) in slicedProductInventoryArray" :key="item.id" class="grid-item">
           <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
           <figcaption>{{ item.name }} €{{ item.price }}</figcaption>
           <button @click="showArray(index, item.id);" class="clean-button">Add to cart</button>
@@ -48,6 +48,12 @@ export default {
     // Set the initioanl image array to the galleryItems array
     this.imageArrayChoice = this.productInventoryArray[0]
 
+  },
+  computed: {   
+    slicedProductInventoryArray() {     
+      const numColumns = 4; 
+      return this.productInventoryArray.slice(0, numColumns);  
+    }
   },
   methods: {
     showArray(selectionChoiceFromArray = null, choiceId = null) {
@@ -124,6 +130,7 @@ h1 {
   cursor: pointer;
   user-select: none;
   width: 1em;
+  z-index: 3;
 
 }
 
@@ -143,7 +150,7 @@ h1 {
 
 
 }
-
+/* IMPORTANT FIX THIS */
 .image-gallery-grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -152,14 +159,11 @@ h1 {
   margin-bottom: 1em;
 }
 
+
 .grid-item {
-
-
   background-color: rgba(0, 0, 0, 0);
   z-index: 2;
 }
-
-
 
 .gallery-component-image {
   border-radius: 1em;
@@ -167,9 +171,12 @@ h1 {
   margin: 0em;
   background-color: #ffffff;
   transition: filter 0.5s ease;
+  
+  /*
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   aspect-ratio: 1/1;
+  */
 }
 
 .gallery-component-image:hover {
@@ -177,19 +184,19 @@ h1 {
   cursor: pointer;
 }
 
-
 @media (max-width: 76rem) {
-
-  .gallery-button-left,
-  .gallery-button-right {
+  .gallery-button-left {
     display: none;
+  }  
+  .gallery-button-right {
+    top: 43%;
+    left: 0em;
+    width: 0.6em;
+    
   }
-
 }
 
-@media (max-width: 71rem) {
-
-
+@media (max-width: 76rem) {
   .image-gallery {
     max-height: 25em;
     /* Adjust the maximum height as needed */
@@ -208,11 +215,22 @@ h1 {
 
 @media (max-width: 40rem) {
 
-  .image-gallery-grid-container {}
+  .image-gallery-grid-container {
+    margin-left: 1.37em;
+  }
 
 
   .grid-item {
     width: fit-content;
+  }
+
+  .gallery-button-right {
+    top: 43%;
+    left: 0em;
+    width: 0.6em;   
+  }
+  h1{
+    padding-left: 1.5em;
   }
 
 

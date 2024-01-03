@@ -4,18 +4,25 @@
       <div class="main-banner-text-container">
         <h1> Buy awesome things here...</h1>
         <p class="main-banner-sub-text">A simple modular store layout made in Vue.js and TypeScript</p>
-      
+
       </div>
     </div>
     <!-- <button @click="makeInventory">Make Inventory</button> -->
     <!-- <button @click="resetInventory()">Reset</button> -->
     <ProductGallery @add-to-cart="updateValue"></ProductGallery>
     <CheckOut :propValue="propValue" :propValue2="propValue2" :propUpdate="updated"></CheckOut>
-    <!-- <CheckOut :active-selection="activeSelection"></CheckOut> -->
-    <a class="text-links" href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/Store">View the component and TypeScript source code on GitHub</a><br>
-    <a class="text-links" href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/StoreView.vue">Store page view</a><br>
-    <a class="text-links" href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/StoreCheckOutView.vue">Checkout page view</a>
+    <!-- <CheckOut :active-selection="activeSelection"></CheckOut> -->   
+    <div style="background: #fff;">
+    <button @click="showDiagramAndSourceCode, toggleDiagramModal()" class='clean-button store-show-diagram-button'>{{ showDiagramButtonText }}</button>
+    </div>    
+</div>
+
+  <div v-if="showDiagramModal">
+    <DiagramModal          
+          @close="toggleDiagramModal"
+    />
   </div>
+
 </template>
 
 <script>
@@ -26,17 +33,21 @@ import "@/assets/globalCSS.css";
 
 import CheckOut from "@/components/Store/CheckOut.vue";
 
+import DiagramModal from "@/components/Store/DiagramModal.vue";
+
 export default {
   name: "StoreView",
   components: {
-    ProductGallery, CheckOut
+    ProductGallery, CheckOut, DiagramModal
   },
   data() {
     return {
       propValue: 0,
       propValue2: 0,
       updated: false, //dummy value to force the child component watcher to update
-
+      openDiagramAndSourceCodeLinks: false,
+      showDiagramButtonText: "Show Diagram and Source Code",
+      showDiagramModal: false,
     };
   },
 
@@ -48,17 +59,29 @@ export default {
       console.log("VALUE", this.propValue, this.propValue2);
       // this.$emit('add-item-to-cart', newValue, newValue2);      
     },
+    showDiagramAndSourceCode() {
+      this.openDiagramAndSourceCodeLinks = !this.openDiagramAndSourceCodeLinks;
+      if (this.openDiagramAndSourceCodeLinks) {
+        this.showDiagramButtonText = "Hide Diagram and Source Code";
+      } else {
+        this.showDiagramButtonText = "Show Diagram and Source Code";
+      }
+    },
+    toggleDiagramModal() {
+      this.showDiagramModal = !this.showDiagramModal;
+    }
+    
 
-   
+
     // Your methods here    
   }
 }
 </script>
 
-<style scoped>
-h1 {
+<style scoped>h1 {
   font-size: 4em;
 }
+
 .main-banner {
   background: linear-gradient(to right, orange, red, pink);
   /* Replace with your desired background color */
@@ -90,6 +113,16 @@ h1 {
 
 .main-banner-text-container {
   padding: 10em;
+}
+
+.store-show-diagram-button{
+  margin: 1em;
+  background: rgb(244, 67, 54); 
+  color: #fff;
+}
+.store-show-diagram-button:hover{
+  background-color: #ff6c62;
+  color: #fff;
 }
 
 @media screen and (max-width: 65rem) {}

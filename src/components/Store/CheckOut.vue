@@ -12,7 +12,7 @@
 
                     </div>
                     <div class="shopping-cart-border" v-else>
-                        <h2>Shopping Cart <i class="arrow down"></i></h2>
+                        <h2>Shopping Cart <span class="arrow down"></span></h2>
 
                         <div>
                             <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to your
@@ -44,8 +44,8 @@
                                 <br>
                                 Quantity: <input type="number" v-model="item.quantity" min="0" max="100" step="1"
                                     @input="updateQuantityInCart(item)" @keydown="handleIncrementDecrement"
-                                    style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;"
-                                    class="number-input-quantity">
+                                    style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;">
+                                   
                                 <br>
                                 Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity *
                                     item.price).toFixed(2)) }}<br>
@@ -74,17 +74,18 @@
         <div class="total-shopping-cart-area">
 
             <div style="padding-top: 1em; margin: 0 auto;">
-                <span v-if="totalQuantity < 5"><b>Subtotal ({{ totalQuantity }} items): €{{
-                    Math.abs(runningTotal.toFixed(2)) }} </b></span>
-                <span v-else-if="totalQuantity > 4"><b>Subtotal ({{ totalQuantity }} items): <s>€{{
-                    Math.abs(runningTotal.toFixed(2)) }}</s></b></span>
-                <transition>
-                    <div style="font-size: 1.6rem;" v-if="totalQuantity >= 5">With 10% discount: ({{ totalQuantity }}
-                        items):
-                        <span>€{{ Math.abs((runningTotal * .9).toFixed(2)) }}</span>
-                    </div>
-                </transition>
-
+                <div style="height: 4.5em;">
+                    <span v-if="totalQuantity < 5"><b>Subtotal ({{ totalQuantity }} items): €{{
+                        Math.abs(runningTotal.toFixed(2)) }} </b></span>
+                    <span v-else-if="totalQuantity > 4"><b>Subtotal ({{ totalQuantity }} items): <s>€{{
+                        Math.abs(runningTotal.toFixed(2)) }}</s></b></span>
+                    <transition>
+                        <div style="font-size: 1.6rem;" v-if="totalQuantity >= 5">With 10% discount: ({{ totalQuantity }}
+                            items):
+                            <span>€{{ Math.abs((runningTotal * .9).toFixed(2)) }}</span>
+                        </div>
+                    </transition>
+               </div>
                 <div class="bottom-checkout-button-container">
 
                     <button v-show="runningTotal > 0" style="" @click="emptyShoppingCart()" class="clean-button">Empty Cart
@@ -417,6 +418,7 @@ p.main-banner {
     margin-right: 1em;
     font-size: 1.1em;
     border-bottom: 1px solid #f44336;
+   
 }
 
 .each-item-in-cart-image {
@@ -434,23 +436,7 @@ p.main-banner {
     background: rgb(255, 255, 255);
 }
 
-.main-banner-text-container {
-    padding: 10em;
-}
 
-.arrow {
-    border: solid black;
-    border-width: 0 5px 5px 0;
-    display: inline-block;
-    padding: 5px;
-    margin-bottom: 0.15em;
-    margin-left: 0.2em;
-}
-
-.down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-}
 
 .special-offer {
     color: #fff;
@@ -500,6 +486,8 @@ p.main-banner {
     align-items: center;
 }
 
+
+
 @media screen and (max-width: 65rem) {
     .grid-shopping-cart {
         grid-template-columns: 1fr;
@@ -521,11 +509,7 @@ p.main-banner {
     .store-background {
         background-color: #f5f5f5;
         padding: 1em;
-    }
-
-    .main-banner-text-container {
-        padding: 1em;
-    }
+    }  
 
     h1 {
         font-size: 2em;

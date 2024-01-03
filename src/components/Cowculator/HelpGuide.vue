@@ -6,7 +6,7 @@
       <h1>{{ helptitle }}</h1>
 
       <p class="help-guide-text">
-        Start enting numbers into the input using the keypad or by typing!
+        Start entering numbers into the input using the keypad or by typing!
         <br> <br>
         This uses a stack and self-written parsing to evaluate the expression.
         Shows a binary tree representation and the JSON data of the tree.
