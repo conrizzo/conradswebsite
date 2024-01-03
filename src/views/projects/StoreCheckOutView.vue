@@ -2,13 +2,20 @@
     <div>
         <div class="main-banner">
           <h1 style="padding: 1em; font-size: 3em;">Checkout</h1>
-        </div>      
-    
-      <CheckOut 
-      :propValue="propValue" 
-      :propValue2="propValue2" 
-      :propUpdate="updated" 
-      :itemTotalProp="itemTotal" 
+        </div>          
+        <!-- With the product information as cookies it seeems items are automatically updated 
+
+          in CheckOut below
+
+          :propProductIdentificationNumber="propProductIdentificationNumber" 
+          :propProductIndexInGallery="propProductIndexInGallery" 
+          :propUpdate="updated"               
+
+          Review this some more to understand my own code better
+        -->
+      <CheckOut             
+     
+         
       :showGoToCheckOutButton="false">
       </CheckOut>       
       
@@ -16,6 +23,7 @@
   </template>
   
   <script>
+
   import "@/assets/globalCSS.css";
   import CheckOut from "@/components/Store/CheckOut.vue";
 
@@ -26,11 +34,8 @@
     // Component options
     components: {
       CheckOut
-    },
-    subtotalProp: {
-     type: Number,
-     required: true
-    },
+    },    
+    
     data() {
       return {
        
@@ -57,9 +62,9 @@
   <style scoped>
     .main-banner {
     background: linear-gradient(to right, orange, red, pink);
-    color: white;
+    color: white;    
     text-align: center;
-    position: relative;
+    position: relative;    
     }
 
     .main-banner::before {

@@ -33,11 +33,24 @@ export default {
     }
   },
   data() {
-    productInventory[0].imageSrc = require('@/images/second_coffee.jpg');
-    productInventory[1].imageSrc = require('@/images/coffee_food.jpg');
-    productInventory[2].imageSrc = require('@/images/diffBird.jpg');
-    productInventory[3].imageSrc = require('@/images/cake.jpg');
-    productInventory[4].imageSrc = require('@/images/purple_cake.jpg');
+
+   
+
+    // Dynamically update all images to match and remember the user choices in the image gallery
+      productInventory.forEach(item => {
+      if (item.id === 1) {
+        item.imageSrc = require('@/images/second_coffee.jpg');
+      } else if (item.id === 2) {
+        item.imageSrc = require('@/images/coffee_food.jpg');
+      } else if (item.id === 3) {
+        item.imageSrc = require('@/images/diffBird.jpg');
+      } else if (item.id === 4) {
+        item.imageSrc = require('@/images/cake.jpg');
+      } else if (item.id === 5) {
+        item.imageSrc = require('@/images/purple_cake.jpg');
+      }
+    });
+
     return {
       imageArrayChoice: null,
       // This imports an array of product inventory objects ---- productInventoryOptionsData.ts
@@ -46,7 +59,9 @@ export default {
   },
   mounted() {
     // Set the initioanl image array to the galleryItems array
-    this.imageArrayChoice = this.productInventoryArray[0]
+
+    
+    // this.imageArrayChoice = this.productInventoryArray[0]
 
   },
   computed: {   
@@ -61,8 +76,8 @@ export default {
       if (selectionChoiceFromArray === null || choiceId === null) {
         return
       }
-      const selectedItem = selectionChoiceFromArray;
-      this.$emit('add-to-cart', selectedItem, choiceId);
+      //const selectedItem = selectionChoiceFromArray;
+      this.$emit('add-to-cart', selectionChoiceFromArray, choiceId);
     },
     /*
             handleAddToCart(index) {
@@ -84,6 +99,8 @@ export default {
         this.productInventoryArray.push(firstItem);
         this.imageArrayChoice = this.productInventoryArray[lastIndex];
       }
+
+      
     }
   }
   // Component logic goes here

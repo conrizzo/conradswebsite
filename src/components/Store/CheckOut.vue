@@ -17,10 +17,10 @@
                         <div>
                             <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to your
                                 cart!</span>
-                            ( Product ID: {{ propProductIndexInGallery }} Item Position: {{ propProductIdentificationNumber }} )<br>
+                            ( Product ID: {{ propProductIndexInGallery }} Item Position: {{ propProductIdentificationNumber }} )
 
                         </div>
-                        <br>
+                       
                     </div>
                 </div>
                 <!-- Each cart item is outputted here with v-for loop -->
@@ -135,10 +135,12 @@ export default {
             type: Number,
             default: 0
         },
+        // this propUpdate is exclusively used to update all the calculations as a watcher between components
         propUpdate: {
             type: Boolean,
             default: false,
         },
+        // removes this button from the StoreCheckOutView page, is default true on the StoreView (Main page)
         showGoToCheckOutButton: {
             type: Boolean,
             default: true,
@@ -276,7 +278,7 @@ export default {
             // gets the items available, this is just for testing, shows them in the console
             const items = inventory.getItems();
 
-            console.log(items);
+            console.log("hello", items);
         },
 
         resetInventory() {
@@ -311,6 +313,7 @@ export default {
                 this.userCart.push(item);
                 } else {
                 this.userCart[itemIndex].quantity++;
+                //console.log("TEST", this.userCart)
                 }
         },
 
@@ -357,7 +360,7 @@ p.main-banner {
 
 .shopping-cart-area {
     background-color: #ffffff;
-    padding: 2em;
+    padding: 2em 2em 0.5em 2em;
     margin-top: 2em;
     margin-bottom: 2em;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
@@ -407,16 +410,17 @@ p.main-banner {
 
 .each-item-area-formatting {
     border-bottom: 1px solid #f44336;
-    margin: 0 1rem 0 1rem;
-    padding: 1rem 1rem 1rem 1rem;
+    
+    padding: 1rem 2rem 1rem 2rem;
     display: flex;
     background: rgb(255, 255, 255);
 }
 
 .shopping-cart-title {
     text-align: left;
-    margin-left: 1em;
-    margin-right: 1em;
+    padding-left: 1em; 
+    padding-right: 1em;
+  
     font-size: 1.1em;
     border-bottom: 1px solid #f44336;
    
@@ -435,6 +439,7 @@ p.main-banner {
 .shopping-cart-border {
     /* border-bottom: 1px solid rgb(218, 220, 224); */
     background: rgb(255, 255, 255);
+    margin-bottom: 0em;
 }
 
 
