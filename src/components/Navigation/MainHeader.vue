@@ -29,7 +29,7 @@
       </div>
       
       <div style="display: flex; align-items: center;">
-        <router-link class="hide-sign-in-text-at-low-res" to="projects/firebasetest">Sign In</router-link>
+        <router-link class="hide-sign-in-text-at-low-res" to="/projects/login">Sign In</router-link>
           <div style=" box-sizing: border-box; padding-left: 0.25em; ">
           <div class="header-logo-container">
             <a class="github-logo-link" href="https://github.com/conrizzo/conradswebsite">

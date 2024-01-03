@@ -92,14 +92,14 @@
                     </button>
 
                     <div v-if="showGoToCheckOutButton">
-                        <RouterLink to="/projects/checkout">
+                        <RouterLink to="/projects/store/checkout">
                             <button v-show="runningTotal > 0" style="margin-left: 1em;" class="clean-button">Go to Checkout
                             </button>
                         </RouterLink>
                     </div>
 
                     <div v-else>
-                        <RouterLink to="/projects/store">
+                        <RouterLink to="/projects/store/store">
                             <button v-show="runningTotal > 0" style="margin-left: 1em;" class="clean-button">Go Back
                             </button>
                         </RouterLink>

@@ -2,17 +2,23 @@
   <div class="centerAll">
     <div class="image-gallery">
       <h1>MAKE A SELECTION</h1>
-      <div class="gallery-button-left" @click="changeImageArray('left')">&lt;</div>
+      <div class="gallery-button-left" @click="changeImageArray('left')">
+       &lt;
+      </div>
 
       <div class="image-gallery-grid-container">
         <div v-for="(item, index) in slicedProductInventoryArray" :key="item.id" class="grid-item">
-          <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
+          <RouterLink :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price }}">
+            <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
+          </RouterLink> 
           <figcaption>{{ item.name }} €{{ item.price }}</figcaption>
           <button @click="showArray(index, item.id);" class="clean-button">Add to cart</button>
         </div>
       </div>
 
-      <div class="gallery-button-right" @click="changeImageArray('right')">></div>
+      <div class="gallery-button-right" @click="changeImageArray('right')">
+       >
+      </div>
     </div>
   </div>
 </template>
@@ -32,9 +38,7 @@ export default {
       default: null,
     }
   },
-  data() {
-
-   
+  data() {   
 
     // Dynamically update all images to match and remember the user choices in the image gallery
       productInventory.forEach(item => {

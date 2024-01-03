@@ -24,9 +24,9 @@ const SortingAlgorithmsView = () => import('../views/projects/SortingAlgorithmsV
 const RustWebAssemblyView = () => import('../views/projects/RustWebAssemblyView.vue');
 const CardsView = () => import('../views/projects/CardsView.vue');
 const GalleryView = () => import('../views/projects/GalleryView.vue');
-const StoreView = () => import('../views/projects/StoreView.vue');
-const StoreCheckOutView = () => import('../views/projects/StoreCheckOutView.vue');
-
+const StoreView = () => import('../views/projects/store/StoreView.vue');
+const StoreCheckOutView = () => import('../views/projects/store/StoreCheckOutView.vue');
+const ProductPageView = () => import('../views/projects/store/ProductPageView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 // const about = () => import('../views/about.vue');
@@ -80,7 +80,7 @@ const routes = [
     component: CowGameView,
   },
   {
-    path: '/projects/firebasetest',
+    path: '/projects/login',
     name: 'FirebaseTestView',
     component: FirebaseTestView,
   },
@@ -118,15 +118,21 @@ const routes = [
   },
 
   {
-    path: '/projects/store',
+    path: '/projects/store/store',
     name: 'Store',
     component: StoreView,    
   },
   {
-    path: '/projects/checkout',
+    path: '/projects/store/checkout',
     name: 'checkout',
     component: StoreCheckOutView,    
      props: true // Allows passing props via route parameters
+  },
+  {
+    path: '/projects/store/product/:id/:name/:image/:price',
+    name: 'ProductPageView',
+    component: ProductPageView,
+    props: true,
   },
 
 
