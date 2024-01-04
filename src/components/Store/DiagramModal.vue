@@ -15,6 +15,10 @@
             <a class="text-links"
             href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/StoreCheckOutView.vue">Checkout
             page view</a>
+            <p>
+              An alternative idea was to use an <a class="text-links" href=https://v3-migration.vuejs.org/breaking-changes/events-api.html#_3-x-update>Event Bus</a>, but this is generally frowned upon. In this application all user choices are passed between components as
+              props and held locally as cookies.
+            </p>
        </div>
        <div style="padding: 0.5em;">
          <img src="@/images/store/project_diagram.svg" alt="Diagram of how this project works" style="max-width: 100%; max-height: 100%;">

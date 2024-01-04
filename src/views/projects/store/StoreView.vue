@@ -27,13 +27,10 @@
 
 <script>
 import ProductGallery from "@/components/Store/ProductGallery.vue";
-// import { Inventory } from "@/components/Store/InventoryData.ts";
-// import { productInventory } from '@/components/Store/productInventoryOptionsData';
 import "@/assets/globalCSS.css";
-
 import CheckOut from "@/components/Store/CheckOut.vue";
-
 import DiagramModal from "@/components/Store/DiagramModal.vue";
+
 
 export default {
   name: "StoreView",
@@ -50,6 +47,7 @@ export default {
       showDiagramModal: false,
     };
   },
+  
 
   methods: {
     updateValue(productNumber, GalleryIndex) {

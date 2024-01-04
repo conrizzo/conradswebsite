@@ -29,7 +29,7 @@
                         <div class="each-item-area-formatting">
                             <div class="cart-image-container">
                                 <image>
-                                    <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.altText"
+                                    <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.name"
                                         width="128" height="128">
                                 </image>
                             </div>
@@ -110,6 +110,7 @@
             </div>
         </div>
     </div>
+  
 </template>  
   
 <script>
@@ -144,7 +145,13 @@ export default {
         showGoToCheckOutButton: {
             type: Boolean,
             default: true,
+        },
+        // Prop of adding item using each individual product in ProductPageView.vue
+        activeSelection: {
+            type: Number,
+            default: 0
         }
+
     },
     // Your script logic here
     data() {
@@ -177,6 +184,7 @@ export default {
 
     // This solves the issue I had with the architecture, didn't expect to use a watcher here.
     watch: {
+        
 
         propUpdate() {
 
@@ -223,10 +231,9 @@ export default {
 
     methods: {
 
-        addItemToCart() {
+        addItemToCart() {         
             // Invoke the handleAddItemToCart method with propProductIdentificationNumber and propProductIndexInGallery
-            this.handleAddItemToCart(this.propProductIdentificationNumber, this.propProductIndexInGallery);
-
+            this.handleAddItemToCart(this.propProductIdentificationNumber, this.propProductIndexInGallery);         
         },
 
         saveUserCartToCookies() {
