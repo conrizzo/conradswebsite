@@ -18,7 +18,6 @@
                             <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to your
                                 cart!</span>
                             ( Product ID: {{ propProductIndexInGallery }} Item Position: {{ propProductIdentificationNumber }} )
-
                         </div>
                        
                     </div>
@@ -29,7 +28,7 @@
                         <div class="each-item-area-formatting">
                             <div class="cart-image-container">
                                 <image>
-                                    <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.name"
+                                    <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.imageSrc"
                                         width="128" height="128">
                                 </image>
                             </div>
@@ -85,7 +84,8 @@
                             <span>€{{ Math.abs((runningTotal * .9).toFixed(2)) }}</span>
                         </div>
                     </transition>
-               </div>
+                </div>
+               
                 <div class="bottom-checkout-button-container">
 
                     <button v-show="runningTotal > 0" style="" @click="emptyShoppingCart()" class="clean-button">Empty Cart
@@ -97,10 +97,10 @@
                             </button>
                         </RouterLink>
                     </div>
-
+                
                     <div v-else>
                         <RouterLink to="/projects/store/store">
-                            <button v-show="runningTotal > 0" style="margin-left: 1em;" class="clean-button">Go Back
+                            <button style="margin-left: 1em;" class="clean-button">Go Back
                             </button>
                         </RouterLink>
                         <button v-show="runningTotal > 0" style="margin-left: 1em;" class="clean-button">Purchase Items
@@ -119,6 +119,7 @@ import { Inventory } from "@/components/Store/InventoryData.ts";
 import { productInventory } from '@/components/Store/productInventoryOptionsData';
 import "@/assets/globalCSS.css";
 
+import mitt from 'mitt';
 // make cookies for the products in the user cart
 import VueCookies from 'vue-cookie';
 
@@ -147,10 +148,10 @@ export default {
             default: true,
         },
         // Prop of adding item using each individual product in ProductPageView.vue
-        activeSelection: {
-            type: Number,
-            default: 0
-        }
+        propProductPageAddItemToCart: {
+            type: Array,
+            required: true
+            }
 
     },
     // Your script logic here
@@ -172,6 +173,8 @@ export default {
         if (cartItems) {
             this.userCart = JSON.parse(cartItems);
         }
+
+        this.eventEmitter = mitt();
         //console.log("CART", this.userCart)
     },
     mounted() {
@@ -180,10 +183,18 @@ export default {
         // NOTE: There is definitely a better way to solve this problem than this, but for now
         // This line of code below updates the runningtotal of the local cookies automatically.
         this.runningTotal = this.userCart.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
+
+        this.eventEmitter.on('add-to-cart', this.addItemToCart);
     },
 
     // This solves the issue I had with the architecture, didn't expect to use a watcher here.
     watch: {
+
+        // this watches for user adding item to cart from the ProductPageView.vue
+        // Checks for quantity of item clicks, and which ID the item has
+        propProductPageAddItemToCart() {
+            this.handleAddItemToCart(0, parseInt(this.propProductPageAddItemToCart[0]));
+        },
         
 
         propUpdate() {
@@ -230,7 +241,7 @@ export default {
     },
 
     methods: {
-
+        
         addItemToCart() {         
             // Invoke the handleAddItemToCart method with propProductIdentificationNumber and propProductIndexInGallery
             this.handleAddItemToCart(this.propProductIdentificationNumber, this.propProductIndexInGallery);         
@@ -295,6 +306,13 @@ export default {
 
         handleAddItemToCart(selectedItem, actualProductID) {
 
+            if (selectedItem === null && actualProductID !== null) {
+                const matchingItemId = this.storeInventory.getItems().find(item => item.id === actualProductID)
+                this.runningTotal += matchingItemId.price;
+                this.addItemToShoppingCartIfNotAlreadyThere(matchingItemId);
+                return
+            }
+
             if (selectedItem === null || actualProductID === null || this.storeInventory.getItems().length === 0) {
                 return
             }
@@ -338,32 +356,13 @@ export default {
         }
     }
 }
-</script>
-  
-  
-  
+</script>  
   
 <style scoped>
 h1 {
     font-size: 4em;
 }
 
-.main-banner {
-    background-color: #f44336;
-    /* Replace with your desired background color */
-    color: white;
-    /* Replace with your desired text color */
-    text-align: center;
-}
-
-p.main-banner {
-    font-size: 0.8em;
-}
-
-.store-background {
-    background-color: #f5f5f5;
-    padding: 2.5em 5em 5em 5em;
-}
 
 .shopping-cart-area {
     background-color: #ffffff;

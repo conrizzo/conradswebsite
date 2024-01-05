@@ -229,12 +229,13 @@ h2 {
 }
 
 .grid-item-coffee {
-  grid-column: 1 / 3;
+  grid-column: 1 / 2;
   grid-row: 0 / 3;
   color: #000000;
   max-height: 4em;
   cursor: pointer;
   text-align: right;
+ 
 }
 
 .grid-item-second-second {
@@ -259,14 +260,19 @@ h2 {
 
 
 .grid-item-coffee-text {
-  grid-column: 3;
+  grid-column: 2 / 4;
   grid-row: 1 / -1;
   color: #ffffff;
 
-
-  padding: 0.5em;
-  font-size: 1.5em;
+  
+  padding-right: 2em;
+  padding-left: 2em;
+  
   text-align: left;
+}
+
+.grid-item-coffee-text ul {
+  font-size: 1.5em;
 }
 
 .grid-item-second-third {
@@ -293,9 +299,23 @@ h2 {
 
 .coffee-image {
   border-radius: 1em;
-  width: 45%; 
+  height: 18em;
 }
 
+
+@media only screen and (max-width: 70rem) {
+  .grid-item-coffee-text {
+    font-size: 1em;
+  }
+  .grid-item-coffee{
+    text-align: center;
+  }
+
+  .coffee-image{
+    display: none;
+  }
+
+}
 
 @media only screen and (max-width: 50rem) {
 
@@ -334,7 +354,7 @@ h2 {
   }
 
   .grid-item-coffee-text {
-    grid-row: 4 / 5;
+    grid-row: 3 / 4;
     color: #ffffff;
     background: rgb(18, 18, 18);
     font-family: 'Nimbus Sans L', sans-serif;
@@ -343,22 +363,11 @@ h2 {
   /* Remove the right margin from the third grid item */
 
 
-  .coffee-image {
-    max-width: 90%;
-    
-  }
+  
 
 }
 
-@media only screen and (max-width: 70rem) {
-  .grid-item-coffee-text {
-    font-size: 1em;
-  }
-  .grid-item-coffee{
-    text-align: center;
-  }
 
-}
 
 
 

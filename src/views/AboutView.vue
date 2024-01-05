@@ -314,7 +314,7 @@ export default {
   */  
   background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);  
-  background-size: 100% 120%;  
+  background-size: 100% 100%;  
   background-attachment: fixed;   
 }
 
@@ -435,42 +435,39 @@ h3 {
 
 .bullets-container{ 
   border-radius: 1.25em;
-  background: rgb(239, 236, 229);
-  padding: 0.5em;
+  background: rgb(255, 255, 255);
+  padding: 1em;
+  border: 1px solid rgb(218, 220, 224);
   margin: 0.5em;
 }
 .bullets{  
   margin-left: 1.8rem;
   padding-right: 0.425em;
-  font-size: 1.2rem;  
-  
+  font-size: 1.2rem;    
 }
-
-
-
-
-
-.more-information-about-me:nth-child(even) {
+.more-information-about-me:nth-child(even){  
   margin-top: 2em; 
-  background: rgb(239, 234, 229);
+  background: rgb(255, 255, 255);
   border-radius: 1.25em;  
   margin: 0.5em;
   margin-top: 2em;
   padding-top: 0.5em;
+  border: 1px solid rgb(218, 220, 224);
 }
 
 .more-information-about-me:nth-child(odd) {
   margin-top: 2em; 
   
   border-radius: 1.25em;
-  background: rgb(222, 241, 255);
+  background: rgb(239, 248, 255);
+  border: 1px solid rgb(218, 220, 224);
   margin: 0.5em;
   margin-top: 2em;
   padding-top: 0.5em;
 }
 
 li::marker {
-  color: rgb(255, 89, 89);
+  color: rgb(18, 18, 18);
 }
 
 li {
@@ -532,7 +529,7 @@ figure {
   margin-bottom: 0.33em;
 }
 .text-container {
-  background-color: rgb(246, 247, 250);
+  background-color: rgb(255, 255, 255);
   padding: 3em 10em 2em 10em;
 }
 .figure-location {

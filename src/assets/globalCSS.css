@@ -133,9 +133,6 @@ body {
   padding: 0;
 }
 
-
-
-
 /* buttons and stuff */
 h1 {  
   line-height: 1.5;
@@ -250,6 +247,7 @@ h1 {
 /* links styling WITH underline on hover */
 .text-links:link {
   text-decoration: none;
+  cursor: pointer;
   color: rgb(11, 87, 208);
 }
 .text-links:hover {
@@ -275,6 +273,20 @@ h1 {
 }
 .text-links-no-underline:active {
   color: rgb(168, 55, 247);
+}
+
+.links-black:link {
+  text-decoration: none;  
+  color: rgb(18, 18, 18);
+}
+.links-black:hover {
+  text-decoration: underline;
+}
+.links-black:visited {
+  color: rgb(18, 18, 18);
+}
+.links-black:active {
+  color: rgb(18, 18, 18);
 }
 
 

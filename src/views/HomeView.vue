@@ -110,7 +110,7 @@
 
               </AsideContent>   
         -->    
-main-banner-sub-text
+
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
           <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
@@ -175,7 +175,7 @@ export default {
       itemsLength: 0,
       birdDrawing: require("@/images/StableDiffusionBird.jpg"),
       coffee_image: coffee_image, // Assign the imported image to the "image" data property
-      secondCoffee: require("@/images/second_coffee.jpg"),
+      secondCoffee: require("@/images/cup_of_coffee.jpg"),
       foodImage: require("@/images/coffee_food.jpg"),
       //conradImage: require("@/images/conrad.jpg"), 
       // Intersection Observer to show items when they are scrolled to  

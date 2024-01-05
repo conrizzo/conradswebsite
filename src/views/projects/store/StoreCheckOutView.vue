@@ -1,81 +1,78 @@
 <template>
-    <div>
-        <div class="main-banner">
-          <h1 style="padding: 1em; font-size: 3em;">Checkout</h1>
-        </div>          
-        <!-- With the product information as cookies it seeems items are automatically updated 
-
-          in CheckOut below
-
-          :propProductIdentificationNumber="propProductIdentificationNumber" 
-          :propProductIndexInGallery="propProductIndexInGallery" 
-          :propUpdate="updated"               
-
-          Review this some more to understand my own code better
-        -->
-      <CheckOut             
-     
-         
-      :showGoToCheckOutButton="false">
-      </CheckOut>       
-      
+  <div>
+    <div class="main-banner">
+      <div class="centered-container">
+        <h1 style="font-size: 3em;">Checkout</h1>
+      </div>
     </div>
-  </template>
+
+    <CheckOut :showGoToCheckOutButton="false">
+    </CheckOut>
+
+  </div>
+</template>
   
-  <script>
+<script>
 
-  import "@/assets/globalCSS.css";
-  import CheckOut from "@/components/Store/CheckOut.vue";
+import "@/assets/globalCSS.css";
+import CheckOut from "@/components/Store/CheckOut.vue";
 
-   // make cookies for the products in the user cart
-   import VueCookies from 'vue-cookie';
+// make cookies for the products in the user cart
+import VueCookies from 'vue-cookie';
 
-  export default {
-    // Component options
-    components: {
-      CheckOut
-    },    
-    
-    data() {
-      return {
-       
-        userCart: [],
-        
-      };
-    }, 
+export default {
+  // Component options
+  components: {
+    CheckOut
+  },
+
+  data() {
+    return {
+
+      userCart: [],
+
+    };
+  },
 
   created() {
     // Retrieve the userCart cookie
     const userCartCookie = VueCookies.get('userCart');
     if (userCartCookie) {
       const userCart = JSON.parse(userCartCookie);
-        this.userCart = userCart;     
-    }
-    
-  },
-  mounted(){   
-  }
-  
-  }
-  </script>
-  
-  <style scoped>
-    .main-banner {
-    background: linear-gradient(to right, orange, red, pink);
-    color: white;    
-    text-align: center;
-    position: relative;    
+      this.userCart = userCart;
     }
 
-    .main-banner::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%,
-        transparent 25%, transparent 70%, rgba(255, 255, 255, 0.1) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%, transparent);
-    }
-   
-  </style>
+  },
+  mounted() {
+  }
+
+}
+</script>
+  
+<style scoped>
+.main-banner {
+  background: linear-gradient(to right, orange, red, pink);
+  color: white;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  height: 40vh;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%,
+      transparent 25%, transparent 70%, rgba(255, 255, 255, 0.1) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%, transparent);
+}
+</style>

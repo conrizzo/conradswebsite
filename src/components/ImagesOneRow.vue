@@ -31,7 +31,7 @@
   
     },
     data() {
-        const coffeeImage = require('@/images/second_coffee.jpg');
+        const coffeeImage = require('@/images/cup_of_coffee.jpg');
         const coffeeFood = require('@/images/coffee_food.jpg');
         const diffusionBird = require('@/images/diffBird.jpg');
       return {       

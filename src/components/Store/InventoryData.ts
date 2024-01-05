@@ -8,6 +8,7 @@ export interface Item {
   quantityAvailable: number;
   caption: string;
   altText: string;
+  description: string;
 }
 
 

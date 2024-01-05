@@ -1,6 +1,7 @@
 <template>
   <div class="centerAll">
     <div class="image-gallery">
+   
       <h1>MAKE A SELECTION</h1>
       <div class="gallery-button-left" @click="changeImageArray('left')">
        &lt;
@@ -28,6 +29,8 @@
 import { productInventory } from './productInventoryOptionsData';
 
 export default {
+
+    
   name: 'ProductGallery',
   components: {
 
@@ -40,10 +43,10 @@ export default {
   },
   data() {   
 
-    // Dynamically update all images to match and remember the user choices in the image gallery
-      productInventory.forEach(item => {
+        // Dynamically update all images to match and remember the user choices in the image gallery
+        productInventory.forEach(item => {
       if (item.id === 1) {
-        item.imageSrc = require('@/images/second_coffee.jpg');
+        item.imageSrc = require('@/images/cup_of_coffee.jpg');
       } else if (item.id === 2) {
         item.imageSrc = require('@/images/coffee_food.jpg');
       } else if (item.id === 3) {
@@ -55,11 +58,24 @@ export default {
       }
     });
 
+    
+
     return {
-      imageArrayChoice: null,
       // This imports an array of product inventory objects ---- productInventoryOptionsData.ts
       productInventoryArray: productInventory,
+       
+      
     };
+    
+
+    
+
+
+
+    
+  },
+  created(){
+    this.testArray = ['@/images/cup_of_coffee.jpg']
   },
   mounted() {
     // Set the initioanl image array to the galleryItems array
