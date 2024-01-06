@@ -10,12 +10,12 @@
     </div>
     
     <h4 style="margin-top: 0.3em; text-align: left; margin-left: 0.5em; margin-right: 0.5em; color: #fff;">
-      <b class="main-red-color">Note:</b> click on the column titles in the table below for each column to sort data
+      <b class="main-red-color">Note:</b> Click on the column titles in the table below for each column to sort data
       numerically/alphabetically. The graph will update to the sorted values.
       All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
 
-    <table style="margin-top: 1em;">
-      <thead>
+    <table class="table-area">
+      <thead style="">
         <tr>
           <th style="cursor: pointer;" @click="sortData('country')">Country</th>
           <th class="table-column-buttons" style="cursor: pointer;"
@@ -299,8 +299,33 @@ export default {
   padding-top: 3em;   
   background: rgb(65, 77, 99);
   padding-bottom: 1em;
+  background-image: url('../../images/coffee-tree.jpg');
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.33);
+  background-attachment: fixed; 
+  position: relative;  
+  background-size: cover;
+  /* Free to use Image Source:
+  https://unsplash.com/photos/coffee-beans-are-growing-on-a-tree-branch-3p8U2e7kAiM */
+ 
 }
 
+.coffee-data-background::before{  
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 95svh;  
+  z-index: 1;
+}
+
+.table-area{
+  
+  position: relative; /* Add this line */
+  z-index: 2; /* Add this line */
+  margin-top: 1em;
+}
 
 
 h1{

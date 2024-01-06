@@ -1,7 +1,7 @@
 <template>
   <!-- this 1st div does a nice background color, and puts padding between this element and the footer-->
   <div class="weather-background">
-    <h1 style="padding-top: 1em; padding-bottom: 1em; color: #ffffff; font-size: 5em;">Weather</h1>
+    <h1 class="weather-title">Tübingen Weather</h1>
     <div class="center-content">
 
 
@@ -11,8 +11,8 @@
             <th>City / Country / Region</th>
             <th>Sun Rise / Sun Set</th>
             <th>Weather Conditions</th>
-            <th>High / Low °C</th>
-            <th>°C</th>
+            <th>High / Low </th>
+            <th>Recent</th>
             <th>Wind Speed</th>
           </tr>
         </thead>
@@ -20,7 +20,7 @@
           <tr v-for="cityWeather in cityWeathers" :key="cityWeather.city">
 
             <!-- 1 -->
-            <td><b><u>{{ cityWeather.city }}</u></b>
+            <td data-label="City / Country / Region"><b><u>{{ cityWeather.city }}</u></b>
               <br><br>
               <template v-if="cityWeather.weather && cityWeather.weather.request[0].query">
 
@@ -41,7 +41,7 @@
 
 
             <!-- 2 -->
-            <td>
+            <td data-label="Sun Rise / Sun Set">
               <template v-if="cityWeather.weather && cityWeather.weather.weather[0].astronomy[0].sunrise">
                 <span class="sunny-background">{{ cityWeather.weather.weather[0].astronomy[0].sunrise }} - {{
                   cityWeather.weather.weather[0].astronomy[0].sunset }}</span><br>
@@ -61,7 +61,7 @@
 
             <!-- 3 -->
             <!-- This sets the table cell to have a different color background on a condition  -->
-            <td style="color: red;" v-bind:class="{
+            <td data-label="Weather Conditions" style="color: red;" v-bind:class="{
               'gray-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy',
               'rain-showers-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain shower',
               'overcast-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Overcast',
@@ -86,7 +86,7 @@
 
 
             <!-- 5 -->
-            <td>
+            <td data-label="High / Low ">
 
               <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0].temp_C">
 
@@ -95,9 +95,10 @@
                 <div>
                   {{ formatDate(cityWeather.weather.weather[0].date) }}
                   <div>
-                    <span v-if="temperatureUnit === 0">
+                    <span v-if="temperatureUnit === false">
                       {{ cityWeather.weather.weather[0].maxtempC }}°C
                       {{ cityWeather.weather.weather[0].mintempC }}°C
+
                     </span>&nbsp;
                     <span v-else>
                       {{ cityWeather.weather.weather[0].maxtempF }}°F
@@ -105,7 +106,7 @@
                   </div>
                   {{ formatDate(cityWeather.weather.weather[1].date) }}
                   <div>
-                    <span v-if="temperatureUnit === 0">
+                    <span v-if="temperatureUnit === false">
                       {{ cityWeather.weather.weather[1].maxtempC }}°C
                       {{ cityWeather.weather.weather[1].mintempC }}°C
                     </span>&nbsp;
@@ -115,11 +116,11 @@
                   </div>
                   {{ formatDate(cityWeather.weather.weather[2].date) }}
                   <div>
-                    <span v-if="temperatureUnit === 0">
+                    <span v-if="temperatureUnit === false">
                       {{ cityWeather.weather.weather[2].maxtempC }}°C
                       {{ cityWeather.weather.weather[2].mintempC }}°C
                     </span>&nbsp;
-                    <span v-else-if="temperatureUnit === 1">
+                    <span v-else>
                       {{ cityWeather.weather.weather[2].maxtempF }}°F
                       {{ cityWeather.weather.weather[2].mintempF }}°F</span>
                   </div>
@@ -133,26 +134,20 @@
             </td>
 
             <!-- 6 -->
-            <td>
+            <td data-label="Recent">
               <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
-                
-                <div v-if="temperatureUnit===0">
-                  Most recent:&nbsp;<b> {{ cityWeather.weather.current_condition[0].temp_C }}°C</b>&nbsp;
-                  
+
+                <div v-if="temperatureUnit === false">
+                  <b> {{ cityWeather.weather.current_condition[0].temp_C }}°C</b>&nbsp;
+                  <br>
                   Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
-                
-                
-                Feels like:
-                {{ cityWeather.weather.current_condition[0].FeelsLikeC }}°C
+                  Feels like: {{ cityWeather.weather.current_condition[0].FeelsLikeC }}°C
                 </div>
                 <div v-else>
-                Most recent:&nbsp;<b> {{
-                    cityWeather.weather.current_condition[0].temp_F }}°F</b>
+                  <b> {{
+                    cityWeather.weather.current_condition[0].temp_F }}°F</b><br>
                   Humidity: {{ cityWeather.weather.current_condition[0].humidity }}%<br>
-                
-                Feels like:
-                
-                {{ cityWeather.weather.current_condition[0].FeelsLikeF }}°F
+                  Feels like: {{ cityWeather.weather.current_condition[0].FeelsLikeF }}°F
                 </div>
               </template>
 
@@ -161,7 +156,7 @@
               </template>
             </td>
             <!-- 7 -->
-            <td>
+            <td data-label="Wind Speed">
               <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
                 {{ cityWeather.weather.current_condition[0].windspeedKmph }} km/h
               </template>
@@ -175,33 +170,33 @@
           </tr>
         </tbody>
       </table>
-      
+
 
     </div>
-    
-    <div style="">
-        
-        <div style="background: #fff; display: inline-block; border-radius: 1em; padding: 0.5em;">
-            <label class="switch">
-              <input v-model="temperatureUnit" type="checkbox">
-              <span class="slider round"></span>
-            </label>
-            <div>
-              <span>Fahrenheit</span>
-            </div>
+
+    <div>
+
+        <div class="temperature-switch-container-styling">
+          <span><b>°C </b></span>
+          <label class="switch">
+            <input v-model="temperatureUnit" type="checkbox">
+            <span class="slider round"></span>
+          </label>
+          <span><b> °F</b></span>
         </div>
 
 
-        <div> 
-                <button class="clean-button" @click="addWeatherLocation(weatherLocationInputText)">Add A Location</button>
-                <input style="padding: 10px 20px;
-            margin: 8px 0; border-radius: 1em;
+      <div>
+        <button class="clean-button" @click="addWeatherLocation(weatherLocationInputText)">Add Location</button>
+        <input style="padding: 10px 20px;
+            margin: 8px 0; margin-left: 0.5em; border-radius: 0.5em; border: 1px solid #ccc;
             box-sizing: border-box;" type="text" v-model="weatherLocationInputText" placeholder="Miami, Florida">
-        </div>
-</div>
-   <br>
-   <br>
-    <div style="margin-bottom: 2em; border-radius: 1em; background: #fff; opacity: 0.9; display: inline-block; max-width: 30rem; padding: 1em;">
+      </div>
+    </div>
+    <br>
+    <br>
+    <div
+      style="margin-bottom: 2em; border-radius: 1em; background: #fff; opacity: 0.9; display: inline-block; max-width: 30rem; padding: 1em;">
       <p style="text-align: left;"> All the locations here are easily customizable! Data is queried as JSON
         using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
         then formatted and displayed here in a custom made table. This is just a simple project to fetch and format
@@ -276,8 +271,8 @@ export default {
       const formattedDate = date.toLocaleDateString('en-US', options);
       return formattedDate;
     },
-    addWeatherLocation(locaton =  "Miami, Florida") {
-      
+    addWeatherLocation(locaton = "Miami, Florida") {
+
       this.cityWeathers.push({ city: locaton, weather: "" });
       this.fetchWeather();
     },
@@ -291,19 +286,19 @@ export default {
 .weather-background {
   /*background-image: url('../images/blue_sky2.jpg'); */
   background-image: url('../images/background_tuebingen.jpg');
-  background-color: rgba(0, 0, 0, 0.1);
+
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
 
 table tbody tr td:nth-child(odd):not(:nth-child(3)) {
-  background: rgba(40, 40, 40, 0.6);
+  background: rgba(40, 40, 40, 0.9);
 }
 
 table tbody tr td:nth-child(even) {
   /* Styles for the second <span> element inside <td> elements */
-  background: rgba(40, 40, 40, 0.4);
+  background: rgba(40, 40, 40, 0.7);
 }
 
 table tbody tr td:nth-child(5) {
@@ -321,7 +316,7 @@ table tbody tr td:nth-child(1) {
   padding-left: 0.5em;
   padding-right: 0.5em;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 
@@ -380,6 +375,15 @@ tr:nth-child(even) {
   border-radius: 0.2em;
 }
 
+.weather-title{
+  padding-top: 0.5em; 
+  padding-bottom: 0.5em;
+  color: #ffffff; 
+  font-size: 5em; 
+  text-align: left; 
+  padding-left: 2.9em;
+}
+
 .low-temp-text-coloring {
   color: #ffffff;
   padding: 3px;
@@ -400,6 +404,17 @@ tr:nth-child(even) {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   grid-gap: 0em;
+}
+
+.temperature-switch-container-styling {
+  background: #fff; 
+  display: flex; 
+  align-items: center; 
+  border-radius: 1em; 
+  padding: 0.5em; 
+  width: 5em; 
+  margin: 0 auto;
+  margin-top: 2em;
 }
 
 
@@ -487,9 +502,7 @@ input:checked+.slider {
   background-color: #ff0000;
 }
 
-input:focus+.slider {
-  box-shadow: 0 0 1px #ff0000;
-}
+
 
 input:checked+.slider:before {
   -webkit-transform: translateX(13px);
@@ -506,7 +519,59 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
-@media (max-width: 768px) {
+
+/* temperature location adding item doesn't highlight when clicking on input field */
+select:focus,
+button:focus {
+  outline: none;
+}
+/* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
+input:focus {
+  outline: none !important;
+  border: 1px solid #545454;
+  box-shadow: 0 0 30px rgb(178, 214, 86);
+}
+
+
+
+@media screen and (max-width: 45rem) {
+  table {
+    width: 100%;
+  }
+  thead {
+    display: none;
+  }
+  tr {
+    display: block;
+    margin-bottom: .625em;
+  }
+  td {
+    display: block;
+    text-align: right;
+  }
+  td::before {
+    content: attr(data-label);
+    float: inline-start;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .center-content {
+    padding-left: 4em;
+    padding-right: 4em;    
+   }
+
+     .weather-title{
+  padding-top: 0.5em; 
+  padding-bottom: 0.5em;
+  color: #ffffff; 
+  font-size: 3em; 
+  text-align: left; 
+  padding-left: 0.66em;
+}
+}
+
+@media (max-width: 45rem) {
 
   table {
     font-size: 0.6em;
@@ -514,5 +579,5 @@ input:checked+.slider:before {
   }
 
 
-
-}</style>
+}
+</style>

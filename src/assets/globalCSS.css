@@ -11,6 +11,10 @@ body {
     line-height: 1.6;    
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* BELOW this comment adjusts the default scrollbar on the right */
   /* Set the width of the scrollbar */
   ::-webkit-scrollbar {
