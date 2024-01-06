@@ -1,7 +1,7 @@
 
 <template>
   <div
-    style="padding-top: 3em;
+    style="
       background: linear-gradient(
         90deg,
         rgba(0, 255, 119) 29%,
@@ -135,6 +135,8 @@ export default {
 }
 .main-cow-figure {
   margin-top: 1em;
+  justify-content: center;
+  display: flex;
 }
 .professor-cow-figure {
   width: 23em;

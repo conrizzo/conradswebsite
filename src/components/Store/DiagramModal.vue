@@ -10,19 +10,19 @@
             <a class="text-links" href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/Store">
             Component and TypeScript source code on GitHub</a><br>
             <a class="text-links"
-            href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/StoreView.vue">Store page
+            href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/store/StoreView.vue">Store page
             view</a><br>
             <a class="text-links"
-            href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/StoreCheckOutView.vue">Checkout
+            href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/store/StoreCheckOutView.vue">Checkout
             page view</a>
             <p>
               An alternative idea was to use an <a class="text-links" href=https://v3-migration.vuejs.org/breaking-changes/events-api.html#_3-x-update>Event Bus</a>, but this is generally frowned upon. In this application all user choices are passed between components as
               props and held locally as cookies.
             </p>
        </div>
-       <div style="padding: 0.5em;">
-         <img src="@/images/store/project_diagram.svg" alt="Diagram of how this project works" style="max-width: 100%; max-height: 100%;">
-    </div>   
+       <div class="diagram-image-container">
+         <img src="@/images/store/project_diagram.svg" alt="Diagram of how this project works" style="max-width: 98%; max-height: 100%;">
+       </div>   
  
     <p>Diagram made using <a class="text-links" href='https://app.diagrams.net/'>
                 https://app.diagrams.net/
@@ -102,7 +102,7 @@
    
    padding-bottom: 0em;
    font-size: 2.25em;
-   text-align: left;
+   text-align: center;
  }
  
  /* CSS FOR MODAL "X" Close button*/
@@ -148,6 +148,13 @@
  li + li {
    margin-top: 0.5em;
  }
+
+ .diagram-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
  
  @media only screen and (max-width: 50rem) {
    h2 {

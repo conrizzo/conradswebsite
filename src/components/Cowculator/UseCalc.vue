@@ -786,7 +786,7 @@ export default {
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 1em;
-  max-width: 22em;
+  max-width: 23.9rem;
   margin-left: auto;
   margin-right: auto;
   grid-gap: 0.2em;
@@ -915,7 +915,7 @@ input:focus {
   transform: translate(0, 0);
   padding: 10px;
   border-radius: 10px;
-  margin-top: 0.5em;
+  margin-top: 2em;
   margin-left: 0.5em;
   transition: opacity 0.5s ease-in-out;
   width: 300px;

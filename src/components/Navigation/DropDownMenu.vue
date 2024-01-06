@@ -1,22 +1,27 @@
 <!-- This component is exclusively the menu that drops down in the header -->
 
 <template>
-    <div class="dropdown" > <!-- @mouseleave="closeDropdown" -->
-      <div class="dropbtn unselectable"  @click="toggleDropdown">Projects</div>
-        <div class="dropdown-content" :class="{ 'active': isDropdownOpen }">
-            <ProjectLinks :links="links">
-                <template v-slot="{ links }">            
-                
-                    <router-link v-for="(item, index) in links" :key="index" :to="item.to"
-                    :class="{ active: $route.path === item.to }">
-                    <span v-html='item.text'></span><br>
-                    </router-link>            
+    <div class="dropdown"> <!-- @mouseleave="closeDropdown" -->
+        <div class="dropbtn unselectable" @click="toggleDropdown">
+            Projects
+        </div>
+        <transition name="fade">
+            <div v-if="isDropdownOpen" class="dropdown-content">
+                <ProjectLinks :links="links">
+                    <template v-slot="{ links }">
 
-                </template>
-            </ProjectLinks>
-        </div>
-        </div>
-    </template>
+                        <router-link v-for="(item, index) in links" :key="index" :to="item.to"
+                            :class="{ active: $route.path === item.to }">
+                            <span v-html='item.text'></span><br>
+                        </router-link>
+
+                    </template>
+                </ProjectLinks>
+            </div>
+        </transition>
+    </div>
+</template>
+
 <script>
 import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
 
@@ -35,96 +40,104 @@ export default {
         };
     },
     mounted() {
-            window.addEventListener('click', this.closeDropdown);
-        },
+        window.addEventListener('click', this.closeDropdown);
+        window.addEventListener('scroll', this.closeDropdownOnScroll);
+    },
+
     beforeUnmount() {
         window.removeEventListener('click', this.closeDropdown);
+        window.removeEventListener('scroll', this.closeDropdownOnScroll);
     },
     methods: {
-        
-        toggleDropdown() {
-            this.isDropdownOpen = !this.isDropdownOpen;
+        // if the dropdown is closed, then open it with a tiny delay
+        // otherwise no added extra delay here
+        toggleDropdown() {        
+            this.isDropdownOpen = !this.isDropdownOpen ;         
         },
+
+        // function the event listeners target if click outside the menu
         closeDropdown(event) {
-        if (!this.$el.contains(event.target)) {
-            this.isDropdownOpen = false;
-        }
-        },
-        openDropdown() {
-            clearTimeout(this.openTimeout); // Clear any existing timeout
-                this.openTimeout = setTimeout(() => {
-                    this.isDropdownOpen = true;
-                }, 150); 
-                // set to false after opening
+            // if event not in the dropdown menu, then close it
+            if (!this.$el.contains(event.target)) {
                 this.isDropdownOpen = false;
-        }
+            }
+        },
+
+        // closes when it is open and the user scrolls
+        closeDropdownOnScroll() {
+            this.isDropdownOpen = false;
+        },       
     },
 };
 </script>
 
 <style scoped>
-
-.dropbtn {    
+.dropbtn {
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
-    padding: 0.5em 0.5em 0.5em 0em;  
-    color: rgb(128, 128, 128); 
+    padding: 0.5em 0.5em 0.5em 0em;
+    color: rgb(128, 128, 128);
     background-color: rgb(255, 255, 255);
     font-weight: normal;
     font-size: 1em;
-    border: none;      
+    border: none;
     /*    
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.33);  ### this optional is the shadow for the text
     */
 }
+
 .dropdown {
     position: relative;
-    display: inline-block;     
-    z-index: 5;      
+    display: inline-block;
+    z-index: 5;
 }
 
-.dropdown-content {    
-    display: none; /* this removes it when not over it */
+.dropdown-content {
+    /* this removes it when not over it */
     position: absolute;
     margin-left: -3.5em;
     text-align: left;
-    padding:0.15em;    
+    padding: 0.15em;
     width: 10.4em;
-    background-color: white;        
-    box-shadow: 0px -2px 8px rgba(0,0,0,0.4);      
-   
+    background-color: white;
+    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.35s ease-in-out;
+}
+
+.fade-leave-to {
+  opacity: 0;
 }
 
 .dropdown-content a {
     color: rgb(12, 12, 12);
-    padding: 0.5em 0.6em 0.5em 0.6em; 
+    padding: 0.5em 0.6em 0.5em 0.6em;
     text-decoration: none;
-    display: block;   
-    margin-right: 0;        
-           
+    display: block;
+    margin-right: 0;
 }
+
 /* Can make this the page color for the respective page if I set all pages to follow a page color value */
 nav a.router-link-exact-active {
     color: #ff5959;
-    
-}  
-  
-/* #00b3ff; */
-.dropdown-content a:hover:not(.active) {
-    background-color: none; 
-    color: #000; 
-    background-color: rgb(235, 235, 235);       
 }
 
-.dropdown .dropdown-content {
-  display: none;
+/* #00b3ff; */
+.dropdown-content a:hover:not(.active) {
+    background-color: none;
+    color: #000;
+    background-color: rgb(235, 235, 235);
 }
 
 .dropdown .dropdown-content.active {
-  display: block;
+    display: block;
 }
 
 /*
 .dropdown:hover .dropdown-content {display: block;}
 */
-.dropdown:hover .dropbtn {background-color: none; cursor: pointer; color: #000;}
+
+.dropdown:hover .dropbtn {
+    background-color: none;
+    cursor: pointer;
+    color: #000;
+}
 </style>

@@ -57,15 +57,14 @@
             </div>
             <div class="grid-shopping-cart-right">
                 <div class="special-offer">
+
                     <h2>&#9733;&nbsp;Special Offer!&nbsp;&#9733;</h2>
-
-
                     <div>
                         <p style="text-align: left;" v-if="totalQuantity >= 5">With 5 or more items in the shopping basket a
                             10% discount has been applied!</p>
                         <p v-else>Buy 5 or more items and get 10% off!</p>
                     </div>
-
+                    
                 </div>
             </div>
         </div>
@@ -435,8 +434,6 @@ h1 {
 .each-item-in-cart-image {
     border-radius: 1em;
 }
-
-.cart-image-container {}
 
 .product-name {
     font-size: 1.1em;

@@ -1,7 +1,7 @@
 <template>
   <div id="body">
     <!-- Main area -->
-    <main class="main-content">
+   
       <div class="custom-background-home-page">      
 
         <!-- Title -->
@@ -59,15 +59,19 @@
                       </div>
                     </template>
                   </ProjectLinks>
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
+       
       </div>
-
+    <main class="main-content">
       <!-- Aside area begins  #2d2d2d; slate black color -->
+      <div></div>
 
+   
       <AsideContent class="first-aside-home-page">
         <template v-slot:aside-content>
           <figure style="display: inline-block;">
@@ -79,6 +83,8 @@
           </figure>
         </template>
       </AsideContent>
+
+  
 
       <!-- 2nd section -->
 
@@ -211,26 +217,24 @@ export default {
   methods: {
 
     showImage(item) {
-      switch (item.text) {
-        case "Cowculator":
-          this.hoveredImage = require("@/images/CowculatorScreen.jpg");
-          this.isHovered = true;
-          break;
-        case "Card Game <span style=\"color: #ff5959;\">(New!)</span>":
-          this.hoveredImage = require("@/images/CardGame.jpg");
-          this.isHovered = true;
-          console.log(this.hoveredImage);
-          break;
-        case "Game":
-          this.hoveredImage = require("@/images/CowGame.jpg");
-          this.isHovered = true;
-          console.log(this.hoveredImage);
-          break;
-        default:
-          this.hoveredImage = "";
-          this.isHovered = false;
-          break;
+
+      if (item.text === "Cowculator") {
+        this.hoveredImage = require("@/images/CowculatorScreen.jpg");
+        this.isHovered = true;
+      } else if (item.text.startsWith('Card')) {
+        this.hoveredImage = require("@/images/CardGame.jpg");
+        this.isHovered = true;
+      } else if (item.text === "Game") {
+        this.hoveredImage = require("@/images/CowGame.jpg");
+        this.isHovered = true;
+      } else if (item.text.startsWith('Store')) {
+        this.hoveredImage = require("@/images/store/Store_Page.jpg");
+        this.isHovered = true;
+      } else {
+        this.hoveredImage = "";
+        this.isHovered = false;
       }
+      
     },
 
     hideImage() {
@@ -306,6 +310,7 @@ export default {
   background-blend-mode: multiply;
   background-attachment: fixed; 
   position: relative;  
+  
 }
 .custom-background-home-page::before{  
   content: "";
@@ -334,8 +339,10 @@ export default {
 .center-main-area-box {
   display: flex;
   justify-content: center;
-  margin-top: 3em;
-  margin-bottom: 3em;
+  
+  
+  height: 100svh;
+  
 }
 
 .main-area-box {
@@ -344,6 +351,8 @@ export default {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 10%,rgba(255, 255, 255, 0), 50%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
   */
   border-radius: 2em;
+  padding-top: 3em;
+  
   width: 70%;
   z-index: 2;
 }
@@ -367,10 +376,10 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.33);
   border-radius: 1em;
   display: inline-block;
-  width: 24em;
+  width: 26.5em;
   margin: 0 auto;
   /* padding-right: 0.5em;
   padding-top: 1em; */
@@ -388,8 +397,9 @@ export default {
   text-align: left;
   font-size: 2.1em;
   padding: 0.5em;
-  border-radius: 0.5em;  
-  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.8em;  
+  background: rgba(0, 0, 0, 0.33);
+  
   /* border: 1px solid rgb(229, 229, 229);  */
 }
 
@@ -424,6 +434,7 @@ export default {
   gap: 1em;
   /* padding-top: 2em; */
   margin-bottom: 2em;
+ 
 }
 .first-aside-home-page {
   background: rgb(18, 18, 18);
@@ -440,9 +451,10 @@ export default {
   top: 50%;
   /* Position the element at the vertical center */
   /* Position the element at the horizontal center */
-  transform: translate(-50%, -50%);
+  transform: translate(0%, -50%);
   background: #ffffff;
   padding: 1em;
+
 }
 
 @media only screen and (max-width: 100rem) {
@@ -490,7 +502,7 @@ export default {
   
 }
 .links-area {
-  width: 20.8em;
+  width: 20.7em;
 }
 .hover-image {
  
@@ -514,7 +526,7 @@ export default {
   position: relative;
   line-height: 1;
   height: 2em;
-  padding: 1em 0.25em 1em 0.25em;
+  padding: 1em 0.25em 3em 0.25em;
   color: rgb(255, 255, 255);
   font-size: 2em;
   z-index: 1;
@@ -564,20 +576,20 @@ export default {
   }
 
   .routes-area {
-    font-size: 1.75em;
+    font-size: 1.75em;  
   }
 
   
 
   .main-text-container {
-    width: calc(100% - 4.2em);
+    width: calc(100% - 1.8em);
   }
  
 }
 
-@media only screen and (max-width: 35rem) {
+@media only screen and (max-width: 50rem) {
   .links-area {
-    width: calc(100% - 2.66em);
+    width: calc(100% - 2.66em);   
   }
 }</style>
 

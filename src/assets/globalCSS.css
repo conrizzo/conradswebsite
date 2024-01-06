@@ -1,5 +1,6 @@
 body {
-  font-family: Helvetica, Arial, sans-serif;	
+    font-family: Helvetica, Arial, sans-serif;	
+    min-height: 100svh;
     margin: 0;
     padding: 0;
     text-align: left;
@@ -92,51 +93,41 @@ body {
 }
 
 
-/* aside css */
-.main-content {
-  display: grid;
-  margin-left: 0em;
-  margin-right: 0em;
-  grid-template-columns: 80% 1fr;
-  gap: 0rem;
-}
-.aside-content {
-  min-height: 100vh;
-  justify-content: space-between;
-  flex-direction: column;  
-}
-.aside-text {
-  margin-left: 0.5em;
-  margin-right: 0.5em;  
-  color: #fff;
-  line-height: 1.5;
-  text-align: left;
-}
 
-@media only screen and (max-width: 100rem) { 
-
-  .main-content {
-    grid-template-columns: 100%;
-    margin-left: 0em;
-    margin-right: 0em;    
-  }
-  .aside-content {
-    margin-top: 1rem;
-  }  
-}
-/* end aside css */
 
 
 /* Reset default margin and padding */
 * {
   margin: 0;
   padding: 0;
+  
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img, picture, svg, video {
+  max-width: 100%;
+  display: block;
+
+}
+p {
+  max-width: 75ch;
+  text-wrap: pretty;
 }
 
 /* buttons and stuff */
 h1 {  
   line-height: 1.5;
 }
+
+p {
+
+}
+
 
 .top-most-paragraph-space{
   padding-top: 1em;
@@ -159,16 +150,7 @@ h1 {
   color: #303030;
 }
 
-@media only screen and (max-width: 70rem) {
-  .paragraph-text {
-    max-width: 100%;
-    margin-left: 2em;
-    margin-right: 2em;
-    text-align: left;
-    font-size: 1em;
-    line-height: 1.4em;
-  }
-}
+
 /* CSS */
 .button-35 {
   align-items: center;
@@ -358,4 +340,56 @@ h1 {
 
 .clean-button:-webkit-details-marker {
   display: none;
+}
+
+
+/* Aside formatting */
+
+/* aside css */
+.main-content {
+  display: grid;
+  margin-left: 0em;
+  margin-right: 0em;
+  grid-template-columns: 80% 1fr;
+  gap: 0rem;
+}
+.aside-content {
+  min-height: 100vh;
+  justify-content: space-between;
+  flex-direction: column;  
+}
+.aside-text {
+  margin-left: 0.5em;
+  margin-right: 0.5em;  
+  color: #fff;
+  line-height: 1.5;
+  text-align: left;
+}
+
+
+/* end aside css */
+
+
+@media only screen and (max-width: 100rem) { 
+
+  .main-content {
+    grid-template-columns: 100%;
+    margin-left: 0em;
+    margin-right: 0em;    
+  }
+  .aside-content {
+    margin-top: 1rem;
+  }  
+
+}
+
+@media only screen and (max-width: 70rem) {
+  .paragraph-text {
+    max-width: 100%;
+    margin-left: 2em;
+    margin-right: 2em;
+    text-align: left;
+    font-size: 1em;
+    line-height: 1.4em;
+  }
 }

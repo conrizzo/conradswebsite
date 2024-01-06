@@ -3,7 +3,7 @@
     <div class="main-banner">
       <div class="main-banner-text-container">
         <h1> Buy awesome things here...</h1>
-        <p class="main-banner-sub-text">A simple modular store layout made in Vue.js and TypeScript</p>
+        <span class="main-banner-sub-text">A simple modular store layout made in Vue.js and TypeScript</span>
 
       </div>
     </div>
@@ -101,6 +101,7 @@ export default {
 
 .main-banner-sub-text {
   font-size: 0.8em;
+  text-align: center;
 }
 
 .store-background {
