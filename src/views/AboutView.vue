@@ -386,7 +386,7 @@ h3 {
 .arrow .curve {
   border: 4px solid #ff5959;
   border-color: transparent transparent transparent #ff5959;
-  height: 360px;
+  height: 366px;
   width: 200px; /* Adjust the width as needed */
   border-radius: 0 0 0 150px; /* Adjust the border-radius as needed */
 }

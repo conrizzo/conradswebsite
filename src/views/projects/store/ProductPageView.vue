@@ -25,9 +25,9 @@
                             <span class="bold">Description:</span> {{ searchInventoryById(itemIdentificationNumber).description }}
                         </li>
                     </ul>
-                    <div style="padding-top: 2em;">
-                        <button style="margin-right: 0.5em;" @click="addToCartClicked(productId);" class="clean-button">Add
-                            to cart</button>                        
+                    <div style="padding-top: 1rem;">
+                        <button style="margin-right: 0.5em;" @click="addToCartClicked(productId);" class="clean-button">
+                            Add to cart</button>                        
                     </div>
                 </div>
             </div>
@@ -180,8 +180,9 @@ h1{
    Set the margin-right to push the text to the starting left side area of the centered image.
 */
 .left-align-back-link{
-    margin-right: 6.6rem;   
+    padding-left: 0.1rem;
     padding-bottom: 2rem;
+    text-align: left;
 }
 
 .links-black{

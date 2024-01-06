@@ -354,7 +354,7 @@ p {
   gap: 0rem;
 }
 .aside-content {
-  min-height: 100vh;
+  min-height: 100svh;
   justify-content: space-between;
   flex-direction: column;  
 }

@@ -6,14 +6,12 @@
 
         <!-- Title -->
         <div class="center-main-area-box">
-          <div class="main-area-box">
-      
-              <h1 class="title">
-                <span class="top-string-slice-of-title">
-                  <span>{{ inputStringShuffled.slice(0, 7) }}</span>
-                </span>
-                <!--<span>{{ inputStringShuffled.slice(7) }}</span>-->
-              </h1>
+          <div class="top-home-content-section">      
+            <h1 class="title">
+              <span class="top-string-slice-of-title">
+                <span>{{ inputStringShuffled.slice(0, 7) }}</span>
+              </span>             
+            </h1>
        
             <div class='under-title-caption'>
             </div>
@@ -58,8 +56,7 @@
                         </div>
                       </div>
                     </template>
-                  </ProjectLinks>
-                  
+                  </ProjectLinks>                  
                 </div>
               </div>
             </div>
@@ -69,7 +66,8 @@
       </div>
     <main class="main-content">
       <!-- Aside area begins  #2d2d2d; slate black color -->
-      <div></div>
+       <div style="background: rgb(18,18,18);">
+      </div>
 
    
       <AsideContent class="first-aside-home-page">
@@ -98,11 +96,16 @@
        <!-- 3rd section -->
       
       <CoffeeGridContent>        
-      </CoffeeGridContent>      
+      </CoffeeGridContent>   
+
+       <div style="background: rgb(18,18,18);">
+      </div>
+      
+      <!--
       <div style="background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 
       15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);">
       </div>
-
+      -->
       <!--
               <AsideContent style="z-index: 1; background: #000; padding: 0em;">
 
@@ -338,24 +341,11 @@ export default {
 
 .center-main-area-box {
   display: flex;
-  justify-content: center;
-  
-  
-  height: 100svh;
-  
+  justify-content: center; 
+  height: 110svh;    
 }
 
-.main-area-box {
-  background: rgba(0, 0, 0, 0.05);
-  /* 
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 10%,rgba(255, 255, 255, 0), 50%, rgba(255, 255, 255, 0) 90%, rgba(0, 0, 0, 0.1) 100%);
-  */
-  border-radius: 2em;
-  padding-top: 3em;
-  
-  width: 70%;
-  z-index: 2;
-}
+
 
 .home-text-links {
   color: rgb(255, 255, 255);
@@ -377,12 +367,10 @@ export default {
   display: flex;
   justify-content: center;
   background: rgba(0, 0, 0, 0.33);
-  border-radius: 1em;
+ border-radius: 2rem;
   display: inline-block;
   width: 26.5em;
-  margin: 0 auto;
-  /* padding-right: 0.5em;
-  padding-top: 1em; */
+  margin: 0 auto; 
   padding: 0.5em;
   padding-left: 2em;
   color: #ffffff;
@@ -397,7 +385,7 @@ export default {
   text-align: left;
   font-size: 2.1em;
   padding: 0.5em;
-  border-radius: 0.8em;  
+  border-radius: 2rem;
   background: rgba(0, 0, 0, 0.33);
   
   /* border: 1px solid rgb(229, 229, 229);  */
@@ -445,40 +433,35 @@ export default {
 
 
 .bird-image {
-  max-width: 14%;
-  border-radius: 1em;
-  position: absolute;
-  top: 50%;
-  /* Position the element at the vertical center */
-  /* Position the element at the horizontal center */
-  transform: translate(0%, -50%);
+  max-width: 100%;
+  border-radius: 1em; 
   background: #ffffff;
   padding: 1em;
+}
 
+.top-home-content-section{ 
+  z-index: 4;
+  padding-top: 5rem;
 }
 
 @media only screen and (max-width: 100rem) {
   .bird-image {
-    max-width: 75%;
+    max-width: 50%;
     border-radius: 1em;
     position: static;
     transform: none;
     background: #586af8;
+    padding: 1em; 
+    margin-left: 1rem; 
+  }
+
+  .center-main-area-box {    
+    display: flex;
+    justify-content: center;
     padding: 1em;
   }
 
-  .center-main-area-box {
-    
-    display: flex;
-    justify-content: center;
-    padding: 0em;
-  }
-
-  .main-area-box {
-    width: auto;
-    padding: 0.5em;
-    border: none;
-  }
+  
 
 
 }
@@ -488,16 +471,17 @@ export default {
     margin-top: 0em;
   }
 
+  .top-home-content-section{ 
+  z-index: 4;
+  padding-top: 0rem;
+}
+
   .first-aside-home-page {
     margin: 0;
     border-radius: 0em;
   }
 
-  .main-area-box {
-    background: none;
-    border-radius: 0em;
-    width: auto;
-  }
+
 
   
 }
@@ -515,7 +499,7 @@ export default {
   aspect-ratio: 1/1;
   
  
-  border-radius: 1.2em;
+  border-radius: 2rem;
 }
 /* Style for grid items */
 .grid-item {
@@ -576,20 +560,20 @@ export default {
   }
 
   .routes-area {
-    font-size: 1.75em;  
+    font-size: 1.75rem;  
   }
 
   
 
   .main-text-container {
-    width: calc(100% - 1.8em);
+    width: calc(100% - 1.3em);
+  }
+
+   .links-area {
+    width: calc(100% - 2em);   
   }
  
 }
 
-@media only screen and (max-width: 50rem) {
-  .links-area {
-    width: calc(100% - 2.66em);   
-  }
-}</style>
+</style>
 

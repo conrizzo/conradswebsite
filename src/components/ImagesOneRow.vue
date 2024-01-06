@@ -185,6 +185,7 @@
     margin: 0em;
     background-color: #ffffff;
     transition: filter 0.5s ease;
+    min-width: 19rem;
   }
   .gallery-component-image:hover{
     filter: brightness(90%); 

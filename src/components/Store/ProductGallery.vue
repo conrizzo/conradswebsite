@@ -206,6 +206,8 @@ h1 {
   border-radius: 1em;
   padding: 0em;
   margin: 0em;
+  min-width: 256px;
+  height: 256px;
   background-color: #ffffff;
   transition: filter 0.5s ease;
   

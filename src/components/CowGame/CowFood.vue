@@ -113,7 +113,7 @@ export default defineComponent({
 .movable-object {
     position: absolute;
     width: 100px;
-    height: 60px;
+    height: 100px;
     background-color: rgb(131, 255, 94);
     color: #fff;
     padding-top: 40px;

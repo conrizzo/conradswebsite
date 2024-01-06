@@ -16,10 +16,10 @@
 
                         <div>
                             <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to your
-                                cart!</span>
-                            ( Product ID: {{ propProductIndexInGallery }} Item Position: {{ propProductIdentificationNumber }} )
+                                cart!</span><br>
+                            Product ID: {{ propProductIndexInGallery }} Item Position: {{ propProductIdentificationNumber }}
                         </div>
-                       
+
                     </div>
                 </div>
                 <!-- Each cart item is outputted here with v-for loop -->
@@ -44,7 +44,7 @@
                                 Quantity: <input type="number" v-model="item.quantity" min="0" max="100" step="1"
                                     @input="updateQuantityInCart(item)" @keydown="handleIncrementDecrement"
                                     style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;">
-                                   
+
                                 <br>
                                 Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity *
                                     item.price).toFixed(2)) }}<br>
@@ -64,7 +64,7 @@
                             10% discount has been applied!</p>
                         <p v-else>Buy 5 or more items and get 10% off!</p>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
                         </div>
                     </transition>
                 </div>
-               
+
                 <div class="bottom-checkout-button-container">
 
                     <button v-show="runningTotal > 0" style="" @click="emptyShoppingCart()" class="clean-button">Empty Cart
@@ -96,7 +96,7 @@
                             </button>
                         </RouterLink>
                     </div>
-                
+
                     <div v-else>
                         <RouterLink to="/projects/store/store">
                             <button style="margin-left: 1em;" class="clean-button">Go Back
@@ -109,7 +109,6 @@
             </div>
         </div>
     </div>
-  
 </template>  
   
 <script>
@@ -150,7 +149,7 @@ export default {
         propProductPageAddItemToCart: {
             type: Array,
             required: true
-            }
+        }
 
     },
     // Your script logic here
@@ -194,7 +193,7 @@ export default {
         propProductPageAddItemToCart() {
             this.handleAddItemToCart(0, parseInt(this.propProductPageAddItemToCart[0]));
         },
-        
+
 
         propUpdate() {
 
@@ -240,10 +239,10 @@ export default {
     },
 
     methods: {
-        
-        addItemToCart() {         
+
+        addItemToCart() {
             // Invoke the handleAddItemToCart method with propProductIdentificationNumber and propProductIndexInGallery
-            this.handleAddItemToCart(this.propProductIdentificationNumber, this.propProductIndexInGallery);         
+            this.handleAddItemToCart(this.propProductIdentificationNumber, this.propProductIndexInGallery);
         },
 
         saveUserCartToCookies() {
@@ -328,17 +327,17 @@ export default {
         addItemToShoppingCartIfNotAlreadyThere(item) {
             if (item === null) {
                 return
-            }           
+            }
             // Here we check to make sure the item is not in the user-defined array AND the local cookies array
             // This is an important fix to the previous version.
             const itemIndex = this.userCart.findIndex(cartItem => cartItem.id === item.id);
-                if (itemIndex === -1) {
+            if (itemIndex === -1) {
                 item.quantity = 1;
                 this.userCart.push(item);
-                } else {
+            } else {
                 this.userCart[itemIndex].quantity++;
                 //console.log("TEST", this.userCart)
-                }
+            }
         },
 
         emptyShoppingCart() {
@@ -415,7 +414,7 @@ h1 {
 
 .each-item-area-formatting {
     border-bottom: 1px solid #f44336;
-    
+
     padding: 1rem 2rem 1rem 2rem;
     display: flex;
     background: rgb(255, 255, 255);
@@ -423,16 +422,17 @@ h1 {
 
 .shopping-cart-title {
     text-align: left;
-    padding-left: 1em; 
+    padding-left: 1em;
     padding-right: 1em;
-  
+
     font-size: 1.1em;
     border-bottom: 1px solid #f44336;
-   
+
 }
 
 .each-item-in-cart-image {
     border-radius: 1em;
+    min-width: 128px;
 }
 
 .product-name {
@@ -490,14 +490,15 @@ h1 {
 }
 
 .bottom-checkout-button-container {
+    padding-top: 4.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.discount-text{
+.discount-text {
     font-size: 1.6rem;
-    
+
 }
 
 .total-cost-area {
@@ -530,7 +531,7 @@ h1 {
     .store-background {
         background-color: #f5f5f5;
         padding: 1em;
-    }  
+    }
 
     h1 {
         font-size: 2em;
@@ -551,15 +552,24 @@ h1 {
     }
 
     .total-cost-area {
-        height: 6em;
+        height: 9rem;
     }
 
-    .lower-height-total-cost-area{
-        height: 4em;
+    .lower-height-total-cost-area {
+        height: 8rem;
     }
 
-    .discount-text{
-        font-size: 1.2rem;        
+    .bottom-checkout-button-container {
+        padding-top: 0rem;
+    }
+
+    .discount-text {
+        font-size: 1.2rem;
+    }
+
+    .each-item-area-formatting {
+        padding-left: .5em;
+        padding-right: .5em;
     }
 
 }
@@ -570,5 +580,6 @@ h1 {
     }
 }
 
-/* Your styles here */</style>
+/* Your styles here */
+</style>
   

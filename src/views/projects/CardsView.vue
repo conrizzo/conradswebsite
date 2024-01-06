@@ -154,7 +154,7 @@ export default {
   
   data() {
     return {
-      marginLeft: '0.5em',
+      marginLeft: '-7.5rem',
      
 
       saloonImage: saloonImage,
@@ -497,7 +497,7 @@ export default {
 
 /* Your CSS goes here */
 .cards {
-  
+  padding-left: 7em;
   display: flex;
   justify-content: center; /* Align the content to the left */
   align-items: center;  
@@ -514,7 +514,7 @@ export default {
 
 .card-item {
   cursor: grab;
-  width: 5em; /* Adjust the width as desired */
+  height: 10em; /* Adjust the width as desired */
   margin-left: 1em;  
   
 }
@@ -530,7 +530,7 @@ export default {
   padding: 1em; /* Add padding to create space between the content and the border */
   text-align: left; /* Align the text to the left */ 
   position: absolute;
-  top: 43svh;
+  top: 46svh;
   
   
   z-index: 2;
@@ -601,7 +601,7 @@ export default {
  }
 
   .card-item {    
-    width: 1.25em; /* Adjust the width as desired */  
+    width: 9em; /* Adjust the width as desired */  
   }
   .cards { 
   top: 130vh; 
@@ -635,7 +635,7 @@ export default {
   }
   .card-info {
     position: relative;
-    top: -8svh;
+    top: -34svh;
     display: grid;
     place-items: center;
     left: initial; /* reset */

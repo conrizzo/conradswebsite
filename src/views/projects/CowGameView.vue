@@ -44,7 +44,7 @@
             <br><br>Don't run out of time before the cows get the food or they will be hangry cows! MOOOO!
           </p>
     </div>
-    <div style="z-index: 1; position: absolute; right: 3em; top: 2.9em;" class="unselectable">
+    <div style="color: #ffffff; z-index: 1; position: absolute; right: 3em; top: 2.9em;" class="unselectable">
       <div v-if="isThereACollision">
         <h1>{{ collisionMessage }}</h1>
       </div>
@@ -74,7 +74,7 @@
       </div>
       <div v-else-if="onionRingsHitCowFence"
         :style="{ left: cowFoodObjects[2].rect?.left + 'px', top: cowFoodObjects[2].rect?.top + 'px' }"
-        style="text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;">
+        style="color: #ffffff; text-align: left; z-index: 2; position: absolute; margin-left: 10em; font-size: 0.8em;">
         <h1>It's okay for the {{ cowFoodObjects[2].label }} to hit the electric fence or fireball!</h1>
       </div>
     </div>
