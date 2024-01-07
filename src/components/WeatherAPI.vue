@@ -201,7 +201,7 @@
     <br>
     <br>
     <div
-      style="margin-bottom: 2em; border-radius: 1em; background: #fff; opacity: 0.9; display: inline-block; max-width: 30rem; padding: 1em;">
+      class="description-area">
       <p style="text-align: left;"> All the locations here are easily customizable! Data is queried as JSON
         using <a class="text-links" href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a>,
         then formatted and displayed here in a custom made table. This is just a simple project to fetch and format
@@ -318,7 +318,7 @@ table tbody tr td:nth-child(1) {
 }
 
 .center-content {
-  padding-left: 0.5em;
+  padding-left: 10em;
   padding-right: 0.5em;
   display: flex;
   justify-content: left;
@@ -534,6 +534,24 @@ input:focus {
   box-shadow: 0 0 30px rgb(178, 214, 86);
 }
 
+.description-area{
+  border-radius: 1em; 
+  margin: 0.5em; 
+  margin-bottom: 20em; 
+  background: #fff; 
+  opacity: 0.9; 
+  display: inline-block; 
+  max-width: 30rem; 
+  padding: 1em;
+}
+
+@media screen and (max-width: 89rem){
+  .center-content {
+    justify-content: center;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
 
 
 @media screen and (max-width: 45rem) {
@@ -574,14 +592,13 @@ input:focus {
   text-align: left; 
   padding-left: 0.66em;
 }
-}
 
-@media (max-width: 45rem) {
-
-  table {
-    
-  }
-
+.description-area{
+  margin-bottom: 5em;
 
 }
+
+}
+
+
 </style>

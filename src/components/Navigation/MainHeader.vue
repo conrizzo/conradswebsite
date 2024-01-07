@@ -7,13 +7,17 @@
         <h2 class="header-h2">ConradsWebsite.com</h2>
       </router-link>
 
-
+      <router-link to="/" class="only-show-home-svg-at-mobile-size">     
+          <img src="/house_icon.gif" alt="home icon" style="height: 1.5rem;">
+      </router-link>
       <div class="navigation-menu">
         <!-- House icon            
                       <router-link to="/" exact class="home-link" active-class="active-home-link">                
                         Home      
                       </router-link>  
-                      -->
+        -->
+     
+
         <router-link class="about-link-styling about-menu" to="/about">
           About
         </router-link>
@@ -154,6 +158,9 @@ export default {
     .hide-sign-in-text-at-low-res{
       border-right: 1px solid rgb(218, 220, 224); margin-right: 0.5em; padding-right: 0.4em;font-size: 1em; padding-left: 0.5em;
     }
+    .only-show-home-svg-at-mobile-size{
+      display: none;      
+    }
 
     @media (max-width: 34rem) {
       .header-h2 {
@@ -163,6 +170,14 @@ export default {
       .hide-sign-in-text-at-low-res{
         display: none;
       }      
+
+      .only-show-home-svg-at-mobile-size{
+        display: block;
+        padding: 0.25rem;
+        margin-bottom: 0.25rem;     
+        margin-right: 0.25rem;   
+        margin-left: 0.25rem;   
+      }
     }
 
     @media (max-width: 34rem) {

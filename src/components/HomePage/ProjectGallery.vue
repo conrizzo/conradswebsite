@@ -1,31 +1,34 @@
 <template>
   <div class="centerAll">
-     
+
     <div class="image-gallery hidden" ref="content" :class="{ 'show': isContentVisible }">
       <div class="gallery-header">
-        <h1 class="gallery-styling-h1-span"><span class="project-title"> Project Links 
-            <span  style="font-size: 1.5em; position: absolute; margin-top: 0em; margin-left: -0.2em; 
-            transform: rotate(80deg); display: inline-block;">↷</span></span></h1>
-        
+        <h1 class="gallery-styling-h1-span"><span class="project-title"> Project Links
+            <span class="title-arrow-symbol">↷</span></span></h1>
+
       </div>
       <div class="image-gallery-grid-container">
-        
+
         <div v-for="item in imageArrayChoice" :key="item.id" :title="item.id" class="grid-item">
-          <RouterLink class="no-router-link-decorations" :to="item.to">
           <div>
-            <h2>{{ item.text }}</h2>
-            <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
-            <figcaption><p>{{ item.caption }}</p></figcaption>
+            <router-link class="no-router-link-decorations" :to="item.to">
+
+              <h2>{{ item.text }}</h2>
+
+              <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
+              <figcaption>
+                <p>{{ item.caption }}</p>
+              </figcaption>
+
+            </router-link>
           </div>
-          </RouterLink>
         </div>
-        
+
       </div>
-    
+
     </div>
-     
+
   </div>
-  
 </template>
   
 <script>
@@ -35,7 +38,7 @@ import ProjectLinks from '@/components/Navigation/ProjectLinks.ts';
 export default {
   name: 'ImageGallery',
   components: {
-    
+
   },
   data() {
     const requireContext = require.context('@/images/projects', false, /\.jpg$/);
@@ -52,18 +55,18 @@ export default {
       isContentVisible: false,
       imageArrayChoice: null,
       imgArrayOfArrays: [
-        
-          ProjectLinks,
-        
 
-          // Add more items as needed :)
-        
+        ProjectLinks,
+
+
+        // Add more items as needed :)
+
         [
           { id: 1, imageSrc: coffeeFood, altText: "Yummy Food", caption: "Food!" },
           { id: 2, imageSrc: coffeeImage, altText: "Coffee", caption: "Coffee!" },
           { id: 3, imageSrc: diffusionBird, altText: "Bird Watching", caption: "A bird!" },
           { id: 4, imageSrc: coffeeImage, altText: "Learn More Code", caption: "..while drinking coffee!" },
-        
+
 
           // Add more items as needed :)
         ],
@@ -82,7 +85,7 @@ export default {
     const options = {
       root: null, // Use the viewport as the root
       rootMargin: '0px', // No margin applied to the root
-      threshold: 0.5, // Trigger when 50% of the element is visible
+      threshold: 0.25, // Trigger when 50% of the element is visible
     };
     // Intersection Observer API -- this is used to load the handleIntersection method which
     // loads items on the screen as they are scrolled to with a transition effect.
@@ -92,19 +95,19 @@ export default {
 
 
   },
-  computed:{
-    testTest(){
+  computed: {
+    testTest() {
       //console.log("testing", this.theProjectLinks);
       return this.theProjectLinks;
     },
   },
   methods: {
-    
+
 
 
     handleIntersection(entries) {
       entries.forEach(entry => {
-        
+
         if (entry.isIntersecting) {
           if (entry.target === this.$refs.content) {
             // Load content for first element
@@ -124,12 +127,12 @@ export default {
 <style scoped>
 .hidden {
   opacity: 0;
-  transition: all 2s;
+  transition: all .75s;
 }
 
-.no-router-link-decorations{
+.no-router-link-decorations {
   text-decoration: none;
- 
+
 
 }
 
@@ -155,8 +158,17 @@ h2 {
   letter-spacing: -0.05em;
   color: rgb(255, 255, 255);
   font-size: 2rem;
-  
- 
+
+
+}
+
+.title-arrow-symbol {
+  font-size: 1.5em;
+  position: absolute;
+  margin-top: 0em;
+  margin-left: -0.2em;
+  transform: rotate(80deg);
+  display: inline-block;
 }
 
 .gallery-header {
@@ -166,11 +178,11 @@ h2 {
 
 .centerAll {
   justify-content: center;
-  display: flex;  
+  display: flex;
   height: fit-content;
-  background: rgba(0, 0, 0,0.25);
-  padding-bottom: 2em;
-  padding-top: 2em;
+  background: rgba(0, 0, 0, 0.25);
+
+
   border-radius: 1rem;
 
 }
@@ -179,12 +191,12 @@ h2 {
 .image-gallery {
   margin: 0 auto;
   position: relative;
-  background: rgba(255, 255, 255,0);
+  background: rgba(255, 255, 255, 0);
   padding: 1em;
   border-radius: 0.5em;
   display: flex;
   flex-direction: column;
- 
+
 }
 
 .image-gallery-grid-container {
@@ -196,25 +208,21 @@ h2 {
 
 .grid-item {
   width: fit-content;
-  
+
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
   border-radius: 0.33em;
 }
 
-.grid-item:hover {
-  cursor: pointer;
-}
+
 
 .gallery-component-image {
-
   padding: 0em;
   margin: 0em;
   background-color: #ffffff;
-  transition: filter 0.5s ease;
-  width: 256px;
-  height: 256px;
- 
+  transition: filter .25s ease;
+  max-height: 17rem;
+  aspect-ratio: 4/3;
   border-radius: 0.5rem;
 }
 
@@ -226,38 +234,46 @@ figcaption {
   text-align: left;
   padding: 0.5em;
   margin: 0em;
-  max-width: 256px;
+  max-width: 23rem;
   background: rgba(0, 0, 0, 0);
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: bold;
   color: rgb(255, 255, 255);
-  font-family: Arial, sans-serif;
+
 
 }
 
-@media (max-width: 70rem) {
+@media screen and (max-width: 70rem) {
   .image-gallery-grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 50rem) {
-  h2{
-    
+@media screen and (max-width: 50rem) {
+  .image-gallery {
+    padding: .5rem;
+  }
+  .gallery-header {
+    padding-bottom: .5rem;
   }
 }
 
-@media (max-width: 35rem) { 
-
+@media screen and (max-width: 35rem) {
+  .image-gallery-grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
   .gallery-component-image {
-    aspect-ratio: 1/1;
-    height: 100%;
+    aspect-ratio: 4/3;
+    max-height: 25rem;
+    
+    
   }
   .grid-item {
     width: fit-content;
-
   }
 }
+
 
 </style>

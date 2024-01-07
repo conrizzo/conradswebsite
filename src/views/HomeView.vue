@@ -339,8 +339,8 @@ export default {
   justify-content: left;
   background: rgba(0, 0, 0, 0.33);
   border-radius: 1rem;
- 
-  margin: 0 auto; 
+  max-width: 40rem;
+  
   padding: 0.5em;
   padding-left: 2em;
   color: #ffffff;
@@ -432,7 +432,7 @@ export default {
   .center-main-area-box {    
     display: flex;
     justify-content: center;
-    padding: 1em;
+    padding-left: 2rem; padding-right: 2rem;
     padding-bottom: 10rem;
   }
 
@@ -444,7 +444,7 @@ export default {
 @media only screen and (max-width: 50rem) {
   .center-main-area-box {
     margin-top: 0em;
-    
+    padding-left: 0.5rem; padding-right: 0.5rem;
   }
 
   .top-home-content-section{ 
