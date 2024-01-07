@@ -7,36 +7,34 @@
         </div>
         <transition name="fade">
             <div v-if="isDropdownOpen" class="dropdown-content">
-                <ProjectLinks :links="links">
-                    <template v-slot="{ links }">
-
-                        <router-link v-for="(item, index) in links" :key="index" :to="item.to"
-                            :class="{ active: $route.path === item.to }">
-                            <span v-html='item.text'></span><br>
-                        </router-link>
-
-                    </template>
-                </ProjectLinks>
+                <div v-for="(item, index) in links" :key="index">
+                <router-link :to="item.to" :class="{ active: $route.path === item.to }">
+                    <span v-html='item.text'></span><br>
+                </router-link>
+                </div>
             </div>
         </transition>
     </div>
 </template>
 
 <script>
-import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
+
+import ProjectLinks from '@/components/Navigation/ProjectLinks.ts'
 
 export default {
     name: "DropdownMenu",
     components: {
-        ProjectLinks
+        
     },
-    props: {
-        links: Array,
-    },
+    
     data() {
         return {
+            links: ProjectLinks, // make the project links available to the template dynamically
+
             isDropdownOpen: false, // Initialize as closed
-            openTimeout: null, // Variable to store the timeout            
+            openTimeout: null, // Variable to store the timeout    
+            
+             
         };
     },
     mounted() {

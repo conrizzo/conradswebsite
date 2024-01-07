@@ -1,44 +1,69 @@
 <template>
   <div class="centerAll">
+     
     <div class="image-gallery hidden" ref="content" :class="{ 'show': isContentVisible }">
       <div class="gallery-header">
-        <h1 class="gallery-styling-h1-span">things to do</h1>
+        <h1 class="gallery-styling-h1-span"><span class="project-title"> Project Links 
+            <span  style="font-size: 1.5em; position: absolute; margin-top: 0.1em; margin-left: -0.2em; 
+            transform: rotate(80deg); display: inline-block;">↷</span></span></h1>
+        
       </div>
       <div class="image-gallery-grid-container">
-
+        
         <div v-for="item in imageArrayChoice" :key="item.id" :title="item.id" class="grid-item">
+          <RouterLink class="no-router-link-decorations" :to="item.to">
           <div>
-            <h2>{{ item.altText }}</h2>
-            <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
-            <figcaption>{{ item.caption }}</figcaption>
+            <h2>{{ item.text }}</h2>
+            <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
+            <figcaption><p>{{ item.caption }}</p></figcaption>
           </div>
+          </RouterLink>
         </div>
+        
       </div>
+    
     </div>
+     
   </div>
+  
 </template>
   
 <script>
 
+import ProjectLinks from '@/components/Navigation/ProjectLinks.ts';
 
 export default {
   name: 'ImageGallery',
-  compontents: {
-
+  components: {
+    
   },
   data() {
+    const requireContext = require.context('@/images/projects', false, /\.jpg$/);
+    const images = requireContext.keys().map(requireContext);
+
+
     const coffeeImage = require('@/images/cup_of_coffee.jpg');
     const coffeeFood = require('@/images/coffee_food.jpg');
     const diffusionBird = require('@/images/diffBird.jpg');
     return {
+      theProjectLinks: ProjectLinks, // make the project links available to the template dynamically
+      images,
+
       isContentVisible: false,
       imageArrayChoice: null,
       imgArrayOfArrays: [
+        
+          ProjectLinks,
+        
+
+          // Add more items as needed :)
+        
         [
           { id: 1, imageSrc: coffeeFood, altText: "Yummy Food", caption: "Food!" },
           { id: 2, imageSrc: coffeeImage, altText: "Coffee", caption: "Coffee!" },
           { id: 3, imageSrc: diffusionBird, altText: "Bird Watching", caption: "A bird!" },
           { id: 4, imageSrc: coffeeImage, altText: "Learn More Code", caption: "..while drinking coffee!" },
+        
 
           // Add more items as needed :)
         ],
@@ -48,6 +73,8 @@ export default {
     };
   },
   mounted() {
+    this.theProjectLinks = ProjectLinks;
+
     // Set the initioanl image array to the galleryItems array
     this.imageArrayChoice = this.imgArrayOfArrays[0]
 
@@ -65,7 +92,16 @@ export default {
 
 
   },
+  computed:{
+    testTest(){
+      //console.log("testing", this.theProjectLinks);
+      return this.theProjectLinks;
+    },
+  },
   methods: {
+    
+
+
     handleIntersection(entries) {
       entries.forEach(entry => {
         
@@ -91,6 +127,12 @@ export default {
   transition: all 2s;
 }
 
+.no-router-link-decorations{
+  text-decoration: none;
+ 
+
+}
+
 .show {
   opacity: 1;
 }
@@ -111,6 +153,10 @@ h2 {
   text-align: left;
   text-transform: uppercase;
   letter-spacing: -0.05em;
+  color: rgb(255, 255, 255);
+  font-size: 2rem;
+  
+ 
 }
 
 .gallery-header {
@@ -122,7 +168,7 @@ h2 {
   justify-content: center;
   display: flex;  
   height: fit-content;
-  background: rgb(255, 255, 255);
+  
   padding-bottom: 2em;
   padding-top: 2em;
 }
@@ -131,7 +177,7 @@ h2 {
 .image-gallery {
   margin: 0 auto;
   position: relative;
-  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255,0);
   padding: 1em;
   border-radius: 0.5em;
   display: flex;
@@ -164,6 +210,8 @@ h2 {
   margin: 0em;
   background-color: #ffffff;
   transition: filter 0.5s ease;
+  width: 256px;
+  height: 256px;
 }
 
 .gallery-component-image:hover {
@@ -171,10 +219,10 @@ h2 {
 }
 
 figcaption {
-  text-align: center;
+  text-align: left;
   padding: 0.5em;
   margin: 0em;
-
+  max-width: 256px;
   background: rgba(0, 0, 0, 0);
   font-size: 0.8em;
   font-weight: bold;

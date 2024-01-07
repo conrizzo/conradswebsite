@@ -57,8 +57,7 @@
     },
     methods: {
       handleIntersection(entries) {
-        entries.forEach(entry => {
-          console.log(entry);
+        entries.forEach(entry => {        
           if (entry.isIntersecting) {
             if (entry.target === this.$refs.content) {
               // Load content for first element

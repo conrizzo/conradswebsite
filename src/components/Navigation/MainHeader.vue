@@ -23,8 +23,8 @@
         
       </div>
       <div class="small-resolution-h2">
-        <router-link to="/">
-          <h2 class="small-font-website-name">ConradsWebsite.com</h2>
+        <router-link to="/projects/login">
+          Sign In
         </router-link>
       </div>
       
@@ -45,6 +45,7 @@
             </a>
         </div>
       </div>
+
     </nav>
 
   </header>
@@ -164,7 +165,7 @@ export default {
       }      
     }
 
-    @media (max-width: 30rem) {
+    @media (max-width: 34rem) {
       .github-logo-link {
         display: none;
       }
@@ -177,13 +178,13 @@ export default {
         justify-content: start;
       }
       .small-resolution-h2{
-        font-size: 0.8em; position: absolute; right: 0.5em;
+        position: absolute; right: 0.5em;
         display: inline;
         color: rgb(128, 128, 128);
       }
 
       .small-font-website-name{
-        font-size: 1em;
+        font-size: 1.2em;
         color: rgb(128, 128, 128);
       }
     }

@@ -1,6 +1,8 @@
 
 <!-- 
     
+    2024 - this is deprecated and will be removed in the future. Now using Typescript File for this
+
     The function of this file is to hold all the links data!
      Anything changed in here will be reflected in all the pages that use this component.
      These pages are the DropdownMenu.vue and the HomeView.vue page, but it could easily be in
@@ -19,7 +21,7 @@ export default {
             type: Array,
             required: true,
             default: () => [
-
+                { text: 'Store', to: '/projects/store/store' },   
                 { text: 'Cowculator', to: '/projects/cowculator' },
                 { text: 'Weather', to: '/projects/weather' },
                 { text: 'Coffee Data', to: '/projects/datasets' },                
@@ -29,9 +31,9 @@ export default {
                 // { text: 'Project Descriptions', to: '/projects/' },    
                 // { text: 'Rust Web Assembly', to: '/projects/rustwebassembly' },    
                 // { text: 'Various Links', to: '/projects/Links' },                          
-                { text: 'Card Game <span style="color: #ff5959;">(New)</span>', to: '/projects/cards' },     
+                // { text: 'Card Game <span style="color: #ff5959;">(New)</span>', to: '/projects/cards' },     
                 // { text: 'Gallery', to: '/projects/gallery' },  
-                { text: 'Store <span style="color: #ff5959;">(New)</span>', to: '/projects/store/store' },   
+                
                 
                 
                     

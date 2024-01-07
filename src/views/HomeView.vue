@@ -32,44 +32,28 @@
               </ul>
             </div>
             <!-- Grid for project links and image to appear on hover -->
-            <div class="grid-container">
-              <div class="grid-item" style="grid-column: 1;">
-                <div class="image-container">
-                  <img v-if="isHovered" style="" class="hover-image" :src="hoveredImage" alt="Hover Image">
-                </div>
-              </div>
-              <div class="grid-item">
-                <div class="project-area">
-                  <!-- Projects ({{ this.itemsLength }})</h3> optionall show how many projcets -->
-                  <ProjectLinks :links="links">
-                    <template v-slot="{ links }">
-                      <div class="links-area">
-                        <span class="project-title"> 
-                          Project Links <span style="font-size: 1.5em; position: absolute; margin-top: 0.1em; margin-left: -0.2em; transform: rotate(80deg); display: inline-block;">&#8631;</span>
-                        </span>
-                        <div class="routes-area">
-                          <router-link class="on-hover-projects custom-color" v-for="(item, index) in links" :key="index"
-                            :to="item.to" :class="{ active: $route.path === item.to }" @mouseover="showImage(item)"
-                            @mouseleave="hideImage">
-                            <span v-html="item.text"></span><br>
-                          </router-link>
-                        </div>
-                      </div>
-                    </template>
-                  </ProjectLinks>                  
-                </div>
-              </div>
-            </div>
+            
+            <ProjectGallery>  </ProjectGallery>
           </div>
-        </div>
        
+        </div>
+          
+          <!-- <img class="aside-coffee-image" src="https://raw.githubusercontent.com/conrizzo/conradswebsite/master/src/images/CowGame.jpg" alt="Coffee image"> -->
       </div>
-    <main class="main-content">
+ 
       <!-- Aside area begins  #2d2d2d; slate black color -->
        <div style="background: rgb(18,18,18);">
       </div>
 
    
+     
+
+      <!-- 2nd section -->
+         <main class="main-content">
+      <div>
+        <FourWideImages>    
+        </FourWideImages>
+      </div>
       <AsideContent class="first-aside-home-page">
         <template v-slot:aside-content>
           <figure style="display: inline-block;">
@@ -80,21 +64,9 @@
             </figcaption>
           </figure>
         </template>
-      </AsideContent>
+      </AsideContent>  
 
-  
-
-      <!-- 2nd section -->
-
-      <div>
-        <FourWideImages>    
-        </FourWideImages>
-      </div>
-      <div style="background: rgb(18,18,18);">
-      </div>
-
-       <!-- 3rd section -->
-      
+       <!-- 3rd section -->      
       <CoffeeGridContent>        
       </CoffeeGridContent>   
 
@@ -128,15 +100,16 @@
 
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
-          <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
-         
+          <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->         
         </template>
       </AsideContent>
     </main>
 
     <imagesOneRow></imagesOneRow>
 
-    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne">   
+    <TwoColumnsGridContentTemplate 
+      :titleText="parentTitleTextOne" 
+      :content-text="parentTextOne">   
     </TwoColumnsGridContentTemplate>   
 
   </div>
@@ -168,11 +141,12 @@ import imagesOneRow from "@/components/ImagesOneRow.vue";
 
 import TwoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
 
+import ProjectGallery from "@/components/HomePage/ProjectGallery.vue";
+
 export default {
   name: "HomeView",
   components: {
-    AsideContent,
-    ProjectLinks, CoffeeGridContent, FourWideImages, imagesOneRow, TwoColumnsGridContentTemplate
+    AsideContent, CoffeeGridContent, FourWideImages, imagesOneRow, TwoColumnsGridContentTemplate, ProjectGallery
   },
   props: {
     links: {
@@ -206,8 +180,8 @@ export default {
 
       parentTitleTextOne: "What is the goal of this website?",
       parentTextOne: "The goal of this website at the moment is to keep\
-                      experimenting and learning. \
-                      Make some fun projects."
+                      experimenting and learning. Make some fun projects.\
+                      Drink some coffee (hopefully good coffee)."
     };
   },
   computed: {
@@ -322,7 +296,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(10deg, rgba(0, 0, 0, 0.1) 20%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.1) 80%), linear-gradient(100deg, rgba(0, 0, 0, 0.1) 10%, transparent 10%, transparent 90%, rgba(0, 0, 0, 0.1) 90%);
+  background-image: linear-gradient(5deg, rgba(0, 0, 0, .6) 20%, transparent 20%, transparent 80%, rgba(0, 0, 0, .6) 80%), linear-gradient(100deg, rgba(0, 0, 0, .6) 10%, transparent 10%, transparent 90%, rgba(0, 0, 0, .6) 90%);
 }
 
 .custom-color {
@@ -367,9 +341,8 @@ export default {
   display: flex;
   justify-content: center;
   background: rgba(0, 0, 0, 0.33);
- border-radius: 2rem;
-  display: inline-block;
-  width: 26.5em;
+  border-radius: 2rem;
+  display: inline-block;  
   margin: 0 auto; 
   padding: 0.5em;
   padding-left: 2em;
@@ -387,6 +360,7 @@ export default {
   padding: 0.5em;
   border-radius: 2rem;
   background: rgba(0, 0, 0, 0.33);
+  
   
   /* border: 1px solid rgb(229, 229, 229);  */
 }
@@ -442,6 +416,8 @@ export default {
 .top-home-content-section{ 
   z-index: 4;
   padding-top: 5rem;
+ 
+  
 }
 
 @media only screen and (max-width: 100rem) {
@@ -488,17 +464,13 @@ export default {
 .links-area {
   width: 20.7em;
 }
-.hover-image {
- 
-  margin-right: 2rem;
+.hover-image { 
+  margin-right: 5rem;
   margin-top: 4rem;
   display: block;
-  width: 18.5rem;
-  
+  width: 16rem;  
   object-fit: cover;
-  aspect-ratio: 1/1;
-  
- 
+  aspect-ratio: 1/1; 
   border-radius: 2rem;
 }
 /* Style for grid items */

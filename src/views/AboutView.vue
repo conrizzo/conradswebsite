@@ -437,7 +437,7 @@ h3 {
   border-radius: 1.25em;
   background: rgb(255, 255, 255);
   padding: 1em;
-  border: 1px solid rgb(218, 220, 224);
+ 
   margin: 0.5em;
 }
 .bullets{  
@@ -452,15 +452,15 @@ h3 {
   margin: 0.5em;
   margin-top: 2em;
   padding-top: 0.5em;
-  border: 1px solid rgb(218, 220, 224);
+ 
 }
 
 .more-information-about-me:nth-child(odd) {
   margin-top: 2em; 
   
-  border-radius: 1.25em;
+ 
   background: rgb(239, 248, 255);
-  border: 1px solid rgb(218, 220, 224);
+  
   margin: 0.5em;
   margin-top: 2em;
   padding-top: 0.5em;

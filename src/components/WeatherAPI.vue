@@ -20,14 +20,13 @@
           <tr v-for="cityWeather in cityWeathers" :key="cityWeather.city">
 
             <!-- 1 -->
-            <td data-label="City / Country / Region"><b><u>{{ cityWeather.city }}</u></b>
-              <br><br>
+            <td data-label="City / Country / Region"><span style="color: rgb(255, 100, 100);"><b>{{ cityWeather.city }}</b></span>
+              <br>
               <template v-if="cityWeather.weather && cityWeather.weather.request[0].query">
 
-                <span>Country:</span>
-                {{ cityWeather.weather.nearest_area[0].country[0].value }}<br>
-                <span>Region:
-                </span>
+                <!--<span>Country:</span>
+                {{ cityWeather.weather.nearest_area[0].country[0].value }}<br> -->
+                
                 {{ cityWeather.weather.nearest_area[0].region[0].value }}<br>
                 {{ cityWeather.weather.request[0].query }}<br>
                 <div style="margin-top: 0.25em;"><br>
@@ -61,7 +60,7 @@
 
             <!-- 3 -->
             <!-- This sets the table cell to have a different color background on a condition  -->
-            <td data-label="Weather Conditions" style="color: red;" v-bind:class="{
+            <td data-label="Conditions" style="" v-bind:class="{
               'gray-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Partly cloudy',
               'rain-showers-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain shower',
               'overcast-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Overcast',
@@ -158,8 +157,13 @@
             <!-- 7 -->
             <td data-label="Wind Speed">
               <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
+                <div v-if="temperatureUnit === false">
                 {{ cityWeather.weather.current_condition[0].windspeedKmph }} km/h
-              </template>
+                </div>
+                <div v-else>
+                  {{ cityWeather.weather.current_condition[0].windspeedMiles }} mph
+                </div>
+                </template>
               <template v-else>
                 N/A
               </template>
@@ -213,7 +217,7 @@
 export default {
   data() {
     return {
-      temperatureUnit: 0,
+      temperatureUnit: false,
       weatherLocationInputText: "Miami, Florida",
       cityWeathers: [
         //{ city: "Death Valley, CA", weather: "" },
@@ -420,41 +424,33 @@ tr:nth-child(even) {
 
 .gray-background {
   background: linear-gradient(to left, #ffffff 50%, #e1e1e1 50%);
+  color: #000;
 }
-
 .rain-background {
   background: #8aa9ff;
 }
-
 .rain-showers-background {
   background: linear-gradient(to left, #ffffff 50%, #8aa9ff 50%);
 }
-
 .light-rain-background {
   background: linear-gradient(to left, #ffffff 75%, #8aa9ff 25%);
 }
-
 .overcast-background {
   background: #e1e1e1;
 }
-
 .cloudy-background {
   background: #e1e1e1;
 }
-
 .sunny-background {
   background: linear-gradient(to bottom, rgb(255, 255, 255) 50%, #b8f0ff 100%);
   color: #000;
   padding: 0.25em;
 }
-
 .clear-background {
   background: #272727;
   color: white;
 }
-
-.sun-hour-background {
-  text-decoration: underline;
+.sun-hour-background {  
   padding: 0.1em;
   border-radius: 0.3em;
 }
@@ -537,6 +533,8 @@ input:focus {
 @media screen and (max-width: 45rem) {
   table {
     width: 100%;
+    font-size: 1em;
+    
   }
   thead {
     display: none;
@@ -554,11 +552,12 @@ input:focus {
     float: inline-start;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 1.1rem;
   }
 
   .center-content {
-    padding-left: 4em;
-    padding-right: 4em;    
+    padding-left: 1em;
+    padding-right: 1em;    
    }
 
      .weather-title{
@@ -574,8 +573,7 @@ input:focus {
 @media (max-width: 45rem) {
 
   table {
-    font-size: 0.6em;
-    padding: 0.1em;
+    
   }
 
 
