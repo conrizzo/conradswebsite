@@ -126,7 +126,7 @@ import "@/assets/globalCSS.css";
 import AsideContent from "@/components/FirstAside.vue";
 
 // Array of project links
-import ProjectLinks from '@/components/Navigation/ProjectLinks.vue'
+
 
 // Rust token title animation
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
@@ -148,11 +148,7 @@ export default {
   components: {
     AsideContent, CoffeeGridContent, FourWideImages, imagesOneRow, TwoColumnsGridContentTemplate, ProjectGallery
   },
-  props: {
-    links: {
-      type: Array,
-    },
-  },
+  
   data() {
     return {
       itemsLength: 0,
@@ -193,6 +189,7 @@ export default {
   },
   methods: {
 
+    // deprecated code that was used to show the image on hover -0 may use this for somethign else later and move it
     showImage(item) {
 
       if (item.text === "Cowculator") {
@@ -296,7 +293,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(5deg, rgba(0, 0, 0, .6) 20%, transparent 20%, transparent 80%, rgba(0, 0, 0, .6) 80%), linear-gradient(100deg, rgba(0, 0, 0, .6) 10%, transparent 10%, transparent 90%, rgba(0, 0, 0, .6) 90%);
+  background-image: linear-gradient(5deg, rgba(0, 0, 0, .05) 20%, transparent 20%, transparent 80%, rgba(0, 0, 0, .05) 80%), linear-gradient(100deg, rgba(0, 0, 0, .05) 10%, transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 90%);
 }
 
 .custom-color {
@@ -316,7 +313,7 @@ export default {
 .center-main-area-box {
   display: flex;
   justify-content: center; 
-  height: 110svh;    
+  padding-bottom: 10rem;
 }
 
 
@@ -339,16 +336,17 @@ export default {
 
 .main-text-container {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   background: rgba(0, 0, 0, 0.33);
-  border-radius: 2rem;
-  display: inline-block;  
+  border-radius: 1rem;
+ 
   margin: 0 auto; 
   padding: 0.5em;
   padding-left: 2em;
   color: #ffffff;
   font-size: 1.6em;
   text-align: left;
+  margin-bottom: 1em;
 }
 
 .routes-area {
@@ -415,7 +413,7 @@ export default {
 
 .top-home-content-section{ 
   z-index: 4;
-  padding-top: 5rem;
+  padding-top: 2rem;
  
   
 }
@@ -435,6 +433,7 @@ export default {
     display: flex;
     justify-content: center;
     padding: 1em;
+    padding-bottom: 10rem;
   }
 
   
@@ -445,6 +444,7 @@ export default {
 @media only screen and (max-width: 50rem) {
   .center-main-area-box {
     margin-top: 0em;
+    
   }
 
   .top-home-content-section{ 
@@ -537,9 +537,7 @@ export default {
 
   
 
-  .main-text-container {
-    width: calc(100% - 1.3em);
-  }
+ 
 
    .links-area {
     width: calc(100% - 2em);   

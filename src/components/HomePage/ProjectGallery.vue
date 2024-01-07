@@ -4,7 +4,7 @@
     <div class="image-gallery hidden" ref="content" :class="{ 'show': isContentVisible }">
       <div class="gallery-header">
         <h1 class="gallery-styling-h1-span"><span class="project-title"> Project Links 
-            <span  style="font-size: 1.5em; position: absolute; margin-top: 0.1em; margin-left: -0.2em; 
+            <span  style="font-size: 1.5em; position: absolute; margin-top: 0em; margin-left: -0.2em; 
             transform: rotate(80deg); display: inline-block;">↷</span></span></h1>
         
       </div>
@@ -82,7 +82,7 @@ export default {
     const options = {
       root: null, // Use the viewport as the root
       rootMargin: '0px', // No margin applied to the root
-      threshold: 0.8, // Trigger when 50% of the element is visible
+      threshold: 0.5, // Trigger when 50% of the element is visible
     };
     // Intersection Observer API -- this is used to load the handleIntersection method which
     // loads items on the screen as they are scrolled to with a transition effect.
@@ -145,7 +145,7 @@ h2 {
   color: rgb(255, 255, 255);
   text-align: left;
   padding-left: 0.33em;
-  font-size: 1em;
+  font-size: 1.25rem;
   text-transform: uppercase;
 }
 
@@ -168,9 +168,11 @@ h2 {
   justify-content: center;
   display: flex;  
   height: fit-content;
-  
+  background: rgba(0, 0, 0,0.25);
   padding-bottom: 2em;
   padding-top: 2em;
+  border-radius: 1rem;
+
 }
 
 
@@ -182,7 +184,7 @@ h2 {
   border-radius: 0.5em;
   display: flex;
   flex-direction: column;
-
+ 
 }
 
 .image-gallery-grid-container {
@@ -194,7 +196,7 @@ h2 {
 
 .grid-item {
   width: fit-content;
-  background-color: rgb(255, 89, 89);
+  
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
   border-radius: 0.33em;
@@ -212,6 +214,8 @@ h2 {
   transition: filter 0.5s ease;
   width: 256px;
   height: 256px;
+ 
+  border-radius: 0.5rem;
 }
 
 .gallery-component-image:hover {
@@ -226,7 +230,7 @@ figcaption {
   background: rgba(0, 0, 0, 0);
   font-size: 0.8em;
   font-weight: bold;
-  color: rgb(18, 18, 18);
+  color: rgb(255, 255, 255);
   font-family: Arial, sans-serif;
 
 }
@@ -238,10 +242,17 @@ figcaption {
   }
 }
 
+@media (max-width: 50rem) {
+  h2{
+    
+  }
+}
+
 @media (max-width: 35rem) { 
 
   .gallery-component-image {
-    width: 100%;
+    aspect-ratio: 1/1;
+    height: 100%;
   }
   .grid-item {
     width: fit-content;

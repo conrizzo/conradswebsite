@@ -68,6 +68,7 @@
               'sunny-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Sunny',
               'light-rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Light rain',
               'rain-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Rain',
+              'snow': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Light snow, mist',
               'clear-background': cityWeather.weather && cityWeather.weather.current_condition[0].weatherDesc[0].value == 'Clear'
             }">
               <template v-if="cityWeather.weather && cityWeather.weather.current_condition[0]">
@@ -290,7 +291,7 @@ export default {
 .weather-background {
   /*background-image: url('../images/blue_sky2.jpg'); */
   background-image: url('../images/background_tuebingen.jpg');
-
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -450,6 +451,11 @@ tr:nth-child(even) {
   background: #272727;
   color: white;
 }
+.snow{
+  background: #f4feffc6;
+  color: #0033ff;
+}
+
 .sun-hour-background {  
   padding: 0.1em;
   border-radius: 0.3em;
