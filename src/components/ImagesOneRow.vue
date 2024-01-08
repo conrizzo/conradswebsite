@@ -6,7 +6,7 @@
           This is an education thing to write about the h1 tag directly below this! 
           Doing inline block to underline only the text in a span, then aligning the outside text to the left works nicely!
       -->
-      <h1><span class='gallery-styling-h1-span'>MAKE A SELECTION</span></h1>
+      <h1><span class='gallery-styling-h1-span'>MAKE AN ACTIVITY SELECTION</span></h1>
       <div class="gallery-button-left" @click="changeImageArray('left')">&lt;</div>
       <div class="image-gallery-grid-container">
         <div v-for="item in imageArrayChoice" :key="item.id" class="grid-item">
@@ -93,17 +93,19 @@
   <style scoped>
   h1{
     font-size: 0.9em; 
-    margin-bottom: 0.5em;
+    
     text-align: left;  
   }
   .gallery-styling-h1-span{    
     display: inline-block;
     border-bottom: 2px solid rgb(255, 89, 89);
     background: #fff;
-    
-    padding: 3px;
+    font-size: 1rem;
+    padding-left: 0.2rem;
     padding-bottom: none;
     border-bottom: none;
+    margin-top: 1rem;
+    
   }
 
   

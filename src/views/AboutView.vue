@@ -11,7 +11,7 @@
             <div class="language-container">
                 <span class="language-arrow-text tooltip">{{arrowText}}
                   <span class="tooltiptext">
-                    This is CSS and Vue.js, not an image or drawn arrow!
+                    CSS and Vue.js, not an image or drawn arrow!
                   </span>              
                 </span>             
                   <div   style="transform: rotate(-55deg);">                   
@@ -27,8 +27,13 @@
                   </div>
                   <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
               </div>
-
         </div>
+        <div class="more-information-about-me">
+        <h2><span class="bottom-border">Thank you for visiting!</span></h2>    
+            <p> 
+            Welcome to the personal and professional website of Conrad Lundberg.
+            </p>
+      </div>  
         <div class="bullets-container">
           <div class="bullets">                   
             <ul>
@@ -39,7 +44,7 @@
                 (Vue.js) for its reactivity and interactivity.
               </li>
 
-              <li>It has been an evolving project. It is hosted on
+              <li>It is hosted on
                 <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                   my GitHub</a> with
                 <a class="home-text-links" href="https://pages.github.com/">
@@ -59,9 +64,7 @@
                 uses the <a class="home-text-links" href='https://astro.build/'>Astro</a> framework.
               </li>
 
-              <li> 
-                The point has been to have fun and continue learning!
-              </li>
+             
             </ul>
           </div>     
         </div>
@@ -84,11 +87,10 @@
         <p> 
           In 2022 I completed studies in <a class="home-text-links" href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a> 
           at the University of Tübingen in Germany. I am pleased to have successfully earned a degree from a German university.
-          The combination of computer science, statistics, linguistics, parsing, logic, math, and machine learning
-          this subject encompassed made it challenging. Before this I obtained a Biology degree in the USA. 
+          Before this I obtained a Biology degree in the USA. 
           I am now keen on enhancing my programming abilities and advancing as a developer.
           Motivated and curious, I seek challenges in front-end, back-end, full-stack, or potentially in machine learning and NLP.  
-          I look forward to any new opportunity, am excited about learning, and confident in my ability to do problem-solving through code and research.
+          I look forward to new opportunities, am excited about learning, and confident in my ability to do problem-solving through code and research.
         </p>
       </div>    
       <div class="more-information-about-me" >
@@ -163,7 +165,13 @@
                   </div>
                   <button @click="language();" class="clean-button language-button" role="button">{{ languageButtonText }}</button>
               </div>
-        </div>        
+        </div>    
+        <div class="more-information-about-me">
+        <h2><span class="bottom-border">Vielen Dank für den Besuch!</span></h2>    
+            <p>           
+            Herzlich willkommen auf der persönlichen und professionellen Website von Conrad Lundberg.
+            </p>
+      </div>      
         <div class="bullets-container">
           <div class="bullets">      
             <ul>
@@ -173,7 +181,7 @@
                 (Vue.js) für seine Reaktivität und Interaktivität.
               </li>
 
-              <li>Es handelt sich um ein sich entwickelndes Projekt. Sie wird auf
+              <li>Sie wird auf
                 <a class="home-text-links" href="https://github.com/conrizzo/conradswebsite">
                   meinem GitHub</a> mit
                 <a class="home-text-links" href="https://pages.github.com/">
@@ -196,9 +204,7 @@
                 <a class="home-text-links" href='https://astro.build/'>Astro</a> framework verwendet.
               </li>
 
-              <li>
-                Der Sinn war, Spaß daran zu haben, dabei mehr zu lernen.
-              </li>          
+                 
             </ul>
           </div>
         </div>
@@ -207,11 +213,10 @@
           <h2><span class="bottom-border"></span>Mehr Informationen über mich</h2>    
           <p> 
             Im Jahr 2022 habe ich mein Studium der <a class="home-text-links" href="https://de.wikipedia.org/wiki/Computerlinguistik\">Computerlinguistik</a> an der Universität Tübingen in Deutschland abgeschlossen. 
-            Ich freue mich, einen deutschen Universitätsabschluss erreicht zu haben.
-            Die Kombination aus Informatik, Statistik, Linguistik, Parsing, Logik, Mathematik und machine learning, die dieses Fach umfasste, machte es anspruchsvoll. 
+            Ich freue mich, einen deutschen Universitätsabschluss erreicht zu haben.             
             Zuvor habe ich einen Abschluss in Biologie in den USA erworben. Ich bin nun darauf aus, meine Programmierkenntnisse zu verbessern und mich als Entwickler weiterzuentwickeln. 
-            Motiviert und neugierig strebe ich nach Herausforderungen im Bereich Frontend, Backend, Full-Stack oder möglicherweise im maschinellen Lernen und in der natürlichen Sprachverarbeitung (NLP). 
-            Ich freue mich auf jede neue Gelegenheit, bin begeistert vom Lernen und zuversichtlich in meiner Fähigkeit, Problemlösungen durch Code und Forschung zu finden.
+            Motiviert und neugierig strebe ich nach Herausforderungen im Bereich Frontend, Backend, Full-Stack oder möglicherweise im machine learning und in der natürlichen Sprachverarbeitung (NLP). 
+            Ich freue mich auf neue Gelegenheiten, bin begeistert vom Lernen und zuversichtlich in meiner Fähigkeit, Problemlösungen durch Code und Forschung zu finden.
           </p>
         </div>
        
@@ -234,7 +239,7 @@
               <img class="bird" :src="birdPicture" alt="Kohlmeise picture">
             </div>
             <div class="aside-bird-caption">
-            <p class="bird-text" style="color: #c7c7c7;"><a class="home-text-links"
+            <p class="bird-text"><a class="home-text-links"
                 href="https://en.wikipedia.org/wiki/Great_tit">Kohlmeise</a>
               Foto in Tübingen, Deutschland gemacht. 
               <br>
@@ -323,6 +328,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   font-size: 1.4em;
+  padding-left: .5rem;
 }
 
 h1 {  
@@ -438,14 +444,15 @@ h3 {
   background: rgb(255, 255, 255);
   padding: 1em;
  
-  margin: 0.5em;
+  
+   margin-left: 2em;
 }
 .bullets{  
   margin-left: 1.8rem;
   padding-right: 0.425em;
   font-size: 1.2rem;    
 }
-.more-information-about-me:nth-child(even){  
+.more-information-about-me:nth-child(odd){  
   margin-top: 2em; 
   background: rgb(255, 255, 255);
   border-radius: 1.25em;  
@@ -455,7 +462,7 @@ h3 {
  
 }
 
-.more-information-about-me:nth-child(odd) {
+.more-information-about-me:nth-child(even) {
   margin-top: 2em; 
   
  
@@ -583,9 +590,7 @@ figure {
   border-radius: 0em; 
 }
 
-  h1 {
-    padding-left: 0.7em;
-  }
+  
 
   h3 {
     margin-top: 0em;
@@ -597,6 +602,14 @@ figure {
     padding-left: 0.25em;
     padding-right: 0.25em;
   }
+
+  .title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4em;
+  padding-left: .5rem;
+}
 }
 
 @media only screen and (max-width: 48rem){

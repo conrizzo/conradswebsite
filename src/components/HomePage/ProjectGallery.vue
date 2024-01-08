@@ -203,7 +203,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(1, 1fr);
-  grid-gap: 1em;
+  grid-gap: 1rem;
 }
 
 .grid-item {
@@ -221,7 +221,7 @@ h2 {
   margin: 0em;
   background-color: #ffffff;
   transition: filter .25s ease;
-  max-height: 17rem;
+  max-height: 18rem;
   aspect-ratio: 4/3;
   border-radius: 0.5rem;
 }
@@ -236,7 +236,7 @@ figcaption {
   margin: 0em;
   max-width: 23rem;
   background: rgba(0, 0, 0, 0);
-  font-size: 1em;
+  font-size: .9rem;
   font-weight: bold;
   color: rgb(255, 255, 255);
 

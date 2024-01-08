@@ -429,18 +429,23 @@ tr:nth-child(even) {
 }
 .rain-background {
   background: #8aa9ff;
+  color: #000;
 }
 .rain-showers-background {
   background: linear-gradient(to left, #ffffff 50%, #8aa9ff 50%);
+  color: #000;
 }
 .light-rain-background {
   background: linear-gradient(to left, #ffffff 75%, #8aa9ff 25%);
+  color: #000;
 }
 .overcast-background {
   background: #e1e1e1;
+  color: #000;
 }
 .cloudy-background {
   background: #e1e1e1;
+  color: #000;
 }
 .sunny-background {
   background: linear-gradient(to bottom, rgb(255, 255, 255) 50%, #b8f0ff 100%);

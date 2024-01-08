@@ -314,6 +314,7 @@ export default {
   display: flex;
   justify-content: center; 
   padding-bottom: 10rem;
+  
 }
 
 
@@ -414,7 +415,7 @@ export default {
 .top-home-content-section{ 
   z-index: 4;
   padding-top: 2rem;
- 
+ max-width: 90rem;
   
 }
 
