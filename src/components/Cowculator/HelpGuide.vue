@@ -56,12 +56,11 @@ h1 {
 }
 
 .helpGuide {
-  width: 80%;
+  width: 90%;
   max-width: 400px;
   padding-top: 0.75em;
   padding-bottom: 25px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding: 1rem;
   margin: 80px auto;
   background: rgb(255, 255, 255);
   border-radius: 10px;

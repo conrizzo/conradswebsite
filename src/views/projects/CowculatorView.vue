@@ -139,35 +139,37 @@ export default {
   display: flex;
 }
 .professor-cow-figure {
-  width: 23em;
+  width: 24em;
   background-color: #515151;
   text-align: left;
   margin-bottom: 0em;
   
   padding: 0.5em;
   border-radius: 1em;
+ 
 }
 .professor-cow-figure-text {
   background: rgb(255, 255, 255);
-  width: 23em;
-  margin-left: auto;
-  margin-right: auto;
+   width: 24em;
+  margin: 0 auto;
   text-align: left;
   
-  padding: 10px;
+  padding: 1rem;
   border-radius: 5px;
   margin-bottom: 0.66em;
   font-family: arial;
   color: rgb(40, 40, 40);
 }
+
 h2 {
   padding-top: 2em;
   padding-bottom: 0em;
   color: #808080;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 35rem) {
   .professor-cow-figure {
-    width: 21.25em;
+    max-width: 22rem;
+    margin-left: 1rem;
   }
 }
 </style>

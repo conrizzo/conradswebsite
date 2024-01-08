@@ -9,7 +9,7 @@
       </div>
       <div class="image-gallery-grid-container">
 
-        <div v-for="item in imageArrayChoice" :key="item.id" :title="item.id" class="grid-item">
+        <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item">
           <div>
             <router-link class="no-router-link-decorations" :to="item.to">
 

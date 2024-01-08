@@ -118,6 +118,7 @@ img, picture, svg, video {
   display: block;
 
 }
+
 p {
   max-width: 75ch;
   text-wrap: pretty;
@@ -128,9 +129,7 @@ h1 {
   line-height: 1.5;
 }
 
-p {
 
-}
 
 
 .top-most-paragraph-space{
@@ -211,22 +210,7 @@ p {
   background-size: 150px auto;
 }
 
-@media only screen and (max-width: 500px) {
-  .green-field-image {
-    background-image: url('../images/cow_lecture.png');
-    background-position: center 88%;
-    background-repeat: no-repeat;
-    background-size: 33% auto;
-  }
-  .professor-message {
-    font-size: xx-small;
-    max-width: 33%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    background: white;
-  }
-}
+
 .no-underlines {
   text-decoration: none;
 }

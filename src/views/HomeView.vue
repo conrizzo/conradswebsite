@@ -17,7 +17,8 @@
             </div>
             <!-- Main bullets -->
             <div class="main-text-container">
-              <ul>
+
+              <ul class="main-text-ul">
                 <li>
                   Welcome to <a class="home-text-links"
                     href="https://github.com/conrizzo">Conrad's</a> Website
@@ -30,10 +31,17 @@
                     href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
                 </li>
               </ul>
+
+              <div class="main-text-p">
+                <p style="color: #fff; font-size: 1rem;">There are a few other projects I'm still working on that are not shown here. 
+              The array of projects below is dynamically loaded in as objects, images are dynamically inserted into those objects from an images folder.</p>
+              </div>
+
             </div>
             <!-- Grid for project links and image to appear on hover -->
             
             <ProjectGallery>  </ProjectGallery>
+            
           </div>
        
         </div>
@@ -337,66 +345,36 @@ export default {
 
 .main-text-container {
   display: flex;
-  justify-content: left;
-  background: rgba(0, 0, 0, 0.33);
-  border-radius: 1rem;
-  max-width: 40rem;
-  
-  padding: 0.5em;
-  padding-left: 2em;
+  justify-content: left; 
+  /*max-width: 40rem; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;   
   color: #ffffff;
   font-size: 1.6em;
   text-align: left;
   margin-bottom: 1em;
-}
-
-.routes-area {
-  line-height: 1.11;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  font-size: 2.1em;
-  padding: 0.5em;
-  border-radius: 2rem;
-  background: rgba(0, 0, 0, 0.33);
   
+}
+
+.main-text-ul{
+   background: rgba(0, 0, 0, 0.33);
+   border-radius: 1rem;
   
-  /* border: 1px solid rgb(229, 229, 229);  */
+   padding: 0.5rem;
+   padding-left: 2.5rem;
+}
+.main-text-p{
+   background: rgba(0, 0, 0, 0.33);
+   border-radius: 1rem;
+   padding: 1rem;
+   
 }
 
-.routes-area a:hover {
-  color: #ffffff;
-}
 
-.project-title {
-  color: rgb(255, 255, 255);
-  font-size: 2.5em;
-  
-  padding-bottom: 2px;
-  /* text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3); */
-}
 
-.on-hover-projects {
-  text-decoration: none;
-  padding: 0 0.25em 0 0.25em;
 
-}
 
-.on-hover-projects:hover {
-  color: #000000 !important;
-  background-color: rgb(255, 255, 255);
-  border-radius: 0.33em;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* Two columns with equal width */
-  gap: 1em;
-  /* padding-top: 2em; */
-  margin-bottom: 2em;
- 
-}
 .first-aside-home-page {
   background: rgb(18, 18, 18);
   z-index: 1;
@@ -442,6 +420,14 @@ export default {
 
 }
 
+@media only screen and (max-width: 60rem) {
+.main-text-container {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+}
+
+
 @media only screen and (max-width: 50rem) {
   .center-main-area-box {
     margin-top: 0em;
@@ -458,27 +444,21 @@ export default {
     border-radius: 0em;
   }
 
+  .title {    
+    font-size: 2.5em;    
+  }
+
+  .top-string-slice-of-title {
+   
+    font-size: 1.5em;
+  }
+
 
 
   
 }
-.links-area {
-  width: 20.7em;
-}
-.hover-image { 
-  margin-right: 5rem;
-  margin-top: 4rem;
-  display: block;
-  width: 16rem;  
-  object-fit: cover;
-  aspect-ratio: 1/1; 
-  border-radius: 2rem;
-}
-/* Style for grid items */
-.grid-item {
-  border: none;
-  /* Border for visualization */
-}
+
+
 .title {
   position: relative;
   line-height: 1;
@@ -492,59 +472,9 @@ export default {
   font-size: 2em;
 }
 
-.image-container {
-  float: inline-end;
-  max-height: 18.3em;
-  padding-left: 2em;
-}
 
-@media (max-width: 50em) {
-  .grid-container {
-    grid-template-columns: 1fr;
-  }
 
-  .image-container {
-    /* Set a fixed height for the container */
-    display: none;
-  }
 
-  .hover-image {
-    border-radius: 1em;
-    position: absolute;
-    top: 111.8vh;
-    z-index: 2;
-  }
-
-  .project-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-@media only screen and (max-width: 50rem) {
-  .title {    
-    font-size: 2.5em;    
-  }
-
-  .top-string-slice-of-title {
-   
-    font-size: 1.5em;
-  }
-
-  .routes-area {
-    font-size: 1.75rem;  
-  }
-
-  
-
- 
-
-   .links-area {
-    width: calc(100% - 2em);   
-  }
- 
-}
 
 </style>
 

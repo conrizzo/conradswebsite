@@ -91,9 +91,17 @@
           </table>
         </div>
         <!-- https://vademon.github.io/steam2019emoticons/stickers-Winter2019.html png is from Steam 2019 winter collection -->
-        <img
-          src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1195690/4e2f1695d6cad53e90dbd8b481db806b49f6a56f.png"
-          alt="Bogo Sort GIF">
+        <div style="justify-content: center; display: flex;">
+          <figure>
+          <img
+            src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1195690/4e2f1695d6cad53e90dbd8b481db806b49f6a56f.png"
+            alt="Bogo Sort GIF">
+              <figcaption><a style="color: #fff;" class="text-links" href="https://vademon.github.io/steam2019emoticons/stickers-Winter2019.html">
+                Bird Plop
+              </a>
+            </figcaption>
+          </figure>
+        </div>
         <pre v-bind:class="'language-JavaScript line-numbers'">
   <code>      
     // Following section is BOGOSORT
@@ -149,7 +157,7 @@
         <div class="text-container">
           <h2>Quicksort</h2>
 
-          <p style="padding-top: 1em;" class="paragraph-text">What is <a class="bogo-link no-underlines"
+          <p class="paragraph-text">What is <a class="bogo-link no-underlines"
               style="color: #fff;" href="https://en.wikipedia.org/wiki/Bogosort">Quicksort?</a></p>
           <br>
           <p class="paragraph-text" style="padding-top: 1em;"> A professional recursive quicksort algorithm is much, much,

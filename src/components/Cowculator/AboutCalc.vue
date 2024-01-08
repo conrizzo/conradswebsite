@@ -3,7 +3,7 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="aboutCowculator">
       <button class="close" @click.self="closeModal"></button>
-      <h2 style="padding-top: 0.5em"><span v-html="title"></span>, why?</h2>
+      <h1 style="padding-top: 0.5em; color: rgb(66, 184, 147);"><span v-html="title"></span>, why?</h1>
 
       <p class="about-modal-text">
         The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. This is not some simple calculator tutorial
@@ -63,18 +63,17 @@ export default {
 <!-- scoped applies to only this component -->
 <style scoped>
 h1 {
-  color: rgb(105, 105, 198);
+  
   border: none;
   padding: 0;
 }
 
 .aboutCowculator {
-  width: 80%;
+  width: 90%;
   max-width: 400px;
   padding-top: 0.75em;
   padding-bottom: 25px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding: 1rem;
   margin: 80px auto;
   background: rgb(255, 255, 255);
   border-radius: 10px;
@@ -97,7 +96,7 @@ h1 {
 
 ul{
   text-align: left; 
-  padding-left: 4em;
+  padding-left: 2rem;
   font-size: 1.3em;
   list-style: none;
 }
