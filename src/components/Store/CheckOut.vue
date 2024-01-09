@@ -460,8 +460,9 @@ h1 {
     text-align: left;
     padding-left: 1em;
     padding-right: 1em;
-    height: 7rem;
+    min-height: 7rem;
     font-size: 1.1em;
+    padding-bottom: 2rem;
     border-bottom: 1px solid #f44336;
 
 }
@@ -607,6 +608,10 @@ h1 {
         padding-left: .5em;
         padding-right: .5em;
     }
+    .shopping-cart-title{
+        
+    }
+   
 
 }
 

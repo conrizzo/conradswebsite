@@ -3,13 +3,25 @@
   <header>
     <!-- create a nav bar on every page-->
     <nav class="nav-menu-class">
+      <div style="display: flex; align-items: center;">
+      <router-link to="/" class="only-show-home-svg-at-mobile-size">
+          <!-- self made SVG image -->
+          <svg style="height: 3rem;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
+            <!-- Left roof -->
+            <line x1="10" y1="50" x2="50" y2="10" stroke="rgb(0, 255, 204)" stroke-width="4" />        
+            <!-- Right roof -->
+            <line x1="90" y1="50" x2="50" y2="10" stroke="rgb(0, 255, 204)" stroke-width="4" />        
+            <!-- House body -->
+            <line x1="20" y1="80" x2="80" y2="80" stroke="rgb(0, 255, 204)" stroke-width="4" />
+            <line x1="20" y1="40" x2="20" y2="80" stroke="rgb(0, 255, 204)" stroke-width="4" />
+            <line x1="80" y1="40" x2="80" y2="80" stroke="rgb(0, 255, 204)" stroke-width="4" />
+          </svg>
+      </router-link>
       <router-link style="padding: 0;" to="/">
         <h2 class="header-h2">ConradsWebsite.com</h2>
       </router-link>
-
-      <router-link to="/" class="only-show-home-svg-at-mobile-size">     
-          <img src="/house_icon.gif" alt="home icon" style="height: 1.5rem;">
-      </router-link>
+    </div>
+      
       <div class="navigation-menu">
         <!-- House icon            
                       <router-link to="/" exact class="home-link" active-class="active-home-link">                
@@ -104,6 +116,7 @@ export default {
       justify-content: space-between;
       align-items: center;
       height: 3em;
+      padding-left: .5rem;
     }
     .navigation-menu {
    
@@ -158,11 +171,14 @@ export default {
     .hide-sign-in-text-at-low-res{
       border-right: 1px solid rgb(218, 220, 224); margin-right: 0.5em; padding-right: 0.4em;font-size: 1em; padding-left: 0.5em;
     }
-    .only-show-home-svg-at-mobile-size{
-      display: none;      
+   
+    .only-show-home-svg-at-mobile-size{        
+        margin-bottom: 0.25rem;     
+        margin-right: 0.25rem;   
+       
     }
 
-    @media (max-width: 34rem) {
+    @media (max-width: 37rem) {
       .header-h2 {
         display: none;        
       }
@@ -171,16 +187,16 @@ export default {
         display: none;
       }      
 
-      .only-show-home-svg-at-mobile-size{
-        display: block;
-        padding: 0.25rem;
+      .only-show-home-svg-at-mobile-size{        
         margin-bottom: 0.25rem;     
         margin-right: 0.25rem;   
-        margin-left: 0.25rem;   
-      }
+        margin-left: 0rem;   
     }
 
-    @media (max-width: 34rem) {
+      
+    }
+
+    @media (max-width: 37rem) {
       .github-logo-link {
         display: none;
       }
@@ -189,7 +205,7 @@ export default {
         display: none;
       }
       .nav-menu-class {
-        padding-left: 0.5em;
+        padding-left: .5rem;
         justify-content: start;
       }
       .small-resolution-h2{

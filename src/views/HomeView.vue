@@ -291,6 +291,7 @@ export default {
   font-size: 2em;
   z-index: 1;
 }
+
 .top-string-slice-of-title {  
   font-size: 2em;
   background-image: linear-gradient(90deg, rgb(255, 255, 255) 90%, rgba(0, 0, 0, 0.5) 30%);
@@ -298,7 +299,6 @@ export default {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-
 }
 
 .custom-background-home-page {
@@ -306,7 +306,6 @@ export default {
   background: linear-gradient(180deg, rgb(93, 112, 255),rgb(93, 211, 255));
   background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
   */
-
   /* background-image: url('../images/blue_sky2.jpg'); */
   background-image: url('../images/blue_sky2.jpg');
   background-color: rgba(0, 0, 0, 0.1);
@@ -335,18 +334,11 @@ export default {
   /* overrides the components default values of '#fff' */
 }
 
-.button-35:hover {
-  box-shadow: #ffffff 0 0 0 2px, transparent 0 0 0 0;
-}
-
 .center-main-area-box {
   display: flex;
   justify-content: center; 
-  padding-bottom: 10rem;
-  
+  padding-bottom: 10rem;  
 }
-
-
 
 .home-text-links {
   color: rgb(255, 255, 255);
@@ -374,48 +366,34 @@ export default {
   color: #ffffff;
   font-size: 1.6em;
   text-align: left;
-  margin-bottom: 1em;
-  
+  margin-bottom: 1em;  
 }
-
 .main-text-ul{
-  background: rgba(8, 0, 42, 0.321);
-   border-radius: .75rem;
-  
+  background: rgba(8, 0, 42, 0.2);
+   border-radius: .75rem;  
    padding: 0.5rem;
    padding-left: 2.5rem;
 }
 .main-text-p{
-   background: rgba(8, 0, 42, 0.321);
+   background: rgba(8, 0, 42, 0.2);
    border-radius: .75rem;
-   padding: 1rem;
-   
+   padding: 1rem;   
 }
-
-
-
-
-
 .first-aside-home-page {
   background: rgb(18, 18, 18);
   z-index: 1;
   padding: 1em;
 }
-
-
-
 .bird-image {
   max-width: 100%;
   border-radius: 1em; 
   background: #ffffff;
   padding: 1em;
 }
-
 .top-home-content-section{ 
   z-index: 4;
   padding-top: 2rem;
- max-width: 90rem;
-  
+ max-width: 90rem;  
 }
 
 @media only screen and (max-width: 100rem) {
@@ -435,19 +413,13 @@ export default {
     padding-left: 2rem; padding-right: 2rem;
     padding-bottom: 10rem;
   }
-
-  
-
-
 }
 
 @media only screen and (max-width: 60rem) {
-.main-text-container {
-    grid-template-columns: repeat(1, 1fr);
+  .main-text-container {
+      grid-template-columns: repeat(1, 1fr);
+  }
 }
-
-}
-
 
 @media only screen and (max-width: 50rem) {
   .center-main-area-box {
@@ -455,10 +427,10 @@ export default {
     padding-left: 0.5rem; padding-right: 0.5rem;
   }
 
-  .top-home-content-section{ 
-  z-index: 4;
-  padding-top: 0rem;
-}
+  .top-home-content-section { 
+    z-index: 4;
+    padding-top: 0rem;
+  }
 
   .first-aside-home-page {
     margin: 0;
@@ -469,22 +441,10 @@ export default {
     font-size: 2.5em;    
   }
 
-  .top-string-slice-of-title {
-   
+  .top-string-slice-of-title {   
     font-size: 1.5em;
-  }
-
-
-
-  
+  }  
 }
-
-
-
-
-
-
-
 
 </style>
 
