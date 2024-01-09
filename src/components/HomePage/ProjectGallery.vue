@@ -1,12 +1,13 @@
 <template>
+  <div class="gallery-header">
+        <h1 class="gallery-styling-h1-span"><span> Project Links
+            <span class="title-arrow-symbol">↷</span></span>
+        </h1>
+  </div>
   <div class="centerAll">
 
     <div class="image-gallery hidden" ref="content" :class="{ 'show': isContentVisible }">
-      <div class="gallery-header">
-        <h1 class="gallery-styling-h1-span"><span class="project-title"> Project Links
-            <span class="title-arrow-symbol">↷</span></span></h1>
-
-      </div>
+      
       <div class="image-gallery-grid-container">
 
         <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item">
@@ -49,26 +50,16 @@ export default {
     const coffeeFood = require('@/images/coffee_food.jpg');
     const diffusionBird = require('@/images/diffBird.jpg');
     return {
-      theProjectLinks: ProjectLinks, // make the project links available to the template dynamically
+      
       images,
 
       isContentVisible: false,
       imageArrayChoice: null,
       imgArrayOfArrays: [
-
-        ProjectLinks,
-
-
-        // Add more items as needed :)
-
-        [
-          { id: 1, imageSrc: coffeeFood, altText: "Yummy Food", caption: "Food!" },
-          { id: 2, imageSrc: coffeeImage, altText: "Coffee", caption: "Coffee!" },
-          { id: 3, imageSrc: diffusionBird, altText: "Bird Watching", caption: "A bird!" },
-          { id: 4, imageSrc: coffeeImage, altText: "Learn More Code", caption: "..while drinking coffee!" },
-
-
-          // Add more items as needed :)
+          // 1st array
+          ProjectLinks,        
+        [  
+          // optinal 2nd array
         ],
       ]
 
@@ -76,7 +67,7 @@ export default {
     };
   },
   mounted() {
-    this.theProjectLinks = ProjectLinks;
+    
 
     // Set the initioanl image array to the galleryItems array
     this.imageArrayChoice = this.imgArrayOfArrays[0]
@@ -153,12 +144,12 @@ h2 {
 }
 
 .gallery-styling-h1-span {
-  text-align: left;
+  
   text-transform: uppercase;
-  letter-spacing: -0.05em;
+  
   color: rgb(255, 255, 255);
-  font-size: 2rem;
-
+  font-size: 1.5rem;
+  
 
 }
 
@@ -172,18 +163,20 @@ h2 {
 }
 
 .gallery-header {
-  display: flex;
-  align-items: flex-start;
+  text-align: right;
+  margin-right: 3rem;
+  
+ 
 }
 
 .centerAll {
   justify-content: center;
   display: flex;
   height: fit-content;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.2);
 
 
-  border-radius: 1rem;
+  border-radius: .75rem;
 
 }
 
@@ -254,9 +247,7 @@ figcaption {
   .image-gallery {
     padding: .5rem;
   }
-  .gallery-header {
-    padding-bottom: .5rem;
-  }
+  
 }
 
 @media screen and (max-width: 35rem) {

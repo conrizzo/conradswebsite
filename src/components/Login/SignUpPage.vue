@@ -4,15 +4,15 @@
     <h2 style="padding: 0.5em;">Sign Up</h2>
 
     <div style="display: flex; flex-direction: column;">
-    <label for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a Username:</label>
+    <label class="label-title-styling" for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a Username:</label>
     <input name="text" type="text"     placeholder="User Name" required v-model="userName" maxlength="20" v-focus>
   </div>
   <div style="display: flex; flex-direction: column;">
-    <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Enter an email:</label>
+    <label class="label-title-styling" for="email" style="align-self: flex-start; padding-left: 0.25em;">Enter an email:</label>
     <input name="email" type="email"    placeholder="Email"    required v-model="email">
   </div>
   <div style="display: flex; flex-direction: column;">
-    <label for="password" style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
+    <label class="label-title-styling" for="password" style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
     <input name="password" type="password" placeholder="Password" required v-model="password">
   </div>
     <button style="margin: 0.5em;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText }}</button>
@@ -92,7 +92,9 @@ h2{
 input:focus {    
     border-color: rgb(0, 240, 0)
 }
-input{font-size: 1.25em; 
+
+input{
+  font-size: 1.25em; 
   border-radius: 0.25em; 
   border-width: 1px; 
   outline: none; 
@@ -101,13 +103,17 @@ input{font-size: 1.25em;
   margin: 0.1em;
 }
 
+.label-title-styling{
+  color: rgb(18,18,18);
+}
+
 button{width:fit-content; margin:auto}
 
 form{
   width:20em; 
   margin: auto; 
   color: #fff;
-  border: 1px solid #cecece; 
+  border: 3px solid #cecece; 
   border-radius: 1em;
   padding: 0 1em 0em 1em;
   margin-top: 3em;

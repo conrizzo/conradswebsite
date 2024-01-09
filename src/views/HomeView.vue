@@ -24,7 +24,7 @@
                     href="https://github.com/conrizzo">Conrad's</a> Website
                 </li>
                 <li>
-                  View the <router-link class="home-text-links" to="/about">About</router-link> page for more information
+                  <router-link class="home-text-links" to="/about">About</router-link> this website.
                 </li>
                 <li>
                   Crafted under the influence of <a class="home-text-links"
@@ -33,8 +33,9 @@
               </ul>
 
               <div class="main-text-p">
-                <p style="color: #fff; font-size: 1rem;">There are a few other projects I'm still working on that are not shown here. 
-              The array of projects below is dynamically loaded in as objects, images are dynamically inserted into those objects from an images folder.</p>
+                <p style="color: #fff; font-size: 1rem;">There are a few other projects I'm working on that are not shown here. 
+              The array of projects below is dynamically loaded in as objects, images are dynamically inserted into those objects 
+              from an images folder. The header navigation uses the same data.</p>
               </div>
 
             </div>
@@ -280,6 +281,26 @@ export default {
   background-attachment: fixed;
 }
 
+.title {
+  text-align: left;
+  position: relative;
+  line-height: 1;
+  height: 2em;
+  padding: 1em 0.25em 3em 0.25em;
+  color: rgb(255, 255, 255);
+  font-size: 2em;
+  z-index: 1;
+}
+.top-string-slice-of-title {  
+  font-size: 2em;
+  background-image: linear-gradient(90deg, rgb(255, 255, 255) 90%, rgba(0, 0, 0, 0.5) 30%);
+  background-size: conver;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+}
+
 .custom-background-home-page {
   /*
   background: linear-gradient(180deg, rgb(93, 112, 255),rgb(93, 211, 255));
@@ -340,7 +361,7 @@ export default {
 }
 
 .home-text-links:active {
-  color: rgb(255, 208, 0);
+  color: rgb(255, 89, 89);
 }
 
 .main-text-container {
@@ -358,15 +379,15 @@ export default {
 }
 
 .main-text-ul{
-   background: rgba(0, 0, 0, 0.33);
-   border-radius: 1rem;
+  background: rgba(8, 0, 42, 0.321);
+   border-radius: .75rem;
   
    padding: 0.5rem;
    padding-left: 2.5rem;
 }
 .main-text-p{
-   background: rgba(0, 0, 0, 0.33);
-   border-radius: 1rem;
+   background: rgba(8, 0, 42, 0.321);
+   border-radius: .75rem;
    padding: 1rem;
    
 }
@@ -459,18 +480,7 @@ export default {
 }
 
 
-.title {
-  position: relative;
-  line-height: 1;
-  height: 2em;
-  padding: 1em 0.25em 3em 0.25em;
-  color: rgb(255, 255, 255);
-  font-size: 2em;
-  z-index: 1;
-}
-.top-string-slice-of-title {  
-  font-size: 2em;
-}
+
 
 
 

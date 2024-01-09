@@ -123,7 +123,8 @@ input:focus {
 }
 
 .login-form-styling{
-  padding: 2em; background: #efefef; width: fit-content; border-radius: 1em; margin-top: 2em;
+  padding: 1em; background: #ffffff; width: fit-content; border-radius: 1em; margin-top: 2em;
+  border: 3px solid #cecece; 
 }
 
 </style>

@@ -363,7 +363,7 @@ h3 {
 }
 
 .language-arrow-text{
-  font-size: 0.9em; margin-top: -2.5em; margin-right: 4em; z-index: 5; transform: rotate(35deg);
+  font-size: 0.9em; margin-top: -2.5em; margin-right: 4em; z-index: 4; transform: rotate(35deg);
   border-bottom: none;   
   color: rgb(18,18,18);
 }

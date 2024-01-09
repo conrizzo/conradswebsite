@@ -6,46 +6,54 @@
   <div style="background: rgb(255, 255, 255); padding-bottom: 2em; padding-top: 2.7em;">
     <div style="justify-content: center;">
       <button v-if="isLoggedIn" class="button-35">
-      <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
-        Enter authorized user page
-      </router-link>
-    </button>
-  </div> 
+        <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
+          Enter authorized user page
+        </router-link>
+      </button>
+    </div>
 
-  <article class="top-text-container">
+    <article class="top-text-container">
       <div class="top-text-sub-container">
 
-        <h1 v-if="!isLoggedIn">Sign In</h1>      
+        <h1 v-if="!isLoggedIn">Sign In</h1>
         <br>
         <p class="login-information">
           The sign in currently just allows message posting and routing to user authorized pages.
         </p>
 
       </div>
-  </article>
-  
- 
+    </article>
+
+
     <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isLoggedIn">
       <!-- login -->
       <template v-if="showLogin">
         <!-- listen for event -->
-        <LoginPage @loggedIn="handleLogin"  />
-        <p class="login-information" style="padding: 1em;">No account yet? 
-        <span class="login-sign-up" @click="showLogin = false">Sign up</span></p>
+        <LoginPage @loggedIn="handleLogin" />
+        <div style="justify-content: center; display: flex;">
+        <p class="login-information" style="padding: 1em;">No account yet?
+          <span class="login-sign-up" @click="showLogin = false">Sign up</span>
+        </p>
+        </div>
       </template>
       <!-- or register -->
       <template v-else>
         <!-- listen for event -->
         <SignUpPage @loggedIn="handleLogin" />
-        <p class="login-information" style="padding: 1em;">Already registered? <span class="login-sign-up" style="color:cursor: pointer;" @click="showLogin = true">Login</span></p>
+        <div style="justify-content: center; display: flex;">
+        <p class="login-information" style="padding: 1em;">Already registered? <span class="login-sign-up"
+            style="color:cursor: pointer;" @click="showLogin = true">Log in</span></p>
+        </div>
       </template>
+      
     </div>
     <!-- is logged in -->
     <div v-else>
       <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; margin-top: 2em; font-weight: bold;">
-        <span>Welcome, {{ displayName }}!<button class="button-35" style="float: inline-block; margin-left: 4em;" @click="handleLogout">Logout</button><br>
-         <span style="font-size: 0.75em; color: #c4c4c4;">You are logged in.</span></span>
-         
+        <span>Welcome, {{ displayName }}!<button class="button-35" style="float: inline-block; margin-left: 4em;"
+            @click="handleLogout">Logout</button><br>
+          <span style="font-size: 0.75em; color: #c4c4c4;">You are logged in.</span></span>
+
       </div>
 
     </div>
@@ -55,27 +63,29 @@
         <div style="color: #ff4a4a;"> {{ errorMessage }} </div>
         <h2 style="color: #181818;">Submit Message!</h2>
         <h2 v-if="!isLoggedIn" style="color: rgb(255, 89, 89);">You are not logged in!</h2>
-          
-          <div style="max-width: 40em;">
-            <div style="display: flex; flex-direction: column;">
+
+        <div style="max-width: 40em;">
+          <div style="display: flex; flex-direction: column;">
             <label for="Subject" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Subject:</label>
-              <div style="display: flex;">
-                <input style="width: 23em;" type="text" placeholder="Subject" required v-model="name" name="submissionName" maxlength="{{this.messageLength}}" ref="subjectInput">
-                <span style="color: #ff6b6b; margin-left: 0.5em; padding-top: 0.5em;"><span :style="textStyle">{{ name.length }}/{{ this.messageLength }}</span></span> 
-              </div>
+            <div style="display: flex;">
+              <input style="width: 23em;" type="text" placeholder="Subject" required v-model="name" name="submissionName"
+                maxlength="{{this.messageLength}}" ref="subjectInput">
+              <span style="color: #ff6b6b; margin-left: 0.5em; padding-top: 0.5em;"><span :style="textStyle">{{
+                name.length }}/{{ this.messageLength }}</span></span>
             </div>
           </div>
-          <div style="display: flex; flex-direction: column;">
-            <label for="Message" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Message:</label>
-            <textarea type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50"
-              rows="10"></textarea>
-          </div>
-         
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <label for="Message" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Message:</label>
+          <textarea type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50"
+            rows="10"></textarea>
+        </div>
+
         <button @click="createUser" class="button-35">Add Entry</button>
       </form>
-      
+
       <!-- message area -->
-     
+
       <div class="submission-container">
         <h3 style="color: rgb(0, 227, 227);">Messages will appear publicly here.</h3>
         <ul style="list-style: none;">
@@ -83,7 +93,8 @@
             <div>
               <span
                 style="font-weight: bold; font-size: 1em; color: #87ff7a; display: inline-block; padding: 0.25em 0 0.25em 0;">{{
-                  submission.userName }} <br><span style="color: #d8d8d8; font-size: 0.9em;">Subject:</span> <span style='color:#ffffff;'>{{ submission.name }}</span> </span>
+                  submission.userName }} <br><span style="color: #d8d8d8; font-size: 0.9em;">Subject:</span> <span
+                  style='color:#ffffff;'>{{ submission.name }}</span> </span>
               <p style="padding-left: 0.5em; font-size: 0.8em; color: #ffffff; display: inline-block;"
                 v-if="submission.timestamp">{{ submission.timestamp.toDate().toLocaleString() }}</p>
             </div>
@@ -96,8 +107,6 @@
     </div>
 
   </div>
-
-
 </template>
   
 <script>
@@ -118,9 +127,9 @@ import CookieAccept from "@/components/CookieAccept.vue";
 
 
 export default {
-  
+
   components: { SignUpPage, LoginPage, CookieAccept },
-  
+
   data() {
     return {
       isLoggedIn: false,
@@ -133,7 +142,7 @@ export default {
       displayName: '',
       lastMessageSentTime: 0,
       timeElapsed: 0,
-      errorMessage: '',      
+      errorMessage: '',
     }
   },
   computed: {
@@ -159,7 +168,7 @@ export default {
         // change color back to red if the user deletes all the text
         this.textStyle.color = '#ff6b6b';
       }
-    },   
+    },
     // this references the subject field by default if a user is logged in
     isLoggedIn() {
       if (this.isLoggedIn) {
@@ -173,7 +182,7 @@ export default {
     async createUser() {
       try {
         // if no name entered throw error
-        if (this.name == '') {          
+        if (this.name == '') {
           this.errorMessage = "Please enter a subject!"
           throw new Error("Please enter a subject!")
         }
@@ -280,27 +289,28 @@ export default {
 </script>
   
 <style scoped>
-h1{
-  color: rgb(18,18,18);
-  font-size: 3em; 
+h1 {
+  color: rgb(18, 18, 18);
+  font-size: 3em;
   text-align: center;
 }
 
-h2{
+h2 {
   line-height: 1.4em;
 }
 
-p.login-information{
-  color: rgb(18,18,18);
+p.login-information {
+  color: rgb(18, 18, 18);
   font-size: 1.2em;
 }
 
-.top-text-sub-container{
+.top-text-sub-container {
   max-width: calc(100% - 20em);
   margin: 0 auto;
-  text-align: left;  
+  text-align: left;
 }
-.top-text-container{
+
+.top-text-container {
   display: flex;
   justify-content: center;
   color: #fff;
@@ -308,11 +318,12 @@ p.login-information{
   padding-bottom: 2em;
 }
 
-.button-35{
-  background-color: rgb(130, 130, 130);  
+.button-35 {
+  background-color: rgb(130, 130, 130);
 }
-.button-35:hover{
-  box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;  
+
+.button-35:hover {
+  box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;
 }
 
 
@@ -327,7 +338,7 @@ p.login-information{
   padding-left: 0.3em;
 }
 
-input {  
+input {
   background-color: rgb(240, 240, 240);
   font-size: 1.25em;
   border-radius: 0.25em;
@@ -337,7 +348,7 @@ input {
   padding: 0.25em;
 }
 
-textarea {  
+textarea {
   background-color: rgb(240, 240, 240);
   font-size: 1.5em;
   border-radius: 0.25em;
@@ -345,7 +356,7 @@ textarea {
   outline: none;
   border: 1px solid rgb(218, 220, 224);
   padding: 0.25em;
-  
+
 }
 
 button {
@@ -366,22 +377,25 @@ button {
   border: 1px solid #fcfcfc;
 
 }
-.login-sign-up{
+
+.login-sign-up {
   color: rgb(11, 87, 208);
-  cursor: pointer;  
+  cursor: pointer;
 }
 
-.login-sign-up:hover{
+.login-sign-up:hover {
   text-decoration: underline;
-  
+
 }
 
-input:focus {    
-    border-color: rgb(0, 240, 0)
+input:focus {
+  border-color: rgb(0, 240, 0)
 }
-textarea:focus {    
-    border-color: rgb(0, 240, 0)
+
+textarea:focus {
+  border-color: rgb(0, 240, 0)
 }
+
 @media only screen and (max-width: 800px) {
   .submission-container {
     width: 90%;
@@ -389,13 +403,12 @@ textarea:focus {
     padding-left: 1em;
   }
 
-  .top-text-sub-container{
+  .top-text-sub-container {
     max-width: none;
     padding: 1em;
   }
 
 
-  
-  
-}
-</style>
+
+
+}</style>

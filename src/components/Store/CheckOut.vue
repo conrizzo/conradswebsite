@@ -41,9 +41,14 @@
                                     €{{ item.price }}
                                 </span>
                                 <br>
-                                Quantity: <input type="number" v-model="item.quantity" min="0" max="100" step="1"
-                                    @input="updateQuantityInCart(item)" @keydown="handleIncrementDecrement"
-                                    style="width: 2.5rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;">
+                                Quantity: 
+                                    <div style="display: flex;">
+                                        <button @click="handlePlusMinusIncrementDecrementButtons(item, -1)" style="font-size: 1.25rem; margin-right: 0.1rem; width: 1.7rem;">-</button>
+                                            <input type="number" v-model="item.quantity" min="0" max="100" step="1"
+                                                    @input="updateQuantityInCart(item)"
+                                                    style="width: 3.2rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;">
+                                        <button @click="handlePlusMinusIncrementDecrementButtons(item, 1)" style="font-size: 1.25rem; margin-left: 0.1rem; width: 1.7rem;">+</button>
+                                    </div>
 
                                 <br>
                                 Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity *
@@ -148,7 +153,7 @@ export default {
         // Prop of adding item using each individual product in ProductPageView.vue
         propProductPageAddItemToCart: {
             type: Array,
-            required: true
+            required: false,
         }
 
     },
@@ -194,11 +199,8 @@ export default {
             this.handleAddItemToCart(0, parseInt(this.propProductPageAddItemToCart[0]));
         },
 
-
         propUpdate() {
-
             this.addItemToCart();
-
         },
         // watch userCart array for changes to add or remove local cookies of what is in the cart
         userCart: {
@@ -207,6 +209,8 @@ export default {
             },
             deep: true // Watch for changes in nested properties of userCart
         },
+
+       
 
     },
 
@@ -250,20 +254,42 @@ export default {
             VueCookies.set('userCart', JSON.stringify([this.userCart]), { expires: 3 });
         },
 
-        handleIncrementDecrement(event) {
-            if (event.keyCode === 38) {
-                event.preventDefault();
+        removeItemFromCartIfQuantityIsZero(item) {            
+            if (item.quantity === 0) {
+                this.removeItem(this.userCart.findIndex(cartItem => cartItem.id === item.id));
+            }
+        },
+
+        handlePlusMinusIncrementDecrementButtons(item, increment) {
+            const newQuantity = item.quantity + increment;
+                if (newQuantity >= 0 && newQuantity <= 100) {
+                item.quantity = newQuantity;
+                this.updateQuantityInCart(item);            
+                }
+                // only runs if the quantity is 0
+                this.removeItemFromCartIfQuantityIsZero(item);
+        },
+
+        /* Apparently this is not needed, but I will keep it here for now
+        handleIncrementDecrement(event) {           
+            if (event.keyCode === 38) {            
                 this.item.quantity += 1;
                 this.updateQuantityInCart(this.item);
-            } else if (event.keyCode === 40) {
-                event.preventDefault();
+            } else if (event.keyCode === 40) {             
                 if (this.item.quantity > 0) {
                     this.item.quantity -= 1;
-                    this.updateQuantityInCart(this.item);
+                    this.updateQuantityInCart(this.item);                    
                 }
             }
         },
+        */
+
         updateQuantityInCart(item) {
+
+            
+
+          
+            
             const matchingCartItem = this.userCart.find(cartItem => cartItem.id === item.id);
             if (matchingCartItem) {
                 matchingCartItem.quantity = item.quantity;
@@ -279,7 +305,15 @@ export default {
                              }
                             this.runningTotal = calculateRunningTotal(this.userCart);
                 */
+               
+                
             }
+                      
+            this.removeItemFromCartIfQuantityIsZero(item);
+            
+               
+            
+            
         },
         // Your methods here
         makeInventory() {
@@ -292,9 +326,7 @@ export default {
             // sets store inventory to the updated inventory object
             this.storeInventory = inventory;
             // gets the items available, this is just for testing, shows them in the console
-            const items = inventory.getItems();
-
-            console.log("hello", items);
+            const items = inventory.getItems();            
         },
 
         resetInventory() {
@@ -311,6 +343,7 @@ export default {
                 return
             }
 
+            // this is a guard statement, the this.storeInventory.getItems().length === 0 is to make sure the inventory is not empty
             if (selectedItem === null || actualProductID === null || this.storeInventory.getItems().length === 0) {
                 return
             }
@@ -345,10 +378,13 @@ export default {
             this.runningTotal = 0;
         },
 
-        removeItem(index) {
-            if (index === null) {
+        removeItem(index) {     
+
+            // guard statement 
+            if (index === null || index === undefined || index < 0) {
                 return
             }
+
             this.runningTotal = this.runningTotal - this.userCart[index].price * this.userCart[index].quantity;
             this.userCart.splice(index, 1);
         }
@@ -424,7 +460,7 @@ h1 {
     text-align: left;
     padding-left: 1em;
     padding-right: 1em;
-
+    height: 7rem;
     font-size: 1.1em;
     border-bottom: 1px solid #f44336;
 

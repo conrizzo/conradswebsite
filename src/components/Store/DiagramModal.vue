@@ -5,7 +5,7 @@
        <button class="close" @click.self="closeModal"></button>
       
        <h2>Diagram of how this project works</h2>
-       <div style="text-align: left; padding: 1em;">              
+       <div style="text-align: left; padding-left: 1rem;">              
             <p><b>CheckOut.vue</b> is the main part of this application.</p>
             <a class="text-links" href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/Store">
             Component and TypeScript source code on GitHub</a><br>
@@ -53,9 +53,10 @@
  }
  
  .aboutDiagram {   
-   width:calc(100% - 40%);
-   margin-left: 20%;
-   margin-top: 8vh;
+   width:calc(100% - 60%);
+   margin-left: 30%;
+   margin-top: 8svh;
+   
    background: rgb(255, 255, 255);
    border-radius: 2em;
    position: relative;
@@ -85,16 +86,7 @@
  }
  
  
- .about-modal-text {
-   display: inline-block;
-   max-width: 500px;
-   text-align: left;
-   padding: 1em;
-   font-size: 1em;
-   line-height: 1.5;
-   padding-bottom: 1em; 
-   
- }
+
  
  h2 {
    color: rgb(16, 16, 16);   
