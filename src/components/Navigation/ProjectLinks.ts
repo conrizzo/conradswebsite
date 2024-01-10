@@ -15,5 +15,5 @@ export default [
   { id: 4,text: 'Coffee Data', to: '/projects/datasets',caption:"Some miscellaneous data about coffee consumption", imageSrc: "" },
   { id: 5,text: 'Game', to: '/projects/cowgame',caption:"A game made using Vue.js and TypeScript", imageSrc: "" },
   { id: 6,text: 'Sorting Algorithms', to: '/projects/sortingalgorithms',caption:"Made this to test some sorting algorithm outputs", imageSrc: "" },
-  
+  { id: 7,text: 'Skat Game', to: '/projects/cards',caption:"Decided to attempt to build a card game, got lost figuring out the rules...", imageSrc: "" },
 ].map((link, index) => ({ ...link, imageSrc: images[index] }));

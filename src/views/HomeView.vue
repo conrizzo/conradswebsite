@@ -1,66 +1,67 @@
 <template>
   <div id="body">
     <!-- Main area -->
-   
-      <div class="custom-background-home-page">      
 
-        <!-- Title -->
-        <div class="center-main-area-box">
-          <div class="top-home-content-section">      
-            <h1 class="title">
-              <span class="top-string-slice-of-title">
-                <span>{{ inputStringShuffled.slice(0, 7) }}</span>
-              </span>             
-            </h1>
-       
-            <div class='under-title-caption'>
-            </div>
-            <!-- Main bullets -->
-            <div class="main-text-container">
+    <div class="custom-background-home-page">
 
-              <ul class="main-text-ul">
-                <li>
-                  Welcome to <a class="home-text-links"
-                    href="https://github.com/conrizzo">Conrad's</a> Website
-                </li>
-                <li>
-                  <router-link class="home-text-links" to="/about">About</router-link> this website.
-                </li>
-                <li>
-                  Crafted under the influence of <a class="home-text-links"
-                    href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-                </li>
-              </ul>
+      <!-- Title -->
+      <div class="center-main-area-box">
+        <div class="top-home-content-section">
+          <h1 class="title">
+            <span class="top-string-slice-of-title">
+              <span>{{ inputStringShuffled.slice(0, 7) }}</span>
+            </span>
+          </h1>
 
-              <div class="main-text-p">
-                <p style="color: #fff; font-size: 1rem;">There are a few other projects I'm working on that are not shown here. 
-              The array of projects below is dynamically loaded in as objects, images are dynamically inserted into those objects 
-              from an images folder. The header navigation uses the same data.</p>
-              </div>
-
-            </div>
-            <!-- Grid for project links and image to appear on hover -->
-            
-            <ProjectGallery>  </ProjectGallery>
-            
+          <div class='under-title-caption'>
           </div>
-       
+          <!-- Main bullets -->
+          <div class="main-text-container">
+
+            <ul class="main-text-ul">
+              <li>
+                Welcome to <a class="home-text-links" href="https://github.com/conrizzo">Conrad's</a> Website
+              </li>
+              <li>
+                <router-link class="home-text-links" to="/about">About</router-link> this website.
+              </li>
+              <li>
+                Crafted under the influence of <a class="home-text-links"
+                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
+              </li>
+            </ul>
+
+            <div class="main-text-p">
+              <p>There are a few other projects I'm working on that are not shown
+                here.
+                The array of projects below is dynamically loaded in as objects, images are dynamically inserted into
+                those objects
+                from an images folder. The header navigation uses the same data.</p>
+            </div>
+
+          </div>
+          <!-- Grid for project links and image to appear on hover -->
+
+          <ProjectGallery> </ProjectGallery>
+
         </div>
-          
-          <!-- <img class="aside-coffee-image" src="https://raw.githubusercontent.com/conrizzo/conradswebsite/master/src/images/CowGame.jpg" alt="Coffee image"> -->
-      </div>
- 
-      <!-- Aside area begins  #2d2d2d; slate black color -->
-       <div style="background: rgb(18,18,18);">
+
       </div>
 
-   
-     
+      <!-- <img class="aside-coffee-image" src="https://raw.githubusercontent.com/conrizzo/conradswebsite/master/src/images/CowGame.jpg" alt="Coffee image"> -->
+    </div>
 
-      <!-- 2nd section -->
-         <main class="main-content">
+    <!-- Aside area begins  #2d2d2d; slate black color -->
+    <div style="background: rgb(18,18,18);">
+    </div>
+
+
+
+
+    <!-- 2nd section -->
+    <main class="main-content">
       <div>
-        <FourWideImages>    
+        <FourWideImages>
         </FourWideImages>
       </div>
       <AsideContent class="first-aside-home-page">
@@ -73,15 +74,15 @@
             </figcaption>
           </figure>
         </template>
-      </AsideContent>  
+      </AsideContent>
 
-       <!-- 3rd section -->      
-      <CoffeeGridContent>        
-      </CoffeeGridContent>   
+      <!-- 3rd section -->
+      <CoffeeGridContent>
+      </CoffeeGridContent>
 
-       <div style="background: rgb(18,18,18);">
+      <div style="background: rgb(18,18,18);">
       </div>
-      
+
       <!--
       <div style="background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 
       15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);">
@@ -99,27 +100,25 @@
                     </template>
 
               </AsideContent>   
-        -->    
+        -->
 
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
           <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
         </template>
-      </AsideContent>      
+      </AsideContent>
 
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
-          <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->         
+          <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
         </template>
       </AsideContent>
     </main>
 
     <imagesOneRow></imagesOneRow>
 
-    <TwoColumnsGridContentTemplate 
-      :titleText="parentTitleTextOne" 
-      :content-text="parentTextOne">   
-    </TwoColumnsGridContentTemplate>   
+    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne">
+    </TwoColumnsGridContentTemplate>
 
   </div>
 </template>
@@ -157,7 +156,7 @@ export default {
   components: {
     AsideContent, CoffeeGridContent, FourWideImages, imagesOneRow, TwoColumnsGridContentTemplate, ProjectGallery
   },
-  
+
   data() {
     return {
       itemsLength: 0,
@@ -167,7 +166,7 @@ export default {
       foodImage: require("@/images/coffee_food.jpg"),
       //conradImage: require("@/images/conrad.jpg"), 
       // Intersection Observer to show items when they are scrolled to  
-      inputString: "_ Hello",
+      inputString: "_ Hello,",
       name: "",
       inputStringShuffled: "",
 
@@ -177,7 +176,7 @@ export default {
 
       messages: [
         "I'm having a bad day :(",
-        "Why is that?",            
+        "Why is that?",
         "This code won't work!",
         "Fixed.",
         ":)"
@@ -217,7 +216,7 @@ export default {
         this.hoveredImage = "";
         this.isHovered = false;
       }
-      
+
     },
 
     hideImage() {
@@ -252,7 +251,7 @@ export default {
           }, 1000);
         }
       }, 200);
-    },    
+    },
   },
 
   mounted() {
@@ -292,13 +291,16 @@ export default {
   z-index: 1;
 }
 
-.top-string-slice-of-title {  
+.top-string-slice-of-title {
   font-size: 2em;
-  background-image: linear-gradient(90deg, rgb(255, 255, 255) 90%, rgba(0, 0, 0, 0.5) 30%);
+  color: rgb(255, 255, 255);
+  /*
+  background-image: linear-gradient(90deg, rgb(255, 255, 255) 25%, rgb(0, 255, 204) 25%);
   background-size: conver;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  */
 }
 
 .custom-background-home-page {
@@ -310,18 +312,21 @@ export default {
   background-image: url('../images/blue_sky2.jpg');
   background-color: rgba(0, 0, 0, 0.1);
   background-blend-mode: multiply;
-  background-attachment: fixed; 
-  position: relative;  
-  
+  background-attachment: fixed;
+  position: relative;
+
 }
-.custom-background-home-page::before{  
+
+.custom-background-home-page::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(5deg, rgba(0, 0, 0, .05) 20%, transparent 20%, transparent 80%, rgba(0, 0, 0, .05) 80%), linear-gradient(100deg, rgba(0, 0, 0, .05) 10%, transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 90%);
+  background-image: linear-gradient(5deg, rgba(0, 0, 0, .05) 20%, transparent 20%,
+      transparent 80%, rgba(0, 0, 0, .05) 80%), linear-gradient(100deg, rgba(0, 0, 0, .05) 10%,
+      transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 90%);
 }
 
 .custom-color {
@@ -336,15 +341,15 @@ export default {
 
 .center-main-area-box {
   display: flex;
-  justify-content: center; 
-  padding-bottom: 10rem;  
+  justify-content: center;
+  padding-bottom: 10rem;
 }
 
 .home-text-links {
   color: rgb(255, 255, 255);
   font-weight: 500;
   border-bottom: 3px solid rgb(0, 255, 204);
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .home-text-links:hover {
@@ -358,42 +363,48 @@ export default {
 
 .main-text-container {
   display: flex;
-  justify-content: left; 
+  justify-content: left;
   /*max-width: 40rem; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;   
+  gap: 1rem;
   color: #ffffff;
   font-size: 1.6em;
   text-align: left;
-  margin-bottom: 1em;  
+  margin-bottom: 1em;
 }
-.main-text-ul{
-  background: rgba(8, 0, 42, 0.2);
-   border-radius: .75rem;  
-   padding: 0.5rem;
-   padding-left: 2.5rem;
+
+.main-text-ul {
+  background: rgba(18, 18, 18, 0.66);
+  border-radius: .75rem;
+  padding: 0.5rem;
+  padding-left: 2.5rem;
 }
-.main-text-p{
-   background: rgba(8, 0, 42, 0.2);
-   border-radius: .75rem;
-   padding: 1rem;   
+
+.main-text-p {
+  background: rgba(18, 18, 18, 0.66);
+  border-radius: .75rem;
+  padding: 1rem;
+  color: #fff; font-size: 1.1rem; line-height: 2;
 }
+
 .first-aside-home-page {
   background: rgb(18, 18, 18);
   z-index: 1;
   padding: 1em;
 }
+
 .bird-image {
   max-width: 100%;
-  border-radius: 1em; 
+  border-radius: 1em;
   background: #ffffff;
   padding: 1em;
 }
-.top-home-content-section{ 
+
+.top-home-content-section {
   z-index: 4;
   padding-top: 2rem;
- max-width: 90rem;  
+  max-width: 90rem;
 }
 
 @media only screen and (max-width: 100rem) {
@@ -403,31 +414,33 @@ export default {
     position: static;
     transform: none;
     background: #586af8;
-    padding: 1em; 
-    margin-left: 1rem; 
+    padding: 1em;
+    margin-left: 1rem;
   }
 
-  .center-main-area-box {    
+  .center-main-area-box {
     display: flex;
     justify-content: center;
-    padding-left: 2rem; padding-right: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-bottom: 10rem;
   }
 }
 
 @media only screen and (max-width: 60rem) {
   .main-text-container {
-      grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
 @media only screen and (max-width: 50rem) {
   .center-main-area-box {
     margin-top: 0em;
-    padding-left: 0.5rem; padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
-  .top-home-content-section { 
+  .top-home-content-section {
     z-index: 4;
     padding-top: 0rem;
   }
@@ -437,14 +450,12 @@ export default {
     border-radius: 0em;
   }
 
-  .title {    
-    font-size: 2.5em;    
+  .title {
+    font-size: 2.5em;
   }
 
-  .top-string-slice-of-title {   
+  .top-string-slice-of-title {
     font-size: 1.5em;
-  }  
-}
-
-</style>
+  }
+}</style>
 

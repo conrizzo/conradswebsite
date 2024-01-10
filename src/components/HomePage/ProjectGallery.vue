@@ -186,7 +186,7 @@ h2 {
   position: relative;
   background: rgba(255, 255, 255, 0);
   padding: 1em;
-  border-radius: 0.5em;
+ 
   display: flex;
   flex-direction: column;
 
@@ -234,6 +234,12 @@ figcaption {
   color: rgb(255, 255, 255);
 
 
+}
+
+.gallery-component-image {
+   
+    border-radius: 1rem;
+    
 }
 
 @media screen and (max-width: 70rem) {
