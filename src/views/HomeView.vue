@@ -75,14 +75,15 @@
           </figure>
         </template>
       </AsideContent>
-
+    </main>
       <!-- 3rd section -->
       <CoffeeGridContent>
       </CoffeeGridContent>
 
-      <div style="background: rgb(18,18,18);">
+      <div style="background: rgba(0,0,0,0)">
       </div>
-
+    
+      <main class="main-content">
       <!--
       <div style="background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 
       15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);">
@@ -117,9 +118,10 @@
 
     <imagesOneRow></imagesOneRow>
 
-    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne">
+    <TwoColumnsGridContentTemplate  :titleText="parentTitleTextOne" :content-text="parentTextOne">
+     
     </TwoColumnsGridContentTemplate>
-
+  
   </div>
 </template>
 

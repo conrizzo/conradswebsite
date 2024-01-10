@@ -8,12 +8,12 @@
                 <img class="coffee-image" :src="coffee_image" alt="Image">
             </div>           
             <div class="grid-item-text">
-                <div class="hidden" ref="content_text" :class="{ 'show': isContentVisible }">                
+                           
                     <h2>{{ titleText }}</h2>                
                     <p>
                     {{contentText}}
                     </p>    
-                </div>
+                
             </div>    
          </div>
       </div>  
@@ -96,7 +96,11 @@
     line-height: 1.1em;
   }  
   .second-main-area { 
-    background: rgb(18, 18, 18);  
+    background-image: url('../images/blue_sky2.jpg');
+  background-color: rgba(0, 0, 0, 0.1);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  position: relative;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -123,6 +127,8 @@
     grid-column: 1;
     grid-row: 1 / -1;
     color: #ffffff;  
+    background: rgba(0, 0, 0, 0.2);
+    height: fit-content;
     padding: 3em;
     font-size: 1.5em;
     text-align: left;

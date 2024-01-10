@@ -123,8 +123,6 @@ export default {
 
 .no-router-link-decorations {
   text-decoration: none;
-
-
 }
 
 .show {
@@ -143,14 +141,10 @@ h2 {
   text-transform: uppercase;
 }
 
-.gallery-styling-h1-span {
-  
-  text-transform: uppercase;
-  
+.gallery-styling-h1-span {  
+  text-transform: uppercase;  
   color: rgb(255, 255, 255);
   font-size: 1.5rem;
-  
-
 }
 
 .title-arrow-symbol {
@@ -164,9 +158,7 @@ h2 {
 
 .gallery-header {
   text-align: right;
-  margin-right: 3rem;
-  
- 
+  margin-right: 3rem; 
 }
 
 .centerAll {
@@ -174,10 +166,7 @@ h2 {
   display: flex;
   height: fit-content;
   background: rgba(0, 0, 0, 0.2);
-
-
   border-radius: .75rem;
-
 }
 
 
@@ -185,11 +174,9 @@ h2 {
   margin: 0 auto;
   position: relative;
   background: rgba(255, 255, 255, 0);
-  padding: 1em;
- 
+  padding: 1em; 
   display: flex;
   flex-direction: column;
-
 }
 
 .image-gallery-grid-container {
@@ -201,13 +188,10 @@ h2 {
 
 .grid-item {
   width: fit-content;
-
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
   border-radius: 0.33em;
 }
-
-
 
 .gallery-component-image {
   padding: 0em;
@@ -232,14 +216,10 @@ figcaption {
   font-size: .9rem;
   font-weight: bold;
   color: rgb(255, 255, 255);
-
-
 }
 
-.gallery-component-image {
-   
-    border-radius: 1rem;
-    
+.gallery-component-image {   
+    border-radius: 1rem;    
 }
 
 @media screen and (max-width: 70rem) {
@@ -263,9 +243,7 @@ figcaption {
   }
   .gallery-component-image {
     aspect-ratio: 4/3;
-    max-height: 25rem;
-    
-    
+    max-height: 25rem;   
   }
   .grid-item {
     width: fit-content;

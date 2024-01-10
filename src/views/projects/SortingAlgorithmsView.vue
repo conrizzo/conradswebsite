@@ -9,7 +9,7 @@
     <div class="">
       <div class="main-title-sorting-algorithms">
         <h1>Sorting Algorithm Examples</h1>
-        <p>
+        <p style="margin: auto;">
           This area is just a place to do stuff with sorting algorithms.
         </p>
       </div>
@@ -361,7 +361,7 @@ h2 {
 
 .main-title-sorting-algorithms {
   padding-bottom: 4em;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #fff;  
 }
 
 p {

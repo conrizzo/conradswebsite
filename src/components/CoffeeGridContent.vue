@@ -22,16 +22,12 @@
               <ul>
                 <li><span style="border-bottom: 3px solid rgb(255, 255, 255);">Enthusiasm</span></li>
                 <li><a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></li>
-                <li>Website code</li>
+                <li><span style="border-bottom: 3px solid rgb(0, 255, 204);">Website code</span></li>
               </ul>
               <br>
               <br>
               <p>
-               Foods that helped include fresh bread, croissants, cake, bagels, muffins,
-              toast (w/butter+cinnamon), pancakes or waffles (w/butter+
-              <a style="color: rgb(216, 88, 14);" class="text-links"
-                href="https://en.wikipedia.org/wiki/Maple_syrup">maple syrup</a>),
-               chocolate<span class="loading"></span>
+               Foods that helped include just about anything that goes good with coffee<span class="loading"></span>
             </p>
 
           </div>
@@ -157,7 +153,11 @@ h2 {
 .second-main-area {
   /* background: linear-gradient(0deg, rgb(49, 21, 32), 10%, rgba(161, 71, 78, 0.9), 30%,  
  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5)80%, rgb(139, 114, 188) 100%); */
-  background: rgb(18, 18, 18);  
+ background-image: url('../images/blue_sky2.jpg');
+  background-color: rgba(0, 0, 0, 0.1);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  position: relative;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -203,7 +203,7 @@ h2 {
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 2em;
   /* Adjust the gap between grid items as needed */
-
+  padding: 2em;
 }
 
 .grid-item-second-first {
@@ -238,35 +238,14 @@ h2 {
  
 }
 
-.grid-item-second-second {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  border: 3px rgb(0, 242, 255) solid;
-  background: #121212;
-
-  color: #ffffff;
-  border-radius: 0.2em;
-  padding: 0.25em;
-  max-height: 1.5em;
-  font-size: 1.3em;
-  text-decoration: none;
-  transition: 0.3s ease-in-out;
-}
-
-.grid-item-second-second:hover {
-  color: #000000;
-  background: #ffffff;
-}
-
 
 .grid-item-coffee-text {
   grid-column: 2 / 4;
   grid-row: 1 / -1;
   color: #ffffff;
-
+  background: rgba(0, 0, 0, 0.2);
   
-  padding-right: 2em;
-  padding-left: 2em;
+  padding: 1rem 1rem 2rem 3rem;
   
   text-align: left;
 }
@@ -299,7 +278,7 @@ h2 {
 
 .coffee-image {
   border-radius: 1em;
-  height: 18em;
+  height: 18.8rem;
 }
 
 
@@ -356,7 +335,8 @@ h2 {
   .grid-item-coffee-text {
     grid-row: 3 / 4;
     color: #ffffff;
-    background: rgb(18, 18, 18);
+    
+    padding-top: 1rem; padding-bottom: 1rem;
     font-family: 'Nimbus Sans L', sans-serif;
   }
 

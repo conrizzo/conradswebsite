@@ -85,7 +85,7 @@ export default {
 <style scoped>    
 
     header{
-      border-bottom: 1px solid rgb(218, 220, 224); position: sticky; top: 0em; z-index: 5;
+      box-shadow: 0 0px 6px -2px rgb(0, 0, 0); position: sticky; top: 0em; z-index: 5;
     }
     .about-menu:hover {
       outline: 2px solid rgb(255, 89, 89);
