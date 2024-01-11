@@ -44,13 +44,8 @@ export default {
   data() {
     const requireContext = require.context('@/images/projects', false, /\.jpg$/);
     const images = requireContext.keys().map(requireContext);
-
-
-    const coffeeImage = require('@/images/cup_of_coffee.jpg');
-    const coffeeFood = require('@/images/coffee_food.jpg');
-    const diffusionBird = require('@/images/diffBird.jpg');
-    return {
-      
+    
+    return {      
       images,
 
       isContentVisible: false,
@@ -59,7 +54,7 @@ export default {
           // 1st array
           ProjectLinks,        
         [  
-          // optinal 2nd array
+          // optional 2nd array
         ],
       ]
 

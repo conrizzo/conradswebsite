@@ -1,10 +1,6 @@
 <template>
-  <div id="body">
-    <!-- Main area -->
-
-    <div class="custom-background-home-page">
-
-      <!-- Title -->
+  <div id="body">  
+    <div class="custom-background-home-page">    
       <div class="center-main-area-box">
         <div class="top-home-content-section">
           <h1 class="title">
@@ -12,12 +8,10 @@
               <span>{{ inputStringShuffled.slice(0, 7) }}</span>
             </span>
           </h1>
-
           <div class='under-title-caption'>
           </div>
           <!-- Main bullets -->
           <div class="main-text-container">
-
             <ul class="main-text-ul">
               <li>
                 Welcome to <a class="home-text-links" href="https://github.com/conrizzo">Conrad's</a> Website
@@ -30,7 +24,6 @@
                   href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
               </li>
             </ul>
-
             <div class="main-text-p">
               <p>There are a few other projects I'm working on that are not shown
                 here.
@@ -38,26 +31,15 @@
                 those objects
                 from an images folder. The header navigation uses the same data.</p>
             </div>
-
-          </div>
-          <!-- Grid for project links and image to appear on hover -->
-
+          </div>          
           <ProjectGallery> </ProjectGallery>
-
         </div>
-
       </div>
-
       <!-- <img class="aside-coffee-image" src="https://raw.githubusercontent.com/conrizzo/conradswebsite/master/src/images/CowGame.jpg" alt="Coffee image"> -->
     </div>
-
     <!-- Aside area begins  #2d2d2d; slate black color -->
     <div style="background: rgb(18,18,18);">
     </div>
-
-
-
-
     <!-- 2nd section -->
     <main class="main-content">
       <div>
@@ -79,78 +61,35 @@
       <!-- 3rd section -->
       <CoffeeGridContent>
       </CoffeeGridContent>
-
       <div style="background: rgba(0,0,0,0)">
-      </div>
-    
+      </div>    
       <main class="main-content">
-      <!--
-      <div style="background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 
-      15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);">
-      </div>
-      -->
-      <!--
-              <AsideContent style="z-index: 1; background: #000; padding: 0em;">
-
-                    <template v-slot:aside-content>          
-                                  
-                          <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image">   
-
-                        <img class="aside-coffee-image" :src="secondCoffee" alt="Coffee image"> 
-                          <img class="" style="" :src="foodImage" alt="Coffee image"> 
-                    </template>
-
-              </AsideContent>   
-        -->
-
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
           <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
         </template>
       </AsideContent>
-
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
           <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
         </template>
       </AsideContent>
     </main>
-
     <imagesOneRow></imagesOneRow>
-
-    <TwoColumnsGridContentTemplate  :titleText="parentTitleTextOne" :content-text="parentTextOne">
-     
-    </TwoColumnsGridContentTemplate>
-  
+    <TwoColumnsGridContentTemplate  :titleText="parentTitleTextOne" :content-text="parentTextOne">     
+    </TwoColumnsGridContentTemplate>  
   </div>
 </template>
 
 <script>
-
 import Prism from "prismjs";
-
-// global default css file - which contains some key items for this page
 import "@/assets/globalCSS.css";
-
-// Aside vue slot
 import AsideContent from "@/components/FirstAside.vue";
-
-// Array of project links
-
-
-// Rust token title animation
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
-
-import coffee_image from '@/images/coffee_time.jpg';
-
 import CoffeeGridContent from "@/components/CoffeeGridContent.vue";
-
 import FourWideImages from "@/components/FourWideImages.vue";
-
 import imagesOneRow from "@/components/ImagesOneRow.vue";
-
 import TwoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
-
 import ProjectGallery from "@/components/HomePage/ProjectGallery.vue";
 
 export default {
@@ -162,12 +101,8 @@ export default {
   data() {
     return {
       itemsLength: 0,
-      birdDrawing: require("@/images/StableDiffusionBird.jpg"),
-      coffee_image: coffee_image, // Assign the imported image to the "image" data property
-      secondCoffee: require("@/images/cup_of_coffee.jpg"),
-      foodImage: require("@/images/coffee_food.jpg"),
-      //conradImage: require("@/images/conrad.jpg"), 
-      // Intersection Observer to show items when they are scrolled to  
+      birdDrawing: require("@/images/StableDiffusionBird.jpg"),      
+
       inputString: "_ Hello,",
       name: "",
       inputStringShuffled: "",
@@ -199,28 +134,6 @@ export default {
   },
   methods: {
 
-    // deprecated code that was used to show the image on hover -0 may use this for somethign else later and move it
-    showImage(item) {
-
-      if (item.text === "Cowculator") {
-        this.hoveredImage = require("@/images/CowculatorScreen.jpg");
-        this.isHovered = true;
-      } else if (item.text.startsWith('Card')) {
-        this.hoveredImage = require("@/images/CardGame.jpg");
-        this.isHovered = true;
-      } else if (item.text === "Game") {
-        this.hoveredImage = require("@/images/CowGame.jpg");
-        this.isHovered = true;
-      } else if (item.text.startsWith('Store')) {
-        this.hoveredImage = require("@/images/store/Store_Page.jpg");
-        this.isHovered = true;
-      } else {
-        this.hoveredImage = "";
-        this.isHovered = false;
-      }
-
-    },
-
     hideImage() {
       this.isHovered = false;
       this.hoveredImage = "";
@@ -231,10 +144,7 @@ export default {
         const arr = this.name.split(" ");
         let mainFunction = main(arr);
         mainFunction = mainFunction.join(" ");
-
-        this.inputStringShuffled = mainFunction;
-
-        //document.getElementById("randomizedArray").textContent = mainFunction;
+        this.inputStringShuffled = mainFunction;      
       });
     },
 
@@ -258,8 +168,7 @@ export default {
 
   mounted() {
     Prism.highlightAll();
-    this.addLettersIntoInput();
-    //#####
+    this.addLettersIntoInput();   
   },
 };
 </script>
@@ -267,17 +176,7 @@ export default {
 
 <style scoped>
 /* CSS for the home page */
-#body {
-  /* Winter background 
-  background: linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-  background: -webkit-linear-gradient(-4deg,rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-
-  background: -webkit-linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-  background: linear-gradient(0deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);   
-
-  background: linear-gradient(180deg, rgb(226, 254, 255), 1%, rgba(228, 253, 255, 0.8),
-      15%, rgba(81, 209, 255, 0.8) 30%, rgba(81, 209, 255, 0.7) 60%, rgb(53, 77, 255, 0.8) 90%);
-  */
+#body { 
   background-size: 100% 100%;
   background-attachment: fixed;
 }
@@ -296,27 +195,14 @@ export default {
 .top-string-slice-of-title {
   font-size: 2em;
   color: rgb(255, 255, 255);
-  /*
-  background-image: linear-gradient(90deg, rgb(255, 255, 255) 25%, rgb(0, 255, 204) 25%);
-  background-size: conver;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  */
 }
 
-.custom-background-home-page {
-  /*
-  background: linear-gradient(180deg, rgb(93, 112, 255),rgb(93, 211, 255));
-  background: linear-gradient(0deg,rgb(54, 23, 34), 5%, rgba(161, 71, 78, 0.9), 15%, rgb(251, 184, 158), 30%,  rgb(251, 237, 215) 40%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-  */
-  /* background-image: url('../images/blue_sky2.jpg'); */
+.custom-background-home-page { 
   background-image: url('../images/blue_sky2.jpg');
   background-color: rgba(0, 0, 0, 0.1);
   background-blend-mode: multiply;
   background-attachment: fixed;
   position: relative;
-
 }
 
 .custom-background-home-page::before {
@@ -329,16 +215,6 @@ export default {
   background-image: linear-gradient(5deg, rgba(0, 0, 0, .05) 20%, transparent 20%,
       transparent 80%, rgba(0, 0, 0, .05) 80%), linear-gradient(100deg, rgba(0, 0, 0, .05) 10%,
       transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 90%);
-}
-
-.custom-color {
-  color: rgb(255, 255, 255) !important;
-  /* overrides the components default values of '#fff' */
-}
-
-.custom-color:hover {
-  color: rgb(255, 255, 255) !important;
-  /* overrides the components default values of '#fff' */
 }
 
 .center-main-area-box {
@@ -375,40 +251,34 @@ export default {
   text-align: left;
   margin-bottom: 1em;
 }
-
 .main-text-ul {
-  background: rgba(18, 18, 18, 0.66);
+  background: rgba(18, 18, 18, .7);
   border-radius: .75rem;
   padding: 0.5rem;
   padding-left: 2.5rem;
 }
-
 .main-text-p {
-  background: rgba(18, 18, 18, 0.66);
+  background: rgba(18, 18, 18, .7);
   border-radius: .75rem;
   padding: 1rem;
   color: #fff; font-size: 1.1rem; line-height: 2;
 }
-
 .first-aside-home-page {
   background: rgb(18, 18, 18);
   z-index: 1;
   padding: 1em;
 }
-
 .bird-image {
   max-width: 100%;
   border-radius: 1em;
   background: #ffffff;
   padding: 1em;
 }
-
 .top-home-content-section {
   z-index: 4;
   padding-top: 2rem;
   max-width: 90rem;
 }
-
 @media only screen and (max-width: 100rem) {
   .bird-image {
     max-width: 50%;
@@ -419,7 +289,6 @@ export default {
     padding: 1em;
     margin-left: 1rem;
   }
-
   .center-main-area-box {
     display: flex;
     justify-content: center;
@@ -446,18 +315,17 @@ export default {
     z-index: 4;
     padding-top: 0rem;
   }
-
   .first-aside-home-page {
     margin: 0;
     border-radius: 0em;
   }
-
   .title {
     font-size: 2.5em;
   }
-
   .top-string-slice-of-title {
     font-size: 1.5em;
   }
-}</style>
+}
+
+</style>
 

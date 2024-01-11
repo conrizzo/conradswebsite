@@ -42,8 +42,10 @@ export default {
     }
   },
   data() {   
-
+    
         // Dynamically update all images to match and remember the user choices in the image gallery
+
+        /*
         productInventory.forEach(item => {
       if (item.id === 1) {
         item.imageSrc = require('@/images/cup_of_coffee.jpg');
@@ -57,7 +59,7 @@ export default {
         item.imageSrc = require('@/images/purple_cake.jpg');
       }
     });
-
+*/
     
 
     return {

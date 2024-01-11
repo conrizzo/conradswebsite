@@ -1,8 +1,9 @@
 
 
-// For now, this works as a dataset, 
-
-
+// This loads in the images from the folder to occupy the imaceSrc property of the productInventory array.
+// It loads in images by their order in the folder, so at the moment just using the ID as the index works.
+const requireContext = require.context('@/images/store/products', false, /\.jpg$/);
+const images = requireContext.keys().map(requireContext);
 
 export const productInventory = [
     { 
@@ -51,4 +52,4 @@ export const productInventory = [
       description: "Cake that is so good you feel guilty buying it!" 
     }
     // Add more items as needed :)  
-  ];
+  ].map((link, index) => ({ ...link, imageSrc: images[index] }));

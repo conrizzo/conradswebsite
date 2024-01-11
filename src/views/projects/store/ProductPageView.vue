@@ -1,17 +1,16 @@
 <template>
     <div class="background">
         <div class="product-information-area">
-            <div class="grid-container">                
+            <div class="grid-container">
                 <div class="product-image-container">
                     <div class="left-align-back-link">
-                      <RouterLink class="links-black" to="/projects/store/store">Back to product selection</RouterLink>
+                        <RouterLink class="links-black" to="/projects/store/store">Back to product selection</RouterLink>
                     </div>
                     <img class="gallery-component-image" :src="itemImageSrc" :alt="itemName">
                 </div>
-
                 <div class="product-details">
-                    <h1>{{itemName}}</h1>
-                     <ul class="no-bullets">
+                    <h1>{{ itemName }}</h1>
+                    <ul class="no-bullets">
                         <li>
                             <span class="bold">Product ID:</span> {{ productId }}
                         </li>
@@ -22,18 +21,18 @@
                             <span class="bold">Price:</span> €{{ searchInventoryById(itemIdentificationNumber).price }}
                         </li>
                         <li>
-                            <span class="bold">Description:</span> {{ searchInventoryById(itemIdentificationNumber).description }}
+                            <span class="bold">Description:</span> 
+                            {{ searchInventoryById(itemIdentificationNumber).description }}
                         </li>
                     </ul>
                     <div style="padding-top: 1rem;">
                         <button style="margin-right: 0.5em;" @click="addToCartClicked(productId);" class="clean-button">
-                            Add to cart</button>                        
+                            Add to cart</button>
                     </div>
                 </div>
             </div>
         </div>
         <CheckOut :propProductPageAddItemToCart="choiceId"></CheckOut>
-
     </div>
 </template>
   
@@ -46,47 +45,15 @@ export default {
 
     components: {
         CheckOut,
-    },    
+    },
 
     data() {
-        
-    // Dynamically update all images to match and remember the user choices in the image gallery
-    // This is not the best way to do this, but it is working
-    // On a larger scale project this needs to be done differently
-    // The only reason for doing this in each product page here is if the user doesn't enter from the
-    // StoreView.vue main page then there is no image set to the path here when the user clicks Add to cart
-        productInventory.forEach(item => {
-      if (item.id === 1) {
-        item.imageSrc = require('@/images/cup_of_coffee.jpg');
-      } else if (item.id === 2) {
-        item.imageSrc = require('@/images/coffee_food.jpg');
-      } else if (item.id === 3) {
-        item.imageSrc = require('@/images/diffBird.jpg');
-      } else if (item.id === 4) {
-        item.imageSrc = require('@/images/cake.jpg');
-      } else if (item.id === 5) {
-        item.imageSrc = require('@/images/purple_cake.jpg');
-      }
-    });
-    // end of this area that needs to be done differently
-
         return {
-
             choiceId: [],
             buttonCounter: 0,
-            updateInventory: productInventory,
-            
             itemIdentificationNumber: parseInt(this.$route.params.id),
         };
     },
-
-    created() {
-
-       
-
-    },
-
-
     computed: {
 
         productId() {
@@ -101,7 +68,6 @@ export default {
         itemPrice() {
             return this.$route.params.price;
         },
-        
     },
 
     methods: {
@@ -116,99 +82,84 @@ export default {
             this.buttonCounter++;
             this.choiceId = [this.productId, this.buttonCounter];
         },
-        searchInventoryById(id){
-            return this.updateInventory.find(item => item.id === id);
+        searchInventoryById(id) {
+            return productInventory.find(item => item.id === id);
         }
-
     }
-
 }
 </script>
   
 <style scoped>
-h1{
+h1 {
     padding-left: 0em;
     margin-left: 0em;
     text-align: left;
     line-height: 1.25em;
     padding-bottom: 1em;
-   
 }
 .background {
     background-color: #f5f5f5;
     padding: 2em;
 }
-
 .gallery-component-image {
     border-radius: 1em;
     padding: 0em;
     margin: 0em;
     background-color: #ffffff;
 }
-
 .product-information-area {
     background: rgb(255, 255, 255);
     padding: 1em;
     display: flex;
     justify-content: center;
 }
-
 .product-image-container {
     padding: 1em;
 }
-
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
     max-width: 60em;
 }
-
 .product-image-container {
     grid-column: 1 / 2;
 }
-
 .product-details {
     text-align: left;
     margin-left: 2rem;
-   
+
     padding-top: 4.5rem;
     grid-column: 2 / 3;
 }
-
 /* This is a very nice way to align text to the left side of a centered image 
    Set the margin-right to push the text to the starting left side area of the centered image.
 */
-.left-align-back-link{
+.left-align-back-link {
     padding-left: 0.1rem;
     padding-bottom: 2rem;
     text-align: left;
 }
-
-.links-black{
+.links-black {
     font-size: 0.8rem;
-    text-align: left;  
-   
-}
+    text-align: left;
 
+}
 .bold {
-  font-weight: bold;  
+    font-weight: bold;
 }
 .no-bullets {
-  list-style-type: none;
+    list-style-type: none;
 }
-
 
 
 @media screen and (max-width: 50rem) {
     .grid-container {
         grid-template-columns: 1fr;
     }
-
     .product-image-container {
         grid-column: 1 / 2;
     }
-
     .product-details {
         grid-column: 1 / 2;
         padding-top: 1em;
