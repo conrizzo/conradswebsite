@@ -24,13 +24,16 @@
                 </div>
                 <!-- Each cart item is outputted here with v-for loop -->
                 <transition-group>
-                    <div v-for="(item, index) in userCart" :key="item.id" class="cart-item">
+                    <main v-for="(item, index) in userCart" :key="item.id" class="cart-item">
                         <div class="each-item-area-formatting">
                             <div class="cart-image-container">
-                                <image>
-                                    <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.imageSrc"
-                                        width="128" height="128">
-                                </image>
+                                <router-link
+                                 :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price } }">
+                                    <image>
+                                        <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.imageSrc"
+                                            width="128" height="128">
+                                    </image>
+                                </router-link>
                             </div>
                             <div class="name-price-cart-formatting">
                                 <span class="product-name">
@@ -57,7 +60,7 @@
                                     class="clean-button shopping-modified-clean-button">Delete</button>
                             </div>
                         </div>
-                    </div>
+                    </main>
                 </transition-group>
             </div>
             <div class="grid-shopping-cart-right">
@@ -92,22 +95,22 @@
 
                 <div class="bottom-checkout-button-container">
 
-                    <button v-show="runningTotal > 0" style="" @click="emptyShoppingCart()" class="clean-button">Empty Cart
+                    <button v-show="runningTotal > 0" @click="emptyShoppingCart()" class="clean-button button-at-bottom-right-space">Empty Cart
                     </button>
 
                     <div v-if="showGoToCheckOutButton">
                         <RouterLink to="/projects/store/checkout">
-                            <button v-show="runningTotal > 0" style="margin-left: 1em;" class="clean-button">Go to Checkout
+                            <button v-show="runningTotal > 0" class="clean-button">Go to Checkout
                             </button>
                         </RouterLink>
                     </div>
 
                     <div v-else>
-                        <RouterLink to="/projects/store/store">
-                            <button style="margin-left: 1em;" class="clean-button">Go Back
+                        <RouterLink class="button-at-bottom-right-space" to="/projects/store/store">
+                            <button class="clean-button">Go Back
                             </button>
                         </RouterLink>
-                        <button v-show="runningTotal > 0" style="margin-left: 1em;" class="clean-button">Purchase Items
+                        <button v-show="runningTotal > 0" class="clean-button">Purchase Items
                         </button>
                     </div>
                 </div>
@@ -268,28 +271,9 @@ export default {
                 }
                 // only runs if the quantity is 0
                 this.removeItemFromCartIfQuantityIsZero(item);
-        },
+        },   
 
-        /* Apparently this is not needed, but I will keep it here for now
-        handleIncrementDecrement(event) {           
-            if (event.keyCode === 38) {            
-                this.item.quantity += 1;
-                this.updateQuantityInCart(this.item);
-            } else if (event.keyCode === 40) {             
-                if (this.item.quantity > 0) {
-                    this.item.quantity -= 1;
-                    this.updateQuantityInCart(this.item);                    
-                }
-            }
-        },
-        */
-
-        updateQuantityInCart(item) {
-
-            
-
-          
-            
+        updateQuantityInCart(item) {            
             const matchingCartItem = this.userCart.find(cartItem => cartItem.id === item.id);
             if (matchingCartItem) {
                 matchingCartItem.quantity = item.quantity;
@@ -304,18 +288,11 @@ export default {
                             return runningTotal;
                              }
                             this.runningTotal = calculateRunningTotal(this.userCart);
-                */
-               
-                
-            }
-                      
-            this.removeItemFromCartIfQuantityIsZero(item);
-            
-               
-            
-            
+                */                
+            }                      
+            this.removeItemFromCartIfQuantityIsZero(item);           
         },
-        // Your methods here
+      
         makeInventory() {
             // sets this local constant to the global TypeScript array of product inventory objects
             const inventory = this.storeInventory;
@@ -329,8 +306,7 @@ export default {
             const items = inventory.getItems();            
         },
 
-        resetInventory() {
-            //console.log("reset");
+        resetInventory() {           
             this.storeInventory = new Inventory();
         },
 
@@ -353,7 +329,6 @@ export default {
             this.runningTotal += matchingItemId.price;
             // looks for the product ID that is scrolled in the gallery and matches it to the product ID in the inventory
             //console.log("TEST", matchingItemId);
-
             this.addItemToShoppingCartIfNotAlreadyThere(matchingItemId);
         },
 
@@ -378,13 +353,11 @@ export default {
             this.runningTotal = 0;
         },
 
-        removeItem(index) {     
-
+        removeItem(index) {    
             // guard statement 
             if (index === null || index === undefined || index < 0) {
                 return
             }
-
             this.runningTotal = this.runningTotal - this.userCart[index].price * this.userCart[index].quantity;
             this.userCart.splice(index, 1);
         }
@@ -393,10 +366,10 @@ export default {
 </script>  
   
 <style scoped>
+
 h1 {
     font-size: 4em;
 }
-
 
 .shopping-cart-area {
     background-color: #ffffff;
@@ -427,7 +400,6 @@ h1 {
 .shopping-modified-clean-button {
     background-color: #f44336;
     float: inline-start;
-
     color: white;
     border: none;
     border-radius: 0.5em;
@@ -464,7 +436,6 @@ h1 {
     font-size: 1.1em;
     padding-bottom: 2rem;
     border-bottom: 1px solid #f44336;
-
 }
 
 .each-item-in-cart-image {
@@ -481,8 +452,6 @@ h1 {
     background: rgb(255, 255, 255);
     margin-bottom: 0em;
 }
-
-
 
 .special-offer {
     color: #fff;
@@ -543,9 +512,9 @@ h1 {
     padding-top: 3em;
 }
 
-
-
-
+.button-at-bottom-right-space {
+    margin-right: 1rem;
+}
 
 @media screen and (max-width: 65rem) {
     .grid-shopping-cart {
@@ -608,11 +577,6 @@ h1 {
         padding-left: .5em;
         padding-right: .5em;
     }
-    .shopping-cart-title{
-        
-    }
-   
-
 }
 
 @media screen and (max-width: 10rem) {

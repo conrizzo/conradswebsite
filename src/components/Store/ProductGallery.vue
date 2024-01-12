@@ -1,24 +1,25 @@
 <template>
   <div class="centerAll">
     <div class="image-gallery">
-   
+
       <h1>MAKE A SELECTION</h1>
       <div class="gallery-button-left" @click="changeImageArray('left')">
-       &lt;
+        &lt;
       </div>
 
       <div class="image-gallery-grid-container">
         <div v-for="(item, index) in slicedProductInventoryArray" :key="item.id" class="grid-item">
-          <RouterLink :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price }}">
+          <router-link
+            :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price } }">
             <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
-          </RouterLink> 
+          </router-link>
           <figcaption>{{ item.name }} €{{ item.price }}</figcaption>
           <button @click="showArray(index, item.id);" class="clean-button">Add to cart</button>
         </div>
       </div>
 
       <div class="gallery-button-right" @click="changeImageArray('right')">
-       >
+        >
       </div>
     </div>
   </div>
@@ -30,7 +31,7 @@ import { productInventory } from './productInventoryOptionsData';
 
 export default {
 
-    
+
   name: 'ProductGallery',
   components: {
 
@@ -41,55 +42,19 @@ export default {
       default: null,
     }
   },
-  data() {   
-    
-        // Dynamically update all images to match and remember the user choices in the image gallery
-
-        /*
-        productInventory.forEach(item => {
-      if (item.id === 1) {
-        item.imageSrc = require('@/images/cup_of_coffee.jpg');
-      } else if (item.id === 2) {
-        item.imageSrc = require('@/images/coffee_food.jpg');
-      } else if (item.id === 3) {
-        item.imageSrc = require('@/images/diffBird.jpg');
-      } else if (item.id === 4) {
-        item.imageSrc = require('@/images/cake.jpg');
-      } else if (item.id === 5) {
-        item.imageSrc = require('@/images/purple_cake.jpg');
-      }
-    });
-*/
-    
-
+  data() {
     return {
       // This imports an array of product inventory objects ---- productInventoryOptionsData.ts
       productInventoryArray: productInventory,
-       
-      
     };
-    
-
-    
-
-
-
-    
   },
-  created(){
+  created() {
     this.testArray = ['@/images/cup_of_coffee.jpg']
   },
-  mounted() {
-    // Set the initioanl image array to the galleryItems array
-
-    
-    // this.imageArrayChoice = this.productInventoryArray[0]
-
-  },
-  computed: {   
-    slicedProductInventoryArray() {     
-      const numColumns = 4; 
-      return this.productInventoryArray.slice(0, numColumns);  
+  computed: {
+    slicedProductInventoryArray() {
+      const numColumns = 4;
+      return this.productInventoryArray.slice(0, numColumns);
     }
   },
   methods: {
@@ -101,14 +66,6 @@ export default {
       //const selectedItem = selectionChoiceFromArray;
       this.$emit('add-to-cart', selectionChoiceFromArray, choiceId);
     },
-    /*
-            handleAddToCart(index) {
-              //const selectedItem = this.imageArrayChoice[index];
-              //this.$emit('add-to-cart', index);
-              
-            },
-    */
-    // This method will change the image array to the one passed in
     changeImageArray(choice) {
       const lastIndex = this.productInventoryArray.length - 1;
 
@@ -122,7 +79,6 @@ export default {
         this.imageArrayChoice = this.productInventoryArray[lastIndex];
       }
 
-      
     }
   }
   // Component logic goes here
@@ -141,7 +97,6 @@ h1 {
   justify-content: center;
   display: flex;
   background: rgb(255, 255, 255);
-
 }
 
 .gallery-button-left {
@@ -155,7 +110,6 @@ h1 {
   cursor: pointer;
   user-select: none;
   width: 1em;
-
 }
 
 .gallery-button-right {
@@ -170,7 +124,6 @@ h1 {
   user-select: none;
   width: 1em;
   z-index: 3;
-
 }
 
 .gallery-button-right:hover {
@@ -186,9 +139,8 @@ h1 {
   position: relative;
   background: rgba(255, 255, 255, 0);
   padding: 0em;
-
-
 }
+
 /* IMPORTANT FIX THIS */
 .image-gallery-grid-container {
   display: grid;
@@ -197,7 +149,6 @@ h1 {
   grid-gap: 1em;
   margin-bottom: 1em;
 }
-
 
 .grid-item {
   background-color: rgba(0, 0, 0, 0);
@@ -212,12 +163,6 @@ h1 {
   height: 256px;
   background-color: #ffffff;
   transition: filter 0.5s ease;
-  
-  /*
-  width: 100%;
-  object-fit: cover;
-  aspect-ratio: 1/1;
-  */
 }
 
 .gallery-component-image:hover {
@@ -228,12 +173,13 @@ h1 {
 @media (max-width: 76rem) {
   .gallery-button-left {
     display: none;
-  }  
+  }
+
   .gallery-button-right {
     top: 43%;
     left: 0em;
     width: 0.6em;
-    
+
   }
 }
 
@@ -243,10 +189,8 @@ h1 {
     /* Adjust the maximum height as needed */
     overflow-x: auto;
     overflow-y: none;
-    padding-left: 1em;   
+    padding-left: 1em;
   }
-
-
 
   .image-gallery-grid-container {
     margin: 0em;
@@ -256,21 +200,24 @@ h1 {
 }
 
 @media (max-width: 40rem) {
-
-  .image-gallery{
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
-    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS devices */   
+  .image-gallery {
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar for Internet Explorer and Edge */
+    -webkit-overflow-scrolling: touch;
+    /* Enable smooth scrolling on iOS devices */
     padding-bottom: 1em;
   }
+
   .image-gallery::-webkit-scrollbar {
-     display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
-  }  
+    display: none;
+    /* Hide scrollbar for Chrome, Safari, and Opera */
+  }
 
   .image-gallery-grid-container {
     margin-left: 1.37em;
   }
-
 
   .grid-item {
     width: fit-content;
@@ -279,14 +226,12 @@ h1 {
   .gallery-button-right {
     top: 43%;
     left: 0em;
-    width: 0.6em;   
+    width: 0.6em;
   }
-  h1{
+
+  h1 {
     padding-left: 1.5em;
   }
-
-
-
 }
 
 
@@ -294,12 +239,8 @@ figcaption {
   text-align: center;
   padding: 0.5em;
   margin: 0em;
-
   background: rgba(255, 255, 255, 0.8);
   font-size: 1em;
   font-weight: bold;
   color: rgb(18, 18, 18);
-
-
-}
-</style>
+}</style>

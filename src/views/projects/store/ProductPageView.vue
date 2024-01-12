@@ -75,7 +75,6 @@ export default {
         goBackOnePage() {
             this.$router.go(-1); // Navigate back to the previous page
         },
-
         addToCartClicked(choiceId) {
             console.log(choiceId)
             //this.$emit('add-to-cart', choiceId);
@@ -132,9 +131,6 @@ h1 {
     padding-top: 4.5rem;
     grid-column: 2 / 3;
 }
-/* This is a very nice way to align text to the left side of a centered image 
-   Set the margin-right to push the text to the starting left side area of the centered image.
-*/
 .left-align-back-link {
     padding-left: 0.1rem;
     padding-bottom: 2rem;

@@ -8,7 +8,7 @@
 
     <div class="image-gallery hidden" ref="content" :class="{ 'show': isContentVisible }">
       
-      <div class="image-gallery-grid-container">
+      <main class="image-gallery-grid-container">
 
         <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item">
           <div>
@@ -25,7 +25,7 @@
           </div>
         </div>
 
-      </div>
+      </main>
 
     </div>
 

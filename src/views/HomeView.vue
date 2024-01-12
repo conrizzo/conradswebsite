@@ -32,7 +32,7 @@
                 from an images folder. The header navigation uses the same data.</p>
             </div>
           </div>          
-          <ProjectGallery> </ProjectGallery>
+          <ProjectGallery/>
         </div>
       </div>
       <!-- <img class="aside-coffee-image" src="https://raw.githubusercontent.com/conrizzo/conradswebsite/master/src/images/CowGame.jpg" alt="Coffee image"> -->
@@ -43,8 +43,7 @@
     <!-- 2nd section -->
     <main class="main-content">
       <div>
-        <FourWideImages>
-        </FourWideImages>
+        <FourWideImages/>       
       </div>
       <AsideContent class="first-aside-home-page">
         <template v-slot:aside-content>
@@ -59,8 +58,8 @@
       </AsideContent>
     </main>
       <!-- 3rd section -->
-      <CoffeeGridContent>
-      </CoffeeGridContent>
+      <CoffeeGridContent/>
+    
       <div style="background: rgba(0,0,0,0)">
       </div>    
       <main class="main-content">
@@ -75,9 +74,9 @@
         </template>
       </AsideContent>
     </main>
-    <imagesOneRow></imagesOneRow>
-    <TwoColumnsGridContentTemplate  :titleText="parentTitleTextOne" :content-text="parentTextOne">     
-    </TwoColumnsGridContentTemplate>  
+    <imagesOneRow/>
+    <TwoColumnsGridContentTemplate  :titleText="parentTitleTextOne" :content-text="parentTextOne"/>     
+  
   </div>
 </template>
 
