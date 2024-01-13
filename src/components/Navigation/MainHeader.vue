@@ -18,7 +18,7 @@
           </svg>
         </router-link>
         <router-link style="padding: 0;" to="/">
-          <h2 class="header-h2">ConradsWebsite.com</h2>
+          <div class="header-h2">ConradsWebsite.com</div>
         </router-link>
       </div>
 
@@ -50,7 +50,7 @@
             </a>
           </div>
           <a class="text-under-github-logo" href="https://github.com/conrizzo/conradswebsite">
-            <span style="font-size: 0.5em; margin-right: 0.5em; margin-left: -0.5em;">This websites code</span>
+            <span style="font-size: 0.5em; margin-right: 1rem; margin-left: -0.5em;">This websites code</span>
           </a>
         </div>
       </div>
@@ -186,7 +186,7 @@ export default {
 
     }
 
-    @media (max-width: 37rem) {
+    @media (max-width: 38rem) {
       .header-h2 {
         display: none;
       }
@@ -220,7 +220,7 @@ export default {
 
       .small-resolution-h2 {
         position: absolute;
-        right: 0.5em;
+        right: 1em;
         display: inline;
         color: rgb(128, 128, 128);
       }

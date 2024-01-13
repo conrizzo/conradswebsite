@@ -2,14 +2,13 @@
   <div class="store-background">
     <div class="main-banner">
       <div class="main-banner-text-container">
-        <div style="z-index: 100; position: relative;">
+        <div style="z-index: 3; position: relative;">
           <h1> Buy awesome things here...</h1>
-          <span class="main-banner-sub-text">A simple modular store layout made in Vue.js and TypeScript.<br> 
-            If a full match is typed a <a class="text-links" href=https://en.wikipedia.org/wiki/Trie>Trie</a> 
-            confirms it and the price is shown. Type 'bread' to test it out.
-          </span>
+          <span class="main-banner-sub-text">
+            A simple modular store layout made in Vue.js and TypeScript.
+          </span>          
         </div>
-        <div style="z-index: 100; position: relative; padding: 0.5rem;">
+        <div style="z-index: 3; position: relative; padding: 0.5rem;">
           <SearchFunction/>
         </div>
       </div>
