@@ -2,9 +2,16 @@
   <div class="store-background">
     <div class="main-banner">
       <div class="main-banner-text-container">
-        <h1> Buy awesome things here...</h1>
-        <span class="main-banner-sub-text">A simple modular store layout made in Vue.js and TypeScript</span>
-
+        <div style="z-index: 100; position: relative;">
+          <h1> Buy awesome things here...</h1>
+          <span class="main-banner-sub-text">A simple modular store layout made in Vue.js and TypeScript.<br> 
+            If a full match is typed a <a class="text-links" href=https://en.wikipedia.org/wiki/Trie>Trie</a> 
+            confirms it and the price is shown. Type 'bread' to test it out.
+          </span>
+        </div>
+        <div style="z-index: 100; position: relative; padding: 0.5rem;">
+          <SearchFunction/>
+        </div>
       </div>
     </div>
     <!-- <button @click="makeInventory">Make Inventory</button> -->
@@ -15,6 +22,7 @@
     <div style="background: #fff;">
     <button @click="showDiagramAndSourceCode, toggleDiagramModal()" class='clean-button store-show-diagram-button'>{{ showDiagramButtonText }}</button>
     </div>    
+    
 </div>
 
   <div v-if="showDiagramModal">
@@ -30,12 +38,12 @@ import ProductGallery from "@/components/Store/ProductGallery.vue";
 import "@/assets/globalCSS.css";
 import CheckOut from "@/components/Store/CheckOut.vue";
 import DiagramModal from "@/components/Store/DiagramModal.vue";
-
+import SearchFunction from "@/components/composition/SearchFunction.vue";
 
 export default {
   name: "StoreView",
   components: {
-    ProductGallery, CheckOut, DiagramModal
+    ProductGallery, CheckOut, DiagramModal, SearchFunction
   },
   data() {
     return {

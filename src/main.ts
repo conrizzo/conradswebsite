@@ -5,6 +5,17 @@ import router from './router';
 
 import 'prismjs';
 
+
+/*
+window.addEventListener('resize', onResize)
+// set size on startup
+onResize()
+
+function onResize() {
+  // get actual vh on mobile
+  document.body.style.setProperty('--vh', window.innerHeight + 'px')
+}*/
+
 createApp(App).use(router).mount('#app');
 
 /* import 'prismjs/themes/prism.css'; */

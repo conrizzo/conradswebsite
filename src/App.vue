@@ -3,14 +3,12 @@
   <div>
       <!-- Don't show header or footer on CowGame -->
       <TheMainHeader v-show="showHeader" v-if="showNav"></TheMainHeader>  
-      <router-view></router-view> <!-- main code of a page -->  
+      <router-view/> <!-- main code of a page -->  
       <TheMainFooter v-show="showFooter" v-if="showNav"></TheMainFooter>
   </div>
 </template>
 
 <script>
-// import the dropdown menu into the nav bar
-
 
 import TheMainHeader from "@/components/Navigation/MainHeader.vue";
 import TheMainFooter from "@/components/Navigation/MainFooter.vue";
