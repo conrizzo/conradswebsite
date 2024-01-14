@@ -37,7 +37,7 @@ import ProductGallery from "@/components/Store/ProductGallery.vue";
 import "@/assets/globalCSS.css";
 import CheckOut from "@/components/Store/CheckOut.vue";
 import DiagramModal from "@/components/Store/DiagramModal.vue";
-import SearchFunction from "@/components/composition/SearchFunction.vue";
+import SearchFunction from "@/components/Store/SearchFunction.vue";
 
 export default {
   name: "StoreView",

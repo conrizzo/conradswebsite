@@ -9,15 +9,13 @@
           This tooltip uses the new <b>CSS anchor positioning</b>.
         </span>
       </span>
-      <div class="search-container" :class="{ 'remove-bottom-border-radius': searchTerm.length > 0 }">
-        <input :class="{ 'remove-bottom-border-radius': searchTerm.length > 0 }" ref="inputField" type="text"
+      <div class="search-container">
+        <input :class="{ 'remove-bottom-border-radius': searchTerm.length > 0 && filteredItems.length > 0 }" ref="inputField" type="text"
           v-model="searchTerm" placeholder="Search items..." />
-        <router-link class="format-search-links" 
-          :to="{
-            name: 'ProductPageView', params:
-            { id: item.id, name: item.name, image: item.imageSrc, price: item.price } 
-          }"              
-          v-for="item in filteredItems" :key="item.id">
+        <router-link class="format-search-links" :to="{
+          name: 'ProductPageView', params:
+            { id: item.id, name: item.name, image: item.imageSrc, price: item.price }
+        }" v-for="item in filteredItems" :key="item.id">
           <div v-if="searchTerm.length > 0">
             {{ item.name }}
 
@@ -39,8 +37,6 @@ import { ref, computed, onMounted } from 'vue';
 import { productInventory } from '../Store/productInventoryOptionsData';
 import { Trie } from './MakeTrie';
 
-
-
 export default {
   directives: {
     focus: {
@@ -52,16 +48,13 @@ export default {
   },
   name: 'SearchFunction',
   setup() {
-
     const searchTerm = ref('');
     const items = ref(productInventory);
     const inputField = ref(null);
-
     let trie = new Trie;
     items.value.forEach(item => {
       trie.insert(item.name.toLowerCase());
     });
-
 
     // if someone is using a mobile device, the input field will not be focused!
     onMounted(() => {
@@ -73,8 +66,6 @@ export default {
     const printTrie = () => {
       return trie.print();
     };
-
-
 
     const filteredItems = computed(() => {
       if (!searchTerm.value) {
@@ -93,7 +84,6 @@ export default {
       trie,
       printTrie,
       inputField,
-
     };
   },
 };
@@ -114,14 +104,16 @@ export default {
   cursor: pointer;
   width: 100%;
   padding-left: 2rem;
+}
 
-
+.format-search-links:last-child {
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 
 }
 
 .format-search-links:hover {
   background: rgb(240, 240, 240);
-
 }
 
 .search-container {
@@ -129,7 +121,6 @@ export default {
   flex-direction: column;
   width: 20rem;
   text-align: left;
-
   /* this formats the shadowing correctly */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-top-left-radius: 1rem;
@@ -142,11 +133,9 @@ export default {
   color: rgb(18, 18, 18);
 }
 
-
 .outside-div {
   height: 8rem;
 }
-
 
 input {
   font-size: 1.25em;
@@ -162,7 +151,11 @@ input {
   border-bottom-right-radius: 0rem;
   border-bottom-left-radius: 0rem;
   border-bottom: none;
+}
 
+.add-bottom-radius {
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 select:focus,
@@ -176,11 +169,6 @@ input:focus {
 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
-
-
-
-
 
 /* tooltip-searchs on hover of anchors 
 
@@ -198,8 +186,6 @@ Uses new in 2023 Anchor CSS feature
   cursor: help;
   position: relative;
 }
-
-
 
 .tooltip-search-anchor::after {
   content: "?";
