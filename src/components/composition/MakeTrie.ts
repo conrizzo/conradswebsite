@@ -41,14 +41,16 @@ export class Trie {
     }   
   
 
-    print(node = this.root, word = ''): void {
-      for (const key in node.children) {
-        /*
-        if (node.children[key].end) {
-          console.log("print",word + key);
-        }*/
-        this.print(node.children[key], word + key);
+    print(node = this.root, word = '', words: string[] = []): string[] {
+      if (node.end) {
+        words.push(word);
       }
+
+      for (const key in node.children) {
+        this.print(node.children[key], word + key, words);
+      }
+
+      return words;
     }
   }
   

@@ -4,20 +4,32 @@
   <div class="outside-div">
     <div class="input-area">
       <span id="tip-1" class="tooltip-search-anchor">
-        <span anchor="tip-1" class="tooltip-search"> If a string match is typed a <b>Trie</b>
-          confirms it and the price is shown.
-          <br>Type <b>bread</b> to test it out.
-          <br><i>This tooltip uses the new <b>CSS anchor positioning</b>.</i>
+        <span anchor="tip-1" class="tooltip-search">Available products create clickable links.
+          Type the full word <b>bread</b> and a &#10003; will appear to confirm it's in the <b>trie datastructure</b>.
+          This tooltip uses the new <b>CSS anchor positioning</b>.
         </span>
       </span>
-      <input ref="inputField" type="text" v-model="searchTerm" placeholder="Search items..." />
-    </div>
-    <div v-for="item in filteredItems" :key="item.id">
-      <div v-if="searchTerm.length > 0">
-        {{ item.name }} <span v-if="trie.search(searchTerm.toLowerCase())"> {{ item.price }}</span>
+      <div class="search-container" :class="{ 'remove-bottom-border-radius': searchTerm.length > 0 }">
+        <input :class="{ 'remove-bottom-border-radius': searchTerm.length > 0 }" ref="inputField" type="text"
+          v-model="searchTerm" placeholder="Search items..." />
+        <router-link class="format-search-links" 
+          :to="{
+            name: 'ProductPageView', params:
+            { id: item.id, name: item.name, image: item.imageSrc, price: item.price } 
+          }"              
+          v-for="item in filteredItems" :key="item.id">
+          <div v-if="searchTerm.length > 0">
+            {{ item.name }}
 
+            <span style="font-size: 1.25rem; color: rgb(18,18,18);" v-if="trie.search(searchTerm.toLowerCase())">
+              &#10003;
+            </span>
+
+          </div>
+        </router-link>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -59,7 +71,7 @@ export default {
     });
 
     const printTrie = () => {
-      trie.print();
+      return trie.print();
     };
 
 
@@ -88,36 +100,81 @@ export default {
 </script>
 
 <style scoped>
-.input-area{
+.input-area {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.outside-div{
+.format-search-links {
+  background: #fff;
+  color: rgb(18, 18, 18);
+  font-size: 1.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  padding-left: 2rem;
+
+
+
+}
+
+.format-search-links:hover {
+  background: rgb(240, 240, 240);
+
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  text-align: left;
+
+  /* this formats the shadowing correctly */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.format-search-links:visited {
+  color: rgb(18, 18, 18);
+}
+
+
+.outside-div {
   height: 8rem;
 }
 
 
 input {
   font-size: 1.25em;
-  border-radius: 2rem;
+  border-radius: 1rem;
   border-width: 1px;
   outline: none;
-  border: 1px solid rgb(218, 220, 224);
+  border: none;
   padding: 0.25em;
-  
+  padding-left: 2rem;
+}
+
+.remove-bottom-border-radius {
+  border-bottom-right-radius: 0rem;
+  border-bottom-left-radius: 0rem;
+  border-bottom: none;
+
 }
 
 select:focus,
 button:focus {
   outline: none;
 }
+
 /* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
 input:focus {
   outline: none !important;
-  
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -164,15 +221,13 @@ Uses new in 2023 Anchor CSS feature
 }
 
 /* clickable tooltip-searchs using Popup API and anchor positioning API */
-.tooltip-search{
+.tooltip-search {
   background: white;
   padding: .75rem;
-  border-radius: 1rem;  
+  border-radius: 1rem;
   width: 18.75rem;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
- margin-top: -10rem;
- margin-left: -0.6rem;
+  margin-top: -11rem;
+  margin-left: -0.6rem;
 }
-
-
 </style>
