@@ -9,9 +9,15 @@
           This tooltip uses the new <b>CSS anchor positioning</b>.
         </span>
       </span>
+      <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
       <div class="search-container">
+        <div class="input-container">
+        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">
+          <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+        </svg>
         <input :class="{ 'remove-bottom-border-radius': searchTerm.length > 0 && filteredItems.length > 0 }" ref="inputField" type="text"
-          v-model="searchTerm" placeholder="Search items..." />
+          v-model="searchTerm" placeholder="Search items...">
+        </div>
         <router-link class="format-search-links" :to="{
           name: 'ProductPageView', params:
             { id: item.id, name: item.name, image: item.imageSrc, price: item.price }
@@ -19,7 +25,7 @@
           <div v-if="searchTerm.length > 0">
             {{ item.name }}
 
-            <span style="font-size: 1.25rem; color: rgb(18,18,18);" v-if="trie.search(searchTerm.toLowerCase())">
+            <span style="font-size: 1.25rem;" v-if="trie.search(searchTerm.toLowerCase())">
               &#10003;
             </span>
 
@@ -103,7 +109,7 @@ export default {
   text-decoration: none;
   cursor: pointer;
   width: 100%;
-  padding-left: 2rem;
+  padding-left: 2.2rem;
 }
 
 .format-search-links:last-child {
@@ -113,13 +119,14 @@ export default {
 }
 
 .format-search-links:hover {
-  background: rgb(240, 240, 240);
+  background: rgb(233, 233, 234);
+ 
 }
 
 .search-container {
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  
   text-align: left;
   /* this formats the shadowing correctly */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -215,5 +222,25 @@ Uses new in 2023 Anchor CSS feature
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
   margin-top: -11rem;
   margin-left: -0.6rem;
+}
+
+/* input field icon */
+.input-container {
+  position: relative;
+  display: inline-block;
+  box-shadow: none;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+}
+
+.input-container input {
+  padding-left: 35px; /* Adjust this value based on the size of your icon */
+  box-shadow: none;
 }
 </style>

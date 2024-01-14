@@ -48,12 +48,10 @@ export default {
       productInventoryArray: productInventory,
     };
   },
-  created() {
-    this.testArray = ['@/images/cup_of_coffee.jpg']
-  },
+
   computed: {
     slicedProductInventoryArray() {
-      const numColumns = 4;
+      const numColumns = 5;
       return this.productInventoryArray.slice(0, numColumns);
     }
   },
@@ -88,7 +86,7 @@ export default {
 <style scoped>
 h1 {
   padding-top: 0.5em;
-  font-size: 0.9em;
+  font-size: 2rem;
   margin-bottom: 0em;
   text-align: left;
 }
@@ -98,6 +96,17 @@ h1 {
   display: flex;
   background: rgb(255, 255, 255);
 }
+
+.clean-button{
+  background: rgb(233, 233, 234);
+  color: rgb(18,18,18);
+}
+
+.clean-button:hover{
+  background: rgb(64, 64, 64);
+  color: #fff;
+}
+
 
 .gallery-button-left {
   position: absolute;
@@ -144,7 +153,7 @@ h1 {
 /* IMPORTANT FIX THIS */
 .image-gallery-grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 1em;
   margin-bottom: 1em;
@@ -169,8 +178,8 @@ h1 {
   filter: brightness(90%);
   cursor: pointer;
 }
-
-@media (max-width: 76rem) {
+/* 4 images wide is 76rem, 5 images is about 94rem */
+@media (max-width: 94.5rem) {
   .gallery-button-left {
     display: none;
   }
@@ -183,7 +192,7 @@ h1 {
   }
 }
 
-@media (max-width: 76rem) {
+@media (max-width: 94.5rem) {
   .image-gallery {
     max-height: 25em;
     /* Adjust the maximum height as needed */

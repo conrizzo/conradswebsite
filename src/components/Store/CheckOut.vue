@@ -46,11 +46,11 @@
                                 <br>
                                 Quantity: 
                                     <div style="display: flex;">
-                                        <button @click="handlePlusMinusIncrementDecrementButtons(item, -1)" style="font-size: 1.25rem; margin-right: 0.1rem; width: 1.7rem;">-</button>
+                                        <button @click="handlePlusMinusIncrementDecrementButtons(item, -1)" style="font-size: 1.25rem; margin-right: 0.1rem; width: 1.7rem; cursor: pointer;">-</button>
                                             <input type="number" v-model="item.quantity" min="0" max="100" step="1"
                                                     @input="updateQuantityInCart(item)"
                                                     style="width: 3.2rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;">
-                                        <button @click="handlePlusMinusIncrementDecrementButtons(item, 1)" style="font-size: 1.25rem; margin-left: 0.1rem; width: 1.7rem;">+</button>
+                                        <button @click="handlePlusMinusIncrementDecrementButtons(item, 1)" style="font-size: 1.25rem; margin-left: 0.1rem; width: 1.7rem; cursor: pointer;">+</button>
                                     </div>
 
                                 <br>
@@ -66,7 +66,7 @@
             <div class="grid-shopping-cart-right">
                 <div class="special-offer">
 
-                    <h2>&#9733;&nbsp;Special Offer!&nbsp;&#9733;</h2>
+                    <h2>Special Offer!</h2>
                     <div>
                         <p style="text-align: left;" v-if="totalQuantity >= 5">With 5 or more items in the shopping basket a
                             10% discount has been applied!</p>
@@ -123,9 +123,10 @@
 // import ProductGallery from "@/components/Store/ProductGallery.vue";
 import { Inventory } from "@/components/Store/InventoryData.ts";
 import { productInventory } from '@/components/Store/productInventoryOptionsData';
+
 import "@/assets/globalCSS.css";
 
-import mitt from 'mitt';
+
 // make cookies for the products in the user cart
 import VueCookies from 'vue-cookie';
 
@@ -180,7 +181,7 @@ export default {
             this.userCart = JSON.parse(cartItems);
         }
 
-        this.eventEmitter = mitt();
+       
         //console.log("CART", this.userCart)
     },
     mounted() {
@@ -188,9 +189,7 @@ export default {
         this.makeInventory();
         // NOTE: There is definitely a better way to solve this problem than this, but for now
         // This line of code below updates the runningtotal of the local cookies automatically.
-        this.runningTotal = this.userCart.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
-
-        this.eventEmitter.on('add-to-cart', this.addItemToCart);
+        this.runningTotal = this.userCart.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);        
     },
 
     // This solves the issue I had with the architecture, didn't expect to use a watcher here.
@@ -303,7 +302,7 @@ export default {
             // sets store inventory to the updated inventory object
             this.storeInventory = inventory;
             // gets the items available, this is just for testing, shows them in the console
-            const items = inventory.getItems();            
+            // const items = inventory.getItems();            
         },
 
         resetInventory() {           
@@ -318,13 +317,11 @@ export default {
                 this.addItemToShoppingCartIfNotAlreadyThere(matchingItemId);
                 return
             }
-
-            // this is a guard statement, the this.storeInventory.getItems().length === 0 is to make sure the inventory is not empty
+            // The this.storeInventory.getItems().length === 0 is to make sure the inventory is not empty
             if (selectedItem === null || actualProductID === null || this.storeInventory.getItems().length === 0) {
                 return
             }
             //console.log("TEST", this.storeInventory.getItems()[selectedItem]);
-
             const matchingItemId = this.storeInventory.getItems().find(item => item.id === actualProductID)
             this.runningTotal += matchingItemId.price;
             // looks for the product ID that is scrolled in the gallery and matches it to the product ID in the inventory
@@ -336,8 +333,7 @@ export default {
             if (item === null) {
                 return
             }
-            // Here we check to make sure the item is not in the user-defined array AND the local cookies array
-            // This is an important fix to the previous version.
+            // Checks that item doesnt exist in the cart already
             const itemIndex = this.userCart.findIndex(cartItem => cartItem.id === item.id);
             if (itemIndex === -1) {
                 item.quantity = 1;
@@ -471,7 +467,10 @@ h1 {
 }
 
 .special-offer h2 {
-
+    display: inline-block;
+    border-bottom: 3px solid #ffffff;
+    
+    padding-left: 1rem; padding-right: 1rem;
     font-size: 1.25rem;
     padding-top: 0.5rem;
     text-align: center;
