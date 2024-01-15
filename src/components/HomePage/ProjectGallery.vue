@@ -160,7 +160,7 @@ h2 {
   justify-content: center;
   display: flex;
   height: fit-content;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.33);
   border-radius: .75rem;
 }
 
@@ -193,8 +193,8 @@ h2 {
   margin: 0em;
   background-color: #ffffff;
   transition: filter .25s ease;
-  max-height: 18rem;
-  aspect-ratio: 4/3;
+  max-height: 16rem;
+  aspect-ratio: 6/4;
   border-radius: 0.5rem;
 }
 

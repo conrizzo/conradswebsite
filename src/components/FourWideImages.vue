@@ -35,10 +35,11 @@ export default {
       imageArrayChoice: null,
       imgArrayOfArrays: [
         [
-          { id: 1, imageSrc: coffeeFood, altText: "Yummy Food", caption: "Food!" },
+
+          { id: 1, imageSrc: coffeeFood, altText: "Eat yummy food", caption: "Food!" },
           { id: 2, imageSrc: coffeeImage, altText: "Coffee", caption: "Coffee!" },
           { id: 3, imageSrc: diffusionBird, altText: "Bird Watching", caption: "A bird!" },
-          { id: 4, imageSrc: coffeeImage, altText: "Learn More Code", caption: "..while drinking coffee!" },
+          { id: 4, imageSrc: coffeeImage, altText: "Make projects", caption: "..while drinking coffee!" },
 
           // Add more items as needed :)
         ],

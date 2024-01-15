@@ -1,38 +1,48 @@
 <template>
-  <div id="body">  
-    <div class="custom-background-home-page">    
+  <div id="body">
+    <div class="center-main-area-box" style="background: rgb(245, 245, 245);">
+      <div class="website-text-boxes">
+        <h1 class="title">
+          <span class="top-string-slice-of-title">
+            <span>{{ inputStringShuffled.slice(0, 7) }}</span>
+          </span>
+        </h1>
+        <div class="main-text-container">
+
+          <ul class="main-text-ul">
+            <li>
+              <span style="background: rgb(255, 225, 161);  padding-left: 0.25rem; padding-right: 0.25rem;">Welcome to <a
+                  class="home-text-links" href="https://github.com/conrizzo">Conrad's</a> Website</span>
+            </li>
+            <li>
+              <span style="background: rgb(161, 244, 255);  padding-left: 0.25rem; padding-right: 0.25rem;"><router-link
+                  class="home-text-links" to="/about">About</router-link> this website.</span>
+            </li>
+            <li>
+              <span style="background: rgb(255, 170, 161);  padding-left: 0.25rem; padding-right: 0.25rem;">Crafted under
+                the influence of <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></span>
+            </li>
+          </ul>
+          <div class="main-text-p">
+            <p>There are a few other projects I'm working on that are not shown
+              here.
+              The array of projects below is dynamically loaded in as objects, images are dynamically inserted into
+              those objects
+              from an images folder. The header navigation uses the same data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="custom-background-home-page">
       <div class="center-main-area-box">
         <div class="top-home-content-section">
-          <h1 class="title">
-            <span class="top-string-slice-of-title">
-              <span>{{ inputStringShuffled.slice(0, 7) }}</span>
-            </span>
-          </h1>
+
           <div class='under-title-caption'>
           </div>
+
+          <ProjectGallery />
           <!-- Main bullets -->
-          <div class="main-text-container">
-            <ul class="main-text-ul">
-              <li>
-                Welcome to <a class="home-text-links" href="https://github.com/conrizzo">Conrad's</a> Website
-              </li>
-              <li>
-                <router-link class="home-text-links" to="/about">About</router-link> this website.
-              </li>
-              <li>
-                Crafted under the influence of <a class="home-text-links"
-                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-              </li>
-            </ul>
-            <div class="main-text-p">
-              <p>There are a few other projects I'm working on that are not shown
-                here.
-                The array of projects below is dynamically loaded in as objects, images are dynamically inserted into
-                those objects
-                from an images folder. The header navigation uses the same data.</p>
-            </div>
-          </div>          
-          <ProjectGallery/>
+
         </div>
       </div>
       <!-- <img class="aside-coffee-image" src="https://raw.githubusercontent.com/conrizzo/conradswebsite/master/src/images/CowGame.jpg" alt="Coffee image"> -->
@@ -43,7 +53,7 @@
     <!-- 2nd section -->
     <main class="main-content">
       <div>
-        <FourWideImages/>       
+        <FourWideImages />
       </div>
       <AsideContent class="first-aside-home-page">
         <template v-slot:aside-content>
@@ -57,12 +67,12 @@
         </template>
       </AsideContent>
     </main>
-      <!-- 3rd section -->
-      <CoffeeGridContent/>
-    
-      <div style="background: rgba(0,0,0,0)">
-      </div>    
-      <main class="main-content">
+    <!-- 3rd section -->
+    <CoffeeGridContent />
+
+    <div style="background: rgba(0,0,0,0)">
+    </div>
+    <main class="main-content">
       <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
         <template v-slot:aside-content>
           <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
@@ -74,9 +84,9 @@
         </template>
       </AsideContent>
     </main>
-    <imagesOneRow/>
-    <TwoColumnsGridContentTemplate  :titleText="parentTitleTextOne" :content-text="parentTextOne"/>     
-  
+    <imagesOneRow />
+    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
+
   </div>
 </template>
 
@@ -100,7 +110,7 @@ export default {
   data() {
     return {
       itemsLength: 0,
-      birdDrawing: require("@/images/StableDiffusionBird.jpg"),      
+      birdDrawing: require("@/images/StableDiffusionBird.jpg"),
 
       inputString: "_ Hello,",
       name: "",
@@ -121,7 +131,8 @@ export default {
       parentTitleTextOne: "What is the goal of this website?",
       parentTextOne: "The goal of this website at the moment is to keep\
                       experimenting and learning. Make some fun projects.\
-                      Drink some coffee (hopefully good coffee)."
+                      Drink some coffee (hopefully good coffee). Make lots of \
+                      mistakes and keep learning from them and improving."
     };
   },
   computed: {
@@ -143,7 +154,7 @@ export default {
         const arr = this.name.split(" ");
         let mainFunction = main(arr);
         mainFunction = mainFunction.join(" ");
-        this.inputStringShuffled = mainFunction;      
+        this.inputStringShuffled = mainFunction;
       });
     },
 
@@ -167,7 +178,7 @@ export default {
 
   mounted() {
     Prism.highlightAll();
-    this.addLettersIntoInput();   
+    this.addLettersIntoInput();
   },
 };
 </script>
@@ -175,7 +186,7 @@ export default {
 
 <style scoped>
 /* CSS for the home page */
-#body { 
+#body {
   background-size: 100% 100%;
   background-attachment: fixed;
 }
@@ -186,17 +197,17 @@ export default {
   line-height: 1;
   height: 2em;
   padding: 1em 0.25em 3em 0.25em;
-  color: rgb(255, 255, 255);
+  color: rgb(18, 18, 18);
   font-size: 2em;
   z-index: 1;
 }
 
 .top-string-slice-of-title {
   font-size: 2em;
-  color: rgb(255, 255, 255);
+  
 }
 
-.custom-background-home-page { 
+.custom-background-home-page {
   background-image: url('../images/blue_sky2.jpg');
   background-color: rgba(0, 0, 0, 0.1);
   background-blend-mode: multiply;
@@ -219,19 +230,21 @@ export default {
 .center-main-area-box {
   display: flex;
   justify-content: center;
-  padding-bottom: 10rem;
+  padding-bottom: 5rem;
 }
 
 .home-text-links {
-  color: rgb(255, 255, 255);
+  color: rgb(18, 18, 18);
+
   font-weight: 500;
   border-bottom: 3px solid rgb(0, 255, 204);
   text-decoration: none;
+
 }
 
-.home-text-links:hover {
+.home-text-links:is(:hover, :focus) {
   border-bottom: 3px solid rgb(255, 89, 89);
-  color: rgb(255, 255, 255);
+  color: rgb(255, 89, 89);
 }
 
 .home-text-links:active {
@@ -248,36 +261,56 @@ export default {
   color: #ffffff;
   font-size: 1.6em;
   text-align: left;
-  margin-bottom: 1em;
+  margin-top: 1rem;
+
 }
+
 .main-text-ul {
-  background: rgba(18, 18, 18, .7);
-  border-radius: .75rem;
+  background: rgb(245, 245, 245);
+  color: rgb(18, 18, 18);
   padding: 0.5rem;
   padding-left: 2.5rem;
+
+
 }
+
 .main-text-p {
-  background: rgba(18, 18, 18, .7);
-  border-radius: .75rem;
-  padding: 1rem;
-  color: #fff; font-size: 1.1rem; line-height: 2;
+  background: rgb(245, 245, 245);
+
+  padding: .5rem;
+  padding-left: 1rem; padding-right: 1rem;
+  color: rgb(18, 18, 18);
+  ;
+  font-size: 1.1rem;
+  line-height: 2;
 }
+
 .first-aside-home-page {
   background: rgb(18, 18, 18);
   z-index: 1;
   padding: 1em;
 }
+
 .bird-image {
   max-width: 100%;
   border-radius: 1em;
   background: #ffffff;
   padding: 1em;
 }
+
 .top-home-content-section {
   z-index: 4;
   padding-top: 2rem;
-  max-width: 90rem;
+  max-width: 80rem;
 }
+
+.website-text-boxes {
+  z-index: 4;
+  padding-top: 2rem;
+  max-width: 80rem;
+
+}
+
 @media only screen and (max-width: 100rem) {
   .bird-image {
     max-width: 50%;
@@ -288,6 +321,7 @@ export default {
     padding: 1em;
     margin-left: 1rem;
   }
+
   .center-main-area-box {
     display: flex;
     justify-content: center;
@@ -314,17 +348,18 @@ export default {
     z-index: 4;
     padding-top: 0rem;
   }
+
   .first-aside-home-page {
     margin: 0;
     border-radius: 0em;
   }
+
   .title {
     font-size: 2.5em;
   }
+
   .top-string-slice-of-title {
     font-size: 1.5em;
   }
-}
-
-</style>
+}</style>
 
