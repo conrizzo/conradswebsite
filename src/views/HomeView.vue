@@ -1,6 +1,6 @@
 <template>
   <div id="body">
-    <div class="center-main-area-box" style="background: rgb(245, 245, 245);">
+    <section class="center-top-main-area-box">
       <div class="website-text-boxes">
         <h1 class="title">
           <span class="top-string-slice-of-title">
@@ -11,16 +11,16 @@
 
           <ul class="main-text-ul">
             <li>
-              <span style="background: rgb(255, 225, 161);  padding-left: 0.25rem; padding-right: 0.25rem;">Welcome to <a
-                  class="home-text-links" href="https://github.com/conrizzo">Conrad's</a> Website</span>
+              <span>Welcome to <a 
+                style="background: rgb(255, 225, 161); padding-left: 0.25rem; padding-right: 0.25rem;" class="home-text-links" href="https://github.com/conrizzo">Conrad's</a> Website</span>
             </li>
             <li>
-              <span style="background: rgb(161, 244, 255);  padding-left: 0.25rem; padding-right: 0.25rem;"><router-link
+              <span><router-link style="background: rgb(161, 244, 255);  padding-left: 0.25rem; padding-right: 0.25rem;"
                   class="home-text-links" to="/about">About</router-link> this website.</span>
             </li>
             <li>
-              <span style="background: rgb(255, 170, 161);  padding-left: 0.25rem; padding-right: 0.25rem;">Crafted under
-                the influence of <a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></span>
+              <span>Crafted under
+                the influence of <a style="background: rgb(255, 170, 161);  padding-left: 0.25rem; padding-right: 0.25rem;" class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></span>
             </li>
           </ul>
           <div class="main-text-p">
@@ -32,10 +32,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
     <div class="custom-background-home-page">
-      <div class="center-main-area-box">
-        <div class="top-home-content-section">
+      <div class="center-bottom-main-area-box">
+        <section class="top-home-content-section">
 
           <div class='under-title-caption'>
           </div>
@@ -43,7 +43,7 @@
           <ProjectGallery />
           <!-- Main bullets -->
 
-        </div>
+        </section>
       </div>
       <!-- <img class="aside-coffee-image" src="https://raw.githubusercontent.com/conrizzo/conradswebsite/master/src/images/CowGame.jpg" alt="Coffee image"> -->
     </div>
@@ -196,8 +196,8 @@ export default {
   position: relative;
   line-height: 1;
   height: 2em;
-  padding: 1em 0.25em 3em 0.25em;
-  color: rgb(18, 18, 18);
+  padding: 1em 0.25em 3em 2rem;
+  color: rgb(255, 255, 255);
   font-size: 2em;
   z-index: 1;
 }
@@ -227,10 +227,21 @@ export default {
       transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 90%);
 }
 
-.center-main-area-box {
+.center-top-main-area-box {
   display: flex;
   justify-content: center;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background: -webkit-linear-gradient(45deg,rgba(0, 0, 0, 0.9), 10%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
+  background: linear-gradient(45deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 70%);  
+  
+  
+  
+}
+.center-bottom-main-area-box {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4rem;
 }
 
 .home-text-links {
@@ -243,8 +254,9 @@ export default {
 }
 
 .home-text-links:is(:hover, :focus) {
-  border-bottom: 3px solid rgb(255, 89, 89);
-  color: rgb(255, 89, 89);
+  border-bottom: 3px solid rgb(0, 255, 204);
+  
+  background: rgb(0, 255, 204) !important;
 }
 
 .home-text-links:active {
@@ -261,26 +273,22 @@ export default {
   color: #ffffff;
   font-size: 1.6em;
   text-align: left;
-  margin-top: 1rem;
-
+  margin-top: 1rem;  
+  
 }
 
 .main-text-ul {
-  background: rgb(245, 245, 245);
-  color: rgb(18, 18, 18);
+  color: rgb(255, 255, 255);
   padding: 0.5rem;
-  padding-left: 2.5rem;
-
-
+  padding-left: 2rem;
+  list-style-type: none;
 }
 
 .main-text-p {
-  background: rgb(245, 245, 245);
-
+  background: rgb(64, 64, 72);  
   padding: .5rem;
   padding-left: 1rem; padding-right: 1rem;
-  color: rgb(18, 18, 18);
-  ;
+  color: rgb(255, 255, 255);  
   font-size: 1.1rem;
   line-height: 2;
 }
@@ -308,6 +316,8 @@ export default {
   z-index: 4;
   padding-top: 2rem;
   max-width: 80rem;
+  background: rgb(40, 40, 40);
+  
 
 }
 
@@ -322,7 +332,7 @@ export default {
     margin-left: 1rem;
   }
 
-  .center-main-area-box {
+  .center-bottom-main-area-box {
     display: flex;
     justify-content: center;
     padding-left: 2rem;
@@ -338,7 +348,7 @@ export default {
 }
 
 @media only screen and (max-width: 50rem) {
-  .center-main-area-box {
+  .center-bottom-main-area-box {
     margin-top: 0em;
     padding-left: 0.5rem;
     padding-right: 0.5rem;

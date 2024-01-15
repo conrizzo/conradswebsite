@@ -152,8 +152,8 @@ h2 {
 }
 
 .gallery-header {
-  text-align: right;
-  margin-right: 3rem; 
+  text-align: left;
+  margin-left: 3.5rem; 
 }
 
 .centerAll {
@@ -163,7 +163,6 @@ h2 {
   background: rgba(0, 0, 0, 0.33);
   border-radius: .75rem;
 }
-
 
 .image-gallery {
   margin: 0 auto;

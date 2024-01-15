@@ -41,15 +41,24 @@ export const productInventory = [
       imageSrc: 'cakeFood', 
       altText: "Artisan Cake",
       description: "Cake that goes well with coffee!" 
-    },
+    },    
     { 
       id: 5, 
+      name: "Pizza",
+      price: 9.99, 
+      quantityAvailable: 5, 
+      imageSrc: 'pizza', 
+      altText: "pizza",
+      description: "Freshly made classic pizza!" 
+    },
+    { 
+      id: 6, 
       name: "Secret Purple Cake", 
       price: 9.99, 
       quantityAvailable: 50, 
       imageSrc: 'purpleCake', 
       altText: "Artisan Cake",
       description: "Cake that is so good you feel guilty buying it!" 
-    }
+    },
     // Add more items as needed :)  
   ].map((link, index) => ({ ...link, imageSrc: images[index] }));

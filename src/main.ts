@@ -2,8 +2,8 @@
 import { createApp } from 'vue';
 import  App  from './App.vue';
 import router from './router';
-import './assets/globalCSS.css';
 
+import './assets/globalCSS.css';
 import 'prismjs';
 
 
