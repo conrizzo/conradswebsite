@@ -161,7 +161,7 @@ h1 {
 
 .grid-item {
   background-color: rgba(0, 0, 0, 0);
-  z-index: 2;
+  z-index: 2;  
 }
 
 .gallery-component-image {
@@ -194,7 +194,7 @@ h1 {
 
 @media (max-width: 94.5rem) {
   .image-gallery {
-    max-height: 25em;
+    max-height: 27rem;
     /* Adjust the maximum height as needed */
     overflow-x: auto;
     overflow-y: none;

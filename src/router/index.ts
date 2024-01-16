@@ -27,6 +27,7 @@ const GalleryView = () => import('../views/projects/GalleryView.vue');
 const StoreView = () => import('../views/projects/store/StoreView.vue');
 const StoreCheckOutView = () => import('../views/projects/store/StoreCheckOutView.vue');
 const ProductPageView = () => import('../views/projects/store/ProductPageView.vue');
+const RenderTemplateView = () => import('../views/projects/RenderTemplate/RenderTemplateView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 // const about = () => import('../views/about.vue');
@@ -135,6 +136,12 @@ const routes = [
     props: true,
   },
 
+  {
+    path: '/projects/RenderTemplate/template',
+    name: 'RenderTemplateView',
+    component: RenderTemplateView,
+  },
+
 
   {
     path: '/yadhtriByppah',
@@ -163,6 +170,7 @@ const router = createRouter({
     }
   },
 });
+
 /*
 auth.onAuthStateChanged(user => {
 

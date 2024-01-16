@@ -1,26 +1,27 @@
 <template>
   <div class="login-form-container">
     <div class="login-form-styling">
-        <form @submit.prevent="login">
-          
+        <form @submit.prevent="login">          
           <h2 style="padding: 0.5em; color: rgb(18,18,18);">Log in</h2>    
           
           <div style="display: flex; flex-direction: column;">
             <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
             <input name="email" type="email" placeholder="Email" required v-model="email" autocomplete="email" v-focus>
-          </div>
-          
+          </div>          
           
           <div style="display: flex; flex-direction: column; ">
             <label for="password" style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
             <input name="password" type="password" placeholder="Password" required v-model="password">
           </div>
             
-            <button style="margin-top: 0.5em;" class="button-35">Log in</button>
+          <button style="margin-top: 0.5em;" class="button-35">
+            Log in
+          </button>
 
-            <div style="margin-top: 1em;">
-              <span style="color: red;">{{ errorMessage }}</span>
-            </div>
+          <div style="margin-top: 1em;">
+            <span style="color: red;">{{ errorMessage }}</span>
+          </div>
+
         </form>
     </div>
   </div>
@@ -72,14 +73,14 @@ export default {
         }
       }
     }
-      }
-    
+   }    
   }
 </script>
 <style scoped>
 .button-35{
   background-color: rgb(130, 130, 130);  
 }
+
 .button-35:hover{
   box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;  
 }
@@ -98,15 +99,10 @@ button {
   margin: auto
 }
 
-
-form {
-  width: 20em; 
-  margin: auto;
-  
+form { 
+  margin: auto;  
   border-radius: 1em;
-  padding: 0 1em 0em 1em;
-
-  
+  padding: 0 1em 0em 1em;  
 }
 
 input {
@@ -114,7 +110,7 @@ input {
 }
 
 input:focus {   
-    border-color: rgb(0, 240, 0)
+  border-color: rgb(0, 240, 0)
 }
 
 .login-form-container{
@@ -123,7 +119,11 @@ input:focus {
 }
 
 .login-form-styling{
-  padding: 1em; background: #ffffff; width: fit-content; border-radius: 1em; margin-top: 2em;
+  padding: 1em; 
+  
+  width: fit-content; 
+  border-radius: 1em; 
+  margin-top: 2em;
   border: 3px solid #cecece; 
 }
 

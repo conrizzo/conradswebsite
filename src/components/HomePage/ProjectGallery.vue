@@ -184,7 +184,7 @@ h2 {
   width: fit-content;
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
-  border-radius: 0.33em;
+  border-radius: 0.33em;  
 }
 
 .gallery-component-image {
@@ -226,8 +226,7 @@ figcaption {
 @media screen and (max-width: 50rem) {
   .image-gallery {
     padding: .5rem;
-  }
-  
+  }  
 }
 
 @media screen and (max-width: 35rem) {
@@ -235,13 +234,36 @@ figcaption {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
+
   .gallery-component-image {
     aspect-ratio: 4/3;
     max-height: 25rem;   
   }
+
   .grid-item {
-    width: fit-content;
+    width: fit-content;     
+    border-radius: 0;
+    padding-bottom: 1rem;    
   }
+
+  .grid-item::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: .75rem;
+    border-top: none; 
+  }  
+
+  /* 
+  Fancy code that makes the last item in the grid not have a line after it
+  by telling all other elements to have a border line. of course this could be
+  written without the not statement and reverse the border value set -- but this is interesting.
+  */
+  .grid-item:not(:last-child)::after {
+    border-top: 5px solid rgba(0, 0, 0, 0.5);
+  }
+
 }
 
 

@@ -66,7 +66,7 @@
 
         <div style="max-width: 40em;">
           <div style="display: flex; flex-direction: column;">
-            <label for="Subject" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Subject:</label>
+            <label for="Subject" style="color: #fff; align-self: flex-start; padding-left: 0.25rem;">Subject:</label>
             <div style="display: flex;">
               <input style="width: 23em;" type="text" placeholder="Subject" required v-model="name" name="submissionName"
                 maxlength="{{this.messageLength}}" ref="subjectInput">
@@ -76,7 +76,7 @@
           </div>
         </div>
         <div style="display: flex; flex-direction: column;">
-          <label for="Message" style="color: #fff; align-self: flex-start; padding-left: 0.25em;">Message:</label>
+          <label for="Message" style="color: #fff; align-self: flex-start; padding-left: 0.25rem;">Message:</label>
           <textarea type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50"
             rows="10"></textarea>
         </div>
@@ -334,8 +334,8 @@ p.login-information {
   row-gap: 1em;
   max-width: 43.85em;
   margin: 1em auto;
-  padding-right: 0.3em;
-  padding-left: 0.3em;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }
 
 input {
@@ -370,9 +370,9 @@ button {
   flex-direction: column;
   align-items: center;
   text-align: left;
-  width: 40em;
+  width: 41rem;
   margin: 0 auto;
-  padding: 2em;
+  padding: 2rem;
   border-radius: 1em;
   border: 1px solid #fcfcfc;
 

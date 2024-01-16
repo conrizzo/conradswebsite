@@ -1,7 +1,13 @@
 <!-- This page mostly just sets the default values across the whole website, and whether to omit nav bar such as on the cow game -->
 <template>
-  <header>
+
+  <header :class="headerClass">
     <!-- create a nav bar on every page-->
+    <div style="padding-left: 1rem; text-transform: uppercase; 
+    letter-spacing: .125rem; padding-top: .5rem; padding-bottom: .5rem; 
+    color: #fff; font-size: 1.1rem;   background: rgb(0, 0, 0);">
+    <router-link style="color: #fff;" class="text-links" to="/about">Thank you for visiting!</router-link>
+    </div>
     <nav class="nav-menu-class">
       <div style="display: flex; align-items: center;">
         <router-link to="/" class="only-show-home-svg-at-mobile-size">
@@ -54,10 +60,9 @@
           </a>
         </div>
       </div>
-
     </nav>
-
   </header>
+
   <!-- user accepts privacy agreement -->
   <!-- Removed this for now, the only cookies the site has is if someone uses firebase so I will put this notification on that page exclusively -->
   <!-- <CookieAccept /> -->
@@ -66,19 +71,73 @@
 <script>
 // import the dropdown menu into the nav bar
 import DropDownMenu from "@/components/Navigation/DropDownMenu.vue";
-
+import { ref, onMounted, onUnmounted } from 'vue';
 export default {
-  name: "MainHeader",
+  name: 'MainHeader',
   components: {
-    DropDownMenu,
+    DropDownMenu
   },
+  setup() {
+
+    const headerClass = ref('header-visible');
+    let lastScrollPosition = 0;  
+
+    const checkScroll = () => {
+      const currentScrollPosition = window.scrollY;
+
+      if (currentScrollPosition > lastScrollPosition) {
+        // Scrolling down
+        headerClass.value = 'header-hidden';
+      } else if (currentScrollPosition < lastScrollPosition) {
+        // Scrolling up
+        headerClass.value = 'header-visible';
+      }
+      lastScrollPosition = currentScrollPosition;      
+    };
+   
+    onMounted(() => {     
+        
+      window.addEventListener('scroll', checkScroll);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('scroll', checkScroll);
+    });
+
+    return {
+      headerClass
+    };
+  }
 };
 </script>  
 
-<style scoped>    
+<style scoped>    /* we will explain what these classes do next! 
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+ */
+
+    .header-visible {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity .66s ease;
+    }
+
+    /* This visibility of header-hidden is not set to hidden to allow the transition effect to work */
+    .header-hidden {    
+      /* visibility: hidden; */  
+      opacity: 0;
+      transition: opacity .66s ease;
+    }
 
     header {
-      box-shadow: 0px 3px 3px 0px rgba(0,0,0,.15);
+      box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, .15);
       position: sticky;
       top: 0em;
       z-index: 5;

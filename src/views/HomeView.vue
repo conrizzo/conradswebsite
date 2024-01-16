@@ -23,13 +23,16 @@
                 the influence of <a style="background: rgb(255, 170, 161);  padding-left: 0.25rem; padding-right: 0.25rem;" class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></span>
             </li>
           </ul>
+          
           <div class="main-text-p">
-            <p>There are a few other projects I'm working on that are not shown
+            <h2>Project Information</h2>
+            <p>Some projects are below, there are a few other projects I'm working on that are not shown
               here.
               The array of projects below is dynamically loaded in as objects, images are dynamically inserted into
               those objects
               from an images folder. The header navigation uses the same data.</p>
           </div>
+          
         </div>
       </div>
     </section>
@@ -200,6 +203,9 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 2em;
   z-index: 1;
+  background: rgb(64, 64, 72);
+  width: 50%;
+  margin-bottom: 0;
 }
 
 .top-string-slice-of-title {
@@ -269,12 +275,10 @@ export default {
   /*max-width: 40rem; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 0rem;
   color: #ffffff;
   font-size: 1.6em;
-  text-align: left;
-  margin-top: 1rem;  
-  
+  text-align: left;  
 }
 
 .main-text-ul {
@@ -282,6 +286,7 @@ export default {
   padding: 0.5rem;
   padding-left: 2rem;
   list-style-type: none;
+  padding-top: 2.5rem;
 }
 
 .main-text-p {
@@ -290,7 +295,7 @@ export default {
   padding-left: 1rem; padding-right: 1rem;
   color: rgb(255, 255, 255);  
   font-size: 1.1rem;
-  line-height: 2;
+  line-height: 2; 
 }
 
 .first-aside-home-page {
@@ -313,12 +318,9 @@ export default {
 }
 
 .website-text-boxes {
-  z-index: 4;
-  padding-top: 2rem;
+  z-index: 4;  
   max-width: 80rem;
-  background: rgb(40, 40, 40);
-  
-
+  background: rgb(40, 40, 40);  
 }
 
 @media only screen and (max-width: 100rem) {
@@ -350,13 +352,13 @@ export default {
 @media only screen and (max-width: 50rem) {
   .center-bottom-main-area-box {
     margin-top: 0em;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
   }
 
   .top-home-content-section {
     z-index: 4;
-    padding-top: 0rem;
+    
   }
 
   .first-aside-home-page {
@@ -366,6 +368,7 @@ export default {
 
   .title {
     font-size: 2.5em;
+    width: 100%;
   }
 
   .top-string-slice-of-title {

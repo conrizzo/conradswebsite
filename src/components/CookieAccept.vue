@@ -73,17 +73,18 @@ h1 {
     padding: 0;
 }
 .cookie-modal {
-    width: 80%;
+    width: 95%;
     max-width: 50em;
+   
     padding-top: 0.75em;
     padding-bottom: 1em;
     padding-left: 25px;
     padding-right: 25px;
-
+    
     background: rgb(255, 255, 255);
     border-radius: 10px;
     position: absolute;
-    bottom: 25%;
+    bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
 }
