@@ -123,7 +123,7 @@ h2 {
   justify-content: center;
   display: flex;  
   height: fit-content;
-  background: rgb(255, 255, 255);
+  background: rgb(18, 18, 18);
   padding-bottom: 2em;
   padding-top: 2em;
 }

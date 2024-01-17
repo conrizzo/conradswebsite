@@ -2,26 +2,24 @@
   <div class="second-main-area">
     <div class="hidden" ref="content" :class="{ 'show': isContentVisible }">
       <!-- div to show/hide items within on scroll -->
-
       <div class="second-area-grid-container">
-        <div class="grid-item-coffee">
-          <img class="coffee-image" :src="coffee_image" alt="Image">
-        </div>
-        <div class="grid-item-text">
+          <div class="grid-item-coffee">
+            <img class="coffee-image" :src="coffee_image" alt="Image">
+          </div>
 
-          <h2>{{ titleText }}</h2>
-          <p>
-            {{ contentText }}
-          </p>
-
-        </div>
+          <div class="grid-item-text">
+            <h2>{{ titleText }}</h2>
+            <p>
+              {{ contentText }}
+            </p>
+          </div>
       </div>
     </div>
   </div>
 </template>
     
 <script>
-import coffee_image from '@/images/coffee_time.jpg';
+import coffee_image from '@/images/generated_cup_of_coffee.jpg';
 
 export default {
   name: 'CoffeeGridContent',
@@ -125,37 +123,41 @@ h2 {
 }
 
 .second-area-grid-container {
+  
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 2em;
-  padding: 2em;
+  grid-template-columns: 1fr 1fr; 
+  justify-items: center; 
+  align-items: center; 
+  grid-gap: 1rem;
+  padding: 2rem;
 }
 
 .grid-item-text {
   grid-column: 1;
-  grid-row: 1 / -1;
+  grid-row: 1;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.2);
   height: fit-content;
   padding: 3em;
   font-size: 1.5em;
   text-align: left;
+  
 }
 
 .grid-item-coffee {
   grid-column: 2;
-  grid-row: 1 / -1;
+  grid-row: 1;
   color: #ffffff;
-  padding: 3em;
+  
   font-size: 1.5em;
-  text-align: left;
-
+  
+  
 }
 
 .coffee-image {
   border-radius: 1em;
-  width: 66%;
+  margin: 0 auto;
+  
 }
 
 @media only screen and (max-width: 50rem) {
@@ -181,7 +183,7 @@ h2 {
   }
 
   .coffee-image {
-    max-width: 100%;
+    width: 100%;
   }
 }
 

@@ -57,10 +57,11 @@
     <div style="background: rgb(18,18,18);">
     </div>
     <!-- 2nd section -->
-    <main class="main-content">
+   
       <div>
         <FourWideImages />
       </div>
+      <!--
       <AsideContent class="first-aside-home-page">
         <template v-slot:aside-content>
           <figure style="display: inline-block;">
@@ -72,26 +73,17 @@
           </figure>
         </template>
       </AsideContent>
-    </main>
+      -->
+   
     <!-- 3rd section -->
-    <CoffeeGridContent />
-
-    <div style="background: rgba(0,0,0,0)">
-    </div>
-    <main class="main-content">
-      <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
-        <template v-slot:aside-content>
-          <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
-        </template>
-      </AsideContent>
-      <AsideContent style="z-index: 1; background: #121212; padding: 0em;">
-        <template v-slot:aside-content>
-          <!-- <img class="aside-coffee-image" :src="coffee_image" alt="Coffee image"> -->
-        </template>
-      </AsideContent>
-    </main>
+   
+      <div style="background: rgb(45, 45, 45);">
+        <section style="max-width: 80rem; margin: 0 auto;">
+        <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
+        </section>
+     </div>
     <imagesOneRow />
-    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
+   
 
   </div>
 </template>
@@ -99,9 +91,9 @@
 <script>
 import Prism from "prismjs";
 import "@/assets/globalCSS.css";
-import AsideContent from "@/components/FirstAside.vue";
+
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
-import CoffeeGridContent from "@/components/CoffeeGridContent.vue";
+
 import FourWideImages from "@/components/FourWideImages.vue";
 import imagesOneRow from "@/components/ImagesOneRow.vue";
 import TwoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
@@ -110,7 +102,7 @@ import ProjectGallery from "@/components/HomePage/ProjectGallery.vue";
 export default {
   name: "HomeView",
   components: {
-    AsideContent, CoffeeGridContent, FourWideImages, imagesOneRow, TwoColumnsGridContentTemplate, ProjectGallery
+    FourWideImages, imagesOneRow, TwoColumnsGridContentTemplate, ProjectGallery
   },
 
   data() {
@@ -206,9 +198,9 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 2em;
   z-index: 1;
-  background: rgb(64, 64, 72);
+  background: rgb(18,18,18);
   width: 50%;
-  margin-bottom: 4rem;
+  
 }
 
 .top-string-slice-of-title {
@@ -244,12 +236,15 @@ export default {
   justify-content: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  background: -webkit-linear-gradient(45deg,rgba(0, 0, 0, 0.9), 10%, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 100%);
-  background: linear-gradient(45deg, rgba(161, 71, 78, 0.9), 20%,  rgb(251, 237, 215) 45%, rgba(185, 134, 193,0.5) 60%, rgb(139, 114, 188) 70%);  
-  
-  
-  
+  background-image: url('../images/blue_sky2.jpg');
+  background-color: rgba(0, 0, 0, 0.1);
+  background-blend-mode: multiply;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  position: relative;
 }
+
+
 .center-bottom-main-area-box {
   display: flex;
   justify-content: center;
@@ -290,13 +285,14 @@ export default {
 .main-text-ul {
   color: rgb(255, 255, 255);
   padding: 0.5rem;
+  padding-bottom: 2rem;
   padding-left: 2rem;
   list-style-type: none;
   padding-top: 2.5rem;
 }
 
 .main-text-p {
-  background: rgb(64, 64, 72);  
+  background: rgb(18,18,18);
   padding: .5rem;
   padding-left: 1rem; padding-right: 1rem;
   color: rgb(255, 255, 255);  

@@ -198,10 +198,7 @@ h1 {
   background-size: cover;
   border-radius: 12px;  
 }
-.blue-sky-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)),url(../images/blue_sky.jpg);    
-  background-repeat: no-repeat;    
-}  
+
 /* when media sizes adjust, the non-media needs to come first in parsing the code */
 .cow-lecture {
   background-image: url('../images/cow_lecture.png');

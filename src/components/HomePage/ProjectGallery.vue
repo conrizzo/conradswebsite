@@ -202,7 +202,7 @@ h2 {
   background-color: #ffffff;
   transition: filter .25s ease;
   max-height: 16rem;
-  aspect-ratio: 6/4;
+  aspect-ratio: 4/3;
   border-radius: 0.5rem;
 }
 

@@ -92,20 +92,19 @@
     
   <style scoped>
   h1{
-    font-size: 0.9em; 
-    
+    font-size: 0.9em;     
     text-align: left;  
   }
   .gallery-styling-h1-span{    
     display: inline-block;
     border-bottom: 2px solid rgb(255, 89, 89);
-    background: #fff;
+  
     font-size: 1rem;
     padding-left: 0.2rem;
     padding-bottom: none;
     border-bottom: none;
-    margin-top: 1rem;
-    
+    margin-top: 1rem;    
+    color: #fff;
   }
 
   
@@ -113,7 +112,7 @@
   .centerAll{
     justify-content: center;
     display: flex;  
-    background:rgb(255, 255, 255);
+    background:rgb(18, 18, 18);
     
   }
   
@@ -194,7 +193,7 @@
   }
   
   
-  @media (max-width: 76rem) {
+  @media (max-width: 88rem) {
   
     .gallery-button-left,
     .gallery-button-right {
@@ -203,11 +202,11 @@
   
   }
  
-  @media (max-width: 71rem) {
+  @media (max-width: 84rem) {
    
   
     .image-gallery{
-        max-height: 25em; /* Adjust the maximum height as needed */
+        max-height: 26rem; /* Adjust the maximum height as needed */
         overflow-x: auto;
         overflow-y: none; 
         padding-left: 1em;
@@ -220,19 +219,12 @@
   
   }
   
-  @media (max-width: 40rem) {
-  
-    .image-gallery-grid-container {
-     
-  
-    }
+  @media (max-width: 40rem) {  
     
   
     .grid-item {
       width: fit-content;
-    }
-  
-    
+    }    
   
   }
   
@@ -242,10 +234,10 @@
     padding: 0.5em;
     margin: 0em;
   
-    background: rgba(255, 255, 255, 0.8);
+    
     font-size: 0.8em;
     font-weight: bold;
-    color: rgb(18, 18, 18);
+    color: rgb(255, 255, 255);
     
   
   }

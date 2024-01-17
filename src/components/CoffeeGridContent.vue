@@ -7,7 +7,6 @@
       <div class="second-area-grid-container">
 
         <div class="grid-item-coffee">
-
           <img class="coffee-image" :src="coffee_image" alt="Image">
         </div>
         <!--        
@@ -17,8 +16,7 @@
             -->
         <div class="grid-item-coffee-text">
           <div class="hidden" ref="content_text" :class="{ 'show': isContentVisible }">
-            <h2>Website Ingredients</h2>
-           
+            <h2>Website Ingredients</h2>           
               <ul>
                 <li><span style="border-bottom: 3px solid rgb(255, 255, 255);">Enthusiasm</span></li>
                 <li><a class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></li>
@@ -29,7 +27,6 @@
               <p>
                Foods that helped include just about anything that goes good with coffee<span class="loading"></span>
             </p>
-
           </div>
         </div>
 
@@ -198,40 +195,20 @@ h2 {
 
 
 /* 2nd page grid */
-.second-area-grid-container {
+.second-area-grid-container {  
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 2em;
-  /* Adjust the gap between grid items as needed */
+  grid-template-columns: 1fr 1fr; 
+  justify-items: center; 
+  align-items: center; 
+  grid-gap: 2em; 
   padding: 2em;
 }
 
-.grid-item-second-first {
-  grid-column: 2 / 3;
-  grid-row: 1 / 1;
-  border-radius: 0.3em 0.3em 0.3em 0.3em;
 
-  padding: 0.25em;
-  margin-top: 3em;
-  max-height: 1.5em;
-  font-size: 1.3em;
-
-  color: #ffffff;
-  border: 3px rgb(0, 255, 166) solid;
-  text-align: center;
-  transition: 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.grid-item-second-first:hover {
-  color: #000000;
-  background: #ffffff;
-}
 
 .grid-item-coffee {
   grid-column: 1 / 2;
-  grid-row: 0 / 3;
+  
   color: #000000;
   max-height: 4em;
   cursor: pointer;
@@ -242,7 +219,7 @@ h2 {
 
 .grid-item-coffee-text {
   grid-column: 2 / 4;
-  grid-row: 1 / -1;
+  grid-row: 2;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.2);
   
@@ -255,22 +232,6 @@ h2 {
   font-size: 1.5em;
 }
 
-.grid-item-second-third {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  border: 3px rgb(255, 65, 65) solid;
-  border-radius: 0.2em;
-
-  padding: 0.25em;
-  margin-top: 6em;
-  max-height: 1.5em;
-
-  font-size: 1.3em;
-  color: #fff;
-
-  text-decoration: none;
-  transition: 0.3s ease-in-out;
-}
 
 .grid-item-second-third:hover {
   color: #000000;
@@ -279,7 +240,7 @@ h2 {
 
 .coffee-image {
   border-radius: 1em;
-  height: 18.8rem;
+  height: 90%;
 }
 
 
@@ -291,9 +252,7 @@ h2 {
     text-align: center;
   }
 
-  .coffee-image{
-    display: none;
-  }
+ 
 
 }
 
