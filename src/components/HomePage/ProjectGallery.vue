@@ -10,13 +10,12 @@
       
       <main class="image-gallery-grid-container">
 
-        <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item">
+        <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item"        >
           <div>
-            <router-link class="no-router-link-decorations" :to="item.to">
-
-              <h2>{{ item.text }}</h2>
+            <router-link class="no-router-link-decorations" :to="item.to">              
 
               <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
+              <h2>{{ item.text }}</h2>
               <figcaption>
                 <p>{{ item.caption }}</p>
               </figcaption>
@@ -132,8 +131,12 @@ h2 {
   color: rgb(255, 255, 255);
   text-align: left;
   padding-left: 0.33em;
-  font-size: 1.25rem;
+  padding-top: 0.5rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+  
 }
 
 .gallery-styling-h1-span {  
@@ -160,7 +163,7 @@ h2 {
   justify-content: center;
   display: flex;
   height: fit-content;
-  background: rgba(0, 0, 0, 0.33);
+  background: rgba(0, 0, 0, 0.66);
   border-radius: .75rem;
 }
 
@@ -185,7 +188,13 @@ h2 {
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
   border-radius: 0.33em;  
+  padding-top: 3rem;
 }
+.grid-item:nth-child(-n+4) { /* remove top padding from first row */
+  padding-top: 0rem;
+}
+
+
 
 .gallery-component-image {
   padding: 0em;
@@ -220,7 +229,18 @@ figcaption {
   .image-gallery-grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  } 
+  .grid-item:nth-child(-n+4) {
+  padding-top: 3rem;
   }
+  .grid-item {
+    padding-top: 3rem; /* set padding to 2rem for all items */
+  }
+  .grid-item:nth-child(-n+2) {
+    padding-top: 0; /* override the previous rule */
+  }
+ 
+  
 }
 
 @media screen and (max-width: 50rem) {
@@ -233,7 +253,7 @@ figcaption {
   .image-gallery-grid-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-  }
+  }  
 
   .gallery-component-image {
     aspect-ratio: 4/3;
@@ -244,6 +264,10 @@ figcaption {
     width: fit-content;     
     border-radius: 0;
     padding-bottom: 1rem;    
+    padding-top: 0rem;   
+  }
+  .grid-item:nth-child(-n+4) {
+  padding-top: 0rem;
   }
 
   .grid-item::after{

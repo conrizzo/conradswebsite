@@ -109,6 +109,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-size: 100% 100%;
 }
 
 .home-text-links {

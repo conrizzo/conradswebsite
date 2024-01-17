@@ -25,7 +25,10 @@
           </ul>
           
           <div class="main-text-p">
+           
+             
             <h2>Project Information</h2>
+        
             <p>Some projects are below, there are a few other projects I'm working on that are not shown
               here.
               The array of projects below is dynamically loaded in as objects, images are dynamically inserted into
@@ -145,8 +148,8 @@ export default {
     },
 
   },
-  methods: {
-
+  methods: {   
+   
     hideImage() {
       this.isHovered = false;
       this.hoveredImage = "";
@@ -205,18 +208,21 @@ export default {
   z-index: 1;
   background: rgb(64, 64, 72);
   width: 50%;
-  margin-bottom: 0;
+  margin-bottom: 4rem;
 }
 
 .top-string-slice-of-title {
-  font-size: 2em;
-  
+  font-size: 2em;  
 }
+
+
+/* end arrow css */
 
 .custom-background-home-page {
   background-image: url('../images/blue_sky2.jpg');
   background-color: rgba(0, 0, 0, 0.1);
   background-blend-mode: multiply;
+  background-size: 100% 100%;
   background-attachment: fixed;
   position: relative;
 }
@@ -321,6 +327,8 @@ export default {
   z-index: 4;  
   max-width: 80rem;
   background: rgb(40, 40, 40);  
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 @media only screen and (max-width: 100rem) {

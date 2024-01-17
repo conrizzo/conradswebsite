@@ -142,7 +142,6 @@ const routes = [
     component: RenderTemplateView,
   },
 
-
   {
     path: '/yadhtriByppah',
     name: 'yadhtriByppahView',

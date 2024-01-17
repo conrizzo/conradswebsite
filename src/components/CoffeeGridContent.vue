@@ -164,6 +164,7 @@ h2 {
   align-items: center;
   padding-top: 2em;
   padding-bottom: 2em;
+  background-size: 100% 100%;
 }
 
 /*
