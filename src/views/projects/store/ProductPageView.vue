@@ -11,17 +11,20 @@
                 <div class="product-details">
                     <h1>{{ itemName }}</h1>
                     <ul class="no-bullets">
+                        <!--
                         <li>
-                            <span class="bold">Product ID:</span> {{ productId }}
+                            <span class="product-subtitle-font">Product ID:</span> {{ productId }}
+                        </li>
+                        -->
+                        <li>
+                            <span class="product-subtitle-font">Product:</span> {{ itemName }}
                         </li>
                         <li>
-                            <span class="bold">Product:</span> {{ itemName }}
+                            <span class="product-subtitle-font">Price:</span> €{{ searchInventoryById(itemIdentificationNumber).price }}
                         </li>
+                        <br> 
                         <li>
-                            <span class="bold">Price:</span> €{{ searchInventoryById(itemIdentificationNumber).price }}
-                        </li>
-                        <li>
-                            <span class="bold">Description:</span> 
+                            <span class="product-subtitle-font">Description</span><br> 
                             {{ searchInventoryById(itemIdentificationNumber).description }}
                         </li>
                     </ul>
@@ -127,7 +130,7 @@ h1 {
 .product-details {
     text-align: left;
     margin-left: 2rem;
-
+ 
     padding-top: 4.5rem;
     grid-column: 2 / 3;
 }
@@ -141,8 +144,9 @@ h1 {
     text-align: left;
 
 }
-.bold {
+.product-subtitle-font {
     font-weight: bold;
+    font-size: 1.25rem;
 }
 .no-bullets {
     list-style-type: none;

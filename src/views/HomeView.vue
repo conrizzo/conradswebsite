@@ -56,11 +56,13 @@
     <!-- Aside area begins  #2d2d2d; slate black color -->
     <div style="background: rgb(18,18,18);">
     </div>
-    <!-- 2nd section -->
+    <!-- 2nd section 
    
       <div>
         <FourWideImages />
       </div>
+      -->
+      <imagesOneRow />
       <!--
       <AsideContent class="first-aside-home-page">
         <template v-slot:aside-content>
@@ -77,12 +79,12 @@
    
     <!-- 3rd section -->
    
-      <div style="background: rgb(45, 45, 45);">
-        <section style="max-width: 80rem; margin: 0 auto;">
-        <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
-        </section>
-     </div>
-    <imagesOneRow />
+     
+      
+    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />  
+   
+    <TwoColumnsReversedGrid :titleText="reversedTitle" :content-text="reversedText"/>
+    
    
 
   </div>
@@ -98,11 +100,12 @@ import FourWideImages from "@/components/FourWideImages.vue";
 import imagesOneRow from "@/components/ImagesOneRow.vue";
 import TwoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
 import ProjectGallery from "@/components/HomePage/ProjectGallery.vue";
+import TwoColumnsReversedGrid from "@/components/TwoColumnsReversedGrid.vue";
 
 export default {
   name: "HomeView",
   components: {
-    FourWideImages, imagesOneRow, TwoColumnsGridContentTemplate, ProjectGallery
+    imagesOneRow, TwoColumnsGridContentTemplate, ProjectGallery, TwoColumnsReversedGrid
   },
 
   data() {
@@ -126,11 +129,18 @@ export default {
         ":)"
       ],
 
-      parentTitleTextOne: "What is the goal of this website?",
+      parentTitleTextOne: "What is the goal?",
       parentTextOne: "The goal of this website at the moment is to keep\
                       experimenting and learning. Make some fun projects.\
                       Drink some coffee (hopefully good coffee). Make lots of \
-                      mistakes and keep learning from them and improving."
+                      mistakes and keep learning from them and improving.",
+
+      reversedTitle: "approach",
+      reversedText: "The process is usually to experiment on some projects or concepts, write a lot of code to try ideas, edit and delete the code,\
+                     find what works, and then make it simpler.\
+                    This is essentially the learning process along with reading documentation and code off other projects to understand how it works. Regularly watching\
+                    YouTube videos where a concept is discussed is also part of the process.\
+                    In the end code is just a tool to make things, so as I make more projects I learn more along the way and more complicated projects become easier."
     };
   },
   computed: {
@@ -141,6 +151,13 @@ export default {
 
   },
   methods: {   
+
+    capitalizeFirstLetter(string) {
+          let capitalizedTitle = string.split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+      return capitalizedTitle
+    },
    
     hideImage() {
       this.isHovered = false;
@@ -198,11 +215,14 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 2em;
   z-index: 1;
-  background: rgb(18,18,18);
+  background: rgb(45, 45, 45); 
   width: 50%;
   
 }
 
+.capText {
+  text-transform: capitalize;
+}
 .top-string-slice-of-title {
   font-size: 2em;  
 }
@@ -292,7 +312,7 @@ export default {
 }
 
 .main-text-p {
-  background: rgb(18,18,18);
+  background: rgb(45, 45, 45); 
   padding: .5rem;
   padding-left: 1rem; padding-right: 1rem;
   color: rgb(255, 255, 255);  

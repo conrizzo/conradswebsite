@@ -28,7 +28,7 @@ export default {
   },
   data() {
     const coffeeImage = require('@/images/cup_of_coffee.jpg');
-    const coffeeFood = require('@/images/coffee_food.jpg');
+    const pizzaFood = require('@/images/store/products/5_self-made-pizza.jpg');
     const diffusionBird = require('@/images/diffBird.jpg');
     return {
       isContentVisible: false,
@@ -36,7 +36,7 @@ export default {
       imgArrayOfArrays: [
         [
 
-          { id: 1, imageSrc: coffeeFood, altText: "Eat yummy food", caption: "Food!" },
+          { id: 1, imageSrc: pizzaFood, altText: "Eat food", caption: "Food!" },
           { id: 2, imageSrc: coffeeImage, altText: "Coffee", caption: "Coffee!" },
           { id: 3, imageSrc: diffusionBird, altText: "Bird Watching", caption: "A bird!" },
           { id: 4, imageSrc: coffeeImage, altText: "Make projects", caption: "..while drinking coffee!" },

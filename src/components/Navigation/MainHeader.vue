@@ -3,7 +3,7 @@
 
   <header :class="headerClass">
     <!-- create a nav bar on every page-->
-    <div style="padding-left: 1rem; text-transform: uppercase; 
+    <div v-if="this.$route.path === '/'" style="padding-left: 1rem; text-transform: uppercase; 
     letter-spacing: .125rem; padding-top: .5rem; padding-bottom: .5rem; 
     color: #fff; font-size: 1.1rem;   background: rgb(0, 0, 0);">
     <router-link style="color: #fff;" class="text-links" to="/about">Thank you for visiting!</router-link>

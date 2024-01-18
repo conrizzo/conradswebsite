@@ -6,7 +6,7 @@
           This is an education thing to write about the h1 tag directly below this! 
           Doing inline block to underline only the text in a span, then aligning the outside text to the left works nicely!
       -->
-      <h1><span class='gallery-styling-h1-span'>MAKE AN ACTIVITY SELECTION</span></h1>
+      <h1><span class='gallery-styling-h1-span'>make an activity selection</span></h1>
       <div class="gallery-button-left" @click="changeImageArray('left')">&lt;</div>
       <div class="image-gallery-grid-container">
         <div v-for="item in imageArrayChoice" :key="item.id" class="grid-item">
@@ -32,13 +32,13 @@
     },
     data() {
         const coffeeImage = require('@/images/cup_of_coffee.jpg');
-        const coffeeFood = require('@/images/coffee_food.jpg');
+        const pizzaFood = require('@/images/store/products/5_self-made-pizza.jpg');
         const diffusionBird = require('@/images/diffBird.jpg');
       return {       
         imageArrayChoice: null,
         imgArrayOfArrays: [
             [
-              { id: 1, imageSrc: coffeeFood, altText: "Image 1", caption: "Delicious Food!" },
+              { id: 1, imageSrc: pizzaFood, altText: "Image 1", caption: "Delicious Food!" },
               { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "Fresh Coffee!" },
               { id: 3, imageSrc: diffusionBird, altText: "Image 3", caption: "Look, a bird!" },
               { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "More Coffee!" },
@@ -97,14 +97,14 @@
   }
   .gallery-styling-h1-span{    
     display: inline-block;
-    border-bottom: 2px solid rgb(255, 89, 89);
-  
-    font-size: 1rem;
+    border-bottom: 2px solid rgb(255, 89, 89);  
+    font-size: 1.5rem;
     padding-left: 0.2rem;
     padding-bottom: none;
     border-bottom: none;
     margin-top: 1rem;    
     color: #fff;
+    text-transform: uppercase;
   }
 
   

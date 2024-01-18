@@ -95,6 +95,7 @@ h2 {
   font-size: 1.6em;
   padding: 0em 0em 1em 0em;
   line-height: 1.1em;
+  text-transform: capitalize;
 }
 
 .second-main-area {
@@ -125,10 +126,10 @@ h2 {
 .second-area-grid-container {
   
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr .75fr; 
   justify-items: center; 
   align-items: center; 
-  grid-gap: 1rem;
+  
   padding: 2rem;
 }
 
@@ -136,28 +137,25 @@ h2 {
   grid-column: 1;
   grid-row: 1;
   color: #ffffff;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
   height: fit-content;
   padding: 3em;
-  font-size: 1.5em;
-  text-align: left;
-  
+  font-size: 1.25rem;
+  line-height: 1.5;
+  text-align: left;  
 }
 
 .grid-item-coffee {
   grid-column: 2;
   grid-row: 1;
-  color: #ffffff;
-  
-  font-size: 1.5em;
-  
-  
+  color: #ffffff;  
+  font-size: 1.5em;  
 }
 
 .coffee-image {
   border-radius: 1em;
-  margin: 0 auto;
-  
+  margin: 0 auto;  
+  max-height: 19rem;
 }
 
 @media only screen and (max-width: 50rem) {
@@ -174,7 +172,7 @@ h2 {
   .second-area-grid-container {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    grid-gap: 1em;
+    
   }
 
   .grid-item-coffee {

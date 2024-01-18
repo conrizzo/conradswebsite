@@ -194,8 +194,6 @@ h2 {
   padding-top: 0rem;
 }
 
-
-
 .gallery-component-image {
   padding: 0em;
   margin: 0em;
