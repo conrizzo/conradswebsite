@@ -19,8 +19,6 @@
 </template>
   
 <script>
-
-
 export default {
   name: 'ImageGallery',
   compontents: {
@@ -40,8 +38,7 @@ export default {
           { id: 2, imageSrc: coffeeImage, altText: "Coffee", caption: "Coffee!" },
           { id: 3, imageSrc: diffusionBird, altText: "Bird Watching", caption: "A bird!" },
           { id: 4, imageSrc: coffeeImage, altText: "Make projects", caption: "..while drinking coffee!" },
-
-          // Add more items as needed :)
+         
         ],
       ]
 

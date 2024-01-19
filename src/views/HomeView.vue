@@ -12,15 +12,15 @@
           <ul class="main-text-ul">
             <li>
               <span>Welcome to <a 
-                style="background: rgb(255, 225, 161); padding-left: 0.25rem; padding-right: 0.25rem;" class="home-text-links" href="https://github.com/conrizzo">Conrad's</a> Website</span>
+                class="home-text-links list-links-text-decoration" href="https://github.com/conrizzo">Conrad's</a> Website</span>
             </li>
             <li>
-              <span><router-link style="background: rgb(161, 244, 255);  padding-left: 0.25rem; padding-right: 0.25rem;"
-                  class="home-text-links" to="/about">About</router-link> this website.</span>
+              <span><router-link 
+                  class="home-text-links list-links-text-decoration" to="/about">About</router-link> this website.</span>
             </li>
             <li>
               <span>Crafted under
-                the influence of <a style="background: rgb(255, 170, 161);  padding-left: 0.25rem; padding-right: 0.25rem;" class="home-text-links" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></span>
+                the influence of <a class="home-text-links list-links-text-decoration" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></span>
             </li>
           </ul>
           
@@ -140,7 +140,9 @@ export default {
                      find what works, and then make it simpler.\
                     This is essentially the learning process along with reading documentation and code off other projects to understand how it works. Regularly watching\
                     YouTube videos where a concept is discussed is also part of the process.\
-                    In the end code is just a tool to make things, so as I make more projects I learn more along the way and more complicated projects become easier."
+                    In the end code is just a tool to make things, so as I make more projects\
+                    I learn more along the way and more complicated projects become easier.\
+                    The rewarding thing is to conceptualize a project, then actually be able to build it."
     };
   },
   computed: {
@@ -272,23 +274,24 @@ export default {
 }
 
 .home-text-links {
-  color: rgb(18, 18, 18);
-
+  color: rgb(255, 255, 255);
   font-weight: 500;
   border-bottom: 3px solid rgb(0, 255, 204);
-  text-decoration: none;
-
+  text-decoration: none; 
 }
 
 .home-text-links:is(:hover, :focus) {
-  border-bottom: 3px solid rgb(0, 255, 204);
-  
-  background: rgb(0, 255, 204) !important;
+  background: rgb(0, 255, 204); 
 }
 
 .home-text-links:active {
   color: rgb(255, 89, 89);
 }
+
+.list-links-text-decoration{
+  padding-left: 0.25rem; 
+  padding-right: 0.25rem;  
+}   
 
 .main-text-container {
   display: flex;
@@ -365,12 +368,18 @@ export default {
     padding-right: 2rem;
     padding-bottom: 10rem;
   }
+
+  .center-bottom-main-area-box {  
+  padding-bottom: 2rem;
+}
 }
 
 @media only screen and (max-width: 60rem) {
   .main-text-container {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  
 }
 
 @media only screen and (max-width: 50rem) {

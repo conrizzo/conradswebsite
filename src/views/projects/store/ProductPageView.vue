@@ -29,7 +29,7 @@
                         </li>
                     </ul>
                     <div style="padding-top: 1rem;">
-                        <button style="margin-right: 0.5em;" @click="addToCartClicked(productId);" class="clean-button">
+                        <button style="margin-right: 0.5em;" @click="addToCartClicked(productId);" class="add-to-cart-button">
                             Add to cart</button>
                     </div>
                 </div>
@@ -152,6 +152,20 @@ h1 {
     list-style-type: none;
 }
 
+.add-to-cart-button{
+  background: rgb(244, 67, 54);
+  
+  padding: 0.5rem 2rem 0.5rem 2rem;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.add-to-cart-button:hover{
+  background: rgb(204, 3, 0); 
+}
 
 @media screen and (max-width: 50rem) {
     .grid-container {

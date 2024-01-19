@@ -32,10 +32,10 @@
 
         <div style="display: flex; justify-content: center; align-items: center;">
           <div>
-            <button style="margin-right: 0.25em" class="button-35" @click="resetAllData">
+            <button style="margin-right: 0.25em" class="button-35" type="reset" @click="resetAllData">
               Reset
             </button>
-            <button style="margin-right: 0.25em" class="button-35" @click="copyToClipboard">
+            <button style="margin-right: 0.25em" class="button-35" type="button" @click="copyToClipboard">
               Copy Result
             </button>
           </div>

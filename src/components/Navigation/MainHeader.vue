@@ -10,18 +10,9 @@
     </div>
     <nav class="nav-menu-class">
       <div style="display: flex; align-items: center;">
-        <router-link to="/" class="only-show-home-svg-at-mobile-size">
+        <router-link to="/" class="only-show-home-svg-at-mobile-size line">
           <!-- self made SVG image -->
-          <svg style="height: 3rem;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
-            <!-- Left roof -->
-            <line x1="10" y1="50" x2="50" y2="10" stroke="rgb(0, 255, 204)" stroke-width="4" />
-            <!-- Right roof -->
-            <line x1="90" y1="50" x2="50" y2="10" stroke="rgb(0, 255, 204)" stroke-width="4" />
-            <!-- House body -->
-            <line x1="20" y1="80" x2="80" y2="80" stroke="rgb(0, 255, 204)" stroke-width="4" />
-            <line x1="20" y1="40" x2="20" y2="80" stroke="rgb(0, 255, 204)" stroke-width="4" />
-            <line x1="80" y1="40" x2="80" y2="80" stroke="rgb(0, 255, 204)" stroke-width="4" />
-          </svg>
+          <img src="@/images/icons/house.svg" alt="House Icon">
         </router-link>
         <router-link style="padding: 0;" to="/">
           <div class="header-h2">ConradsWebsite.com</div>
@@ -111,37 +102,26 @@ export default {
 };
 </script>  
 
-<style scoped>    /* we will explain what these classes do next! 
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 2s ease;
-}
+<style scoped>
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
- */
-
-    .header-visible {
-      visibility: visible;
-      opacity: 1;
-      transition: opacity .66s ease;
+    .header-visible {     
+      transition: transform 0.5s ease;      
     }
 
     /* This visibility of header-hidden is not set to hidden to allow the transition effect to work */
     .header-hidden {    
-      /* visibility: hidden; */  
-      opacity: 0;
-      transition: opacity .66s ease;
+      /* visibility: hidden; */      
+      transform: translateY(-100%);
+      transition: transform 0.5s ease;
     }
 
     header {
       box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, .15);
       position: sticky;
       top: 0em;
-      z-index: 5;
+      z-index: 5;      
     }
+
 
     .about-menu:hover {
       outline: 2px solid rgb(255, 89, 89);
@@ -243,6 +223,10 @@ export default {
       margin-bottom: 0.25rem;
       margin-right: 0.25rem;
 
+    }
+    .only-show-home-svg-at-mobile-size:hover{     
+      background: rgb(229, 229, 229);
+      border-radius: 0.5rem;
     }
 
     @media (max-width: 38rem) {

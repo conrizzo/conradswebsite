@@ -3,16 +3,18 @@
     <div class="hidden" ref="content" :class="{ 'show': isContentVisible }">
       <!-- div to show/hide items within on scroll -->
       <div class="second-area-grid-container">
-          <div class="grid-item-coffee">
-            <img class="coffee-image" :src="coffee_image" alt="Image">
-          </div>
 
-          <div class="grid-item-text">
-            <h2>{{ titleText }}</h2>
-            <p>
-              {{ contentText }}
-            </p>
-          </div>
+        <div class="grid-item-coffee">
+          <img class="coffee-image" :src="coffee_image" alt="Image">
+        </div>
+
+        <div class="grid-item-text">
+          <h2>{{ titleText }}</h2>
+          <p>
+            {{ contentText }}
+          </p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -33,35 +35,28 @@ export default {
       default: 'This is the default text for the prop, anything can be added here in the parent component.',
     },
   },
-  // Component logic goes here
   data() {
-
     return {
       coffee_image: coffee_image,
       isContentVisible: false,
       isTextVisible: false,
     };
   },
-  mounted() {
-    //#####
+  mounted() {  
     const options = {
       root: null,
       rootMargin: '0px',
       threshold: 0.5,
     };
-
     const observer = new IntersectionObserver(this.handleIntersection, options);
     observer.observe(this.$refs.content);
-
   },
   methods: {
     handleIntersection(entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target === this.$refs.content) {
-            // Load content for first element
+          if (entry.target === this.$refs.content) {            
             this.isContentVisible = true;
-
           } else if (entry.target === this.$refs.content_text) {
             this.options.threshold = 0.8;
             this.isTextVisible = true;
@@ -71,10 +66,9 @@ export default {
     },
   },
 }
+</script>   
+  
 
-</script> 
-  
-  
 <style scoped>
 /* CSS for the home page */
 .hidden {
@@ -124,13 +118,12 @@ h2 {
 }
 
 .second-area-grid-container {
-  
   display: grid;
-  grid-template-columns: 1fr .75fr; 
-  justify-items: center; 
-  align-items: center; 
-  
+  grid-template-columns: 1fr .75fr;
+  justify-items: center;
+  align-items: center;
   padding: 2rem;
+  column-gap: 1rem;
 }
 
 .grid-item-text {
@@ -142,20 +135,31 @@ h2 {
   padding: 3em;
   font-size: 1.25rem;
   line-height: 1.5;
-  text-align: left;  
+  text-align: left;
 }
 
 .grid-item-coffee {
   grid-column: 2;
   grid-row: 1;
-  color: #ffffff;  
-  font-size: 1.5em;  
+  color: #ffffff;
+  font-size: 1.5em;
+  padding-bottom: 1rem;
 }
 
 .coffee-image {
-  border-radius: 1em;
-  margin: 0 auto;  
-  max-height: 19rem;
+  border-radius: .75rem;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 70rem) {
+  .grid-item-text {
+    font-size: 1em;
+    padding: 1em;
+  }
+
+  .grid-item-coffee {
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 50rem) {
@@ -172,27 +176,20 @@ h2 {
   .second-area-grid-container {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    
+  }
+
+  .grid-item-text {
+    grid-column: 1;
+    grid-row: 2;
   }
 
   .grid-item-coffee {
     grid-column: 1;
-    grid-row: none;
+    grid-row: 1;
   }
 
   .coffee-image {
-    width: 100%;
+    width: 50rem;
   }
 }
-
-@media only screen and (max-width: 70rem) {
-  .grid-item-text {
-    font-size: 1em;
-    padding: 1em;
-  }
-
-  .grid-item-coffee {
-    padding: 1em;
-    text-align: center;
-  }
-}</style>
+</style>

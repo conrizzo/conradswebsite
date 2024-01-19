@@ -14,7 +14,7 @@
             <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
           </router-link>
           <figcaption>{{ item.name }} €{{ item.price }}</figcaption>
-          <button @click="showArray(index, item.id);" class="clean-button">Add to cart</button>
+          <button type="button" @click="showArray(index, item.id);" class="add-to-cart-button">Add to cart</button>
         </div>
       </div>
 
@@ -177,6 +177,21 @@ h1 {
 .gallery-component-image:hover {
   filter: brightness(90%);
   cursor: pointer;
+}
+
+.add-to-cart-button{
+  background: rgb(244, 67, 54);
+  
+  padding: 0.5rem 2rem 0.5rem 2rem;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.add-to-cart-button:hover{
+  background: rgb(204, 3, 0); 
 }
 /* 4 images wide is 76rem, 5 images is about 94rem */
 @media (max-width: 94.5rem) {

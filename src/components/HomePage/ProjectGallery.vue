@@ -198,8 +198,8 @@ h2 {
   padding: 0em;
   margin: 0em;
   background-color: #ffffff;
-  transition: filter .25s ease;
-  max-height: 16rem;
+  transition: filter .25s ease;  
+  width: 100%;
   aspect-ratio: 4/3;
   border-radius: 0.5rem;
 }

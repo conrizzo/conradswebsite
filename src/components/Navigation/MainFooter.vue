@@ -36,9 +36,7 @@ export default {
 <style scoped>
 .footer-links:link {
   text-decoration: none;
-  color: rgb(11, 87, 208);
-  
-  
+  color: rgb(255, 255, 255);  
   /* text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4); */
 }
 
@@ -47,32 +45,27 @@ export default {
 }
 
 .footer-links:visited {
-  color: rgb(11, 87, 208);
+  color: rgb(255, 255, 255);
 }
 
 .footer-right-border{
-
   padding-right: 0.4em;
 }
 
 .text-area {
   max-width: 25em;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(45, 45, 45);
   padding-left: 1em;
   padding-top: 0.5em; 
   padding-bottom: 0.5em;
-  color:rgb(18,18,18);
-  
+  color:rgb(255, 255, 255);  
 }
 
-
-
 footer {    
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(18, 18, 18);
   color: #fff;  
   text-align: left;
   font-size: 1em;
-  line-height: 1.5;    
-  
+  line-height: 1.5;      
 }
 </style>
