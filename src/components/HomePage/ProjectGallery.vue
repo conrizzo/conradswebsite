@@ -243,7 +243,8 @@ figcaption {
 
 @media screen and (max-width: 50rem) {
   .image-gallery {
-    padding: .5rem;
+    padding: 1rem;
+    
   }  
 }
 
@@ -254,18 +255,22 @@ figcaption {
   }  
 
   .gallery-component-image {
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
     max-height: 25rem;   
   }
 
   .grid-item {
     width: fit-content;     
     border-radius: 0;
-    padding-bottom: 1rem;    
+    padding-bottom: 1.5rem;    
     padding-top: 0rem;   
   }
+  
   .grid-item:nth-child(-n+4) {
   padding-top: 0rem;
+  }
+  .grid-item:first-child {
+  padding-top: 1.5rem;
   }
 
   .grid-item::after{
@@ -283,7 +288,7 @@ figcaption {
   written without the not statement and reverse the border value set -- but this is interesting.
   */
   .grid-item:not(:last-child)::after {
-    border-top: 5px solid rgba(0, 0, 0, 0.5);
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
   }
 
 }

@@ -38,10 +38,10 @@
         imageArrayChoice: null,
         imgArrayOfArrays: [
             [
-              { id: 1, imageSrc: pizzaFood, altText: "Image 1", caption: "Delicious Food!" },
-              { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "Fresh Coffee!" },
-              { id: 3, imageSrc: diffusionBird, altText: "Image 3", caption: "Look, a bird!" },
-              { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "More Coffee!" },
+              { id: 1, imageSrc: pizzaFood, altText: "Image 1", caption: "Eat food!" },
+              { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "Have coffee!" },
+              { id: 3, imageSrc: diffusionBird, altText: "Image 3", caption: "Watch the birds!" },
+              { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "Time for more coffee!" },
            
               // Add more items as needed :)
             ],

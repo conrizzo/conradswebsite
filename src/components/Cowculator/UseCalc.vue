@@ -858,6 +858,15 @@ input:focus {
   border: 1px solid #42b883;
   box-shadow: 0 0 10px #42b883;
 }
+
+.cow-image {  
+  background-image: url(../../images/highland-cow.jpeg);
+  background-size: cover;
+  border-radius: 1rem;
+  border-top-left-radius: 0em;
+  border-top-right-radius: 0em;
+}
+
 @media only screen and (max-width: 600px) {
   .moo-cows-go-moo {
     top: 100%;

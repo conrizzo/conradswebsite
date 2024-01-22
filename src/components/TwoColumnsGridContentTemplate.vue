@@ -1,11 +1,11 @@
 <template>
-  <div class="second-main-area">
+  <div class="second-main-area" >
     <div class="hidden" ref="content" :class="{ 'show': isContentVisible }">
       <!-- div to show/hide items within on scroll -->
       <div class="second-area-grid-container">
 
         <div class="grid-item-coffee">
-          <img class="coffee-image" :src="coffee_image" alt="Image">
+          <img class="coffee-image" :src="contentImage" alt="Image">
         </div>
 
         <div class="grid-item-text">
@@ -22,6 +22,7 @@
     
 <script>
 import coffee_image from '@/images/generated_cup_of_coffee.jpg';
+import blueSky from '@/images/blue_sky2.jpg';
 
 export default {
   name: 'CoffeeGridContent',
@@ -34,6 +35,11 @@ export default {
       type: String,
       default: 'This is the default text for the prop, anything can be added here in the parent component.',
     },
+    contentImage: {
+      type: String,
+      default: coffee_image,
+    },
+    
   },
   data() {
     return {

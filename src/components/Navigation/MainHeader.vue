@@ -10,7 +10,7 @@
     </div>
     <nav class="nav-menu-class">
       <div style="display: flex; align-items: center;">
-        <router-link to="/" class="only-show-home-svg-at-mobile-size line">
+        <router-link to="/" class="only-show-home-svg-at-mobile-size">
           <!-- self made SVG image -->
           <img src="@/images/icons/house.svg" alt="House Icon">
         </router-link>
@@ -137,7 +137,7 @@ export default {
     }
 
     .header-h2 {
-      font-size: 0.8em;
+      font-size: 1em;
       color: rgb(128, 128, 128);
       padding-left: 0.5em;
       padding-right: 0.5em;
@@ -224,9 +224,13 @@ export default {
       margin-right: 0.25rem;
 
     }
-    .only-show-home-svg-at-mobile-size:hover{     
+    .only-show-home-svg-at-mobile-size:is(:hover){     
       background: rgb(229, 229, 229);
       border-radius: 0.5rem;
+    }
+
+    .only-show-home-svg-at-mobile-size:is(:focus, :active) img{
+      background: rgb(255, 255, 255);
     }
 
     @media (max-width: 38rem) {

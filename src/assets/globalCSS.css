@@ -1,3 +1,12 @@
+:root{
+  --fs-300: 0.9rem;
+  --fs-400: 1rem;
+  --fs-500: 1.1rem;
+  --fs-600: 1.2rem;
+  --fs-700: 1.3rem;
+  --fs-800: 2rem;
+}
+
 body {
     font-family: Helvetica, Arial, sans-serif;	
     min-height: 100svh;
@@ -193,11 +202,7 @@ h1 {
   margin: 20px;
   display: inline-block;
 }
-.cow-image {  
-  background-image: url(../images/highland-cow.jpeg);
-  background-size: cover;
-  border-radius: 12px;  
-}
+
 
 /* when media sizes adjust, the non-media needs to come first in parsing the code */
 .cow-lecture {
@@ -328,49 +333,7 @@ h1 {
 }
 
 
-/* Aside formatting */
 
-/* aside css */
-.main-content {
-  display: grid;
-  margin-left: 0em;
-  margin-right: 0em;
-  grid-template-columns: 80% 1fr;
-  gap: 0rem;
-}
-.aside-content {
-  min-height: 100svh;
-  justify-content: space-between;
-  flex-direction: column;  
-}
-.aside-text {
-  margin-left: 0.5em;
-  margin-right: 0.5em;  
-  color: #fff;
-  line-height: 1.5;
-  text-align: left;
-}
-/* end aside css */
-
-
-
-
-
-
-
-
-@media only screen and (max-width: 100rem) { 
-
-  .main-content {
-    grid-template-columns: 100%;
-    margin-left: 0em;
-    margin-right: 0em;    
-  }
-  .aside-content {
-    margin-top: 1rem;
-  }  
-
-}
 
 @media only screen and (max-width: 70rem) {
   .paragraph-text {
