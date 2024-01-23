@@ -22,7 +22,10 @@
             </li>
             <li>
               <span>Crafted under
-                the influence of <a class="home-text-links list-links-text-decoration" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a></span>
+                the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
+                per day.
+              <br>
+              </span>
             </li>
           </ul>
 
@@ -320,8 +323,8 @@ export default {
   color: rgb(255, 255, 255);
   padding: 0.5rem;
   padding-bottom: 2rem;
-  padding-left: 2rem;
-  list-style-type: none;
+  padding-left: 3rem;
+  
   padding-top: 2.5rem;
   
 }

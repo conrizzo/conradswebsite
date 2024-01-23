@@ -23,10 +23,12 @@
         showDiagramButtonText }}</button>
     </div>
   </div>
-
+  
   <div v-if="showDiagramModal">
     <DiagramModal @close="toggleDiagramModal" />
+    
   </div>
+ 
 </template>
 
 <script>
@@ -71,7 +73,12 @@ export default {
     },
     toggleDiagramModal() {
       this.showDiagramModal = !this.showDiagramModal;
-    }
+    },
+    fetchStore(){
+      fetch('https://fakestoreapi.com/products')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+    },
   }
 }
 </script>

@@ -5,10 +5,10 @@
     <div class="center-content-within">
       <div style="width: 80rem;">
         <twoColumnsGridContentTemplate :titleText="titleText" :content-text="contentText" :content-image="birdPicture"
-          style="background: rgba(39, 39, 39, 0.66);" />
+          style="background: rgba(22, 22, 22,.9);" />
       </div>
 
-      
+
     </div>
     <div class="language-container">
       <span class="language-arrow-text tooltip">{{ arrowText }}
@@ -35,7 +35,7 @@
             <h1>About</h1>
             <ul>
               <li>
-                This website is made by me (Conrad) using primarily <a href="https://vuejs.org/" class="text-links"
+                This website is made by me (Conrad) and heavily uses <a href="https://vuejs.org/" class="text-links"
                   style="color: #42b883;">Vue 3 (Vue.js)</a>
                 for its reactivity and interactivity. It's been a continuous project.
               </li>
@@ -59,29 +59,32 @@
               </li>
             </ul>
           </section>
-          <!-- German Section -->  
+          <!-- German Section -->
           <section v-show="languageButtonText === 'Switch to English'" class="each-section">
             <h1>About</h1>
             <ul>
               <li>
-                Diese Website wurde von mir (Conrad) selbst erstellt, hauptsächlich mit <a href="https://vuejs.org/" class="text-links"
-                  style="color: #42b883;">Vue 3 (Vue.js)</a> 
+                Diese Website wurde von mir (Conrad) selbst erstellt, weitgehend mit <a href="https://vuejs.org/"
+                  class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
                 für seine Reaktivität und Interaktivität.
               </li>
               <li>
-                Sie wird auf meinem <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> mit GitHub Pages gehostet.
+                Sie wird auf meinem <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> mit
+                GitHub Pages gehostet.
               </li>
               <li>
-                Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly. 
+                Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind Vue.js,
+                JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.
                 In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen.
               </li>
               <li>
-                Ich habe damit begonnen, Vue.js zu lernen, als ich am Bioinformatik-Toolkit am Max-Planck-Institut für Biologie in Tübingen, Deutschland, gearbeitet habe.
+                Ich habe damit begonnen, Vue.js zu lernen, als ich am Bioinformatik-Toolkit am Max-Planck-Institut für
+                Biologie in Tübingen, Deutschland, gearbeitet habe.
               </li>
               <li>
                 Außerdem habe ich begonnen <a class="text-links"
-                  href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a
-                  class="text-links" href="https://astro.build/">Astro</a> framework verwendet.
+                  href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a class="text-links"
+                  href="https://astro.build/">Astro</a> framework verwendet.
               </li>
             </ul>
           </section>
@@ -103,27 +106,32 @@
 
             <p>
               I am now keen on enhancing my programming abilities and advancing as a developer.
-              Motivated and curious to work on front-end, back-end, or with more experience full-stack web applications. Potentially more
-              machine
-              learning and NLP is an option, but these machine learning subjects (while interesting) can get can very complicated quickly!
+              Every day I'm motivated and curious to learn more. Anything in Front-end, back-end, or full-stack web
+              applications piques my interest.
+              Potentially more machine
+              learning and NLP is an option, but these machine learning subjects (while incredibly interesting) can get
+              very complicated quickly!
               I look forward to new opportunities, am excited about learning more about websites, and confident in my
               ability to do problem-solving through code and research.
             </p>
-            
+
+            <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
+              target="_blank" rel="noopener noreferrer" class="text-links">Shared Google Document - For testing</a>
+
           </section>
-          <!-- German Section -->      
+          <!-- German Section -->
           <section v-show="languageButtonText === 'Switch to English'" class="each-section">
             <h2>Mehr über mich</h2>
             <p>
-              In 2022 habe ich ein Studium der Computational Linguistics an der Universität Tübingen in Deutschland
+              In 2022 habe ich ein Studium der Computerlinguistik an der Universität Tübingen in Deutschland
               abgeschlossen.
 
               Ich freue mich, dass ich erfolgreich einen Abschluss an einer deutschen Universität erworben habe. Vorher
               habe ich einen Biologie-Abschluss in den USA erhalten.
 
               Die meisten Informationen in der heutigen Welt werden auf eine oder andere Weise über das Internet
-              übertragen. 
-              
+              übertragen.
+
               Deshalb dachte ich, es wäre interessant, mich wieder
               mit Websites zu beschäftigen und zu lernen, wie ich meine eigenen Websites und Web-Anwendungen erstellen
               kann.
@@ -133,20 +141,21 @@
               Ich bin jetzt daran interessiert, meine Programmierfähigkeiten zu verbessern und mich als Entwickler
               weiterzuentwickeln.
 
-              Motiviert und neugierig bin ich, an Frontend, Backend oder mit mehr Erfahrung Full-Stack-Webanwendungen zu arbeiten.
+              Jeden Tag bin ich motiviert und neugierig mehr zu lernen. Alles rund um Front-end, back-end oder full-stack
+              Web-Anwendungen weckt mein Interesse.
 
               Potenziell auch Maschinenlernen und NLP (Natural Language Processing) möglich, aber diese
-              Maschinenlernthemen (obwohl interessant) können sehr schnell sehr komplex werden!
+              Maschinenlernthemen (obwohl unglaublich interessant) können sehr schnell sehr komplex werden!
 
               Ich freue mich auf neue Möglichkeiten, bin begeistert, mehr über Websites zu lernen und habe Vertrauen in
               meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.
-            </p>          
-          </section>    
-        </div>        
+            </p>
+          </section>
+        </div>
       </div>
-      
+
     </main>
-   
+
   </body>
 
   <!-- Deutsch -->
@@ -157,6 +166,8 @@
 import twoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
 import Prism from "prismjs";
 import "@/assets/globalCSS.css";
+
+
 
 export default {
   name: "HomeView",
@@ -171,7 +182,7 @@ export default {
       languageButtonText: "Deutsch wechseln",
       arrowText: "Deutsch",
 
-      titleText: "Conrads Website",
+      titleText: "About Conrads Website",
       contentText: "Thank you for visiting!\
                     Welcome to the personal website of Conrad Lundberg. This is primarily a place to test ideas and make some projects."
     }
@@ -190,6 +201,7 @@ export default {
         link.click();
       });
   },
+  
   mounted() {
     document.title = "About Conrad's Website";
     Prism.highlightAll();
@@ -216,14 +228,14 @@ export default {
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
   */
-  background: -webkit-linear-gradient(0deg, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%, rgb(251, 237, 215) 45%, rgba(185, 134, 193, 0.5) 60%, rgb(139, 114, 188) 100%);
-  background: linear-gradient(0deg, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 20%, rgb(251, 237, 215) 45%, rgba(185, 134, 193, 0.5) 60%, rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(0deg, rgb(54, 23, 34), 10%, rgba(161, 71, 78, 0.9), 30%, rgb(251, 237, 215) 45%, rgba(185, 134, 193, 0.5) 60%, rgb(139, 114, 188) 100%);
+  background: linear-gradient(0deg, rgb(54, 23, 34), 10%, rgba(161, 71, 78, 0.9), 30%, rgb(251, 237, 215) 45%, rgba(185, 134, 193, 0.5) 60%, rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;
 
   padding-top: 2rem;
   padding-bottom: 2rem;
-  
+
 }
 
 
@@ -240,23 +252,23 @@ h1 {
 
 h2 {
   text-align: left;
- 
+
 }
 
-.text-links{
-  color: #fda403; 
+.text-links {
+  color: #fda403;
   text-decoration: underline;
 }
 
 
 .text-container {
   display: flex;
-  justify-content: center; 
-  
+  justify-content: center;
+
 }
 
 .width-container {
-  background: rgba(39, 39, 39, 0.8);
+  background: rgba(22, 22, 22, .9);
   width: 80rem;
 }
 
@@ -267,20 +279,21 @@ h2 {
   font-size: var(--fs-600);
 }
 
-.each-section{
-  max-width: 45rem; 
-  padding-top: 1rem; 
-  padding-left: 2rem; 
+.each-section {
+  max-width: 45rem;
+  padding-top: 1rem;
+  padding-left: 2rem;
   padding-right: 1rem;
   padding-bottom: 1rem;
   color: rgb(235, 235, 235);
 }
+
 /* start arrow area */
 .language-container {
   display: flex;
   align-items: center;
   margin-left: 15rem;
-  
+
   font-size: 1.4rem;
 }
 
@@ -362,7 +375,7 @@ h2 {
 
 
 .language-button {
-  
+
   font-size: 0.8em;
   background: rgb(255, 255, 255);
   border-radius: 0rem;
@@ -379,16 +392,11 @@ h2 {
 
 @media screen and (max-width: 60rem) {
   .language-container {
-  
-  margin-left: 1rem;
-  
- 
-}
-  
-  
-}
-  
+
+    margin-left: 3.5rem;
 
 
+  }
 
-</style>
+
+}</style>

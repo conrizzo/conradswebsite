@@ -11,7 +11,9 @@
         <div v-for="(item, index) in slicedProductInventoryArray" :key="item.id" class="grid-item">
           <router-link
             :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price } }">
-            <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
+            <div class="img-wrapper">
+              <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
+            </div>
           </router-link>
           <figcaption>{{ item.name }} €{{ item.price }}</figcaption>
           <button type="button" @click="showArray(index, item.id);" class="add-to-cart-button">Add to cart</button>
@@ -258,7 +260,6 @@ h1 {
   }
 }
 
-
 figcaption {
   text-align: center;
   padding: 0.5em;
@@ -267,4 +268,29 @@ figcaption {
   font-size: 1em;
   font-weight: bold;
   color: rgb(18, 18, 18);
-}</style>
+}
+
+/* Does image zoom effect - start */
+.img-wrapper {
+    display: inline-block;
+    overflow: hidden;   
+    border-radius: 1rem;
+}
+
+.img-wrapper img {
+    transition: all .2s ease;
+    vertical-align: middle;
+}
+
+img:hover {
+    transform:scale(1.03);
+    -ms-transform:scale(1.03); /* IE 9 */
+    -moz-transform:scale(1.03); /* Firefox */
+    -webkit-transform:scale(1.03); /* Safari and Chrome */
+    -o-transform:scale(1.03); /* Opera */
+}
+/* Does image zoom effect - end */
+
+
+
+</style>

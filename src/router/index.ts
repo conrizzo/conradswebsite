@@ -28,6 +28,7 @@ const StoreView = () => import('../views/projects/store/StoreView.vue');
 const StoreCheckOutView = () => import('../views/projects/store/StoreCheckOutView.vue');
 const ProductPageView = () => import('../views/projects/store/ProductPageView.vue');
 const RenderTemplateView = () => import('../views/projects/RenderTemplate/RenderTemplateView.vue');
+const fetchdata = () => import('../views/projects/FakeStore/MainPageView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 // const about = () => import('../views/about.vue');
@@ -140,6 +141,12 @@ const routes = [
     path: '/projects/RenderTemplate/template',
     name: 'RenderTemplateView',
     component: RenderTemplateView,
+  },
+
+  {
+    path: '/projects/fetchdata',
+    name: 'fetchdata',
+    component: fetchdata,
   },
 
   {

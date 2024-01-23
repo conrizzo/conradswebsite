@@ -6,22 +6,20 @@
   </div>
   <div class="centerAll">
 
-    <div class="image-gallery hidden" ref="content" :class="{ 'show': isContentVisible }">
-      
+    <div class="image-gallery hidden" ref="content" :class="{ 'show': isContentVisible }">      
       <main class="image-gallery-grid-container">
+        <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item">         
+            <router-link class="no-router-link-decorations" :to="item.to"> 
 
-        <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item"        >
-          <div>
-            <router-link class="no-router-link-decorations" :to="item.to">              
-
-              <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
+              <div class="img-wrapper">
+                <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
+              </div>
               <h2>{{ item.text }}</h2>
               <figcaption>
                 <p>{{ item.caption }}</p>
               </figcaption>
 
-            </router-link>
-          </div>
+            </router-link>          
         </div>
 
       </main>
@@ -222,6 +220,28 @@ figcaption {
 .gallery-component-image {   
     border-radius: 1rem;    
 }
+
+
+/* Does image zoom effect - start */
+.img-wrapper {
+    display: inline-block;
+    overflow: hidden;   
+    border-radius: 1rem;
+}
+
+.img-wrapper img {
+    transition: all .2s ease;
+    vertical-align: middle;
+}
+
+img:hover {
+  transform:scale(1.03);
+    -ms-transform:scale(1.03); /* IE 9 */
+    -moz-transform:scale(1.03); /* Firefox */
+    -webkit-transform:scale(1.03); /* Safari and Chrome */
+    -o-transform:scale(1.03); /* Opera */
+}
+/* Does image zoom effect - end */
 
 @media screen and (max-width: 70rem) {
   .image-gallery-grid-container {

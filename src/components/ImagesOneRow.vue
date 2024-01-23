@@ -127,6 +127,8 @@
     cursor: pointer;
     user-select: none;
     width: 1em;
+    border: 1px solid rgb(255, 255, 255);
+    border-right: none;
     
   }
   
@@ -141,6 +143,8 @@
     cursor: pointer;
     user-select: none;
     width: 1em;
+    border: 1px solid rgb(255, 255, 255);
+    border-left: none;
     
   }
   
