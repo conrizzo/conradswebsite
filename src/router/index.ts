@@ -28,7 +28,8 @@ const StoreView = () => import('../views/projects/store/StoreView.vue');
 const StoreCheckOutView = () => import('../views/projects/store/StoreCheckOutView.vue');
 const ProductPageView = () => import('../views/projects/store/ProductPageView.vue');
 const RenderTemplateView = () => import('../views/projects/RenderTemplate/RenderTemplateView.vue');
-const fetchdata = () => import('../views/projects/FakeStore/MainPageView.vue');
+const FetchDataView = () => import('../views/projects/FakeStore/MainPageView.vue');
+const WordHelperView = () => import('../views/projects/WordHelper/WordHelperView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 // const about = () => import('../views/about.vue');
@@ -146,7 +147,13 @@ const routes = [
   {
     path: '/projects/fetchdata',
     name: 'fetchdata',
-    component: fetchdata,
+    component: FetchDataView,
+  },
+
+  {
+    path: '/projects/WordHelper',
+    name: 'wordhelper',
+    component: WordHelperView,
   },
 
   {
@@ -187,17 +194,18 @@ auth.onAuthStateChanged(user => {
   // const currentRoute = window.location.pathname;
 
   // this should fix it invoking the next() function multiple times.
-  router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-    
-    // Wait for Firebase authentication to initialize
-    auth.onAuthStateChanged(user => {
-      if (requiresAuth && !user) {
-        next('/projects/firebasetest'); // Redirect to home page if user is not authenticated
-      } else {
-        next(); // Allow access to authorized or non-authorized pages
-      }
-    });
-  });
+router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
+  // Wait for Firebase authentication to initialize
+  const unsubscribe = auth.onAuthStateChanged(user => {
+    unsubscribe(); // Unsubscribe after getting the user state for the first time
+
+    if (requiresAuth && !user) {
+      next('/projects/firebasetest'); // Redirect to home page if user is not authenticated
+    } else {
+      next(); // Allow access to authorized or non-authorized pages
+    }
+  });
+});
 export default router;

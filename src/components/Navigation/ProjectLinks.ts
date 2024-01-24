@@ -16,5 +16,8 @@ export default [
   { id: 5,text: 'Game', to: '/projects/cowgame',caption:"A game made using Vue.js and TypeScript", imageSrc: "" },
   { id: 6,text: 'Sorting Algorithms', to: '/projects/sortingalgorithms',caption:"Made this to test some sorting algorithm outputs", imageSrc: "" },
   { id: 7,text: 'Skat Game', to: '/projects/cards',caption:"An attempt to build a card game, got lost figuring out the rules so it's still a prototype...", imageSrc: "" },
-  { id: 8,text: 'Fetch Data', to: '/projects/fetchdata',caption:"A simple experimental page that fetches api data and formats it.", imageSrc: "" },
+  { id: 8,text: 'Fetch Data', to: '/projects/fetchdata',caption:"A simple experimental page that fetches api data and formats it", imageSrc: "" },
+  { id: 9,text: 'Search Wordle Words', to: 'projects/wordhelper',caption:"Search Wordle words with TypeScript", imageSrc: "" },
+  
 ].map((link, index) => ({ ...link, imageSrc: images[index] }));
+

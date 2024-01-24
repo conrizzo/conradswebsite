@@ -1,7 +1,11 @@
 
-
+let cachedData: any = null;
 
 export async function fetchData() {
+
+  if (cachedData) {    
+    return cachedData;
+  }
   
   try {
     const response = await fetch('https://fakestoreapi.com/products');
@@ -11,11 +15,14 @@ export async function fetchData() {
     }
 
     const data = await response.json();    
-
+    cachedData = data;
+    
     return data;
 
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
+    return {message: 'There was a problem with the fetch operation:', error: error};
   }
+  
 }
 

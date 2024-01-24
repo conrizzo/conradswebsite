@@ -55,3 +55,4 @@ export default db
 
 // generate & export auth object
 export const auth = getAuth()
+

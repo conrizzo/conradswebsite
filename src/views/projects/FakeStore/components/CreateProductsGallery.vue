@@ -12,7 +12,10 @@
                             <img class="image-ratio" :src="product.image" :alt="product.title" />
                             <div style="padding-top: 3rem;">
                                 <h2>{{ product.title }}</h2>
-                                <p>{{ product.rating.rate }}</p>
+                                
+                                <span>Price: {{ product.price.toFixed(2) }}</span><br>
+                                <span>{{ product.rating.rate }}</span>
+                                {{ productRating(product.rating.rate) }}
                             </div>
                         </div>
                     </div>
@@ -26,10 +29,10 @@
 // Path: src/views/projects/FakeStore/MainPage.vue
 import { onMounted, ref } from 'vue';
 import { fetchData } from './getData';
-
+import { Product } from './types';
 export default {
     setup() {
-        const products = ref(null);
+        const products = ref<Product[]>([]);
         const isLoading = ref(false);
 
         // set products to the data from the api call in getData.ts
@@ -39,9 +42,19 @@ export default {
             isLoading.value = false;
         });
 
+        let productRating = (stars: number) => {   
+            const totalStars = Math.round(stars);        
+            let rating = '';
+            for (let i = 0; i < totalStars; i++) {
+                rating += '⭐';
+            }
+            return rating;
+        }
+
         return {
             products,
             isLoading,
+            productRating,
         };
     }
 }
@@ -51,12 +64,13 @@ export default {
 h2{
     font-size: 1rem;
 }
+
 .center-content {
     justify-content: center;
     display: flex;
     height: fit-content;
     
-    background: rgb(47, 47, 47);
+    background: rgb(90, 90, 90);
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
@@ -72,7 +86,6 @@ h2{
     padding-top: 1rem;
 }
 
-
 .each-item-format {
     max-width: 20rem;
 }
@@ -82,22 +95,24 @@ h2{
     max-width: 20rem;
 }
 
-@media screen and (max-width: 67em) {
+@media screen and (max-width: 45em) {
     .container {
         grid-template-columns: repeat(2, 1fr);
+        padding-left: 0rem;
+        padding-right: 0rem;
     }
     
 }
 
-@media screen and (max-width: 46em) {
+@media screen and (max-width: 67em) {
     
     h2{
     font-size: .8rem;
     }       
     .each-item-format {
-    max-width: calc(100%);
-    padding-right: 2rem;
-    padding-left: 2rem;
+    
+    padding-right: 1rem;
+    padding-left: 1rem;
     }
     .image-ratio {
     max-height: 100%;

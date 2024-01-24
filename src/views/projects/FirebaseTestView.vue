@@ -12,17 +12,7 @@
       </button>
     </div>
 
-    <article class="top-text-container">
-      <div class="top-text-sub-container">
-
-        <h1 v-if="!isLoggedIn">Sign In</h1>
-        <br>
-        <p class="login-information">
-          The sign in currently just allows message posting and routing to user authorized pages.
-        </p>
-
-      </div>
-    </article>
+    <span v-if="!isLoggedIn" class="not-logged-in">You are not logged in!</span>
 
 
     <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isLoggedIn">
@@ -60,29 +50,28 @@
 
     <div style="padding-top: 2em;">
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
-        <div style="color: #ff4a4a;"> {{ errorMessage }} </div>
-        <h2 style="color: #181818;">Submit Message!</h2>
-        <h2 v-if="!isLoggedIn" style="color: rgb(255, 89, 89);">You are not logged in!</h2>
+    <div class="error-message"> {{ errorMessage }} </div>
+    
+    
 
-        <div style="max-width: 40em;">
-          <div style="display: flex; flex-direction: column;">
-            <label for="Subject" style="color: #fff; align-self: flex-start; padding-left: 0.25rem;">Subject:</label>
-            <div style="display: flex;">
-              <input style="width: 23em;" type="text" placeholder="Subject" required v-model="name" name="submissionName"
-                maxlength="{{this.messageLength}}" ref="subjectInput">
-              <span style="color: #ff6b6b; margin-left: 0.5em; padding-top: 0.5em;"><span :style="textStyle">{{
-                name.length }}/{{ this.messageLength }}</span></span>
-            </div>
-          </div>
+    <div class="input-container">
+      <div class="input-group">
+        <label for="Subject" class="label">Subject:</label>
+        <div class="input-flex">
+          <input id="Subject" class="input" type="text" placeholder="Subject" required v-model="name" name="submissionName"
+            :maxlength="messageLength" ref="subjectInput">
+          <span class="input-length"><span :style="textStyle">{{ inputLength }}</span></span>
         </div>
-        <div style="display: flex; flex-direction: column;">
-          <label for="Message" style="color: #fff; align-self: flex-start; padding-left: 0.25rem;">Message:</label>
-          <textarea type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50"
-            rows="10"></textarea>
-        </div>
+      </div>
+    </div>
+    <div class="input-group">
+      <label for="Message" class="label">Message:</label>
+      <textarea id="Message" class="textarea" type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50"
+        rows="10"></textarea>
+    </div>
 
-        <button @click="createUser" class="button-35">Add Entry</button>
-      </form>
+    <button @click="createUser" class="button-35">Add Entry</button>
+  </form>
 
       <!-- message area -->
 
@@ -150,7 +139,10 @@ export default {
       return {
         color: this.name.length > 0 ? '#87ff7a' : '#ff6b6b'
       }
-    }
+    },
+    inputLength() {
+      return `${this.name.length}/${this.messageLength}`;
+    },
   },
   beforeUpdate() {
     if (auth.currentUser) {
@@ -241,10 +233,10 @@ export default {
     handleLogin() {
       // set login to true to confirm a user logged in
       this.isLoggedIn = true;
-      document.cookie = 'isLoggedIn=true; SameSite=Strict';
+      //document.cookie = 'isLoggedIn=true; SameSite=Strict';
       localStorage.setItem('isLoggedIn', 'true'); // store the authentication state in local storage
 
-      document.cookie = `userName=${this.userName}; SameSite=Strict`; // store the username in a cookie
+      //document.cookie = `userName=${this.userName}; SameSite=Strict`; // store the username in a cookie
       localStorage.setItem('userName', this.userName); // store the username in local storage        
     },
     // needs to be invoked from firebase - this is why it said signOut function didnt exist before
@@ -258,8 +250,8 @@ export default {
     handleLogout() {
       this.signOut();
       this.isLoggedIn = false;
-      document.cookie = 'isLoggedIn=false; SameSite=Strict';
-      document.cookie = `userName=${""}; SameSite=Strict`;
+      //document.cookie = 'isLoggedIn=false; SameSite=Strict';
+      //document.cookie = `userName=${""}; SameSite=Strict`;
       localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
       localStorage.removeItem('userName'); // remove the authentication state from local storage
     },
@@ -325,7 +317,50 @@ p.login-information {
 .button-35:hover {
   box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;
 }
+.error-message {
+  color: #ff4a4a;
+}
 
+.header {
+  color: #181818;
+}
+
+.not-logged-in {
+  color: rgb(255, 89, 89);
+}
+.input-container {
+  max-width: 40em;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  color: #fff;
+  align-self: flex-start;
+  font-weight: 600;
+  background-color: rgb(17, 255, 180);
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  padding: 0.25rem;
+}
+.input-flex {
+  display: flex;
+}
+.input {
+  width: 40em;
+  border-top-left-radius: 0;
+}
+.input-length {
+  color: #ff6b6b;
+  margin-left: 0.5em;
+  padding-top: 0.5em;
+}
+.textarea {
+  width: 100%;
+  border-top-left-radius: 0;
+}
 
 
 .addinput-form {
@@ -339,7 +374,7 @@ p.login-information {
 }
 
 input {
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(255, 255, 255);
   font-size: 1.25em;
   border-radius: 0.25em;
   border-width: 1px;
@@ -349,7 +384,7 @@ input {
 }
 
 textarea {
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(255, 255, 255);
   font-size: 1.5em;
   border-radius: 0.25em;
   border-width: 1px;
@@ -389,11 +424,11 @@ button {
 }
 
 input:focus {
-  border-color: rgb(0, 240, 0)
+  border-color: rgb(17, 255, 180);
 }
 
 textarea:focus {
-  border-color: rgb(0, 240, 0)
+  border-color: rgb(17, 255, 180);
 }
 
 @media only screen and (max-width: 800px) {
