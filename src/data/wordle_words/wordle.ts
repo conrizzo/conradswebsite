@@ -13005,6 +13005,9 @@ export function processWords(word: String) {
 const testInput = "d___m" // 'dream' works for example
 
 export function lettersMatching(guess_word: string, words: string[] = allWords): string[] {
+  
+  guess_word = guess_word.toLowerCase();
+
   const matchingWords = [];
   const notLetter = /[^a-zA-Z]/
 
