@@ -38,7 +38,7 @@
         />
       </div>
       <!-- loads in cowculator -->
-      <UseCalc></UseCalc>
+      <UseCalc/>
 
       <div class="main-cow-figure">
         <figure>
@@ -117,7 +117,9 @@ export default {
       imagePath: require("@/images/project_languages.jpg"), // Add the image path to the data object
     };
   },
-
+  mounted() {
+    document.title = "The Cowculator";
+  },
   methods: {
     toggleAboutCalc() {
       this.showAboutCalc = !this.showAboutCalc;

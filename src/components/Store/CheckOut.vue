@@ -77,8 +77,7 @@
             </div>
         </div>
 
-        <div class="total-shopping-cart-area">
-
+        <div>
             <div style="margin: 0 auto;">
                 <div :class="['total-cost-area', { 'lower-height-total-cost-area': totalQuantity < 5 }]">
                     <span v-if="totalQuantity < 5"><b>Subtotal ({{ totalQuantity }} items): €{{
@@ -406,10 +405,6 @@ h1 {
     background-color: #ff6c62;
 }
 
-.total-shopping-cart-area {
-    display: flex;
-    align-items: center;
-}
 
 .name-price-cart-formatting {
     display: inline-block;

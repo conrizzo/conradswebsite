@@ -5,31 +5,32 @@
     <div class="center-content-within">
       <div style="width: 80rem;">
         <twoColumnsGridContentTemplate :titleText="titleText" :content-text="contentText" :content-image="birdPicture"
-          style="background: rgba(22, 22, 22,.9);" />
+          style="background: linear-gradient(to right, rgba(0,0,0,.8) 50%, rgba(0, 0, 0, .78) 50%);" />
       </div>
 
 
     </div>
-    <div class="language-container">
-      <span class="language-arrow-text tooltip">{{ arrowText }}
-        <span class="tooltiptext">
-          CSS and Vue.js, not an image or drawn arrow!
-        </span>
-      </span>
-      <div style="transform: rotate(-55deg);">
-        <div class="arrow-container">
-          <div class="arrow">
-            <div class="curve"></div>
-            <div class="point"></div>
-          </div>
-        </div>
-      </div>
-      <button @click="language();" class="language-button" role="button">{{ languageButtonText
-      }}</button>
 
-    </div>
     <main class="text-container">
       <div class="width-container">
+        <div class="language-container">
+          <span class="language-arrow-text tooltip">{{ arrowText }}
+            <span class="tooltiptext">
+              CSS and Vue.js, not an image or drawn arrow!
+            </span>
+          </span>
+          <div style="transform: rotate(-55deg);">
+            <div class="arrow-container">
+              <div class="arrow">
+                <div class="curve"></div>
+                <div class="point"></div>
+              </div>
+            </div>
+          </div>
+          <button @click="language();" class="language-button" role="button">{{ languageButtonText
+          }}</button>
+        </div>
+        <div class="parabola"></div>
         <div class="center-content-within">
           <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section">
             <h1>About</h1>
@@ -37,7 +38,7 @@
               <li>
                 This website is made by me (Conrad) and heavily uses <a href="https://vuejs.org/" class="text-links"
                   style="color: #42b883;">Vue 3 (Vue.js)</a>
-                for its reactivity and interactivity. It's been a continuous project.
+                for its reactivity and interactivity. It's open-source and has been a continuous project.
               </li>
               <li>
                 It is hosted on <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> with
@@ -70,7 +71,7 @@
               </li>
               <li>
                 Sie wird auf meinem <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> mit
-                GitHub Pages gehostet.
+                GitHub Pages gehostet. Es ist Open Source und ein kontinuierliches Projekt.
               </li>
               <li>
                 Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind Vue.js,
@@ -114,10 +115,10 @@
               I look forward to new opportunities, am excited about learning more about websites, and confident in my
               ability to do problem-solving through code and research.
             </p>
-
+            <!--
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
               target="_blank" rel="noopener noreferrer" class="text-links">Shared Google Document - For testing</a>
-
+              -->
           </section>
           <!-- German Section -->
           <section v-show="languageButtonText === 'Switch to English'" class="each-section">
@@ -182,7 +183,7 @@ export default {
       languageButtonText: "Deutsch wechseln",
       arrowText: "Deutsch",
 
-      titleText: "About Conrads Website",
+      titleText: "ConradsWebsite",
       contentText: "Thank you for visiting!\
                     Welcome to the personal website of Conrad Lundberg. This is primarily a place to test ideas and make some projects."
     }
@@ -201,7 +202,7 @@ export default {
         link.click();
       });
   },
-  
+
   mounted() {
     document.title = "About Conrad's Website";
     Prism.highlightAll();
@@ -228,17 +229,30 @@ export default {
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
   */
-  background: -webkit-linear-gradient(0deg, rgb(54, 23, 34), 10%, rgba(161, 71, 78, 0.9), 30%, rgb(251, 237, 215) 45%, rgba(185, 134, 193, 0.5) 60%, rgb(139, 114, 188) 100%);
-  background: linear-gradient(0deg, rgb(54, 23, 34), 10%, rgba(161, 71, 78, 0.9), 30%, rgb(251, 237, 215) 45%, rgba(185, 134, 193, 0.5) 60%, rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(-10deg,rgb(27, 10, 15), 10%, rgb(54, 23, 34), 20%, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
+  background: linear-gradient(-10deg, rgb(27, 10, 15), 10%, rgb(54, 23, 34), 20%, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%),
+  linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5), rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;
-
   padding-top: 2rem;
   padding-bottom: 2rem;
-
+  z-index: 0;
 }
 
-
+#body::before {
+  content: "";
+  position: fixed;
+  bottom: 50%;
+  left: 200px;
+  width: 150px; 
+  height: 150px; 
+  background-color: rgb(255, 255, 245);
+  border-radius: 50%; 
+  transform: translate(-50%, -50%); 
+  filter: blur(20px); 
+  z-index: 0;
+  background-attachment: fixed;  
+}
 
 h1 {
   margin-bottom: 0em;
@@ -264,12 +278,14 @@ h2 {
 .text-container {
   display: flex;
   justify-content: center;
-
+  z-index: 1;
+  position: relative;  
 }
 
 .width-container {
   background: rgba(22, 22, 22, .9);
   width: 80rem;
+  padding-top: 2.2rem;
 }
 
 .center-content-within {
@@ -292,19 +308,21 @@ h2 {
 .language-container {
   display: flex;
   align-items: center;
-  margin-left: 15rem;
-
+  margin-left: 19.1rem;
+  
   font-size: 1.4rem;
 }
 
 .language-arrow-text {
   font-size: 0.9em;
-  margin-top: -2.5em;
-  margin-right: 4em;
+  margin-top: -4em;
+  margin-left: -10rem;
+  
   z-index: 4;
   transform: rotate(35deg);
   border-bottom: none;
-  color: rgb(255, 56, 56);
+  color: rgb(255, 255, 255);
+  position: absolute;
 }
 
 .tooltip:before {
@@ -326,8 +344,10 @@ h2 {
 .arrow {
   position: absolute;
   top: -320px;
-  left: -60px;
+  left: -50px;
 }
+
+
 
 .arrow .curve {
   border: 4px solid #ff5959;
@@ -384,19 +404,23 @@ h2 {
   padding: 1rem;
   z-index: 3;
   cursor: pointer;
+  
 }
+
 
 .language-button:hover {
   box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 70rem) {
   .language-container {
-
-    margin-left: 3.5rem;
-
-
+    margin-left: 30%;
   }
+}
 
-
-}</style>
+@media screen and (max-width: 40rem) {
+  .language-container {
+    margin-left: 45%;
+  }
+}
+</style>

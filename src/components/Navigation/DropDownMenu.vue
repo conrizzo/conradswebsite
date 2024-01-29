@@ -32,9 +32,7 @@ export default {
             links: ProjectLinks, // make the project links available to the template dynamically
 
             isDropdownOpen: false, // Initialize as closed
-            openTimeout: null, // Variable to store the timeout    
-            
-             
+            openTimeout: null, // Variable to store the timeout                            
         };
     },
     mounted() {
@@ -86,7 +84,7 @@ export default {
 .dropdown {
     position: relative;
     display: inline-block;
-    z-index: 5;
+    z-index: 5;  
 }
 
 .dropdown-content {
@@ -96,7 +94,7 @@ export default {
     text-align: left;
     padding: 0.15em;
     width: 10.4em;
-    background-color: white;
+    background-color: rgba(255,255,255,1);
     box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.4);
     transition: all 0.35s ease-in-out;
 }

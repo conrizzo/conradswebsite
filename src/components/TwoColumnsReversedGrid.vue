@@ -45,28 +45,25 @@ export default {
     };
   },
   mounted() {
-    //#####
     const options = {
       root: null,
       rootMargin: '0px',
       threshold: 0.5,
     };
-
-    const observer = new IntersectionObserver(this.handleIntersection, options);
-    observer.observe(this.$refs.content);
-
+    this.observer = new IntersectionObserver(this.handleIntersection, options);
+    this.observer.observe(this.$refs.content);
   },
   methods: {
     handleIntersection(entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           if (entry.target === this.$refs.content) {
-            // Load content for first element
             this.isContentVisible = true;
-
+            this.observer.unobserve(this.$refs.content);
           } else if (entry.target === this.$refs.content_text) {
             this.options.threshold = 0.8;
             this.isTextVisible = true;
+            this.observer.unobserve(this.$refs.content_text);
           }
         }
       });

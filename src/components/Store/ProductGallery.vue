@@ -167,7 +167,7 @@ h1 {
 }
 
 .gallery-component-image {
-  border-radius: 1em;
+  border-radius: .5rem;
   padding: 0em;
   margin: 0em;
   min-width: 256px;
@@ -274,7 +274,7 @@ figcaption {
 .img-wrapper {
     display: inline-block;
     overflow: hidden;   
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .img-wrapper img {

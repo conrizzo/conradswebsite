@@ -6,11 +6,10 @@
   </div>
   <div class="centerAll">
 
-    <div class="image-gallery hidden" ref="content" :class="{ 'show': isContentVisible }">      
+    <div class="image-gallery">      
       <main class="image-gallery-grid-container">
         <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item">         
-            <router-link class="no-router-link-decorations" :to="item.to"> 
-
+            <router-link class="no-router-link-decorations" :to="item.to">
               <div class="img-wrapper">
                 <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
               </div>
@@ -18,14 +17,10 @@
               <figcaption>
                 <p>{{ item.caption }}</p>
               </figcaption>
-
             </router-link>          
         </div>
-
       </main>
-
     </div>
-
   </div>
 </template>
   
@@ -34,17 +29,13 @@
 import ProjectLinks from '@/components/Navigation/ProjectLinks.ts';
 
 export default {
-  name: 'ImageGallery',
-  components: {
-
-  },
+  name: 'ImageGallery', 
   data() {
     const requireContext = require.context('@/images/projects', false, /\.jpg$/);
     const images = requireContext.keys().map(requireContext);
     
     return {      
       images,
-
       isContentVisible: false,
       imageArrayChoice: null,
       imgArrayOfArrays: [
@@ -54,56 +45,17 @@ export default {
           // optional 2nd array
         ],
       ]
-
-
     };
   },
-  mounted() {
-    
-
-    // Set the initioanl image array to the galleryItems array
+  mounted() {  
+    // Set the initial image array to the galleryItems array
     this.imageArrayChoice = this.imgArrayOfArrays[0]
-
-    //#####
-    const options = {
-      root: null, // Use the viewport as the root
-      rootMargin: '0px', // No margin applied to the root
-      threshold: 0.25, // Trigger when 50% of the element is visible
-    };
-    // Intersection Observer API -- this is used to load the handleIntersection method which
-    // loads items on the screen as they are scrolled to with a transition effect.
-    const observer = new IntersectionObserver(this.handleIntersection, options);
-
-    observer.observe(this.$refs.content);
-
-
-  },
-  computed: {
-    testTest() {
-      //console.log("testing", this.theProjectLinks);
-      return this.theProjectLinks;
-    },
+  
+    
   },
   methods: {
-
-
-
-    handleIntersection(entries) {
-      entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-          if (entry.target === this.$refs.content) {
-            // Load content for first element
-            this.isContentVisible = true;
-          }
-
-        }
-      });
-    },
-
-
+    
   },
-  // Component logic goes here
 }
 </script>
     
@@ -161,8 +113,7 @@ h2 {
   justify-content: center;
   display: flex;
   height: fit-content;
-  background: rgba(0, 0, 0, 0.66);
-  border-radius: .75rem;
+  background: rgba(40, 40, 40,.9);  
 }
 
 .image-gallery {

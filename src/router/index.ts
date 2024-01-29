@@ -30,6 +30,7 @@ const ProductPageView = () => import('../views/projects/store/ProductPageView.vu
 const RenderTemplateView = () => import('../views/projects/RenderTemplate/RenderTemplateView.vue');
 const FetchDataView = () => import('../views/projects/FakeStore/MainPageView.vue');
 const WordHelperView = () => import('../views/projects/WordHelper/WordHelperView.vue');
+const CountryMusicExperimentView = () => import('../views/projects/CountryMusicExperiment/CountryMusicExperimentView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 // const about = () => import('../views/about.vue');
@@ -160,6 +161,12 @@ const routes = [
     path: '/yadhtriByppah',
     name: 'yadhtriByppahView',
     component: yadhtriByppahView,
+  },
+
+  {
+    path: '/projects/country_music_experiment',
+    name: 'countrymusicexperiment',
+    component: CountryMusicExperimentView,
   },
 
   // Keep this at the end of the array so only unmatched paths go here

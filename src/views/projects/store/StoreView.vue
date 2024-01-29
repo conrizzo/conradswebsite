@@ -13,20 +13,15 @@
         </div>
       </div>
     </div>
-    <ProductGallery @add-to-cart="updateValue" />
-    <!-- <ThreeWideGrid @add-to-cart="updateValue"/> -->
-    <CheckOut :propProductIndexInGallery="propIndex" :propProductIdentificationNumber="propProduct" :propUpdate="updated">
-    </CheckOut>
-    <!-- <CheckOut :active-selection="activeSelection"></CheckOut> -->
+    <ProductGallery @add-to-cart="updateValue" />   
+    <CheckOut :propProductIndexInGallery="propIndex" :propProductIdentificationNumber="propProduct" :propUpdate="updated"/>     
     <div style="background: #fff; display: inline-block;">
       <button @click="showDiagramAndSourceCode, toggleDiagramModal()" class='clean-button'>{{
         showDiagramButtonText }}</button>
     </div>
-  </div>
-  
+  </div>  
   <div v-if="showDiagramModal">
-    <DiagramModal @close="toggleDiagramModal" />
-    
+    <DiagramModal @close="toggleDiagramModal" />    
   </div>
  
 </template>
@@ -54,8 +49,6 @@ export default {
       showDiagramModal: false,
     };
   },
-
-
   methods: {
     updateValue(productNumber, GalleryIndex) {
       this.propProduct = productNumber,
@@ -73,15 +66,12 @@ export default {
     },
     toggleDiagramModal() {
       this.showDiagramModal = !this.showDiagramModal;
-    },
-    fetchStore(){
-      fetch('https://fakestoreapi.com/products')
-            .then(res=>res.json())
-            .then(json=>console.log(json))
-    },
+    },    
   }
 }
 </script>
+
+
 
 <style scoped>
 h1 {
@@ -117,29 +107,23 @@ h1 {
   background-color: #f5f5f5;
   padding: 2.5em 5em 5em 5em;
 }
-
 .main-banner-text-container {
   padding: 10em;
 }
-
 .store-show-diagram-button {
   margin: 1em;
   background: rgb(244, 67, 54);
   color: #fff;
 }
-
 .store-show-diagram-button:hover {
   background-color: #ff6c62;
   color: #fff;
 }
-
 @media screen and (max-width: 60rem) {
-
   .store-background {
     background-color: #f5f5f5;
     padding: 1em;
   }
-
   .main-banner-text-container {
     padding: 1em;
   }
@@ -149,5 +133,4 @@ h1 {
     padding: 0.5em;
   }
 }
-
-/* Your styles here */</style>
+</style>

@@ -112,7 +112,7 @@
   .centerAll{
     justify-content: center;
     display: flex;  
-    background:rgb(18, 18, 18);
+    background:rgb(40, 40, 40);
     
   }
   

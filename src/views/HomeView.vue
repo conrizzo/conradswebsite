@@ -2,91 +2,49 @@
   <div id="body">
     <section class="center-top-main-area-box">
       <div class="website-text-boxes">
-
         <h1 class="title">
           <span class="top-string-slice-of-title">
             <span>{{ inputStringShuffled }}</span>
           </span>
         </h1>
-
         <div class="main-text-container">
-
           <ul class="main-text-ul">
             <li>
-              <span>Welcome to <a 
-                class="home-text-links list-links-text-decoration" href="https://github.com/conrizzo">Conrad's</a> Website</span>
+              <span>Welcome to <a class="home-text-links list-links-text-decoration"
+                  href="https://github.com/conrizzo">Conrad's</a> Website</span>
             </li>
             <li>
-              <span><router-link 
-                  class="home-text-links list-links-text-decoration" to="/about">About</router-link> this website.</span>
+              <span><router-link class="home-text-links list-links-text-decoration" to="/about">About</router-link> this
+                website.</span>
             </li>
             <li>
               <span>Crafted under
-                the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration" href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
+                the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration"
+                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
                 per day.
-              <br>
+                <br>
               </span>
             </li>
           </ul>
-
           <div class="center-image">
             <img style="height: 9rem; padding-right: 1rem;" class="bird-image" :src="birdDrawing" alt="Bird Drawing">
             <img style="height: 9rem;" :src="aCoffee" alt="Coffee image">
-            
-           
-          </div>         
-          
+          </div>
         </div>
       </div>
     </section>
     <div class="custom-background-home-page">
       <div class="center-bottom-main-area-box">
         <section class="top-home-content-section">
-
           <div class='under-title-caption'>
           </div>
-
           <ProjectGallery />
-          <!-- Main bullets -->
-
         </section>
       </div>
-      <!-- <img class="aside-coffee-image" src="https://raw.githubusercontent.com/conrizzo/conradswebsite/master/src/images/CowGame.jpg" alt="Coffee image"> -->
     </div>
-    <!-- Aside area begins  #2d2d2d; slate black color -->
-    <div style="background: rgb(18,18,18);">
-    </div>
-    <!-- 2nd section 
-   
-      <div>
-        <FourWideImages />
-      </div>
-      -->
-      <imagesOneRow />
-      <!--
-      <AsideContent class="first-aside-home-page">
-        <template v-slot:aside-content>
-          <figure style="display: inline-block;">
-            <img class="bird-image" :src="birdDrawing" alt="Bird Drawing">
-            <figcaption class="aside-text" style="display: block;">
-              <i>Rust code that animates the title is: </i>
-              <a class="home-text-links" href="https://blog.conradswebsite.com/blog/rust-web-assembly-example/">here.</a>
-            </figcaption>
-          </figure>
-        </template>
-      </AsideContent>
-      -->
-   
-    <!-- 3rd section -->
-   
-     
-      
-    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />  
-   
-    <TwoColumnsReversedGrid :titleText="reversedTitle" :content-text="reversedText"/>
-    
-   
-
+    <imagesOneRow />
+    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
+    <TwoColumnsReversedGrid :titleText="reversedTitle" :content-text="reversedText" />
   </div>
 </template>
 
@@ -152,15 +110,15 @@ export default {
     },
 
   },
-  methods: {   
+  methods: {
 
     capitalizeFirstLetter(string) {
-          let capitalizedTitle = string.split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+      let capitalizedTitle = string.split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
       return capitalizedTitle
     },
-   
+
     hideImage() {
       this.isHovered = false;
       this.hoveredImage = "";
@@ -217,22 +175,16 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 2em;
   z-index: 1;
-  background: rgb(0, 171, 137);
-  
-  
- 
-
-  
+  background: linear-gradient(to right, orange, red, pink);
 }
 
 .capText {
   text-transform: capitalize;
 }
+
 .top-string-slice-of-title {
-  font-size: 2em;  
+  font-size: 2em;
 }
-
-
 /* end arrow css */
 
 .custom-background-home-page {
@@ -244,17 +196,6 @@ export default {
   position: relative;
 }
 
-.custom-background-home-page::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(5deg, rgba(0, 0, 0, .05) 20%, transparent 20%,
-      transparent 80%, rgba(0, 0, 0, .05) 80%), linear-gradient(100deg, rgba(0, 0, 0, .05) 10%,
-      transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 90%);
-}
 
 .center-top-main-area-box {
   display: flex;
@@ -269,14 +210,24 @@ export default {
   position: relative;
 }
 
+.center-top-main-area-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(5deg, rgba(0, 0, 0, .05) 20%, transparent 20%,
+      transparent 80%, rgba(0, 0, 0, .05) 80%), linear-gradient(100deg, rgba(0, 0, 0, .05) 10%,
+      transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 90%);
+}
 
 .center-bottom-main-area-box {
   display: flex;
   justify-content: center;
   padding-bottom: 4rem;
 }
-
-.center-image{
+.center-image {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -284,29 +235,24 @@ export default {
   padding-top: 1rem;
   background: rgb(18, 18, 18);
 }
-
 .home-text-links {
   color: rgb(255, 255, 255);
   font-weight: 500;
   border-bottom: 3px solid rgb(0, 171, 137);
-  text-decoration: none;  
+  text-decoration: none;
 }
-
 .home-text-links:is(:hover, :focus) {
-  background: rgb(0, 255, 204);    
-  color: rgb(18,18,18);
+  background: rgb(0, 255, 204);
+  color: rgb(18, 18, 18);
   border-bottom: none;
 }
-
 .home-text-links:active {
   color: rgb(255, 89, 89);
 }
-
-.list-links-text-decoration{
-  padding-left: 0.25rem; 
-  padding-right: 0.25rem;  
-}   
-
+.list-links-text-decoration {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
 .main-text-container {
   display: flex;
   justify-content: left;
@@ -316,45 +262,33 @@ export default {
   gap: 0rem;
   color: #ffffff;
   font-size: 1.6em;
-  text-align: left;  
+  text-align: left;
 }
-
 .main-text-ul {
   color: rgb(255, 255, 255);
   padding: 0.5rem;
   padding-bottom: 2rem;
   padding-left: 3rem;
-  
   padding-top: 2.5rem;
-  
 }
-
-
-
 .first-aside-home-page {
   background: rgb(18, 18, 18);
   z-index: 1;
   padding: 1em;
 }
-
-
 .top-home-content-section {
   z-index: 4;
   padding-top: 2rem;
   max-width: 80rem;
 }
-
 .website-text-boxes {
-  z-index: 4;  
+  z-index: 4;
   width: 80rem;
-  background: rgb(40, 40, 40);  
+  background: rgb(40, 40, 40);
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
-
 @media only screen and (max-width: 100rem) {
-  
-
   .center-bottom-main-area-box {
     display: flex;
     justify-content: center;
@@ -362,18 +296,14 @@ export default {
     padding-right: 2rem;
     padding-bottom: 10rem;
   }
-
-  .center-bottom-main-area-box {  
-  padding-bottom: 2rem;
+  .center-bottom-main-area-box {
+    padding-bottom: 2rem;
+  }
 }
-}
-
 @media only screen and (max-width: 60rem) {
   .main-text-container {
     grid-template-columns: repeat(1, 1fr);
   }
-
-  
 }
 
 @media only screen and (max-width: 50rem) {
@@ -385,13 +315,7 @@ export default {
 
   .top-home-content-section {
     z-index: 4;
-    
   }
-
-  
-
- 
-
- 
-}</style>
+}
+</style>
 

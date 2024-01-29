@@ -36,6 +36,7 @@
 
       <div style="display: flex; align-items: center;">
         <router-link class="hide-sign-in-text-at-low-res" to="/projects/login">Sign In</router-link>
+        <!--
         <div>
           <div class="header-logo-container">
             <a class="github-logo-link" href="https://github.com/conrizzo/conradswebsite">
@@ -50,6 +51,7 @@
             <span style="font-size: 0.5em; margin-right: 1rem; margin-left: -0.5em;">This websites code</span>
           </a>
         </div>
+        -->
       </div>
     </nav>
   </header>
@@ -162,7 +164,9 @@ export default {
       padding-left: .5rem;
     }
 
-    .navigation-menu {}
+    .navigation-menu {
+      margin-right: 9rem;
+    }
 
     nav {
       font-size: 1.25em;
@@ -211,8 +215,7 @@ export default {
       max-height: 32px;
     }
 
-    .hide-sign-in-text-at-low-res {
-      border-right: 1px solid rgb(218, 220, 224);
+    .hide-sign-in-text-at-low-res {      
       margin-right: 0.5em;
       padding-right: 0.4em;
       font-size: 1em;
@@ -233,7 +236,7 @@ export default {
       background: rgb(255, 255, 255);
     }
 
-    @media (max-width: 38rem) {
+    @media (max-width: 45rem) {
       .header-h2 {
         display: none;
       }
@@ -251,7 +254,7 @@ export default {
 
     }
 
-    @media (max-width: 37rem) {
+    @media (max-width: 45rem) {
       .github-logo-link {
         display: none;
       }

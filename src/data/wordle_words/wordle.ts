@@ -12987,33 +12987,36 @@ const allWords = [...answers, ...allowedGuesses]
 
 export { allWords };
 
-export function processWords(word: String) {
-  const guess_word = word.toLowerCase().split('');
-
-  // Filter words
-  const filteredWords = allWords.filter(item => {
-    const wordLetters = item.toLowerCase().split('');
-
-    // Check if every letter in guess_word is included in word
-    return guess_word.every(letter => wordLetters.includes(letter));
-  });
-
-  console.log(filteredWords);
+// This helper function excludes words with any letters in them
+function getExcludedWords(words: string[] = allWords, matchingWords: Array<string>, excludeLetters: string = '') {  
+  const exludeToLowerCase = excludeLetters.split('').map(letter => letter.toLowerCase());
+    const filteredWords: Array<string> = matchingWords.filter(word => 
+      exludeToLowerCase.every(letter => !word.includes(letter))
+    );
   return filteredWords;
 }
 
-const testInput = "d___m" // 'dream' works for example
+// This function finds wordes with any of these letters in them
+export function processWords(word: String, excludeLetters: string = '') {
+  const guess_word = word.toLowerCase().split('');
+  const answer = [];
+  // Filter words with callback function returning to itself
+  const filteredWords = allWords.filter(item => {
+    const wordLetters = item.toLowerCase().split('');
+    // Check if every letter in guess_word is included in word
+    return guess_word.every(letter => wordLetters.includes(letter));
+  });  
+  return getExcludedWords(undefined ,filteredWords , excludeLetters);
+}
 
-export function lettersMatching(guess_word: string, words: string[] = allWords): string[] {
-  
+// This function does exact matching of letters by their position
+export function lettersMatching(guess_word: string, excludeLetters: string = '', words: string[] = allWords): string[] {  
   guess_word = guess_word.toLowerCase();
-
-  const matchingWords = [];
-  const notLetter = /[^a-zA-Z]/
-
+  const matchingWords: Array<string> = [];
+  const notLetter = /[^a-zA-Z]/;    
+  
   for (const word of words) {
     let isMatching = true;
-
     for (let i = 0; i < guess_word.length; i++) {
       if (!notLetter.test(guess_word[i]) && guess_word[i] !== word[i]) {
         isMatching = false;
@@ -13024,9 +13027,8 @@ export function lettersMatching(guess_word: string, words: string[] = allWords):
     if (isMatching) {
       matchingWords.push(word);
     }
-  }
-  console.log(matchingWords);
-  return matchingWords;
+  } 
+  return getExcludedWords(undefined, matchingWords, excludeLetters);
 }
     
 

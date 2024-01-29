@@ -1,69 +1,92 @@
 <template>
   <div style="min-height: 800px;">
     <h1>Word assistant to find words for Wordle</h1>
+
     <div class="container">
       <div class="grid-box">
-        <section style="margin: 0 auto;">
-          <h2>Two ways to search at the moment</h2>
+
+        <section class="text-section">
+          <h2>What game is this designed to help solve? &rarr;
+            <a style="color: #42b983; text-decoration: underline;" class="text-links"
+              href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>
+          </h2>
+
           <p>
-            To match exact positions within the string use any non-letter for unknown letters in the word and click the
-            checkbox below the
-            search field.
-            <br>
-            <br>
-            For example: type "_r_a_" to search for words with the 2nd letter <b>r</b> and 4th letter <b>a</b>.
-            "b&nbsp;&nbsp;&nbsp;d" also works with 3 spaces to search for the 1st letter "<b>b</b>" and last letter
-            "<b>d</b>" in words.
-            "&*eam" will search for words with the 3rd letter "<b>e</b>", 4th letter "<b>a</b>", and 5th letter
-            "<b>m</b>".
-          </p>
-          <br>
-          <p>
-            Play <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a> here.
             Note: This is not an official Wordle site and all game references are property of the respective copyright
             owners.
-            This is just a project to search strings with TypeScript.
+            This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
           </p>
+
+
+          <div>
+            <span class="description-span">Instructions</span>
+          </div>
+          <p>
+            Typing letters in the <b>Include</b> field will
+            search for those letters in any position in a word.
+          </p>
+          <p>
+            In order to search for words with a specific letter in a specific position add anything other than a
+            letter between the letters.
+          </p>
+          <p>
+            <b>For example:</b> Type "_r_a_" to search for words with the 2nd letter
+            <b>r</b> and 4th letter <b>a</b>.
+            Typing "##eam" will search for words with the 3rd letter "<b>e</b>", 4th letter "<b>a</b>", and 5th letter
+            "<b>m</b>".
+          </p>
+
+          <p>
+            The "<b>Exclude</b>" field is optional and will exclude any words with the letters entered.
+            For example, if input in this field is "ab"
+            then all words with the letter "a" or "b" will be excluded.
+
+          </p>
+
         </section>
 
-        <div> 
-          <dialog class="close" :open="invalidInput">
-            <button @click="invalidInput = false;" class="close-button"></button>
-           <p>Error: To process inputs with anything other than letters you need to click the checkbox
-             that says: <br> "<b>Match Character Indices</b>"
-           </p>
-           <button autofocus class="clean-button dialog-button" @click="invalidInput = false;">Close</button>
-         </dialog>
+        <div>
+          <div class="submission-area">
+           
+              
+              <label class="include-label-text">Include ({{ inputLength }}):</label>
+              <input class="input-field-style" placeholder="Include words with these letters" type="text"
+                v-model="userInput" maxlength="5" />
 
+          
 
-          {{ inputLength }}
-          <input class="input-field-style" type="text" v-model="userInput" maxlength="5" />
+                <label class="include-label-text">Exclude:</label>
+             <input class="input-field-exclude-letters-style"
+                placeholder="Exclude words with these letters (optional)" type="text" v-model="userInputExcludeLetters"
+                maxlength="18" />
+        
+            <!--
+            <label>
+              <span class="character-indice-font">Match Indices</span>
+              <input class="check-box" type="checkbox" name="myCheckbox" v-model="checkboxValue"
+                @change="handleCheckboxChange">
+            </label>
+            -->
+          </div>
 
-          <button class="clean-button" @click="checkboxValue ? exactLetterMatches() : processInputWord()">
+          <button class="clean-button upper-spacing" @click="checkboxValue ? exactLetterMatches() : processInputWord()">
             Submit
           </button>
-          <br>
-          <label>
-            Match Character Indices
-            <input class="check-box" type="checkbox" name="myCheckbox" v-model="checkboxValue"
-              @change="handleCheckboxChange">
-          </label>
-        </div>
-        <div style="margin: 0 auto;">
-          <div style="text-align: left;">
-            <span class="description-span">Notice:</span>
-          </div>
-            <p>
-              If the <b>Match Character Indices</b>  checkbox is not checked the default behavior is to search for all words
-              with any of the letters in the input word. All search queries can be any length of letters whether the checkbox
-              is checked or not.
-              e.g. "a" will return all words with the letter "a" in them.
-              e.g. "ab" will return all words with the letters "a" or "b" in them.
+
+          <dialog class="close" :open="invalidInput">
+            <button autofocus @click="invalidInput = false;" class="close-button"></button>
+            <div style="text-align: left;">
+              <span class="description-span" style="color: #ff5959;">Error</span>
+            </div>
+            <p>To process inputs with anything other than letters the checkbox
+              that says "<b>Match Indices</b>" must be checked.
             </p>
-         
-         </div>
+          </dialog>
+        </div>
+
       </div>
     </div>
+    Words Allowed:<b>{{ processedWords.length }}</b>
     <div class="letter-output-grid-box" style="padding-top: 1rem;">
       <div v-for="(word, index) in processedWords" :key="index">
         <b>{{ word }}</b>
@@ -80,32 +103,34 @@ import { allWords, processWords, lettersMatching } from '../../../data/wordle_wo
 export default {
   name: 'MyComponent',
   setup() {
+    const notLetter: RegExp = /[^a-zA-Z]/;
     let checkboxValue: Ref<boolean> = ref(false);
     const wordleWordData: Ref<Array<String>> = ref(allWords);
     const processedWords: Ref<string[]> = ref([]);
     const maxWordLength: number = 5;
+
     let userInput: Ref<string> = ref('');
-    const notLetter: RegExp = /[^a-zA-Z]/;
+    let userInputExcludeLetters: Ref<string> = ref('');
     let invalidInput: Ref<boolean> = ref(false);
-    const showDialogBtn = document.getElementById('showDialogBtn');
-
-
 
     const inputLength = computed(() => `${userInput.value.length}/${maxWordLength}`);
 
-
     const exactLetterMatches = () => {
-      processedWords.value = lettersMatching(userInput.value);
+      processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
     };
+
     const handleCheckboxChange = () => {
       console.log('Checkbox value:', checkboxValue.value);
       // Add your logic here
     };
+
     const processInputWord = () => {
-      if (notLetter.test(userInput.value) && !checkboxValue.value) {      
-        invalidInput.value = true;
+      if (notLetter.test(userInput.value) && !checkboxValue.value) {
+        // An error message can optionally be inserted here with invalidInput.value = true;       
+        processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
+        return;
       }
-      processedWords.value = processWords(userInput.value);
+      processedWords.value = processWords(userInput.value, userInputExcludeLetters.value);
     };
 
     return {
@@ -118,6 +143,7 @@ export default {
       exactLetterMatches,
       inputLength,
       invalidInput,
+      userInputExcludeLetters,
     };
   }
 };
@@ -140,21 +166,30 @@ h2 {
   color: #42b983;
   text-transform: capitalize;
   text-align: left;
-  font-size: 2rem; 
-  padding-bottom: 1rem;
+  font-size: 2.1rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
 }
 
-.description-span{
+p {
+  padding-bottom: 1rem;
+  text-align: left;
+  max-width: 100rem;
+}
+
+.description-span {
   color: #42b983;
   text-transform: capitalize;
-  text-align: left;
-  font-size: 2rem; 
-  padding-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.text-section {
+  margin: 0 auto;
 }
 
 .grid-box {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: 1rem;
   align-items: flex-start;
   flex-direction: column;
@@ -181,23 +216,54 @@ button:focus {
 /* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
 input:focus {
   outline: none !important;
-  border: 1px solid #545454;  
+  border: 1px solid #545454;
 }
 
 .input-field-style {
-  padding: 10px 20px;
+  padding: 5px 1rem;
   margin: 8px 0;
-  margin-left: 0.5em;
+  margin-left: 0.1rem;
   border-radius: 0.5em;
   border: 1px solid #ccc;
   box-sizing: border-box;
   margin-right: .5rem;
-  font-size: 2rem;
-  max-width: 8rem;
+  font-size: 1.5rem;
+  width: 100%;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
 }
 
+.input-field-style::placeholder,
+.input-field-exclude-letters-style::placeholder {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.input-field-exclude-letters-style {
+  padding: 5px 1rem;
+  margin: 8px 0;
+  margin-left: 0.1rem;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-right: .5rem;
+  font-size: 1.5rem;
+  width: 100%;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+}
+
+.exclude-div {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding-left: 2rem;
+}
+
+
+
 .container {
-  padding: 2em;  
+  padding: 2em;
 }
 
 .check-box {
@@ -210,35 +276,38 @@ input[type='checkbox'] {
   accent-color: #42b983;
 }
 
-p {
-  text-align: left;
+
+
+.upper-spacing {
+  margin-top: 1rem;
 }
 
 label {
   background: #ffffff;
   cursor: pointer;
-  margin: 0 auto;
+  margin-left: 0.5rem;
   padding: .5rem;
-  padding-left: 0.5rem;
-  padding-right: .1rem;  
+
+  padding-right: .1rem;
   border-radius: .5rem;
   font-weight: bold;
-  
+
   margin-bottom: -2rem;
 }
 
 .close-button {
-  position: absolute; 
+  position: absolute;
   top: -2px;
   right: -2px;
-  border-top-right-radius: 1rem;
+  border-top-right-radius: .8rem;
+  border-bottom-left-radius: 1rem;
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 3;
-  width: 35px;
-  height: 35px;  
+  width: 40px;
+  height: 40px;
   background-color: #42b883;
 }
 
@@ -249,31 +318,57 @@ label {
 .close-button:before,
 .close-button:after {
   position: absolute;
- 
+
   content: " ";
   height: 28px;
-  width: 2px;
+  width: 3px;
   background-color: #000000;
-  top: .25rem;
-  left: 1rem;
+  top: .33rem;
+  left: 1.25rem;
+}
+.include-label-text{
+  display: flex; 
+  align-items: flex-start; 
+  padding-bottom: 1.3rem;
+  color: #42b883;
+  cursor: auto; 
 }
 .close-button:before {
   transform: rotate(45deg);
 }
+
 .close-button:after {
   transform: rotate(-45deg);
 }
-dialog{
+
+dialog {
   position: relative;
   margin: 0 auto;
-  border-radius: 1rem; 
-  padding: 2rem;
+  border-radius: 1rem;
+  padding: 1rem;
   z-index: 2;
-  max-width: 30rem;
-  border: 2px solid rgb(66, 185, 131);
+  border: 2px solid #ff5959;
+  margin-top: 1rem;
+  max-width: 39.5rem;
 }
-.dialog-button{
-  margin: 1rem;
+
+.dialog-button {
+  margin: 1rem
+}
+
+.submission-area {
+  border: 2px solid #42b883;
+  max-width: 39.5rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+}
+
+.character-indice-font {
+  font-size: 1rem;
+  padding-right: 0.2rem;
+
 }
 
 @media screen and (max-width: 70rem) {
@@ -281,6 +376,11 @@ dialog{
     padding: 1em;
     background-color: #f2f2f2;
   }
+
+  .character-indice-font {
+    font-size: 0.9rem;
+  }
+
 
   .grid-box {
     grid-template-columns: 1fr;

@@ -10,12 +10,12 @@
     </div>
     
     <h4 style="margin-top: 0.3em; text-align: left; margin-left: 0.5em; margin-right: 0.5em; color: #fff;">
-      <b class="main-red-color">Note:</b> Click on the column titles in the table below for each column to sort data
+      <b style="color: #ce5f7b;">Note:</b> Click on the column titles in the table below for each column to sort data
       numerically/alphabetically. The graph will update to the sorted values.
       All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
 
     <table class="table-area">
-      <thead style="">
+      <thead>
         <tr>
           <th style="cursor: pointer;" @click="sortData('country')">Country</th>
           <th class="table-column-buttons" style="cursor: pointer;"
@@ -30,6 +30,8 @@
         </tr>
       </thead>
       <tbody>
+        <!-- It's not likely best practice to do all these calculations here but for 
+          readability it makes it easy to see how the data is formatted in one place -->
         <tr v-for="(item, key) in sortedData" :key="key">
           <td>{{ item.country }}</td>
           <td>{{ Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100 }}</td>
@@ -41,53 +43,8 @@
     </table>
     
    
-    <!--
-      
-    <p class="paragraph-text homeview break-text">The functions/graphical formatting using this data table are self-made.
-      Click on the column titles for each column to sort data numerically/alphabetically. The graph will update to the
-      sorted values.
-      Note: all 0 values are removed for the column that is sorted. The graph now uses an SVG format output. The coffee
-      data itself comes from <a
-        href=https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country>https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country</a>,
-      but
-      it is being linked as JSON from a GitHub file. The values are rounded to 2 decimal places, and since values are in
-      lbs,
-      further divided by 2.20462. For example each JSON value is computed through: <span
-        style="color: #999999;">Math.round(item.perCapitaCons2016 * 100 / 2.20462) / 100</span>.
 
-    </p>
 
-    -->
-    <!--
-
-    <h1 class="homeview" style="color: #fff;">
-      Convenient area to test anything else dataset related here...
-    </h1>
-    <p class="paragraph-text homeview break-text">
-      Data as an array: {{ fileContentsArray }}
-      <br>
-      <br>
-      This is pulling data from <a
-        href="https://github.com/conrizzo/conradswebsite/blob/master/src/data/data.tsv">https://github.com/conrizzo/conradswebsite/blob/master/src/data/data.tsv</a>
-      as a TSV file.
-    </p>
-    <br>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>Column 1</th>
-          <th>Column 2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(line, index) in fileContentsArray" :key="index">
-          <td v-for="(field, fieldIndex) in line" :key="fieldIndex">{{ field }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-  -->
   </div>
 
   <FastQuickSort ref="fastQuickSort"/>
@@ -275,7 +232,7 @@ export default {
         const item = data[i];
         const barWidth = item.value * scaleFactor;
 
-        svg += `<rect x="0" y="${startY}" width="${barWidth}" height="${barHeight}" fill="#66ff99" />`;
+        svg += `<rect x="0" y="${startY}" width="${barWidth}" height="${barHeight}" fill="rgb(233, 233, 233)" />`;
         svg += `<text x="5" y="${startY + barHeight / 2 + 6}" font-size="17">${item.label
           }</text>`;
 
@@ -297,11 +254,11 @@ export default {
 
 .coffee-data-background{
   padding-top: 3em;   
-  background: rgb(65, 77, 99);
+  background-color: rgb(84, 109, 166);
   padding-bottom: 1em;
-  background-image: url('../../images/coffee-tree.jpg');
+  
   background-blend-mode: multiply;
-  background-color: rgba(0, 0, 0, 0.33);
+
   background-attachment: fixed; 
   position: relative;  
   background-size: cover;
@@ -329,9 +286,10 @@ export default {
 
 
 h1{
-  font-size: 3em; 
+  font-size: 4rem; 
   color:rgb(255, 255, 255);
   padding-top: 0.5em;
+  font-weight: 400;
 }
 /* Table */
 table {
@@ -380,11 +338,15 @@ tr:nth-child(even) {
 }
 
 .table-column-buttons {
-  background-color: #66ff99;
+  background-color: #edd78b;
 }
 
 .table-column-buttons:hover {
-  background-color: #9dffbe;
+  background-color: #94ddee;
+}
+
+.container-for-svg-graph{  
+  margin: 1rem .5rem 1rem .5rem;
 }
 
 @media (max-width: 50rem) {
@@ -392,13 +354,10 @@ tr:nth-child(even) {
     font-size: 0.8em;
     padding: 0.25em;
   }
-
   h1{
   font-size:1.25em; 
-  margin-top: 1em;
- 
+  margin-top: 1em; 
 }
-
   
 }
 
