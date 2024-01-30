@@ -1,14 +1,20 @@
 <template>
+  <span style="color: #fff; background-color: rgb(44, 49, 54); padding: 0.5rem;">Loading content dynamically as each row is scrolled to {{ isContentVisible }}</span>
   <div class="gallery-header">
     <h1 class="gallery-styling-h1-span">
       <span> Project Links
         <span class="title-arrow-symbol">↷</span></span>
     </h1>
   </div>
+  
   <div class="centerAll">
     <div class="image-gallery">
       <main class="image-gallery-grid-container">
-        <div v-for="item in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item">
+        <div v-for="(item, index) in imageArrayChoice" 
+        :key="item.id" 
+        :title="item.text" class="grid-item hidden" 
+        :ref="`item-${index}`" 
+        :class="{ 'show': isContentVisible[index] }">
           <router-link class="no-router-link-decorations" :to="item.to">
             <div class="img-wrapper">
               <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
@@ -35,10 +41,41 @@ export default {
 
     return {
       images,
-      isContentVisible: false,
+      isContentVisible: [],
       imageArrayChoice: ProjectLinks,
     };
   },
+  mounted() {
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5,
+  };
+  this.observer = new IntersectionObserver(this.handleIntersection, options);
+  this.$nextTick(() => {
+    this.imageArrayChoice.forEach((item, index) => {
+      this.isContentVisible[index] = false; 
+      if (this.$refs[`item-${index}`]) {
+        this.$refs[`item-${index}`][0].dataset.index = index;
+        this.observer.observe(this.$refs[`item-${index}`][0]);
+      }
+    });
+  });
+},
+methods: {
+  handleIntersection(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = entry.target.dataset.index;
+        if (entry.target === this.$refs[`item-${index}`][0]) {
+          console.log('item is visible');
+          this.isContentVisible[index] = true;
+        }
+        this.observer.unobserve(entry.target);
+      }
+    });
+  },
+},
 };
 </script>
     

@@ -60,11 +60,7 @@ export default {
           if (entry.target === this.$refs.content) {
             this.isContentVisible = true;
             this.observer.unobserve(this.$refs.content);
-          } else if (entry.target === this.$refs.content_text) {
-            this.options.threshold = 0.8;
-            this.isTextVisible = true;
-            this.observer.unobserve(this.$refs.content_text);
-          }
+          }           
         }
       });
     },

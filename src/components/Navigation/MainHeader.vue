@@ -1,12 +1,9 @@
 <!-- This page mostly just sets the default values across the whole website, and whether to omit nav bar such as on the cow game -->
 <template>
-
   <header :class="headerClass">
     <!-- create a nav bar on every page-->
-    <div v-if="this.$route.path === '/'" style="padding-left: 1rem; text-transform: uppercase; 
-    letter-spacing: .125rem; padding-top: .5rem; padding-bottom: .5rem; 
-    color: #fff; font-size: 1.1rem;   background: rgb(0, 0, 0);">
-    <router-link style="color: #fff;" class="text-links" to="/about">Thank you for visiting!</router-link>
+    <div v-if="this.$route.path === '/'" class="headline">
+      <router-link class="text-links" style="color: #fff;" to="/about">Thank you for visiting!</router-link>
     </div>
     <nav class="nav-menu-class">
       <div style="display: flex; align-items: center;">
@@ -73,7 +70,7 @@ export default {
   setup() {
 
     const headerClass = ref('header-visible');
-    let lastScrollPosition = 0;  
+    let lastScrollPosition = 0;
 
     const checkScroll = () => {
       const currentScrollPosition = window.scrollY;
@@ -85,11 +82,11 @@ export default {
         // Scrolling up
         headerClass.value = 'header-visible';
       }
-      lastScrollPosition = currentScrollPosition;      
+      lastScrollPosition = currentScrollPosition;
     };
-   
-    onMounted(() => {     
-        
+
+    onMounted(() => {
+
       window.addEventListener('scroll', checkScroll);
     });
 
@@ -105,186 +102,203 @@ export default {
 </script>  
 
 <style scoped>
+.header-visible {
+  transition: transform 0.5s ease;
+}
 
-    .header-visible {     
-      transition: transform 0.5s ease;      
-    }
+/* This visibility of header-hidden is not set to hidden to allow the transition effect to work */
+.header-hidden {
+  /* visibility: hidden; */
+  transform: translateY(-100%);
+  transition: transform 0.5s ease;
+}
 
-    /* This visibility of header-hidden is not set to hidden to allow the transition effect to work */
-    .header-hidden {    
-      /* visibility: hidden; */      
-      transform: translateY(-100%);
-      transition: transform 0.5s ease;
-    }
+header {
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, .15);
+  position: sticky;
+  top: 0em;
+  z-index: 5;
+}
 
-    header {
-      box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, .15);
-      position: sticky;
-      top: 0em;
-      z-index: 5;      
-    }
-
-
-    .about-menu:hover {
-      outline: 2px solid rgb(255, 89, 89);
-    }
-
-    .projects-menu {
-      box-sizing: border-box;
-      padding-left: 0.45em;
-    }
-
-    .projects-menu:hover {
-      outline: 2px solid rgb(255, 89, 89);
-    }
-
-    .header-h2 {
-      font-size: 1em;
-      color: rgb(128, 128, 128);
-      padding-left: 0.5em;
-      padding-right: 0.5em;
-      margin-bottom: 0;
-      border-right: 1px solid rgb(218, 220, 224);
-    }
-
-    .small-resolution-h2 {
-      display: none;
-    }
-
-    .about-link-styling {
-      padding: 0.5em 0.25em 0.5em 0.5em;
-    }
-
-    /* how to pin the nav to the top of the page */
-    .nav-menu-class {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 3em;
-      padding-left: .5rem;
-    }
-
-    .navigation-menu {
-      margin-right: 9rem;
-    }
-
-    nav {
-      font-size: 1.25em;
-      background-color: rgb(255, 255, 255);
-      line-height: 1.1;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: rgb(128, 128, 128);
-    }
-
-    nav a:hover {
-      color: rgb(12, 12, 12);
-      text-decoration: none;
-      /*background-color: rgb(235, 235, 235);*/
-    }
-
-    nav a.router-link-exact-active {
-      color: #ff5959;
-      background-color: rgba(0, 0, 0, 0);
-    }
-
-    .home-link {
-      padding-left: 0.5em;
-    }
-
-    .home-link.active-home-link {
-      color: #ff5959;
-      background: none;
-    }
-
-    .nav-menu-class {
-      z-index: 3;
-    }
-
-    .github-logo-link {
-      margin-right: 0em;
-      color: #000;
-    }
-
-    .header-logo-container {
-      margin-top: 0.25em;
-      margin-left: 1em;
-      max-width: 32px;
-      max-height: 32px;
-    }
-
-    .hide-sign-in-text-at-low-res {      
-      margin-right: 0.5em;
-      padding-right: 0.4em;
-      font-size: 1em;
-      padding-left: 0.5em;
-    }
-
-    .only-show-home-svg-at-mobile-size {
-      margin-bottom: 0.25rem;
-      margin-right: 0.25rem;
-
-    }
-    .only-show-home-svg-at-mobile-size:is(:hover){     
-      background: rgb(229, 229, 229);
-      border-radius: 0.5rem;
-    }
-
-    .only-show-home-svg-at-mobile-size:is(:focus, :active) img{
-      background: rgb(255, 255, 255);
-    }
-
-    @media (max-width: 45rem) {
-      .header-h2 {
-        display: none;
-      }
-
-      .hide-sign-in-text-at-low-res {
-        display: none;
-      }
-
-      .only-show-home-svg-at-mobile-size {
-        margin-bottom: 0.25rem;
-        margin-right: 0.25rem;
-        margin-left: 0rem;
-      }
+.headline {
+  padding-left: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .125rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;  
+  font-size: 1.1rem;
+  background: rgb(0, 0, 0);
+  color: #fff;
+}
 
 
-    }
+.about-menu:hover {
+  outline: 2px solid rgb(255, 89, 89);
+  color: #ff5959;
+}
 
-    @media (max-width: 45rem) {
-      .github-logo-link {
-        display: none;
-      }
+.projects-menu {
+  box-sizing: border-box;
+  padding-left: 0.45em;  
+}
 
-      .text-under-github-logo {
-        display: none;
-      }
+.projects-menu:hover {
+  outline: 2px solid #ff5959;
+}
 
-      .nav-menu-class {
-        padding-left: .5rem;
-        justify-content: start;
-      }
+.header-h2 {
+  font-size: 1em;
+  color: rgb(240, 240, 240);
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-bottom: 0;
+  border-right: 1px solid rgb(218, 220, 224);
+}
 
-      .small-resolution-h2 {
-        position: absolute;
-        right: 1em;
-        display: inline;
-        color: rgb(128, 128, 128);
-      }
+.small-resolution-h2 {
+  display: none;
+}
 
-      .small-font-website-name {
-        font-size: 1.2em;
-        color: rgb(128, 128, 128);
-      }
-    }
+.about-link-styling {
+  padding: 0.5em 0.25em 0.5em 0.5em;
+}
 
-    /* Additional styles for the active home link */
+/* how to pin the nav to the top of the page */
+.nav-menu-class {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3em;
+  padding-left: .5rem;
+}
+
+.navigation-menu {
+  margin-right: 9rem;
+}
+
+nav {
+  font-size: 1.25em;
+  background-color: rgb(24, 26, 27);
+  line-height: 1.1;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(240, 240, 240);
+}
+
+nav a:hover {
+  color: #ff5959;
+  text-decoration: none;
+  /*background-color: rgb(235, 235, 235);*/
+}
+
+nav a.router-link-exact-active {
+  color: #ff5959;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.home-link {
+  padding-left: 0.5em;
+}
+
+.home-link.active-home-link {
+  color: #ff5959;
+  background: none;
+}
+
+.nav-menu-class {
+  z-index: 3;
+}
+
+.github-logo-link {
+  margin-right: 0em;
+  color: #000;
+}
+
+.header-logo-container {
+  margin-top: 0.25em;
+  margin-left: 1em;
+  max-width: 32px;
+  max-height: 32px;
+}
+
+.hide-sign-in-text-at-low-res {
+  margin-right: 0.5em;
+  padding-right: 0.4em;
+  font-size: 1em;
+  padding-left: 0.5em;
+}
+
+.hide-sign-in-text-at-low-res:hover {
+  color:#ff5959;
+}
 
 
-    /*
+.only-show-home-svg-at-mobile-size {
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+
+}
+
+.only-show-home-svg-at-mobile-size:is(:hover) {
+  background: rgb(60, 60, 60);
+  border-radius: 0.25rem;
+}
+
+.only-show-home-svg-at-mobile-size:is(:focus, :active) img {
+  background: rgb(24, 26, 27);
+}
+
+@media (max-width: 45rem) {
+  .header-h2 {
+    display: none;
+  }
+
+  .hide-sign-in-text-at-low-res {
+    display: none;
+  }
+
+  .only-show-home-svg-at-mobile-size {
+    margin-bottom: 0.25rem;
+    margin-right: 0.25rem;
+    margin-left: 0rem;
+  }
+
+
+}
+
+@media (max-width: 45rem) {
+  .github-logo-link {
+    display: none;
+  }
+
+  .text-under-github-logo {
+    display: none;
+  }
+
+  .nav-menu-class {
+    padding-left: .5rem;
+    justify-content: start;
+  }
+
+  .small-resolution-h2 {
+    position: absolute;
+    right: 1em;
+    display: inline;
+    color: rgb(128, 128, 128);
+  }
+
+  .small-font-website-name {
+    font-size: 1.2em;
+    color: rgb(128, 128, 128);
+  }
+}
+
+/* Additional styles for the active home link */
+
+
+/*
   nav a.router-link-home-active {
     color: rgb(128, 128, 128);
     background: none;      
@@ -296,7 +310,7 @@ export default {
   }  
   */
 
-    /*
+/*
   .text-shadow{
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
     color: rgb(100, 100, 100);    
