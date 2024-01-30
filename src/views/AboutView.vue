@@ -45,8 +45,8 @@
                 GitHub Pages.
               </li>
               <li>
-                Programming languages/frameworks I used to make this website include: Vue.js, JavaScript, TypeScript,
-                HTML, CSS, Rust into Web Assembly, and soon more projects in other languages such as Angular, Wordpress,
+                Programming languages/frameworks I used to make this website include: <span class="languages-used">Vue.js, JavaScript, TypeScript,
+                HTML, CSS, Rust into Web Assembly</span>, and soon more projects in other languages such as Angular, Wordpress,
                 Astro.
               </li>
               <li>
@@ -74,8 +74,8 @@
                 GitHub Pages gehostet. Es ist Open Source und ein kontinuierliches Projekt.
               </li>
               <li>
-                Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind Vue.js,
-                JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.
+                Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind 
+                <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.</span>
                 In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen.
               </li>
               <li>
@@ -112,7 +112,7 @@
               Potentially more machine
               learning and NLP is an option, but these machine learning subjects (while incredibly interesting) can get
               very complicated quickly!
-              I look forward to new opportunities, am excited about learning more about websites, and confident in my
+              I look forward to new opportunities, am excited about learning more, and confident in my
               ability to do problem-solving through code and research.
             </p>
             <!--
@@ -148,7 +148,7 @@
               Potenziell auch Maschinenlernen und NLP (Natural Language Processing) möglich, aber diese
               Maschinenlernthemen (obwohl unglaublich interessant) können sehr schnell sehr komplex werden!
 
-              Ich freue mich auf neue Möglichkeiten, bin begeistert, mehr über Websites zu lernen und habe Vertrauen in
+              Ich freue mich auf neue Möglichkeiten, bin begeistert, mehr zu lernen und habe Vertrauen in
               meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.
             </p>
           </section>
@@ -392,7 +392,11 @@ h2 {
 }
 
 /* arrow code css end */
-
+.languages-used{
+  color: rgb(163, 53, 238);
+  border-radius: 0.2em;
+  padding: 0.2rem;
+}
 
 .language-button {
 

@@ -130,7 +130,7 @@ const routes = [
     path: '/projects/store/checkout',
     name: 'checkout',
     component: StoreCheckOutView,    
-     props: true // Allows passing props via route parameters
+    props: true // Allows passing props via route parameters
   },
   {
     path: '/projects/store/product/:id/:name/:image/:price',
@@ -191,13 +191,6 @@ const router = createRouter({
   },
 });
 
-/*
-auth.onAuthStateChanged(user => {
-
-
-
-});  
-*/
   // const currentRoute = window.location.pathname;
 
   // this should fix it invoking the next() function multiple times.

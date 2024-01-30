@@ -236,7 +236,7 @@ input:focus {
 .input-field-style::placeholder,
 .input-field-exclude-letters-style::placeholder {
   text-transform: none;
-  letter-spacing: 0;
+  letter-spacing: 0;  
 }
 
 .input-field-exclude-letters-style {
@@ -258,6 +258,7 @@ input:focus {
   align-items: center;
   white-space: nowrap;
   padding-left: 2rem;
+  
 }
 
 
@@ -331,6 +332,7 @@ label {
   align-items: flex-start; 
   padding-bottom: 1.3rem;
   color: #42b883;
+  background-color: #ebebeb;
   cursor: auto; 
 }
 .close-button:before {
@@ -357,11 +359,12 @@ dialog {
 }
 
 .submission-area {
-  border: 2px solid #42b883;
+  border: 1px solid #42b983;
+  background-color: #ebebeb;
   max-width: 39.5rem;
-  margin: 0 auto;
-  padding: 1rem;
+  margin: 0 auto;  
   border-radius: 1rem;
+  padding: 0rem 1rem .5rem 1rem;
   margin-top: 2rem;
 }
 
@@ -386,6 +389,14 @@ dialog {
     grid-template-columns: 1fr;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    padding: 1rem;
+  }
+  h2 {
+    font-size: 1.5rem;
   }
 }
 </style>
