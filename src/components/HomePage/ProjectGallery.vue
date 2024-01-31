@@ -1,20 +1,24 @@
 <template>
-  <span style="color: #fff; background-color: rgb(44, 49, 54); padding: 0.5rem;">Loading content dynamically as each row is scrolled to {{ isContentVisible }}</span>
   <div class="gallery-header">
     <h1 class="gallery-styling-h1-span">
       <span> Project Links
         <span class="title-arrow-symbol">↷</span></span>
     </h1>
   </div>
-  
   <div class="centerAll">
     <div class="image-gallery">
+      <div class="is-item-loaded-text-display"><i>Load on Scroll: </i> 
+        <div v-for="(item, index) in displayArray" :key="item" style="display: inline-block;">
+          <div v-if="displayArray.length">
+            {{item}}<span v-if="index !== displayArray.length - 1">,&nbsp;
+            </span>
+          </div>
+        </div>
+        <br>
+      </div>
       <main class="image-gallery-grid-container">
-        <div v-for="(item, index) in imageArrayChoice" 
-        :key="item.id" 
-        :title="item.text" class="grid-item hidden" 
-        :ref="`item-${index}`" 
-        :class="{ 'show': isContentVisible[index] }">
+        <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
+          :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
           <router-link class="no-router-link-decorations" :to="item.to">
             <div class="img-wrapper">
               <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
@@ -43,50 +47,65 @@ export default {
       images,
       isContentVisible: [],
       imageArrayChoice: ProjectLinks,
+
+      displayArray: [],
     };
   },
   mounted() {
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5,
-  };
-  this.observer = new IntersectionObserver(this.handleIntersection, options);
-  this.$nextTick(() => {
-    this.imageArrayChoice.forEach((item, index) => {
-      this.isContentVisible[index] = false; 
-      if (this.$refs[`item-${index}`]) {
-        this.$refs[`item-${index}`][0].dataset.index = index;
-        this.observer.observe(this.$refs[`item-${index}`][0]);
-      }
-    });
-  });
-},
-methods: {
-  handleIntersection(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = entry.target.dataset.index;
-        if (entry.target === this.$refs[`item-${index}`][0]) {
-          console.log('item is visible');
-          this.isContentVisible[index] = true;
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.75,
+    };
+    this.observer = new IntersectionObserver(this.handleIntersection, options);
+    this.$nextTick(() => {
+      this.imageArrayChoice.forEach((item, index) => {
+        this.isContentVisible[index] = false;
+        if (this.$refs[`item-${index}`]) {
+          this.$refs[`item-${index}`][0].dataset.index = index;
+          this.observer.observe(this.$refs[`item-${index}`][0]);
         }
-        this.observer.unobserve(entry.target);
-      }
+      });
     });
   },
-},
+  methods: {
+    handleIntersection(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = entry.target.dataset.index;
+          if (entry.target === this.$refs[`item-${index}`][0]) {
+            this.isContentVisible[index] = true;
+            this.changeWords();
+          }
+          this.observer.unobserve(entry.target);
+        }
+      });
+    },
+    changeWords() {
+      this.displayArray = [];
+      for (let i = 0; this.isContentVisible[i] !== false && i < this.isContentVisible.length; i++) {
+        if (this.isContentVisible[i] === false) {
+          this.displayArray.push(null);
+        } else {
+          this.displayArray.push(this.imageArrayChoice[i].text);
+        }
+      }
+    },
+  }
 };
 </script>
+
     
 <style scoped>
 .hidden {
   opacity: 0;
   transition: all .75s;
 }
+
 .show {
   opacity: 1;
 }
+
 .no-router-link-decorations {
   text-decoration: none;
 }
@@ -111,6 +130,7 @@ h2 {
   color: rgb(255, 255, 255);
   font-size: 1.5rem;
 }
+
 .title-arrow-symbol {
   font-size: 1.5em;
   position: absolute;
@@ -119,16 +139,19 @@ h2 {
   transform: rotate(80deg);
   display: inline-block;
 }
+
 .gallery-header {
   text-align: left;
   margin-left: 3.5rem;
 }
+
 .centerAll {
   justify-content: center;
   display: flex;
   height: fit-content;
   background: rgba(40, 40, 40, .9);
 }
+
 .image-gallery {
   margin: 0 auto;
   position: relative;
@@ -137,22 +160,27 @@ h2 {
   display: flex;
   flex-direction: column;
 }
+
 .image-gallery-grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 1rem;
-}.grid-item {
+}
+
+.grid-item {
   width: fit-content;
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
   border-radius: 0.33em;
   padding-top: 3rem;
 }
+
 .grid-item:nth-child(-n+4) {
   /* remove top padding from first row */
   padding-top: 0rem;
 }
+
 .gallery-component-image {
   padding: 0em;
   margin: 0em;
@@ -161,9 +189,12 @@ h2 {
   width: 100%;
   aspect-ratio: 4/3;
   border-radius: 0.5rem;
-}.gallery-component-image:hover {
+}
+
+.gallery-component-image:hover {
   filter: brightness(90%);
 }
+
 figcaption {
   text-align: left;
   padding: 0.5em;
@@ -174,19 +205,23 @@ figcaption {
   font-weight: bold;
   color: rgb(255, 255, 255);
 }
+
 .gallery-component-image {
   border-radius: 1rem;
 }
+
 /* Does image zoom effect - start */
 .img-wrapper {
   display: inline-block;
   overflow: hidden;
   border-radius: 1rem;
 }
+
 .img-wrapper img {
   transition: all .2s ease;
   vertical-align: middle;
 }
+
 img:hover {
   transform: scale(1.03);
   -ms-transform: scale(1.03);
@@ -198,20 +233,32 @@ img:hover {
   -o-transform: scale(1.03);
   /* Opera */
 }
+
 /* Does image zoom effect - end */
+
+.is-item-loaded-text-display{
+  color: #fff; 
+  background-color: rgba(44, 49, 54, 0);
+  width: fit-content; 
+  margin: 0 auto;
+  padding-bottom: 0.75rem;
+}
 
 @media screen and (max-width: 70rem) {
   .image-gallery-grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+
   .grid-item:nth-child(-n+4) {
     padding-top: 3rem;
   }
+
   .grid-item {
     padding-top: 3rem;
     /* set padding to 2rem for all items */
   }
+
   .grid-item:nth-child(-n+2) {
     padding-top: 0;
     /* override the previous rule */
@@ -229,22 +276,27 @@ img:hover {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
+
   .gallery-component-image {
     aspect-ratio: 16/9;
     max-height: 25rem;
   }
+
   .grid-item {
     width: fit-content;
     border-radius: 0;
     padding-bottom: 1.5rem;
     padding-top: 0rem;
   }
+
   .grid-item:nth-child(-n+4) {
     padding-top: 0rem;
   }
+
   .grid-item:first-child {
     padding-top: 1.5rem;
   }
+
   .grid-item::after {
     content: '';
     position: absolute;
@@ -253,6 +305,7 @@ img:hover {
     margin-top: .75rem;
     border-top: none;
   }
+
   /* 
   Fancy code that makes the last item in the grid not have a line after it
   by telling all other elements to have a border line. of course this could be
@@ -262,4 +315,5 @@ img:hover {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
   }
 
-}</style>
+}
+</style>

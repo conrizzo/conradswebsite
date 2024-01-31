@@ -36,26 +36,33 @@ const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 // const about = () => import('../views/about.vue');
 
 const routes = [
+
   {
     path: '/',
     name: 'home',
     component: HomeView,
+    meta: {
+      title: 'ConradsWebsite.com',
+      description: 'Home page of ConradsWebsite.com'
+    },
   },
+
   {
     path: '/about',
     name: 'about',
     component: AboutView,
-  },  
+    meta: {
+      title: 'About Page',
+      description: 'About ConradsWebsite.com',
+    },
+  },
+
   {
     path: '/projects',
     name: 'projects',
     component: ProjectsView,
   },
-  {
-    path: '/projects/cowculator',
-    name: 'cowculator',
-    component: CowculatorView,
-  },
+
   {
     path: '/projects/:id/',
     /* path: '/projects/:id/:title/:details',     --- Dynamic routing */
@@ -64,40 +71,118 @@ const routes = [
     props: true,
   },
   {
-    path: '/projects/datasets',
-    name: 'DatasetsView',
-    component: DatasetsView,
-  },
-  {
-    path: '/projects/weather',
-    name: 'WeatherView',
-    component: WeatherView,
-  },
-  {
-    path: '/projects/Links',
-    name: 'LinksView',
-    component: LinksView,
-  },
-  {
-    path: '/projects/cowgame',
-    name: 'CowGameView',
-    component: CowGameView,
-  },
-  {
-    path: '/projects/login',
-    name: 'FirebaseTestView',
-    component: FirebaseTestView,
-  },
-  {
-    path: '/projects/sortingAlgorithms',
-    name: 'SortingAlgorithmsView',
-    component: SortingAlgorithmsView,
-  },
+    path: '/projects',
+    name: 'ProjectsView',
+    children: [
+      {
+        path: 'cowculator',
+        name: 'cowculator',
+        component: CowculatorView,
+        meta: {
+          title: 'A real working calculator',
+          description: 'This cowculator was made from scratch and does real parsing and displays a binary tree of calculations.',
+        },
+      },
+      {
+        path: 'datasets',
+        name: 'DatasetsView',
+        component: DatasetsView,
+      },
+      {
+        path: 'weather',
+        name: 'WeatherView',
+        component: WeatherView,
+        meta: {
+          title: 'Weather in Tuebingen, Germany',
+          description: 'Basic Weather App fetching weather data using the wttr.in API',
+        },
+      },
+      {
+        path: 'links',
+        name: 'LinksView',
+        component: LinksView,
+      },
+      {
+        path: 'cowgame',
+        name: 'CowGameView',
+        component: CowGameView,
+        meta: {
+          title: 'Cow Game to feed the cows',
+          description: 'A basic game where the user can drag and drop food to feed the cows. Made with Vue.js and TypeScript.',
+        },
+      },
+      {
+        path: 'login',
+        name: 'FirebaseTestView',
+        component: FirebaseTestView,
+      },
+      {
+        path: 'sortingAlgorithms',
+        name: 'SortingAlgorithmsView',
+        component: SortingAlgorithmsView,
+      },
 
-  {
-    path: '/projects/rustwebassembly',
-    name: 'RustWebAssemblyView',
-    component: RustWebAssemblyView,
+      {
+        path: 'rustwebassembly',
+        name: 'RustWebAssemblyView',
+        component: RustWebAssemblyView,
+      },
+
+      {
+        path: 'cards',
+        name: 'CardsView',
+        component: CardsView,
+      },
+
+      {
+        path: 'gallery',
+        name: 'Gallery',
+        component: GalleryView,
+      },
+
+      {
+        path: 'store/store',
+        name: 'Store',
+        component: StoreView,
+      },
+
+      {
+        path: 'store/checkout',
+        name: 'checkout',
+        component: StoreCheckOutView,
+        props: true // Allows passing props via route parameters
+      },
+      {
+        path: 'store/product/:id/:name/:image/:price',
+        name: 'ProductPageView',
+        component: ProductPageView,
+        props: true,
+      },
+
+      {
+        path: 'RenderTemplate/template',
+        name: 'RenderTemplateView',
+        component: RenderTemplateView,
+      },
+
+      {
+        path: 'fetchdata',
+        name: 'fetchdata',
+        component: FetchDataView,
+      },
+
+      {
+        path: 'WordHelper',
+        name: 'wordhelper',
+        component: WordHelperView,
+      },
+
+      {
+        path: 'country_music_experiment',
+        name: 'countrymusicexperiment',
+        component: CountryMusicExperimentView,
+      },
+    ],
   },
 
   {
@@ -109,64 +194,11 @@ const routes = [
     }
   },
 
-  {
-    path: '/projects/cards',
-    name: 'CardsView',
-    component: CardsView,    
-  },
-
-  {
-    path: '/projects/gallery',
-    name: 'Gallery',
-    component: GalleryView,    
-  },
-
-  {
-    path: '/projects/store/store',
-    name: 'Store',
-    component: StoreView,    
-  },
-  {
-    path: '/projects/store/checkout',
-    name: 'checkout',
-    component: StoreCheckOutView,    
-    props: true // Allows passing props via route parameters
-  },
-  {
-    path: '/projects/store/product/:id/:name/:image/:price',
-    name: 'ProductPageView',
-    component: ProductPageView,
-    props: true,
-  },
-
-  {
-    path: '/projects/RenderTemplate/template',
-    name: 'RenderTemplateView',
-    component: RenderTemplateView,
-  },
-
-  {
-    path: '/projects/fetchdata',
-    name: 'fetchdata',
-    component: FetchDataView,
-  },
-
-  {
-    path: '/projects/WordHelper',
-    name: 'wordhelper',
-    component: WordHelperView,
-  },
 
   {
     path: '/yadhtriByppah',
     name: 'yadhtriByppahView',
     component: yadhtriByppahView,
-  },
-
-  {
-    path: '/projects/country_music_experiment',
-    name: 'countrymusicexperiment',
-    component: CountryMusicExperimentView,
   },
 
   // Keep this at the end of the array so only unmatched paths go here
@@ -191,11 +223,24 @@ const router = createRouter({
   },
 });
 
-  // const currentRoute = window.location.pathname;
+// const currentRoute = window.location.pathname;
 
-  // this should fix it invoking the next() function multiple times.
+// this should fix it invoking the next() function multiple times.
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  document.title = to.meta.title as string || 'ConradsWebsite.com';
+
+  let metaDescriptionTag = document.querySelector('meta[name="description"]');
+
+  if (metaDescriptionTag) {
+    (metaDescriptionTag as HTMLMetaElement).setAttribute('content', to.meta.description as string || 'Welcome to ConradsWebsite.com');
+  } else {
+    metaDescriptionTag = document.createElement('meta');
+    (metaDescriptionTag as HTMLMetaElement).name = 'description';
+    (metaDescriptionTag as HTMLMetaElement).content = to.meta.description as string || 'Welcome to ConradsWebsite.com';
+    document.getElementsByTagName('head')[0].appendChild(metaDescriptionTag);
+  }
 
   // Wait for Firebase authentication to initialize
   const unsubscribe = auth.onAuthStateChanged(user => {

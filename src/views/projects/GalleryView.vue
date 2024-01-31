@@ -1,10 +1,9 @@
 <template>
-    
-    <main id="body" class="testimonial-grid">
+  <main id="body" class="testimonial-grid">
     <article class="testimonial  flow bg-primary-400 quote text-neutral-100">
       <div class="flex">
         <div>
-            <img src="@/images/Kohlenmeise.jpg" alt="Kohlmeise picture">
+          <img src="@/images/Kohlenmeise.jpg" alt="Kohlmeise picture">
         </div>
         <div>
           <h2 class="name">Bird 1</h2>
@@ -12,21 +11,22 @@
         </div>
       </div>
       <p>
-        I received a job offer mid-course, and the subjects I learned were current, if not more so,
-        in the company I joined. I honestly feel I got every penny’s worth.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum tempus egestas sed sed risus. Blandit
+        turpis cursus in hac habitasse platea dictumst. Accumsan tortor posuere ac ut consequat semper viverra. Semper
+        quis lectus nulla at volutpat diam ut. Tristique senectus et netus et malesuada fames ac turpis egestas.
       </p>
       <p>
-        “ I was an EMT for many years before I joined the bootcamp. I’ve been looking to make a
-        transition and have heard some people who had an amazing experience here. I signed up
-        for the free intro course and found it incredibly fun! I enrolled shortly thereafter.
-        The next 12 weeks was the best - and most grueling - time of my life. Since completing
-        the course, I’ve successfully switched careers, working as a Software Engineer at a VR startup. ”
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.
       </p>
     </article>
     <article class="testimonial flow bg-secondary-400 text-neutral-100">
       <div class="flex">
         <div>
-            <img src="@/images/Kohlenmeise.jpg" alt="Kohlmeise picture">
+          <img src="@/images/Kohlenmeise.jpg" alt="Kohlmeise picture">
         </div>
         <div>
           <h2 class="name">Bird 2</h2>
@@ -34,17 +34,22 @@
         </div>
       </div>
       <p>
-        The team was very supportive and kept me motivated
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.
       </p>
       <p>
-        “ I started as a total newbie with virtually no coding skills. I now work as a mobile engineer
-        for a big company. This was one of the best investments I’ve made in myself. ”
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.
       </p>
     </article>
     <article class="testimonial flow bg-neutral-100 text-secondary-400">
       <div class="flex">
         <div>
-            <img src="@/images/Kohlenmeise.jpg" alt="Kohlmeise picture">
+          <img src="@/images/Kohlenmeise.jpg" alt="Kohlmeise picture">
         </div>
         <div>
           <h2 class="name">Bird 3</h2>
@@ -52,10 +57,15 @@
         </div>
       </div>
       <p>
-        An overall wonderful and rewarding experience</p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.</p>
       <p>
-        “ Thank you for the wonderful experience! I now have a job I really enjoy, and make a good living
-        while doing something I love. ”
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.
       </p>
     </article>
     <article class="testimonial  flow bg-secondary-500 text-neutral-100">
@@ -69,14 +79,16 @@
         </div>
       </div>
       <p>
-        Awesome teaching support from TAs who did the bootcamp themselves. Getting guidance from them and
-        learning from their experiences was easy.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.
       </p>
       <p>
-        “ The staff seem genuinely concerned about my progress which I find really refreshing. The program
-        gave me the confidence necessary to be able to go out in the world and present myself as a capable
-        junior developer. The standard is above the rest. You will get the personal attention you need from
-        an incredible community of smart and amazing people. ”
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.
       </p>
     </article>
     <article class="testimonial flow bg-neutral-100 text-secondary-400">
@@ -90,17 +102,16 @@
         </div>
       </div>
       <p>
-        Such a life-changing experience. Highly recommended!
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.
       </p>
       <p>
-        “ Before joining the bootcamp, I’ve never written a line of code. I needed some structure from
-        professionals who can help me learn programming step by step. I was encouraged to enroll by a former
-        student of theirs who can only say wonderful things about the program. The entire curriculum and staff
-        did not disappoint. They were very hands-on and I never had to wait long for assistance. The agile team
-        project, in particular, was outstanding. It took my learning to the next level in a way that no tutorial
-        could ever have. In fact, I’ve often referred to it during interviews as an example of my developent
-        experience. It certainly helped me land a job as a full-stack developer after receiving multiple offers.
-        100% recommend! ”
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Elementum tempus egestas sed sed risus. Blandit turpis cursus in hac habitasse platea dictumst.
+        Accumsan tortor posuere ac ut consequat semper viverra. Semper quis lectus nulla at volutpat diam ut. Tristique
+        senectus et netus et malesuada fames ac turpis egestas.
       </p>
     </article>
     <h1 style="color: red;"> Using this to format things - and set up code </h1>
@@ -110,22 +121,21 @@
 
 
 
-  <script>
-  export default {
-    // Component logic goes here
-    date() {
-      return {
-       
-        birdPicture: require('@/images/Kohlenmeise.jpg'),
-      }
-    },
-  
-  }
-  </script>
-  
-  <style scoped>
+<script>
+export default {
+  // Component logic goes here
+  date() {
+    return {
 
-  /* from https://github.com/kevin-powell/learn-grid-the-easy-way/blob/main/style.css */
+      birdPicture: require('@/images/Kohlenmeise.jpg'),
+    }
+  },
+
+}
+</script>
+  
+<style scoped>
+/* from https://github.com/kevin-powell/learn-grid-the-easy-way/blob/main/style.css */
 
 :root {
   --clr-primary-400: 263 55% 52%;
@@ -243,16 +253,18 @@ h3 {
   gap: var(--gap, 1rem);
 }
 
-.flow > *:where(:not(:first-child)) {
+.flow>*:where(:not(:first-child)) {
   margin-top: var(--flow-spacer, 1em);
 }
 
 .bg-primary-400 {
   background: hsl(var(--clr-primary-400));
 }
+
 .bg-secondary-400 {
   background: hsl(var(--clr-secondary-400));
 }
+
 .bg-secondary-500 {
   background: hsl(var(--clr-secondary-500));
 }
@@ -264,9 +276,11 @@ h3 {
 .text-neutral-100 {
   color: hsl(var(--clr-neutral-100));
 }
+
 .text-secondary-400 {
   color: hsl(var(--clr-secondary-400));
 }
+
 .border-primary-400 {
   border: 2px solid #a775f1;
 }
@@ -277,11 +291,11 @@ h3 {
   gap: 0.5rem;
   grid-auto-columns: 1fr;
   grid-template-areas:
-   'one'
-   'two'
-   'three'
-   'four'
-   'five';
+    'one'
+    'two'
+    'three'
+    'four'
+    'five';
 
   padding-block: 2rem;
   width: min(95%, 70rem);
@@ -298,44 +312,48 @@ h3 {
 .testimonial:nth-child(1) {
   grid-area: one;
 }
+
 .testimonial:nth-child(2) {
   grid-area: two;
 }
+
 .testimonial:nth-child(3) {
   grid-area: three;
 }
+
 .testimonial:nth-child(4) {
   grid-area: four;
 }
+
 .testimonial:nth-child(5) {
   grid-area: five;
 }
 
 @media screen and (min-width: 33em) {
   .testimonial-grid {
-      grid-template-areas:
+    grid-template-areas:
       "one one"
       "two three"
       "four five";
-      
-      
+
+
   }
 }
 
 @media screen and (min-width: 38em) {
   .testimonial-grid {
     grid-template-areas:
-     'one one'
-     'two three'
-     'two three'
-     'four five'
-     'four five';
+      'one one'
+      'two three'
+      'two three'
+      'four five'
+      'four five';
   }
 }
 
 @media screen and (min-width: 54em) {
   .testimonial-grid {
-      grid-template-areas:
+    grid-template-areas:
       "one one two two"
       "three three four four"
       "five five five five";
@@ -344,7 +362,7 @@ h3 {
 
 @media screen and (min-width: 75em) {
   .testimonial-grid {
-      grid-template-areas:
+    grid-template-areas:
       "one two three four"
       "five five five five";
   }
@@ -374,12 +392,11 @@ h3 {
   opacity: 0.5;
 }
 
-.testimonial > p:first-of-type {
+.testimonial>p:first-of-type {
   font-size: var(--fs-500);
   line-height: 1.2;
 }
 
-.testimonial > p:last-of-type {
+.testimonial>p:last-of-type {
   opacity: 0.7;
-}
-  </style>
+}</style>
