@@ -1,23 +1,19 @@
 <template>
-  <div style="min-height: 800px;">
+  <main style="min-height: 800px;">
     <h1>Word assistant to find words for Wordle</h1>
 
     <div class="container">
       <div class="grid-box">
-
         <section class="text-section">
           <h2>What game is this designed to help solve? &rarr;
             <a style="color: #42b983; text-decoration: underline;" class="text-links"
               href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>
           </h2>
-
           <p>
             Note: This is not an official Wordle site and all game references are property of the respective copyright
             owners.
             This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
           </p>
-
-
           <div>
             <span class="description-span">Instructions</span>
           </div>
@@ -35,31 +31,24 @@
             Typing "##eam" will search for words with the 3rd letter "<b>e</b>", 4th letter "<b>a</b>", and 5th letter
             "<b>m</b>".
           </p>
-
           <p>
             The "<b>Exclude</b>" field is optional and will exclude any words with the letters entered.
             For example, if input in this field is "ab"
             then all words with the letter "a" or "b" will be excluded.
-
           </p>
-
         </section>
 
-        <div>
+        <form @submit.prevent="processInputWord()">
+          <span>{{ outputSuccessMessage }}</span>
           <div class="submission-area">
-           
-              
-              <label class="include-label-text">Include ({{ inputLength }}):</label>
-              <input class="input-field-style" placeholder="Include words with these letters" type="text"
-                v-model="userInput" maxlength="5" />
 
-          
+            <label class="include-label-text">Include ({{ inputLength }}):</label>
+            <input class="input-field-style" placeholder="Include words with these letters" type="text"
+              v-model="userInput" maxlength="5" />
 
-                <label class="include-label-text">Exclude:</label>
-             <input class="input-field-exclude-letters-style"
-                placeholder="Exclude words with these letters (optional)" type="text" v-model="userInputExcludeLetters"
-                maxlength="18" />
-        
+            <label class="include-label-text">Exclude:</label>
+            <input class="input-field-exclude-letters-style" placeholder="Exclude words with these letters (optional)"
+              type="text" v-model="userInputExcludeLetters" maxlength="18" />
             <!--
             <label>
               <span class="character-indice-font">Match Indices</span>
@@ -69,7 +58,7 @@
             -->
           </div>
 
-          <button class="clean-button upper-spacing" @click="checkboxValue ? exactLetterMatches() : processInputWord()">
+          <button type="submit" class="clean-button upper-spacing">
             Submit
           </button>
 
@@ -78,21 +67,21 @@
             <div style="text-align: left;">
               <span class="description-span" style="color: #ff5959;">Error</span>
             </div>
-            <p>To process inputs with anything other than letters the checkbox
-              that says "<b>Match Indices</b>" must be checked.
+            <p>You are trying to include and exclude the same letter.<br>
+              {{ duplicateLettersMessage }}
             </p>
           </dialog>
-        </div>
 
+        </form>
       </div>
     </div>
     Words Allowed:<b>{{ processedWords.length }}</b>
     <div class="letter-output-grid-box" style="padding-top: 1rem;">
       <div v-for="(word, index) in processedWords" :key="index">
-        <b>{{ word }}</b>
+        {{ word.toUpperCase() }}
       </div>
     </div>
-  </div>
+  </main>
 </template>
   
 <script lang="ts">
@@ -104,14 +93,18 @@ export default {
   name: 'MyComponent',
   setup() {
     const notLetter: RegExp = /[^a-zA-Z]/;
-    let checkboxValue: Ref<boolean> = ref(false);
+    let checkboxValue = ref(false);
     const wordleWordData: Ref<Array<String>> = ref(allWords);
     const processedWords: Ref<string[]> = ref([]);
     const maxWordLength: number = 5;
 
     let userInput: Ref<string> = ref('');
     let userInputExcludeLetters: Ref<string> = ref('');
-    let invalidInput: Ref<boolean> = ref(false);
+    let invalidInput = ref(false);
+
+    let duplicateLettersMessage: Ref<string> = ref('');
+
+    const outputSuccessMessage: Ref<String> = ref("");
 
     const inputLength = computed(() => `${userInput.value.length}/${maxWordLength}`);
 
@@ -119,17 +112,51 @@ export default {
       processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
     };
 
+    const getOutPutSuccessMessage = () => {
+      outputSuccessMessage.value = "Submission successful! Scroll down to see the results!";
+    }
     const handleCheckboxChange = () => {
       console.log('Checkbox value:', checkboxValue.value);
       // Add your logic here
     };
 
+    const checkForDuplicateLetters = () => {
+      const inputLetters = userInput.value.split('');
+      const excludeLetters = userInputExcludeLetters.value.split('');
+      const duplicates = inputLetters.filter(letter => excludeLetters.includes(letter));
+
+      if (duplicates.length > 0) {
+        //alert('The same letter is present in both input fields: ' + duplicates.join(', '));
+
+        // singular/plural message
+        if (duplicates.length === 1) {
+          duplicateLettersMessage.value = `The error letter is ${duplicates[0].toUpperCase()}`;
+        } else {
+          duplicateLettersMessage.value = `The error letters are ${duplicates.join(', ').toUpperCase()}`;
+        }
+
+        invalidInput.value = true; // make error message
+        return true;
+      }
+      return false;
+    };
+
+    // core function that processes the inputs
     const processInputWord = () => {
+      // verify a user isn't trying to exclude letters that are also included
+      if (checkForDuplicateLetters() === true) {
+        return;
+      }
+      getOutPutSuccessMessage(); // submission successful message
+
+      // if any input is not a letter this says find exact character position matches
       if (notLetter.test(userInput.value) && !checkboxValue.value) {
         // An error message can optionally be inserted here with invalidInput.value = true;       
         processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
         return;
       }
+      // This will check if any letter is in the word and positions don't matter - could be if-else not sure
+      // what is more readable
       processedWords.value = processWords(userInput.value, userInputExcludeLetters.value);
     };
 
@@ -144,6 +171,9 @@ export default {
       inputLength,
       invalidInput,
       userInputExcludeLetters,
+      getOutPutSuccessMessage,
+      outputSuccessMessage,
+      duplicateLettersMessage
     };
   }
 };
@@ -236,7 +266,7 @@ input:focus {
 .input-field-style::placeholder,
 .input-field-exclude-letters-style::placeholder {
   text-transform: none;
-  letter-spacing: 0;  
+  letter-spacing: 0;
 }
 
 .input-field-exclude-letters-style {
@@ -249,7 +279,7 @@ input:focus {
   margin-right: .5rem;
   font-size: 1.5rem;
   width: 100%;
-  letter-spacing: .1rem;
+  /*letter-spacing: .1rem;*/
   text-transform: uppercase;
 }
 
@@ -258,10 +288,7 @@ input:focus {
   align-items: center;
   white-space: nowrap;
   padding-left: 2rem;
-  
 }
-
-
 
 .container {
   padding: 2em;
@@ -277,8 +304,6 @@ input[type='checkbox'] {
   accent-color: #42b983;
 }
 
-
-
 .upper-spacing {
   margin-top: 1rem;
 }
@@ -288,11 +313,9 @@ label {
   cursor: pointer;
   margin-left: 0.5rem;
   padding: .5rem;
-
   padding-right: .1rem;
   border-radius: .5rem;
   font-weight: bold;
-
   margin-bottom: -2rem;
 }
 
@@ -319,7 +342,6 @@ label {
 .close-button:before,
 .close-button:after {
   position: absolute;
-
   content: " ";
   height: 28px;
   width: 3px;
@@ -327,14 +349,16 @@ label {
   top: .33rem;
   left: 1.25rem;
 }
-.include-label-text{
-  display: flex; 
-  align-items: flex-start; 
+
+.include-label-text {
+  display: flex;
+  align-items: flex-start;
   padding-bottom: 1.3rem;
-  color: #42b883;
-  background-color: #ebebeb;
-  cursor: auto; 
+  color: #ffffff;
+  background-color: #4a4a4a;
+  cursor: auto;
 }
+
 .close-button:before {
   transform: rotate(45deg);
 }
@@ -359,13 +383,12 @@ dialog {
 }
 
 .submission-area {
-  border: 1px solid #42b983;
-  background-color: #ebebeb;
+  border: 5px solid #42b983;
+  background-color: #4a4a4a;
   max-width: 39.5rem;
-  margin: 0 auto;  
+  margin: 0 auto;
   border-radius: 1rem;
   padding: 0rem 1rem .5rem 1rem;
-  margin-top: 2rem;
 }
 
 .character-indice-font {
@@ -395,6 +418,7 @@ dialog {
     font-size: 2rem;
     padding: 1rem;
   }
+
   h2 {
     font-size: 1.5rem;
   }

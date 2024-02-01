@@ -107,7 +107,7 @@ const routes = [
         name: 'CowGameView',
         component: CowGameView,
         meta: {
-          title: 'Cow Game to feed the cows',
+          title: 'Cow Game',
           description: 'A basic game where the user can drag and drop food to feed the cows. Made with Vue.js and TypeScript.',
         },
       },
