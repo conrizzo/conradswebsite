@@ -134,6 +134,6 @@ nav a.router-link-exact-active {
 .dropdown:hover .dropbtn {
     background-color: none;
     cursor: pointer;
-    color: #ff5959;
+    color: #ffffff;    
 }
 </style>

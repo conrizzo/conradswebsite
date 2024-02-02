@@ -1,7 +1,49 @@
 
+// This helper function excludes words with any letters in them
+function getExcludedWords(words: string[] = allWords, matchingWords: Array<string>, excludeLetters: string = '') {  
+  const exludeToLowerCase = excludeLetters.split('').map(letter => letter.toLowerCase());
+    const filteredWords: Array<string> = matchingWords.filter(word => 
+      exludeToLowerCase.every(letter => !word.includes(letter))
+    );
+  return filteredWords;
+}
 
+// This function finds words with any of these letters in them
+export function processWords(word: String, excludeLetters: string = '') {
+  const guess_word = word.toLowerCase().split('');
+  const answer = [];
+  // Filter words with callback function returning to itself
+  const filteredWords = allWords.filter(item => {
+    const wordLetters = item.toLowerCase().split('');
+    // Check if every letter in guess_word is included in word
+    return guess_word.every(letter => wordLetters.includes(letter));
+  });  
+  return getExcludedWords(undefined ,filteredWords , excludeLetters);
+}
 
-// copied from Wordle source - will be a new project to use tries and some logic to solve them
+// This function does exact matching of letters by their position
+export function lettersMatching(guess_word: string, excludeLetters: string = '', words: string[] = allWords): string[] {  
+  guess_word = guess_word.toLowerCase();
+  const matchingWords: Array<string> = [];
+  const notLetter = /[^a-zA-Z]/;    
+  
+  for (const word of words) {
+    let isMatching = true;
+    for (let i = 0; i < guess_word.length; i++) {
+      if (!notLetter.test(guess_word[i]) && guess_word[i] !== word[i]) {
+        isMatching = false;
+        break;
+      }
+    }
+
+    if (isMatching) {
+      matchingWords.push(word);
+    }
+  } 
+  return getExcludedWords(undefined, matchingWords, excludeLetters);
+}
+
+// copied from Wordle source - will be a new project to use some logic to solve them
 // The game itself is the property of the respective owners. This is just a copy of 5 letter words.
 const answers = [
   'cigar',
@@ -12980,57 +13022,11 @@ const allowedGuesses = [
   'zymes',
   'zymic'
 ]
-
 // This commented code does the same thing
 // const allWords = answers.concat(allowedGuesses);
 const allWords = [...answers, ...allowedGuesses]
-
 export { allWords };
 
-// This helper function excludes words with any letters in them
-function getExcludedWords(words: string[] = allWords, matchingWords: Array<string>, excludeLetters: string = '') {  
-  const exludeToLowerCase = excludeLetters.split('').map(letter => letter.toLowerCase());
-    const filteredWords: Array<string> = matchingWords.filter(word => 
-      exludeToLowerCase.every(letter => !word.includes(letter))
-    );
-  return filteredWords;
-}
-
-// This function finds wordes with any of these letters in them
-export function processWords(word: String, excludeLetters: string = '') {
-  const guess_word = word.toLowerCase().split('');
-  const answer = [];
-  // Filter words with callback function returning to itself
-  const filteredWords = allWords.filter(item => {
-    const wordLetters = item.toLowerCase().split('');
-    // Check if every letter in guess_word is included in word
-    return guess_word.every(letter => wordLetters.includes(letter));
-  });  
-  return getExcludedWords(undefined ,filteredWords , excludeLetters);
-}
-
-// This function does exact matching of letters by their position
-export function lettersMatching(guess_word: string, excludeLetters: string = '', words: string[] = allWords): string[] {  
-  guess_word = guess_word.toLowerCase();
-  const matchingWords: Array<string> = [];
-  const notLetter = /[^a-zA-Z]/;    
-  
-  for (const word of words) {
-    let isMatching = true;
-    for (let i = 0; i < guess_word.length; i++) {
-      if (!notLetter.test(guess_word[i]) && guess_word[i] !== word[i]) {
-        isMatching = false;
-        break;
-      }
-    }
-
-    if (isMatching) {
-      matchingWords.push(word);
-    }
-  } 
-  return getExcludedWords(undefined, matchingWords, excludeLetters);
-}
-    
 
 
 

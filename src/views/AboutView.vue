@@ -30,7 +30,7 @@
           <button @click="language();" class="language-button" role="button">{{ languageButtonText
           }}</button>
         </div>
-        <div class="parabola"></div>
+        
         <div class="center-content-within">
           <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section">
             <h1>About</h1>
@@ -38,25 +38,24 @@
               <li>
                 This website is made by me (Conrad) and heavily uses <a href="https://vuejs.org/" class="text-links"
                   style="color: #42b883;">Vue 3 (Vue.js)</a>
-                for its reactivity and interactivity. It's open-source and has been a continuous project.
+                for its reactivity and interactivity. It's open-source and has been a continuous project
               </li>
               <li>
-                It is hosted on <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> with
-                GitHub Pages.
+                It is currently hosted on <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
-                Programming languages/frameworks I used to make this website include: <span class="languages-used">Vue.js, JavaScript, TypeScript,
-                HTML, CSS, Rust into Web Assembly</span>, and soon more projects in other languages such as Angular, Wordpress,
-                Astro.
+                Made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
+                HTML, CSS, Rust into Web Assembly,</span> and soon more projects in other languages such as Angular, Wordpress,
+                Astro
               </li>
               <li>
                 I started learning about Vue.js when I worked on the Bioinformatics Toolkit at Max-Planck-Institut für
-                Biologie in Tübingen, Germany.
+                Biologie in Tübingen, Germany
               </li>
               <li>
-                I also started <a class="text-links"
+                Side project <a class="text-links"
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> to try out the <a
-                  class="text-links" href="https://astro.build/">Astro</a> framework.
+                  class="text-links" href="https://astro.build/">Astro</a> framework
               </li>
             </ul>
           </section>
@@ -67,25 +66,24 @@
               <li>
                 Diese Website wurde von mir (Conrad) selbst erstellt, weitgehend mit <a href="https://vuejs.org/"
                   class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
-                für seine Reaktivität und Interaktivität.
+                für seine Reaktivität und Interaktivität
               </li>
               <li>
-                Sie wird auf meinem <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> mit
-                GitHub Pages gehostet. Es ist Open Source und ein kontinuierliches Projekt.
+                Sie wird auf meinem <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> gehostet. Es ist Open Source und ein kontinuierliches Projekt
               </li>
               <li>
                 Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind 
                 <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.</span>
-                In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen.
+                In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
               </li>
               <li>
                 Ich habe damit begonnen, Vue.js zu lernen, als ich am Bioinformatik-Toolkit am Max-Planck-Institut für
-                Biologie in Tübingen, Deutschland, gearbeitet habe.
+                Biologie in Tübingen, Deutschland, gearbeitet habe
               </li>
               <li>
-                Außerdem habe ich begonnen <a class="text-links"
+                Nebenprojekt <a class="text-links"
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a class="text-links"
-                  href="https://astro.build/">Astro</a> framework verwendet.
+                  href="https://astro.build/">Astro</a> framework verwendet
               </li>
             </ul>
           </section>
@@ -234,8 +232,8 @@ export default {
   linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5), rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  
+  
   z-index: 0;
 }
 
@@ -270,7 +268,7 @@ h2 {
 }
 
 .text-links {
-  color: #fda403;
+  color: #66baff;
   text-decoration: underline;
 }
 
@@ -301,14 +299,15 @@ h2 {
   padding-left: 2rem;
   padding-right: 1rem;
   padding-bottom: 1rem;
-  color: rgb(235, 235, 235);
+  color: rgb(220, 220, 220);
+  background: rgb(49, 51, 56);
 }
 
 /* start arrow area */
 .language-container {
   display: flex;
   align-items: center;
-  margin-left: 19.1rem;
+  margin-left: 17.5rem;
   
   font-size: 1.4rem;
 }
@@ -393,9 +392,10 @@ h2 {
 
 /* arrow code css end */
 .languages-used{
-  color: rgb(163, 53, 238);
+  color: rgb(212, 148, 255);
   border-radius: 0.2em;
   padding: 0.2rem;
+  
 }
 
 .language-button {
@@ -413,7 +413,7 @@ h2 {
 
 
 .language-button:hover {
-  box-shadow: rgb(255, 89, 89) 0 0 0 2px, transparent 0 0 0 0;
+  background: rgb(0, 255, 204);
 }
 
 @media screen and (max-width: 70rem) {

@@ -63,11 +63,11 @@
           </button>
 
           <dialog class="close" :open="invalidInput">
-            <button autofocus @click="invalidInput = false;" class="close-button"></button>
+            <button type="button" autofocus @click="invalidInput = false;" class="close-button"></button>
             <div style="text-align: left;">
               <span class="description-span" style="color: #ff5959;">Error</span>
             </div>
-            <p>You are trying to include and exclude the same letter.<br>
+            <p>You are trying to include and exclude the same data!<br>
               {{ duplicateLettersMessage }}
             </p>
           </dialog>
@@ -97,7 +97,6 @@ export default {
     const wordleWordData: Ref<Array<String>> = ref(allWords);
     const processedWords: Ref<string[]> = ref([]);
     const maxWordLength: number = 5;
-
     let userInput: Ref<string> = ref('');
     let userInputExcludeLetters: Ref<string> = ref('');
     let invalidInput = ref(false);
@@ -112,7 +111,7 @@ export default {
       processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
     };
 
-    const getOutPutSuccessMessage = () => {
+    const getOutputSuccessMessage = () => {
       outputSuccessMessage.value = "Submission successful! Scroll down to see the results!";
     }
     const handleCheckboxChange = () => {
@@ -126,15 +125,13 @@ export default {
       const duplicates = inputLetters.filter(letter => excludeLetters.includes(letter));
 
       if (duplicates.length > 0) {
-        //alert('The same letter is present in both input fields: ' + duplicates.join(', '));
-
         // singular/plural message
         if (duplicates.length === 1) {
           duplicateLettersMessage.value = `The error letter is ${duplicates[0].toUpperCase()}`;
         } else {
           duplicateLettersMessage.value = `The error letters are ${duplicates.join(', ').toUpperCase()}`;
         }
-
+        duplicates.length = 0; // read more about this - clears all array instances and works but should understand this single line better
         invalidInput.value = true; // make error message
         return true;
       }
@@ -147,7 +144,7 @@ export default {
       if (checkForDuplicateLetters() === true) {
         return;
       }
-      getOutPutSuccessMessage(); // submission successful message
+      getOutputSuccessMessage(); // submission successful message
 
       // if any input is not a letter this says find exact character position matches
       if (notLetter.test(userInput.value) && !checkboxValue.value) {
@@ -162,6 +159,7 @@ export default {
 
     return {
       userInput,
+      userInputExcludeLetters,
       processInputWord,
       processedWords,
       lettersMatching,
@@ -169,9 +167,8 @@ export default {
       handleCheckboxChange,
       exactLetterMatches,
       inputLength,
-      invalidInput,
-      userInputExcludeLetters,
-      getOutPutSuccessMessage,
+      invalidInput,     
+      getOutputSuccessMessage,
       outputSuccessMessage,
       duplicateLettersMessage
     };
@@ -332,7 +329,7 @@ label {
   z-index: 3;
   width: 40px;
   height: 40px;
-  background-color: #42b883;
+  background-color: #ff0000;
 }
 
 .close-button:hover {
@@ -354,8 +351,8 @@ label {
   display: flex;
   align-items: flex-start;
   padding-bottom: 1.3rem;
-  color: #ffffff;
-  background-color: #4a4a4a;
+  color: #000000;
+  background-color: #b5e2ff;
   cursor: auto;
 }
 
@@ -373,7 +370,7 @@ dialog {
   border-radius: 1rem;
   padding: 1rem;
   z-index: 2;
-  border: 2px solid #ff5959;
+  border: 3px solid #ff5959;
   margin-top: 1rem;
   max-width: 39.5rem;
 }
@@ -383,8 +380,8 @@ dialog {
 }
 
 .submission-area {
-  border: 5px solid #42b983;
-  background-color: #4a4a4a;
+  border: 2px solid #42b983;
+  background-color: #b5e2ff;
   max-width: 39.5rem;
   margin: 0 auto;
   border-radius: 1rem;

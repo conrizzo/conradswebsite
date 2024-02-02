@@ -125,7 +125,7 @@ header {
   text-transform: uppercase;
   letter-spacing: .125rem;
   padding-top: .5rem;
-  padding-bottom: .5rem;  
+  padding-bottom: .5rem;
   font-size: 1.1rem;
   background: rgb(0, 0, 0);
   color: #fff;
@@ -133,17 +133,24 @@ header {
 
 
 .about-menu:hover {
-  outline: 2px solid rgb(255, 89, 89);
+  outline: 2px solid #fff;
+}
+
+nav a.router-link-exact-active:not(.active):hover {
   color: #ff5959;
+}
+
+.about-menu:active {
+  color: #ffffff;
 }
 
 .projects-menu {
   box-sizing: border-box;
-  padding-left: 0.45em;  
+  padding-left: 0.45em;
 }
 
 .projects-menu:hover {
-  outline: 2px solid #ff5959;
+  outline: 2px solid #fff;
 }
 
 .header-h2 {
@@ -187,16 +194,12 @@ nav a {
   color: rgb(240, 240, 240);
 }
 
-nav a:hover {
-  color: #ff5959;
-  text-decoration: none;
-  /*background-color: rgb(235, 235, 235);*/
-}
-
 nav a.router-link-exact-active {
   color: #ff5959;
+  /* adjusts the active link color of ABOUT */
   background-color: rgba(0, 0, 0, 0);
 }
+
 
 .home-link {
   padding-left: 0.5em;
@@ -231,14 +234,12 @@ nav a.router-link-exact-active {
 }
 
 .hide-sign-in-text-at-low-res:hover {
-  color:#ff5959;
+  color: #ff5959;
 }
-
 
 .only-show-home-svg-at-mobile-size {
   margin-bottom: 0.25rem;
   margin-right: 0.25rem;
-
 }
 
 .only-show-home-svg-at-mobile-size:is(:hover) {
@@ -264,8 +265,6 @@ nav a.router-link-exact-active {
     margin-right: 0.25rem;
     margin-left: 0rem;
   }
-
-
 }
 
 @media (max-width: 45rem) {
@@ -315,6 +314,5 @@ nav a.router-link-exact-active {
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
     color: rgb(100, 100, 100);    
   }
-  */
-</style>
+  */</style>
   
