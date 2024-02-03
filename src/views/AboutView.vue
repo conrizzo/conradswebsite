@@ -29,11 +29,14 @@
           </div>
           <button @click="language();" class="language-button" role="button">{{ languageButtonText
           }}</button>
+           
+           
         </div>
-        
+
         <div class="center-content-within">
           <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section">
             <h1>About</h1>
+            <button style="margin-bottom: 0.25rem;" class="clean-button" @click="testBackEnd()">Test back-end</button>
             <ul>
               <li>
                 This website is made by me (Conrad) and heavily uses <a href="https://vuejs.org/" class="text-links"
@@ -41,11 +44,20 @@
                 for its reactivity and interactivity. It's open-source and has been a continuous project
               </li>
               <li>
-                It is currently hosted on <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
+                The website now runs on a VPS (Virtual Private Server), but it is also hosted
+                on <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> at
+                <a class="text-links" href="https://git.conradswebsite.com">git.conradswebsite.com</a>
+
+              </li>
+              <li>
+                It is currently a basic full-stack website with back-end running Flask and Python, and front-end running Vue.js
+                on <a class="text-links" href="https://www.nginx.com/resources/glossary/nginx/">nginx</a>. It also uses http/2 for faster
+                loading.
               </li>
               <li>
                 Made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
-                HTML, CSS, Rust into Web Assembly,</span> and soon more projects in other languages such as Angular, Wordpress,
+                  HTML, CSS, Rust into Web Assembly,</span> and soon more projects in other languages such as Angular,
+                Wordpress,
                 Astro
               </li>
               <li>
@@ -56,6 +68,9 @@
                 Side project <a class="text-links"
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> to try out the <a
                   class="text-links" href="https://astro.build/">Astro</a> framework
+              </li>
+              <li v-show="backEndQuery !== null" class="backend-message">
+                Python backend: {{ backEndQuery }}
               </li>
             </ul>
           </section>
@@ -69,10 +84,11 @@
                 für seine Reaktivität und Interaktivität
               </li>
               <li>
-                Sie wird auf meinem <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> gehostet. Es ist Open Source und ein kontinuierliches Projekt
+                Sie wird auf meinem <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
+                gehostet. Es ist Open Source und ein kontinuierliches Projekt
               </li>
               <li>
-                Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind 
+                Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind
                 <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.</span>
                 In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
               </li>
@@ -84,6 +100,9 @@
                 Nebenprojekt <a class="text-links"
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a class="text-links"
                   href="https://astro.build/">Astro</a> framework verwendet
+              </li>
+              <li v-show="backEndQuery !== null" class="backend-message">
+                Python backend: {{ backEndQuery }}
               </li>
             </ul>
           </section>
@@ -120,6 +139,7 @@
           </section>
           <!-- German Section -->
           <section v-show="languageButtonText === 'Switch to English'" class="each-section">
+            
             <h2>Mehr über mich</h2>
             <p>
               In 2022 habe ich ein Studium der Computerlinguistik an der Universität Tübingen in Deutschland
@@ -147,14 +167,12 @@
               Maschinenlernthemen (obwohl unglaublich interessant) können sehr schnell sehr komplex werden!
 
               Ich freue mich auf neue Möglichkeiten, bin begeistert, mehr zu lernen und habe Vertrauen in
-              meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.
-            </p>
+              meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.              
+            </p>           
           </section>
-        </div>
+        </div>        
       </div>
-
     </main>
-
   </body>
 
   <!-- Deutsch -->
@@ -183,7 +201,9 @@ export default {
 
       titleText: "ConradsWebsite",
       contentText: "Thank you for visiting!\
-                    Welcome to the personal website of Conrad Lundberg. This is primarily a place to test ideas and make some projects."
+                    Welcome to the personal website of Conrad Lundberg. This is primarily a place to test ideas and make some projects.",
+
+      backEndQuery: null,
     }
   },
   downloadPDF() {
@@ -206,6 +226,17 @@ export default {
     Prism.highlightAll();
   },
   methods: {
+    async testBackEnd() {
+      try {
+        console.log("test");
+        const response = await fetch('http://conradswebsite.com:5000/back_end/api/data');
+        const data = await response.json();
+        console.log(data);
+        this.backEndQuery = data;
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    },
     language() {
       if (this.languageButtonText == "Deutsch wechseln") {
         this.languageButtonText = "Switch to English";
@@ -227,13 +258,13 @@ export default {
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
   */
-  background: -webkit-linear-gradient(-10deg,rgb(27, 10, 15), 10%, rgb(54, 23, 34), 20%, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(-10deg, rgb(27, 10, 15), 10%, rgb(54, 23, 34), 20%, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
   background: linear-gradient(-10deg, rgb(27, 10, 15), 10%, rgb(54, 23, 34), 20%, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%),
-  linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5), rgb(139, 114, 188) 100%);
+    linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5), rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;
-  
-  
+
+
   z-index: 0;
 }
 
@@ -242,14 +273,14 @@ export default {
   position: fixed;
   bottom: 50%;
   left: 200px;
-  width: 150px; 
-  height: 150px; 
+  width: 150px;
+  height: 150px;
   background-color: rgb(255, 255, 245);
-  border-radius: 50%; 
-  transform: translate(-50%, -50%); 
-  filter: blur(20px); 
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(20px);
   z-index: 0;
-  background-attachment: fixed;  
+  background-attachment: fixed;
 }
 
 h1 {
@@ -267,6 +298,14 @@ h2 {
 
 }
 
+p {
+  max-width: none;
+}
+
+.backend-message{
+  color: rgb(255, 89, 89);
+}
+
 .text-links {
   color: #66baff;
   text-decoration: underline;
@@ -277,7 +316,7 @@ h2 {
   display: flex;
   justify-content: center;
   z-index: 1;
-  position: relative;  
+  position: relative;
 }
 
 .width-container {
@@ -290,11 +329,11 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fs-600);
+  font-size: var(--fs-400);
 }
 
 .each-section {
-  max-width: 45rem;
+  max-width: 65rem;
   padding-top: 1rem;
   padding-left: 2rem;
   padding-right: 1rem;
@@ -308,7 +347,7 @@ h2 {
   display: flex;
   align-items: center;
   margin-left: 17.5rem;
-  
+
   font-size: 1.4rem;
 }
 
@@ -316,7 +355,7 @@ h2 {
   font-size: 0.9em;
   margin-top: -4em;
   margin-left: -10rem;
-  
+
   z-index: 4;
   transform: rotate(35deg);
   border-bottom: none;
@@ -345,8 +384,6 @@ h2 {
   top: -320px;
   left: -50px;
 }
-
-
 
 .arrow .curve {
   border: 4px solid #ff5959;
@@ -391,11 +428,11 @@ h2 {
 }
 
 /* arrow code css end */
-.languages-used{
+.languages-used {
   color: rgb(212, 148, 255);
   border-radius: 0.2em;
   padding: 0.2rem;
-  
+
 }
 
 .language-button {
@@ -408,7 +445,7 @@ h2 {
   padding: 1rem;
   z-index: 3;
   cursor: pointer;
-  
+
 }
 
 
@@ -426,5 +463,4 @@ h2 {
   .language-container {
     margin-left: 45%;
   }
-}
-</style>
+}</style>
