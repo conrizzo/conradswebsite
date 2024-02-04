@@ -29,15 +29,19 @@
           </div>
           <button @click="language();" class="language-button" role="button">{{ languageButtonText
           }}</button>
-           
-           
+
+
         </div>
 
         <div class="center-content-within">
           <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section">
             <h1>About</h1>
             <button style="margin-bottom: 0.25rem;" class="clean-button" @click="testBackEnd()">Test back-end</button>
+
             <ul>
+              <li v-show="backEndQuery !== null" class="backend-message">
+                Python backend: {{ backEndQuery }}
+              </li>
               <li>
                 This website is made by me (Conrad) and heavily uses <a href="https://vuejs.org/" class="text-links"
                   style="color: #42b883;">Vue 3 (Vue.js)</a>
@@ -47,15 +51,17 @@
                 The website now runs on a VPS (Virtual Private Server), but it is also hosted
                 on <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> at
                 <a class="text-links" href="https://git.conradswebsite.com">git.conradswebsite.com</a>
-
               </li>
               <li>
-                It is currently a basic full-stack website with back-end running Flask and Python, and front-end running Vue.js
-                on <a class="text-links" href="https://www.nginx.com/resources/glossary/nginx/">nginx</a>. It also uses http/2 for faster
+                It is currently a basic full-stack website with back-end running <a class="text-links"
+                  href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a> and Python, and front-end running
+                Vue.js
+                on <a class="text-links" href="https://www.nginx.com/resources/glossary/nginx/">nginx</a>. It also uses
+                <a class="text-links" href="https://en.wikipedia.org/wiki/HTTP/2">http/2</a> for faster
                 loading.
               </li>
               <li>
-                Made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
+                Front end made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
                   HTML, CSS, Rust into Web Assembly,</span> and soon more projects in other languages such as Angular,
                 Wordpress,
                 Astro
@@ -69,15 +75,17 @@
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> to try out the <a
                   class="text-links" href="https://astro.build/">Astro</a> framework
               </li>
-              <li v-show="backEndQuery !== null" class="backend-message">
-                Python backend: {{ backEndQuery }}
-              </li>
+
             </ul>
           </section>
           <!-- German Section -->
           <section v-show="languageButtonText === 'Switch to English'" class="each-section">
             <h1>About</h1>
+            <button style="margin-bottom: 0.25rem;" class="clean-button" @click="testBackEnd()">Test back-end</button>
             <ul>
+              <li v-show="backEndQuery !== null" class="backend-message">
+                Python backend: {{ backEndQuery }}
+              </li>
               <li>
                 Diese Website wurde von mir (Conrad) selbst erstellt, weitgehend mit <a href="https://vuejs.org/"
                   class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
@@ -88,7 +96,15 @@
                 gehostet. Es ist Open Source und ein kontinuierliches Projekt
               </li>
               <li>
-                Die Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind
+                Es handelt sich derzeit um eine einfache Full-Stack-Website mit einem Back-End, das auf <a
+                  class="text-links" href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a> und Python läuft, und
+                einem Front-End, das auf Vue.js basiert und auf <a class="text-links"
+                  href="https://www.nginx.com/">nginx</a> läuft. Außerdem wird <a class="text-links"
+                  href="https://de.wikipedia.org/wiki/HTTP/2">HTTP/2</a> für schnellere Ladezeiten verwendet.
+              </li>
+
+              <li>
+                Frontend Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind
                 <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.</span>
                 In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
               </li>
@@ -101,9 +117,7 @@
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a class="text-links"
                   href="https://astro.build/">Astro</a> framework verwendet
               </li>
-              <li v-show="backEndQuery !== null" class="backend-message">
-                Python backend: {{ backEndQuery }}
-              </li>
+
             </ul>
           </section>
 
@@ -118,7 +132,8 @@
               I am pleased to have successfully earned a degree from a German university. Before this I obtained a Biology
               degree in the USA. Most of the information in todays world travels through the internet in one way or
               another,
-              so I thought it would be interesting to go back to websites and learn how to build my own websites and web
+              so after a break to figure out what to do, I thought it would be interesting to go back to websites and
+              learn how to build my own websites and web
               applications.
             </p>
 
@@ -139,7 +154,7 @@
           </section>
           <!-- German Section -->
           <section v-show="languageButtonText === 'Switch to English'" class="each-section">
-            
+
             <h2>Mehr über mich</h2>
             <p>
               In 2022 habe ich ein Studium der Computerlinguistik an der Universität Tübingen in Deutschland
@@ -151,9 +166,8 @@
               Die meisten Informationen in der heutigen Welt werden auf eine oder andere Weise über das Internet
               übertragen.
 
-              Deshalb dachte ich, es wäre interessant, mich wieder
-              mit Websites zu beschäftigen und zu lernen, wie ich meine eigenen Websites und Web-Anwendungen erstellen
-              kann.
+              Deshalb dachte ich, dass es nach einer Pause interessant wäre, mich wieder mit Websites zu
+              beschäftigen und zu lernen, wie ich meine eigenen Websites und Webanwendungen erstellen kann.
             </p>
 
             <p>
@@ -167,10 +181,10 @@
               Maschinenlernthemen (obwohl unglaublich interessant) können sehr schnell sehr komplex werden!
 
               Ich freue mich auf neue Möglichkeiten, bin begeistert, mehr zu lernen und habe Vertrauen in
-              meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.              
-            </p>           
+              meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.
+            </p>
           </section>
-        </div>        
+        </div>
       </div>
     </main>
   </body>
@@ -203,7 +217,12 @@ export default {
       contentText: "Thank you for visiting!\
                     Welcome to the personal website of Conrad Lundberg. This is primarily a place to test ideas and make some projects.",
 
+      clickCount: 0,
+      firstClick: null,
       backEndQuery: null,
+
+      clickLimit: 3,
+      time: 9000,
     }
   },
   downloadPDF() {
@@ -226,16 +245,46 @@ export default {
     Prism.highlightAll();
   },
   methods: {
+    // query the backend, but limit the number of requests to 10 per 10 seconds
     async testBackEnd() {
       try {
-        console.log("test");
-        const response = await fetch('http://conradswebsite.com:5000/back_end/api/data');
-        const data = await response.json();
-        console.log(data);
-        this.backEndQuery = data;
+        if (this.clickCount === 0) {
+          setTimeout(() => {
+            this.clickCount = 0;
+          }, this.time); // time is set to 9 seconds
+        }
+
+        if (this.clickCount < this.clickLimit) {
+          console.log("Access backend Python code!");
+
+          const response = await fetch('/back_end/api/data');
+          /* for server use back_end/api/data */
+          /* must use for localhost or from another webs server const response = await fetch('https://conradswebsite.com/back_end/api/data');*/
+          const data = await response.json();
+          console.log(data);
+          this.backEndQuery = data;
+          this.clickCount++;
+        } else {
+          this.backEndQuery = `Error: Too many requests. Limited to ${this.clickLimit} requests per ${this.time / 1000} seconds!`;
+        }
       } catch (error) {
         console.error('Error:', error);
       }
+    },
+    transformSentences() {
+      const sentences = ["Testing the sentence transformers, what will it do here.", "I am an AI.", "I am a human."];
+      fetch('http://https://conradswebsite.com/back_end/transform', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sentences: sentences }),
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     },
     language() {
       if (this.languageButtonText == "Deutsch wechseln") {
@@ -302,7 +351,7 @@ p {
   max-width: none;
 }
 
-.backend-message{
+.backend-message {
   color: rgb(255, 89, 89);
 }
 
@@ -463,4 +512,5 @@ p {
   .language-container {
     margin-left: 45%;
   }
-}</style>
+}
+</style>

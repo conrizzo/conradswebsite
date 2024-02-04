@@ -351,8 +351,8 @@ label {
   display: flex;
   align-items: flex-start;
   padding-bottom: 1.3rem;
-  color: #000000;
-  background-color: #b5e2ff;
+  color: #ffffff;
+  background-color: rgb(79, 223, 158);
   cursor: auto;
 }
 
@@ -381,7 +381,7 @@ dialog {
 
 .submission-area {
   border: 2px solid #42b983;
-  background-color: #b5e2ff;
+  background-color: rgb(79, 223, 158);
   max-width: 39.5rem;
   margin: 0 auto;
   border-radius: 1rem;
