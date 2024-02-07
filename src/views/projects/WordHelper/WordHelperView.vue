@@ -15,11 +15,13 @@
             This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
           </p>
           <div>
-            <span v-if="!showInstructions" @click="viewInstructions();" class="description-span">View Instructions</span>
-            <span v-else @click="viewInstructions();" class="description-span">Close Instructions</span>
+            <span v-if="!viewInstructions" @click="viewInstructions = !viewInstructions" class="description-span">
+              View Instructions<span class="arrow down"></span></span>
+            <span v-else @click="viewInstructions = !viewInstructions" class="description-span">
+              Close Instructions<span class="arrow-up up"></span></span>
           </div>
 
-          <div v-if="showInstructions" class="instructions">
+          <div v-if="viewInstructions" class="instructions">
             <p>
               Typing letters in the <b>Include</b> field will
               search for those letters in any position in a word.
@@ -79,7 +81,7 @@
         </form>
       </div>
     </div>
-
+    <!--  <img :src="(getImageSrc() as string)"> for testing -->
     <span style="color: #fff;">Words Allowed:<b>{{ processedWords.length }}</b></span>
     <div class="letter-output-grid-box">
       <div v-for="(word, index) in processedWords" :key="index">
@@ -91,23 +93,29 @@
   
 <script lang="ts">
 
-import { ref, computed, Ref } from 'vue';
+import { ref, computed, Ref, onMounted } from 'vue';
 import { allWords, processWords, lettersMatching } from '../../../data/wordle_words/wordle'
-import projectLinks from '@/components/Navigation/ProjectLinks'
+import projectLinks from '@/components/Navigation/ProjectLinks' // meta tags experiment
 
 
 export default {
   name: 'MyComponent',
-  metaInfo: {
-    title: 'Word assistant to find words for Wordle',
-    meta: [
-      { vmid: 'description', name: 'description', content: 'Solve 5 letter words like the Wordle game by adding or removing letters.' },
-      { vmid: 'og:title', property: 'og:title', content: 'Word assistant to find words for Wordle' },
-      { vmid: 'og:description', property: 'og:description', content: 'This helps to narrow the list of 5 letter words by searching through strings.' },
-      { vmid: 'og:image', property: 'og:image', content: projectLinks.find(link => link.id === 9)?.imageSrc || '' },
-    ],
-  },
+
   setup() {
+    // This adds meta tags for the page - experimenting with this
+    onMounted(() => {
+      document.title = 'Word assistant to find words for Wordle';
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', 'A project to help win the game Wordle by searching strings with JavaScript/TypeScript');
+      }
+      const ogImageMeta = document.querySelector('meta[property="og:image"]');
+      if (ogImageMeta) {
+        ogImageMeta.setAttribute('content', getImageSrc() as string);
+      }
+    });
+
+    // main variables
     const notLetter: RegExp = /[^a-zA-Z]/;
     let checkboxValue = ref(false);
     const wordleWordData: Ref<Array<String>> = ref(allWords);
@@ -116,7 +124,8 @@ export default {
     let userInput: Ref<string> = ref('');
     let userInputExcludeLetters: Ref<string> = ref('');
     let invalidInput = ref(false);
-    let showInstructions = ref(false);
+    let viewInstructions = ref(false);
+
     // meta tags experiment 
     const links = ref(projectLinks);
     const linkWithId9 = links.value.find(link => link.id === 9);
@@ -139,8 +148,8 @@ export default {
       // Add your logic here
     };
 
-    const viewInstructions = () => {
-      showInstructions.value = !showInstructions.value;
+    const getImageSrc = () => {
+      return projectLinks.find(link => link.id === 9)?.imageSrc ?? '';
     };
 
     const checkForDuplicateLetters = () => {
@@ -162,7 +171,7 @@ export default {
       return false;
     };
 
-    // core function that processes the inputs
+    // MAIN FUNCTION FOR THIS
     const processInputWord = () => {
       // verify a user isn't trying to exclude letters that are also included
       if (checkForDuplicateLetters() === true) {
@@ -195,11 +204,11 @@ export default {
       getOutputSuccessMessage,
       outputSuccessMessage,
       duplicateLettersMessage,
-      showInstructions,
       viewInstructions,
       // meta tags experiment 
       links,
-      imageSrc
+      imageSrc,
+      getImageSrc
       // meta tags experiment 
     };
   }
@@ -241,8 +250,36 @@ p {
   cursor: pointer;
 }
 
+/* custom arrow logic starts */
+.arrow {
+  border: solid #42b983;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 4px;
+  margin-left: 0.5rem;
+  margin-bottom: 0.1rem;
+}
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.arrow-up {
+  border: solid #42b983;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 4px;
+  margin-left: 0.5rem;
+  margin-bottom: -0.2rem;
+}
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+/* custom arrow logic ends */
+
 .description-span:hover {
   text-decoration: underline;
+  user-select: none;
 }
 
 .text-section {
@@ -464,4 +501,5 @@ dialog {
   h2 {
     font-size: 1.5rem;
   }
-}</style>
+}
+</style>

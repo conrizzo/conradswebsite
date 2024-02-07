@@ -28,11 +28,11 @@
                         <div class="each-item-area-formatting">
                             <div class="cart-image-container">
                                 <router-link
-                                 :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price } }">
-                                    <image>
-                                        <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.imageSrc"
-                                            width="128" height="128">
-                                    </image>
+                                    :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price } }">
+
+                                    <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.imageSrc"
+                                        width="128" height="128">
+
                                 </router-link>
                             </div>
                             <div class="name-price-cart-formatting">
@@ -44,14 +44,16 @@
                                     €{{ item.price }}
                                 </span>
                                 <br>
-                                Quantity: 
-                                    <div style="display: flex;">
-                                        <button @click="handlePlusMinusIncrementDecrementButtons(item, -1)" style="font-size: 1.25rem; margin-right: 0.1rem; width: 1.7rem; cursor: pointer;">-</button>
-                                            <input type="number" v-model="item.quantity" min="0" max="100" step="1"
-                                                    @input="updateQuantityInCart(item)"
-                                                    style="width: 3.2rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;">
-                                        <button @click="handlePlusMinusIncrementDecrementButtons(item, 1)" style="font-size: 1.25rem; margin-left: 0.1rem; width: 1.7rem; cursor: pointer;">+</button>
-                                    </div>
+                                Quantity:
+                                <div style="display: flex;">
+                                    <button @click="handlePlusMinusIncrementDecrementButtons(item, -1)"
+                                        style="font-size: 1.25rem; margin-right: 0.1rem; width: 1.7rem; cursor: pointer;">-</button>
+                                    <input type="number" v-model="item.quantity" min="0" max="100" step="1"
+                                        @input="updateQuantityInCart(item)"
+                                        style="width: 3.2rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;">
+                                    <button @click="handlePlusMinusIncrementDecrementButtons(item, 1)"
+                                        style="font-size: 1.25rem; margin-left: 0.1rem; width: 1.7rem; cursor: pointer;">+</button>
+                                </div>
 
                                 <br>
                                 Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity *
@@ -94,7 +96,8 @@
 
                 <div class="bottom-checkout-button-container">
 
-                    <button v-show="runningTotal > 0" @click="emptyShoppingCart()" class="clean-button button-at-bottom-right-space">Empty Cart
+                    <button v-show="runningTotal > 0" @click="emptyShoppingCart()"
+                        class="clean-button button-at-bottom-right-space">Empty Cart
                     </button>
 
                     <div v-if="showGoToCheckOutButton">
@@ -180,7 +183,7 @@ export default {
             this.userCart = JSON.parse(cartItems);
         }
 
-       
+
         //console.log("CART", this.userCart)
     },
     mounted() {
@@ -188,7 +191,7 @@ export default {
         this.makeInventory();
         // NOTE: There is definitely a better way to solve this problem than this, but for now
         // This line of code below updates the runningtotal of the local cookies automatically.
-        this.runningTotal = this.userCart.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);        
+        this.runningTotal = this.userCart.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
     },
 
     // This solves the issue I had with the architecture, didn't expect to use a watcher here.
@@ -211,7 +214,7 @@ export default {
             deep: true // Watch for changes in nested properties of userCart
         },
 
-       
+
 
     },
 
@@ -255,7 +258,7 @@ export default {
             VueCookies.set('userCart', JSON.stringify([this.userCart]), { expires: 3 });
         },
 
-        removeItemFromCartIfQuantityIsZero(item) {            
+        removeItemFromCartIfQuantityIsZero(item) {
             if (item.quantity === 0) {
                 this.removeItem(this.userCart.findIndex(cartItem => cartItem.id === item.id));
             }
@@ -263,15 +266,15 @@ export default {
 
         handlePlusMinusIncrementDecrementButtons(item, increment) {
             const newQuantity = item.quantity + increment;
-                if (newQuantity >= 0 && newQuantity <= 100) {
+            if (newQuantity >= 0 && newQuantity <= 100) {
                 item.quantity = newQuantity;
-                this.updateQuantityInCart(item);            
-                }
-                // only runs if the quantity is 0
-                this.removeItemFromCartIfQuantityIsZero(item);
-        },   
+                this.updateQuantityInCart(item);
+            }
+            // only runs if the quantity is 0
+            this.removeItemFromCartIfQuantityIsZero(item);
+        },
 
-        updateQuantityInCart(item) {            
+        updateQuantityInCart(item) {
             const matchingCartItem = this.userCart.find(cartItem => cartItem.id === item.id);
             if (matchingCartItem) {
                 matchingCartItem.quantity = item.quantity;
@@ -286,11 +289,11 @@ export default {
                             return runningTotal;
                              }
                             this.runningTotal = calculateRunningTotal(this.userCart);
-                */                
-            }                      
-            this.removeItemFromCartIfQuantityIsZero(item);           
+                */
+            }
+            this.removeItemFromCartIfQuantityIsZero(item);
         },
-      
+
         makeInventory() {
             // sets this local constant to the global TypeScript array of product inventory objects
             const inventory = this.storeInventory;
@@ -304,7 +307,7 @@ export default {
             // const items = inventory.getItems();            
         },
 
-        resetInventory() {           
+        resetInventory() {
             this.storeInventory = new Inventory();
         },
 
@@ -348,7 +351,7 @@ export default {
             this.runningTotal = 0;
         },
 
-        removeItem(index) {    
+        removeItem(index) {
             // guard statement 
             if (index === null || index === undefined || index < 0) {
                 return
@@ -361,7 +364,6 @@ export default {
 </script>  
   
 <style scoped>
-
 h1 {
     font-size: 4em;
 }
@@ -464,8 +466,9 @@ h1 {
 .special-offer h2 {
     display: inline-block;
     border-bottom: 3px solid #ffffff;
-    
-    padding-left: 1rem; padding-right: 1rem;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
     font-size: 1.25rem;
     padding-top: 0.5rem;
     text-align: center;
@@ -579,6 +582,5 @@ h1 {
     }
 }
 
-/* Your styles here */
-</style>
+/* Your styles here */</style>
   

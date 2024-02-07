@@ -3,10 +3,14 @@ import { createApp } from 'vue';
 import  App  from './App.vue';
 import router from './router';
 
-import VueMeta from 'vue-meta'; // for meta tags
-
 import './assets/globalCSS.css';
 import 'prismjs';
+
+
+const app = createApp(App).use(router)
+await router.isReady();
+app.mount('#app');
+
 
 
 /*
@@ -19,7 +23,7 @@ function onResize() {
   document.body.style.setProperty('--vh', window.innerHeight + 'px')
 }*/
 
-createApp(App).use(router).mount('#app');
+
 
 /* import 'prismjs/themes/prism.css'; */
 /*

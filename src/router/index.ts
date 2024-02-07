@@ -175,6 +175,10 @@ const routes = [
         path: 'WordHelper',
         name: 'wordhelper',
         component: WordHelperView,
+        meta: {
+          title: 'Word assistant to find words for Wordle',
+          description: 'A project to help win the game Wordle by searching strings with JavaScript/TypeScript',
+        },
       },
 
       {
