@@ -3,6 +3,8 @@ import { createApp } from 'vue';
 import  App  from './App.vue';
 import router from './router';
 
+import VueMeta from 'vue-meta'; // for meta tags
+
 import './assets/globalCSS.css';
 import 'prismjs';
 

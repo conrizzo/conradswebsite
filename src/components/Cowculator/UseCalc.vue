@@ -1,113 +1,116 @@
 <template>
-<div class="cowculator-position">
-        
-        <div>
-          <!-- checkInput highlights key presses -->
-          <input class="input-field" v-model="expression" type="text" @input="checkInput(); cursorIndex();"
-           @keydown="getLastKey" @selectionchange="handleSelectionChange" ref="inputField" />
-        </div>
+  <div class="cowculator-position">
 
-        <!-- build the cowculator buttons and their functions using v-for with conditions for each button type -->
-        <div class="grid-container cow-image">
-          <button v-for="button in buttonList" :key="button" :class="['grid-item', {
-            'grid-item-symbols': button === '+' || button === '-' || button == '\u00F7' || button == '\u00D7', 'tooltip': button === 'power',
-            active: isActive[button]
-          }]" @click="addNumber(button)">
-
-              <div v-if="button === '<-'" class="arrow-position">
-                <div class="left-arrow"></div>
-              </div>
-
-              <div v-else-if="button === 'power'">
-                <i>x<sup>y</sup></i>
-                <span class="tooltiptext">{{ showTooltip }}</span>
-              </div>
-
-              <div v-else>
-                {{ button }}
-              </div>
-
-          </button>
-        </div>
-
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <div>
-            <button style="margin-right: 0.25em" class="button-35" type="reset" @click="resetAllData">
-              Reset
-            </button>
-            <button style="margin-right: 0.25em" class="button-35" type="button" @click="copyToClipboard">
-              Copy Result
-            </button>
-          </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-          <button style="font-size: 0.75em; padding: 0.25em 0.66em; border-radius: 0.75em; margin-bottom: 0.25em;" class="button-35"
-            @click="adjustTreeSize('+')">
-            Binary Tree Size (<span style="color: #42b883; font-size: 1.5em;">+</span>)
-          </button>
-          <button style="font-size: 0.75em; padding: 0.25em 0.66em; border-radius: 0.75em;" class="button-35"
-            @click="adjustTreeSize('-')">
-            Binary Tree Size (<span style="color: #42b883; font-size: 1.5em;">-</span>)
-          </button>
-        </div>
-
-      </div>
-</div>
-
-<div class="binary-tree-and-outputs-area">
-  <div style="padding-top: 0.5em">
-    <b v-if="showDescriptionText" style="color: #42b883;">Cowculation</b>
-    <div class=".dark-color-text cowculate-result">
-      {{ addCommas(addInExtraMultiplicationSymbols(expression)) }}<span v-if="this.expression == ''"></span>
-      <span v-if="showText">&nbsp;=&nbsp;
-        <br>
-        <div style="font-size: 1.15em; background-color: #6aff64; border-radius: 0.33em; display: inline-block;
-         padding-left: 0.25em; padding-right: 0.25em;">
-          <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}
-        </div>
-      </span>
-
-      <span v-if="mooCounter > 0"><br />Number of Moos: <span style="">{{ mooCounter }}</span></span>
-      <span v-if="superMoo"> <br />{{ mooPlication }}</span>
-
-    </div>
-  </div>
-
-  <div v-if="showNotification" class="notification">
-    <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
-  </div>
-
-  <div style="padding: 0.25em; padding-top: 1em;">
-    <div class=".dark-color-text" v-if="showDescriptionText"
-      style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em">
-      <b style="color: #42b883;">Final Node Cowculation:</b><br />
-      Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span class="node-display">{{
-        operator }}</span>&nbsp; Right node:
-      <span class="node-display">{{ addCommas(rightNode) }}</span><br />
-      <b style="color: #42b883;">Full Binary Tree Structure in JSON:</b><br />
-      <div style="font-size: 0.8em; max-width: 66%; text-align: center; margin: 0 auto;">
-        <span>{{ treeNodeCalculations }}</span>
-      </div>
-    </div>
     <div>
-      <pre v-if="showText">{{ treeString }}</pre>
+      <!-- checkInput highlights key presses -->
+      <input class="input-field" v-model="expression" type="text" @input="checkInput(); cursorIndex();"
+        @keydown="getLastKey" @selectionchange="handleSelectionChange" ref="inputField" />
     </div>
-    <!-- attempt to draw svg here of binary tree -->
-    <div ref="svgContainer"></div>
+
+    <!-- build the cowculator buttons and their functions using v-for with conditions for each button type -->
+    <div class="grid-container cow-image">
+      <button v-for="button in buttonList" :key="button" :class="['grid-item', {
+        'grid-item-symbols': button === '+' || button === '-' || button == '\u00F7' || button == '\u00D7', 'tooltip': button === 'power',
+        active: isActive[button]
+      }]" @click="addNumber(button)">
+
+        <div v-if="button === '<-'" class="arrow-position">
+          <div class="left-arrow"></div>
+        </div>
+
+        <div v-else-if="button === 'power'">
+          <i>x<sup>y</sup></i>
+          <span class="tooltiptext">{{ showTooltip }}</span>
+        </div>
+
+        <div v-else>
+          {{ button }}
+        </div>
+
+      </button>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div>
+        <button style="margin-right: 0.25em" class="button-35" type="reset" @click="resetAllData">
+          Reset
+        </button>
+        <button style="margin-right: 0.25em" class="button-35" type="button" @click="copyToClipboard">
+          Copy Result
+        </button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+        <button style="font-size: 0.75em; padding: 0.25em 0.66em; border-radius: 0.75em; margin-bottom: 0.25em;"
+          class="button-35" @click="adjustTreeSize('+')">
+          Binary Tree Size (<span style="color: #42b883; font-size: 1.5em;">+</span>)
+        </button>
+        <button style="font-size: 0.75em; padding: 0.25em 0.66em; border-radius: 0.75em;" class="button-35"
+          @click="adjustTreeSize('-')">
+          Binary Tree Size (<span style="color: #42b883; font-size: 1.5em;">-</span>)
+        </button>
+      </div>
+
+    </div>
   </div>
-  <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
+
+  <div class="binary-tree-and-outputs-area">
+    <div style="padding-top: 0.5em">
+      <b v-if="showDescriptionText" style="color: #42b883;">Cowculation</b>
+      <div class=".dark-color-text cowculate-result">
+        {{ addCommas(addInExtraMultiplicationSymbols(expression)) }}<span v-if="this.expression == ''"></span>
+        <span v-if="showText">&nbsp;=&nbsp;
+          <br>
+          <div style="font-size: 1.15em; background-color: #6aff64; border-radius: 0.33em; display: inline-block;
+         padding-left: 0.25em; padding-right: 0.25em;">
+            <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}
+          </div>
+        </span>
+
+        <span v-if="mooCounter > 0"><br />Number of Moos: <span style="">{{ mooCounter }}</span></span>
+        <span v-if="superMoo"> <br />{{ mooPlication }}</span>
+
+      </div>
+    </div>
+
+    <div v-if="showNotification" class="notification">
+      <span style="font-weight: bold">{{ result }}</span> copied to clipboard!
+    </div>
+
+    <div style="padding: 0.25em; padding-top: 1em;">
+      <div class=".dark-color-text" v-if="showDescriptionText"
+        style="font-size: 1em; font-weight: 400; margin-bottom: 0.25em">
+        <b style="color: #42b883;">Final Node Cowculation:</b><br />
+        Left node: <span class="node-display">{{ addCommas(leftNode) }}</span>&nbsp; Operator: <span
+          class="node-display">{{
+            operator }}</span>&nbsp; Right node:
+        <span class="node-display">{{ addCommas(rightNode) }}</span><br />
+        <b style="color: #42b883;">Full Binary Tree Structure in JSON:</b><br />
+        <div style="font-size: 0.8em; max-width: 66%; text-align: center; margin: 0 auto;">
+          <span>{{ treeNodeCalculations }}</span>
+        </div>
+      </div>
+      <div>
+        <pre v-if="showText">{{ treeString }}</pre>
+      </div>
+      <!-- attempt to draw svg here of binary tree -->
+      <div class="center-svg">
+        <div ref="svgContainer"></div>
+      </div>
+    </div>
+    <!-- This code checks for an error message and an empty string to see if user tried to 'cowculate'
       without any input. Then if there is input it pushes the error message to the line below the incorrect input.
                           As long as a correct number math operator sequence is present a correct output is shown.    
                         -->
 
-  <div style="text-align: center">
-    <h2 class="moo-cows-go-moo">
-      <span v-if="mooMessage">
-        Moo cows go moo, moo, moo!<br />
-        Moo cows go moo, moo, moo!</span>
-    </h2>
+    <div style="text-align: center">
+      <h2 class="moo-cows-go-moo">
+        <span v-if="mooMessage">
+          Moo cows go moo, moo, moo!<br />
+          Moo cows go moo, moo, moo!</span>
+      </h2>
+    </div>
   </div>
-</div>  
 </template>
 
 <script>
@@ -147,11 +150,11 @@ export default {
       showTooltip: "Making this work with my code was interesting! If the user does an expression like 2*2^2+2 the actual expression being evaluated is 2*(2^2)+2",
       adjustViewBoxSize: 400,
       //svgContent: '',
-      
+
     };
-  },  
+  },
   computed: {
-    
+
     treeString() {
       return this.printTree(this.tree);
     },
@@ -167,22 +170,22 @@ export default {
       return this.result == "Infinity" ? "Moooooooo! You have reached " : "";
     }
   },
-   /*
-      For section immediately below: 
+  /*
+     For section immediately below: 
 
-      This expression(userInput) works by taking whatever the user input is from buttons/text field.
-      The number of Moo's are counted and saved to mooCounter
-      the math symbols that are displayed but don't actually work in calculations are replaced, along with
-      the moos.
-      If the regular expression of a number followed by a math operator is followed such as 3.45*5 then
-      calculations will be performed automatically!
-      mathOperators checks for this regex sequence, then if true the text is shown, a cleanedExpression is
-      used in the cowculate function to evaluate the result! 
-    */
+     This expression(userInput) works by taking whatever the user input is from buttons/text field.
+     The number of Moo's are counted and saved to mooCounter
+     the math symbols that are displayed but don't actually work in calculations are replaced, along with
+     the moos.
+     If the regular expression of a number followed by a math operator is followed such as 3.45*5 then
+     calculations will be performed automatically!
+     mathOperators checks for this regex sequence, then if true the text is shown, a cleanedExpression is
+     used in the cowculate function to evaluate the result! 
+   */
   watch: {
-    
+
     expression(userInput) {
-     
+
       let str = userInput;
 
       this.mooCounter = (str.match(/Moo/g) || []).length;
@@ -227,7 +230,7 @@ export default {
 
       // The following is largely pre-processing for the string to go into the cowculate() function
       str = str.replaceAll("÷", "/").replaceAll("\u00D7", "*");
-    
+
       // invoke function to autocorrect bad entries such as -/ or */ or -+
       if (
         !this.expression.includes("Moo\u00D7Moo") ||
@@ -236,7 +239,7 @@ export default {
         // the string contains "Moo×Moo" or "Moo+Moo"
         this.autoFixIncorrectInput(str);
       }
-    
+
       // remove Moo's for number calculations
       str = str.replaceAll("Moo", "");
 
@@ -260,16 +263,16 @@ export default {
   methods: {
     // Adds commas to the result or expression shown on the screen to increase readability
     addCommas(number) {
-        if (number == null) {
-          return "";
-        } else {
-          // fixed this so it only adds commas to the left of the decimal point
-          number = number.toString();
-          let parts = number.split('.');
-          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          return parts.join('.');
-        }
-      },
+      if (number == null) {
+        return "";
+      } else {
+        // fixed this so it only adds commas to the left of the decimal point
+        number = number.toString();
+        let parts = number.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join('.');
+      }
+    },
     cursorIndex() {
       this.indexOfCursor = this.$refs.inputField.selectionStart;
       //console.log("Cursor index:", this.indexOfCursor);
@@ -277,7 +280,7 @@ export default {
     handleSelectionChange() {
       const cursorIndex = this.$refs.inputField.selectionStart;
       console.log("Cursor index:", cursorIndex);
-      return(cursorIndex);
+      return (cursorIndex);
     },
     getLastKey(event) {
       this.lastKey = event.key;
@@ -379,10 +382,10 @@ export default {
       // Cow Moo cowculations   
       this.userTokens = [];
       this.operators = [];
-      
+
       this.cleanedExpression = this.addParenthesisAroundPowerSymbol(this.cleanedExpression);
 
-      try {   
+      try {
         let input = this.cleanedExpression;
         let currentNumber = "";
 
@@ -390,7 +393,7 @@ export default {
           const char = input.charAt(i);
           // Check for expressions where a negative sign precedes a "left paranthesis"
           // such as "- left paranthesis" To solve this the expression in parenthesis is subtracted from 0
-         
+
           if (
             char === "-" &&
             (i === 0 || isNaN(input.charAt(i - 1))) &&
@@ -467,7 +470,7 @@ export default {
               }
             }
           }
-        
+
         }
         // Add the last number if there is one
         if (currentNumber !== "") {
@@ -529,7 +532,7 @@ export default {
         this.showText = true;
 
         // create the binary tree structure
-        this.treeNodeCalculations = this.userTokens[0];        
+        this.treeNodeCalculations = this.userTokens[0];
         this.treeData = this.treeNodeCalculations;
         this.tree = this.treeNodeCalculations;
         this.showDescriptionText = true;
@@ -589,27 +592,27 @@ export default {
       while (svgContainer.firstChild) {
         svgContainer.removeChild(svgContainer.firstChild);
       }
-    },    
+    },
     // This function will highlight the buttons as a user types input, or as a user hits the back button on their input to delete it
     checkInput() {
-      
-      /* this.expression is what the user sees at the top of the cowculator */
-      let str = this.expression;   
-      
-      /* take the last digit of the expression */
-      let lastDigitIndex = str.slice(-1);    
 
-      /* highlighting of the digits when something is deleted or backarrow is pressed */      
+      /* this.expression is what the user sees at the top of the cowculator */
+      let str = this.expression;
+
+      /* take the last digit of the expression */
+      let lastDigitIndex = str.slice(-1);
+
+      /* highlighting of the digits when something is deleted or backarrow is pressed */
       this.buttonList.forEach((_, index) => {
         this.isActive[index.toString()] = (lastDigitIndex.toString() === index.toString());
       });
 
       /* delay the removal of the highlight so it looks better */
-      setTimeout(() => {       
-          this.isActive[lastDigitIndex.toString()] = false;       
+      setTimeout(() => {
+        this.isActive[lastDigitIndex.toString()] = false;
       }, 300);
 
-    },    
+    },
     mooButtonHit() {
       this.mooMessage = true;
       if (this.mooTimer) {
@@ -625,14 +628,14 @@ export default {
         /* The order of these functions and expressions in this block below is important! 
         If the checkInput() function is called after the removeEntry() 
         function then rightmost digit will not be highlighted
-        */              
+        */
         this.checkInput();
         // set the expression one step behind for comparison to see where an item is removed between 2 strings
         this.expressionOneStepBehind = this.expression;
         // Remove the value
         this.removeEntry();
         // update this value after doing operations to be 1 step behind the 
-      } else if (buttonValueToAdd === "power") {        
+      } else if (buttonValueToAdd === "power") {
         this.squared();
       }
       else if (buttonValueToAdd === "Moo") {
@@ -652,20 +655,20 @@ export default {
 
           if (cursorIndex === 0 || cursorIndex === this.expression.length) {
             this.expression = this.expression.slice(0, -1);
-          } 
-          else {            
+          }
+          else {
             this.expression = this.expression.slice(0, cursorIndex - 1) + this.expression.slice(cursorIndex);
           }
 
           cursorIndex--; // Move the cursor to the left
-        }        
+        }
         this.$nextTick(() => {
           this.$refs.inputField.selectionStart = cursorIndex; // Restore the cursor index
           this.$refs.inputField.selectionEnd = cursorIndex;
           this.$refs.inputField.focus(); // Keep the focus on the input field
         });
       }
-},
+    },
     addMoo() {
       this.expression += "Moo";
     },
@@ -711,7 +714,7 @@ export default {
       this.expression = this.expression.replaceAll("/", "\u00F7")
         .replaceAll("*", "\u00D7")
     },
-    
+
     copyToClipboard() {
       navigator.clipboard.writeText(this.result);
       this.showNotification = true;
@@ -755,11 +758,15 @@ export default {
 
 
 
-
 <style scoped>
 .button-35:hover {
   box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;
 }
+
+.binary-tree-and-outputs-area {
+  margin: 0 auto;
+}
+
 /*
 .cowculator-position{
   position: absolute; left: 5em;
@@ -795,6 +802,7 @@ export default {
   border-top-right-radius: 0em;
   grid-template-columns: repeat(4, 1fr);
 }
+
 .grid-item {
   background-color: rgba(30, 30, 30, 0.66);
   border: none;
@@ -805,6 +813,7 @@ export default {
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
 }
+
 .active {
   background-color: rgba(66, 184, 131, 0.7) !important;
   /* 
@@ -814,6 +823,13 @@ export default {
   also uses the checkInput() function
 */
 }
+
+.center-svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .grid-item-symbols {
   background-color: rgba(198, 198, 198, 0.6);
   border: none;
@@ -824,11 +840,16 @@ export default {
   font-weight: bold;
   color: rgba(0, 0, 0, 1);
   cursor: pointer;
-}.grid-item-symbols:hover {
+}
+
+.grid-item-symbols:hover {
   background-color: rgba(66, 184, 131, 0.7) !important;
-}.grid-item:hover {
+}
+
+.grid-item:hover {
   background-color: rgba(186, 186, 186, 0.318);
 }
+
 .moo-cows-go-moo {
   top: 102%;
   left: 50%;
@@ -839,6 +860,7 @@ export default {
   position: absolute;
   color: #42b883;
 }
+
 .input-field {
   width: 10.6115em;
   font-size: 2.25em;
@@ -847,11 +869,13 @@ export default {
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 }
+
 /* doesn't highlight when clicking on input field */
 select:focus,
 button:focus {
   outline: none;
 }
+
 /* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
 input:focus {
   outline: none !important;
@@ -859,7 +883,7 @@ input:focus {
   box-shadow: 0 0 10px #42b883;
 }
 
-.cow-image {  
+.cow-image {
   background-image: url(../../images/highland-cow.jpeg);
   background-size: cover;
   border-radius: 1rem;
@@ -871,9 +895,11 @@ input:focus {
   .moo-cows-go-moo {
     top: 100%;
   }
+
   .input-field {
     max-width: 9.8em;
   }
+
   /* adjust the button grid */
   .grid-container {
     max-width: 22em;
@@ -881,6 +907,7 @@ input:focus {
     padding: 0.1em;
   }
 }
+
 .cowculate-result {
   padding-top: 1em;
   text-align: center;
@@ -891,6 +918,7 @@ input:focus {
   padding: 0em;
   border-radius: 4px 4px 4px 4px;
 }
+
 /* back arrow start */
 .arrow {
   border: solid rgb(255, 255, 255);
@@ -898,19 +926,24 @@ input:focus {
   display: inline-block;
   padding: 3px;
 }
+
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+
 .left-arrow {
   border-right: 0.6em solid #ffffff;
   border-bottom: 0.4em solid transparent;
   border-top: 0.4em solid transparent;
   position: absolute;
-}.arrow-position {
+}
+
+.arrow-position {
   margin-bottom: 0.8em;
   margin-left: 0.75em;
 }
+
 /* back arrow end */
 /* notification menu when copy to clipboard */
 .notification {
@@ -930,14 +963,14 @@ input:focus {
   width: 300px;
   opacity: 1;
 }
+
 .notification.hide {
   opacity: 0;
 }
+
 .node-display {
   font-size: 1.3em;
   background-color: #e3e3e3;
   padding-right: 0.33em;
   padding-left: 0.33em;
-}
-
-</style>
+}</style>

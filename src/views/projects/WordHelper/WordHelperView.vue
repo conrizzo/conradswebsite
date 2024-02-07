@@ -1,12 +1,12 @@
 <template>
-  <main style="min-height: 800px;">
+  <main style="min-height: 800px; background: rgb(44, 44, 50);">
     <h1>Word assistant to find words for Wordle</h1>
 
     <div class="container">
       <div class="grid-box">
         <section class="text-section">
           <h2>What game is this designed to help solve? &rarr;
-            <a style="color: #42b983; text-decoration: underline;" class="text-links"
+            <a style="color: #42b983;" class="text-links"
               href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>
           </h2>
           <p>
@@ -15,40 +15,45 @@
             This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
           </p>
           <div>
-            <span class="description-span">Instructions</span>
+            <span v-if="!showInstructions" @click="viewInstructions();" class="description-span">View Instructions</span>
+            <span v-else @click="viewInstructions();" class="description-span">Close Instructions</span>
           </div>
-          <p>
-            Typing letters in the <b>Include</b> field will
-            search for those letters in any position in a word.
-          </p>
-          <p>
-            In order to search for words with a specific letter in a specific position add anything other than a
-            letter between the letters.
-          </p>
-          <p>
-            <b>For example:</b> Type "_r_a_" to search for words with the 2nd letter
-            <b>r</b> and 4th letter <b>a</b>.
-            Typing "##eam" will search for words with the 3rd letter "<b>e</b>", 4th letter "<b>a</b>", and 5th letter
-            "<b>m</b>".
-          </p>
-          <p>
-            The "<b>Exclude</b>" field is optional and will exclude any words with the letters entered.
-            For example, if input in this field is "ab"
-            then all words with the letter "a" or "b" will be excluded.
-          </p>
+
+          <div v-if="showInstructions" class="instructions">
+            <p>
+              Typing letters in the <b>Include</b> field will
+              search for those letters in any position in a word.
+            </p>
+            <p>
+              In order to search for words with a specific letter in a specific position add anything other than a
+              letter between the letters.
+            </p>
+            <p>
+              <b>For example:</b> Type "_r_a_" to search for words with the 2nd letter
+              <b>r</b> and 4th letter <b>a</b>.
+              Typing "##eam" will search for words with the 3rd letter "<b>e</b>", 4th letter "<b>a</b>", and 5th letter
+              "<b>m</b>".
+            </p>
+            <p>
+              The "<b>Exclude</b>" field is optional and will exclude any words with the letters entered.
+              For example, if input in this field is "ab"
+              then all words with the letter "a" or "b" will be excluded.
+            </p>
+          </div>
+
         </section>
 
         <form @submit.prevent="processInputWord()">
-          <span>{{ outputSuccessMessage }}</span>
+          <span style="color:#fff;">{{ outputSuccessMessage }}</span>
           <div class="submission-area">
 
             <label class="include-label-text">Include ({{ inputLength }}):</label>
-            <input class="input-field-style" placeholder="Include words with these letters" type="text"
-              v-model="userInput" maxlength="5" />
+            <input class="input-field-style" placeholder="Include letters" type="text" v-model="userInput"
+              maxlength="5" />
 
-            <label class="include-label-text">Exclude:</label>
-            <input class="input-field-exclude-letters-style" placeholder="Exclude words with these letters (optional)"
-              type="text" v-model="userInputExcludeLetters" maxlength="18" />
+            <label class="include-label-text">Exclude (optional):</label>
+            <input class="input-field-exclude-letters-style" placeholder="Exclude letters" type="text"
+              v-model="userInputExcludeLetters" maxlength="18" />
             <!--
             <label>
               <span class="character-indice-font">Match Indices</span>
@@ -71,12 +76,12 @@
               {{ duplicateLettersMessage }}
             </p>
           </dialog>
-
         </form>
       </div>
     </div>
-    Words Allowed:<b>{{ processedWords.length }}</b>
-    <div class="letter-output-grid-box" style="padding-top: 1rem;">
+
+    <span style="color: #fff;">Words Allowed:<b>{{ processedWords.length }}</b></span>
+    <div class="letter-output-grid-box">
       <div v-for="(word, index) in processedWords" :key="index">
         {{ word.toUpperCase() }}
       </div>
@@ -88,9 +93,20 @@
 
 import { ref, computed, Ref } from 'vue';
 import { allWords, processWords, lettersMatching } from '../../../data/wordle_words/wordle'
+import projectLinks from '@/components/Navigation/ProjectLinks'
+
 
 export default {
   name: 'MyComponent',
+  metaInfo: {
+    title: 'Word assistant to find words for Wordle',
+    meta: [
+      { vmid: 'description', name: 'description', content: 'Solve 5 letter words like the Wordle game by adding or removing letters.' },
+      { vmid: 'og:title', property: 'og:title', content: 'Word assistant to find words for Wordle' },
+      { vmid: 'og:description', property: 'og:description', content: 'This helps to narrow the list of 5 letter words by searching through strings.' },
+      { vmid: 'og:image', property: 'og:image', content: projectLinks.find(link => link.id === 9)?.imageSrc || '' },
+    ],
+  },
   setup() {
     const notLetter: RegExp = /[^a-zA-Z]/;
     let checkboxValue = ref(false);
@@ -100,9 +116,14 @@ export default {
     let userInput: Ref<string> = ref('');
     let userInputExcludeLetters: Ref<string> = ref('');
     let invalidInput = ref(false);
+    let showInstructions = ref(false);
+    // meta tags experiment 
+    const links = ref(projectLinks);
+    const linkWithId9 = links.value.find(link => link.id === 9);
+    const imageSrc = linkWithId9 ? linkWithId9.imageSrc : '';
+    // this area above is experimental
 
     let duplicateLettersMessage: Ref<string> = ref('');
-
     const outputSuccessMessage: Ref<String> = ref("");
 
     const inputLength = computed(() => `${userInput.value.length}/${maxWordLength}`);
@@ -110,13 +131,16 @@ export default {
     const exactLetterMatches = () => {
       processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
     };
-
     const getOutputSuccessMessage = () => {
       outputSuccessMessage.value = "Submission successful! Scroll down to see the results!";
     }
     const handleCheckboxChange = () => {
       console.log('Checkbox value:', checkboxValue.value);
       // Add your logic here
+    };
+
+    const viewInstructions = () => {
+      showInstructions.value = !showInstructions.value;
     };
 
     const checkForDuplicateLetters = () => {
@@ -167,10 +191,16 @@ export default {
       handleCheckboxChange,
       exactLetterMatches,
       inputLength,
-      invalidInput,     
+      invalidInput,
       getOutputSuccessMessage,
       outputSuccessMessage,
-      duplicateLettersMessage
+      duplicateLettersMessage,
+      showInstructions,
+      viewInstructions,
+      // meta tags experiment 
+      links,
+      imageSrc
+      // meta tags experiment 
     };
   }
 };
@@ -184,7 +214,7 @@ h1 {
   padding: 3rem 1rem 3rem 1rem;
   font-family: 'Signika', sans-serif;
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1;
   max-width: 50rem;
   margin: 0 auto;
 }
@@ -208,31 +238,42 @@ p {
   color: #42b983;
   text-transform: capitalize;
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.description-span:hover {
+  text-decoration: underline;
 }
 
 .text-section {
   margin: 0 auto;
+  background: rgb(44, 44, 50);
+  color: #fff;
 }
 
 .grid-box {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   grid-gap: 1rem;
   align-items: flex-start;
   flex-direction: column;
-  background: #ffffff;
+  background: rgb(44, 44, 50);
   padding: 1rem 1.5rem 1rem 1.5rem;
+  margin: 0 auto;
+  max-width: 60rem;
 }
 
 .letter-output-grid-box {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
+  row-gap: 1rem;
   align-items: flex-end;
-  background: #ffffff;
-  padding: 1rem 1.5rem 1rem 1.5rem;
-  max-width: 40rem;
+  background: rgb(44, 44, 50);
+  color: #fff;
+  padding: 1rem .25rem 1rem .25rem;
+  max-width: 30rem;
   margin: 0 auto;
+  border-radius: 0.5rem;
 }
 
 select:focus,
@@ -305,6 +346,10 @@ input[type='checkbox'] {
   margin-top: 1rem;
 }
 
+.upper-spacing:active {
+  background: #42b983;
+}
+
 label {
   background: #ffffff;
   cursor: pointer;
@@ -352,7 +397,7 @@ label {
   align-items: flex-start;
   padding-bottom: 1.3rem;
   color: #ffffff;
-  background-color: rgb(79, 223, 158);
+  background-color: rgb(51, 51, 51);
   cursor: auto;
 }
 
@@ -381,7 +426,7 @@ dialog {
 
 .submission-area {
   border: 2px solid #42b983;
-  background-color: rgb(79, 223, 158);
+  background-color: rgb(51, 51, 51);
   max-width: 39.5rem;
   margin: 0 auto;
   border-radius: 1rem;
@@ -396,8 +441,8 @@ dialog {
 
 @media screen and (max-width: 70rem) {
   .container {
-    padding: 1em;
-    background-color: #f2f2f2;
+    padding: .5em;
+    background: rgb(44, 44, 50);
   }
 
   .character-indice-font {
@@ -419,5 +464,4 @@ dialog {
   h2 {
     font-size: 1.5rem;
   }
-}
-</style>
+}</style>

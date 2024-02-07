@@ -18,6 +18,7 @@
     "vue-class-component": "^8.0.0-0",
     "vue-cookie": "^1.1.4",
     "vue-cookies": "^1.8.3",
+    "vue-meta": "^2.4.0",
     "vue-router": "^4.0.3",
     "word-wrap": "^1.2.3"
   },

@@ -147,6 +147,24 @@
               I look forward to new opportunities, am excited about learning more, and confident in my
               ability to do problem-solving through code and research.
             </p>
+            <div class="form-container">
+              <h2 class="form-title">Leave a message:</h2>
+              <form @submit.prevent="leaveMessage" class="form">
+                <label class="include-label-text">Name:</label>
+                <input class="input-field-style" type="text" v-model="submitName" placeholder="Enter your name" />
+                <label class="include-label-text">Subject:</label>
+                <input class="input-field-style" type="text" v-model="submitSubject" placeholder="Subject" />
+                <label class="include-label-text">Message:</label>
+                <textarea class="input-field-style" type="text" v-model="submitMessage" placeholder="Message"></textarea>
+                <input style="max-width: 5rem;" class="clean-button" type="submit" value="Submit" />
+              </form>
+
+              {{ errorMessage }}
+              <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">Message sent successfully! Thank
+                you
+                for your message!</p>
+            </div>
+            <span>(Note: All messages are sent securely via https to the backend server)</span>
             <!--
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
               target="_blank" rel="noopener noreferrer" class="text-links">Shared Google Document - For testing</a>
@@ -183,9 +201,28 @@
               Ich freue mich auf neue Möglichkeiten, bin begeistert, mehr zu lernen und habe Vertrauen in
               meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.
             </p>
+            <div class="form-container">
+              <h2 class="form-title">Eine Nachricht hinterlassen</h2>
+              <form @submit.prevent="leaveMessage" class="form">
+                <label class="include-label-text">Name:</label>
+                <input class="input-field-style" type="text" v-model="submitName" placeholder="Name" />
+                <label class="include-label-text">Thema:</label>
+                <input class="input-field-style" type="text" v-model="submitSubject" placeholder="Thema" />
+                <label class="include-label-text">Nachricht:</label>
+                <textarea class="input-field-style" type="text" v-model="submitMessage"
+                  placeholder="Nachricht"></textarea>
+                <input style="max-width: 5rem;"  class="clean-button" type="submit" value="Submit" />
+              </form>
+              {{ errorMessage }}
+              <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">
+                Ihre Nachricht wurde erfolgreich übermittelt! Vielen Dank für Ihre Nachricht.</p>
+            </div>
           </section>
+
         </div>
+
       </div>
+
     </main>
   </body>
 
@@ -222,7 +259,14 @@ export default {
       backEndQuery: null,
 
       clickLimit: 3,
-      time: 9000,
+      time: 10000,
+
+      submitName: "",
+      submitSubject: "",
+      submitMessage: "",
+      submitMessageSuccess: false,
+      canSubmit: true,
+      errorMessage: "",
     }
   },
   downloadPDF() {
@@ -251,18 +295,20 @@ export default {
         if (this.clickCount === 0) {
           setTimeout(() => {
             this.clickCount = 0;
-          }, this.time); // time is set to 9 seconds
+          }, this.time); // time is set to 10 seconds
         }
-
+        /* These rate limits match the ones in the backend - this prevents sending unnecessary requests to backend */
         if (this.clickCount < this.clickLimit) {
           console.log("Access backend Python code!");
-
-          const response = await fetch('/back_end/api/data');
-          /* for server use back_end/api/data */
-          /* must use for localhost or from another webs server const response = await fetch('https://conradswebsite.com/back_end/api/data');*/
+          /* for server simplfied link is use 'back_end/api/data' */
+          /* const response = await fetch('/back_end/api/data'); */
+          /* const response = await fetch('https://conradswebsite.com/back_end/api/data'); */
+          /* must use actual web address for localhost or from another webserver 
+          const response = await fetch('https://conradswebsite.com/back_end/api/data');*/
+          const response = await fetch('https://conradswebsite.com/back_end/api/data');
           const data = await response.json();
           console.log(data);
-          this.backEndQuery = data;
+          this.backEndQuery = data.message;
           this.clickCount++;
         } else {
           this.backEndQuery = `Error: Too many requests. Limited to ${this.clickLimit} requests per ${this.time / 1000} seconds!`;
@@ -271,20 +317,55 @@ export default {
         console.error('Error:', error);
       }
     },
-    transformSentences() {
-      const sentences = ["Testing the sentence transformers, what will it do here.", "I am an AI.", "I am a human."];
-      fetch('http://https://conradswebsite.com/back_end/transform', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ sentences: sentences }),
-      })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch((error) => {
-          console.error('Error:', error);
+    async leaveMessage() {
+
+      if (!this.canSubmit) {
+        this.errorMessage = 'Please wait, only 1 message per 30 seconds allowed!';
+        return;
+      }
+
+      const name = this.submitName;
+      const subject = this.submitSubject;
+      const message = this.submitMessage;
+
+      try {
+        const response = await fetch('https://conradswebsite.com/back_end/api/leave_message', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: name, subject: subject, message: message }),
+
         });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        // If the request was successful, show a "message received" notice
+        if (data.message === 'Message received') {
+          // reset all the fields
+          this.submitName = '';
+          this.submitSubject = '';
+          this.submitMessage = '';         
+          // show the success message
+          this.submitMessageSuccess = true;
+          setTimeout(() => {
+            this.submitMessageSuccess = false;
+          }, 5000); // close message after 5 seconds
+          this.canSubmit = false; // set this to false to prevent more messages for 30 seconds
+          this.errorMessage = '';
+          setTimeout(() => {
+            this.canSubmit = true;
+          }, 30000); // disallow messages for 30 seconds
+        }
+
+      } catch (error) {
+        console.error('Error:', error);
+      }
     },
     language() {
       if (this.languageButtonText == "Deutsch wechseln") {
@@ -349,6 +430,64 @@ h2 {
 
 p {
   max-width: none;
+}
+
+.form>* {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  max-width: 40rem;
+}
+
+.form-title {
+  color: rgb(220, 220, 220);
+  margin-top: 1rem;
+  text-decoration: underline;
+}
+
+.form-container {
+  margin-top: 1.5rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+textarea {
+  height: 10rem;
+  width: 100%;
+  resize: none;
+}
+
+.include-label-text {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: -0.5rem;
+  color: rgb(220, 220, 220);
+  cursor: auto;
+}
+
+.input-field-style {
+  padding: 5px 5px;
+  margin: 8px 0;
+  margin-left: 0.1rem;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-right: .5rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.clean-button:hover {
+  background: rgb(4, 242, 194);
+}
+
+.clean-button:active {
+    background-color: rgba(4, 242, 194, 0.75);
+    color: #fff;
 }
 
 .backend-message {
@@ -485,7 +624,6 @@ p {
 }
 
 .language-button {
-
   font-size: 0.8em;
   background: rgb(255, 255, 255);
   border-radius: 0rem;
@@ -494,12 +632,14 @@ p {
   padding: 1rem;
   z-index: 3;
   cursor: pointer;
-
 }
-
-
 .language-button:hover {
   background: rgb(0, 255, 204);
+}
+
+.language-button:active {
+  background-color: rgba(0, 255, 204, 0.75);
+  color: #fff;
 }
 
 @media screen and (max-width: 70rem) {
@@ -512,5 +652,4 @@ p {
   .language-container {
     margin-left: 45%;
   }
-}
-</style>
+}</style>
