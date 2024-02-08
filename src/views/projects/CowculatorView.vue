@@ -1,14 +1,13 @@
 
 <template>
-  <div
-    style="
+  <div style="
       background: linear-gradient(
         90deg,
         rgba(0, 255, 119) 29%,
         rgba(0, 224, 255) 100%
       );
-    "
-  ><h1 style="color: white; font-size: 3em;">The Cowculator</h1>
+    ">
+    <h1 style="color: white; font-size: 3em;">The Cowculator</h1>
     <h2 style="color: white; padding-bottom: 1.3vh; padding-top: 0em; line-height: 1.1; font-size: 2em;">
       <span v-html="header"></span>
     </h2>
@@ -18,76 +17,48 @@
   <div style="background: rgb(255, 255, 255);">
     <h2>
       Now shows binary tree graphic of calculations as svg! 100% self-made in
-      <a style="color: #42b883;" class="text-links" href="https://vuejs.org/"
-        >Vue.js</a
-      >
+      <a style="color: #42b883;" class="text-links" href="https://vuejs.org/">Vue.js</a>
       <br />
-      Moo<span style="color: black">&times;</span>Moo<span style="color: black"
-        >&times;</span
-      >Moo = Moooooooooooooooo
+      Moo<span style="color: black">&times;</span>Moo<span style="color: black">&times;</span>Moo = Moooooooooooooooo
     </h2>
 
     <div style="padding-top: 3em;">
       <div v-if="showAboutCalc">
-        <AboutCalc
-          :title="title"
-          :header="header"         
-          :imagePath="imagePath"
-          :url="url"
-          @close="toggleAboutCalc"
-        />
+        <AboutCalc :title="title" :header="header" :imagePath="imagePath" :url="url" @close="toggleAboutCalc" />
       </div>
       <!-- loads in cowculator -->
-      <UseCalc/>
+      <UseCalc />
 
       <div class="main-cow-figure">
         <figure>
-          <img
-            src="@/images/cow_lecture.png"
-            alt="Professor Cow Image"
-            class="professor-cow-figure"
-          />
-          <figcaption class="professor-cow-figure-text"> 
+          <img src="@/images/cow_lecture.jpg" alt="Professor Cow Image" class="professor-cow-figure" />
+          <figcaption class="professor-cow-figure-text">
 
             <b><span style="color: #42b883;"><q>I certify that this Cowculator cowculates!</q></span></b><br>
             &nbsp;Professor Maximillian "Cowculus" Cowington, &nbsp;Distinguished Professor
-            of Cowculating.          
+            of Cowculating.
 
           </figcaption>
         </figure>
       </div>
 
       <div style="padding-bottom: 1em; margin-left: 0.2em; margin-right: 0.2em">
-        <button
-          class="button-35"
-          style="margin-top: 0.25em"
-          @click="toggleAboutCalc"
-        >
+        <button class="button-35" style="margin-top: 0.25em" @click="toggleAboutCalc">
           About the Cowculator
         </button>
-        <button
-          class="button-35"
-          style="margin-top: 0.25em; margin-left: 0.5em"
-          @click="toggleHelpGuide"
-        >
+        <button class="button-35" style="margin-top: 0.25em; margin-left: 0.5em" @click="toggleHelpGuide">
           Help Guide
         </button>
       </div>
     </div>
     <div v-if="showHelpGuide">
-      <HelpGuide
-        :helptitle="helpTitle"
-        :helptitletwo="helpTitleTwo"
-        :helptext="helpText"
-        @close="toggleHelpGuide"
-      />
-    </div>      
+      <HelpGuide :helptitle="helpTitle" :helptitletwo="helpTitleTwo" :helptext="helpText" @close="toggleHelpGuide" />
+    </div>
   </div>
- 
 </template>
   
   
-  <script>
+<script>
 import "@/assets/globalCSS.css";
 
 import AboutCalc from "@/components/Cowculator/AboutCalc.vue";
@@ -101,13 +72,13 @@ import HelpGuide from "@/components/Cowculator/HelpGuide.vue";
 /* generally will use a component object */
 export default {
   name: "App",
-  components: { AboutCalc, UseCalc, HelpGuide},
+  components: { AboutCalc, UseCalc, HelpGuide },
   data() {
     return {
       title: "<u><i>Cow</i></u>-culator",
       header:
         "<q>For the <u><i>moo</i></u>-st accurate <u><i>cow</i></u>-culations!</q>",
-      
+
       url: "https://github.com/conrizzo/conradswebsite",
       showAboutCalc: false,
       helpTitle: "How to use:",
@@ -131,31 +102,36 @@ export default {
 };
 </script>
   
-  <style scoped>
-.button-35:hover{
-  box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;  
+<style scoped>
+.button-35:hover {
+  box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;
 }
+
 .main-cow-figure {
   margin-top: 1em;
   justify-content: center;
   display: flex;
 }
+
 .professor-cow-figure {
   width: 24em;
   background-color: #515151;
   text-align: left;
   margin-bottom: 0em;
-  
+
   padding: 0.5em;
   border-radius: 1em;
- 
 }
+
+/* when media sizes adjust, the non-media needs to come first in parsing the code */
+
+
 .professor-cow-figure-text {
   background: rgb(255, 255, 255);
-   width: 24em;
+  width: 24em;
   margin: 0 auto;
   text-align: left;
-  
+
   padding: 1rem;
   border-radius: 5px;
   margin-bottom: 0.66em;
@@ -168,6 +144,7 @@ h2 {
   padding-bottom: 0em;
   color: #808080;
 }
+
 @media only screen and (max-width: 35rem) {
   .professor-cow-figure {
     max-width: 22rem;

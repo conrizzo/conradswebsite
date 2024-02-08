@@ -11,6 +11,10 @@ const app = createApp(App).use(router)
 await router.isReady();
 app.mount('#app');
 
+/*
+Without await router.isReady(), there could be a flash of unstyled content (FOUC), 
+where the user sees the page before it's fully rendered, or other inconsistencies in the initial render.
+*/
 
 
 /*

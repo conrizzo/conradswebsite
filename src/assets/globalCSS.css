@@ -199,16 +199,6 @@ h1 {
   display: inline-block;
 }
 
-
-/* when media sizes adjust, the non-media needs to come first in parsing the code */
-.cow-lecture {
-  background-image: url('../images/cow_lecture.png');
-  background-position: center 88%;
-  background-repeat: no-repeat;
-  background-size: 150px auto;
-}
-
-
 .no-underlines {
   text-decoration: none;
 }

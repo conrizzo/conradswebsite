@@ -198,7 +198,6 @@ const routes = [
     }
   },
 
-
   {
     path: '/yadhtriByppah',
     name: 'yadhtriByppahView',
@@ -227,8 +226,6 @@ const router = createRouter({
   },
 });
 
-// const currentRoute = window.location.pathname;
-
 // this should fix it invoking the next() function multiple times.
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
@@ -256,5 +253,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
       next(); // Allow access to authorized or non-authorized pages
     }
   });
+
 });
+
 export default router;

@@ -1,5 +1,5 @@
 <template>
-  <main style="min-height: 800px; background: rgb(44, 44, 50);">
+  <main style="min-height: 800px; background: rgb(255, 255, 255);">
     <h1>Word assistant to find words for Wordle</h1>
 
     <div class="container">
@@ -14,11 +14,11 @@
             owners.
             This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
           </p>
-          <div>
+          <div style="text-align: left;">
             <span v-if="!viewInstructions" @click="viewInstructions = !viewInstructions" class="description-span">
-              View Instructions<span class="arrow down"></span></span>
+              <span class="arrow down"></span>View Instructions</span>
             <span v-else @click="viewInstructions = !viewInstructions" class="description-span">
-              Close Instructions<span class="arrow-up up"></span></span>
+              <span class="arrow-up up"></span>Close Instructions</span>
           </div>
 
           <div v-if="viewInstructions" class="instructions">
@@ -81,8 +81,9 @@
         </form>
       </div>
     </div>
+
     <!--  <img :src="(getImageSrc() as string)"> for testing -->
-    <span style="color: #fff;">Words Allowed:<b>{{ processedWords.length }}</b></span>
+    <span style="color: rgb(18,18,18);">Words Allowed:<b>{{ processedWords.length }}</b></span>
     <div class="letter-output-grid-box">
       <div v-for="(word, index) in processedWords" :key="index">
         {{ word.toUpperCase() }}
@@ -93,7 +94,7 @@
   
 <script lang="ts">
 
-import { ref, computed, Ref, onMounted } from 'vue';
+import { ref, computed, Ref } from 'vue';
 import { allWords, processWords, lettersMatching } from '../../../data/wordle_words/wordle'
 import projectLinks from '@/components/Navigation/ProjectLinks' // meta tags experiment
 
@@ -102,18 +103,6 @@ export default {
   name: 'MyComponent',
 
   setup() {
-    // This adds meta tags for the page - experimenting with this
-    onMounted(() => {
-      document.title = 'Word assistant to find words for Wordle';
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute('content', 'A project to help win the game Wordle by searching strings with JavaScript/TypeScript');
-      }
-      const ogImageMeta = document.querySelector('meta[property="og:image"]');
-      if (ogImageMeta) {
-        ogImageMeta.setAttribute('content', getImageSrc() as string);
-      }
-    });
 
     // main variables
     const notLetter: RegExp = /[^a-zA-Z]/;
@@ -208,7 +197,8 @@ export default {
       // meta tags experiment 
       links,
       imageSrc,
-      getImageSrc
+      getImageSrc,
+
       // meta tags experiment 
     };
   }
@@ -220,11 +210,11 @@ h1 {
   color: #42b983;
   text-transform: capitalize;
   font-size: 4rem;
-  padding: 3rem 1rem 3rem 1rem;
+  padding: 5rem 1rem 3rem 1rem;
   font-family: 'Signika', sans-serif;
   font-weight: 300;
   line-height: 1;
-  max-width: 50rem;
+  max-width: 70rem;
   margin: 0 auto;
 }
 
@@ -256,25 +246,29 @@ p {
   border-width: 0 4px 4px 0;
   display: inline-block;
   padding: 4px;
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   margin-bottom: 0.1rem;
 }
+
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+
 .arrow-up {
   border: solid #42b983;
   border-width: 0 4px 4px 0;
   display: inline-block;
   padding: 4px;
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   margin-bottom: -0.2rem;
 }
+
 .up {
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
 }
+
 /* custom arrow logic ends */
 
 .description-span:hover {
@@ -284,6 +278,7 @@ p {
 
 .text-section {
   margin: 0 auto;
+  max-width: 38rem;
   background: rgb(44, 44, 50);
   color: #fff;
 }
@@ -295,9 +290,10 @@ p {
   align-items: flex-start;
   flex-direction: column;
   background: rgb(44, 44, 50);
-  padding: 1rem 1.5rem 1rem 1.5rem;
+  padding: 2rem 1.5rem 2rem 1.5rem;
   margin: 0 auto;
   max-width: 60rem;
+  border-radius: 1rem;
 }
 
 .letter-output-grid-box {
@@ -305,12 +301,13 @@ p {
   grid-template-columns: repeat(3, 1fr);
   row-gap: 1rem;
   align-items: flex-end;
-  background: rgb(44, 44, 50);
-  color: #fff;
+  background: rgb(255, 255, 255);
+  color: rgb(18, 18, 18);
   padding: 1rem .25rem 1rem .25rem;
   max-width: 30rem;
   margin: 0 auto;
   border-radius: 0.5rem;
+  min-height: 400px;
 }
 
 select:focus,
