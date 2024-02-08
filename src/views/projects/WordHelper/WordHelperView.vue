@@ -1,48 +1,62 @@
 <template>
   <main style="min-height: 800px; background: rgb(255, 255, 255);">
+
     <h1>Word assistant to find words for Wordle</h1>
 
     <div class="container">
       <div class="grid-box">
         <section class="text-section">
+
           <h2>What game is this designed to help solve? &rarr;
             <a style="color: #42b983;" class="text-links"
               href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>
           </h2>
+
           <p>
             Note: This is not an official Wordle site and all game references are property of the respective copyright
             owners.
             This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
           </p>
-          <div style="text-align: left;">
-            <span v-if="!viewInstructions" @click="viewInstructions = !viewInstructions" class="description-span">
-              <span class="arrow down"></span>View Instructions</span>
-            <span v-else @click="viewInstructions = !viewInstructions" class="description-span">
-              <span class="arrow-up up"></span>Close Instructions</span>
+
+          <div @click="isRotated = !isRotated, viewInstructions = !viewInstructions"
+            style="text-align: left; display: flex; align-items: center;">
+            <svg style="width: 32px; height: 32px; transition: transform 0.5s;" viewBox="0 0 32 32" fill="none"
+              stroke="#42b983" stroke-width="2" :class="{ 'rotate': isRotated }">
+              <polyline points="8 12 16 20 24 12" />
+            </svg>
+
+            <span v-if="!viewInstructions" class="description-span">
+              View Instructions</span>
+            <span v-else class="description-span">
+              Close Instructions</span>
+
           </div>
 
-          <div v-if="viewInstructions" class="instructions">
-            <p>
-              Typing letters in the <b>Include</b> field will
-              search for those letters in any position in a word.
-            </p>
-            <p>
-              In order to search for words with a specific letter in a specific position add anything other than a
-              letter between the letters.
-            </p>
-            <p>
-              <b>For example:</b> Type "_r_a_" to search for words with the 2nd letter
-              <b>r</b> and 4th letter <b>a</b>.
-              Typing "##eam" will search for words with the 3rd letter "<b>e</b>", 4th letter "<b>a</b>", and 5th letter
-              "<b>m</b>".
-            </p>
-            <p>
-              The "<b>Exclude</b>" field is optional and will exclude any words with the letters entered.
-              For example, if input in this field is "ab"
-              then all words with the letter "a" or "b" will be excluded.
-            </p>
-          </div>
 
+          <transition name="slide">
+            <div v-if="viewInstructions" class="instructions">
+              <p>
+                Typing letters in the <b>Include</b> field will
+                search for those letters in any position in a word.
+              </p>
+              <p>
+                In order to search for words with a specific letter in a specific position add anything other than a
+                letter between the letters.
+              </p>
+              <p>
+                <b>For example:</b> Type "_r_a_" to search for words with the 2nd letter
+                <b>r</b> and 4th letter <b>a</b>.
+                Typing "##eam" will search for words with the 3rd letter "<b>e</b>", 4th letter "<b>a</b>", and 5th letter
+                "<b>m</b>".
+              </p>
+              <p>
+                The "<b>Exclude</b>" field is optional and will exclude any words with the letters entered.
+                For example, if input in this field is "ab"
+                then all words with the letter "a" or "b" will be excluded.
+              </p>
+
+            </div>
+          </transition>
         </section>
 
         <form @submit.prevent="processInputWord()">
@@ -79,6 +93,7 @@
             </p>
           </dialog>
         </form>
+
       </div>
     </div>
 
@@ -103,7 +118,7 @@ export default {
   name: 'MyComponent',
 
   setup() {
-
+    let isRotated = ref(false);
     // main variables
     const notLetter: RegExp = /[^a-zA-Z]/;
     let checkboxValue = ref(false);
@@ -199,18 +214,40 @@ export default {
       imageSrc,
       getImageSrc,
 
+      isRotated
+
       // meta tags experiment 
     };
   }
 };
 </script>
   
+
+
 <style scoped>
+.rotate {
+  transition: transform 0.25s;
+  transform: rotate(180deg) !important;
+  transform-origin: center;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s;
+  max-height: 500px;
+}
+
+.slide-enter,
+.slide-leave-to {
+  max-height: 0;
+  overflow: hidden;
+}
+
 h1 {
   color: #42b983;
   text-transform: capitalize;
   font-size: 4rem;
-  padding: 5rem 1rem 3rem 1rem;
+  padding: 5rem 1rem 2rem 1rem;
   font-family: 'Signika', sans-serif;
   font-weight: 300;
   line-height: 1;
@@ -224,7 +261,7 @@ h2 {
   text-align: left;
   font-size: 2.1rem;
   line-height: 1.2;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 p {
@@ -248,14 +285,18 @@ p {
   padding: 4px;
   margin-right: 0.5rem;
   margin-bottom: 0.1rem;
+
+  /* Add this line */
 }
+
 
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+
 }
 
-.arrow-up {
+.arrow-clicked {
   border: solid #42b983;
   border-width: 0 4px 4px 0;
   display: inline-block;
@@ -264,10 +305,41 @@ p {
   margin-bottom: -0.2rem;
 }
 
+
 .up {
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
 }
+
+.test-rotate {
+  transform: rotate(90deg);
+  font-size: 4rem;
+  transition: transform 0.5s;
+  padding: 0.25rem;
+  width: fit-content;
+}
+
+
+.test-rotate:hover {
+  transition: transform 0.5s;
+  transform: rotate(270deg);
+  font-size: 4rem;
+}
+
+.image-rotate {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  /* Adjust as needed */
+  height: 16px;
+  /* Adjust as needed */
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M 2 14 L 14 8 L 2 2 Z" fill="%2342b983" /></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform-origin: center;
+  /* Add this line */
+}
+
 
 /* custom arrow logic ends */
 
@@ -279,8 +351,8 @@ p {
 .text-section {
   margin: 0 auto;
   max-width: 38rem;
-  background: rgb(44, 44, 50);
-  color: #fff;
+  background: rgb(255, 255, 255);
+  color: rgba(18, 18, 18);
 }
 
 .grid-box {
@@ -289,7 +361,7 @@ p {
   grid-gap: 1rem;
   align-items: flex-start;
   flex-direction: column;
-  background: rgb(44, 44, 50);
+  background: rgb(255, 255, 255);
   padding: 2rem 1.5rem 2rem 1.5rem;
   margin: 0 auto;
   max-width: 60rem;
@@ -454,10 +526,6 @@ dialog {
   max-width: 39.5rem;
 }
 
-.dialog-button {
-  margin: 1rem
-}
-
 .submission-area {
   border: 2px solid #42b983;
   background-color: rgb(51, 51, 51);
@@ -470,7 +538,6 @@ dialog {
 .character-indice-font {
   font-size: 1rem;
   padding-right: 0.2rem;
-
 }
 
 @media screen and (max-width: 70rem) {

@@ -5,10 +5,8 @@
     <div class="center-content-within">
       <div style="width: 80rem;">
         <twoColumnsGridContentTemplate :titleText="titleText" :content-text="contentText" :content-image="birdPicture"
-          style="background: linear-gradient(to right, rgba(0,0,0,.8) 50%, rgba(0, 0, 0, .78) 50%);" />
+          style="background: linear-gradient(to right, rgba(0,0,0,.6) 50%, rgba(0, 0, 0, .6) 50%);" />
       </div>
-
-
     </div>
 
     <main class="text-container">
@@ -29,8 +27,6 @@
           </div>
           <button @click="language();" class="language-button" role="button">{{ languageButtonText
           }}</button>
-
-
         </div>
 
         <div class="center-content-within">
@@ -48,9 +44,8 @@
                 for its reactivity and interactivity. It's open-source and has been a continuous project
               </li>
               <li>
-                The website now runs on a VPS (Virtual Private Server), but it is also hosted
-                on <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a> at
-                <a class="text-links" href="https://git.conradswebsite.com">git.conradswebsite.com</a>
+                The website now runs on a VPS (Virtual Private Server), the code is at
+                <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
                 It is currently a basic full-stack website with back-end running <a class="text-links"
@@ -89,11 +84,11 @@
               <li>
                 Diese Website wurde von mir (Conrad) selbst erstellt, weitgehend mit <a href="https://vuejs.org/"
                   class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
-                für seine Reaktivität und Interaktivität
+                für seine Reaktivität und Interaktivität. Es ist Open-Source und wird kontinuierlich weiterentwickelt.
               </li>
               <li>
-                Sie wird auf meinem <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
-                gehostet. Es ist Open Source und ein kontinuierliches Projekt
+                Die Website läuft jetzt auf einem VPS (Virtual Private Server). Der Code befindet sich auf
+                <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
                 Es handelt sich derzeit um eine einfache Full-Stack-Website mit einem Back-End, das auf <a
@@ -169,6 +164,7 @@
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
               target="_blank" rel="noopener noreferrer" class="text-links">Shared Google Document - For testing</a>
               -->
+
           </section>
           <!-- German Section -->
           <section v-show="languageButtonText === 'Switch to English'" class="each-section">
@@ -211,7 +207,7 @@
                 <label class="include-label-text">Nachricht:</label>
                 <textarea class="input-field-style" type="text" v-model="submitMessage"
                   placeholder="Nachricht"></textarea>
-                <input style="max-width: 5rem;"  class="clean-button" type="submit" value="Submit" />
+                <input style="max-width: 5rem;" class="clean-button" type="submit" value="Submit" />
               </form>
               {{ errorMessage }}
               <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">
@@ -350,7 +346,7 @@ export default {
           // reset all the fields
           this.submitName = '';
           this.submitSubject = '';
-          this.submitMessage = '';         
+          this.submitMessage = '';
           // show the success message
           this.submitMessageSuccess = true;
           setTimeout(() => {
@@ -486,8 +482,8 @@ textarea {
 }
 
 .clean-button:active {
-    background-color: rgba(4, 242, 194, 0.75);
-    color: #fff;
+  background-color: rgba(4, 242, 194, 0.75);
+  color: #fff;
 }
 
 .backend-message {
@@ -534,7 +530,7 @@ textarea {
 .language-container {
   display: flex;
   align-items: center;
-  margin-left: 17.5rem;
+  margin-left: 18.1rem;
 
   font-size: 1.4rem;
 }
@@ -633,6 +629,7 @@ textarea {
   z-index: 3;
   cursor: pointer;
 }
+
 .language-button:hover {
   background: rgb(0, 255, 204);
 }
@@ -652,4 +649,5 @@ textarea {
   .language-container {
     margin-left: 45%;
   }
-}</style>
+}
+</style>
