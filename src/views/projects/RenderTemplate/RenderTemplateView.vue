@@ -12,7 +12,7 @@
 
 <script>
 
-import { defineComponent, ref, computed } from 'vue';
+import { ref} from 'vue';
 import { Renderer } from './Renderer.ts';
 
 export default {

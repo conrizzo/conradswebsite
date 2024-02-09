@@ -141,8 +141,8 @@ const routes = [
       },
 
       {
-        path: 'store/store',
-        name: 'Store',
+        path: 'store/store-prototype-made-in-vuejs-and-typescript',
+        name: 'StorePrototype',
         component: StoreView,
       },
 
@@ -172,12 +172,13 @@ const routes = [
       },
 
       {
-        path: 'WordHelper',
-        name: 'wordhelper',
+        path: 'search-assistant-to-help-find-words-for-the-wordle-game',
+        name: 'search-assistant-to-help-find-words-for-the-wordle-game',
         component: WordHelperView,
         meta: {
-          title: 'Word assistant to find words for Wordle',
+          title: 'Search assistant to help find words for the Wordle game',
           description: 'A project to help win the game Wordle by searching strings with JavaScript/TypeScript',
+          ogImage: '/9word_searcher.jpg',
         },
       },
 
@@ -241,6 +242,18 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
     (metaDescriptionTag as HTMLMetaElement).name = 'description';
     (metaDescriptionTag as HTMLMetaElement).content = to.meta.description as string || 'Welcome to ConradsWebsite.com';
     document.getElementsByTagName('head')[0].appendChild(metaDescriptionTag);
+  }
+  
+  // image for open graph
+  let metaOgImageTag = document.querySelector('meta[property="og:image"]');
+
+  if (metaOgImageTag) {
+    (metaOgImageTag as HTMLMetaElement).setAttribute('content', to.meta.ogImage as string || 'https://www.conradswebsite.com/9word_searcher.jpg');
+  } else {
+    metaOgImageTag = document.createElement('meta');
+    (metaOgImageTag as HTMLMetaElement).setAttribute('property', 'og:image');
+    (metaOgImageTag as HTMLMetaElement).content = to.meta.ogImage as string || 'https://www.conradswebsite.com/9word_searcher.jpg';
+    document.getElementsByTagName('head')[0].appendChild(metaOgImageTag);
   }
 
   // Wait for Firebase authentication to initialize

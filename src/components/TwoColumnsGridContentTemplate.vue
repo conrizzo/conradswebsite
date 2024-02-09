@@ -22,7 +22,7 @@
     
 <script>
 import coffee_image from '@/images/generated_cup_of_coffee.jpg';
-import blueSky from '@/images/blue_sky2.jpg';
+
 
 export default {
   name: 'CoffeeGridContent',

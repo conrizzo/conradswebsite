@@ -1,6 +1,6 @@
 
 // This helper function excludes words with any letters in them
-function getExcludedWords(words: string[] = allWords, matchingWords: Array<string>, excludeLetters: string = '') {  
+function getExcludedWords( _words: undefined | string, matchingWords: Array<string>, excludeLetters: string = '' ) {  
   const exludeToLowerCase = excludeLetters.split('').map(letter => letter.toLowerCase());
     const filteredWords: Array<string> = matchingWords.filter(word => 
       exludeToLowerCase.every(letter => !word.includes(letter))
@@ -11,7 +11,7 @@ function getExcludedWords(words: string[] = allWords, matchingWords: Array<strin
 // This function finds words with any of these letters in them
 export function processWords(word: String, excludeLetters: string = '') {
   const guess_word = word.toLowerCase().split('');
-  const answer = [];
+  //const answer = [];
   // Filter words with callback function returning to itself
   const filteredWords = allWords.filter(item => {
     const wordLetters = item.toLowerCase().split('');

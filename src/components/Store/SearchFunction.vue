@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+
 import { ref, computed, onMounted } from 'vue';
 import { productInventory } from '../Store/productInventoryOptionsData';
 import { Trie } from './MakeTrie';

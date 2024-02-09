@@ -3,8 +3,30 @@
 //  transpileDependencies: true
 //})
 
+/*
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const path = require('path');
+
+// pre-rendering html content so it can be searched by search engines
+  configureWebpack: {
+    plugins: [
+      new PrerenderSPAPlugin({
+        staticDir: path.join(__dirname, 'dist'),
+        routes:
+          ['/',
+            '/about',
+            '/projects/cowculator',
+            '/projects/search-assistant-to-help-find-words-for-the-wordle-game',
+            '/projects/store/store-prototype-made-in-vuejs-and-typescript',
+          ]
+      }),
+    ],
+  },
+*/
+
 module.exports = {
-  publicPath: '/',
+  
+  publicPath: '/',  
 
   // fixes the hydration error message
   chainWebpack: config => {

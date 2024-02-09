@@ -20,6 +20,11 @@ body {
     line-height: 1.6;    
 }
 
+button:active, button:focus {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
   scroll-behavior: smooth;
 }

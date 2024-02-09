@@ -1,7 +1,7 @@
 <template>
   <main style="min-height: 800px; background: rgb(255, 255, 255);">
 
-    <h1>Word assistant to find words for Wordle</h1>
+    <h1>Search assistant to help find words for the Wordle game</h1>
 
     <div class="container">
       <div class="grid-box">
@@ -18,7 +18,8 @@
             This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
           </p>
 
-          <div @click="isRotated = !isRotated, viewInstructions = !viewInstructions"
+          <button class="instruction-button" type="button"
+            @click="isRotated = !isRotated, viewInstructions = !viewInstructions"
             style="text-align: left; display: flex; align-items: center;">
             <svg style="width: 32px; height: 32px; transition: transform 0.5s;" viewBox="0 0 32 32" fill="none"
               stroke="#42b983" stroke-width="2" :class="{ 'rotate': isRotated }">
@@ -30,7 +31,7 @@
             <span v-else class="description-span">
               Close Instructions</span>
 
-          </div>
+          </button>
 
 
           <transition name="slide">
@@ -116,13 +117,19 @@ import projectLinks from '@/components/Navigation/ProjectLinks' // meta tags exp
 
 export default {
   name: 'MyComponent',
+  metaInfo: {
+    title: 'My Title',
+    meta: [
+      { vmid: 'description', name: 'description', content: 'My description' }
+    ]
+  },
 
   setup() {
     let isRotated = ref(false);
     // main variables
     const notLetter: RegExp = /[^a-zA-Z]/;
     let checkboxValue = ref(false);
-    const wordleWordData: Ref<Array<String>> = ref(allWords);
+    //const wordleWordData: Ref<Array<String>> = ref(allWords);
     const processedWords: Ref<string[]> = ref([]);
     const maxWordLength: number = 5;
     let userInput: Ref<string> = ref('');
@@ -234,7 +241,7 @@ export default {
 .slide-enter-active,
 .slide-leave-active {
   transition: all 0.5s;
-  max-height: 500px;
+  max-height: 300px;
 }
 
 .slide-enter,
@@ -242,6 +249,21 @@ export default {
   max-height: 0;
   overflow: hidden;
 }
+
+.instruction-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.instruction-button:active, .instruction-button:focus {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 
 h1 {
   color: #42b983;
@@ -277,71 +299,6 @@ p {
   cursor: pointer;
 }
 
-/* custom arrow logic starts */
-.arrow {
-  border: solid #42b983;
-  border-width: 0 4px 4px 0;
-  display: inline-block;
-  padding: 4px;
-  margin-right: 0.5rem;
-  margin-bottom: 0.1rem;
-
-  /* Add this line */
-}
-
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-
-}
-
-.arrow-clicked {
-  border: solid #42b983;
-  border-width: 0 4px 4px 0;
-  display: inline-block;
-  padding: 4px;
-  margin-right: 0.5rem;
-  margin-bottom: -0.2rem;
-}
-
-
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.test-rotate {
-  transform: rotate(90deg);
-  font-size: 4rem;
-  transition: transform 0.5s;
-  padding: 0.25rem;
-  width: fit-content;
-}
-
-
-.test-rotate:hover {
-  transition: transform 0.5s;
-  transform: rotate(270deg);
-  font-size: 4rem;
-}
-
-.image-rotate {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  /* Adjust as needed */
-  height: 16px;
-  /* Adjust as needed */
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M 2 14 L 14 8 L 2 2 Z" fill="%2342b983" /></svg>');
-  background-repeat: no-repeat;
-  background-size: contain;
-  transform-origin: center;
-  /* Add this line */
-}
-
-
-/* custom arrow logic ends */
 
 .description-span:hover {
   text-decoration: underline;
@@ -379,7 +336,7 @@ p {
   max-width: 30rem;
   margin: 0 auto;
   border-radius: 0.5rem;
-  min-height: 400px;
+  min-height: 100px;
 }
 
 select:focus,
@@ -502,8 +459,8 @@ label {
   display: flex;
   align-items: flex-start;
   padding-bottom: 1.3rem;
-  color: #ffffff;
-  background-color: rgb(51, 51, 51);
+  color:  rgb(18, 18, 18);
+  background-color: rgb(255, 255, 255);
   cursor: auto;
 }
 
@@ -527,11 +484,11 @@ dialog {
 }
 
 .submission-area {
-  border: 2px solid #42b983;
-  background-color: rgb(51, 51, 51);
+  border: 3px solid #42b983;
+  background-color: rgb(255, 255, 255);
   max-width: 39.5rem;
   margin: 0 auto;
-  border-radius: 1rem;
+  border-radius: .75rem;
   padding: 0rem 1rem .5rem 1rem;
 }
 
@@ -543,7 +500,7 @@ dialog {
 @media screen and (max-width: 70rem) {
   .container {
     padding: .5em;
-    background: rgb(44, 44, 50);
+    background: #ffffff;
   }
 
   .character-indice-font {

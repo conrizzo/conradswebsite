@@ -13,17 +13,17 @@
         </div>
       </div>
     </div>
-    <ProductGallery @add-to-cart="updateValue" />   
-    <CheckOut :propProductIndexInGallery="propIndex" :propProductIdentificationNumber="propProduct" :propUpdate="updated"/>     
+    <ProductGallery @add-to-cart="updateValue" />
+    <CheckOut :propProductIndexInGallery="propIndex" :propProductIdentificationNumber="propProduct"
+      :propUpdate="updated" />
     <div style="background: #fff; display: inline-block;">
       <button @click="showDiagramAndSourceCode, toggleDiagramModal()" class='clean-button'>{{
         showDiagramButtonText }}</button>
     </div>
-  </div>  
-  <div v-if="showDiagramModal">
-    <DiagramModal @close="toggleDiagramModal" />    
   </div>
- 
+  <div v-if="showDiagramModal">
+    <DiagramModal @close="toggleDiagramModal" />
+  </div>
 </template>
 
 <script>
@@ -32,10 +32,10 @@ import "@/assets/globalCSS.css";
 import CheckOut from "@/components/Store/CheckOut.vue";
 import DiagramModal from "@/components/Store/DiagramModal.vue";
 import SearchFunction from "@/components/Store/SearchFunction.vue";
-import ThreeWideGrid from "@/components/Store/ThreeWideGridProducts.vue";
+//import ThreeWideGrid from "@/components/Store/ThreeWideGridProducts.vue";
 
 export default {
-  name: "StoreView",
+  name: "StorePrototype",
   components: {
     ProductGallery, CheckOut, DiagramModal, SearchFunction,
   },
@@ -66,7 +66,7 @@ export default {
     },
     toggleDiagramModal() {
       this.showDiagramModal = !this.showDiagramModal;
-    },    
+    },
   }
 }
 </script>
@@ -107,23 +107,28 @@ h1 {
   background-color: #f5f5f5;
   padding: 2.5em 5em 5em 5em;
 }
+
 .main-banner-text-container {
   padding: 10em;
 }
+
 .store-show-diagram-button {
   margin: 1em;
   background: rgb(244, 67, 54);
   color: #fff;
 }
+
 .store-show-diagram-button:hover {
   background-color: #ff6c62;
   color: #fff;
 }
+
 @media screen and (max-width: 60rem) {
   .store-background {
     background-color: #f5f5f5;
     padding: 1em;
   }
+
   .main-banner-text-container {
     padding: 1em;
   }
@@ -132,5 +137,4 @@ h1 {
     font-size: 2em;
     padding: 0.5em;
   }
-}
-</style>
+}</style>
