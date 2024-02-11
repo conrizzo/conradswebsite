@@ -48,18 +48,23 @@
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
-                It is currently a basic full-stack website with back-end running <a class="text-links"
-                  href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a> and Python, and front-end running
-                Vue.js
+                <u>Back end</u> running <a class="text-links" href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
+                and Python with <a class="text-links" href="https://gunicorn.org/">gunicorn</a>, accessed via reverse
+                proxy
                 on <a class="text-links" href="https://www.nginx.com/resources/glossary/nginx/">nginx</a>. It also uses
                 <a class="text-links" href="https://en.wikipedia.org/wiki/HTTP/2">http/2</a> for faster
                 loading.
               </li>
               <li>
-                Front end made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
+                <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
                   HTML, CSS, Rust into Web Assembly,</span> and soon more projects in other languages such as Angular,
                 Wordpress,
                 Astro
+              </li>
+              <li>
+                I also started learning <a class='text-links' href="https://nuxt.com/">Nuxt.js</a> after reviewing how
+                to have better SEO for new project ideas. Nuxt allows all the meta tags to be rendered by shared links
+                in a simpler way than Vue.js alone.
               </li>
               <li>
                 I started learning about Vue.js when I worked on the Bioinformatics Toolkit at Max-Planck-Institut für
@@ -91,15 +96,13 @@
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
-                Es handelt sich derzeit um eine einfache Full-Stack-Website mit einem Back-End, das auf <a
-                  class="text-links" href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a> und Python läuft, und
-                einem Front-End, das auf Vue.js basiert und auf <a class="text-links"
-                  href="https://www.nginx.com/">nginx</a> läuft. Außerdem wird <a class="text-links"
-                  href="https://de.wikipedia.org/wiki/HTTP/2">HTTP/2</a> für schnellere Ladezeiten verwendet.
+                <u>Backend</u> läuft mit <a class="text-links" href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
+                und Python mit Gunicorn und wird über einen Reverse-Proxy auf <a class="text-links"
+                  href="https://www.nginx.com/">Nginx</a> aufgerufen. Es verwendet außerdem <a class="text-links"
+                  href="https://de.wikipedia.org/wiki/HTTP/2">HTTP/2</a> für schnelleres Laden.
               </li>
-
               <li>
-                Frontend Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind
+                <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind
                 <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.</span>
                 In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
               </li>

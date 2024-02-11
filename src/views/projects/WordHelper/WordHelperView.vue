@@ -1,16 +1,24 @@
 <template>
   <main style="min-height: 800px; background: rgb(255, 255, 255);">
 
-    <h1>Search assistant to help find words for the Wordle game</h1>
+
 
     <div class="container">
+
       <div class="grid-box">
+
         <section class="text-section">
+          <div calss="center-element">
+            <h1>Search assistant to help find words for the Wordle game</h1>
+          </div>
 
           <h2>What game is this designed to help solve? &rarr;
             <a style="color: #42b983;" class="text-links"
               href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>
           </h2>
+
+          <p>I made another demo of this using Nuxt.js at <a class="text-links"
+              href="https://search-wordle-words.netlify.app/">https://search-wordle-words.netlify.app/</a></p>
 
           <p>
             Note: This is not an official Wordle site and all game references are property of the respective copyright
@@ -72,18 +80,18 @@
             <input class="input-field-exclude-letters-style" placeholder="Exclude letters" type="text"
               v-model="userInputExcludeLetters" maxlength="18" />
             <!--
-            <label>
-              <span class="character-indice-font">Match Indices</span>
-              <input class="check-box" type="checkbox" name="myCheckbox" v-model="checkboxValue"
-                @change="handleCheckboxChange">
-            </label>
-            -->
+        <label>
+          <span class="character-indice-font">Match Indices</span>
+          <input class="check-box" type="checkbox" name="myCheckbox" v-model="checkboxValue"
+            @change="handleCheckboxChange">
+        </label>
+        -->
           </div>
-
-          <button type="submit" class="clean-button upper-spacing">
-            Submit
-          </button>
-
+          <div class="center-element">
+            <button type="submit" class="clean-button upper-spacing">
+              Submit
+            </button>
+          </div>
           <dialog class="close" :open="invalidInput">
             <button type="button" autofocus @click="invalidInput = false;" class="close-button"></button>
             <div style="text-align: left;">
@@ -99,11 +107,15 @@
     </div>
 
     <!--  <img :src="(getImageSrc() as string)"> for testing -->
-    <span style="color: rgb(18,18,18);">Words Allowed:<b>{{ processedWords.length }}</b></span>
+    <div class="center-element">
+      <span style="color: rgb(18,18,18);">Words Allowed:<b>{{ processedWords.length }}</b></span>
+    </div>
     <div class="letter-output-grid-box">
-      <div v-for="(word, index) in processedWords" :key="index">
+
+      <div class="center-element" v-for="(word, index) in processedWords" :key="index">
         {{ word.toUpperCase() }}
       </div>
+
     </div>
   </main>
 </template>
@@ -232,6 +244,11 @@ export default {
 
 
 <style scoped>
+.center-element {
+  justify-content: center;
+  display: flex;
+}
+
 .rotate {
   transition: transform 0.25s;
   transform: rotate(180deg) !important;
@@ -241,7 +258,7 @@ export default {
 .slide-enter-active,
 .slide-leave-active {
   transition: all 0.5s;
-  max-height: 300px;
+  max-height: 340px;
 }
 
 .slide-enter,
@@ -252,29 +269,45 @@ export default {
 
 .instruction-button {
   background: none;
-  border: none;
   cursor: pointer;
-  padding: 0;
+  padding-right: 0.5rem;
   margin: 0;
   display: flex;
   align-items: center;
+
+  border: none;
+  border-top: 1px solid #42b983;
+  border-bottom: 1px solid #42b983;
 }
-.instruction-button:active, .instruction-button:focus {
+
+.instruction-button:hover {
+  background-color: rgb(238, 238, 238);
+}
+
+.instruction-button:active,
+.instruction-button:focus {
   outline: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.instructions {
+  margin-top: 0rem;
+}
+
+.instructions p:last-child {
+  padding-bottom: 0rem;
 }
 
 
 h1 {
   color: #42b983;
   text-transform: capitalize;
-  font-size: 4rem;
-  padding: 5rem 1rem 2rem 1rem;
+  font-size: 3.5rem;
+  padding: 5rem 0rem 5rem 0rem;
   font-family: 'Signika', sans-serif;
   font-weight: 300;
   line-height: 1;
-  max-width: 70rem;
-  margin: 0 auto;
+  text-align: left;
 }
 
 h2 {
@@ -296,14 +329,8 @@ p {
   color: #42b983;
   text-transform: capitalize;
   font-size: 1.5rem;
-  cursor: pointer;
 }
 
-
-.description-span:hover {
-  text-decoration: underline;
-  user-select: none;
-}
 
 .text-section {
   margin: 0 auto;
@@ -459,7 +486,7 @@ label {
   display: flex;
   align-items: flex-start;
   padding-bottom: 1.3rem;
-  color:  rgb(18, 18, 18);
+  color: rgb(18, 18, 18);
   background-color: rgb(255, 255, 255);
   cursor: auto;
 }
@@ -515,8 +542,7 @@ dialog {
   }
 
   h1 {
-    font-size: 2rem;
-    padding: 1rem;
+    font-size: 2.5rem;
   }
 
   h2 {

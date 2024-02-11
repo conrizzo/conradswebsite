@@ -906,6 +906,27 @@ input:focus {
     grid-gap: 0.2em;
     padding: 0.1em;
   }
+
+  .grid-item-symbols:hover {
+    background-color: rgba(198, 198, 198, 0.6) !important;
+  }
+
+  .grid-item-symbols:active {
+    background-color: rgba(66, 184, 131, 0.7) !important;
+  }
+
+
+  .grid-item:hover {
+    background-color: rgba(30, 30, 30, 0.66);
+  }
+
+  .grid-item:active {
+    background-color: rgba(66, 184, 131, 0.7);
+  }
+
+  .button-35:hover {
+    box-shadow: none;
+  }
 }
 
 .cowculate-result {
@@ -973,4 +994,5 @@ input:focus {
   background-color: #e3e3e3;
   padding-right: 0.33em;
   padding-left: 0.33em;
-}</style>
+}
+</style>
