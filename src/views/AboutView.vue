@@ -96,13 +96,15 @@
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
-                <u>Backend</u> läuft mit <a class="text-links" href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
+                <u>Backend</u> läuft mit <a class="text-links"
+                  href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
                 und Python mit Gunicorn und wird über einen Reverse-Proxy auf <a class="text-links"
                   href="https://www.nginx.com/">Nginx</a> aufgerufen. Es verwendet außerdem <a class="text-links"
                   href="https://de.wikipedia.org/wiki/HTTP/2">HTTP/2</a> für schnelleres Laden.
               </li>
               <li>
-                <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe, sind
+                <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe,
+                sind
                 <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.</span>
                 In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
               </li>
@@ -145,6 +147,7 @@
               I look forward to new opportunities, am excited about learning more, and confident in my
               ability to do problem-solving through code and research.
             </p>
+
             <div class="form-container">
               <h2 class="form-title">Leave a message:</h2>
               <form @submit.prevent="leaveMessage" class="form">
@@ -163,6 +166,7 @@
                 for your message!</p>
             </div>
             <span>(Note: All messages are sent securely via https to the backend server)</span>
+
             <!--
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
               target="_blank" rel="noopener noreferrer" class="text-links">Shared Google Document - For testing</a>
@@ -217,11 +221,8 @@
                 Ihre Nachricht wurde erfolgreich übermittelt! Vielen Dank für Ihre Nachricht.</p>
             </div>
           </section>
-
         </div>
-
       </div>
-
     </main>
   </body>
 
@@ -534,7 +535,6 @@ textarea {
   display: flex;
   align-items: center;
   margin-left: 18.1rem;
-
   font-size: 1.4rem;
 }
 

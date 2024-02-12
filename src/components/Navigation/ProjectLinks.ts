@@ -20,6 +20,8 @@ export default [
   { id: 7, text: 'Skat Game', to: '/projects/cards',caption:"An attempt to build a card game, got lost figuring out the rules so it's still a prototype...", imageSrc: "" },
   { id: 8, text: 'Fetch Data', to: '/projects/fetchdata',caption:"A simple experimental page that fetches api data and formats it", imageSrc: "" },
   { id: 9, text: 'Search Wordle Words', to: '/projects/search-assistant-to-help-find-words-for-the-wordle-game',caption:"Search Wordle words with TypeScript", imageSrc: "" },
+  { id: 10, text: 'Cosine Similarity', to: '/projects/compare-cosine-similarity',caption:"Compare words/sentences semantic cosine scores with sentence transformers", imageSrc: "" },
+  
   
 ].map((link, index) => ({ ...link, imageSrc: images[index] }));
 

@@ -31,6 +31,7 @@ const RenderTemplateView = () => import('../views/projects/RenderTemplate/Render
 const FetchDataView = () => import('../views/projects/FakeStore/MainPageView.vue');
 const WordHelperView = () => import('../views/projects/WordHelper/WordHelperView.vue');
 const CountryMusicExperimentView = () => import('../views/projects/CountryMusicExperiment/CountryMusicExperimentView.vue');
+const NLPView = () => import('../views/projects/NLPView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 // const about = () => import('../views/about.vue');
@@ -180,6 +181,12 @@ const routes = [
           description: 'A project to help win the game Wordle by searching strings with JavaScript/TypeScript',
           ogImage: '/9word_searcher.jpg',
         },
+      },
+
+      {
+        path: 'compare-cosine-similarity',
+        name: 'compareCosineSimilarityView',
+        component: NLPView,
       },
 
       {
