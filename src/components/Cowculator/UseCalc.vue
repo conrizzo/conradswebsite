@@ -62,7 +62,7 @@
         <span v-if="showText">&nbsp;=&nbsp;
           <br>
           <div style="font-size: 1.15em; background-color: #6aff64; border-radius: 0.33em; display: inline-block;
-         padding-left: 0.25em; padding-right: 0.25em;">
+          padding-left: 0.25em; padding-right: 0.25em;">
             <span v-if="this.result == 'Infinity'">{{ findInfinity }}</span> {{ addCommas(result) }}
           </div>
         </span>
@@ -868,13 +868,15 @@ export default {
   margin-bottom: 1px;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
+  padding-left: 10px;
 }
 
-/* doesn't highlight when clicking on input field */
+/* doesn't highlight when clicking on input field 
 select:focus,
 button:focus {
   outline: none;
 }
+*/
 
 /* make custom outline  https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
 input:focus {

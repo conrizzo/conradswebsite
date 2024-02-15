@@ -3,7 +3,7 @@
 <template>
   <body id="body">
     <div class="center-content-within">
-      <div style="width: 80rem;">
+      <div style="max-width: 80rem;">
         <twoColumnsGridContentTemplate :titleText="titleText" :content-text="contentText" :content-image="birdPicture"
           style="background: linear-gradient(to right, rgba(0,0,0,.6) 50%, rgba(0, 0, 0, .6) 50%);" />
       </div>
@@ -31,9 +31,11 @@
 
         <div class="center-content-within">
           <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section">
-            <h1>About</h1>
-            <button style="margin-bottom: 0.25rem;" class="clean-button" @click="testBackEnd()">Test back-end</button>
-
+            <div style="display: flex; justify-content: flex-start;">
+              <h1>About</h1>
+              <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
+                @click="testBackEnd()">Click to test backend</button>
+            </div>
             <ul>
               <li v-show="backEndQuery !== null" class="backend-message">
                 Python backend: {{ backEndQuery }}
@@ -80,8 +82,11 @@
           </section>
           <!-- German Section -->
           <section v-show="languageButtonText === 'Switch to English'" class="each-section">
-            <h1>About</h1>
-            <button style="margin-bottom: 0.25rem;" class="clean-button" @click="testBackEnd()">Test back-end</button>
+            <div style="display: flex; justify-content: flex-start;">
+              <h1>About</h1>
+              <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
+                @click="testBackEnd()">Click to test backend</button>
+            </div>
             <ul>
               <li v-show="backEndQuery !== null" class="backend-message">
                 Python backend: {{ backEndQuery }}
@@ -522,12 +527,15 @@ textarea {
 
 .each-section {
   max-width: 65rem;
-  padding-top: 1rem;
-  padding-left: 2rem;
-  padding-right: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
   color: rgb(220, 220, 220);
   background: rgb(49, 51, 56);
+}
+
+li {
+  margin-left: 16px;
 }
 
 /* start arrow area */
@@ -645,6 +653,11 @@ textarea {
 @media screen and (max-width: 70rem) {
   .language-container {
     margin-left: 30%;
+  }
+
+  .each-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 

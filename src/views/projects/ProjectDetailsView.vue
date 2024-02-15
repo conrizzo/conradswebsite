@@ -1,11 +1,9 @@
 
 
 <template>
- 
   <div class="router-link-style">
     <component :is="selectedComponent"></component>
   </div>
-
 </template>
 
 <script>
@@ -18,7 +16,7 @@ export default {
   components: {
     CowculatorDescription,
     CoffeeFunction,
-    BartProject,    
+    BartProject,
   },
   props: {
     id: {
@@ -29,8 +27,8 @@ export default {
   data() {
     return {
       // Store the components in an object as ID: Component pairs
-      componentValues: 
-      { 
+      componentValues:
+      {
         1: CowculatorDescription,
         2: CoffeeFunction,
         3: BartProject
@@ -41,8 +39,8 @@ export default {
   computed: {
     selectedComponent() {
       // Dynamically show the content based on the id
-     return this.componentValues[this.id];    
-      
+      return this.componentValues[this.id];
+
     },
   },
 };
@@ -54,11 +52,9 @@ export default {
 
 
 <style scoped>
-
 h1 {
   font-size: 1.75em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
 }
-
 </style>

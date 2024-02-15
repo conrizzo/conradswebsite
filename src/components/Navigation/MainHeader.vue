@@ -17,14 +17,13 @@
       </div>
 
       <div class="navigation-menu">
-
-        <router-link class="about-link-styling about-menu" to="/about">
+        <router-link class="about-menu" to="/about">
           About
         </router-link>
         <!--import the dropdown menu into the nav bar-->
         <DropDownMenu class="projects-menu" />
-
       </div>
+
       <div class="small-resolution-h2">
         <router-link to="/projects/login">
           Sign In
@@ -68,7 +67,6 @@ export default {
     DropDownMenu
   },
   setup() {
-
     const headerClass = ref('header-visible');
     let lastScrollPosition = 0;
 
@@ -95,13 +93,18 @@ export default {
     });
 
     return {
-      headerClass
+      headerClass,
     };
   }
 };
 </script>  
 
 <style scoped>
+.horizontal-align-elements {
+  display: flex;
+  align-items: center;
+}
+
 .header-visible {
   transition: transform 0.5s ease;
 }
@@ -131,14 +134,21 @@ header {
   color: #fff;
 }
 
+.about-menu {
+  padding-bottom: 0.3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
 
 .about-menu:hover {
-  outline: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  margin-bottom: -2px;
 }
 
 nav a.router-link-exact-active:not(.active):hover {
   color: #ff5959;
 }
+
 
 .about-menu:active {
   color: #ffffff;
@@ -146,12 +156,9 @@ nav a.router-link-exact-active:not(.active):hover {
 
 .projects-menu {
   box-sizing: border-box;
-  padding-left: 0.45em;
 }
 
-.projects-menu:hover {
-  outline: 2px solid #fff;
-}
+.projects-menu:hover {}
 
 .header-h2 {
   font-size: 1em;
@@ -166,9 +173,7 @@ nav a.router-link-exact-active:not(.active):hover {
   display: none;
 }
 
-.about-link-styling {
-  padding: 0.5em 0.25em 0.5em 0.5em;
-}
+
 
 /* how to pin the nav to the top of the page */
 .nav-menu-class {
@@ -180,7 +185,7 @@ nav a.router-link-exact-active:not(.active):hover {
 }
 
 .navigation-menu {
-  margin-right: 9rem;
+  padding-right: 8rem;
 }
 
 nav {
@@ -252,6 +257,12 @@ nav a.router-link-exact-active {
 }
 
 @media (max-width: 45rem) {
+
+
+  .navigation-menu {
+    padding-right: 0rem;
+  }
+
   .header-h2 {
     display: none;
   }
@@ -265,9 +276,8 @@ nav a.router-link-exact-active {
     margin-right: 0.25rem;
     margin-left: 0rem;
   }
-}
 
-@media (max-width: 45rem) {
+
   .github-logo-link {
     display: none;
   }
@@ -314,5 +324,6 @@ nav a.router-link-exact-active {
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
     color: rgb(100, 100, 100);    
   }
-  */</style>
+  */
+</style>
   

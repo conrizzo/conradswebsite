@@ -57,8 +57,12 @@
                     </p>
                     <p> For instance, consider the sentences..<br> Sentence 1: "<i>Huge place where people buy stuff</i>"
                         <br>
-                        Sentence 2: "<i>A gigantic store</i>"<br> 
-                        Despite having no identical words, these sentences yield a high similarity score due to their similar meanings.
+                        Sentence 2: "<i>A gigantic store</i>"<br>
+                        Despite having no identical words, these sentences yield a high similarity score due to their
+                        similar meanings.<br>
+                        A second example:<br>
+                        Sentence 1: "Where is the feline?"<br>
+                        Sentence 2: "I don't know where to find the cat"<br>
                     </p>
 
                     <h2 class="form-title">Compare Cosine similarity:</h2>
@@ -185,7 +189,7 @@ p {
     font-size: var(--fs-400);
 }
 
-.text-links{
+.text-links {
     color: #00a2ff;
 
 }
@@ -218,15 +222,22 @@ p {
 }
 
 .input-field-style {
-    padding: 5px 5px;
+    padding: 5px 10px;
     margin: 8px 0;
-    margin-left: 0.1rem;
+    margin-left: 0rem;
     border-radius: 0.5em;
     border: 1px solid #ccc;
     box-sizing: border-box;
     margin-right: .5rem;
     font-size: 1rem;
     width: 100%;
+}
+
+
+.input-field-style:focus {
+    outline: none !important;
+    border: 1px solid #42b883;
+    box-shadow: 0 0 5px #42b883;
 }
 
 .loading {
@@ -272,4 +283,5 @@ p {
         font-size: 2em;
     }
 
-}</style>
+}
+</style>

@@ -27,8 +27,7 @@
           </p>
 
           <button class="instruction-button" type="button"
-            @click="isRotated = !isRotated, viewInstructions = !viewInstructions"
-            style="text-align: left; display: flex; align-items: center;">
+            @click="isRotated = !isRotated, viewInstructions = !viewInstructions">
             <svg style="width: 32px; height: 32px; transition: transform 0.5s;" viewBox="0 0 32 32" fill="none"
               stroke="#42b983" stroke-width="2" :class="{ 'rotate': isRotated }">
               <polyline points="8 12 16 20 24 12" />
@@ -278,6 +277,8 @@ export default {
   border: none;
   border-top: 1px solid #42b983;
   border-bottom: 1px solid #42b983;
+
+  text-align: left; display: flex; align-items: center;
 }
 
 .instruction-button:hover {
