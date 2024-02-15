@@ -135,6 +135,7 @@ header {
 }
 
 .about-menu {
+  margin-left: 0.5rem;
   padding-bottom: 0.3rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -185,7 +186,7 @@ nav a.router-link-exact-active:not(.active):hover {
 }
 
 .navigation-menu {
-  padding-right: 8rem;
+  padding-right: 8.5rem;
 }
 
 nav {

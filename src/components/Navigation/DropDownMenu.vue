@@ -112,6 +112,7 @@ export default {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.4);
     transition: all 0.35s ease-in-out;
+    border-radius: .33rem;
 }
 
 .fade-leave-to {
@@ -119,12 +120,27 @@ export default {
 }
 
 .dropdown-content a {
+    border-bottom: 1px solid rgb(218, 220, 224);
     color: rgb(12, 12, 12);
     padding: 0.5em 0.6em 0.5em 0.6em;
     text-decoration: none;
     display: block;
     margin-right: 0;
+    border-radius: none;  
 }
+
+.dropdown-content div:first-child a {    
+    border-top-right-radius: .33rem;
+    border-top-left-radius: .33rem;
+}
+
+.dropdown-content div:last-child a {
+    border-bottom: none;
+    border-bottom-right-radius: .33rem;
+    border-bottom-left-radius: .33rem;
+}
+
+
 
 /* Can make this the page color for the respective page if I set all pages to follow a page color value */
 nav a.router-link-exact-active {
