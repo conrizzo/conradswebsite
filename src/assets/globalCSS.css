@@ -1,4 +1,4 @@
-:root{
+:root {
   --fs-300: 0.9rem;
   --fs-400: 1rem;
   --fs-500: 1.1rem;
@@ -8,16 +8,16 @@
 }
 
 body {
-    font-family: Helvetica, Arial, sans-serif;	
-    min-height: 100svh;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    background: linear-gradient(var(--gray-gradient)) no-repeat;	
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    color: rgb(var(--gray-dark));	
-    line-height: 1.6;    
+  font-family: Helvetica, Arial, sans-serif;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  background: linear-gradient(var(--gray-gradient)) no-repeat;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: rgb(var(--gray-dark));
+  line-height: 1.6;
 }
 
 html {
@@ -26,75 +26,84 @@ html {
 
 /* CSS property. This property is specific to WebKit browsers, like Safari and Chrome on iOS and Android.
    This will make the tap highlight transparent, effectively hiding it. */
-a {
+a,
+.router-link-active {
   -webkit-tap-highlight-color: transparent;
 }
 
+:focus {
+  outline: none !important;
+}
+
 /* BELOW this comment adjusts the default scrollbar on the right */
-  /* Set the width of the scrollbar */
-  ::-webkit-scrollbar {
-    width: 0.75em;
-    background-color: #fff;
-    margin-right: 5px;
-    height: 1.5em;
-  }
-  
-  /* Set the color of the scrollbar track */
-  ::-webkit-scrollbar-track {
-    background-color: #ffffff;
-    width: 0.5em;
-    margin-right: 5px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: rgb(172, 172, 172);
-    border-right: 0.25em white solid;
-    border-top: 0.25em white solid;
-    border-bottom: 0.25em white solid;
-    background-clip: padding-box;
-    border-radius: 0.5em;
-  }
-  
-  /* Set the color of the scrollbar thumb on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #888888;
-  }
-  
+/* Set the width of the scrollbar */
+::-webkit-scrollbar {
+  width: 0.75em;
+  background-color: #fff;
+  margin-right: 5px;
+  height: 1.5em;
+}
+
+/* Set the color of the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  width: 0.5em;
+  margin-right: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(172, 172, 172);
+  border-right: 0.25em white solid;
+  border-top: 0.25em white solid;
+  border-bottom: 0.25em white solid;
+  background-clip: padding-box;
+  border-radius: 0.5em;
+}
+
+/* Set the color of the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888888;
+}
 
 
-.main-red-color{
+
+.main-red-color {
   color: #ff5959;
 }
 
 /* make words and long links break to the next line */
-.break-text{
+.break-text {
   word-break: break-word;
 }
+
 /* basic css tooltip */
 .tooltip {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
 }
-.tooltip:before {  
-  content:"";
+
+.tooltip:before {
+  content: "";
   visibility: hidden;
   position: absolute;
   height: 0px;
   width: 0px;
   top: 2.33em;
-  left: 1.2em; /* 1px buffer for zooming problems while rendering*/
+  left: 1.2em;
+  /* 1px buffer for zooming problems while rendering*/
   border-width: 0.66em;
   border-color: transparent #42b883 transparent transparent;
   border-style: solid;
-  transform: rotate(90deg); 
+  transform: rotate(90deg);
 }
+
 .tooltip .tooltiptext {
   text-align: left;
   visibility: hidden;
   width: 200px;
   background-color: #42b883;
-  color: #fff;  
+  color: #fff;
   border-radius: 6px;
   padding: 0.5em;
   font-size: 0.6em;
@@ -104,9 +113,11 @@ a {
   top: 5.9em;
   left: -4%;
 }
-.tooltip:hover:before{
+
+.tooltip:hover:before {
   visibility: visible;
 }
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
@@ -115,7 +126,7 @@ a {
 * {
   margin: 0;
   padding: 0;
-  
+
 }
 
 *,
@@ -124,7 +135,10 @@ a {
   box-sizing: border-box;
 }
 
-img, picture, svg, video {
+img,
+picture,
+svg,
+video {
   max-width: 100%;
   display: block;
 
@@ -136,18 +150,18 @@ p {
 }
 
 /* buttons and stuff */
-h1 {  
+h1 {
   line-height: 1.5;
 }
 
 
 
 
-.top-most-paragraph-space{
+.top-most-paragraph-space {
   padding-top: 1em;
 }
 
-.paragraph-text {  
+.paragraph-text {
   line-height: 1.65em;
   font-size: 1em;
   text-align: left;
@@ -160,7 +174,8 @@ h1 {
 .white-color-text {
   color: #ffffff;
 }
-.dark-color-text{
+
+.dark-color-text {
   color: #303030;
 }
 
@@ -171,7 +186,7 @@ h1 {
   background-color: #515151;
   border-radius: 12px;
   box-sizing: border-box;
-  color: #d2d2d2;  
+  color: #d2d2d2;
   display: inline-flex;
   flex: 1 1 auto;
   font-family: Inter, sans-serif;
@@ -193,9 +208,11 @@ h1 {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 .button-35:hover {
-  box-shadow: rgb(0, 227, 227) 0 0 0 2px, transparent 0 0 0 0;  
+  box-shadow: rgb(0, 227, 227) 0 0 0 2px, transparent 0 0 0 0;
 }
+
 .box {
   padding: 80px 0;
   width: 300px;
@@ -208,18 +225,22 @@ h1 {
 .no-underlines {
   text-decoration: none;
 }
+
 /* links styling WITH underline on hover */
 .text-links:link {
   text-decoration: none;
   cursor: pointer;
   color: rgb(11, 87, 208);
 }
+
 .text-links:hover {
   text-decoration: underline;
 }
+
 .text-links:visited {
   color: rgb(11, 87, 208);
 }
+
 .text-links:active {
   color: rgb(11, 87, 208);
 }
@@ -229,26 +250,32 @@ h1 {
   text-decoration: none;
   color: rgb(168, 55, 247);
 }
+
 .text-links-no-underline:hover {
   text-decoration: none;
 }
+
 .text-links-no-underline:visited {
   color: rgb(168, 55, 247);
 }
+
 .text-links-no-underline:active {
   color: rgb(168, 55, 247);
 }
 
 .links-black:link {
-  text-decoration: none;  
+  text-decoration: none;
   color: rgb(18, 18, 18);
 }
+
 .links-black:hover {
   text-decoration: underline;
 }
+
 .links-black:visited {
   color: rgb(18, 18, 18);
 }
+
 .links-black:active {
   color: rgb(18, 18, 18);
 }

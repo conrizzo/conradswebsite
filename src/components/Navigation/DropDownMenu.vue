@@ -81,7 +81,7 @@ export default {
 <style scoped>
 .dropbtn {
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
-    
+
     padding-left: .75rem;
     padding-right: .25rem;
     color: rgb(240, 240, 240);
@@ -94,6 +94,12 @@ export default {
     */
 }
 
+/* Is this a bug in css or vue js that this only works this way? It can work here or in the parent component 
+This makes sense I guess, whatever value is set in the child css the parent tag can use it.
+.projects-menu {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+*/
 
 .dropdown {
     position: relative;
@@ -126,10 +132,10 @@ export default {
     text-decoration: none;
     display: block;
     margin-right: 0;
-    border-radius: none;  
+    border-radius: none;
 }
 
-.dropdown-content div:first-child a {    
+.dropdown-content div:first-child a {
     border-top-right-radius: .33rem;
     border-top-left-radius: .33rem;
 }
@@ -164,7 +170,7 @@ nav a.router-link-exact-active {
 
 .dropdown .dropbtn:hover {
     background-color: none;
-    cursor: pointer;   
+    cursor: pointer;
     border-bottom: 2px solid #fff;
     margin-bottom: -2px;
 }

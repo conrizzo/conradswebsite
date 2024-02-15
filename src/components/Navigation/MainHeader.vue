@@ -156,7 +156,7 @@ nav a.router-link-exact-active:not(.active):hover {
 }
 
 .projects-menu {
-  box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);    
 }
 
 .projects-menu:hover {}
