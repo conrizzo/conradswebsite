@@ -4,7 +4,7 @@
             <div class="grid-container">
                 <div class="product-image-container">
                     <div class="left-align-back-link">
-                        <RouterLink class="links-black" to="/projects/store/store">Back to product selection</RouterLink>
+                        <RouterLink class="links-black" to="/projects/store/store-prototype-made-in-vuejs-and-typescript">Back to product selection</RouterLink>
                     </div>
                     <img class="gallery-component-image" :src="itemImageSrc" :alt="itemName">
                 </div>
@@ -38,7 +38,7 @@
         <CheckOut :propProductPageAddItemToCart="choiceId"></CheckOut>
     </div>
 </template>
-  
+
 <script>
 import "@/assets/globalCSS.css";
 import CheckOut from "@/components/Store/CheckOut.vue";
@@ -90,7 +90,7 @@ export default {
     }
 }
 </script>
-  
+
 <style scoped>
 h1 {
     padding-left: 0em;

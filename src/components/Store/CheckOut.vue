@@ -120,7 +120,7 @@
         </div>
     </div>
 </template>  
-  
+
 <script>
 // import ProductGallery from "@/components/Store/ProductGallery.vue";
 import { Inventory } from "@/components/Store/InventoryData.ts";
@@ -287,7 +287,7 @@ export default {
                               runningTotal += cartItem.price * cartItem.quantity;
                             }
                             return runningTotal;
-                             }
+                            }
                             this.runningTotal = calculateRunningTotal(this.userCart);
                 */
             }
@@ -362,7 +362,7 @@ export default {
     }
 }
 </script>  
-  
+
 <style scoped>
 h1 {
     font-size: 4em;
@@ -582,5 +582,6 @@ h1 {
     }
 }
 
-/* Your styles here */</style>
+/* Your styles here */
+</style>
   

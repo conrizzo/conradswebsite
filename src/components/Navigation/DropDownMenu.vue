@@ -115,10 +115,11 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
     padding: 0.15em;
     margin-top: 0rem;
     width: 10.4em;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.4);
+    background-color: rgb(33, 35, 36);    
+    box-shadow: 0px -2px 8px rgba(0, 0, 0, 1);
     transition: all 0.35s ease-in-out;
     border-radius: .33rem;
+    border: 1px solid rgb(70, 70, 70);
 }
 
 .fade-leave-to {
@@ -126,8 +127,8 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
 }
 
 .dropdown-content a {
-    border-bottom: 1px solid rgb(218, 220, 224);
-    color: rgb(12, 12, 12);
+    border-bottom: 1px solid rgb(70, 70, 70);
+    color: rgb(255, 255, 255);
     padding: 0.5em 0.6em 0.5em 0.6em;
     text-decoration: none;
     display: block;
@@ -146,8 +147,6 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
     border-bottom-left-radius: .33rem;
 }
 
-
-
 /* Can make this the page color for the respective page if I set all pages to follow a page color value */
 nav a.router-link-exact-active {
     color: #ff5959;
@@ -155,9 +154,8 @@ nav a.router-link-exact-active {
 
 /* #00b3ff; */
 .dropdown-content a:hover:not(.active) {
-    background-color: none;
-    color: #000;
-    background-color: rgb(235, 235, 235);
+    background-color: none;    
+    background-color: rgb(70, 70, 70);
 }
 
 .dropdown .dropdown-content.active {
