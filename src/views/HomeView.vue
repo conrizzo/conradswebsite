@@ -41,7 +41,7 @@
           <ProjectGallery />
         </section>
       </div>
-    </div>   
+    </div>
     <imagesOneRow />
     <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
     <TwoColumnsReversedGrid :titleText="reversedTitle" :content-text="reversedText" />
@@ -95,7 +95,7 @@ export default {
 
       reversedTitle: "approach",
       reversedText: "The process is usually to experiment on some projects or concepts, write a lot of code to try ideas, edit and delete the code,\
-                     find what works, and then make it simpler.\
+                    find what works, and then make it simpler.\
                     This is essentially the learning process along with reading documentation and code off other projects to understand how it works. Regularly watching\
                     YouTube videos where a concept is discussed is also part of the process.\
                     In the end code is just a tool to make things, so as I make more projects\
@@ -185,6 +185,7 @@ export default {
 .top-string-slice-of-title {
   font-size: 2em;
 }
+
 /* end arrow css */
 
 .custom-background-home-page {
@@ -217,9 +218,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(5deg, rgba(0, 0, 0, .05) 20%, transparent 20%,
-      transparent 80%, rgba(0, 0, 0, .05) 80%), linear-gradient(100deg, rgba(0, 0, 0, .05) 10%,
-      transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 90%);
+  background-image: linear-gradient(5deg, rgba(0, 0, 0, .5) 20%, transparent 20%,
+      transparent 80%, rgba(0, 0, 0, .4) 80%), linear-gradient(100deg, rgba(0, 0, 0, .3) 10%,
+      transparent 10%, transparent 90%, rgba(0, 0, 0, .2) 90%);
+      filter: blur(3px);
 }
 
 .center-bottom-main-area-box {
@@ -227,6 +229,7 @@ export default {
   justify-content: center;
   padding-bottom: 4rem;
 }
+
 .center-image {
   display: flex;
   justify-content: center;
@@ -235,24 +238,29 @@ export default {
   padding-top: 1rem;
   background: rgb(18, 18, 18);
 }
+
 .home-text-links {
   color: rgb(255, 255, 255);
   font-weight: 500;
   border-bottom: 3px solid rgb(0, 171, 137);
   text-decoration: none;
 }
+
 .home-text-links:is(:hover, :focus) {
   background: rgb(0, 255, 204);
   color: rgb(18, 18, 18);
   border-bottom: none;
 }
+
 .home-text-links:active {
   color: rgb(255, 89, 89);
 }
+
 .list-links-text-decoration {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
+
 .main-text-container {
   display: flex;
   justify-content: left;
@@ -264,6 +272,7 @@ export default {
   font-size: 1.6em;
   text-align: left;
 }
+
 .main-text-ul {
   color: rgb(255, 255, 255);
   padding: 0.5rem;
@@ -271,16 +280,19 @@ export default {
   padding-left: 3rem;
   padding-top: 2.5rem;
 }
+
 .first-aside-home-page {
   background: rgb(18, 18, 18);
   z-index: 1;
   padding: 1em;
 }
+
 .top-home-content-section {
   z-index: 4;
   padding-top: 2rem;
   max-width: 80rem;
 }
+
 .website-text-boxes {
   z-index: 4;
   width: 80rem;
@@ -288,6 +300,7 @@ export default {
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
+
 @media only screen and (max-width: 100rem) {
   .center-bottom-main-area-box {
     display: flex;
@@ -296,10 +309,12 @@ export default {
     padding-right: 2rem;
     padding-bottom: 10rem;
   }
+
   .center-bottom-main-area-box {
     padding-bottom: 2rem;
   }
 }
+
 @media only screen and (max-width: 60rem) {
   .main-text-container {
     grid-template-columns: repeat(1, 1fr);
@@ -316,6 +331,5 @@ export default {
   .top-home-content-section {
     z-index: 4;
   }
-}
-</style>
+}</style>
 

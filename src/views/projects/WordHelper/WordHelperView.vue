@@ -1,12 +1,7 @@
 <template>
   <main style="min-height: 800px; background: rgb(255, 255, 255);">
-
-
-
     <div class="container">
-
       <div class="grid-box">
-
         <section class="text-section">
           <div calss="center-element">
             <h1>Search assistant to help find words for the Wordle game</h1>
@@ -18,12 +13,14 @@
           </h2>
 
           <p>I made another demo of this using Nuxt.js at <a class="text-links"
-              href="https://search-wordle-words.netlify.app/">https://search-wordle-words.netlify.app/</a></p>
-
-          <p>
-            Note: This is not an official Wordle site and all game references are property of the respective copyright
-            owners.
-            This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
+              href="https://search-wordle-words.netlify.app/">https://search-wordle-words.netlify.app/</a><br>
+            This is a simple search tool to help find words for the <a style="color: #42b983;" class="text-links"
+              href="https://www.nytimes.com/games/wordle/index.html">Wordle</a> game. The game is a word puzzle where you have to
+            guess the word.<br>
+            The <a class="text-links" href="https://github.com/conrizzo/search-wordle-words/tree/main/pages">GitHub</a>
+            code is here! The version on this page runs slightly different code than this GitHub link since the link is a Nuxt.js project, but 100% 
+            of the actual code that does the logic is the same.
+            
           </p>
 
           <button class="instruction-button" type="button"
@@ -37,32 +34,53 @@
               View Instructions</span>
             <span v-else class="description-span">
               Close Instructions</span>
-
           </button>
-
 
           <transition name="slide">
             <div v-if="viewInstructions" class="instructions">
+              <h3 style="padding-top: 1rem;">1st Input</h3>
               <p>
                 Typing letters in the <b>Include</b> field will
                 search for those letters in any position in a word.
               </p>
               <p>
-                In order to search for words with a specific letter in a specific position add anything other than a
+                In order to search for words with a specific letter in a specific position add anything
+                other than a
                 letter between the letters.
               </p>
               <p>
-                <b>For example:</b> Type "_r_a_" to search for words with the 2nd letter
-                <b>r</b> and 4th letter <b>a</b>.
-                Typing "##eam" will search for words with the 3rd letter "<b>e</b>", 4th letter "<b>a</b>", and 5th letter
-                "<b>m</b>".
+                <b>For example:</b> Type "<b>_R_A_</b>" to search for words with the 2nd letter
+                <b>R</b> and 4th letter <b>A</b>.
+                Typing "<b>##EAM</b>" will search for words with the 3rd letter "<b>E</b>", 4th letter "<b>A</b>",
+                and 5th letter
+                "<b>M</b>".
+              </p>
+              <h3>2nd Input</h3>
+              <p>
+                The "<b>Letter in word somewhere</b>" field is a search modification.
+                It can be used by itself to exclude specific letters at specific positions, or as a
+                secondary filter done after the <b>Include</b> field is evaluated. Typing "<b>AAAA#</b>" here will exclude
+                all words with <b>A</b> in the 1st-4th positions.
+                If exact positions
+                are used in the <b>Include</b> field with "B#R##" and
+                <b>Letter in word somewhere</b> has the letter <b>C</b> entered, then the result will only be words
+                with first letter B, third letter R, and the letter C somewhere in the word.
               </p>
               <p>
-                The "<b>Exclude</b>" field is optional and will exclude any words with the letters entered.
-                For example, if input in this field is "ab"
-                then all words with the letter "a" or "b" will be excluded.
+                As a reminder, if any character other than a letter is used in the "<b>Letter in word somewhere</b>" field
+                then
+                all words with letters in these specific positions within the 5 letter word will be removed!
+                Doing this tells the search we are saying each of the letters are in the word, but were incorrect guesses
+                at these specific
+                positions, so remove the words with letters at these positions!
               </p>
-
+              <h3>3rd Input</h3>
+              <p>
+                The "<b>Exclude</b>" field will exclude any words with the letters entered.
+                For example, if input in this field is "AB"
+                then all words with the letter "A" or "B" will be excluded. This says these letters are
+                not in the word at all.
+              </p>
             </div>
           </transition>
         </section>
@@ -71,13 +89,17 @@
           <span style="color:#fff;">{{ outputSuccessMessage }}</span>
           <div class="submission-area">
 
-            <label class="include-label-text">Include ({{ inputLength }}):</label>
-            <input class="input-field-style" placeholder="Include letters" type="text" v-model="userInput"
+            <label for="userInput1" class="include-label-text">Include ({{ inputLength }}):</label>
+            <input id="userInput1" class="input-field-style" placeholder="Include letters" type="text" v-model="userInput"
               maxlength="5" />
 
-            <label class="include-label-text">Exclude (optional):</label>
-            <input class="input-field-exclude-letters-style" placeholder="Exclude letters" type="text"
-              v-model="userInputExcludeLetters" maxlength="18" />
+            <label for="userInput2"  class="include-label-text">Letter in word somewhere (Optional) ({{ secondInputLength }}):</label>
+            <input id="userInput2" class="input-field-style" style="background-color: rgb(255, 255, 214);"
+              placeholder="Letter in word somewhere" type="text" v-model="userInputInWordSomewhere" maxlength="5" />
+
+            <label for="userInput3" class="include-label-text">Exclude (Optional):</label>
+            <input id="userInput3" class="input-field-exclude-letters-style" style="background-color: rgb(245, 245, 245);"
+              placeholder="Exclude letters" type="text" v-model="userInputExcludeLetters" maxlength="18" />
             <!--
         <label>
           <span class="character-indice-font">Match Indices</span>
@@ -101,7 +123,6 @@
             </p>
           </dialog>
         </form>
-
       </div>
     </div>
 
@@ -110,11 +131,17 @@
       <span style="color: rgb(18,18,18);">Words Allowed:<b>{{ processedWords.length }}</b></span>
     </div>
     <div class="letter-output-grid-box">
-
       <div class="center-element" v-for="(word, index) in processedWords" :key="index">
         {{ word.toUpperCase() }}
       </div>
+    </div>
 
+    <div class="center-element">
+      <p>
+        Note: This is not an official Wordle site and all game references are property of the respective copyright
+        owners.
+        This is just a project to search strings with a dataset of words using JavaScript/TypeScript.
+      </p>
     </div>
   </main>
 </template>
@@ -145,6 +172,7 @@ export default {
     const maxWordLength: number = 5;
     let userInput: Ref<string> = ref('');
     let userInputExcludeLetters: Ref<string> = ref('');
+    let userInputInWordSomewhere: Ref<string> = ref('');
     let invalidInput = ref(false);
     let viewInstructions = ref(false);
 
@@ -158,6 +186,7 @@ export default {
     const outputSuccessMessage: Ref<String> = ref("");
 
     const inputLength = computed(() => `${userInput.value.length}/${maxWordLength}`);
+    const secondInputLength = computed(() => `${userInputInWordSomewhere.value.length}/${maxWordLength}`);
 
     const exactLetterMatches = () => {
       processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
@@ -174,8 +203,9 @@ export default {
       return projectLinks.find(link => link.id === 9)?.imageSrc ?? '';
     };
 
-    const checkForDuplicateLetters = () => {
-      const inputLetters = userInput.value.split('');
+    const checkForDuplicateLetters = (whichInput: string) => {
+      //const inputLetters = userInput.value.split('');
+      const inputLetters = whichInput.split('');
       const excludeLetters = userInputExcludeLetters.value.split('');
       const duplicates = inputLetters.filter(letter => excludeLetters.includes(letter));
 
@@ -193,10 +223,10 @@ export default {
       return false;
     };
 
-    // MAIN FUNCTION FOR THIS
+    // MAIN FUNCTION OF THIS APPLICATION USING TYPESCRIPT FUNCTIONS IN ADDITIONAL FILE wordle.ts
     const processInputWord = () => {
       // verify a user isn't trying to exclude letters that are also included
-      if (checkForDuplicateLetters() === true) {
+      if (checkForDuplicateLetters(userInput.value) === true) {
         return;
       }
       getOutputSuccessMessage(); // submission successful message
@@ -205,16 +235,43 @@ export default {
       if (notLetter.test(userInput.value) && !checkboxValue.value) {
         // An error message can optionally be inserted here with invalidInput.value = true;       
         processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
+
+        // check if the yellow 2nd input has anything other than letters in it
+        if (notLetter.test(userInputInWordSomewhere.value) && userInputInWordSomewhere.value.length > 0) {
+          const filteredWords = processedWords.value;
+          processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);
+          if (checkForDuplicateLetters(userInputInWordSomewhere.value) === true) {
+            return;
+          }
+          return;
+        }
+        // if it is only letters we just search words that MUST include these letters as a secondary search
+        if (userInputInWordSomewhere.value.length > 0) {
+          const filteredWords = processedWords.value;
+          processedWords.value = processWords(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords);
+          if (checkForDuplicateLetters(userInputInWordSomewhere.value) === true) {
+            return;
+          }
+          return;
+        }
         return;
+      } else {
+        processedWords.value = processWords(userInput.value, userInputExcludeLetters.value);
+
+        const filteredWords = processedWords.value;
+        if (notLetter.test(userInputInWordSomewhere.value)) {
+          processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);
+        } else {
+          processedWords.value = processWords(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords);
+        }
       }
-      // This will check if any letter is in the word and positions don't matter - could be if-else not sure
-      // what is more readable
-      processedWords.value = processWords(userInput.value, userInputExcludeLetters.value);
     };
 
     return {
       userInput,
+      userInputInWordSomewhere,
       userInputExcludeLetters,
+
       processInputWord,
       processedWords,
       lettersMatching,
@@ -222,6 +279,7 @@ export default {
       handleCheckboxChange,
       exactLetterMatches,
       inputLength,
+      secondInputLength,
       invalidInput,
       getOutputSuccessMessage,
       outputSuccessMessage,
@@ -238,8 +296,7 @@ export default {
     };
   }
 };
-</script>
-  
+</script>  
 
 
 <style scoped>
@@ -257,7 +314,7 @@ export default {
 .slide-enter-active,
 .slide-leave-active {
   transition: all 0.5s;
-  max-height: 340px;
+  max-height: 700px;
 }
 
 .slide-enter,
@@ -278,7 +335,9 @@ export default {
   border-top: 1px solid #42b983;
   border-bottom: 1px solid #42b983;
 
-  text-align: left; display: flex; align-items: center;
+  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 .instruction-button:hover {

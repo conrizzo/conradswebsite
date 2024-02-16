@@ -1,5 +1,5 @@
 
-// This helper function excludes words with any letters in them
+//This helper function excludes words with any letters in them
 function getExcludedWords( _words: undefined | string, matchingWords: Array<string>, excludeLetters: string = '' ) {  
   const exludeToLowerCase = excludeLetters.split('').map(letter => letter.toLowerCase());
     const filteredWords: Array<string> = matchingWords.filter(word => 
@@ -8,21 +8,38 @@ function getExcludedWords( _words: undefined | string, matchingWords: Array<stri
   return filteredWords;
 }
 
-// This function finds words with any of these letters in them
-export function processWords(word: String, excludeLetters: string = '') {
+//This function finds words with any of these letters in them, and also optionally does secondary search
+export function processWords(
+  word: String,
+  excludeLetters: string = '', 
+  filteredWordList: string[] | null = null
+  ) 
+  {
   const guess_word = word.toLowerCase().split('');
-  //const answer = [];
-  // Filter words with callback function returning to itself
-  const filteredWords = allWords.filter(item => {
-    const wordLetters = item.toLowerCase().split('');
-    // Check if every letter in guess_word is included in word
-    return guess_word.every(letter => wordLetters.includes(letter));
-  });  
-  return getExcludedWords(undefined ,filteredWords , excludeLetters);
+  let filteredWords: string[] = []; // Declare filteredWords here
+
+  // to include any unknown letters in the word. This uses the 2nd user input field
+  if (filteredWordList !== null) {
+    // Filter words with callback function returning to itself
+    filteredWords = filteredWordList.filter(item => {
+      const wordLetters = item.toLowerCase().split('');
+      // Check if every letter in guess_word is included in word
+      return guess_word.every(letter => wordLetters.includes(letter));
+    });  
+  // The else here runs if no input is given in the 2nd user input field
+  } else {
+    // Filter words with callback function returning to itself
+    filteredWords = allWords.filter(item => {
+      const wordLetters = item.toLowerCase().split('');
+      // Check if every letter in guess_word is included in word
+      return guess_word.every(letter => wordLetters.includes(letter));
+    });  
+  }
+  return getExcludedWords(undefined, filteredWords, excludeLetters);
 }
 
-// This function does exact matching of letters by their position
-export function lettersMatching(guess_word: string, excludeLetters: string = '', words: string[] = allWords): string[] {  
+//This function does exact matching of letters by their position
+export function lettersMatching(guess_word: string, excludeLetters: string = '', words: string[] = allWords, reverse: boolean = false) {  
   guess_word = guess_word.toLowerCase();
   const matchingWords: Array<string> = [];
   const notLetter = /[^a-zA-Z]/;    
@@ -30,16 +47,25 @@ export function lettersMatching(guess_word: string, excludeLetters: string = '',
   for (const word of words) {
     let isMatching = true;
     for (let i = 0; i < guess_word.length; i++) {
-      if (!notLetter.test(guess_word[i]) && guess_word[i] !== word[i]) {
-        isMatching = false;
-        break;
+      if (reverse) {
+        // If reverse is true, exclude letters at these positions
+        if (!notLetter.test(guess_word[i]) && guess_word[i] === word[i]) {
+          isMatching = false;
+          break;
+        }
+      } else {
+        // If reverse is false, perform the original check
+        if (!notLetter.test(guess_word[i]) && guess_word[i] !== word[i]) {
+          isMatching = false;
+          break;
+        }
       }
     }
 
     if (isMatching) {
       matchingWords.push(word);
     }
-  } 
+}
   return getExcludedWords(undefined, matchingWords, excludeLetters);
 }
 
