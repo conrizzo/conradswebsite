@@ -15,12 +15,14 @@
           <p>I made another demo of this using Nuxt.js at <a class="text-links"
               href="https://search-wordle-words.netlify.app/">https://search-wordle-words.netlify.app/</a><br>
             This is a simple search tool to help find words for the <a style="color: #42b983;" class="text-links"
-              href="https://www.nytimes.com/games/wordle/index.html">Wordle</a> game. The game is a word puzzle where you have to
+              href="https://www.nytimes.com/games/wordle/index.html">Wordle</a> game. The game is a word puzzle where you
+            have to
             guess the word.<br>
             The <a class="text-links" href="https://github.com/conrizzo/search-wordle-words/tree/main/pages">GitHub</a>
-            code is here! The version on this page runs slightly different code than this GitHub link since the link is a Nuxt.js project, but 100% 
+            code is here! The version on this page runs slightly different code than this GitHub link since the link is a
+            Nuxt.js project, but 100%
             of the actual code that does the logic is the same.
-            
+
           </p>
 
           <button class="instruction-button" type="button"
@@ -90,11 +92,12 @@
           <div class="submission-area">
 
             <label for="userInput1" class="include-label-text">Include ({{ inputLength }}):</label>
-            <input id="userInput1" class="input-field-style" placeholder="Include letters" type="text" v-model="userInput"
-              maxlength="5" />
+            <input id="userInput1" class="input-field-style" style="background-color: rgb(217, 255, 220);"
+              placeholder="Include letters" type="text" v-model="userInput" maxlength="5" />
 
-            <label for="userInput2"  class="include-label-text">Letter in word somewhere (Optional) ({{ secondInputLength }}):</label>
-            <input id="userInput2" class="input-field-style" style="background-color: rgb(255, 255, 214);"
+            <label for="userInput2" class="include-label-text">Letter in word somewhere (Optional) ({{ secondInputLength
+            }}):</label>
+            <input id="userInput2" class="input-field-style" style="background-color: rgb(255, 255, 172);"
               placeholder="Letter in word somewhere" type="text" v-model="userInputInWordSomewhere" maxlength="5" />
 
             <label for="userInput3" class="include-label-text">Exclude (Optional):</label>
@@ -136,7 +139,7 @@
       </div>
     </div>
 
-    <div class="center-element">
+    <div class="center-element" style="padding-left: 1.5rem;">
       <p>
         Note: This is not an official Wordle site and all game references are property of the respective copyright
         owners.
@@ -154,7 +157,7 @@ import projectLinks from '@/components/Navigation/ProjectLinks' // meta tags exp
 
 
 export default {
-  name: 'MyComponent',
+  name: 'WordleAssistant',
   metaInfo: {
     title: 'My Title',
     meta: [
@@ -204,10 +207,26 @@ export default {
     };
 
     const checkForDuplicateLetters = (whichInput: string) => {
-      //const inputLetters = userInput.value.split('');
-      const inputLetters = whichInput.split('');
-      const excludeLetters = userInputExcludeLetters.value.split('');
-      const duplicates = inputLetters.filter(letter => excludeLetters.includes(letter));
+
+      const inputLetters = whichInput.split('');   
+      const excludeLetters = userInputExcludeLetters.value.split('')    
+      const secondInputExclude = userInputInWordSomewhere.value.split('')    
+
+      const duplicates = inputLetters.filter((letter, index) => {
+        // don't check if it's not a letter
+        if (!/^[a-zA-Z]$/.test(letter)) {
+          return false;
+        }
+        // Check if the letter exists in excludeLetters
+        if (excludeLetters.includes(letter)) {
+          return true;
+        }
+        // Check if the same letter is at the same position in secondInputExclude
+        if (secondInputExclude[index] === letter) {
+          return true;
+        }
+        return false;
+      });
 
       if (duplicates.length > 0) {
         // singular/plural message
@@ -225,39 +244,30 @@ export default {
 
     // MAIN FUNCTION OF THIS APPLICATION USING TYPESCRIPT FUNCTIONS IN ADDITIONAL FILE wordle.ts
     const processInputWord = () => {
-      // verify a user isn't trying to exclude letters that are also included
+      // guard statement to verify a user isn't trying to exclude letters that are also included
       if (checkForDuplicateLetters(userInput.value) === true) {
+        console.log('Duplicate letters found in 1st input');
         return;
       }
       getOutputSuccessMessage(); // submission successful message
-
       // if any input is not a letter this says find exact character position matches
-      if (notLetter.test(userInput.value) && !checkboxValue.value) {
-        // An error message can optionally be inserted here with invalidInput.value = true;       
+      if (notLetter.test(userInput.value) && !checkboxValue.value) {             
         processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
-
-        // check if the yellow 2nd input has anything other than letters in it
+        // 2nd input
         if (notLetter.test(userInputInWordSomewhere.value) && userInputInWordSomewhere.value.length > 0) {
           const filteredWords = processedWords.value;
-          processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);
-          if (checkForDuplicateLetters(userInputInWordSomewhere.value) === true) {
-            return;
-          }
+          processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);          
           return;
         }
         // if it is only letters we just search words that MUST include these letters as a secondary search
         if (userInputInWordSomewhere.value.length > 0) {
           const filteredWords = processedWords.value;
-          processedWords.value = processWords(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords);
-          if (checkForDuplicateLetters(userInputInWordSomewhere.value) === true) {
-            return;
-          }
+          processedWords.value = processWords(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords);          
           return;
         }
         return;
-      } else {
+      } else { // this else is for when the user is not trying to find exact character position matches
         processedWords.value = processWords(userInput.value, userInputExcludeLetters.value);
-
         const filteredWords = processedWords.value;
         if (notLetter.test(userInputInWordSomewhere.value)) {
           processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);
