@@ -151,7 +151,7 @@
   
 <script lang="ts">
 
-import { ref, computed, Ref } from 'vue';
+import { ref, Ref, computed, watch } from 'vue';
 import { allWords, processWords, lettersMatching } from '../../../data/wordle_words/wordle'
 import projectLinks from '@/components/Navigation/ProjectLinks' // meta tags experiment
 
@@ -185,6 +185,11 @@ export default {
     const imageSrc = linkWithId9 ? linkWithId9.imageSrc : '';
     // this area above is experimental
 
+    // only allow letters in 3rd input field
+    watch(userInputExcludeLetters, (newValue: string) => {
+      userInputExcludeLetters.value = newValue.replace(/[^a-zA-Z]/g, '');
+    });
+
     let duplicateLettersMessage: Ref<string> = ref('');
     const outputSuccessMessage: Ref<String> = ref("");
 
@@ -206,12 +211,22 @@ export default {
       return projectLinks.find(link => link.id === 9)?.imageSrc ?? '';
     };
 
+    // ERROR CHECKING FUNCTION
     const checkForDuplicateLetters = (whichInput: string) => {
-
       const inputLetters = whichInput.split('');   
-      const excludeLetters = userInputExcludeLetters.value.split('')    
       const secondInputExclude = userInputInWordSomewhere.value.split('')    
+      const excludeLetters = userInputExcludeLetters.value.split('')   
 
+      
+      // check if the 2nd input has any letters that are also in the 3rd input
+      const secondAndThirdDuplicateLetters = secondInputExclude.filter(letter => excludeLetters.includes(letter));
+      if (secondAndThirdDuplicateLetters.length > 0) {       
+        invalidInput.value = true;
+        secondAndThirdDuplicateLetters.length = 1;
+        //return true;
+      }
+
+      // check if the 1st input has any letters that are also in the 2nd or 3rd input
       const duplicates = inputLetters.filter((letter, index) => {
         // don't check if it's not a letter
         if (!/^[a-zA-Z]$/.test(letter)) {
@@ -221,14 +236,21 @@ export default {
         if (excludeLetters.includes(letter)) {
           return true;
         }
-        // Check if the same letter is at the same position in secondInputExclude
-        if (secondInputExclude[index] === letter) {
-          return true;
+        // only run the inner if statement if input has non-letters
+        
+        if (notLetter.test(userInputInWordSomewhere.value)){ 
+          //console.log(userInputInWordSomewhere.value);
+          //console.log(secondInputExclude[index]);
+          //console.log(letter);
+            // Check if the same letter is at the same position in secondInputExclude
+          if (secondInputExclude[index] === letter) {
+            return true;
+          }
         }
         return false;
       });
 
-      if (duplicates.length > 0) {
+      if (duplicates.length > 0 || secondAndThirdDuplicateLetters.length > 0) {
         // singular/plural message
         if (duplicates.length === 1) {
           duplicateLettersMessage.value = `The error letter is ${duplicates[0].toUpperCase()}`;
@@ -236,6 +258,7 @@ export default {
           duplicateLettersMessage.value = `The error letters are ${duplicates.join(', ').toUpperCase()}`;
         }
         duplicates.length = 0; // read more about this - clears all array instances and works but should understand this single line better
+        secondAndThirdDuplicateLetters.length = 0;
         invalidInput.value = true; // make error message
         return true;
       }
@@ -243,12 +266,14 @@ export default {
     };
 
     // MAIN FUNCTION OF THIS APPLICATION USING TYPESCRIPT FUNCTIONS IN ADDITIONAL FILE wordle.ts
+    // USING checkForDuplicateLetters function to check for errors
     const processInputWord = () => {
       // guard statement to verify a user isn't trying to exclude letters that are also included
-      if (checkForDuplicateLetters(userInput.value) === true) {
-        console.log('Duplicate letters found in 1st input');
+      if (checkForDuplicateLetters(userInput.value) === true) {        
         return;
       }
+
+      invalidInput.value = false; // Remove the error message on the next submission if error is fixed!
       getOutputSuccessMessage(); // submission successful message
       // if any input is not a letter this says find exact character position matches
       if (notLetter.test(userInput.value) && !checkboxValue.value) {             

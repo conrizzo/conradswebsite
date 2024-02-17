@@ -1,8 +1,8 @@
 
 //This helper function excludes words with any letters in them
-function getExcludedWords(_words: undefined | string, matchingWords: string[], excludeLetters: string = '') {  
+function getExcludedWords(_words: undefined | string, matchingWords: string[], excludeLetters: string = '') {
   const excludeToLowerCase = excludeLetters.toLowerCase().split('');
-  const filteredWords = matchingWords.filter(word => 
+  const filteredWords = matchingWords.filter(word =>
     excludeToLowerCase.every(letter => !word.includes(letter))
   );
   return filteredWords;
@@ -11,7 +11,7 @@ function getExcludedWords(_words: undefined | string, matchingWords: string[], e
 //This function finds words with any of these letters in them, and also optionally does secondary search
 export function processWords(
   word: string,
-  excludeLetters: string = '', 
+  excludeLetters: string = '',
   filteredWordList: string[] = allWords
 ) {
   const guessWord = word.toLowerCase().split('');
@@ -23,24 +23,23 @@ export function processWords(
 }
 
 //This function does exact matching of letters by their position
-export function lettersMatching(guessWord: string, excludeLetters: string = '', words: string[] = allWords, reverse: boolean = false) {  
+export function lettersMatching(guessWord: string, excludeLetters: string = '', words: string[] = allWords, reverse: boolean = false) {
   const lowerCaseGuessWord = guessWord.toLowerCase();
   const matchingWords: string[] = [];
-  const notLetter = /[^a-zA-Z]/;    
-  
-  for (const word of words) {
-    let isMatching = true;
-    for (let i = 0; i < lowerCaseGuessWord.length; i++) {
-      if (reverse ? !notLetter.test(lowerCaseGuessWord[i]) && lowerCaseGuessWord[i] === word[i]
-                  : !notLetter.test(lowerCaseGuessWord[i]) && lowerCaseGuessWord[i] !== word[i]) {
-        isMatching = false;
-        break;
-      }
-    }
+  const notLetter = /[^a-zA-Z]/;
 
-    if (isMatching) {
-      matchingWords.push(word);
-    }
+  for (const word of words) {
+      let isMatching = true;
+      for (let i = 0; i < lowerCaseGuessWord.length; i++) {
+        if (reverse ? !notLetter.test(lowerCaseGuessWord[i]) && lowerCaseGuessWord[i] === word[i]
+          : !notLetter.test(lowerCaseGuessWord[i]) && lowerCaseGuessWord[i] !== word[i]) {
+          isMatching = false;
+          break;
+        }
+      }
+      if (isMatching) {
+        matchingWords.push(word);
+      }
   }
   return getExcludedWords(undefined, matchingWords, excludeLetters);
 }
