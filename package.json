@@ -18,7 +18,7 @@
     "vue-class-component": "^8.0.0-0",
     "vue-cookie": "^1.1.4",
     "vue-cookies": "^1.8.3",
-    "vue-router": "^4.0.3",
+    "vue-router": "^4.2.5",
     "word-wrap": "^1.2.3"
   },
   "devDependencies": {
