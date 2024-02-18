@@ -122,9 +122,20 @@
               <span class="description-span" style="color: #ff5959;">Error</span>
             </div>
             <p>You are trying to include and exclude the same data!<br>
-              {{ duplicateLettersMessage }}
+              <span v-html="duplicateLettersErrorMessage"></span>
             </p>
           </dialog>
+          <!--
+          <component v-if="invalidInput" :is="dialogComponent" class="close" :open="invalidInput">
+            <button type="button" autofocus @click="invalidInput = false;" class="close-button"></button>
+            <div style="text-align: left;">
+              <span class="description-span" style="color: #ff5959;">Error</span>
+            </div>
+            <p>You are trying to include and exclude the same data!<br>
+              {{ duplicateLettersErrorMessage }}
+            </p>
+          </component>
+          -->
         </form>
       </div>
     </div>
@@ -166,6 +177,24 @@ let userInputInWordSomewhere = ref('');
 let invalidInput = ref(false);
 let viewInstructions = ref(false);
 
+/* Adjust dialog box to be a div at low resolution 
+const windowWidth = ref(window.innerWidth);
+
+const dialogComponent = computed(() => windowWidth.value <= 600 ? 'div' : 'dialog');
+
+const updateWindowWidth = () => {
+  windowWidth.value = window.innerWidth;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', updateWindowWidth);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateWindowWidth);
+});
+ End of dialog box adjustment */
+
 /*
 const links = ref(projectLinks);
 const linkWithId9 = links.value.find(link => link.id === 9);
@@ -184,7 +213,7 @@ watch(userInputExcludeLetters, (newValue) => {
   userInputExcludeLetters.value = newValue.replace(/[^a-zA-Z]/g, '');
 });
 
-let duplicateLettersMessage: Ref<string> = ref('');
+let duplicateLettersErrorMessage: Ref<string> = ref('');
 const outputSuccessMessage: Ref<string> = ref("");
 
 const inputLength = computed(() => `${userInput.value.length}/${maxWordLength}`);
@@ -228,16 +257,27 @@ const checkForDuplicateLetters = (whichInput: string) => {
   });
 
   if (duplicates.length > 0 || secondAndThirdDuplicateLetters.length > 0) {
-    // singular/plural message
-    if (duplicates.length === 1) {
-      duplicateLettersMessage.value = `The error letter is ${duplicates[0].toUpperCase()}`;
+
+    // singular/plural message of both input fields
+    if (secondAndThirdDuplicateLetters.length > 0 && duplicates.length > 0) {
+      duplicateLettersErrorMessage.value = `The error letters are <b>${duplicates.join(', ').toUpperCase()}</b> in the first input field,
+      and <b>${secondAndThirdDuplicateLetters.join(', ').toUpperCase()}</b> in the 2nd input field!`;
     }
-    else if (secondAndThirdDuplicateLetters.length > 0) {
-      duplicateLettersMessage.value = `The error letter is ${secondAndThirdDuplicateLetters[0].toUpperCase()}`;
+    // singular
+    else if (duplicates.length === 1) {
+      duplicateLettersErrorMessage.value = `The error letter is <b>${duplicates[0].toUpperCase()}</b>`;
     }
-    else {
-      duplicateLettersMessage.value = `The error letters are ${duplicates.join(', ').toUpperCase()}`;
+    else if (secondAndThirdDuplicateLetters.length === 1) {
+      duplicateLettersErrorMessage.value = `The error letter is <b>${secondAndThirdDuplicateLetters[0].toUpperCase()}</b>`;
     }
+    // plural
+    else if (secondAndThirdDuplicateLetters.length > 1) {
+      duplicateLettersErrorMessage.value = `The error letters are <b>${secondAndThirdDuplicateLetters.join(', ').toUpperCase()}</b>`;
+    }
+    else if (duplicates.length > 1) {
+      duplicateLettersErrorMessage.value = `The error letters are <b>${duplicates.join(', ').toUpperCase()}</b>`;
+    }
+
     duplicates.length = 0; // read more about this - clears all array instances and works but should understand this single line better
     secondAndThirdDuplicateLetters.length = 0; // sets back to default value after error message
     invalidInput.value = true; // make error message
@@ -552,7 +592,7 @@ dialog {
   z-index: 2;
   border: 3px solid #ff5959;
   margin-top: 1rem;
-  max-width: 39.5rem;
+  max-width: 39.75rem;
 }
 
 .submission-area {
