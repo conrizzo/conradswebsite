@@ -149,186 +149,136 @@
   </main>
 </template>
   
-<script lang="ts">
-
+<script setup lang="ts">
 import { ref, Ref, computed, watch } from 'vue';
-import { allWords, processWords, lettersMatching } from '../../../data/wordle_words/wordle'
-import projectLinks from '@/components/Navigation/ProjectLinks' // meta tags experiment
+import { processWords, lettersMatching } from '../../../data/wordle_words/wordle'
+// import projectLinks from '@/components/Navigation/ProjectLinks' meta tags experiment
 
 
-export default {
-  name: 'WordleAssistant',
-  metaInfo: {
-    title: 'My Title',
-    meta: [
-      { vmid: 'description', name: 'description', content: 'My description' }
-    ]
-  },
+let isRotated = ref(false);
+const notLetter = /[^a-zA-Z]/;
+let checkboxValue = ref(false);
+const processedWords: Ref<string[]> = ref([]);
+const maxWordLength = 5;
+let userInput = ref('');
+let userInputExcludeLetters = ref('');
+let userInputInWordSomewhere = ref('');
+let invalidInput = ref(false);
+let viewInstructions = ref(false);
 
-  setup() {
-    let isRotated = ref(false);
-    // main variables
-    const notLetter: RegExp = /[^a-zA-Z]/;
-    let checkboxValue = ref(false);
-    //const wordleWordData: Ref<Array<String>> = ref(allWords);
-    const processedWords: Ref<string[]> = ref([]);
-    const maxWordLength: number = 5;
-    let userInput: Ref<string> = ref('');
-    let userInputExcludeLetters: Ref<string> = ref('');
-    let userInputInWordSomewhere: Ref<string> = ref('');
-    let invalidInput = ref(false);
-    let viewInstructions = ref(false);
+/*
+const links = ref(projectLinks);
+const linkWithId9 = links.value.find(link => link.id === 9);
+const imageSrc = linkWithId9 ? linkWithId9.imageSrc : '';
 
-    // meta tags experiment 
-    const links = ref(projectLinks);
-    const linkWithId9 = links.value.find(link => link.id === 9);
-    const imageSrc = linkWithId9 ? linkWithId9.imageSrc : '';
-    // this area above is experimental
+const handleCheckboxChange = () => {  
+  console.log('Checkbox value:', checkboxValue.value);
+  // Add your logic here
+};
+const getImageSrc = () => {
+  return projectLinks.find(link => link.id === 9)?.imageSrc ?? '';
+};
+*/
 
-    // only allow letters in 3rd input field
-    watch(userInputExcludeLetters, (newValue: string) => {
-      userInputExcludeLetters.value = newValue.replace(/[^a-zA-Z]/g, '');
-    });
+watch(userInputExcludeLetters, (newValue) => {
+  userInputExcludeLetters.value = newValue.replace(/[^a-zA-Z]/g, '');
+});
 
-    let duplicateLettersMessage: Ref<string> = ref('');
-    const outputSuccessMessage: Ref<String> = ref("");
+let duplicateLettersMessage: Ref<string> = ref('');
+const outputSuccessMessage: Ref<string> = ref("");
 
-    const inputLength = computed(() => `${userInput.value.length}/${maxWordLength}`);
-    const secondInputLength = computed(() => `${userInputInWordSomewhere.value.length}/${maxWordLength}`);
+const inputLength = computed(() => `${userInput.value.length}/${maxWordLength}`);
+const secondInputLength = computed(() => `${userInputInWordSomewhere.value.length}/${maxWordLength}`);
 
-    const exactLetterMatches = () => {
-      processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
-    };
-    const getOutputSuccessMessage = () => {
-      outputSuccessMessage.value = "Submission successful! Scroll down to see the results!";
+const getOutputSuccessMessage = () => {
+  outputSuccessMessage.value = "Submission successful! Scroll down to see the results!";
+}
+
+
+// ERROR CHECKING FUNCTION
+const checkForDuplicateLetters = (whichInput: string) => {
+  const inputLetters = whichInput.split('');
+  const secondInputExclude = userInputInWordSomewhere.value.split('')
+  const excludeLetters = userInputExcludeLetters.value.split('')
+
+  // check if the 2nd input has any letters that are also in the 3rd input
+  const secondAndThirdDuplicateLetters = secondInputExclude.filter(letter => excludeLetters.includes(letter));
+  if (secondAndThirdDuplicateLetters.length > 0) {
+    invalidInput.value = true;
+  }
+  // check if the 1st input has any letters that are also in the 2nd or 3rd input
+  const duplicates = inputLetters.filter((letter, index) => {
+    // don't check if it's not a letter
+    if (!/^[a-zA-Z]$/.test(letter)) {
+      return false;
     }
-    const handleCheckboxChange = () => {
-      console.log('Checkbox value:', checkboxValue.value);
-      // Add your logic here
-    };
+    // Check if the letter exists in excludeLetters
+    if (excludeLetters.includes(letter)) {
+      return true;
+    }
 
-    const getImageSrc = () => {
-      return projectLinks.find(link => link.id === 9)?.imageSrc ?? '';
-    };
-
-    // ERROR CHECKING FUNCTION
-    const checkForDuplicateLetters = (whichInput: string) => {
-      const inputLetters = whichInput.split('');   
-      const secondInputExclude = userInputInWordSomewhere.value.split('')    
-      const excludeLetters = userInputExcludeLetters.value.split('')   
-
-      
-      // check if the 2nd input has any letters that are also in the 3rd input
-      const secondAndThirdDuplicateLetters = secondInputExclude.filter(letter => excludeLetters.includes(letter));
-      if (secondAndThirdDuplicateLetters.length > 0) {       
-        invalidInput.value = true;
-        secondAndThirdDuplicateLetters.length = 1;
-        //return true;
-      }
-
-      // check if the 1st input has any letters that are also in the 2nd or 3rd input
-      const duplicates = inputLetters.filter((letter, index) => {
-        // don't check if it's not a letter
-        if (!/^[a-zA-Z]$/.test(letter)) {
-          return false;
-        }
-        // Check if the letter exists in excludeLetters
-        if (excludeLetters.includes(letter)) {
-          return true;
-        }
-        // only run the inner if statement if input has non-letters
-        
-        if (notLetter.test(userInputInWordSomewhere.value)){ 
-          //console.log(userInputInWordSomewhere.value);
-          //console.log(secondInputExclude[index]);
-          //console.log(letter);
-            // Check if the same letter is at the same position in secondInputExclude
-          if (secondInputExclude[index] === letter) {
-            return true;
-          }
-        }
-        return false;
-      });
-
-      if (duplicates.length > 0 || secondAndThirdDuplicateLetters.length > 0) {
-        // singular/plural message
-        if (duplicates.length === 1) {
-          duplicateLettersMessage.value = `The error letter is ${duplicates[0].toUpperCase()}`;
-        } else {
-          duplicateLettersMessage.value = `The error letters are ${duplicates.join(', ').toUpperCase()}`;
-        }
-        duplicates.length = 0; // read more about this - clears all array instances and works but should understand this single line better
-        secondAndThirdDuplicateLetters.length = 0;
-        invalidInput.value = true; // make error message
+    // only run the inner if statement if input has non-letters        
+    if (notLetter.test(userInputInWordSomewhere.value)) {
+      // Check if the same letter is at the same position in secondInputExclude
+      if (secondInputExclude[index] === letter) {
         return true;
       }
-      return false;
-    };
+    }
+    return false;
+  });
 
-    // MAIN FUNCTION OF THIS APPLICATION USING TYPESCRIPT FUNCTIONS IN ADDITIONAL FILE wordle.ts
-    // USING checkForDuplicateLetters function to check for errors
-    const processInputWord = () => {
-      // guard statement to verify a user isn't trying to exclude letters that are also included
-      if (checkForDuplicateLetters(userInput.value) === true) {        
-        return;
-      }
+  if (duplicates.length > 0 || secondAndThirdDuplicateLetters.length > 0) {
+    // singular/plural message
+    if (duplicates.length === 1) {
+      duplicateLettersMessage.value = `The error letter is ${duplicates[0].toUpperCase()}`;
+    }
+    else if (secondAndThirdDuplicateLetters.length > 0) {
+      duplicateLettersMessage.value = `The error letter is ${secondAndThirdDuplicateLetters[0].toUpperCase()}`;
+    }
+    else {
+      duplicateLettersMessage.value = `The error letters are ${duplicates.join(', ').toUpperCase()}`;
+    }
+    duplicates.length = 0; // read more about this - clears all array instances and works but should understand this single line better
+    secondAndThirdDuplicateLetters.length = 0; // sets back to default value after error message
+    invalidInput.value = true; // make error message
+    return true;
+  }
+  return false;
+};
 
-      invalidInput.value = false; // Remove the error message on the next submission if error is fixed!
-      getOutputSuccessMessage(); // submission successful message
-      // if any input is not a letter this says find exact character position matches
-      if (notLetter.test(userInput.value) && !checkboxValue.value) {             
-        processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
-        // 2nd input
-        if (notLetter.test(userInputInWordSomewhere.value) && userInputInWordSomewhere.value.length > 0) {
-          const filteredWords = processedWords.value;
-          processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);          
-          return;
-        }
-        // if it is only letters we just search words that MUST include these letters as a secondary search
-        if (userInputInWordSomewhere.value.length > 0) {
-          const filteredWords = processedWords.value;
-          processedWords.value = processWords(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords);          
-          return;
-        }
-        return;
-      } else { // this else is for when the user is not trying to find exact character position matches
-        processedWords.value = processWords(userInput.value, userInputExcludeLetters.value);
-        const filteredWords = processedWords.value;
-        if (notLetter.test(userInputInWordSomewhere.value)) {
-          processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);
-        } else {
-          processedWords.value = processWords(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords);
-        }
-      }
-    };
-
-    return {
-      userInput,
-      userInputInWordSomewhere,
-      userInputExcludeLetters,
-
-      processInputWord,
-      processedWords,
-      lettersMatching,
-      checkboxValue,
-      handleCheckboxChange,
-      exactLetterMatches,
-      inputLength,
-      secondInputLength,
-      invalidInput,
-      getOutputSuccessMessage,
-      outputSuccessMessage,
-      duplicateLettersMessage,
-      viewInstructions,
-      // meta tags experiment 
-      links,
-      imageSrc,
-      getImageSrc,
-
-      isRotated
-
-      // meta tags experiment 
-    };
+// MAIN FUNCTION OF THIS APPLICATION USING TYPESCRIPT FUNCTIONS IN ADDITIONAL FILE wordle.ts
+// USING checkForDuplicateLetters function to check for errors
+const processInputWord = () => {
+  // guard statement to verify a user isn't trying to exclude letters that are also included
+  if (checkForDuplicateLetters(userInput.value) === true) {
+    return;
+  }
+  invalidInput.value = false; // Remove the error message on the next submission if error is fixed!
+  getOutputSuccessMessage(); // submission successful message
+  // if any input is not a letter this says find exact character position matches
+  if (notLetter.test(userInput.value) && !checkboxValue.value) {
+    processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
+    // 2nd input
+    if (notLetter.test(userInputInWordSomewhere.value) && userInputInWordSomewhere.value.length > 0) {
+      const filteredWords = processedWords.value;
+      processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);
+      return;
+    }
+    // if it is only letters we just search words that MUST include these letters as a secondary search
+    if (userInputInWordSomewhere.value.length > 0) {
+      const filteredWords = processedWords.value;
+      processedWords.value = processWords(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords);
+      return;
+    }
+    return;
+  } else { // this else is for when the user is not trying to find exact character position matches
+    processedWords.value = processWords(userInput.value, userInputExcludeLetters.value);
+    const filteredWords = processedWords.value;
+    if (notLetter.test(userInputInWordSomewhere.value)) {
+      processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);
+    } else {
+      processedWords.value = processWords(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords);
+    }
   }
 };
 </script>  

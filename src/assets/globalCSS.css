@@ -25,7 +25,7 @@ html {
 }
 
 /* CSS property. This property is specific to WebKit browsers, like Safari and Chrome on iOS and Android.
-   This will make the tap highlight transparent, effectively hiding it. */
+   This will make the tap highlight transparent, effectively hiding it. 
 a,
 .router-link-active {
   -webkit-tap-highlight-color: transparent;
@@ -34,6 +34,7 @@ a,
 :focus {
   outline: none !important;
 }
+*/
 
 /* BELOW this comment adjusts the default scrollbar on the right */
 /* Set the width of the scrollbar */

@@ -8,7 +8,7 @@ import 'prismjs';
 
 
 const app = createApp(App).use(router)
-await router.isReady();
+/* await router.isReady(); */
 app.mount('#app');
 
 /*
