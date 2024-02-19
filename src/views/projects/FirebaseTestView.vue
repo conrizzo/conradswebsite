@@ -1,4 +1,7 @@
 <template>
+  <!-- Turned off Firebase February 2024 -->
+  
+  
   <!-- conflict with "firebase": "^10.0.0", security-->
   <!-- tried downgrading to "firebase": "9.0.2" -->
   <CookieAccept />
@@ -106,11 +109,11 @@ import LoginPage from '@/components/Login/LoginPage.vue'
 import "@/assets/globalCSS.css";
 
 // Import the Firebase database instance and the Firestore collection and addDoc functions
-import db from '@/firebase/init.js'
-import { collection, addDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
-import { auth } from '@/firebase/init.js'
-import { signOut } from 'firebase/auth'
-//import router from "@/router"; // import the router object
+//import db from '@/firebase/init.js'
+//import { collection, addDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
+//import { auth } from '@/firebase/init.js'
+//import { signOut } from 'firebase/auth'
+
 
 import CookieAccept from "@/components/CookieAccept.vue";
 
@@ -197,6 +200,7 @@ export default {
         console.error("Error adding document!: ", err);
       }
     },
+    /*
     async sendMessage() {
 
       // Get the current time in milliseconds
@@ -230,6 +234,7 @@ export default {
       const docRef = await addDoc(colRef, dataObj)
       console.log("Document written with ID: ", docRef.id);
     },
+    */
     handleLogin() {
       // set login to true to confirm a user logged in
       this.isLoggedIn = true;
@@ -257,6 +262,7 @@ export default {
     },
 
   }, // add a closing curly brace here
+  /*
   created() {
     const colRef = collection(db, 'submissions')
     onSnapshot(colRef, (querySnapshot) => {
@@ -277,6 +283,7 @@ export default {
       this.isLoggedIn = true;
     }
   },
+  */
 }
 </script>
   

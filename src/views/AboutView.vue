@@ -160,12 +160,12 @@
                 <ul class="no-bullet">
                   <li>
                     <label for="name" class="include-label-text">Name:</label>
-                    <input id="name" class="input-field-style" type="text" v-model="submitName"
+                    <input id="name" autocomplete="given-name" class="input-field-style" type="text" v-model="submitName"
                       placeholder="Enter your name" />
                   </li>
                   <li>
                     <label for="email" class="include-label-text">Email:</label>
-                    <input class="input-field-style" type="email" v-model="submitSubject"
+                    <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitSubject"
                       placeholder="name@yourmailhost.com" />
                   </li>
                   <li>
@@ -230,18 +230,18 @@
               <form @submit.prevent="leaveMessage" class="form">
                 <ul class="no-bullet">
                   <li>
-                    <label for="name" class="include-label-text">Name:</label>
-                    <input id="name" class="input-field-style" type="text" v-model="submitName"
+                    <label for="nameD" class="include-label-text">Name:</label>
+                    <input id="nameD" autocomplete="given-name" class="input-field-style" type="text" v-model="submitName"
                       placeholder="Enter your name" />
                   </li>
                   <li>
                     <label for="email" class="include-label-text">Email:</label>
-                    <input class="input-field-style" type="email" v-model="submitSubject"
+                    <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitSubject"
                       placeholder="name@yourmailhost.com" />
                   </li>
                   <li>
-                    <label for="userMessage" class="include-label-text">Nachricht:</label>
-                    <textarea id="userMessage" class="input-field-style" type="text" v-model="submitMessage"
+                    <label for="userMessageD" class="include-label-text">Nachricht:</label>
+                    <textarea id="userMessageD" class="input-field-style" type="text" v-model="submitMessage"
                       placeholder="Nachricht">
                   </textarea>
                   </li>
@@ -681,7 +681,7 @@ textarea {
 }
 
 @media screen and (max-width: 70rem) { 
- 
+
   .each-section {
     padding-left: 1.5rem;
     padding-right: 1.5rem;

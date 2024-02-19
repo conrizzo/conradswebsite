@@ -2,7 +2,7 @@
 // folder and renaming the copy 404.html  
 
 //firebase authorization import
-import { auth } from '@/firebase/init.js';
+//import { auth } from '@/firebase/init.js';
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 
 // create router
@@ -250,7 +250,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
     (metaDescriptionTag as HTMLMetaElement).content = to.meta.description as string || 'Welcome to ConradsWebsite.com';
     document.getElementsByTagName('head')[0].appendChild(metaDescriptionTag);
   }
-  
+
   // image for open graph
   let metaOgImageTag = document.querySelector('meta[property="og:image"]');
 
@@ -264,6 +264,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
   }
 
   // Wait for Firebase authentication to initialize
+  /*
   const unsubscribe = auth.onAuthStateChanged(user => {
     unsubscribe(); // Unsubscribe after getting the user state for the first time
 
@@ -272,8 +273,10 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
     } else {
       next(); // Allow access to authorized or non-authorized pages
     }
+
   });
+  */
 
+  next();
 });
-
 export default router;
