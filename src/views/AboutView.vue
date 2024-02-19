@@ -36,7 +36,7 @@
               <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
                 @click="testBackEnd()">Click to test backend</button>
             </div>
-            <ul>
+            <ul class="about-me-list">
               <li v-show="backEndQuery !== null" class="backend-message">
                 Python backend: {{ backEndQuery }}
               </li>
@@ -87,7 +87,7 @@
               <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
                 @click="testBackEnd()">Click to test backend</button>
             </div>
-            <ul>
+            <ul class="about-me-list">
               <li v-show="backEndQuery !== null" class="backend-message">
                 Python backend: {{ backEndQuery }}
               </li>
@@ -154,15 +154,30 @@
             </p>
 
             <div class="form-container">
-              <h2 class="form-title">Leave a message:</h2>
+              <h2 class="form-title">Leave a message</h2>
+
               <form @submit.prevent="leaveMessage" class="form">
-                <label class="include-label-text">Name:</label>
-                <input class="input-field-style" type="text" v-model="submitName" placeholder="Enter your name" />
-                <label class="include-label-text">Subject:</label>
-                <input class="input-field-style" type="text" v-model="submitSubject" placeholder="Subject" />
-                <label class="include-label-text">Message:</label>
-                <textarea class="input-field-style" type="text" v-model="submitMessage" placeholder="Message"></textarea>
-                <input style="max-width: 5rem;" class="clean-button" type="submit" value="Submit" />
+                <ul class="no-bullet">
+                  <li>
+                    <label for="name" class="include-label-text">Name:</label>
+                    <input id="name" class="input-field-style" type="text" v-model="submitName"
+                      placeholder="Enter your name" />
+                  </li>
+                  <li>
+                    <label for="email" class="include-label-text">Email:</label>
+                    <input class="input-field-style" type="email" v-model="submitSubject"
+                      placeholder="name@yourmailhost.com" />
+                  </li>
+                  <li>
+                    <label for="userMessage" class="include-label-text">Message:</label>
+                    <textarea id="userMessage" class="input-field-style" type="text" v-model="submitMessage"
+                      placeholder="Message">
+                  </textarea>
+                  </li>
+                  <li class="button">
+                    <button class="clean-button" type="submit">Send your message</button>
+                  </li>
+                </ul>
               </form>
 
               {{ errorMessage }}
@@ -211,15 +226,30 @@
             </p>
             <div class="form-container">
               <h2 class="form-title">Eine Nachricht hinterlassen</h2>
+
               <form @submit.prevent="leaveMessage" class="form">
-                <label class="include-label-text">Name:</label>
-                <input class="input-field-style" type="text" v-model="submitName" placeholder="Name" />
-                <label class="include-label-text">Thema:</label>
-                <input class="input-field-style" type="text" v-model="submitSubject" placeholder="Thema" />
-                <label class="include-label-text">Nachricht:</label>
-                <textarea class="input-field-style" type="text" v-model="submitMessage"
-                  placeholder="Nachricht"></textarea>
-                <input style="max-width: 5rem;" class="clean-button" type="submit" value="Submit" />
+                <ul class="no-bullet">
+                  <li>
+                    <label for="name" class="include-label-text">Name:</label>
+                    <input id="name" class="input-field-style" type="text" v-model="submitName"
+                      placeholder="Enter your name" />
+                  </li>
+                  <li>
+                    <label for="email" class="include-label-text">Email:</label>
+                    <input class="input-field-style" type="email" v-model="submitSubject"
+                      placeholder="name@yourmailhost.com" />
+                  </li>
+                  <li>
+                    <label for="userMessage" class="include-label-text">Nachricht:</label>
+                    <textarea id="userMessage" class="input-field-style" type="text" v-model="submitMessage"
+                      placeholder="Nachricht">
+                  </textarea>
+                  </li>
+                  <li class="button">
+                    <button class="clean-button" type="submit">Nachricht senden
+                    </button>
+                  </li>
+                </ul>
               </form>
               {{ errorMessage }}
               <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">
@@ -534,7 +564,7 @@ textarea {
   background: rgb(49, 51, 56);
 }
 
-li {
+.about-me-list {
   margin-left: 16px;
 }
 
@@ -542,14 +572,14 @@ li {
 .language-container {
   display: flex;
   align-items: center;
-  margin-left: 18.1rem;
+  justify-content: center;
   font-size: 1.4rem;
 }
 
 .language-arrow-text {
   font-size: 0.9em;
   margin-top: -4em;
-  margin-left: -10rem;
+  margin-left: -25rem;
 
   z-index: 4;
   transform: rotate(35deg);
@@ -650,11 +680,8 @@ li {
   color: #fff;
 }
 
-@media screen and (max-width: 70rem) {
-  .language-container {
-    margin-left: 30%;
-  }
-
+@media screen and (max-width: 70rem) { 
+ 
   .each-section {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -662,8 +689,13 @@ li {
 }
 
 @media screen and (max-width: 40rem) {
-  .language-container {
-    margin-left: 45%;
+
+  .arrow-container {
+    display: none;
   }
+  .language-arrow-text {
+    display: none;
+  }
+ 
 }
 </style>

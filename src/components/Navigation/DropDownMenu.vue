@@ -83,7 +83,7 @@ export default {
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
 
     padding-left: .75rem;
-    padding-right: .25rem;
+    padding-right: .25rem;    
     color: rgb(240, 240, 240);
     background-color: rgb(24, 26, 27);
     font-weight: normal;

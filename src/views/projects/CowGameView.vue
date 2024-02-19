@@ -110,11 +110,11 @@
 
       <!-- generate the pasture -->
       <div class="farm unselectable">
-        <h1 style="font-size: 2.5em; padding-top: 1em; color: rgb(84, 255, 244); font-family: Arial, sans-serif;">
-          Cow Pasture        
-        </h1>
-        <p class="paragraph-text" style="padding-top: 1em; color: #fff; text-align: center;">This is a cow
-          pasture filled with hungry cows! (Danger: Some cows may be hangry!)<br>
+        <span style="font-size: 2.5em; padding-top: 1em; color: rgb(255, 255, 255); font-family: Arial, sans-serif;">
+          Hungry cows need food! 
+        </span>
+        <p class="paragraph-text" style="font-size: 1rem; padding-top: 1em; color: #fff; text-align: center;">This is a cow
+          pasture filled with hungry cows!<br>(Danger: Some cows may be hangry!)<br>
           The Cows need their food delivered!<br>Deliver the correct food to make the cows happy!</p>
         <div style="font-size: 2em; padding-right: 5em; color: rgb(179, 255, 0);" v-if="showCowPastureMessage">
           {{ cowPastureMessage }}
@@ -483,12 +483,12 @@ export default defineComponent({
 
 
 <style scoped>
-.farm {
-  border: 2px dashed rgb(255, 255, 255);
+.farm {  
+  box-shadow: 0 0 10px rgb(142, 255, 116);
   z-index: -1;
   background:
-    rgba(0, 255, 119, 0.751) 29%;
-    border-radius: 1em;
+    rgba(0, 176, 3, 0.751) 29%;
+  border-radius: 10px;
   width: 35em;
   height: 20em;
 }

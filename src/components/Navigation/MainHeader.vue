@@ -17,11 +17,18 @@
       </div>
 
       <div class="navigation-menu">
-        <router-link class="about-menu" to="/about">
-          About
-        </router-link>
-        <!--import the dropdown menu into the nav bar-->
-        <DropDownMenu class="projects-menu" />
+        <ul class="no-bullet" style="list-style-type: none;
+            display: flex;
+            justify-content: space-between;">
+          <li class="list-element-styling">
+            <router-link class="about-menu" to="/about">
+              About
+            </router-link>
+          </li>
+          <li class="list-element-styling">
+            <DropDownMenu class="projects-menu" /> <!--import the dropdown menu into the nav bar-->
+          </li>
+        </ul>
       </div>
 
       <div class="small-resolution-h2">
@@ -100,6 +107,16 @@ export default {
 </script>  
 
 <style scoped>
+.list-element-styling {
+  display: flex;
+  align-items: center;
+}
+
+.list-element-styling:hover {
+  border-bottom: 2px solid #fff;
+  margin-bottom: -2px;
+}
+
 .horizontal-align-elements {
   display: flex;
   align-items: center;
@@ -136,14 +153,8 @@ header {
 
 .about-menu {
   margin-left: 0.5rem;
-  padding-bottom: 0.3rem;
   padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.about-menu:hover {
-  border-bottom: 2px solid #fff;
-  margin-bottom: -2px;
+  padding-right: .75rem;
 }
 
 nav a.router-link-exact-active:not(.active):hover {
@@ -156,7 +167,7 @@ nav a.router-link-exact-active:not(.active):hover {
 }
 
 .projects-menu {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);    
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .projects-menu:hover {}
@@ -173,8 +184,6 @@ nav a.router-link-exact-active:not(.active):hover {
 .small-resolution-h2 {
   display: none;
 }
-
-
 
 /* how to pin the nav to the top of the page */
 .nav-menu-class {
@@ -258,8 +267,6 @@ nav a.router-link-exact-active {
 }
 
 @media (max-width: 45rem) {
-
-
   .navigation-menu {
     padding-right: 0rem;
   }
@@ -277,7 +284,6 @@ nav a.router-link-exact-active {
     margin-right: 0.25rem;
     margin-left: 0rem;
   }
-
 
   .github-logo-link {
     display: none;

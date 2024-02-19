@@ -14,7 +14,7 @@
         </b>
     </div>
 </template>
-  
+
 <script lang="ts">
 import { defineComponent } from "vue";
 
@@ -70,11 +70,11 @@ export default defineComponent({
 
                 /*
                  // Emit an event with the updated position
-                 if (this.position.left > 299 && this.position.top > 400) {
+                if (this.position.left > 299 && this.position.top > 400) {
                         // If it is, prevent the movement                    
                         this.position.left = 300;
                         this.position.top = 300;
-                 }
+                }
                 
                         
                 else{
@@ -108,7 +108,7 @@ export default defineComponent({
     },
 });
 </script>
-  
+
 <style scoped>
 .movable-object {
     position: absolute;

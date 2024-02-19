@@ -337,20 +337,16 @@ p.login-information {
   flex-direction: column;
 }
 .label {
-  color: #fff;
+  color: #202020;
   align-self: flex-start;
-  font-weight: 600;
-  background-color: rgb(17, 255, 180);
-  border-top-right-radius: 0.5rem;
-  border-top-left-radius: 0.5rem;
+  font-weight: 600; 
   padding: 0.25rem;
 }
 .input-flex {
   display: flex;
 }
 .input {
-  width: 40em;
-  border-top-left-radius: 0;
+  width: 40em; 
 }
 .input-length {
   color: #ff6b6b;
@@ -359,7 +355,6 @@ p.login-information {
 }
 .textarea {
   width: 100%;
-  border-top-left-radius: 0;
 }
 
 

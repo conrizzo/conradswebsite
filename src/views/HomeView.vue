@@ -218,9 +218,13 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(5deg, rgba(0, 0, 0, .1) 20%, transparent 20%,
+  /*background-image: linear-gradient(5deg, rgba(0, 0, 0, .1) 20%, transparent 20%,
       transparent 80%, rgba(0, 0, 0, .1) 80%), linear-gradient(100deg, rgba(0, 0, 0, .1) 10%,
       transparent 10%, transparent 90%, rgba(0, 0, 0, .1) 90%);
+      filter: blur(3px);*/
+      background-image: linear-gradient(5deg, rgba(0, 0, 0, .1) 20%, transparent 20%,
+      transparent 80%, rgba(0, 0, 0, .1) 80%), linear-gradient(70deg, rgba(0, 0, 0, .1) 10%,
+      transparent 5%, transparent 90%, rgba(0, 0, 0, .1) 90%);
       filter: blur(3px);
 }
 
