@@ -191,7 +191,7 @@ h2 {
     grid-row: 1;
   }
   .coffee-image {
-    width: 60rem;
+    height: 100%;
   }
 }
 </style>

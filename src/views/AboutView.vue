@@ -4,8 +4,12 @@
   <body id="body">
     <div class="center-content-within">
       <div style="max-width: 80rem;">
-        <twoColumnsGridContentTemplate :titleText="titleText" :content-text="contentText" :content-image="birdPicture"
-          style="background: linear-gradient(to right, rgba(0,0,0,.6) 50%, rgba(0, 0, 0, .6) 50%);" />
+        <twoColumnsGridContentTemplate 
+        :imgHeight="imageHeight"
+        :titleText="titleText" 
+        :content-text="contentText" 
+        :content-image="birdPicture"
+          style="background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, .1) 50%);" />
       </div>
     </div>
 
@@ -277,6 +281,7 @@ export default {
   components: {
     twoColumnsGridContentTemplate,
   },
+  props: ['5em'],
   data() {
     return {
       birdPicture: require('@/images/Kohlenmeise.jpg'),
@@ -302,8 +307,23 @@ export default {
       submitMessageSuccess: false,
       canSubmit: true,
       errorMessage: "",
+
+      imageHeight: 20,  // Initial height
+      isMobile: window.innerWidth <= 800 // initial check
     }
   },
+  watch: {
+    isMobile(newVal) {
+      this.imageHeight = newVal ? 15 : 20;
+    }
+  },
+  created() {
+    window.addEventListener('resize', this.updateViewport);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.updateViewport);
+  },
+  
   downloadPDF() {
     const url = 'https://raw.githubusercontent.com/username/repo/branch/path/to/file.pdf';
 
@@ -324,6 +344,9 @@ export default {
     Prism.highlightAll();
   },
   methods: {
+    updateViewport() {
+      this.isMobile = window.innerWidth <= 800;
+    },
     // query the backend, but limit the number of requests to 10 per 10 seconds
     async testBackEnd() {
       try {
@@ -423,9 +446,12 @@ export default {
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
   */
-  background: -webkit-linear-gradient(-10deg, rgb(27, 10, 15), 10%, rgb(54, 23, 34), 20%, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
-  background: linear-gradient(-10deg, rgb(27, 10, 15), 10%, rgb(54, 23, 34), 20%, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%),
-    linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5), rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(-3deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 
+  40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
+  background: linear-gradient(-2deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 
+  40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%),
+    linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5), 
+    rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;
 
