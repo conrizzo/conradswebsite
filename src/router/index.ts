@@ -34,6 +34,8 @@ const CountryMusicExperimentView = () => import('../views/projects/CountryMusicE
 const NLPView = () => import('../views/projects/NLPView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
+
+const PageNotFoundView = () => import('../views/PageNotFoundView.vue');
 // const about = () => import('../views/about.vue');
 
 const routes = [
@@ -215,8 +217,13 @@ const routes = [
   // Keep this at the end of the array so only unmatched paths go here
   // This is important, otherwise incorrect direct links to pages a user enters will not work  
   {
+    path: '/404',
+    name: 'PageNotFoundView',
+    component: PageNotFoundView,
+  },
+  {
     path: '/:catchAll(.*)',
-    redirect: '/',
+    redirect: '/404',
   },
 ];
 

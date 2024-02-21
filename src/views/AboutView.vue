@@ -1,15 +1,11 @@
 
 
 <template>
-  <body id="body">
+  <div id="body">
     <div class="center-content-within">
-      <div style="max-width: 80rem;">
-        <twoColumnsGridContentTemplate 
-        :imgHeight="imageHeight"
-        :titleText="titleText" 
-        :content-text="contentText" 
-        :content-image="birdPicture"
-          style="background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, .1) 50%);" />
+      <div>
+        <twoColumnsGridContentTemplate class="top-component-adjustment" :imgHeight="imageHeight" :titleText="titleText"
+          :content-text="contentText" :content-image="birdPicture" />
       </div>
     </div>
 
@@ -81,7 +77,6 @@
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> to try out the <a
                   class="text-links" href="https://astro.build/">Astro</a> framework
               </li>
-
             </ul>
           </section>
           <!-- German Section -->
@@ -190,6 +185,10 @@
                 for your message!</p>
             </div>
             <span>(Note: All messages are sent securely via https to the backend server)</span>
+            --- testing download file ---
+            <a class="text-links" href="https://conradswebsite.com/back_end/api/download" download="test100.zip">Download
+              100mb test</a>
+              <a href="https://conradswebsite.com/projects/test.html" target="_blank" rel="noopener noreferrer" class="text-links">For testing</a>
 
             <!--
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
@@ -263,7 +262,7 @@
         </div>
       </div>
     </main>
-  </body>
+  </div>
 
   <!-- Deutsch -->
 </template>
@@ -281,7 +280,7 @@ export default {
   components: {
     twoColumnsGridContentTemplate,
   },
-  props: ['5em'],
+
   data() {
     return {
       birdPicture: require('@/images/Kohlenmeise.jpg'),
@@ -323,7 +322,7 @@ export default {
   beforeUnmount() {
     window.removeEventListener('resize', this.updateViewport);
   },
-  
+
   downloadPDF() {
     const url = 'https://raw.githubusercontent.com/username/repo/branch/path/to/file.pdf';
 
@@ -425,6 +424,7 @@ export default {
         console.error('Error:', error);
       }
     },
+
     language() {
       if (this.languageButtonText == "Deutsch wechseln") {
         this.languageButtonText = "Switch to English";
@@ -446,17 +446,18 @@ export default {
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
   */
-  background: -webkit-linear-gradient(-3deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 
-  40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
-  background: linear-gradient(-2deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9), 
-  40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%),
-    linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5), 
-    rgb(139, 114, 188) 100%);
+  background: -webkit-linear-gradient(-3deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9),
+      40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
+  background: linear-gradient(-2deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9),
+      40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%),
+    linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5),
+      rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;
 
 
   z-index: 0;
+  text-align: left;
 }
 
 #body::before {
@@ -491,6 +492,11 @@ h2 {
 
 p {
   max-width: none;
+}
+
+.top-component-adjustment {
+  max-width: 80rem;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, .1) 50%);
 }
 
 .form>* {
@@ -706,7 +712,7 @@ textarea {
   color: #fff;
 }
 
-@media screen and (max-width: 70rem) { 
+@media screen and (max-width: 70rem) {
 
   .each-section {
     padding-left: 1.5rem;
@@ -719,9 +725,10 @@ textarea {
   .arrow-container {
     display: none;
   }
+
   .language-arrow-text {
     display: none;
   }
- 
+
 }
 </style>

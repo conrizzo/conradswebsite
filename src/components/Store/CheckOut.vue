@@ -108,7 +108,7 @@
                     </div>
 
                     <div v-else>
-                        <RouterLink class="button-at-bottom-right-space" to="/projects/store/store">
+                        <RouterLink class="button-at-bottom-right-space" to="/projects/store/store-prototype-made-in-vuejs-and-typescript">
                             <button class="clean-button">Go Back
                             </button>
                         </RouterLink>

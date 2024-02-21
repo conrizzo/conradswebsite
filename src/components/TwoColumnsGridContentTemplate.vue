@@ -44,8 +44,8 @@ export default {
       default: 'rgba(0, 0, 0, 0.5)'
     },
     imgHeight: {
-      type: String,
-      default: '100%'
+      type: Number,
+      default: 100,
     },
 
 
@@ -154,12 +154,11 @@ h2 {
   grid-column: 2;
   grid-row: 1;
   color: #ffffff;
-  font-size: 1.5em;
-  padding-bottom: 1rem;
+  font-size: 1.5em;  
 }
 
 .coffee-image {
-  border-radius: .75rem;
+  border-radius: .75rem; 
   margin: 0 auto;
 }
 
@@ -198,6 +197,7 @@ h2 {
   .grid-item-coffee {
     grid-column: 1;
     grid-row: 1;
+    padding-bottom: 1rem;
   }
 
   .coffee-image {

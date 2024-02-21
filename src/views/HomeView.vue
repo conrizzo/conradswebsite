@@ -43,7 +43,7 @@
       </div>
     </div>
     <imagesOneRow />
-    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
+    <TwoColumnsGridContentTemplate :imgHeight="18" :titleText="parentTitleTextOne" :content-text="parentTextOne" />
     <TwoColumnsReversedGrid :titleText="reversedTitle" :content-text="reversedText" />
   </div>
 </template>

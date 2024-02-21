@@ -138,7 +138,7 @@ h2 {
 }
 
 .grid-item-coffee {
-  padding-bottom: 1rem;
+  
   grid-column: 1;
   grid-row: 1;
   color: #ffffff;
@@ -189,6 +189,7 @@ h2 {
   .grid-item-coffee {
     grid-column: 1;
     grid-row: 1;
+    padding-bottom: 1rem;
   }
   .coffee-image {
     height: 100%;
