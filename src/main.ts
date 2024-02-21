@@ -1,5 +1,6 @@
 
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import  App  from './App.vue';
 import router from './router';
 
@@ -7,9 +8,14 @@ import './assets/globalCSS.css';
 import 'prismjs';
 
 
-const app = createApp(App).use(router)
-/* await router.isReady(); */
+const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia);
+app.use(router);
 app.mount('#app');
+/* await router.isReady(); */
+
 
 /*
 Without await router.isReady(), there could be a flash of unstyled content (FOUC), 

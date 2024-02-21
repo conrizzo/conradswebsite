@@ -4,7 +4,7 @@
   <div id="body">
     <div class="center-content-within">
       <div>
-        <twoColumnsGridContentTemplate class="top-component-adjustment" :imgHeight="imageHeight" :titleText="titleText"
+        <twoColumnsGridContentTemplate class="top-component-adjustment" :imageWidth="imageWidth" :titleText="titleText"
           :content-text="contentText" :content-image="birdPicture" />
       </div>
     </div>
@@ -153,7 +153,7 @@
             </p>
 
             <div class="form-container">
-              <h2 class="form-title">Leave a message</h2>
+              <h2 class="form-title">Contact / Leave a message</h2>
 
               <form @submit.prevent="leaveMessage" class="form">
                 <ul class="no-bullet">
@@ -165,7 +165,7 @@
                   <li>
                     <label for="email" class="include-label-text">Email:</label>
                     <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitSubject"
-                      placeholder="name@yourmailhost.com" />
+                      placeholder="name@####.com" />
                   </li>
                   <li>
                     <label for="userMessage" class="include-label-text">Message:</label>
@@ -185,10 +185,16 @@
                 for your message!</p>
             </div>
             <span>(Note: All messages are sent securely via https to the backend server)</span>
-            --- testing download file ---
-            <a class="text-links" href="https://conradswebsite.com/back_end/api/download" download="test100.zip">Download
-              100mb test</a>
-              <a href="https://conradswebsite.com/projects/test.html" target="_blank" rel="noopener noreferrer" class="text-links">For testing</a>
+            <br>
+            <br>
+            --- Additional Testing Area ---<br>
+            <a class="text-links" href="https://conradswebsite.com/back_end/api/download" download="test100.txt">Download
+              10mb 0's test txt file</a>
+            <br>
+            <a href="https://conradswebsite.com/test.html" target="_blank" rel="noopener noreferrer"
+              class="text-links">HTML page for testing</a><br>
+            <a href="https://conradswebsite.com/asdfaesrrwr34" target="_blank" rel="noopener noreferrer"
+              class="text-links">404 test</a><br>
 
             <!--
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
@@ -307,13 +313,13 @@ export default {
       canSubmit: true,
       errorMessage: "",
 
-      imageHeight: 20,  // Initial height
+      imageWidth: 20,  // Initial height
       isMobile: window.innerWidth <= 800 // initial check
     }
   },
   watch: {
     isMobile(newVal) {
-      this.imageHeight = newVal ? 15 : 20;
+      this.imageWidth = newVal ? 15 : 20;
     }
   },
   created() {

@@ -1,0 +1,45 @@
+
+
+// useCounterStore.js
+import { defineStore } from 'pinia';
+
+export const useCounterStore = defineStore('counter', {
+    state: () => ({ count: 0, name: 'Eduardo' }),
+    getters: {
+        doubleCount: (state) => state.count * 2,
+    },
+    actions: {
+        increment() {
+            this.count++
+        },
+    },
+});
+
+import { productInventory } from '@/components/Store/productInventoryOptionsData.ts';
+export const useCartStore = defineStore('cart', {
+    state: () => ({
+        cart: JSON.parse(localStorage.getItem('cart')) || [],
+    }),
+    actions: {
+        setCart(newCart) {
+            this.cart = newCart;
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+        addToCart(productId) {
+            //console.log(productId);
+            //console.log(typeof productId);
+            const setProductID = Number(productId);
+            const product = productInventory.find(product => product.id === setProductID);
+            //console.log(product);
+            if (product) {
+                this.cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(this.cart));
+            }
+        },
+    },
+    getters: {
+        getCart() {
+            return this.cart;
+        }
+    }
+});

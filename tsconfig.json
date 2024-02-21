@@ -39,7 +39,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/components/DirectedGraphing/Cards.js", "src/eventBus.ts"  ],
+, "src/components/DirectedGraphing/Cards.js", "src/eventBus.ts", "src/components/Store/useCounterStore.js"  ],
   "exclude": [
     "node_modules"
   ]

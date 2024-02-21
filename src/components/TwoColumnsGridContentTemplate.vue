@@ -5,7 +5,7 @@
       <div class="second-area-grid-container">
 
         <div class="grid-item-coffee">
-          <img :style="{ height: imgHeight + 'rem' }" class="coffee-image" :src="contentImage" alt="Image">
+          <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">
         </div>
 
         <div class="grid-item-text" :style="{ background: bgColor }">
@@ -43,8 +43,8 @@ export default {
       type: String,
       default: 'rgba(0, 0, 0, 0.5)'
     },
-    imgHeight: {
-      type: Number,
+    imgWidth: {
+      type: Number || String,
       default: 100,
     },
 

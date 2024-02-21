@@ -92,7 +92,8 @@
                             <span>€{{ Math.abs((runningTotal * .9).toFixed(2)) }}</span>
                         </div>
                     </transition>
-                </div>
+                </div>       
+                
 
                 <div class="bottom-checkout-button-container">
 
@@ -108,7 +109,8 @@
                     </div>
 
                     <div v-else>
-                        <RouterLink class="button-at-bottom-right-space" to="/projects/store/store-prototype-made-in-vuejs-and-typescript">
+                        <RouterLink class="button-at-bottom-right-space"
+                            to="/projects/store/store-prototype-made-in-vuejs-and-typescript">
                             <button class="clean-button">Go Back
                             </button>
                         </RouterLink>
@@ -126,8 +128,27 @@
 import { Inventory } from "@/components/Store/InventoryData.ts";
 import { productInventory } from '@/components/Store/productInventoryOptionsData';
 
-import "@/assets/globalCSS.css";
-
+import { useCounterStore } from './useCounterStore.js';
+import { useCartStore } from './useCounterStore.js';
+//import { defineStore } from 'pinia'
+//import { useCounterStore } from './UseStore.vue';
+// You can name the return value of `defineStore()` anything you want,
+// but it's best to use the name of the store and surround it with `use`
+// and `Store` (e.g. `useUserStore`, `useCartStore`, `useProductStore`)
+// the first argument is a unique id of the store across your application
+/*
+export const useCounterStore = defineStore('counter', {
+    state: () => ({ count: 0, name: 'Eduardo' }),
+    getters: {
+        doubleCount: (state) => state.count * 2,
+    },
+    actions: {
+        increment() {
+            this.count++
+        },
+    },
+})
+*/
 
 // make cookies for the products in the user cart
 import VueCookies from 'vue-cookie';
@@ -166,6 +187,11 @@ export default {
     // Your script logic here
     data() {
         return {
+            //counterStore: null,
+            //increase: null,
+            counter: 0,
+
+
             storeInventory: new Inventory(),
             userCart: [],
             runningTotal: 0,
@@ -178,15 +204,22 @@ export default {
     },
     created() {
         // Retrieve the userCart array from cookies
-        const cartItems = VueCookies.get('userCart');
-        if (cartItems) {
-            this.userCart = JSON.parse(cartItems);
-        }
+
+        //const cartItems = VueCookies.get('userCart');
+        //if (cartItems) {
+        //    this.userCart = JSON.parse(cartItems);
+       // }
 
 
+        //this.counterStore = useCounterStore();
+        //this.increase = this.counterStore.increment;
+        const counterStore = useCounterStore();
+        this.counter = counterStore.count;
+        
         //console.log("CART", this.userCart)
     },
     mounted() {
+        this.userCart = useCartStore().cart;
         // Your mounted logic here     
         this.makeInventory();
         // NOTE: There is definitely a better way to solve this problem than this, but for now
@@ -207,11 +240,21 @@ export default {
             this.addItemToCart();
         },
         // watch userCart array for changes to add or remove local cookies of what is in the cart
+        // doesnt use cookies anymore - used store instead
         userCart: {
+            /*
             handler(newCart) {
                 VueCookies.set('userCart', JSON.stringify(newCart));
             },
-            deep: true // Watch for changes in nested properties of userCart
+            */
+            deep: true, // Watch for changes in nested properties of userCart
+            handler(newCart) {
+                //VueCookies.set('userCart', JSON.stringify(newCart));
+                
+                const cartStore = useCartStore();
+                cartStore.setCart(newCart);
+                
+            },
         },
 
 
@@ -247,6 +290,11 @@ export default {
     },
 
     methods: {
+        increment() {
+            const counterStore = useCounterStore();
+            counterStore.increment();
+            this.counter = counterStore.count;
+        },
 
         addItemToCart() {
             // Invoke the handleAddItemToCart method with propProductIdentificationNumber and propProductIndexInGallery
@@ -255,7 +303,10 @@ export default {
 
         saveUserCartToCookies() {
             // Store the userCart array in cookies
-            VueCookies.set('userCart', JSON.stringify([this.userCart]), { expires: 3 });
+            // VueCookies.set('userCart', JSON.stringify([this.userCart]), { expires: 3 });
+             // Store the userCart array in local storage
+    
+    //cartStore.setCart(newCart);
         },
 
         removeItemFromCartIfQuantityIsZero(item) {
@@ -584,4 +635,3 @@ h1 {
 
 /* Your styles here */
 </style>
-  

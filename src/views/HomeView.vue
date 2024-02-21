@@ -43,7 +43,7 @@
       </div>
     </div>
     <imagesOneRow />
-    <TwoColumnsGridContentTemplate :imgHeight="18" :titleText="parentTitleTextOne" :content-text="parentTextOne" />
+    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
     <TwoColumnsReversedGrid :titleText="reversedTitle" :content-text="reversedText" />
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       itemsLength: 0,
-      birdDrawing: require("@/images/StableDiffusionBird.jpg"),
+      birdDrawing: require("@/images/BlueSkyBird.jpg"),
       aCoffee: require("@/images/cup_of_coffee.jpg"),
 
       inputString: "_ Hello,",
