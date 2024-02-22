@@ -1,4 +1,4 @@
-<template>
+<template style="background: red;">
   <div>
     <div class="main-banner">
       <div class="centered-container">
@@ -10,15 +10,12 @@
     </CheckOut>
 
   </div>
-</template>
-  
+</template>  
 <script>
 
 import "@/assets/globalCSS.css";
 import CheckOut from "@/components/Store/CheckOut.vue";
 
-// make cookies for the products in the user cart
-import VueCookies from 'vue-cookie';
 
 export default {
   // Component options
@@ -28,21 +25,12 @@ export default {
 
   data() {
     return {
-
-      userCart: [],
-
+      //userCart: [],
+      
     };
   },
 
-  created() {
-    // Retrieve the userCart cookie
-    const userCartCookie = VueCookies.get('userCart');
-    if (userCartCookie) {
-      const userCart = JSON.parse(userCartCookie);
-      this.userCart = userCart;
-    }
-
-  },
+  
   mounted() {
   }
 
@@ -50,6 +38,8 @@ export default {
 </script>
   
 <style scoped>
+
+
 .main-banner {
   background: linear-gradient(to right, orange, red, pink);
   color: white;

@@ -1,4 +1,12 @@
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faSearch)
+
+
+
+
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import  App  from './App.vue';
@@ -9,7 +17,8 @@ import 'prismjs';
 
 
 const app = createApp(App);
-const pinia = createPinia();
+const pinia = createPinia(); // vue store state management
+app.component('font-awesome-icon', FontAwesomeIcon) // font awesome
 
 app.use(pinia);
 app.use(router);

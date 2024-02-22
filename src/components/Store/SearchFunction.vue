@@ -9,7 +9,7 @@
           This tooltip uses the new <b>CSS anchor positioning</b>.
         </span>
       </span>
-      <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+      <!-- <font-awesome-icon :icon="['fas', 'search']" /> -->
       <div class="search-container">
         <div class="input-container">
         <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">

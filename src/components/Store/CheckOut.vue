@@ -1,18 +1,19 @@
 <template>
-    <!-- <button @click="makeInventory">Make Inventory</button> -->
-    <!-- <button @click="resetInventory()">Reset</button> -->
-    <!--<ProductGallery @add-to-cart="handleAddItemToCart"></ProductGallery>-->
+    <!-- Logic for saved shopping cart values and text to display -->
     <div class="shopping-cart-area">
         <div class="grid-shopping-cart">
             <div class="grid-shopping-cart-left">
-                <div class="shopping-cart-title">
-                    <div v-if="runningTotal === 0">
-
+                <div class="shopping-cart-title" :style="cartTitleStyle">
+                    <div v-if="runningTotal === 0" class="center-element">
                         <h2>No items selected</h2>
-
+                        <svg style="width: 32px; height: 32px; transition: transform 0.5s;" viewBox="0 0 32 32" fill="none"
+                            stroke="rgb(244, 67, 54)" stroke-width="2">
+                            <polyline points="8 12 16 20 24 12" />
+                        </svg>
                     </div>
-                    <div class="shopping-cart-border" v-else>
-                        <h2>Shopping Cart <span class="arrow down"></span></h2>
+                    <div class="shopping-cart-border" v-else-if="showLastAddedItem !== ''">
+                        <h2>Shopping Cart</h2>
+                        
 
                         <div>
                             <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to your
@@ -20,6 +21,9 @@
                             Product ID: {{ propProductIndexInGallery }} Item Position: {{ propProductIdentificationNumber }}
                         </div>
 
+                    </div>
+                    <div class="shopping-cart-border" v-else>
+                        <h2 style="">Shopping Cart</h2>
                     </div>
                 </div>
                 <!-- Each cart item is outputted here with v-for loop -->
@@ -92,8 +96,8 @@
                             <span>€{{ Math.abs((runningTotal * .9).toFixed(2)) }}</span>
                         </div>
                     </transition>
-                </div>       
-                
+                </div>
+
 
                 <div class="bottom-checkout-button-container">
 
@@ -187,10 +191,7 @@ export default {
     // Your script logic here
     data() {
         return {
-            //counterStore: null,
-            //increase: null,
             counter: 0,
-
 
             storeInventory: new Inventory(),
             userCart: [],
@@ -203,65 +204,51 @@ export default {
         };
     },
     created() {
-        // Retrieve the userCart array from cookies
-
-        //const cartItems = VueCookies.get('userCart');
-        //if (cartItems) {
-        //    this.userCart = JSON.parse(cartItems);
-       // }
-
-
-        //this.counterStore = useCounterStore();
-        //this.increase = this.counterStore.increment;
+        // create the users cart from the store
         const counterStore = useCounterStore();
         this.counter = counterStore.count;
-        
-        //console.log("CART", this.userCart)
+        this.userCart = useCartStore().cart;
     },
     mounted() {
-        this.userCart = useCartStore().cart;
-        // Your mounted logic here     
+        this.showLastAddedItem;
+
+        //console.log(this.lastItemAddedToCart);
         this.makeInventory();
         // NOTE: There is definitely a better way to solve this problem than this, but for now
-        // This line of code below updates the runningtotal of the local cookies automatically.
+        // This line of code below updates the runningtotal of the local items in cart automatically.
         this.runningTotal = this.userCart.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
     },
-
     // This solves the issue I had with the architecture, didn't expect to use a watcher here.
     watch: {
-
         // this watches for user adding item to cart from the ProductPageView.vue
         // Checks for quantity of item clicks, and which ID the item has
         propProductPageAddItemToCart() {
             this.handleAddItemToCart(0, parseInt(this.propProductPageAddItemToCart[0]));
         },
-
         propUpdate() {
             this.addItemToCart();
         },
         // watch userCart array for changes to add or remove local cookies of what is in the cart
         // doesnt use cookies anymore - used store instead
         userCart: {
-            /*
-            handler(newCart) {
-                VueCookies.set('userCart', JSON.stringify(newCart));
-            },
-            */
             deep: true, // Watch for changes in nested properties of userCart
             handler(newCart) {
                 //VueCookies.set('userCart', JSON.stringify(newCart));
-                
+
                 const cartStore = useCartStore();
                 cartStore.setCart(newCart);
-                
+
             },
         },
-
-
-
     },
-
     computed: {
+        cartTitleStyle() {
+            if (this.showLastAddedItem !== '') {
+            return {};
+            } else {
+            return { paddingBottom: '0rem', minHeight: '3rem' };
+            }
+        },
         itemTotal() {
             return this.userCart.map(item => Math.abs((item.quantity * item.price).toFixed(2)));
         },
@@ -270,7 +257,16 @@ export default {
             return this.userCart.reduce((total, item) => total + item.quantity, 0);
         },
         showLastAddedItem() {
-            return this.userCart.find(item => item.id === this.propProductIndexInGallery)?.name || '';
+            const lastItem = this.userCart.find(item => item.id === this.propProductIndexInGallery)?.name || '';
+
+            const cartStore = useCartStore();
+            cartStore.setLastItemAdded(lastItem);
+
+            return lastItem;
+        },
+        lastAddedItem() {
+            const cartStore = useCartStore();
+            return cartStore.getLastItemAdded;
         },
         itemQuantities() {
             const quantities = {};
@@ -301,20 +297,11 @@ export default {
             this.handleAddItemToCart(this.propProductIdentificationNumber, this.propProductIndexInGallery);
         },
 
-        saveUserCartToCookies() {
-            // Store the userCart array in cookies
-            // VueCookies.set('userCart', JSON.stringify([this.userCart]), { expires: 3 });
-             // Store the userCart array in local storage
-    
-    //cartStore.setCart(newCart);
-        },
-
         removeItemFromCartIfQuantityIsZero(item) {
             if (item.quantity === 0) {
                 this.removeItem(this.userCart.findIndex(cartItem => cartItem.id === item.id));
             }
         },
-
         handlePlusMinusIncrementDecrementButtons(item, increment) {
             const newQuantity = item.quantity + increment;
             if (newQuantity >= 0 && newQuantity <= 100) {
@@ -423,7 +410,7 @@ h1 {
     background-color: #ffffff;
     padding: 2em 2em 0.5em 2em;
     margin-top: 2em;
-    margin-bottom: 2em;
+    margin-bottom: 0em;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -473,13 +460,16 @@ h1 {
 }
 
 .shopping-cart-title {
-    text-align: left;
+    text-align: left;    
     padding-left: 1em;
     padding-right: 1em;
     min-height: 7rem;
     font-size: 1.1em;
     padding-bottom: 2rem;
     border-bottom: 1px solid #f44336;
+}
+.center-element{
+    display: flex; align-items: center;
 }
 
 .each-item-in-cart-image {

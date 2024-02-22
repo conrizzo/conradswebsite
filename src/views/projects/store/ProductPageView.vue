@@ -91,14 +91,18 @@ export default {
         },
         addToCartClicked(choiceId) {
             //console.log(choiceId)
-            //this.$emit('add-to-cart', choiceId);
-            //this.buttonCounter++;
-            //this.choiceId = [this.productId, this.buttonCounter];
-            console.log(choiceId)
-            //pinia
-            const cartStore = useCartStore();
-            cartStore.addToCart(choiceId);
-            console.log(this.searchInventoryById(choiceId))
+            this.$emit('add-to-cart', choiceId);
+            this.buttonCounter++;
+
+            // emits the product to the checkout page to process it and reuse the same functions there
+            // for handling data
+            this.choiceId = [this.productId, this.buttonCounter];
+            //console.log(choiceId)
+
+            //pinia -- experimenting here
+            //const cartStore = useCartStore();
+            //cartStore.addToCart(choiceId);
+            //console.log(this.searchInventoryById(choiceId))
         },
         searchInventoryById(id) {
             return productInventory.find(item => item.id === id);

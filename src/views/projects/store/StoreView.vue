@@ -1,5 +1,9 @@
 <template>
   <div class="store-background">
+    <div style="background: #fff; display: inline-block; margin-bottom: 1rem;">
+      <button @click="showDiagramAndSourceCode, toggleDiagramModal()" class='clean-button'>{{
+        showDiagramButtonText }}</button>
+    </div>
     <div class="main-banner">
       <div class="main-banner-text-container">
         <div style="z-index: 3; position: relative;">
@@ -16,10 +20,7 @@
     <ProductGallery @add-to-cart="updateValue" />
     <CheckOut :propProductIndexInGallery="propIndex" :propProductIdentificationNumber="propProduct"
       :propUpdate="updated" />
-    <div style="background: #fff; display: inline-block;">
-      <button @click="showDiagramAndSourceCode, toggleDiagramModal()" class='clean-button'>{{
-        showDiagramButtonText }}</button>
-    </div>
+    
   </div>
   <div v-if="showDiagramModal">
     <DiagramModal @close="toggleDiagramModal" />
@@ -104,7 +105,7 @@ h1 {
 }
 
 .store-background {
-  background-color: #f5f5f5;
+  background-color: rgb(247, 247, 247);
   padding: 2.5em 5em 5em 5em;
 }
 

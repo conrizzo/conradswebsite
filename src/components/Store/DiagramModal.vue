@@ -16,10 +16,7 @@
           href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/store/StoreCheckOutView.vue">Checkout
           page view</a>
         <p>
-          An alternative idea was to use an <a class="text-links"
-            href=https://v3-migration.vuejs.org/breaking-changes/events-api.html#_3-x-update>Event Bus</a>, but this is
-          generally frowned upon. In this application all user choices are passed between components as
-          props and held locally as cookies.
+          Update: This does not use cookies anymore, it uses <a class="text-links" href='https://pinia.vuejs.org/'>Pinea</a> to manage the cart.
         </p>
       </div>
       <div class="diagram-image-container">
