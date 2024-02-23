@@ -125,21 +125,9 @@
               <span v-html="duplicateLettersErrorMessage"></span>
             </p>
           </dialog>
-          <!--
-          <component v-if="invalidInput" :is="dialogComponent" class="close" :open="invalidInput">
-            <button type="button" autofocus @click="invalidInput = false;" class="close-button"></button>
-            <div style="text-align: left;">
-              <span class="description-span" style="color: #ff5959;">Error</span>
-            </div>
-            <p>You are trying to include and exclude the same data!<br>
-              {{ duplicateLettersErrorMessage }}
-            </p>
-          </component>
-          -->
         </form>
       </div>
     </div>
-
     <!--  <img :src="(getImageSrc() as string)"> for testing -->
     <div class="center-element">
       <span style="color: rgb(18,18,18);">Words Allowed:<b>{{ processedWords.length }}</b></span>
@@ -149,7 +137,6 @@
         {{ word.toUpperCase() }}
       </div>
     </div>
-
     <div class="center-element" style="padding-left: 1.5rem;">
       <p>
         Note: This is not an official Wordle site and all game references are property of the respective copyright
@@ -165,7 +152,6 @@ import { ref, Ref, computed, watch } from 'vue';
 import { processWords, lettersMatching } from '../../../data/wordle_words/wordle'
 // import projectLinks from '@/components/Navigation/ProjectLinks' meta tags experiment
 
-
 let isRotated = ref(false);
 const notLetter = /[^a-zA-Z]/;
 let checkboxValue = ref(false);
@@ -176,24 +162,6 @@ let userInputExcludeLetters = ref('');
 let userInputInWordSomewhere = ref('');
 let invalidInput = ref(false);
 let viewInstructions = ref(false);
-
-/* Adjust dialog box to be a div at low resolution 
-const windowWidth = ref(window.innerWidth);
-
-const dialogComponent = computed(() => windowWidth.value <= 600 ? 'div' : 'dialog');
-
-const updateWindowWidth = () => {
-  windowWidth.value = window.innerWidth;
-};
-
-onMounted(() => {
-  window.addEventListener('resize', updateWindowWidth);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateWindowWidth);
-});
- End of dialog box adjustment */
 
 /*
 const links = ref(projectLinks);
@@ -223,12 +191,11 @@ const getOutputSuccessMessage = () => {
   outputSuccessMessage.value = "Submission successful! Scroll down to see the results!";
 }
 
-
 // ERROR CHECKING FUNCTION
 const checkForDuplicateLetters = (whichInput: string) => {
-  const inputLetters = whichInput.split('');
-  const secondInputExclude = userInputInWordSomewhere.value.split('')
-  const excludeLetters = userInputExcludeLetters.value.split('')
+  const inputLetters = whichInput.toLowerCase().split('');
+const secondInputExclude = userInputInWordSomewhere.value.toLowerCase().split('')
+const excludeLetters = userInputExcludeLetters.value.toLowerCase().split('')
 
   // check if the 2nd input has any letters that are also in the 3rd input
   const secondAndThirdDuplicateLetters = secondInputExclude.filter(letter => excludeLetters.includes(letter));
@@ -298,10 +265,21 @@ const processInputWord = () => {
   // if any input is not a letter this says find exact character position matches
   if (notLetter.test(userInput.value) && !checkboxValue.value) {
     processedWords.value = lettersMatching(userInput.value, userInputExcludeLetters.value);
-    // 2nd input
+
+    // 2nd input field matches exact character position to remove the letter
+    // where the user guessed the letter was in the word but it was not there  
     if (notLetter.test(userInputInWordSomewhere.value) && userInputInWordSomewhere.value.length > 0) {
       const filteredWords = processedWords.value;
       processedWords.value = lettersMatching(userInputInWordSomewhere.value, userInputExcludeLetters.value, filteredWords, true);
+      //filteredWords = processedWords.value;
+      let cleanedStr = userInputInWordSomewhere.value.replace(/[^a-zA-Z]/g, "").toLowerCase();
+      
+      // removes all words that do not have a misguessed letter in the word!
+      let secondFilter = processedWords.value.filter(word =>
+        [...cleanedStr].every(letter => word.includes(letter))
+      );
+      processedWords.value = secondFilter;
+      
       return;
     }
     // if it is only letters we just search words that MUST include these letters as a secondary search

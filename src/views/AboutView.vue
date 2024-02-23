@@ -1,7 +1,7 @@
 
 
 <template>
-  <div id="body">
+  <div id="about-background">
     <div class="center-content-within">
       <div>
         <twoColumnsGridContentTemplate class="top-component-adjustment" :imageWidth="imageWidth" :titleText="titleText"
@@ -10,7 +10,7 @@
     </div>
 
     <main class="text-container">
-      <div class="width-container">
+      <div class="width-container">        
         <div class="language-container">
           <span class="language-arrow-text tooltip">{{ arrowText }}
             <span class="tooltiptext">
@@ -41,9 +41,9 @@
                 Python backend: {{ backEndQuery }}
               </li>
               <li>
-                This website is made by me (Conrad) and heavily uses <a href="https://vuejs.org/" class="text-links"
-                  style="color: #42b883;">Vue 3 (Vue.js)</a>
-                for its reactivity and interactivity. It's open-source and has been a continuous project
+                This website is made by me (Conrad). It is a Single Page Application (SPA) made in <a
+                  href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>. It's
+                open-source and has been a continuous project
               </li>
               <li>
                 The website now runs on a VPS (Virtual Private Server), the code is at
@@ -60,14 +60,10 @@
               <li>
                 <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
                   HTML, CSS, Rust into Web Assembly,</span> and soon more projects in other languages such as Angular,
-                Wordpress,
-                Astro
+                Wordpress, <a class='text-links' href="https://nuxt.com/">Nuxt.js</a>,
+                <a class="text-links" href="https://astro.build/">Astro</a>.
               </li>
-              <li>
-                I also started learning <a class='text-links' href="https://nuxt.com/">Nuxt.js</a> after reviewing how
-                to have better SEO for new project ideas. Nuxt allows all the meta tags to be rendered by shared links
-                in a simpler way than Vue.js alone.
-              </li>
+
               <li>
                 I started learning about Vue.js when I worked on the Bioinformatics Toolkit at Max-Planck-Institut für
                 Biologie in Tübingen, Germany
@@ -75,7 +71,8 @@
               <li>
                 Side project <a class="text-links"
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> to try out the <a
-                  class="text-links" href="https://astro.build/">Astro</a> framework
+                  class="text-links" href="https://astro.build/">Astro</a> framework. A <a class="text-links"
+                  href='https://search-wordle-words.netlify.app/'>Wordle helper in Nuxt.js</a>
               </li>
             </ul>
           </section>
@@ -91,9 +88,9 @@
                 Python backend: {{ backEndQuery }}
               </li>
               <li>
-                Diese Website wurde von mir (Conrad) selbst erstellt, weitgehend mit <a href="https://vuejs.org/"
-                  class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
-                für seine Reaktivität und Interaktivität. Es ist Open-Source und wird kontinuierlich weiterentwickelt.
+                Diese Website wurde von mir (Conrad) selbst erstellt. Es ist in Single Page Application (SPA) in <a
+                  href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
+                gemacht. Es ist Open-Source und wird kontinuierlich weiterentwickelt.
               </li>
               <li>
                 Die Website läuft jetzt auf einem VPS (Virtual Private Server). Der Code befindet sich auf
@@ -126,7 +123,7 @@
           </section>
 
         </div>
-        <div class="center-content-within">
+        <div class="center-content-within" style="flex-direction: column;">
           <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section">
 
             <h2>More about me</h2>
@@ -152,6 +149,9 @@
               ability to do problem-solving through code and research.
             </p>
 
+          </section>
+
+          <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section form-section" >
             <div class="form-container">
               <h2 class="form-title">Contact / Leave a message</h2>
 
@@ -296,8 +296,9 @@ export default {
       arrowText: "Deutsch",
 
       titleText: "ConradsWebsite",
-      contentText: "Thank you for visiting!\
-                    Welcome to the personal website of Conrad Lundberg. This is primarily a place to test ideas and make some projects.",
+      contentText: "Thank you for visiting!<br>\
+      Welcome to the personal website of Conrad Lundberg.<br>\
+      This is primarily a place to test ideas and make some projects.",
 
       clickCount: 0,
       firstClick: null,
@@ -409,7 +410,7 @@ export default {
         console.log(data);
 
         // If the request was successful, show a "message received" notice
-        if (data.message === 'Message received') {
+        if (data.message === 'Form submission successful') {
           // reset all the fields
           this.submitName = '';
           this.submitSubject = '';
@@ -447,7 +448,7 @@ export default {
 
 
 <style scoped>
-#body {
+#about-background {
   /*
   background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
   background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
@@ -460,13 +461,11 @@ export default {
       rgb(139, 114, 188) 100%);
   background-size: 100% 100%;
   background-attachment: fixed;
-
-
   z-index: 0;
   text-align: left;
 }
 
-#body::before {
+#about-background::before {
   content: "";
   position: fixed;
   bottom: 50%;
@@ -488,7 +487,6 @@ h1 {
   border-radius: 0.2em;
   text-decoration: underline;
   text-decoration-color: #ff5959;
-
 }
 
 h2 {
@@ -500,9 +498,17 @@ p {
   max-width: none;
 }
 
+.form-section{
+  margin-top: 3.5rem; width: 100%;
+}
+
 .top-component-adjustment {
   max-width: 80rem;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, .1) 50%);
+  width: 100%;  
+  height: 55rem;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 50%);
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .form>* {
@@ -583,7 +589,8 @@ textarea {
 .width-container {
   background: rgba(22, 22, 22, .9);
   width: 80rem;
-  padding-top: 2.2rem;
+  
+  
 }
 
 .center-content-within {
@@ -718,7 +725,7 @@ textarea {
   color: #fff;
 }
 
-@media screen and (max-width: 70rem) {
+@media screen and (max-width: 70rem) { 
 
   .each-section {
     padding-left: 1.5rem;
@@ -727,6 +734,11 @@ textarea {
 }
 
 @media screen and (max-width: 40rem) {
+
+  .top-component-adjustment {
+    height: fit-content;
+
+  }
 
   .arrow-container {
     display: none;

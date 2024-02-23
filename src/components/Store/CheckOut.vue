@@ -155,7 +155,7 @@ export const useCounterStore = defineStore('counter', {
 */
 
 // make cookies for the products in the user cart
-import VueCookies from 'vue-cookie';
+//import VueCookies from 'vue-cookie';
 
 export default {
     name: "StoreView",

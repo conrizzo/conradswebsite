@@ -7,6 +7,7 @@
   </div>
   <div class="centerAll">
     <div class="image-gallery">
+      <!--
       <div class="is-item-loaded-text-display"><i>Load on Scroll: </i> 
         <div v-for="(item, index) in displayArray" :key="item" style="display: inline-block;">
           <div v-if="displayArray.length">
@@ -15,7 +16,7 @@
           </div>
         </div>
         <br>
-      </div>
+      </div> -->
       <main class="image-gallery-grid-container">
         <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
           :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">

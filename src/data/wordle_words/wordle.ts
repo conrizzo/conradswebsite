@@ -32,7 +32,8 @@ export function lettersMatching(guessWord: string, excludeLetters: string = '', 
       let isMatching = true;
       for (let i = 0; i < lowerCaseGuessWord.length; i++) {
         if (reverse ? !notLetter.test(lowerCaseGuessWord[i]) && lowerCaseGuessWord[i] === word[i]
-          : !notLetter.test(lowerCaseGuessWord[i]) && lowerCaseGuessWord[i] !== word[i]) {
+                    : !notLetter.test(lowerCaseGuessWord[i]) && lowerCaseGuessWord[i] !== word[i]) 
+        {
           isMatching = false;
           break;
         }

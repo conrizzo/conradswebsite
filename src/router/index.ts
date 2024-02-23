@@ -243,7 +243,7 @@ const router = createRouter({
 
 // this should fix it invoking the next() function multiple times.
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  //const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   document.title = to.meta.title as string || 'ConradsWebsite.com';
 
