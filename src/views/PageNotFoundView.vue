@@ -9,7 +9,7 @@
                 </div>
                 -->
                 <h1>404 - Page Not Found</h1>
-                <p>Sorry, the page you are looking for does not exist.</p>
+                <p style="color: #ffffff;">Sorry, the page you are looking for does not exist.</p>
                 <RouterLink class="text-links to-home-page" to="/">
                     To Home Page &rarr;
                 </RouterLink>
@@ -49,12 +49,11 @@ onMounted(() => {
 h1 {
     color: rgb(0, 255, 204);
     font-size: 3rem;
-   
 }
 
 .page-height {
     height: 86.5vh;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(26, 26, 32);
 }
 
 .to-home-page {

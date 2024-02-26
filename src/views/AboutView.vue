@@ -30,7 +30,7 @@
         </div>
 
         <div class="center-content-within">
-          <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section">
+          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section">
             <div style="display: flex; justify-content: flex-start;">
               <h1>About</h1>
               <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
@@ -77,7 +77,7 @@
             </ul>
           </section>
           <!-- German Section -->
-          <section v-show="languageButtonText === 'Switch to English'" class="each-section">
+          <section v-show="languageButtonText === 'Language: English'" class="each-section">
             <div style="display: flex; justify-content: flex-start;">
               <h1>About</h1>
               <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
@@ -124,7 +124,7 @@
 
         </div>
         <div class="center-content-within" style="flex-direction: column;">
-          <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section">
+          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section">
 
             <h2>More about me</h2>
 
@@ -151,7 +151,7 @@
 
           </section>
 
-          <section v-show="languageButtonText === 'Deutsch wechseln'" class="each-section form-section" >
+          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section" >
             <div class="form-container">
               <h2 class="form-title">Contact / Leave a message</h2>
 
@@ -187,6 +187,7 @@
             <span>(Note: All messages are sent securely via https to the backend server)</span>
             <br>
             <br>
+            <!--
             --- Additional Testing Area ---<br>
             <a class="text-links" href="https://conradswebsite.com/back_end/api/download" download="test100.txt">Download
               10mb 0's test txt file</a>
@@ -195,7 +196,8 @@
               class="text-links">HTML page for testing</a><br>
             <a href="https://conradswebsite.com/asdfaesrrwr34" target="_blank" rel="noopener noreferrer"
               class="text-links">404 test</a><br>
-
+            -->
+            
             <!--
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
               target="_blank" rel="noopener noreferrer" class="text-links">Shared Google Document - For testing</a>
@@ -203,7 +205,7 @@
 
           </section>
           <!-- German Section -->
-          <section v-show="languageButtonText === 'Switch to English'" class="each-section">
+          <section v-show="languageButtonText === 'Language: English'" class="each-section">
 
             <h2>Mehr über mich</h2>
             <p>
@@ -292,7 +294,7 @@ export default {
       birdPicture: require('@/images/Kohlenmeise.jpg'),
       imagePath: require("@/images/project_languages.jpg"), // Add the image path to the data object
       languageChange: false,
-      languageButtonText: "Deutsch wechseln",
+      languageButtonText: "Sprache: Deutsch",
       arrowText: "Deutsch",
 
       titleText: "ConradsWebsite",
@@ -433,11 +435,11 @@ export default {
     },
 
     language() {
-      if (this.languageButtonText == "Deutsch wechseln") {
-        this.languageButtonText = "Switch to English";
+      if (this.languageButtonText == "Sprache: Deutsch") {
+        this.languageButtonText = "Language: English";
         this.arrowText = "English";
       } else {
-        this.languageButtonText = "Deutsch wechseln";
+        this.languageButtonText = "Sprache: Deutsch";
         this.arrowText = "Deutsch";
       }
     }
@@ -588,9 +590,7 @@ textarea {
 
 .width-container {
   background: rgba(22, 22, 22, .9);
-  width: 80rem;
-  
-  
+  width: 80rem;  
 }
 
 .center-content-within {
@@ -623,23 +623,28 @@ textarea {
 
 .language-arrow-text {
   font-size: 0.9em;
-  margin-top: -4em;
-  margin-left: -25rem;
-
+  margin-top: -7em;
+  margin-left: -28rem;
   z-index: 4;
   transform: rotate(35deg);
   border-bottom: none;
   color: rgb(255, 255, 255);
+  background: rgba(0,0,0,0.25);
+  border-radius: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   position: absolute;
 }
 
 .tooltip:before {
   top: 1em;
-  position: absolute;
+  left: 1.9em;
+  position: absolute; 
 }
 
 .tooltip .tooltiptext {
   top: 4em;
+  left: 0.1em;
   position: absolute;
 }
 
