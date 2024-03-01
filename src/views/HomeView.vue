@@ -45,6 +45,10 @@
     <imagesOneRow />
     <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
     <TwoColumnsReversedGrid :titleText="reversedTitle" :content-text="reversedText" />
+    <TwoColumnsGridContentTemplate :titleText="secondTitle" :content-text="secondMessage" :content-image="birdPicture" 
+    :setPhotoLink="'https://github.com/conrizzo/conradswebsite'" 
+    :set-photo-caption="'Image is of the GitHub Languages bar chart for conradswebsite.com'" />
+    
   </div>
 </template>
 
@@ -70,6 +74,7 @@ export default {
       itemsLength: 0,
       birdDrawing: require("@/images/BlueSkyBird.jpg"),
       aCoffee: require("@/images/cup_of_coffee.jpg"),
+      birdPicture: require('@/images/git-languages.jpg'),
 
       inputString: "_ Hello,",
       name: "",
@@ -100,7 +105,12 @@ export default {
                     YouTube videos where a concept is discussed is also part of the process.\
                     In the end code is just a tool to make things, so as I make more projects\
                     I learn more along the way and more complicated projects become easier.\
-                    The rewarding thing is to conceptualize a project, then actually be able to build it."
+                    The rewarding thing is to conceptualize a project, then actually be able to build it.",
+      secondTitle: "Updates",
+      secondMessage: "This website was started from a blank page.\
+                      Now it's a fullstack website that is evolving and branching to test new projects.\
+                      Much of the work on this website is currently being done in backend code\
+                      and connecting items in the server. More simplified operations are also being done on the frontend!",
     };
   },
   computed: {

@@ -5,12 +5,13 @@
     <div class="center-content-within">
       <div>
         <twoColumnsGridContentTemplate class="top-component-adjustment" :imageWidth="imageWidth" :titleText="titleText"
-          :content-text="contentText" :content-image="birdPicture" />
+          :content-text="contentText" :content-image="birdPicture" 
+          :set-photo-link="'https://de.wikipedia.org/wiki/Kohlmeise'" :set-photo-caption="'Tübingen, Germany. Kohlmeise / Great Tit'" />
       </div>
     </div>
 
     <main class="text-container">
-      <div class="width-container">        
+      <div class="width-container">
         <div class="language-container">
           <span class="language-arrow-text tooltip">{{ arrowText }}
             <span class="tooltiptext">
@@ -124,7 +125,7 @@
 
         </div>
         <div class="center-content-within" style="flex-direction: column;">
-          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section">
+          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
 
             <h2>More about me</h2>
 
@@ -151,7 +152,7 @@
 
           </section>
 
-          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section" >
+          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
             <div class="form-container">
               <h2 class="form-title">Contact / Leave a message</h2>
 
@@ -197,7 +198,7 @@
             <a href="https://conradswebsite.com/asdfaesrrwr34" target="_blank" rel="noopener noreferrer"
               class="text-links">404 test</a><br>
             -->
-            
+
             <!--
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
               target="_blank" rel="noopener noreferrer" class="text-links">Shared Google Document - For testing</a>
@@ -205,7 +206,7 @@
 
           </section>
           <!-- German Section -->
-          <section v-show="languageButtonText === 'Language: English'" class="each-section">
+          <section v-show="languageButtonText === 'Language: English'" class="each-section form-section">
 
             <h2>Mehr über mich</h2>
             <p>
@@ -235,6 +236,9 @@
               Ich freue mich auf neue Möglichkeiten, bin begeistert, mehr zu lernen und habe Vertrauen in
               meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.
             </p>
+          </section>
+          
+          <section v-show="languageButtonText === 'Language: English'" class="each-section form-section">
             <div class="form-container">
               <h2 class="form-title">Eine Nachricht hinterlassen</h2>
 
@@ -500,13 +504,14 @@ p {
   max-width: none;
 }
 
-.form-section{
-  margin-top: 3.5rem; width: 100%;
+.form-section {
+  margin-top: 3.5rem;
+  width: 100%;
 }
 
 .top-component-adjustment {
   max-width: 80rem;
-  width: 100%;  
+  width: 100%;
   height: 55rem;
   background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 50%);
   padding-right: 1rem;
@@ -590,7 +595,7 @@ textarea {
 
 .width-container {
   background: rgba(22, 22, 22, .9);
-  width: 80rem;  
+  width: 80rem;
 }
 
 .center-content-within {
@@ -629,7 +634,7 @@ textarea {
   transform: rotate(35deg);
   border-bottom: none;
   color: rgb(255, 255, 255);
-  background: rgba(0,0,0,0.25);
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 0.25rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -639,7 +644,7 @@ textarea {
 .tooltip:before {
   top: 1em;
   left: 1.9em;
-  position: absolute; 
+  position: absolute;
 }
 
 .tooltip .tooltiptext {
@@ -730,7 +735,7 @@ textarea {
   color: #fff;
 }
 
-@media screen and (max-width: 70rem) { 
+@media screen and (max-width: 70rem) {
 
   .each-section {
     padding-left: 1.5rem;

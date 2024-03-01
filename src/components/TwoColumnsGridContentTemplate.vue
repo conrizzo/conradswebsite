@@ -4,8 +4,14 @@
       <!-- div to show/hide items within on scroll -->
       <div class="second-area-grid-container">
 
-        <div class="grid-item-coffee">
-          <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">
+        <div class="grid-item-coffee" v-if="setPhotoLink===''">        
+            <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">    
+        </div>
+        <div class="grid-item-coffee" v-else>
+          <a :href="setPhotoLink">
+            <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">            
+          </a>
+          <caption class="photo-caption-style">{{ setPhotoCaption }}</caption>
         </div>
 
         <div class="grid-item-text" :style="{ background: bgColor }">
@@ -45,6 +51,14 @@ export default {
     imgWidth: {
       type: Number || String,
       default: 100,
+    },
+    setPhotoLink: {  // creates a prop to set a link for the image, combined with v-else
+      type: String,  // it will do no link if not set
+      default: '',
+    },
+    setPhotoCaption: {
+      type: String,
+      default: 'This is the default caption for the image.',
     },
 
 
@@ -102,6 +116,20 @@ h2 {
   padding: 0em 0em 1em 0em;
   line-height: 1.1em;
   text-transform: capitalize;
+}
+
+.photo-caption-style {
+  font-size: 0.6em;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  width: fit-content;
+  text-align: left;  
+  display: block;
+  padding-left: 0.5em;
+  padding-right: 0.5em; 
+  margin-left: auto;
+  margin-top: 0.5em;
+  border-radius: 0.25em;
 }
 
 .second-main-area {
