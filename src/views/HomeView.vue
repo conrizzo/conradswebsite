@@ -42,13 +42,7 @@
         </section>
       </div>
     </div>
-    <imagesOneRow />
-    <TwoColumnsGridContentTemplate :titleText="parentTitleTextOne" :content-text="parentTextOne" />
-    <TwoColumnsReversedGrid :titleText="reversedTitle" :content-text="reversedText" />
-    <TwoColumnsGridContentTemplate :titleText="secondTitle" :content-text="secondMessage" :content-image="birdPicture" 
-    :setPhotoLink="'https://github.com/conrizzo/conradswebsite'" 
-    :set-photo-caption="'Image is of the GitHub Languages bar chart for conradswebsite.com'" />
-    
+    <imagesOneRow />    
   </div>
 </template>
 
@@ -59,14 +53,14 @@ import "@/assets/globalCSS.css";
 import init, { main } from "@/rust_web_assembly/hello_wasm.js";
 
 import imagesOneRow from "@/components/ImagesOneRow.vue";
-import TwoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
+
 import ProjectGallery from "@/components/HomePage/ProjectGallery.vue";
-import TwoColumnsReversedGrid from "@/components/TwoColumnsReversedGrid.vue";
+
 
 export default {
   name: "HomeView",
   components: {
-    imagesOneRow, TwoColumnsGridContentTemplate, ProjectGallery, TwoColumnsReversedGrid
+    imagesOneRow, ProjectGallery,
   },
 
   data() {
@@ -74,7 +68,7 @@ export default {
       itemsLength: 0,
       birdDrawing: require("@/images/BlueSkyBird.jpg"),
       aCoffee: require("@/images/cup_of_coffee.jpg"),
-      birdPicture: require('@/images/git-languages.jpg'),
+      
 
       inputString: "_ Hello,",
       name: "",
@@ -92,25 +86,8 @@ export default {
         ":)"
       ],
 
-      parentTitleTextOne: "What is the goal?",
-      parentTextOne: "The goal of this website at the moment is to keep\
-                      experimenting and learning. Make some fun projects.\
-                      Drink some coffee (hopefully good coffee). Make lots of \
-                      mistakes and keep learning from them and improving.",
-
-      reversedTitle: "approach",
-      reversedText: "The process is usually to experiment on some projects or concepts, write a lot of code to try ideas, edit and delete the code,\
-                    find what works, and then make it simpler.\
-                    This is essentially the learning process along with reading documentation and code off other projects to understand how it works. Regularly watching\
-                    YouTube videos where a concept is discussed is also part of the process.\
-                    In the end code is just a tool to make things, so as I make more projects\
-                    I learn more along the way and more complicated projects become easier.\
-                    The rewarding thing is to conceptualize a project, then actually be able to build it.",
-      secondTitle: "Updates",
-      secondMessage: "This website was started from a blank page.\
-                      Now it's a fullstack website that is evolving and branching to test new projects.\
-                      Much of the work on this website is currently being done in backend code\
-                      and connecting items in the server. More simplified operations are also being done on the frontend!",
+     
+      
     };
   },
   computed: {

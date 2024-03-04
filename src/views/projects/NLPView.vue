@@ -58,11 +58,12 @@
                     <p> For instance, consider the sentences..<br> Sentence 1: "<i>Huge place where people buy stuff</i>"
                         <br>
                         Sentence 2: "<i>A gigantic store</i>"<br>
-                        Despite having no identical words, these sentences yield a high similarity score due to their
+                        Despite having no identical words, these sentences yield a high similarity score (0.729) due to their
                         similar meanings.<br>
                         A second example:<br>
                         Sentence 1: "Where is the feline?"<br>
                         Sentence 2: "I don't know where to find the cat"<br>
+                        yields a similarity score of (0.8076)
                     </p>
 
                     <h2 class="form-title">Compare Cosine similarity:</h2>

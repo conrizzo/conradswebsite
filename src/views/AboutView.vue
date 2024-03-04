@@ -1,12 +1,11 @@
-
-
 <template>
   <div id="about-background">
     <div class="center-content-within">
       <div>
         <twoColumnsGridContentTemplate class="top-component-adjustment" :imageWidth="imageWidth" :titleText="titleText"
-          :content-text="contentText" :content-image="birdPicture" 
-          :set-photo-link="'https://de.wikipedia.org/wiki/Kohlmeise'" :set-photo-caption="'Tübingen, Germany. Kohlmeise / Great Tit'" />
+          :content-text="contentText" :content-image="birdPicture"
+          :set-photo-link="'https://de.wikipedia.org/wiki/Kohlmeise'"
+          :set-photo-caption="'Tübingen, Germany. Kohlmeise / Great Tit'" />
       </div>
     </div>
 
@@ -27,7 +26,7 @@
             </div>
           </div>
           <button @click="language();" class="language-button" role="button">{{ languageButtonText
-          }}</button>
+            }}</button>
         </div>
 
         <div class="center-content-within">
@@ -51,12 +50,13 @@
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
-                <u>Back end</u> running <a class="text-links" href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
+                <u>Back end</u> running <a class="text-links"
+                  href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
                 and Python with <a class="text-links" href="https://gunicorn.org/">gunicorn</a>, accessed via reverse
                 proxy
                 on <a class="text-links" href="https://www.nginx.com/resources/glossary/nginx/">nginx</a>. It also uses
                 <a class="text-links" href="https://en.wikipedia.org/wiki/HTTP/2">http/2</a> for faster
-                loading.
+                loading. Also now running <a class="text-links" href="https://redis.io/">Redis</a> for data cache/storage.
               </li>
               <li>
                 <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
@@ -103,9 +103,12 @@
                 und Python mit Gunicorn und wird über einen Reverse-Proxy auf <a class="text-links"
                   href="https://www.nginx.com/">Nginx</a> aufgerufen. Es verwendet außerdem <a class="text-links"
                   href="https://de.wikipedia.org/wiki/HTTP/2">HTTP/2</a> für schnelleres Laden.
+                Es läuft jetzt <a class="text-links" href="https://redis.io/">Redis</a> für Datencache/Speicherung
+                ausgeführt.
               </li>
               <li>
-                <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet habe,
+                <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet
+                habe,
                 sind
                 <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.</span>
                 In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
@@ -116,22 +119,23 @@
               </li>
               <li>
                 Nebenprojekt <a class="text-links"
-                  href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a class="text-links"
-                  href="https://astro.build/">Astro</a> framework verwendet
+                  href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a
+                  class="text-links" href="https://astro.build/">Astro</a> framework verwendet
               </li>
 
             </ul>
           </section>
 
         </div>
-        <div class="center-content-within" style="flex-direction: column;">
+        <div class="center-content-within" style="flex-direction: column; padding-bottom: 3.5rem;">
           <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
 
             <h2>More about me</h2>
 
             <p>
               In 2022 I completed studies in Computational Linguistics at the University of Tübingen in Germany.
-              I am pleased to have successfully earned a degree from a German university. Before this I obtained a Biology
+              I am pleased to have successfully earned a degree from a German university. Before this I obtained a
+              Biology
               degree in the USA. Most of the information in todays world travels through the internet in one way or
               another,
               so after a break to figure out what to do, I thought it would be interesting to go back to websites and
@@ -160,8 +164,8 @@
                 <ul class="no-bullet">
                   <li>
                     <label for="name" class="include-label-text">Name:</label>
-                    <input id="name" autocomplete="given-name" class="input-field-style" type="text" v-model="submitName"
-                      placeholder="Enter your name" />
+                    <input id="name" autocomplete="given-name" class="input-field-style" type="text"
+                      v-model="submitName" placeholder="Enter your name" />
                   </li>
                   <li>
                     <label for="email" class="include-label-text">Email:</label>
@@ -227,7 +231,8 @@
               Ich bin jetzt daran interessiert, meine Programmierfähigkeiten zu verbessern und mich als Entwickler
               weiterzuentwickeln.
 
-              Jeden Tag bin ich motiviert und neugierig mehr zu lernen. Alles rund um Front-end, back-end oder full-stack
+              Jeden Tag bin ich motiviert und neugierig mehr zu lernen. Alles rund um Front-end, back-end oder
+              full-stack
               Web-Anwendungen weckt mein Interesse.
 
               Potenziell auch Maschinenlernen und NLP (Natural Language Processing) möglich, aber diese
@@ -237,7 +242,7 @@
               meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.
             </p>
           </section>
-          
+
           <section v-show="languageButtonText === 'Language: English'" class="each-section form-section">
             <div class="form-container">
               <h2 class="form-title">Eine Nachricht hinterlassen</h2>
@@ -246,8 +251,8 @@
                 <ul class="no-bullet">
                   <li>
                     <label for="nameD" class="include-label-text">Name:</label>
-                    <input id="nameD" autocomplete="given-name" class="input-field-style" type="text" v-model="submitName"
-                      placeholder="Enter your name" />
+                    <input id="nameD" autocomplete="given-name" class="input-field-style" type="text"
+                      v-model="submitName" placeholder="Enter your name" />
                   </li>
                   <li>
                     <label for="email" class="include-label-text">Email:</label>
@@ -272,7 +277,27 @@
             </div>
           </section>
         </div>
+        <div class="center-content-within">
+          <div>
+            <two-columns-grid-content-template :titleText="parentTitleTextOne" :content-text="parentTextOne" />
+
+            <two-columns-reversed-grid class="top-component-adjustment" :titleText="reversedTitle"
+              :content-text="reversedText" :content-image="birdGenerated" />
+
+            <two-columns-grid-content-template :titleText="secondTitle" :content-text="secondMessage"
+              :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
+              :set-photo-caption="'GitHub Languages bar chart for conradswebsite.com - the frontend code is on Github.'" />
+
+            <two-columns-reversed-grid style="max-height: 600px;" class="top-component-adjustment"
+              :titleText="'Optimization'" :content-text="'Many of the pages on this website have been optimized for performance and best practices.\
+          For example the Google Lighthouse score for this page is perfect.'" :content-image="lightHouseScore"
+              :set-photo-link="'https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1'"
+              :set-photo-caption="'Google Lighthouse Score for this page.'" />
+
+          </div>
+        </div>
       </div>
+
     </main>
   </div>
 
@@ -280,22 +305,24 @@
 </template>
 
 <script>
-
+import twoColumnsReversedGrid from "@/components/TwoColumnsReversedGrid.vue";
 import twoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
 import Prism from "prismjs";
 import "@/assets/globalCSS.css";
 
 
-
 export default {
   name: "HomeView",
   components: {
-    twoColumnsGridContentTemplate,
+    twoColumnsGridContentTemplate, twoColumnsReversedGrid
   },
 
   data() {
     return {
       birdPicture: require('@/images/Kohlenmeise.jpg'),
+      birdGenerated: require('@/images/BlueSkyBird.jpg'),
+      lightHouseScore: require('@/images/google-lighthouse-result.jpg'),
+      gitLanguages: require('@/images/git-languages.jpg'),
       imagePath: require("@/images/project_languages.jpg"), // Add the image path to the data object
       languageChange: false,
       languageButtonText: "Sprache: Deutsch",
@@ -321,7 +348,30 @@ export default {
       errorMessage: "",
 
       imageWidth: 20,  // Initial height
-      isMobile: window.innerWidth <= 800 // initial check
+      isMobile: window.innerWidth <= 800, // initial check
+
+      parentTitleTextOne: "objective",
+      parentTextOne: "The goal of this website at the moment is to keep\
+                      experimenting and learning. Make some fun projects.\
+                      Drink some coffee (hopefully good coffee). Make lots of \
+                      mistakes and keep learning from them and improving.",
+
+      reversedTitle: "approach",
+      reversedText: "The process is usually to write code to try ideas, edit and delete the code,\
+                    find what works and why, and then make it simpler. Often, much of the learning ends up coming from\
+                    reviewing what I've done and simplifying it.\
+                    This is essentially the process along with reading documentation and code off other projects for understanding.\
+                    Regularly watching\
+                    YouTube videos where a concept is discussed is also part of the process.\
+                    In the end code is just a tool to make things, so as I make more projects\
+                    I learn more along the way and more complicated projects become easier.\
+                    The rewarding thing is to conceptualize a project, then actually be able to build it.",
+
+      secondTitle: "updates",
+      secondMessage: "This website was started from a blank page.\
+                      Now it's a fullstack website that is evolving and branching to test new projects.\
+                      Much of the work on this website is currently being done in backend code\
+                      and connecting items in the server. More simplified operations are also being done on the frontend!",
     }
   },
   watch: {
@@ -497,7 +547,6 @@ h1 {
 
 h2 {
   text-align: left;
-
 }
 
 p {
@@ -584,7 +633,6 @@ textarea {
   color: #66baff;
   text-decoration: underline;
 }
-
 
 .text-container {
   display: flex;

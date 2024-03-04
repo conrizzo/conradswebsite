@@ -4,24 +4,30 @@
       <!-- div to show/hide items within on scroll -->
       <div class="second-area-grid-container">
 
-        <div class="grid-item-text">
-          <h2>{{ titleText }}</h2>
-          <p>
-            {{ contentText }}
-          </p>
+        <div class="grid-item-coffee" v-if="setPhotoLink===''">        
+            <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">    
+        </div>
+        <div class="grid-item-coffee" v-else>
+          <a :href="setPhotoLink">
+            <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">            
+          </a>
+          <caption class="photo-caption-style">{{ setPhotoCaption }}</caption>
         </div>
 
-        <div class="grid-item-coffee">
-          <img class="coffee-image" :src="coffee_image" alt="Image">
+        <div class="grid-item-text" :style="{ background: bgColor }">
+          <h2>{{ titleText }}</h2>
+          <p v-html="contentText">           
+          </p>
         </div>
 
       </div>
     </div>
   </div>
 </template>
-      
+    
 <script>
 import coffee_image from '@/images/generated_cup_of_coffee.jpg';
+
 
 export default {
   name: 'CoffeeGridContent',
@@ -34,10 +40,30 @@ export default {
       type: String,
       default: 'This is the default text for the prop, anything can be added here in the parent component.',
     },
-  },
-  // Component logic goes here
-  data() {
+    contentImage: {
+      type: String,
+      default: coffee_image,
+    },
+    bgColor: {
+      type: String,
+      default: 'rgba(0, 0, 0, 0.5)'
+    },
+    imgWidth: {
+      type: Number || String,
+      default: 100,
+    },
+    setPhotoLink: {  // creates a prop to set a link for the image, combined with v-else
+      type: String,  // it will do no link if not set
+      default: '',
+    },
+    setPhotoCaption: {
+      type: String,
+      default: 'This is the default caption for the image.',
+    },
 
+
+  },
+  data() {
     return {
       coffee_image: coffee_image,
       isContentVisible: false,
@@ -60,16 +86,15 @@ export default {
           if (entry.target === this.$refs.content) {
             this.isContentVisible = true;
             this.observer.unobserve(this.$refs.content);
-          }           
+          } 
         }
       });
     },
   },
 }
+</script>   
+  
 
-</script> 
-    
-    
 <style scoped>
 /* CSS for the home page */
 .hidden {
@@ -93,6 +118,20 @@ h2 {
   text-transform: capitalize;
 }
 
+.photo-caption-style {
+  font-size: 0.6em;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  width: fit-content;
+  text-align: left;  
+  display: block;
+  padding-left: 0.5em;
+  padding-right: 0.5em; 
+  margin-left: auto;
+  margin-top: 0.5em;
+  border-radius: 0.25em;
+}
+
 .second-main-area {
   background-image: url('../images/blue_sky2.jpg');
   background-color: rgba(0, 0, 0, 0.1);
@@ -105,6 +144,7 @@ h2 {
   align-items: center;
   background-size: 100% 100%;
 }
+
 .home-text-links {
   color: rgb(255, 255, 255);
   font-weight: 500;
@@ -116,6 +156,7 @@ h2 {
   border-bottom: 3px solid rgb(0, 255, 170);
   color: rgb(255, 255, 255);
 }
+
 .second-area-grid-container {
   display: grid;
   grid-template-columns: .75fr 1fr;
@@ -129,7 +170,6 @@ h2 {
   grid-column: 2;
   grid-row: 1;
   color: #ffffff;
-  background: rgba(0, 0, 0, 0.5);
   height: fit-content;
   padding: 3em;
   font-size: 1.25rem;
@@ -138,38 +178,29 @@ h2 {
 }
 
 .grid-item-coffee {
-  
   grid-column: 1;
   grid-row: 1;
   color: #ffffff;
-  font-size: 1.5em;
+  font-size: 1.5em;  
 }
 
 .coffee-image {
-  border-radius: .75rem;
-  transform: scaleX(-1);
+  border-radius: .75rem; 
   margin: 0 auto;
 }
 
 @media only screen and (max-width: 70rem) {
   .grid-item-text {
     font-size: 1em;
-    padding: 1rem;
-    grid-column: 2;
-    grid-row: 1;
-  }
-  .grid-item-coffee {
-    grid-column: 1;
-    grid-row: 1;
+    padding: 1em;
   }
 
+  .grid-item-coffee {
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 50rem) {
-
-  .second-area-grid-container {
-    grid-template-columns: 1fr;
-  }
 
   .second-main-area {
     padding-top: 0em;
@@ -180,17 +211,22 @@ h2 {
     font-size: 2em;
   }
 
+  .second-area-grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
   .grid-item-text {
-    font-size: 1em;
-    padding: 1rem;
     grid-column: 1;
     grid-row: 2;
   }
+
   .grid-item-coffee {
     grid-column: 1;
     grid-row: 1;
     padding-bottom: 1rem;
   }
+
   .coffee-image {
     height: 100%;
   }
