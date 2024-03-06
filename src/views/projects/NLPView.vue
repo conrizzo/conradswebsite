@@ -62,8 +62,8 @@
                         similar meanings.<br>
                         A second example:<br>
                         Sentence 1: "Where is the feline?"<br>
-                        Sentence 2: "I don't know where to find the cat"<br>
-                        yields a similarity score of (0.8076)
+                        Sentence 2: "I don't know how to find the cat!"<br>
+                        yields a similarity score of (0.7714)
                     </p>
 
                     <h2 class="form-title">Compare Cosine similarity:</h2>
@@ -110,8 +110,10 @@ const cosineAnswer = ref({});
 const isLoading = ref(false);
 
 async function testCosine(sentenceOne, sentenceTwo) {
+
     s1.value = sentenceOne;
     s2.value = sentenceTwo;
+
     isLoading.value = true;
 
     try {
@@ -181,7 +183,6 @@ h1 {
 
 h2 {
     text-align: left;
-
 }
 
 p {

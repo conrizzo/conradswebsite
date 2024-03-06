@@ -24,25 +24,23 @@
                 <div class="point"></div>
               </div>
             </div>
-          </div>
+          </div>          
           <button @click="language();" class="language-button" role="button">{{ languageButtonText
             }}</button>
         </div>
 
         <div class="center-content-within">
           <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section">
-            <div style="display: flex; justify-content: flex-start;">
-              <h1>About</h1>
-              <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
-                @click="testBackEnd()">Click to test backend</button>
+
+            <div class="flex-start">
+              <h1 class="section-title">How this Website is made</h1>
             </div>
+
             <ul class="about-me-list">
-              <li v-show="backEndQuery !== null" class="backend-message">
-                Python backend: {{ backEndQuery }}
-              </li>
+
               <li>
-                This website is made by me (Conrad). It is a Single Page Application (SPA) made in <a
-                  href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>. It's
+                This website is made by me (Conrad) completely from a blank slate. It is a Single Page Application (SPA)
+                made in <a href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>. It's
                 open-source and has been a continuous project
               </li>
               <li>
@@ -56,7 +54,8 @@
                 proxy
                 on <a class="text-links" href="https://www.nginx.com/resources/glossary/nginx/">nginx</a>. It also uses
                 <a class="text-links" href="https://en.wikipedia.org/wiki/HTTP/2">http/2</a> for faster
-                loading. Also now running <a class="text-links" href="https://redis.io/">Redis</a> for data cache/storage.
+                loading. Also now running <a class="text-links" href="https://redis.io/">Redis</a> for data
+                cache/storage.
               </li>
               <li>
                 <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
@@ -79,18 +78,14 @@
           </section>
           <!-- German Section -->
           <section v-show="languageButtonText === 'Language: English'" class="each-section">
-            <div style="display: flex; justify-content: flex-start;">
-              <h1>About</h1>
-              <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
-                @click="testBackEnd()">Click to test backend</button>
+
+            <div class="flex-start">
+              <h1 class='section-title'>Wie diese Website erstellt wird</h1>
             </div>
             <ul class="about-me-list">
-              <li v-show="backEndQuery !== null" class="backend-message">
-                Python backend: {{ backEndQuery }}
-              </li>
               <li>
-                Diese Website wurde von mir (Conrad) selbst erstellt. Es ist in Single Page Application (SPA) in <a
-                  href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
+                Diese Website wurde von mir (Conrad) komplett selbst erstellt. Es ist in Single Page Application (SPA)
+                in <a href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
                 gemacht. Es ist Open-Source und wird kontinuierlich weiterentwickelt.
               </li>
               <li>
@@ -130,7 +125,9 @@
         <div class="center-content-within" style="flex-direction: column; padding-bottom: 3.5rem;">
           <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
 
-            <h2>More about me</h2>
+            <div class="flex-start">
+              <h1 class="section-title-two">About me</h1>
+            </div>
 
             <p>
               In 2022 I completed studies in Computational Linguistics at the University of Tübingen in Germany.
@@ -145,7 +142,7 @@
 
             <p>
               I am now keen on enhancing my programming abilities and advancing as a developer.
-              Every day I'm motivated and curious to learn more. Anything in Front-end, back-end, or full-stack web
+              Every day I'm motivated and curious to learn more. Anything in frontend, backend, or fullstack web
               applications piques my interest.
               Potentially more machine
               learning and NLP is an option, but these machine learning subjects (while incredibly interesting) can get
@@ -158,8 +155,15 @@
 
           <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
             <div class="form-container">
-              <h2 class="form-title">Contact / Leave a message</h2>
 
+              <div v-show="backEndQuery !== null" class="backend-message">
+                Python backend: {{ backEndQuery }}
+              </div>
+              <div class="flex-start">
+                <h2 class="section-title-three">Contact</h2>
+                <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
+                  @click="testBackEnd()">Test Backend</button>
+              </div>
               <form @submit.prevent="leaveMessage" class="form">
                 <ul class="no-bullet">
                   <li>
@@ -211,8 +215,9 @@
           </section>
           <!-- German Section -->
           <section v-show="languageButtonText === 'Language: English'" class="each-section form-section">
-
-            <h2>Mehr über mich</h2>
+            <div class="flex-start">
+              <h1 class="section-title-two">Über mich</h1>
+            </div>
             <p>
               In 2022 habe ich ein Studium der Computerlinguistik an der Universität Tübingen in Deutschland
               abgeschlossen.
@@ -231,9 +236,9 @@
               Ich bin jetzt daran interessiert, meine Programmierfähigkeiten zu verbessern und mich als Entwickler
               weiterzuentwickeln.
 
-              Jeden Tag bin ich motiviert und neugierig mehr zu lernen. Alles rund um Front-end, back-end oder
-              full-stack
-              Web-Anwendungen weckt mein Interesse.
+              Jeden Tag bin ich motiviert und neugierig mehr zu lernen. Alles rund um frontend, backend oder
+              fullstack
+              Webanwendungen weckt mein Interesse.
 
               Potenziell auch Maschinenlernen und NLP (Natural Language Processing) möglich, aber diese
               Maschinenlernthemen (obwohl unglaublich interessant) können sehr schnell sehr komplex werden!
@@ -245,19 +250,27 @@
 
           <section v-show="languageButtonText === 'Language: English'" class="each-section form-section">
             <div class="form-container">
-              <h2 class="form-title">Eine Nachricht hinterlassen</h2>
+              <div v-show="backEndQuery !== null" class="backend-message">
+                Python backend: {{ backEndQuery }}
+              </div>
+              <div class="flex-start">
+                <h2 class="section-title-three">Kontakt</h2>
+                <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
+                  @click="testBackEnd()">Backend testen
+                </button>
+              </div>
 
               <form @submit.prevent="leaveMessage" class="form">
                 <ul class="no-bullet">
                   <li>
                     <label for="nameD" class="include-label-text">Name:</label>
                     <input id="nameD" autocomplete="given-name" class="input-field-style" type="text"
-                      v-model="submitName" placeholder="Enter your name" />
+                      v-model="submitName" placeholder="Name" />
                   </li>
                   <li>
                     <label for="email" class="include-label-text">Email:</label>
                     <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitSubject"
-                      placeholder="name@yourmailhost.com" />
+                      placeholder="name@####.com" />
                   </li>
                   <li>
                     <label for="userMessageD" class="include-label-text">Nachricht:</label>
@@ -536,7 +549,9 @@ export default {
   background-attachment: fixed;
 }
 
-h1 {
+
+
+.section-title {
   margin-bottom: 0em;
   color: #ffffff;
   font-size: 3em;
@@ -544,6 +559,28 @@ h1 {
   text-decoration: underline;
   text-decoration-color: #ff5959;
 }
+.section-title-two {
+  margin-bottom: 0em;
+  color: #ffffff;
+  font-size: 3em;
+  border-radius: 0.2em;
+  text-decoration: underline;
+  text-decoration-color: #1b72ff;
+}
+.section-title-three {
+  margin-bottom: 0em;
+  color: #ffffff;
+  font-size: 3em;
+  border-radius: 0.2em;
+  text-decoration: underline;
+  text-decoration-color: #43ff95;
+}
+
+
+
+
+
+
 
 h2 {
   text-align: left;
@@ -596,6 +633,11 @@ textarea {
   resize: none;
 }
 
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .include-label-text {
   display: flex;
   align-items: flex-start;
@@ -626,7 +668,7 @@ textarea {
 }
 
 .backend-message {
-  color: rgb(255, 89, 89);
+  color: rgb(249, 255, 89);
 }
 
 .text-links {

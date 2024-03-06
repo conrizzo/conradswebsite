@@ -11,7 +11,7 @@
           <a :href="setPhotoLink">
             <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">            
           </a>
-          <caption class="photo-caption-style">{{ setPhotoCaption }}</caption>
+          <caption class="photo-caption">{{ setPhotoCaption }}</caption>
         </div>
 
         <div class="grid-item-text" :style="{ background: bgColor }">
@@ -118,7 +118,7 @@ h2 {
   text-transform: capitalize;
 }
 
-.photo-caption-style {
+.photo-caption {
   font-size: 0.6em;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.5);
@@ -128,7 +128,7 @@ h2 {
   padding-left: 0.5em;
   padding-right: 0.5em; 
   margin-left: auto;
-  margin-top: 0.5em;
+  margin-top: 0.2rem;
   border-radius: 0.25em;
 }
 
