@@ -2,9 +2,17 @@
 <template>
   <header :class="headerClass">
     <!-- create a nav bar on every page-->
-    <div v-if="this.$route.path === '/'" class="headline">
+    <div v-if="this.$route.path === '/' && removeTopBanner !== true" class="headline"
+      style="display: flex; justify-content: center; position: relative;">
       <router-link class="text-links" style="color: #fff;" to="/about">Thank you for visiting!</router-link>
+
+      <svg @click="removeBanner" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+        fill="none" style="position: absolute; right: 1rem; cursor: pointer;">
+        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12">
+        </path>
+      </svg>
     </div>
+
     <nav class="nav-menu-class">
       <div style="display: flex; align-items: center;">
         <router-link to="/" class="only-show-home-svg-at-mobile-size">
@@ -63,7 +71,7 @@
   <!-- Removed this for now, the only cookies the site has is if someone uses firebase so I will put this notification on that page exclusively -->
   <!-- <CookieAccept /> -->
 </template>
-  
+
 <script>
 // import the dropdown menu into the nav bar
 import DropDownMenu from "@/components/Navigation/DropDownMenu.vue";
@@ -76,6 +84,7 @@ export default {
   setup() {
     const headerClass = ref('header-visible');
     let lastScrollPosition = 0;
+    let removeTopBanner = ref(false);
 
     const checkScroll = () => {
       const currentScrollPosition = window.scrollY;
@@ -90,8 +99,11 @@ export default {
       lastScrollPosition = currentScrollPosition;
     };
 
-    onMounted(() => {
+    const removeBanner = () => {
+      removeTopBanner.value = true;
+    };
 
+    onMounted(() => {
       window.addEventListener('scroll', checkScroll);
     });
 
@@ -101,10 +113,12 @@ export default {
 
     return {
       headerClass,
+      removeBanner,
+      removeTopBanner
     };
   }
 };
-</script>  
+</script>
 
 <style scoped>
 .list-element-styling {
@@ -333,4 +347,3 @@ nav a.router-link-exact-active {
   }
   */
 </style>
-  

@@ -18,7 +18,7 @@
                         </li>
                         -->
                         <li>
-                            <span class="product-subtitle-font">Product:</span> {{ itemName }} {{  productId }}
+                            <span class="product-subtitle-font">Product:</span> {{ itemName }}
                         </li>
                         <li>
                             <span class="product-subtitle-font">Price:</span> €{{

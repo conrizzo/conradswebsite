@@ -24,16 +24,22 @@
                 <div class="point"></div>
               </div>
             </div>
-          </div>          
-          <button @click="language();" class="language-button" role="button">{{ languageButtonText
-            }}</button>
+          </div>
+          <div class="tooltipTwo"><button @click="language();" class="language-button" role="button">{{
+          languageButtonText
+        }}</button>
+            <div class="tooltiptextTwo">
+              <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
+              Change the main text language between English and German with this button.
+            </div>
+          </div>
         </div>
 
         <div class="center-content-within">
           <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section">
 
             <div class="flex-start">
-              <h1 class="section-title">How this Website is made</h1>
+              <h1 class="section-title">About the website</h1>
             </div>
 
             <ul class="about-me-list">
@@ -44,8 +50,13 @@
                 open-source and has been a continuous project
               </li>
               <li>
-                The website now runs on a VPS (Virtual Private Server), the code is at
+                Now runs on a VPS (Virtual Private Server), the code is at
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
+              </li>
+              <li>
+                This website does not use any cookies! Why does this matter? They track users, and <a class="text-links"
+                  href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
+                  says</a> they are "taking a responsible approach to phasing out third-party cookies in Chrome"
               </li>
               <li>
                 <u>Back end</u> running <a class="text-links"
@@ -80,7 +91,7 @@
           <section v-show="languageButtonText === 'Language: English'" class="each-section">
 
             <div class="flex-start">
-              <h1 class='section-title'>Wie diese Website erstellt wird</h1>
+              <h1 class='section-title'>Über die Website</h1>
             </div>
             <ul class="about-me-list">
               <li>
@@ -89,8 +100,15 @@
                 gemacht. Es ist Open-Source und wird kontinuierlich weiterentwickelt.
               </li>
               <li>
-                Die Website läuft jetzt auf einem VPS (Virtual Private Server). Der Code befindet sich auf
+                Läuft jetzt auf einem VPS (Virtual Private Server). Der Code befindet sich auf
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
+              </li>
+              <li>
+                Diese Website verwendet keine Cookies! Warum ist das wichtig? Cookies verfolgen Benutzer, und <a
+                  class="text-links"
+                  href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
+                  sagt</a>, dass sie gerade dabei sind "taking a responsible approach to phasing out third-party cookies
+                in Chrome"
               </li>
               <li>
                 <u>Backend</u> läuft mit <a class="text-links"
@@ -120,8 +138,8 @@
 
             </ul>
           </section>
-
         </div>
+
         <div class="center-content-within" style="flex-direction: column; padding-bottom: 3.5rem;">
           <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
 
@@ -290,27 +308,52 @@
             </div>
           </section>
         </div>
+
         <div class="center-content-within">
           <div>
-            <two-columns-grid-content-template :titleText="parentTitleTextOne" :content-text="parentTextOne" />
-
-            <two-columns-reversed-grid class="top-component-adjustment" :titleText="reversedTitle"
-              :content-text="reversedText" :content-image="birdGenerated" />
-
-            <two-columns-grid-content-template :titleText="secondTitle" :content-text="secondMessage"
-              :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
-              :set-photo-caption="'GitHub Languages bar chart for conradswebsite.com - the frontend code is on Github.'" />
-
-            <two-columns-reversed-grid style="max-height: 600px;" class="top-component-adjustment"
-              :titleText="'Optimization'" :content-text="'Many of the pages on this website have been optimized for performance and best practices.\
-          For example the Google Lighthouse score for this page is perfect.'" :content-image="lightHouseScore"
-              :set-photo-link="'https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1'"
-              :set-photo-caption="'Google Lighthouse Score for this page.'" />
-
+            <!-- first text image component -->
+            <div v-if="arrowText === 'Deutsch'">
+              <two-columns-grid-content-template :titleText="objectiveTitle" :content-text="objectiveText" />
+            </div>
+            <div v-else>
+              <two-columns-grid-content-template :titleText="objectiveTitleDeutsch"
+                :content-text="objectiveTextDeutsch" />
+            </div>
+            <!-- second text image component -->
+            <div v-if="arrowText === 'Deutsch'">
+              <two-columns-reversed-grid class="top-component-adjustment" :titleText="approachTitle"
+                :content-text="approachText" :content-image="birdGenerated" />
+            </div>
+            <div v-else>
+              <two-columns-reversed-grid class="top-component-adjustment" :titleText="approachTitleDeutsch"
+                :content-text="approachTextDeutsch" :content-image="birdGenerated" />
+            </div>
+            <div v-if="arrowText === 'Deutsch'">
+              <two-columns-grid-content-template :titleText="updatesTitle" :content-text="updatesText"
+                :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
+                :set-photo-caption="languagesCaptionText" />
+            </div>
+            <div v-else>
+              <two-columns-grid-content-template :titleText="updatesTitleDeutsch" :content-text="updatesTextDeutsch"
+                :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
+                :set-photo-caption="languagesCaptionTextDeutsch" />
+            </div>
+            <div v-if="arrowText === 'Deutsch'">
+              <two-columns-reversed-grid style="max-height: 600px;" class="top-component-adjustment"
+                :titleText="optimizationTitle" :content-text="optimizationText" :content-image="lightHouseScore"
+                :set-photo-link="'https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1'"
+                :set-photo-caption="lightHouseCaption" />
+            </div>
+            <div v-else>
+              <two-columns-reversed-grid style="max-height: 600px;" class="top-component-adjustment"
+                :titleText="optimizationTitleDeutsch" :content-text="optimizationTextDeutsch"
+                :content-image="lightHouseScore"
+                :set-photo-link="'https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1'"
+                :set-photo-caption="lightHouseCaptionDeutsch" />
+            </div>
           </div>
         </div>
       </div>
-
     </main>
   </div>
 
@@ -363,14 +406,19 @@ export default {
       imageWidth: 20,  // Initial height
       isMobile: window.innerWidth <= 800, // initial check
 
-      parentTitleTextOne: "objective",
-      parentTextOne: "The goal of this website at the moment is to keep\
+      objectiveTitle: "objective",
+      objectiveText: "The goal of this website at the moment is to keep\
                       experimenting and learning. Make some fun projects.\
                       Drink some coffee (hopefully good coffee). Make lots of \
                       mistakes and keep learning from them and improving.",
 
-      reversedTitle: "approach",
-      reversedText: "The process is usually to write code to try ideas, edit and delete the code,\
+      objectiveTitleDeutsch: "objecktiv",
+      objectiveTextDeutsch: "Das Ziel dieser Website ist es im Moment, ständig zu experimentieren und zu lernen.\
+      Lustige Projekte machen. (Hoffentlich guten) Kaffee trinken.\
+      Viele Fehler machen und immer wieder daraus lernen und sich verbessern.",
+
+      approachTitle: "approach",
+      approachText: "The process is usually to write code to try ideas, edit and delete the code,\
                     find what works and why, and then make it simpler. Often, much of the learning ends up coming from\
                     reviewing what I've done and simplifying it.\
                     This is essentially the process along with reading documentation and code off other projects for understanding.\
@@ -380,11 +428,39 @@ export default {
                     I learn more along the way and more complicated projects become easier.\
                     The rewarding thing is to conceptualize a project, then actually be able to build it.",
 
-      secondTitle: "updates",
-      secondMessage: "This website was started from a blank page.\
+      approachTitleDeutsch: "Ansatz",
+      approachTextDeutsch: "Im Allgemeinen besteht der Prozess darin, Code zu schreiben, um Ideen auszuprobieren,\
+      den Code zu bearbeiten und zu löschen, herauszufinden, was funktioniert und warum, und ihn dann zu vereinfachen.\
+      Oftmals lernt man am meisten, indem man das Geschriebene überprüft und vereinfacht.\
+      Dies ist im Wesentlichen der Prozess, zusammen mit dem Lesen von Dokumentation und Code anderer Projekte zum Verständnis.\
+      Auch das regelmäßige Anschauen von YouTube Videos, in denen ein Konzept diskutiert wird, gehört dazu.\
+      Letztendlich ist Code nur ein Werkzeug, um Dinge zu erschaffen. Je mehr Projekte ich mache, desto mehr\
+      lerne ich dabei und desto einfacher werden kompliziertere Projekte.\
+      Das Schönste ist es, ein Projekt zu konzipieren und es dann tatsächlich bauen zu können.",
+      languagesCaptionText: "GitHub Languages bar chart for conradswebsite.com - the frontend code is on Github.",
+
+      updatesTitle: "updates",
+      updatesText: "This website was started from a blank page.\
                       Now it's a fullstack website that is evolving and branching to test new projects.\
                       Much of the work on this website is currently being done in backend code\
                       and connecting items in the server. More simplified operations are also being done on the frontend!",
+      updatesTitleDeutsch: "Aktualisierungen",
+      updatesTextDeutsch: "Diese Website wurde mit einer leeren Seite begonnen.\
+      Jetzt ist sie eine fullstack Website, die sich ständig weiterentwickelt und verzweigt, um neue Projekte zu testen.\
+      Ein Großteil der Arbeit an dieser Website wird derzeit im backend Code und der Verbindung von Elementen auf dem Server\
+      erledigt. Aber auch einfachere Arbeiten werden auf dem frontend durchgeführt!",
+      languagesCaptionTextDeutsch: "GitHub Sprachen Balkendiagramm für conradswebsite.com - der frontend Code ist auf Github.",
+
+      optimizationTitle: "Optimization",
+      optimizationText: "Many of the pages on this website have been optimized for performance and best practices.\
+      For example the Google Lighthouse score for this page is perfect.",
+      lightHouseCaption: "Google Lighthouse Score for this page.",
+
+      optimizationTitleDeutsch: "Optimierung",
+      optimizationTextDeutsch: "Viele der Seiten dieser Website wurden im Hinblick auf Leistung und Best Practices optimiert.\
+      Beispielsweise ist der Google Lighthouse-Score für diese Website perfekt.",
+      lightHouseCaptionDeutsch: "Google Lighthouse Score für diese Seite.",
+
     }
   },
   watch: {
@@ -517,11 +593,13 @@ export default {
 
 
 <style scoped>
+/* @import "../assets/css_files/AboutViewCSS.css"; */
+/* basic css tooltip */
 #about-background {
   /*
-  background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
-  background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
-  */
+    background: linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);
+    background: -webkit-linear-gradient(90deg, rgb(148, 243, 255) 30%, rgb(41, 126, 236) 60%, rgb(11, 0, 167) 90%);  
+    */
   background: -webkit-linear-gradient(-3deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9),
       40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
   background: linear-gradient(-2deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9),
@@ -554,23 +632,26 @@ export default {
 .section-title {
   margin-bottom: 0em;
   color: #ffffff;
-  font-size: 3em;
+  font-size: 3rem;
   border-radius: 0.2em;
   text-decoration: underline;
   text-decoration-color: #ff5959;
+  line-height: 1.25;
 }
+
 .section-title-two {
   margin-bottom: 0em;
   color: #ffffff;
-  font-size: 3em;
+  font-size: 3rem;
   border-radius: 0.2em;
   text-decoration: underline;
   text-decoration-color: #1b72ff;
 }
+
 .section-title-three {
   margin-bottom: 0em;
   color: #ffffff;
-  font-size: 3em;
+  font-size: 3rem;
   border-radius: 0.2em;
   text-decoration: underline;
   text-decoration-color: #43ff95;
@@ -685,7 +766,8 @@ textarea {
 
 .width-container {
   background: rgba(22, 22, 22, .9);
-  width: 80rem;
+  width: 100%;
+  /* was 80em, but 100% looks more polished */
 }
 
 .center-content-within {
@@ -825,6 +907,61 @@ textarea {
   color: #fff;
 }
 
+
+/* basic css tooltip */
+.tooltipTwo {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltipTwo:before {
+  content: "";
+  visibility: hidden;
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  top: -1rem;
+  left: 4.5rem;
+  /* 1px buffer for zooming problems while rendering*/
+  border-width: 0.66em;
+  border-color: transparent #42b883 transparent transparent;
+  border-style: solid;
+  transform: rotate(270deg);
+}
+
+.tooltipTwo .tooltiptextTwo {
+  text-align: left;
+  visibility: hidden;
+  width: 200px;
+  background-color: #42b883;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.5em;
+  font-size: 0.6em;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -7em;
+
+}
+
+.tooltipTwo:hover:before {
+  visibility: visible;
+}
+
+.tooltipTwo:hover .tooltiptextTwo {
+  visibility: visible;
+}
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 70rem) {
 
   .each-section {
@@ -846,6 +983,10 @@ textarea {
 
   .language-arrow-text {
     display: none;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
   }
 
 }

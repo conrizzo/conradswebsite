@@ -25,7 +25,7 @@ html {
 }
 
 /* CSS property. This property is specific to WebKit browsers, like Safari and Chrome on iOS and Android.
-   This will make the tap highlight transparent, effectively hiding it. 
+  This will make the tap highlight transparent, effectively hiding it. 
 a,
 .router-link-active {
   -webkit-tap-highlight-color: transparent;
@@ -36,7 +36,7 @@ a,
 }
 */
 
-.no-bullet{
+.no-bullet {
   list-style-type: none;
 }
 
