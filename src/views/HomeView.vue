@@ -67,8 +67,7 @@ export default {
     return {
       itemsLength: 0,
       birdDrawing: require("@/images/BlueSkyBird.jpg"),
-      aCoffee: require("@/images/cup_of_coffee.jpg"),
-      
+      aCoffee: require("@/images/cup_of_coffee.jpg"),      
 
       inputString: "_ Hello,",
       name: "",
@@ -84,9 +83,7 @@ export default {
         "This code won't work!",
         "Fixed.",
         ":)"
-      ],
-
-     
+      ],     
       
     };
   },
@@ -95,7 +92,7 @@ export default {
     projectLinks() {
       return this.links; // Assuming `links` is the array of project links
     },
-
+    
   },
   methods: {
 

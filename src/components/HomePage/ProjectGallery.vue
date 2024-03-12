@@ -202,7 +202,7 @@ figcaption {
   margin: 0em;
   max-width: 23rem;
   background: rgba(0, 0, 0, 0);
-  font-size: .9rem;
+  font-size: 1rem;
   font-weight: bold;
   color: rgb(255, 255, 255);
 }

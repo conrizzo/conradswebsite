@@ -16,7 +16,7 @@ export default [
   { id: 3, text: 'Weather', to: '/projects/weather',caption:"Weather in Tuebingen, Germany", imageSrc: "" },
   { id: 4, text: 'Coffee Data', to: '/projects/datasets',caption:"Some miscellaneous data about coffee consumption", imageSrc: "" },
   { id: 5, text: 'Game', to: '/projects/cowgame',caption:"A game made using Vue.js and TypeScript", imageSrc: "" },
-  { id: 6, text: 'Sorting Algorithms', to: '/projects/sortingalgorithms',caption:"Made this to test some sorting algorithm outputs", imageSrc: "" },
+  { id: 6, text: 'Sorting Algorithms', to: '/projects/sortingalgorithms',caption:"Made for fun to test some sorting algorithm outputs", imageSrc: "" },
   { id: 7, text: 'Skat Game', to: '/projects/cards',caption:"An attempt to build a card game, got lost figuring out the rules so it's still a prototype...", imageSrc: "" },
   { id: 8, text: 'Fetch Data', to: '/projects/fetchdata',caption:"A simple experimental page that fetches api data and formats it", imageSrc: "" },
   { id: 9, text: 'Search Wordle Words', to: '/projects/search-assistant-to-help-find-words-for-the-wordle-game',caption:"Search Wordle words with TypeScript", imageSrc: "" },

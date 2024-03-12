@@ -159,8 +159,10 @@ h1 {
   line-height: 1.5;
 }
 
-
-
+.center-with-flex {
+  display: flex;
+  justify-content: center;
+}
 
 .top-most-paragraph-space {
   padding-top: 1em;

@@ -9,6 +9,7 @@
       </div>
     </div>
 
+
     <main class="text-container">
       <div class="width-container">
         <div class="language-container">
@@ -54,7 +55,7 @@
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
-                This website does not use any cookies! Why does this matter? They track users, and <a class="text-links"
+                This website does not use any cookies. Why does this matter? They track users, and <a class="text-links"
                   href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
                   says</a> they are "taking a responsible approach to phasing out third-party cookies in Chrome"
               </li>
@@ -104,7 +105,7 @@
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
-                Diese Website verwendet keine Cookies! Warum ist das wichtig? Cookies verfolgen Benutzer, und <a
+                Diese Website verwendet keine Cookies. Warum ist das wichtig? Cookies verfolgen Benutzer, und <a
                   class="text-links"
                   href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
                   sagt</a>, dass sie gerade dabei sind "taking a responsible approach to phasing out third-party cookies
@@ -157,8 +158,8 @@
               learn how to build my own websites and web
               applications.
             </p>
-
-            <p>
+            <!-- This area sets the contact to scroll where 'form-container' below in the middle of the page-->
+            <p id="contact-form-section">
               I am now keen on enhancing my programming abilities and advancing as a developer.
               Every day I'm motivated and curious to learn more. Anything in frontend, backend, or fullstack web
               applications piques my interest.
@@ -205,7 +206,6 @@
                   </li>
                 </ul>
               </form>
-
               {{ errorMessage }}
               <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">Message sent successfully! Thank
                 you
@@ -352,6 +352,32 @@
                 :set-photo-caption="lightHouseCaptionDeutsch" />
             </div>
           </div>
+
+        </div>
+        <div class="center-with-flex">
+          <div style="overflow-x: hidden; width: 425px; padding-top: 1rem;">
+
+            <iframe title="Mobile Website Emulation Example" src="/about" width="425" height="600"
+              style="overflow:hidden;"></iframe>
+            <div class="center-with-flex"
+              style="color: #ffffff; padding-left: 0.5rem; padding-right: 0.5rem; padding-bottom: 0.5rem;">
+              <div>
+                <h2 style="font-size: 2rem; line-height: 1.1; padding-bottom: 1rem; padding-top: 1rem;">This whole
+                  website
+                  uses <i>Responsive Web Design</i></h2>
+                <p>Explore within this iframe, or use browser tools by <i>right-clicking</i> then selecting
+                  <i>'Inspect'</i>.
+                  The next steps will vary depending on your browser e.g. Chrome, Firefox, Safari, etc. The funny thing
+                  about this
+                  is by using an iframe to display this page with an iframe, it potentially makes an infinite loop
+                  of iframes, though the browser should limit this by default. If an iframe within an iframe within an
+                  iframe occurs this
+                  is not intended! I am not trying to <a href="https://www.youtube.com/watch?v=fQGbXmkSArs"
+                    class="text-links" target="_blank">'Hack time'</a>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -384,10 +410,10 @@ export default {
       languageButtonText: "Sprache: Deutsch",
       arrowText: "Deutsch",
 
-      titleText: "ConradsWebsite",
+      titleText: "Conrad's Website",
       contentText: "Thank you for visiting!<br>\
-      Welcome to the personal website of Conrad Lundberg.<br>\
-      This is primarily a place to test ideas and make some projects.",
+      Welcome to the personal and professional website of Conrad Lundberg.<br>\
+      ",
 
       clickCount: 0,
       firstClick: null,

@@ -3,11 +3,16 @@
 
     <div class="text-area-left footer-right-border">
       <span>
-        <router-link class="footer-links footer-right-border" to="/about">About</router-link>&nbsp;<a
-          class="footer-links footer-right-border"
-          href="https://github.com/conrizzo/conradswebsite">GitHub</a>&nbsp;<router-link class="footer-links"
-          to="/">ConradsWebsite.com</router-link> © {{ getCurrentYear }}
-        <br><a class="footer-links" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
+        <router-link class="footer-links footer-right-border" to="/about">About</router-link>
+        &nbsp;
+        <router-link class="footer-links footer-right-border"
+          :to="{ path: '/about', hash: '#contact-form-section' }">Contact</router-link>
+        &nbsp;
+        <a class="footer-links footer-right-border" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
+        <br>
+        <router-link class="footer-links" to="/">ConradsWebsite.com</router-link> © {{ getCurrentYear }}
+        <br>
+        <a class="footer-links" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
         unless noted otherwise.
       </span>
     </div>

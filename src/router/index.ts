@@ -232,11 +232,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalized, savedPosition) {
-    if (savedPosition) {
+  scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalized, savedPosition) {    
+    if (to.hash) {
+      return { 
+        el: to.hash // scroll to hash element in page
+      }
+    } else if (savedPosition) {
       return savedPosition;
     } else {
-      return { top: 0 };
+      return { top: 0}      
     }
   },
 });
