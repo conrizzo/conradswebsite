@@ -117,7 +117,7 @@ async function testCosine(sentenceOne, sentenceTwo) {
     isLoading.value = true;
 
     try {
-        const response = await fetch('https://conradswebsite.com/back_end/api/cosine', {
+        const response = await fetch('https://conradswebsite.com/backend/api/cosine', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ async function testCosine(sentenceOne, sentenceTwo) {
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
 
         cosineAnswer.value = data;
     } catch (error) {

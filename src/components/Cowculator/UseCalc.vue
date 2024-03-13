@@ -279,12 +279,12 @@ export default {
     },
     handleSelectionChange() {
       const cursorIndex = this.$refs.inputField.selectionStart;
-      console.log("Cursor index:", cursorIndex);
+      //console.log("Cursor index:", cursorIndex);
       return (cursorIndex);
     },
     getLastKey(event) {
       this.lastKey = event.key;
-      console.log(this.lastKey)
+      //console.log(this.lastKey)
     },
     // Method functions above this are new additions to the cowculator Dec. 2023
 

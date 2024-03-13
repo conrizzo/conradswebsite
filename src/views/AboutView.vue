@@ -176,7 +176,7 @@
             <div class="form-container">
 
               <div v-show="backEndQuery !== null" class="backend-message">
-                Python backend: {{ backEndQuery }}
+                ConradsWebsite says: "{{ backEndQuery }}"
               </div>
               <div class="flex-start">
                 <h2 class="section-title-three">Contact</h2>
@@ -211,12 +211,16 @@
                 you
                 for your message!</p>
             </div>
-            <span>(Note: All messages are sent securely via https to the backend server)</span>
+            <p>Note: All message data is validated, then sent securely via https.<br>                  
+                  The only data recorded are these 4 fields (Name, Email, Message, Timestamp)
+                  as a JSON object properties.<br>
+                  This is only a contact form, please do not send additional personal information.                
+            </p>
             <br>
             <br>
             <!--
             --- Additional Testing Area ---<br>
-            <a class="text-links" href="https://conradswebsite.com/back_end/api/download" download="test100.txt">Download
+            <a class="text-links" href="https://conradswebsite.com/backend/api/download" download="test100.txt">Download
               10mb 0's test txt file</a>
             <br>
             <a href="https://conradswebsite.com/test.html" target="_blank" rel="noopener noreferrer"
@@ -269,7 +273,7 @@
           <section v-show="languageButtonText === 'Language: English'" class="each-section form-section">
             <div class="form-container">
               <div v-show="backEndQuery !== null" class="backend-message">
-                Python backend: {{ backEndQuery }}
+                ConradsWebsite says: "{{ backEndQuery }}"
               </div>
               <div class="flex-start">
                 <h2 class="section-title-three">Kontakt</h2>
@@ -520,6 +524,7 @@ export default {
     document.title = "About Conrad's Website";
     Prism.highlightAll();
   },
+  // add a possibility to give an alternate error message if the backend is down
   methods: {
     updateViewport() {
       this.isMobile = window.innerWidth <= 800;
@@ -534,22 +539,23 @@ export default {
         }
         /* These rate limits match the ones in the backend - this prevents sending unnecessary requests to backend */
         if (this.clickCount < this.clickLimit) {
-          console.log("Access backend Python code!");
-          /* for server simplfied link is use 'back_end/api/data' */
-          /* const response = await fetch('/back_end/api/data'); */
-          /* const response = await fetch('https://conradswebsite.com/back_end/api/data'); */
+          //console.log("Access backend Python code!");
+          /* for server simplfied link is use 'backend/api/data' */
+          /* const response = await fetch('/backend/api/data'); */
+          /* const response = await fetch('https://conradswebsite.com/backend/api/data'); */
           /* must use actual web address for localhost or from another webserver 
-          const response = await fetch('https://conradswebsite.com/back_end/api/data');*/
-          const response = await fetch('https://conradswebsite.com/back_end/api/data');
+          const response = await fetch('https://conradswebsite.com/backend/api/data');*/
+          const response = await fetch('https://conradswebsite.com/backend/api/data');
           const data = await response.json();
-          console.log(data);
+          //console.log(data);
           this.backEndQuery = data.message;
           this.clickCount++;
         } else {
           this.backEndQuery = `Error: Too many requests. Limited to ${this.clickLimit} requests per ${this.time / 1000} seconds!`;
         }
       } catch (error) {
-        console.error('Error:', error);
+        //console.error('Error:', error);
+        this.backEndQuery = `Error: The backend is currently down (likely for updates). Please try again later.`;
       }
     },
     async leaveMessage() {
@@ -564,7 +570,7 @@ export default {
       const message = this.submitMessage;
 
       try {
-        const response = await fetch('https://conradswebsite.com/back_end/api/leave_message', {
+        const response = await fetch('https://conradswebsite.com/backend/api/leave_message', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -578,7 +584,7 @@ export default {
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
 
         // If the request was successful, show a "message received" notice
         if (data.message === 'Form submission successful') {

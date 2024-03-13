@@ -23,7 +23,7 @@
     },
     methods: {
       updateQuantityInCart(item) {
-        console.log('Updated quantity:', item.quantity);
+        //console.log('Updated quantity:', item.quantity);
         // You can add your logic here to update the cart or perform other actions
       },
       handleIncrementDecrement(event) {

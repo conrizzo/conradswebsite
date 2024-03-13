@@ -98,7 +98,7 @@ const intervalId = setInterval(() => {
         */
         // add spaces
         mainFunction = mainFunction.join(" ");
-        console.log(typeof mainFunction);
+        //console.log(typeof mainFunction);
         document.getElementById("randomizedArray").textContent = mainFunction;
       });
   }

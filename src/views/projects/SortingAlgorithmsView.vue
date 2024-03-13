@@ -332,7 +332,7 @@ export default {
       const fastQuickSort = this.$refs.fastQuickSort;
       // Invoke the function from the component FastQuickSort
       this.thousandArray = fastQuickSort.invoke([...array], 0, array.length - 1);
-      console.log(this.thousandArray)
+      //console.log(this.thousandArray)
       let endTime = performance.now();
       this.timeTaken = endTime - startTime;
       this.averageTimeTaken += this.timeTaken;

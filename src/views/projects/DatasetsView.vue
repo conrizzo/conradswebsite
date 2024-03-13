@@ -136,15 +136,15 @@ export default {
   },
   methods: {
     quickSort(columnName){
-      console.log(columnName);
+      //console.log(columnName);
       const columnA = [columnName];
-      console.log(columnA);
+      //console.log(columnA);
       let array = columnA;
       // set a reference to the component FastQuickSort
       const fastQuickSort = this.$refs.fastQuickSort;
       // Invoke the function from the component FastQuickSort
       this.quickSortedArray = fastQuickSort.invoke([...array], 0, array.length - 1);  
-      console.log(this.quickSortedArray)  
+      //console.log(this.quickSortedArray)  
     },
     // this sorts the data by a specific column
     sortData(columnName) {

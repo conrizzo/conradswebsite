@@ -245,7 +245,7 @@ export default {
   methods: {
     removeImage(index) {
 
-      console.log('------------', this.imagesOfCardsInhand[index].slice(0, -13).slice(5));
+      //console.log('------------', this.imagesOfCardsInhand[index].slice(0, -13).slice(5));
       // Removes element at the index of the array of images
       //this.imagesOfCardsInhand.splice(index, 1);
 
@@ -317,7 +317,7 @@ export default {
 
     },
     placeBid() {
-      console.log(this.player1.bid)
+      //console.log(this.player1.bid)
       if (this.bidsAllowed.includes(parseInt(this.player1.bid)) && (this.player1.bid > this.lastBid)) {
         // reveals more information for step 2 of the game
         this.validBid = true;
@@ -338,7 +338,7 @@ export default {
       return randomBoolean;
     },
     opponent(player) {
-      console.log(player)
+      //console.log(player)
 
       // player 2 is the computer
       // player 3 is the computer
@@ -347,7 +347,7 @@ export default {
 
       let highestBid = Math.max(this.player1.bid, this.player2.bid, this.player3.bid);
 
-      console.log("Random", randomBoolean)
+      //console.log("Random", randomBoolean)
       if (randomBoolean === true && this.player2.bid !== "Pass!") {
         this.player2.bid = this.bidsAllowed.find(bid => bid > highestBid);
       } else {
@@ -382,7 +382,7 @@ export default {
 
 
     displayInfo(p, c, v) {
-      console.log('Player Information: \n' + `Player: ${p}\nCards: ${c}\nValues: ${v}`);
+      //console.log('Player Information: \n' + `Player: ${p}\nCards: ${c}\nValues: ${v}`);
 
     },
 
