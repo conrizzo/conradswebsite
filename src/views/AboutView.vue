@@ -8,33 +8,33 @@
           :set-photo-caption="'Tübingen, Germany. Kohlmeise / Great Tit'" />
       </div>
     </div>
-
+    <div class="language-container">
+      <span class="language-arrow-text tooltip">{{ arrowText }}
+        <span class="tooltiptext">
+          CSS and Vue.js, not an image or drawn arrow!
+        </span>
+      </span>
+      <div style="transform: rotate(-55deg);">
+        <div class="arrow-container">
+          <div class="arrow">
+            <div class="curve"></div>
+            <div class="point"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tooltipTwo"><button @click="language();" class="language-button" role="button">{{
+          languageButtonText
+        }}</button>
+        <div class="tooltiptextTwo">
+          <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
+          Change the main text language between English and German with this button.
+        </div>
+      </div>
+    </div>
 
     <main class="text-container">
       <div class="width-container">
-        <div class="language-container">
-          <span class="language-arrow-text tooltip">{{ arrowText }}
-            <span class="tooltiptext">
-              CSS and Vue.js, not an image or drawn arrow!
-            </span>
-          </span>
-          <div style="transform: rotate(-55deg);">
-            <div class="arrow-container">
-              <div class="arrow">
-                <div class="curve"></div>
-                <div class="point"></div>
-              </div>
-            </div>
-          </div>
-          <div class="tooltipTwo"><button @click="language();" class="language-button" role="button">{{
-          languageButtonText
-        }}</button>
-            <div class="tooltiptextTwo">
-              <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
-              Change the main text language between English and German with this button.
-            </div>
-          </div>
-        </div>
+
 
         <div class="center-content-within">
           <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section">
@@ -141,7 +141,7 @@
           </section>
         </div>
 
-        <div class="center-content-within" style="flex-direction: column; padding-bottom: 3.5rem;">
+        <div class="center-content-within" style="flex-direction: column;">
           <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
 
             <div class="flex-start">
@@ -172,12 +172,14 @@
 
           </section>
 
-          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
+          <section v-show="languageButtonText === 'Sprache: Deutsch'"
+            class="each-section form-section last-section-bottom-padding">
             <div class="form-container">
 
               <div v-show="backEndQuery !== null" class="backend-message">
                 ConradsWebsite says: "{{ backEndQuery }}"
               </div>
+              <span class="error-color">{{ errorMessage }}</span>
               <div class="flex-start">
                 <h2 class="section-title-three">Contact</h2>
                 <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
@@ -206,18 +208,32 @@
                   </li>
                 </ul>
               </form>
-              {{ errorMessage }}
+
               <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">Message sent successfully! Thank
                 you
                 for your message!</p>
             </div>
-            <p>Note: All message data is validated, then sent securely via https.<br>                  
-                  The only data recorded are these 4 fields (Name, Email, Message, Timestamp)
-                  as a JSON object properties.<br>
-                  This is only a contact form, please do not send additional personal information.                
-            </p>
-            <br>
-            <br>
+            <ul style="margin-left: 2rem;">
+              <li>
+                All message data is validated, then sent securely via https
+              </li>
+              <li>
+                The only data recorded is: Name, Email, Message, and a Timestamp
+              </li>
+              <li>
+                Only used for contacting purposes, and will not be shared with any 3rd parties,
+                please do not share sensitive personal information
+              </li>
+              <li>
+                Data is only used as long as needed for contact purposes.
+                If a message was sent in error, please reference the message and contact for removal
+              </li>
+            </ul>
+            <label class="check-box-label" for="acceptCheckbox">
+              <span class="about-check-box-font">Agree Consent</span>
+              <input id="acceptCheckbox" class="check-box" type="checkbox" name="myCheckBox" v-model="checkBoxValue">
+            </label>
+
             <!--
             --- Additional Testing Area ---<br>
             <a class="text-links" href="https://conradswebsite.com/backend/api/download" download="test100.txt">Download
@@ -270,11 +286,13 @@
             </p>
           </section>
 
-          <section v-show="languageButtonText === 'Language: English'" class="each-section form-section">
+          <section v-show="languageButtonText === 'Language: English'"
+            class="each-section form-section last-section-bottom-padding">
             <div class="form-container">
               <div v-show="backEndQuery !== null" class="backend-message">
                 ConradsWebsite says: "{{ backEndQuery }}"
               </div>
+              <span class="error-color">{{ errorMessage }}</span>
               <div class="flex-start">
                 <h2 class="section-title-three">Kontakt</h2>
                 <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
@@ -306,10 +324,31 @@
                   </li>
                 </ul>
               </form>
-              {{ errorMessage }}
+
               <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">
                 Ihre Nachricht wurde erfolgreich übermittelt! Vielen Dank für Ihre Nachricht.</p>
             </div>
+            <ul style="margin-left: 2rem;">
+              <li>
+                All message data is validated, then sent securely via https
+              </li>
+              <li>
+                The only data recorded is: Name, Email, Message, and a Timestamp
+              </li>
+              <li>
+                Only used for contacting purposes, and will not be shared with any 3rd parties,
+                please do not share sensitive personal information
+              </li>
+              <li>
+                Data is only used as long as needed for contact purposes.
+                If a message was sent in error, please reference the message and contact for removal
+              </li>
+            </ul>
+            <label class="check-box-label" for="acceptCheckbox">
+              <span class="about-check-box-font">Agree Consent</span>
+              <input id="acceptCheckbox" class="check-box" type="checkbox" name="myCheckBox" v-model="checkBoxValue">
+            </label>
+
           </section>
         </div>
 
@@ -432,6 +471,7 @@ export default {
       submitMessageSuccess: false,
       canSubmit: true,
       errorMessage: "",
+      checkBoxValue: false,
 
       imageWidth: 20,  // Initial height
       isMobile: window.innerWidth <= 800, // initial check
@@ -526,6 +566,9 @@ export default {
   },
   // add a possibility to give an alternate error message if the backend is down
   methods: {
+    toggleCheckboxChange() {
+      this.checkBoxValue = !this.checkBoxValue;
+    },
     updateViewport() {
       this.isMobile = window.innerWidth <= 800;
     },
@@ -560,8 +603,13 @@ export default {
     },
     async leaveMessage() {
 
+      if (this.checkBoxValue === false) {
+        this.errorMessage = 'Error: Please click "Agree Consent" checkbox to send a message';
+        return;
+      }
+
       if (!this.canSubmit) {
-        this.errorMessage = 'Please wait, only 1 message per 30 seconds allowed!';
+        this.errorMessage = 'Error: Please wait, only 1 message per 30 seconds allowed!';
         return;
       }
 
@@ -704,7 +752,7 @@ p {
 }
 
 .form-section {
-  margin-top: 3.5rem;
+
   width: 100%;
 }
 
@@ -816,6 +864,7 @@ textarea {
   padding-right: 5rem;
   color: rgb(220, 220, 220);
   background: rgb(49, 51, 56);
+  margin-top: 3.5rem;
 }
 
 .about-me-list {
@@ -832,8 +881,8 @@ textarea {
 
 .language-arrow-text {
   font-size: 0.9em;
-  margin-top: -7em;
-  margin-left: -28rem;
+  margin-top: -6em;
+  margin-left: -31rem;
   z-index: 4;
   transform: rotate(35deg);
   border-bottom: none;
@@ -920,18 +969,27 @@ textarea {
 }
 
 .language-button {
-  font-size: 0.8em;
-  background: rgb(255, 255, 255);
-  border-radius: 0rem;
-  border: none;
-  color: #262626;
+  font-size: 1.25rem;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  border: 1px solid #fff;
+  color: #ffffff;
   padding: 1rem;
   z-index: 3;
   cursor: pointer;
+  width: 15rem;
+  height: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.06rem;
 }
 
 .language-button:hover {
-  background: rgb(0, 255, 204);
+  background: rgb(255, 255, 255);
+  color: #000;
 }
 
 .language-button:active {
@@ -953,7 +1011,7 @@ textarea {
   position: absolute;
   height: 0px;
   width: 0px;
-  top: -1rem;
+  top: -.5rem;
   left: 4.5rem;
   /* 1px buffer for zooming problems while rendering*/
   border-width: 0.66em;
@@ -974,7 +1032,7 @@ textarea {
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
-  top: -7em;
+  top: -5.5rem;
 
 }
 
@@ -986,10 +1044,37 @@ textarea {
   visibility: visible;
 }
 
+.check-box-label {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
 
+.check-box {
+  cursor: pointer;
+  margin-left: 0.25rem;
+  transform: scale(1.5);
+}
 
+input[type='checkbox'] {
+  accent-color: #42b983;
+}
 
+.about-check-box-font {
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-right: 0.2rem;
+}
 
+.error-color {
+  color: #ff5959;
+}
+
+.last-section-bottom-padding {
+  margin-bottom: 3.5rem;
+}
 
 
 

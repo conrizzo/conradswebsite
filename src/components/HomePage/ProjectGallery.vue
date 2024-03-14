@@ -208,14 +208,14 @@ figcaption {
 }
 
 .gallery-component-image {
-  border-radius: 1rem;
+  border-radius: .6rem;
 }
 
 /* Does image zoom effect - start */
 .img-wrapper {
   display: inline-block;
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: .6rem;
 }
 
 .img-wrapper img {
