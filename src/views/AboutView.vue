@@ -159,7 +159,7 @@
               applications.
             </p>
             <!-- This area sets the contact to scroll where 'form-container' below in the middle of the page-->
-            <p id="contact-form-section">
+            <p>
               I am now keen on enhancing my programming abilities and advancing as a developer.
               Every day I'm motivated and curious to learn more. Anything in frontend, backend, or fullstack web
               applications piques my interest.
@@ -169,7 +169,7 @@
               I look forward to new opportunities, am excited about learning more, and confident in my
               ability to do problem-solving through code and research.
             </p>
-
+            <span id="contact-form-section"></span>
           </section>
 
           <section v-show="languageButtonText === 'Sprache: Deutsch'"
@@ -229,9 +229,10 @@
                 If a message was sent in error, please reference the message and contact for removal
               </li>
             </ul>
-            <label class="check-box-label" for="acceptCheckbox">
-              <span class="about-check-box-font">Agree Consent</span>
-              <input id="acceptCheckbox" class="check-box" type="checkbox" name="myCheckBox" v-model="checkBoxValue">
+            <label class="check-box-label" for="acceptCheckBoxEnglish">
+              <span class="about-check-box-font">Agree to terms</span>
+              <input id="acceptCheckBoxEnglish" class="check-box" type="checkbox" name="myCheckBox"
+                v-model="checkBoxValue">
             </label>
 
             <!--
@@ -344,17 +345,18 @@
                 If a message was sent in error, please reference the message and contact for removal
               </li>
             </ul>
-            <label class="check-box-label" for="acceptCheckbox">
-              <span class="about-check-box-font">Agree Consent</span>
-              <input id="acceptCheckbox" class="check-box" type="checkbox" name="myCheckBox" v-model="checkBoxValue">
+            <label class="check-box-label" for="acceptCheckBoxDeutsch">
+              <span class="about-check-box-font">Agree to terms</span>
+              <input id="acceptCheckBoxDeutsch" class="check-box" type="checkbox" name="myCheckBox"
+                v-model="checkBoxValue">
             </label>
 
           </section>
         </div>
 
-        <div class="center-content-within">
+        <div class="center-content-within text-with-photos-max-width">
           <div>
-            <!-- first text image component -->
+            <!-- 1st text image component -->
             <div v-if="arrowText === 'Deutsch'">
               <two-columns-grid-content-template :titleText="objectiveTitle" :content-text="objectiveText" />
             </div>
@@ -362,15 +364,18 @@
               <two-columns-grid-content-template :titleText="objectiveTitleDeutsch"
                 :content-text="objectiveTextDeutsch" />
             </div>
-            <!-- second text image component -->
-            <div v-if="arrowText === 'Deutsch'">
-              <two-columns-reversed-grid class="top-component-adjustment" :titleText="approachTitle"
-                :content-text="approachText" :content-image="birdGenerated" />
+            <!-- 2nd text image component -->
+            <div class="center-with-flex">
+              <div v-if="arrowText === 'Deutsch'">
+                <two-columns-reversed-grid class="top-component-adjustment" :titleText="approachTitle"
+                  :content-text="approachText" :content-image="birdGenerated" />
+              </div>
+              <div v-else>
+                <two-columns-reversed-grid class="top-component-adjustment" :titleText="approachTitleDeutsch"
+                  :content-text="approachTextDeutsch" :content-image="birdGenerated" />
+              </div>
             </div>
-            <div v-else>
-              <two-columns-reversed-grid class="top-component-adjustment" :titleText="approachTitleDeutsch"
-                :content-text="approachTextDeutsch" :content-image="birdGenerated" />
-            </div>
+            <!-- 3rd text image component -->
             <div v-if="arrowText === 'Deutsch'">
               <two-columns-grid-content-template :titleText="updatesTitle" :content-text="updatesText"
                 :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
@@ -381,33 +386,36 @@
                 :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
                 :set-photo-caption="languagesCaptionTextDeutsch" />
             </div>
-            <div v-if="arrowText === 'Deutsch'">
-              <two-columns-reversed-grid style="max-height: 600px;" class="top-component-adjustment"
-                :titleText="optimizationTitle" :content-text="optimizationText" :content-image="lightHouseScore"
-                :set-photo-link="'https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1'"
-                :set-photo-caption="lightHouseCaption" />
-            </div>
-            <div v-else>
-              <two-columns-reversed-grid style="max-height: 600px;" class="top-component-adjustment"
-                :titleText="optimizationTitleDeutsch" :content-text="optimizationTextDeutsch"
-                :content-image="lightHouseScore"
-                :set-photo-link="'https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1'"
-                :set-photo-caption="lightHouseCaptionDeutsch" />
+            <!-- 4th text image component -->
+            <div class="center-with-flex">
+              <div v-if="arrowText === 'Deutsch'">
+                <two-columns-reversed-grid style="max-height: 600px;" class="top-component-adjustment"
+                  :titleText="optimizationTitle" :content-text="optimizationText" :content-image="lightHouseScore"
+                  :set-photo-link="'https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1'"
+                  :set-photo-caption="lightHouseCaption" />
+              </div>
+              <div v-else>
+                <two-columns-reversed-grid style="max-height: 600px;" class="top-component-adjustment"
+                  :titleText="optimizationTitleDeutsch" :content-text="optimizationTextDeutsch"
+                  :content-image="lightHouseScore"
+                  :set-photo-link="'https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1'"
+                  :set-photo-caption="lightHouseCaptionDeutsch" />
+              </div>
             </div>
           </div>
-
         </div>
+
         <div class="center-with-flex">
           <div style="overflow-x: hidden; width: 425px; padding-top: 1rem;">
-
+            <h3
+              style="color: rgba(255,255, 255, 1); font-size: 3rem; line-height: 1.1; padding-bottom: .5rem; padding-top: 1rem; text-align: center;">
+              Mobile iframe simulation</h3>
             <iframe title="Mobile Website Emulation Example" src="/about" width="425" height="600"
               style="overflow:hidden;"></iframe>
-            <div class="center-with-flex"
-              style="color: #ffffff; padding-left: 0.5rem; padding-right: 0.5rem; padding-bottom: 0.5rem;">
+            <div class="center-with-flex iFrameSection">
               <div>
-                <h2 style="font-size: 2rem; line-height: 1.1; padding-bottom: 1rem; padding-top: 1rem;">This whole
-                  website
-                  uses <i>Responsive Web Design</i></h2>
+                <h2 style="font-size: 2rem; line-height: 1.1; padding-bottom: .5rem; padding-top: 1rem;"><i>Responsive
+                    Web Design</i></h2>
                 <p>Explore within this iframe, or use browser tools by <i>right-clicking</i> then selecting
                   <i>'Inspect'</i>.
                   The next steps will vary depending on your browser e.g. Chrome, Firefox, Safari, etc. The funny thing
@@ -453,10 +461,10 @@ export default {
       languageButtonText: "Sprache: Deutsch",
       arrowText: "Deutsch",
 
-      titleText: "Conrad's Website",
-      contentText: "Thank you for visiting!<br>\
-      Welcome to the personal and professional website of Conrad Lundberg.<br>\
-      ",
+      titleText: "Conrad's Website <br> Thank you for visiting!",
+      contentText: "Welcome to the personal and professional website of Conrad.\
+      Everything here is always changing.\
+      Hopefully you'll find something interesting!",
 
       clickCount: 0,
       firstClick: null,
@@ -604,7 +612,7 @@ export default {
     async leaveMessage() {
 
       if (this.checkBoxValue === false) {
-        this.errorMessage = 'Error: Please click "Agree Consent" checkbox to send a message';
+        this.errorMessage = 'Error: Please click "Agree to terms" checkbox to send a message';
         return;
       }
 
@@ -732,7 +740,6 @@ export default {
   margin-bottom: 0em;
   color: #ffffff;
   font-size: 3rem;
-  border-radius: 0.2em;
   text-decoration: underline;
   text-decoration-color: #43ff95;
 }
@@ -776,10 +783,6 @@ p {
   color: rgb(220, 220, 220);
   margin-top: 1rem;
   text-decoration: underline;
-}
-
-.form-container {
-  margin-top: 1.5rem;
 }
 
 input:focus,
@@ -845,7 +848,7 @@ textarea {
 }
 
 .width-container {
-  background: rgba(22, 22, 22, .9);
+  background: rgba(22, 22, 22, .5);
   width: 100%;
   /* was 80em, but 100% looks more polished */
 }
@@ -978,7 +981,7 @@ textarea {
   z-index: 3;
   cursor: pointer;
   width: 15rem;
-  height: 5rem;
+  height: 4rem;
   font-weight: bold;
   text-transform: uppercase;
   transition: all 0.1s ease-in-out;
@@ -993,7 +996,7 @@ textarea {
 }
 
 .language-button:active {
-  background-color: rgba(0, 255, 204, 0.75);
+  border: 2px solid rgba(0, 255, 204, 0.75);
   color: #fff;
 }
 
@@ -1002,7 +1005,6 @@ textarea {
 .tooltipTwo {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black;
 }
 
 .tooltipTwo:before {
@@ -1076,7 +1078,15 @@ input[type='checkbox'] {
   margin-bottom: 3.5rem;
 }
 
+.iFrameSection {
+  color: #ffffff;
+  padding-bottom: 0.5rem;
+}
 
+.text-with-photos-max-width {
+  max-width: 90rem;
+  margin: 0 auto;
+}
 
 
 @media screen and (max-width: 70rem) {
@@ -1091,7 +1101,6 @@ input[type='checkbox'] {
 
   .top-component-adjustment {
     height: fit-content;
-
   }
 
   .arrow-container {
@@ -1104,6 +1113,11 @@ input[type='checkbox'] {
 
   .section-title {
     font-size: 2.5rem;
+  }
+
+  .iFrameSection {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
 }

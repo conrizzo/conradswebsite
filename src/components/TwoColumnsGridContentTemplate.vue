@@ -15,7 +15,7 @@
         </div>
 
         <div class="grid-item-text" :style="{ background: bgColor }">
-          <h2>{{ titleText }}</h2>
+          <h2 v-html="titleText"></h2>
           <p v-html="contentText">           
           </p>
         </div>

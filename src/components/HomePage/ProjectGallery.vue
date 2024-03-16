@@ -1,7 +1,7 @@
 <template>
   <div class="gallery-header">
     <h1 class="gallery-styling-h1-span">
-      <span> Project Links
+      <span> Projects
         <span class="title-arrow-symbol">↷</span></span>
     </h1>
   </div>
@@ -24,7 +24,7 @@
             <div class="img-wrapper">
               <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
             </div>
-            <h2>{{ item.text }}</h2>
+            <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
             <figcaption>
               <p>{{ item.caption }}</p>
             </figcaption>
@@ -34,7 +34,7 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 import ProjectLinks from '@/components/Navigation/ProjectLinks.ts';
 
@@ -70,6 +70,11 @@ export default {
     });
   },
   methods: {
+    gridColorAlternation(index) {
+      const oddIndices = [0, 2, 5, 7]; // 1, 3, 6, 8 in 1-based indexing
+      const modIndex = index % 8; // Repeat the pattern every 8 items
+      return oddIndices.includes(modIndex);
+    },
     handleIntersection(entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -96,7 +101,7 @@ export default {
 };
 </script>
 
-    
+
 <style scoped>
 .hidden {
   opacity: 0;
@@ -119,7 +124,8 @@ h2 {
   color: rgb(255, 255, 255);
   text-align: left;
   padding-left: 0.33em;
-  padding-top: 0.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
   font-size: 1.1rem;
   text-transform: uppercase;
   padding-bottom: 0rem;
@@ -129,7 +135,7 @@ h2 {
 .gallery-styling-h1-span {
   text-transform: uppercase;
   color: rgb(255, 255, 255);
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .title-arrow-symbol {
@@ -177,6 +183,8 @@ h2 {
   padding-top: 3rem;
 }
 
+
+
 .grid-item:nth-child(-n+4) {
   /* remove top padding from first row */
   padding-top: 0rem;
@@ -205,6 +213,16 @@ figcaption {
   font-size: 1rem;
   font-weight: bold;
   color: rgb(255, 255, 255);
+}
+
+.grid-title {
+  background-color: rgb(0, 149, 255);
+  border-radius: 6px;
+}
+
+.grid-title.odd {
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 93, 64);
 }
 
 .gallery-component-image {
@@ -237,10 +255,10 @@ img:hover {
 
 /* Does image zoom effect - end */
 
-.is-item-loaded-text-display{
-  color: #fff; 
+.is-item-loaded-text-display {
+  color: #fff;
   background-color: rgba(44, 49, 54, 0);
-  width: fit-content; 
+  width: fit-content;
   margin: 0 auto;
   padding-bottom: 0.75rem;
 }
