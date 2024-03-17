@@ -6,7 +6,7 @@
       style="display: flex; justify-content: center; position: relative;">
       <router-link class="text-links" style="color: #fff;" to="/about">Thank you for visiting!</router-link>
 
-      <svg @click="removeBanner" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+      <svg @click="removeBanner" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
         fill="none" style="position: absolute; right: 1rem; cursor: pointer;">
         <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12">
         </path>

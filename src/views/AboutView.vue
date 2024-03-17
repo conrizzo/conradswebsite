@@ -450,7 +450,7 @@ export default {
       titleText: "Thank you for visiting!<br>",
       contentText: "Welcome to the personal and professional website of Conrad.\
       Everything here is always changing.\
-      Maybe you'll find something interesting here!",
+      Maybe you'll find something interesting on your visit!",
 
       clickCount: 0,
       firstClick: null,

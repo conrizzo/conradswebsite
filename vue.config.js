@@ -24,9 +24,10 @@ const path = require('path');
   },
 */
 
+/* const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; */
+
 module.exports = {
-  
-  publicPath: '/',  
+  publicPath: '/',
 
   // fixes the hydration error message
   chainWebpack: config => {
@@ -36,10 +37,28 @@ module.exports = {
         args[0]['__VUE_PROD_HYDRATION_MISMATCH_DETAILS__'] = JSON.stringify(false);
         return args;
       });
-  }
+  },
 
+
+
+
+  // split webpacks into chunks to reduce load time and prevent duplicates
+  // According to the author of webpacks, the error is in tools like lightspeed saying duplicate,
+  // and there actually aren't duplicates? so this is a bit unclear
+  configureWebpack: {
+    /*
+    plugins: [
+      new BundleAnalyzerPlugin()
+    ],
+    */
+    // split webpacks into chunks to reduce load time and prevent duplicates
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
+  },
 }
-
 // vue.config.js
 
 

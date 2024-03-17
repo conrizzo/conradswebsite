@@ -134,7 +134,10 @@ h2 {
 .gallery-styling-h1-span {
   text-transform: uppercase;
   color: rgb(255, 255, 255);
+  background:rgb(40, 40, 40);
+  width: 100%;
   font-size: 2rem;
+  padding-left: 4rem;
 }
 
 .title-arrow-symbol {
@@ -147,8 +150,7 @@ h2 {
 }
 
 .gallery-header {
-  text-align: left;
-  margin-left: 3.5rem;
+  text-align: left; 
 }
 
 .centerAll {
