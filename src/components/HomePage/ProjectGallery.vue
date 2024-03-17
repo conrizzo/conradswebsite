@@ -123,10 +123,9 @@ h1 {
 h2 {
   color: rgb(255, 255, 255);
   text-align: left;
-  padding-left: 0.33em;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-  font-size: 1.1rem;
+  padding-left: 0.33em; padding-right: 0.33em;
+  padding-top: 0.2rem;  padding-bottom: 0.2rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   padding-bottom: 0rem;
   margin-bottom: 0rem;
@@ -215,14 +214,16 @@ figcaption {
   color: rgb(255, 255, 255);
 }
 
-.grid-title {
-  background-color: rgb(0, 149, 255);
+.grid-title { 
   border-radius: 6px;
+  width: fit-content;
+  border: 2px solid orange;
 }
+
 
 .grid-title.odd {
   color: rgb(255, 255, 255);
-  background-color: rgb(255, 93, 64);
+   border: 2px solid rgb(64, 163, 255);
 }
 
 .gallery-component-image {

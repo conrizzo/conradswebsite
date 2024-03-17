@@ -186,6 +186,19 @@ h1 {
   color: #303030;
 }
 
+.container-80-em {
+  max-width: 80em;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.white{
+  color: #ffffff;
+}
+.almost-black {
+  color: rgb(18,18,18);
+}
+
 
 /* CSS */
 .button-35 {
@@ -229,8 +242,11 @@ h1 {
   display: inline-block;
 }
 
-.no-underlines {
-  text-decoration: none;
+.no-decoration {
+  text-decoration: none !important;
+}
+.no-decoration:hover {
+  text-decoration: underline !important;
 }
 
 /* links styling WITH underline on hover */

@@ -17,7 +17,7 @@
         <h2>Bogosort</h2>
         <div class="text-container">
 
-          <p class="paragraph-text">What is <a class="bogo-link no-underlines" style="color: #fff;"
+          <p class="paragraph-text">What is <a class="bogo-link no-decoration" style="color: #fff;"
               href="https://en.wikipedia.org/wiki/Bogosort">Bogosort?</a></p><br>
 
           <p class="paragraph-text">This button below will Bogosort an array. There really is no limit on how bad a
@@ -157,7 +157,7 @@
         <div class="text-container">
           <h2>Quicksort</h2>
 
-          <p class="paragraph-text">What is <a class="bogo-link no-underlines"
+          <p class="paragraph-text">What is <a class="bogo-link no-decoration"
               style="color: #fff;" href="https://en.wikipedia.org/wiki/Bogosort">Quicksort?</a></p>
           <br>
           <p class="paragraph-text" style="padding-top: 1em;"> A professional recursive quicksort algorithm is much, much,

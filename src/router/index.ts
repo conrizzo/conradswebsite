@@ -10,6 +10,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const HomeView = () => import('../views/HomeView.vue');
 const AboutView = () => import('../views/AboutView.vue');
+const PrivacyView = () => import('../views/PrivacyView.vue');
 const AuthorizedView = () => import('../views/AuthorizedView.vue');
 
 const ProjectsView = () => import('../views/projects/ProjectsView.vue');
@@ -57,6 +58,16 @@ const routes = [
     meta: {
       title: 'About Page',
       description: 'About ConradsWebsite.com',
+    },
+  },
+
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component: PrivacyView,
+    meta: {
+      title: 'Privacy Policy',
+      description: 'Privacy Policy',
     },
   },
 
@@ -232,15 +243,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalized, savedPosition) {    
+  scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalized, savedPosition) {
     if (to.hash) {
-      return { 
+      return {
         el: to.hash // scroll to hash element in page
       }
     } else if (savedPosition) {
       return savedPosition;
     } else {
-      return { top: 0}      
+      return { top: 0 }
     }
   },
 });

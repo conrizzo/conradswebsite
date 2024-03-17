@@ -8,6 +8,9 @@
         <router-link class="footer-links footer-right-border"
           :to="{ path: '/about', hash: '#contact-form-section' }">Contact</router-link>
         &nbsp;
+        <router-link class="footer-links footer-right-border"
+          :to="{ path: '/privacy',}">Privacy</router-link>
+        &nbsp;
         <a class="footer-links footer-right-border" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
         <br>
         <router-link class="footer-links" to="/">ConradsWebsite.com</router-link> © {{ getCurrentYear }}

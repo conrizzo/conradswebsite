@@ -213,27 +213,13 @@
                 you
                 for your message!</p>
             </div>
-            <ul style="margin-left: 2rem;">
-              <li>
-                All message data is validated, then sent securely via https
-              </li>
-              <li>
-                The only data recorded is: Name, Email, Message, and a Timestamp
-              </li>
-              <li>
-                Only used for contacting purposes, and will not be shared with any 3rd parties,
-                please do not share sensitive personal information
-              </li>
-              <li>
-                Data is only used as long as needed for contact purposes.
-                If a message was sent in error, please reference the message and contact for removal
-              </li>
-            </ul>
+
             <label class="check-box-label" for="acceptCheckBoxEnglish">
               <span class="about-check-box-font">Agree to terms</span>
               <input id="acceptCheckBoxEnglish" class="check-box" type="checkbox" name="myCheckBox"
-                v-model="checkBoxValue">
+                v-model="checkBoxValue">              
             </label>
+            <router-link class="text-links no-decoration" :to="{ path: '/privacy' }">Privacy Policy</router-link>
 
             <!--
             --- Additional Testing Area ---<br>
@@ -461,10 +447,10 @@ export default {
       languageButtonText: "Sprache: Deutsch",
       arrowText: "Deutsch",
 
-      titleText: "Conrad's Website <br> Thank you for visiting!",
+      titleText: "Thank you for visiting!<br>",
       contentText: "Welcome to the personal and professional website of Conrad.\
       Everything here is always changing.\
-      Hopefully you'll find something interesting!",
+      Maybe you'll find something interesting here!",
 
       clickCount: 0,
       firstClick: null,
