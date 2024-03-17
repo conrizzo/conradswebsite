@@ -14,14 +14,14 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "core-js": "^3.8.3",
-    
     "pinia": "^2.1.7",
     "prismjs": "^1.29.0",
     "protobufjs": "^7.2.4",
-    "vue": "^3.3.4",
+    "vue": "^3.4.21",
     "vue-class-component": "^8.0.0-0",
     "vue-cookie": "^1.1.4",
     "vue-cookies": "^1.8.3",
+    "vue-lazyload": "^3.0.0",
     "vue-router": "^4.2.5",
     "word-wrap": "^1.2.3"
   },

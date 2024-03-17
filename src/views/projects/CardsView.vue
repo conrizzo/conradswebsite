@@ -380,11 +380,11 @@ export default {
 
     },
 
-    /*
+    
     displayInfo(p, c, v) {
-      //console.log('Player Information: \n' + `Player: ${p}\nCards: ${c}\nValues: ${v}`);
+      console.log('Player Information: \n' + `Player: ${p}\nCards: ${c}\nValues: ${v}`);
 
-    },*/
+    },
 
     stopBid() {
       this.biddingMessage = "You have decided to stop bidding!"

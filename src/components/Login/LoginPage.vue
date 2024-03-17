@@ -28,8 +28,8 @@
 </template>
   
 <script>
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/firebase/init.js'
+/* import { signInWithEmailAndPassword } from 'firebase/auth' 
+import { auth } from '@/firebase/init.js' */
 
 
 // focus directive to the email input

@@ -21,8 +21,10 @@
 </template>
 
 <script>
+
+/*
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { auth } from '@/firebase/init.js'
+import { auth } from '@/firebase/init.js' */
 
 // focus directive to the user input
 const focus = {

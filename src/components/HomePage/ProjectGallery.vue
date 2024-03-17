@@ -22,7 +22,10 @@
           :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
           <router-link class="no-router-link-decorations" :to="item.to">
             <div class="img-wrapper">
+              <!-- add in lazy loading to test this 
               <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
+              -->
+              <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
             </div>
             <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
             <figcaption>

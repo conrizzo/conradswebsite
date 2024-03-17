@@ -4,8 +4,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faSearch)
 
-
-
+// load items as user gets to them aka. lazy load
+import VueLazyload from 'vue-lazyload'
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
@@ -22,6 +22,7 @@ app.component('font-awesome-icon', FontAwesomeIcon) // font awesome
 
 app.use(pinia);
 app.use(router);
+app.use(VueLazyload);
 app.mount('#app');
 /* await router.isReady(); */
 
