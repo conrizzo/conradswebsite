@@ -23,8 +23,8 @@
           <router-link class="no-router-link-decorations" :to="item.to">
             <div class="img-wrapper">
               <!-- add in lazy loading to test this 
-              <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
-              -->
+                            <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
+                            -->
               <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
             </div>
             <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
@@ -126,8 +126,10 @@ h1 {
 h2 {
   color: rgb(255, 255, 255);
   text-align: left;
-  padding-left: 0.33em; padding-right: 0.33em;
-  padding-top: 0.2rem;  padding-bottom: 0.2rem;
+  padding-left: 0.33em;
+  padding-right: 0.33em;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
   font-size: 1.25rem;
   text-transform: uppercase;
   padding-bottom: 0rem;
@@ -137,7 +139,10 @@ h2 {
 .gallery-styling-h1-span {
   text-transform: uppercase;
   color: rgb(255, 255, 255);
+  background: rgb(40, 40, 40);
+  width: 100%;
   font-size: 2rem;
+  padding-left: 4rem;
 }
 
 .title-arrow-symbol {
@@ -151,7 +156,6 @@ h2 {
 
 .gallery-header {
   text-align: left;
-  margin-left: 3.5rem;
 }
 
 .centerAll {
@@ -217,7 +221,7 @@ figcaption {
   color: rgb(255, 255, 255);
 }
 
-.grid-title { 
+.grid-title {
   border-radius: 6px;
   width: fit-content;
   border: 2px solid orange;
@@ -226,7 +230,7 @@ figcaption {
 
 .grid-title.odd {
   color: rgb(255, 255, 255);
-   border: 2px solid rgb(64, 163, 255);
+  border: 2px solid rgb(64, 163, 255);
 }
 
 .gallery-component-image {
