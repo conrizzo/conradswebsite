@@ -33,6 +33,7 @@ const FetchDataView = () => import('../views/projects/FakeStore/MainPageView.vue
 const WordHelperView = () => import('../views/projects/WordHelper/WordHelperView.vue');
 const CountryMusicExperimentView = () => import('../views/projects/CountryMusicExperiment/CountryMusicExperimentView.vue');
 const NLPView = () => import('../views/projects/NLPView.vue');
+const JungleView = () => import('../views/projects/JungleView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 
@@ -112,7 +113,7 @@ const routes = [
         },
       },
       {
-        path: 'links',
+        path: 'interesting-links',
         name: 'LinksView',
         component: LinksView,
       },
@@ -206,6 +207,11 @@ const routes = [
         path: 'country_music_experiment',
         name: 'countrymusicexperiment',
         component: CountryMusicExperimentView,
+      },
+      {
+          path: 'jungle-page',
+          name: 'JungleView',
+          component: JungleView,
       },
     ],
   },

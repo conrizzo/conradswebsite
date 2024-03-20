@@ -154,6 +154,11 @@ p {
   text-wrap: pretty;
 }
 
+/* prevents links highlighting as user is clicking them */
+a:active {
+  user-select: none;
+}
+
 /* buttons and stuff */
 h1 {
   line-height: 1.5;

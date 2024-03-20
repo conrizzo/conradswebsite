@@ -1,14 +1,14 @@
 <template>
 
-    <body>
-        <div class="fill-page-to-footer">
-            <div class="background">
-                <h1>Interesting Links</h1>
-                <p class="paragraph-text">The goal here is to link interesting research papers, videos, webpages. This
-                    section is under development. Any links that
-                    I find particularly useful will go here soon...
-                </p>
 
+    <div class="fill-page-to-footer">
+        <div class="background">
+            <h1>Interesting Links</h1>
+            <p class="paragraph-text">The goal here is to link interesting research papers, videos, webpages. This
+                section is under development. Any links that
+                I find particularly useful will go here soon...
+            </p>
+            <div>
                 <table>
                     <thead>
                         <tr>
@@ -20,19 +20,23 @@
                     <tbody>
                         <tr v-for="(link, index) in links" :key="index">
                             <td>{{ link.date }}</td>
-                            <td><a class="text-links break-text" :href=link.url>{{ link.title }}</a><br><br>
-                                {{ link.description }} </td>
-
-                            <td><a class="text-links break-text" :href="link.videoUrl">{{ link.videoUrl }}</a></td>
+                            <td>
+                                <a class="text-links link-color" :href=link.url>{{ link.title }}</a><br><br>
+                                {{ link.description }}
+                            </td>
+                            <td>
+                                <a class="text-links link-color" :href="link.videoUrl">
+                                    {{ link.videoUrl }}</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-
             </div>
-
         </div>
 
-    </body>
+    </div>
+
+
 </template>
 
 <script>
@@ -40,7 +44,7 @@ import "@/assets/globalCSS.css";
 
 
 export default {
-    name: "NLP",
+    name: "interestingLinksView",
     components: {
 
     },
@@ -64,7 +68,11 @@ export default {
                     date: "November 1, 2018",
                     title: "Good article web security vulnerabilities using NPM",
                     url: "https://www.voitanos.io/blog/don-t-be-alarmed-by-vulnerabilities-after-running-npm-install/",
-
+                },
+                {
+                    date: "March 3rd, 2024",
+                    title: "Cool summary on machine learning models",
+                    url: "https://huyenchip.com/2024/03/14/ai-oss.html",
                 },
 
             ],
@@ -78,19 +86,18 @@ h1 {
     color: black;
 }
 
-body {
-    background-color: rgb(40, 40, 40);
+.link-color {
+    color: #66baff;
 }
+
 
 .background {
     background-color: rgb(80, 80, 80);
 }
 
 table {
-    border-collapse: collapse;
-    width: 95%;
+    -collapse: collapse;
     margin: 1em auto;
-
 }
 
 th,
@@ -98,6 +105,7 @@ td {
     text-align: left;
     padding: 0.5em;
     color: #fff;
+
 }
 
 th {

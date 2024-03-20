@@ -31,7 +31,7 @@ onMounted(() => {
 
     if (cursorBg) {
         document.addEventListener('mousemove', (e) => {
-            const maxX = window.innerWidth - 111;
+            const maxX = window.innerWidth - 113;
             const maxY = window.innerHeight - 100;
 
             const x = Math.min(e.clientX, maxX) - 100;

@@ -51,7 +51,7 @@
                 open-source and has been a continuous project
               </li>
               <li>
-                Now runs on a VPS (Virtual Private Server), the code is at
+                Now is a fullstack website and runs on a VPS (Virtual Private Server), the code is at
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
@@ -62,12 +62,16 @@
               <li>
                 <u>Back end</u> running <a class="text-links"
                   href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
-                and Python with <a class="text-links" href="https://gunicorn.org/">gunicorn</a>, accessed via reverse
+                and Python with <a class="text-links" href="https://gunicorn.org/">Gunicorn</a>, accessed via reverse
                 proxy
-                on <a class="text-links" href="https://www.nginx.com/resources/glossary/nginx/">nginx</a>. It also uses
+                on <a class="text-links" href="https://www.nginx.com/resources/glossary/nginx/">nginx</a>.
+                It also uses
                 <a class="text-links" href="https://en.wikipedia.org/wiki/HTTP/2">http/2</a> for faster
-                loading. Also now running <a class="text-links" href="https://redis.io/">Redis</a> for data
-                cache/storage.
+                loading. Runs <a class="text-links" href="https://redis.io/">Redis</a> for data
+                cache/storage. Redis runs in its own <a class="text-links"
+                  href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>
+                image container on a Docker network, Gunicorn and Flask run in a separate Docker python image container
+                on the same Docker network.
               </li>
               <li>
                 <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
@@ -101,7 +105,8 @@
                 gemacht. Es ist Open-Source und wird kontinuierlich weiterentwickelt.
               </li>
               <li>
-                Läuft jetzt auf einem VPS (Virtual Private Server). Der Code befindet sich auf
+                Jetzt ist eine Fullstack Website und Läuft auf einem VPS (Virtual Private Server). Der Code befindet
+                sich auf
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
               <li>
@@ -119,6 +124,10 @@
                   href="https://de.wikipedia.org/wiki/HTTP/2">HTTP/2</a> für schnelleres Laden.
                 Es läuft jetzt <a class="text-links" href="https://redis.io/">Redis</a> für Datencache/Speicherung
                 ausgeführt.
+                Backend läuft in <a class="text-links" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>.
+                Im selben Docker-Netzwerk läuft Redis in einem eigenen Docker-Image-Container.
+                Gunicorn und Flask hingegen befinden sich in einem separaten Docker-Python-Image-Container auf demselben
+                Netzwerk.
               </li>
               <li>
                 <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet
@@ -170,6 +179,10 @@
               ability to do problem-solving through code and research.
             </p>
             <span id="contact-form-section"></span>
+
+            <p>In addition to programming and making this website.
+              I drink coffee and like spicy food (especially Mexican food). Sometimes play guitar, chess.
+              Enjoy watching/listening to the birds.</p>
           </section>
 
           <section v-show="languageButtonText === 'Sprache: Deutsch'"
@@ -217,7 +230,7 @@
             <label class="check-box-label" for="acceptCheckBoxEnglish">
               <span class="about-check-box-font">Agree to terms</span>
               <input id="acceptCheckBoxEnglish" class="check-box" type="checkbox" name="myCheckBox"
-                v-model="checkBoxValue">              
+                v-model="checkBoxValue">
             </label>
             <router-link class="text-links no-decoration" :to="{ path: '/privacy' }">Privacy Policy</router-link>
 
@@ -450,7 +463,7 @@ export default {
       titleText: "Thank you for visiting!<br>",
       contentText: "Welcome to the personal and professional website of Conrad.\
       Everything here is always changing.\
-      Maybe you'll find something interesting here!",
+      Maybe you will find something interesting on your visit!",
 
       clickCount: 0,
       firstClick: null,
@@ -742,6 +755,11 @@ h2 {
 
 p {
   max-width: none;
+  padding-bottom: 1rem;
+}
+
+p:last-child {
+  padding-bottom: 0rem;
 }
 
 .form-section {
@@ -834,7 +852,7 @@ textarea {
 }
 
 .width-container {
-  background: rgba(22, 22, 22, .5);
+  background: rgba(22, 22, 22, .6);
   width: 100%;
   /* was 80em, but 100% looks more polished */
 }

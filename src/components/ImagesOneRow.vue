@@ -11,7 +11,7 @@
       <div class="image-gallery-grid-container">
         <div v-for="item in imageArrayChoice" :key="item.id" class="grid-item">
           
-              <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
+              <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.altText">
               <figcaption>{{ item.caption }}</figcaption>
           
         </div>

@@ -1,8 +1,8 @@
 /**
- * Sorts an array using the selection sort algorithm.
- * @param {Array} arr - The array to be sorted.
- * @returns {Array} - The sorted array.
- */
+* Sorts an array using the selection sort algorithm.
+* @param {Array} arr - The array to be sorted.
+* @returns {Array} - The sorted array.
+*/
 
 <template>
   <div class="background-color" style="padding-top: 3em;">
@@ -53,9 +53,11 @@
               </figcaption>
             </figure>
           </div>
-          <p class="paragraph-text">BogoSort is worse than even the worst sorting algorithm on the chart above. To emphasize, 
-            it's useless unless the goal is to heat up a room in the winter with a CPU. It's still a good educational tool to
-            understand why using the wrong sorting algorithm or a bad algorithm could yield catastropic results.            
+          <p class="paragraph-text">BogoSort is worse than even the worst sorting algorithm on the chart above. To
+            emphasize,
+            it's useless unless the goal is to heat up a room in the winter with a CPU. It's still a good educational
+            tool to
+            understand why using the wrong sorting algorithm or a bad algorithm could yield catastropic results.
           </p>
 
           <div style="display: inline-block;">
@@ -93,10 +95,11 @@
         <!-- https://vademon.github.io/steam2019emoticons/stickers-Winter2019.html png is from Steam 2019 winter collection -->
         <div style="justify-content: center; display: flex;">
           <figure>
-          <img
-            src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1195690/4e2f1695d6cad53e90dbd8b481db806b49f6a56f.png"
-            alt="Bogo Sort GIF">
-              <figcaption><a style="color: #fff;" class="text-links" href="https://vademon.github.io/steam2019emoticons/stickers-Winter2019.html">
+            <img
+              src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1195690/4e2f1695d6cad53e90dbd8b481db806b49f6a56f.png"
+              alt="Bogo Sort GIF">
+            <figcaption><a style="color: #fff;" class="text-links"
+                href="https://vademon.github.io/steam2019emoticons/stickers-Winter2019.html">
                 Bird Plop
               </a>
             </figcaption>
@@ -157,29 +160,31 @@
         <div class="text-container">
           <h2>Quicksort</h2>
 
-          <p class="paragraph-text">What is <a class="bogo-link no-decoration"
-              style="color: #fff;" href="https://en.wikipedia.org/wiki/Bogosort">Quicksort?</a></p>
+          <p class="paragraph-text">What is <a class="bogo-link no-decoration" style="color: #fff;"
+              href="https://en.wikipedia.org/wiki/Bogosort">Quicksort?</a></p>
           <br>
-          <p class="paragraph-text" style="padding-top: 1em;"> A professional recursive quicksort algorithm is much, much,
-            much better than BogoSort! On my computer 1000 random integers
-            between 1-100 only takes about 0.53ms to sort. What is interesting about this is with 1000 arrays each with a
-            size of 1000,
+          <p class="paragraph-text" style="padding-top: 1em;"> A professional recursive quicksort algorithm is much,
+            much,
+            much better than BogoSort! On my computer sorting 1000 random integers
+            between 1-100 only takes about 0.53ms to sort. What is interesting is
             on the first button click, and
             sometimes the first few it tends to take around 1.5ms on this computer for the sorting to complete,
-            but then the time on subsequent clicks drops down to around 0.419ms. This is likely due to browser caching and
-            the local computer operating system deciding how to allocate resources to the browser when new code is loaded
+            but then the time on subsequent clicks drops down to around 0.419ms. This is likely due to browser caching
+            and
+            the local computer operating system deciding how to allocate resources to the browser when new code is
+            loaded
             to
             run.
           </p>
           <p class="paragraph-text">
-            Running 1000 arrays
-            generating 1000 random integers between 1-100 it takes Quicksort about 0.419 ms on this computer. This
+            To sort 1000 random integers between 1-100 it takes Quicksort about 0.419 ms on this computer. This
             processing time will be faster or slower depending
             on the cpu speed, resources available, etc. What is also interesting is that the time it takes to sort these
             1000 random integers is slightly slower on the Firefox Browser than Chrome.
             For general use no one will ever notice, but Firefox with the same computer takes about 0.751ms to sort 1000
             arrays of 1000 random integers between 1-100 using Quicksort.
-            Resetting the variables after already running the sorting algorithm removes this initial lag time! The browser
+            Resetting the variables after already running the sorting algorithm removes this initial lag time! The
+            browser
             already knows what code to run so the first iterations immediately run fast.
           </p>
           <p class="paragraph-text">
@@ -194,6 +199,11 @@
             <b>A very good explanation of quickSort and other algorithms:</b> <a class="text-links" style="color: #fff;"
               href="https://www.cs.auckland.ac.nz/software/AlgAnim/qsort1a.html">https://www.cs.auckland.ac.nz/software/AlgAnim/qsort1a.html</a>
           </p>
+
+          <p class="paragraph-text">A further project would be to run sorting algorithms in parallel. JavaScript only allows a single thread,
+            but browsers have ways
+            to allow scripts to be run in the background and what is needed can be brought in/used as necessary on that single threaded stack.
+          </p>
         </div>
 
         <div style="display: inline-block;">
@@ -204,8 +214,8 @@
 
         <br><br><label style="padding-right: 1em; color: #fff;" for="number-input">Enter length of array to
           Quicksort!</label>
-        <input style="font-size: 1.25em; margin-bottom: 1em;" type="text" id="number-input" v-model="arrayInputQuickSort"
-          placeholder=""><br>
+        <input style="font-size: 1.25em; margin-bottom: 1em;" type="text" id="number-input"
+          v-model="arrayInputQuickSort" placeholder=""><br>
         <div v-show="quickSortArrayButtonClicked" class="table-container">
           <table style="color: #fff; text-align: left;">
             <thead>
@@ -222,7 +232,7 @@
                 <td style="padding-right: 1em; padding-bottom: 0.5em;">{{ item[1] }}</td>
                 <td style="vertical-align: top; padding-right: 1em;">{{ "Milliseconds: " + item[2].toFixed(3) }}</td>
                 <td style="vertical-align: top; padding-bottom: 0.5em;">{{
-                  (averageTimeTaken / quickSortArrays.length).toFixed(3) }}</td>
+              (averageTimeTaken / quickSortArrays.length).toFixed(3) }}</td>
               </tr>
             </tbody>
           </table>
@@ -235,7 +245,7 @@
 
   </div>
 </template>
-  
+
 <script>
 
 import "@/assets/globalCSS.css";
@@ -344,7 +354,7 @@ export default {
   }
 };
 </script>
-  
+
 <style scoped>
 h1 {
   font-size: 4em;
@@ -361,7 +371,7 @@ h2 {
 
 .main-title-sorting-algorithms {
   padding-bottom: 4em;
-  border-bottom: 1px solid #fff;  
+  border-bottom: 1px solid #fff;
 }
 
 p {
@@ -428,4 +438,5 @@ p {
     padding-top: 1em;
     color: #fff;
   }
-}</style>
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <!-- Turned off Firebase February 2024 -->
-  
-  
+
+
   <!-- conflict with "firebase": "^10.0.0", security-->
   <!-- tried downgrading to "firebase": "9.0.2" -->
   <CookieAccept />
@@ -13,9 +13,12 @@
           Enter authorized user page
         </router-link>
       </button>
+
     </div>
 
-    <span v-if="!isLoggedIn" class="not-logged-in">You are not logged in!</span>
+    <!-- If not logged in -->
+    <!-- <span v-if="!isLoggedIn" class="not-logged-in">You are not logged in!</span> -->
+
 
 
     <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isLoggedIn">
@@ -24,9 +27,10 @@
         <!-- listen for event -->
         <LoginPage @loggedIn="handleLogin" />
         <div style="justify-content: center; display: flex;">
-        <p class="login-information" style="padding: 1em;">No account yet?
-          <span class="login-sign-up" @click="showLogin = false">Sign up</span>
-        </p>
+          <span class="login-information" style="padding: 1em;">No account yet?
+            <br>
+            <a class="login-sign-up" @click="showLogin = false">Sign up</a>
+          </span>
         </div>
       </template>
       <!-- or register -->
@@ -34,11 +38,12 @@
         <!-- listen for event -->
         <SignUpPage @loggedIn="handleLogin" />
         <div style="justify-content: center; display: flex;">
-        <p class="login-information" style="padding: 1em;">Already registered? <span class="login-sign-up"
-            style="color:cursor: pointer;" @click="showLogin = true">Log in</span></p>
+          <span class="login-information" style="padding: 1em;">Already registered?
+            <br>
+            <a class="login-sign-up" style="cursor: pointer;" @click="showLogin = true">Log in</a></span>
         </div>
       </template>
-      
+
     </div>
     <!-- is logged in -->
     <div v-else>
@@ -53,31 +58,35 @@
 
     <div style="padding-top: 2em;">
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
-    <div class="error-message"> {{ errorMessage }} </div>
-    
-    
+        <div class="error-message"> {{ errorMessage }} </div>
 
-    <div class="input-container">
-      <div class="input-group">
-        <label for="Subject" class="label">Subject:</label>
-        <div class="input-flex">
-          <input id="Subject" class="input" type="text" placeholder="Subject" required v-model="name" name="submissionName"
-            :maxlength="messageLength" ref="subjectInput">
-          <span class="input-length"><span :style="textStyle">{{ inputLength }}</span></span>
+
+
+        <div class="input-container">
+          <div class="input-group">
+            <div style="text-align: left;">
+              <label for="Subject" class="label">Subject:</label>
+              <span :style="textStyle">({{ inputLength }})</span>
+            </div>
+            <div class="input-flex">
+
+              <input id="Subject" class="input" type="text" placeholder="Subject" required v-model="name"
+                name="submissionName" :maxlength="messageLength" ref="subjectInput">
+
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="input-group">
-      <label for="Message" class="label">Message:</label>
-      <textarea id="Message" class="textarea" type="text" placeholder="Message" required v-model="message" name="submissionMessage" cols="50"
-        rows="10"></textarea>
-    </div>
+        <div class="input-group">
+          <label for="Message" class="label">Message:</label>
+          <textarea id="Message" class="textarea" type="text" placeholder="Message" required v-model="message"
+            name="submissionMessage" cols="50" rows="10"></textarea>
+        </div>
 
-    <button @click="createUser" class="button-35">Add Entry</button>
-  </form>
+        <button @click="createUser" class="button-35">Add Entry</button>
+      </form>
 
       <!-- message area -->
-
+      <!--
       <div class="submission-container">
         <h3 style="color: rgb(0, 227, 227);">Messages will appear publicly here.</h3>
         <ul style="list-style: none;">
@@ -85,7 +94,7 @@
             <div>
               <span
                 style="font-weight: bold; font-size: 1em; color: #87ff7a; display: inline-block; padding: 0.25em 0 0.25em 0;">{{
-                  submission.userName }} <br><span style="color: #d8d8d8; font-size: 0.9em;">Subject:</span> <span
+        submission.userName }} <br><span style="color: #d8d8d8; font-size: 0.9em;">Subject:</span> <span
                   style='color:#ffffff;'>{{ submission.name }}</span> </span>
               <p style="padding-left: 0.5em; font-size: 0.8em; color: #ffffff; display: inline-block;"
                 v-if="submission.timestamp">{{ submission.timestamp.toDate().toLocaleString() }}</p>
@@ -96,11 +105,19 @@
           </li>
         </ul>
       </div>
+
+  -->
+      <div class="center-with-flex">
+        <p>This page was setup with <a href="https://firebase.google.com/">Firebase</a>. I currently have this disabled.
+          Everything worked for user logins + message posting. Deciding what kind of backend system I want to do with
+          users
+          and logins, why, what the goal is, etc.</p>
+      </div>
     </div>
 
   </div>
 </template>
-  
+
 <script>
 
 
@@ -140,20 +157,14 @@ export default {
   computed: {
     textStyle() {
       return {
-        color: this.name.length > 0 ? '#87ff7a' : '#ff6b6b'
+        color: this.name.length > 0 ? '#000' : 'red'
       }
     },
     inputLength() {
       return `${this.name.length}/${this.messageLength}`;
     },
   },
-  beforeUpdate() {
-    if (auth.currentUser) {
-      // set local 'displayName' to user's displayName
-      this.displayName = auth.currentUser.displayName;
-      this.userName = this.displayName;
-    }
-  },
+
   watch: {
     name(newName) {
       if (newName.length >= this.messageLength) {
@@ -186,9 +197,8 @@ export default {
           this.errorMessage = "Please enter a message!"
           throw new Error("Please enter a message!")
         }
-        //if (auth.currentUser) {
-        // set local 'displayName' to user's displayName          
-        this.displayName = auth.currentUser
+
+        // this.displayName = auth.currentUser
         if (this.isLoggedIn) {
           this.sendMessage();
         }
@@ -286,7 +296,7 @@ export default {
   */
 }
 </script>
-  
+
 <style scoped>
 h1 {
   color: rgb(18, 18, 18);
@@ -297,6 +307,8 @@ h1 {
 h2 {
   line-height: 1.4em;
 }
+
+
 
 p.login-information {
   color: rgb(18, 18, 18);
@@ -324,6 +336,7 @@ p.login-information {
 .button-35:hover {
   box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;
 }
+
 .error-message {
   color: #ff4a4a;
 }
@@ -335,6 +348,7 @@ p.login-information {
 .not-logged-in {
   color: rgb(255, 89, 89);
 }
+
 .input-container {
   max-width: 40em;
 }
@@ -343,23 +357,28 @@ p.login-information {
   display: flex;
   flex-direction: column;
 }
+
 .label {
   color: #202020;
   align-self: flex-start;
-  font-weight: 600; 
+  font-weight: 600;
   padding: 0.25rem;
 }
+
 .input-flex {
   display: flex;
 }
+
 .input {
-  width: 40em; 
+  width: 40em;
 }
+
 .input-length {
   color: #ff6b6b;
   margin-left: 0.5em;
   padding-top: 0.5em;
 }
+
 .textarea {
   width: 100%;
 }
@@ -369,7 +388,7 @@ p.login-information {
   display: flex;
   flex-direction: column;
   row-gap: 1em;
-  max-width: 43.85em;
+  max-width: 40em;
   margin: 1em auto;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
@@ -418,6 +437,7 @@ button {
 .login-sign-up {
   color: rgb(11, 87, 208);
   cursor: pointer;
+  font-size: 1.25rem;
 }
 
 .login-sign-up:hover {
@@ -448,4 +468,5 @@ textarea:focus {
 
 
 
-}</style>
+}
+</style>

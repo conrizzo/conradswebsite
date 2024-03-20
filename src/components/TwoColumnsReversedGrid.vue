@@ -5,11 +5,11 @@
       <div class="second-area-grid-container">
 
         <div class="grid-item-coffee" v-if="setPhotoLink===''">        
-            <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">    
+            <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">    
         </div>
         <div class="grid-item-coffee" v-else>
           <a :href="setPhotoLink">
-            <img :style="{ width: imgWidth + '%' }" class="coffee-image" :src="contentImage" alt="Image">            
+            <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">            
           </a>
           <caption class="photo-caption-style">{{ setPhotoCaption }}</caption>
         </div>
