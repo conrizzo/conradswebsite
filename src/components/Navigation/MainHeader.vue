@@ -88,8 +88,11 @@ export default {
 
     const checkScroll = () => {
       const currentScrollPosition = window.scrollY;
-
-      if (currentScrollPosition > lastScrollPosition) {
+      // keep header visibile at the top of the page
+      if (currentScrollPosition < 90) {
+        headerClass.value = 'header-visible';
+      }
+      else if (currentScrollPosition > lastScrollPosition) {
         // Scrolling down
         headerClass.value = 'header-hidden';
       } else if (currentScrollPosition < lastScrollPosition) {
@@ -144,7 +147,7 @@ export default {
 .header-hidden {
   /* visibility: hidden; */
   transform: translateY(-100%);
-  transition: transform 0.5s ease;
+  transition: transform 0.2s ease;
 }
 
 header {
@@ -184,7 +187,7 @@ nav a.router-link-exact-active:not(.active):hover {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.projects-menu:hover {}
+
 
 .header-h2 {
   font-size: 1em;

@@ -1,327 +1,280 @@
 <template>
-  <div id="body">
-    <section class="center-top-main-area-box">
-      <div class="website-text-boxes">
-        <h1 class="title">
-          <span class="top-string-slice-of-title">
-            <span>{{ inputStringShuffled }}</span>
-          </span>
-        </h1>
-        <div class="main-text-container">
-          <ul class="main-text-ul">
-            <li>
-              <span>Welcome to <a class="home-text-links list-links-text-decoration"
-                  href="https://github.com/conrizzo">Conrad's</a> Website</span>
-            </li>
-            <li>
-              <span><router-link class="home-text-links list-links-text-decoration" to="/about">About</router-link> this
-                website.</span>
-            </li>
-            <li>
-              <span>Crafted under
-                the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration"
-                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-                per day.
-                <br>
-              </span>
-            </li>
-          </ul>
-          <div class="center-image">
-            <img style="height: 9rem; padding-right: 1rem;" class="bird-image" :src="birdDrawing" alt="Bird Drawing">
-            <img style="height: 9rem;" :src="aCoffee" alt="Coffee image">
-          </div>
+    <!-- The plant image on this page is explicity copyrighted -->
+    <!-- Photo by Conrad Lundberg - the owner of this website -->
+    <div style="height: 100svh;" :class="['jungle-image', imageClass]">
+        <div class="title-container">
+            <div class="container-80-em white center-with-flex" style="padding-top: 5rem; margin-bottom: -8rem;">
+                <div>
+                    <h1>
+                        <span class="h1-span-one">
+                            <span v-for="(letter, index) in 'Welcome To'" :key="index" class="h1-fade-in-letters"
+                                :style="{ 'animation-delay': index * 0.05 + 's' }">{{ letter }}</span>
+                        </span>
+                        <br>
+                        <span class="h1-span-two">
+                            <span v-for="(letter, index) in 'Conrad\'s'" :key="index" class="h1-fade-in-letters"
+                                :style="{ 'animation-delay': index * 0.05 + 's' }">{{ letter }}</span>
+                        </span>
+                        <br>
+                        <span class="h1-span-three">
+                            <span v-for="(letter, index) in 'Website'" :key="index" class="h1-fade-in-letters"
+                                :style="{ 'animation-delay': index * 0.1 + 's' }">{{ letter }}</span>
+                        </span>
+                    </h1>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: center; height: 90svh;">
+                <transition>
+                    <div v-if="showMainContent" class="container-80-em white center-area-padding"
+                        style="background: rgba(0,0,0,.5);">
+                        <div>
+                            <div class="center-with-flex attention-notice-container">
+                                <!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32"
+                                    fill="white">
+                                    <path
+                                        d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+                                </svg>
+                                <span class="attention-message">
+                                    Attention: this website is continually being updated!</span>
+                            </div>
+
+                            <ul style="margin-left: 2rem; text-align: center;">
+                                <li>
+                                    <router-link class="text-links link-customization" to="/my-projects">My
+                                        Projects</router-link>
+                                </li>
+                                <li>
+                                    <router-link class="text-links link-customization" to="/about">About</router-link>
+                                </li>
+                                <li>
+                                    <a class="text-links link-customization exit-link"
+                                        href="https://en.wikipedia.org/wiki/Exit_sign">
+                                        <span style="margin-right: 10px;">Exit</span>
+                                        <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" id="Layer_1"
+                                            data-name="Layer 1" viewBox="0 0 24 24" width="32" height="32">
+                                            <path
+                                                d="m24,12.5c0,.828-.671,1.5-1.5,1.5h-1.5c-1.221,0-2.37-.649-2.999-1.695l-.552-.917-1.332,3.247,2.614,1.486c1.091.62,1.769,1.786,1.769,3.042v3.337c0,.828-.671,1.5-1.5,1.5s-1.5-.672-1.5-1.5v-3.337c0-.18-.097-.346-.252-.435l-4.081-2.322c-1.498-.947-2.073-2.749-1.428-4.322l1.265-3.084h-1.268c-.19,0-.362.105-.447.276l-1.447,2.895c-.371.741-1.271,1.041-2.013.671-.741-.371-1.041-1.271-.671-2.013l1.447-2.895c.597-1.193,1.796-1.935,3.13-1.935h3.993c1.221,0,2.37.649,3,1.695l1.843,3.062c.091.151,.251.242,.428.242h1.5c.829,0,1.5.672,1.5,1.5Zm-12.442,4.351c-.771-.309-1.642.066-1.95.835-.077.191-.259.314-.464.314h-4.143c-.552,0-1-.448-1-1s.448-1,1-1h.826c.111-1.253,.174-2.595,.174-4C6,5.373,4.657,0,3,0S0,5.373,0,12s1.343,12,3,12c.76,0,1.453-1.134,1.981-3h4.162c1.439,0,2.715-.863,3.25-2.199.308-.77-.066-1.643-.835-1.95Zm6.442-11.851c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5-2.5,1.119-2.5,2.5,1.119,2.5,2.5,2.5Z" />
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <p style="margin-bottom: -2rem; ">
+                                Background photo by Conrad Lundberg. © 2023<br>
+                                Plants at <a class="text-links link-customization"
+                                    href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
+                                    botanical garden</a><br>
+                                <span style="font-size: 12px;">Attention Icon by <a
+                                        class="text-links font-override-white-color"
+                                        href="https://fontawesome.com/license/free">Font Awesome</a>, Exit Icon by
+                                    <a class="text-links font-override-white-color"
+                                        href="https://www.flaticon.com/uicons">Flaticon</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </transition>
+            </div>
         </div>
-      </div>
-    </section>
-    <div class="custom-background-home-page">
-      <div class="center-bottom-main-area-box">
-        <section class="top-home-content-section">
-          <div class='under-title-caption'>
-          </div>
-          <ProjectGallery />
-        </section>
-      </div>
     </div>
-    <imagesOneRow />    
-  </div>
 </template>
 
-<script>
-import Prism from "prismjs";
-import "@/assets/globalCSS.css";
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
 
-import init, { main } from "@/rust_web_assembly/hello_wasm.js";
+const data = ref(null);
 
-import imagesOneRow from "@/components/ImagesOneRow.vue";
+//const jungleImage = ref(require('@/images/jungle/2880-1620.jpg'));
+const imageClass = ref('jungle-image-blur');
+const showMainContent = ref(false);
 
-import ProjectGallery from "@/components/HomePage/ProjectGallery.vue";
+onMounted(() => {
+    setTimeout(() => {
+        imageClass.value = 'jungle-image-clear';
+    }, 500); // start transition 100ms after component is mounted
+    setTimeout(() => {
+        showMainContent.value = true;
+    }, 500); // start transition 100ms after component is mounted
+});
 
-
-export default {
-  name: "HomeView",
-  components: {
-    imagesOneRow, ProjectGallery,
-  },
-
-  data() {
-    return {
-      itemsLength: 0,
-      birdDrawing: require("@/images/BlueSkyBird.jpg"),
-      aCoffee: require("@/images/cup_of_coffee.jpg"),      
-
-      inputString: "_ Hello,",
-      name: "",
-      inputStringShuffled: "",
-
-      // image hover over project links
-      isHovered: false,
-      hoveredImage: "",
-
-      messages: [
-        "I'm having a bad day :(",
-        "Why is that?",
-        "This code won't work!",
-        "Fixed.",
-        ":)"
-      ],     
-      
-    };
-  },
-  computed: {
-
-    projectLinks() {
-      return this.links; // Assuming `links` is the array of project links
-    },
-    
-  },
-  methods: {
-
-    capitalizeFirstLetter(string) {
-      let capitalizedTitle = string.split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-      return capitalizedTitle
-    },
-
-    hideImage() {
-      this.isHovered = false;
-      this.hoveredImage = "";
-    },
-
-    runRustArrayRandomizer() {
-      init().then(() => {
-        const arr = this.name.split(" ");
-        let mainFunction = main(arr);
-        mainFunction = mainFunction.join(" ");
-        this.inputStringShuffled = mainFunction;
-      });
-    },
-
-    addLettersIntoInput() {
-      let i = 0;
-      const intervalId = setInterval(() => {
-        if (i < this.inputString.length) {
-          this.name += this.inputString[i];
-          this.runRustArrayRandomizer();
-          i++;
-        }
-        else {
-          clearInterval(intervalId);
-          setTimeout(() => {
-            this.inputStringShuffled = "Hello,";
-          }, 1000);
-        }
-      }, 200);
-    },
-  },
-
-  mounted() {
-    Prism.highlightAll();
-    this.addLettersIntoInput();
-  },
-};
 </script>
 
-
 <style scoped>
-/* CSS for the home page */
-#body {
-  background-size: 100% 100%;
-  background-attachment: fixed;
+/* transition div in */
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 1s ease;
 }
 
-.title {
-  text-align: left;
-  position: relative;
-  line-height: 1;
-  height: 2em;
-  padding: 1em 0.25em 3em 2rem;
-  color: rgb(255, 255, 255);
-  font-size: 2em;
-  z-index: 1;
-  background: linear-gradient(to right, orange, red, pink);
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }
 
-.capText {
-  text-transform: capitalize;
+.title-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, .5) 1%,
+            transparent 1%,
+            transparent 90%, rgba(0, 0, 0, .5) 90%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.5) .5%,
+            transparent .5%,
+            transparent 99.5%, rgba(0, 0, 0, 0.5) 99.5%);
+    filter: blur(3px);
 }
 
-.top-string-slice-of-title {
-  font-size: 2em;
+.title-padding {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 3rem;
 }
 
-/* end arrow css */
+/* raise all the items in the blur effect children */
+.jungle-image>* {
+    position: relative;
+    z-index: 1;
+}
 
-.custom-background-home-page {
-  background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, 0.1);
-  background-blend-mode: multiply;
-  background-size: 100% 100%;
-  background-attachment: fixed;
-  position: relative;
+.jungle-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.jungle-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('@/images/jungle/2880-1620.jpg') center;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: blur(5px);
+    transition: filter 1s ease-in-out;
+}
+
+.font-override-white-color {
+    color: white !important;
+}
+
+.jungle-image-clear {
+    filter: blur(0);
+}
+
+.jungle-image-clear::before {
+    filter: blur(0);
+}
+
+.text-bottom-half-change {
+    background: linear-gradient(180deg, rgb(225, 225, 225) 70%, rgba(255, 255, 255, 0.1) 90%, rgba(255, 255, 255, 0) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+ul {
+    font-size: 2rem;
+    list-style-type: none;
+}
+
+
+li:last-child {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    line-height: 0.9;
+    text-align: left;
+    padding-bottom: 1rem;
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    text-align: left;
+}
+
+.link-customization {
+    color: #fff;
+}
+
+.link-customization:hover {
+
   
+
 }
 
-
-.center-top-main-area-box {
-  display: flex;
-  justify-content: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, 0.1);
-  background-blend-mode: multiply;
-  background-size: 100% 100%;
-  background-attachment: fixed;
-  position: relative;
+.attention-notice-container {
+    color: rgb(42, 42, 42);
+    background: rgba(255, 165, 69, 0.8);
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
 }
 
-
-/*
-.center-top-main-area-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /*background-image: linear-gradient(5deg, rgba(0, 0, 0, .1) 20%, transparent 20%,
-      transparent 80%, rgba(0, 0, 0, .1) 80%), linear-gradient(100deg, rgba(0, 0, 0, .1) 10%,
-      transparent 10%, transparent 90%, rgba(0, 0, 0, .1) 90%);
-      filter: blur(3px);*/
-      /*
-      background-image: linear-gradient(5deg, rgba(0, 0, 0, .1) 20%, transparent 20%,
-      transparent 80%, rgba(0, 0, 0, .1) 80%), linear-gradient(70deg, rgba(0, 0, 0, .1) 10%,
-      transparent 5%, transparent 90%, rgba(0, 0, 0, .1) 90%);
-      filter: blur(3px);
-}
-*/
-.center-bottom-main-area-box {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 4rem;
+.attention-message {
+    padding-left: .5rem;
+    padding-top: 0.2rem;
+    font-size: 1.1rem;
 }
 
-.center-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  background: rgb(18, 18, 18);
+.center-area-padding {
+    padding: 2rem;
 }
 
-.home-text-links {
-  color: rgb(255, 255, 255);
-  font-weight: 500;
-  border-bottom: 3px solid rgb(0, 171, 137);
-  text-decoration: none;
+.h1-span-one {
+    font-size: 3rem;
 }
 
-.home-text-links:is(:hover, :focus) {
-  background: rgb(0, 255, 204);
-  color: rgb(18, 18, 18);
-  border-bottom: none;
+.h1-span-two {
+    font-size: 5rem;
+    letter-spacing: -3px;
+    color: rgb(225, 225, 225);
 }
 
-.home-text-links:active {
-  color: rgb(255, 89, 89);
+.h1-span-three {
+    font-size: 7rem;
+    letter-spacing: 3px;
+    padding: 5px;
 }
 
-.list-links-text-decoration {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+.h1-fade-in-letters {
+    opacity: 0;
+    animation: fadeIn .5s forwards;
 }
 
-.main-text-container {
-  display: flex;
-  justify-content: left;
-  /*max-width: 40rem; */
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0rem;
-  color: #ffffff;
-  font-size: 1.6em;
-  text-align: left;
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
 
-.main-text-ul {
-  color: rgb(255, 255, 255);
-  padding: 0.5rem;
-  padding-bottom: 2rem;
-  padding-left: 3rem;
-  padding-top: 2.5rem;
-}
-
-.first-aside-home-page {
-  background: rgb(18, 18, 18);
-  z-index: 1;
-  padding: 1em;
-}
-
-.top-home-content-section {
-  z-index: 4;
-  padding-top: 2rem;
-  max-width: 80rem;
-}
-
-.website-text-boxes {
-  z-index: 4;
-  width: 80rem;
-  background: rgb(40, 40, 40);
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-}
-
-@media only screen and (max-width: 100rem) {
-  .center-bottom-main-area-box {
+.exit-link {
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: 10rem;
-  }
-
-  .center-bottom-main-area-box {
-    padding-bottom: 2rem;
-  }
-}
-
-@media only screen and (max-width: 60rem) {
-  .main-text-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
+    width: fit-content;
+    margin: 0 auto;
 }
 
 @media only screen and (max-width: 50rem) {
-  .center-bottom-main-area-box {
-    margin-top: 0em;
-    padding-left: 0rem;
-    padding-right: 0rem;
-  }
+    .h1-span-one {
+        font-size: 2rem;
+    }
 
-  .top-home-content-section {
-    z-index: 4;
-  }
-}</style>
+    .h1-span-two {
+        font-size: 4rem;
+    }
 
+    .h1-span-three {
+        font-size: 6rem;
+    }
+}
+</style>

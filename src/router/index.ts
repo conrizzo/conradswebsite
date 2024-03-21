@@ -9,6 +9,8 @@ import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const HomeView = () => import('../views/HomeView.vue');
+const MainView = () => import('../views/MainView.vue');
+
 const AboutView = () => import('../views/AboutView.vue');
 const PrivacyView = () => import('../views/PrivacyView.vue');
 const AuthorizedView = () => import('../views/AuthorizedView.vue');
@@ -33,7 +35,7 @@ const FetchDataView = () => import('../views/projects/FakeStore/MainPageView.vue
 const WordHelperView = () => import('../views/projects/WordHelper/WordHelperView.vue');
 const CountryMusicExperimentView = () => import('../views/projects/CountryMusicExperiment/CountryMusicExperimentView.vue');
 const NLPView = () => import('../views/projects/NLPView.vue');
-const JungleView = () => import('../views/projects/JungleView.vue');
+//const JungleView = () => import('../views/projects/JungleView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
 
@@ -44,11 +46,21 @@ const routes = [
 
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: HomeView,
     meta: {
       title: 'ConradsWebsite.com',
       description: 'Home page of ConradsWebsite.com'
+    },
+  },
+
+  {
+    path: '/my-projects',
+    name: 'MainView',
+    component: MainView,
+    meta: {
+      title: 'ConradsWebsite.com',
+      description: 'Main page of ConradsWebsite.com for Projects'
     },
   },
 
@@ -208,11 +220,13 @@ const routes = [
         name: 'countrymusicexperiment',
         component: CountryMusicExperimentView,
       },
+      /*
       {
           path: 'jungle-page',
           name: 'JungleView',
           component: JungleView,
       },
+      */
     ],
   },
 
