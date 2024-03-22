@@ -90,7 +90,7 @@ export default {
       const currentScrollPosition = window.scrollY;
       // keep header visibile at the top of the page
       if (currentScrollPosition < 90) {
-        headerClass.value = 'header-visible';
+        headerClass.value = 'header-hidden-instant';
       }
       else if (currentScrollPosition > lastScrollPosition) {
         // Scrolling down
@@ -147,7 +147,12 @@ export default {
 .header-hidden {
   /* visibility: hidden; */
   transform: translateY(-100%);
-  transition: transform 0.2s ease;
+  transition: transform 0.4s ease;
+}
+
+/* Instant change class at the top 90-100px or so to prevent empty background from being seen underneath header */
+.header-hidden-instant {
+  transition: none;
 }
 
 header {

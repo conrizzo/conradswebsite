@@ -1,5 +1,4 @@
-
-<template >
+<template>
     <div class="background-color">
         <main class="main-container">
             <div class="inner-flexbox-column">
@@ -18,18 +17,29 @@
 
                 </div>
                 <div class="form-container">
-                    <p>AI tools, including the likes of:</p>
+
                     <ul style="padding-left: 2rem;">
                         <li><a class="text-links" href="https://gemini.google.com/app">Gemini</a></li>
                         <li><a class="text-links" href="https://chat.openai.com/">OpenAI Chat</a></li>
                         <li><a class="text-links" href="https://www.perplexity.ai/">Perplexity AI</a></li>
                         <li><a class="text-links" href="https://github.com/features/copilot">GitHub Copilot</a></li>
                     </ul>
-                    <p>
-                        have rapidly gained popularity. Frequently featured in news articles, they are constantly
-                        claiming to be the best at certain things and outperforming
+                    <p> AI tools, including these listed above,
+                        have rapidly gained popularity. Frequently featured in news articles, the authors of these tools
+                        claim they are the best at certain things and outperform their
                         competitors in specific tasks, and so the advancements, or at least claims of advancement are
-                        frequent.
+                        frequent. I'm inclined to believe many of the newest claims are just marketing. Making
+                        significant improvements
+                        on models that already perform a task pretty well is exceptionally difficult.
+
+                    </p>
+                    <p>
+                        It's also
+                        extremely difficult
+                        to actually evaluate how good a model performs without rigorous trials that actually test the
+                        model in an emperical way. This is difficult with language since language can be ambiguous and
+                        essentially have infinite
+                        combinitions of how words can actually be used.
                     </p>
 
                     <p>
@@ -39,26 +49,32 @@
                     </p>
 
                     <p>
-                        In essence, AI tools operate similarly. They compare a typed string to a database, likely containing
+                        In essence, AI tools operate similarly. They compare a typed string to a database, likely
+                        containing
                         millions of embeddings. These embeddings likely took massive computing resources
-                        and extensive training times in order to enable their respective AI models to perform tasks well.
+                        and extensive training times in order to enable their respective AI models to perform tasks
+                        well.
                     </p>
                     <p>
                         As a reminder, this is just a basic demonstration area to build and test some tools. The actual
                         processes involved in
-                        AI are far more complex and resource-intensive. These input fields below merely compare pre-trained
+                        AI are far more complex and resource-intensive. These input fields below merely compare
+                        pre-trained
                         vectors in
-                        vectorspace to return a similarity score. The more similar semantically the words or sentences are,
+                        vectorspace to return a similarity score. The more similar semantically the words or sentences
+                        are,
                         the
                         closer the score is
                         to 1. If the semantic meanings of words and sentences are completely opposite the score will be
                         close to
                         0.
                     </p>
-                    <p> For instance, consider the sentences..<br> Sentence 1: "<i>Huge place where people buy stuff</i>"
+                    <p> For instance, consider the sentences..<br> Sentence 1: "<i>Huge place where people buy
+                            stuff</i>"
                         <br>
                         Sentence 2: "<i>A gigantic store</i>"<br>
-                        Despite having no identical words, these sentences yield a high similarity score (0.729) due to their
+                        Despite having no identical words, these sentences yield a high similarity score (0.729) due to
+                        their
                         similar meanings.<br>
                         A second example:<br>
                         Sentence 1: "Where is the feline?"<br>
@@ -82,9 +98,11 @@
                     <p> The closer the score is to 1 the more semantically similar the comparison between
                         words/sentences. Limited to 1 submit per 10 seconds. This is taking JSON and sending it to
                         backend python code in Flask,
-                        which is using the sentence transformers library and a pre-trained model of sentence embeddings to
+                        which is using the sentence transformers library and a pre-trained model of sentence embeddings
+                        to
                         return the answer.<br>
-                        (Note: All messages are sent securely via https to the backend server, processed, then returned here
+                        (Note: All messages are sent securely via https to the backend server, processed, then returned
+                        here
                         to
                         the user.</p>
                 </div>

@@ -3,7 +3,7 @@
     <!-- Photo by Conrad Lundberg - the owner of this website -->
     <div style="height: 100svh;" :class="['jungle-image', imageClass]">
         <div class="title-container">
-            <div class="container-80-em white center-with-flex" style="padding-top: 5rem; margin-bottom: -8rem;">
+            <div class="container-80-em white center-with-flex title-text-spacing">
                 <div>
                     <h1>
                         <span class="h1-span-one">
@@ -87,8 +87,9 @@ import { ref, onMounted } from 'vue';
 const data = ref(null);
 
 //const jungleImage = ref(require('@/images/jungle/2880-1620.jpg'));
-const imageClass = ref('jungle-image-blur');
+const imageClass = ref('');
 const showMainContent = ref(false);
+
 
 onMounted(() => {
     setTimeout(() => {
@@ -128,6 +129,7 @@ onMounted(() => {
             transparent .5%,
             transparent 99.5%, rgba(0, 0, 0, 0.5) 99.5%);
     filter: blur(3px);
+    
 }
 
 .title-padding {
@@ -157,9 +159,13 @@ onMounted(() => {
     background: url('@/images/jungle/2880-1620.jpg') center;
     background-size: cover;
     background-attachment: fixed;
+    /* background-attachment: fixed; */
     filter: blur(5px);
-    transition: filter 1s ease-in-out;
+    transition: filter 1s ease-in-out;  
+    
 }
+
+
 
 .font-override-white-color {
     color: white !important;
@@ -167,6 +173,7 @@ onMounted(() => {
 
 .jungle-image-clear {
     filter: blur(0);
+    
 }
 
 .jungle-image-clear::before {
@@ -189,6 +196,11 @@ li:last-child {
     margin-bottom: 1rem;
 }
 
+.title-text-spacing{
+    padding-top: 5rem; 
+    margin-bottom: -8rem;
+}
+
 h1 {
     line-height: 0.9;
     text-align: left;
@@ -204,11 +216,6 @@ h2 {
     color: #fff;
 }
 
-.link-customization:hover {
-
-  
-
-}
 
 .attention-notice-container {
     color: rgb(42, 42, 42);
@@ -276,5 +283,19 @@ h2 {
     .h1-span-three {
         font-size: 6rem;
     }
+
+    .title-text-spacing{
+    padding-top: 2rem;     
+    }
+    .title-container::before{
+        background-image: linear-gradient(180deg, rgba(0, 0, 0, .5) 1%,
+            transparent 1%,
+            transparent 99%, rgba(0, 0, 0, .5) 99%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.5) .5%,
+            transparent .5%,
+            transparent 99.5%, rgba(0, 0, 0, 0.5) 99.5%);
+    filter: blur(3px);
+    }
+
 }
 </style>

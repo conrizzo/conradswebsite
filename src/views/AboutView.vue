@@ -284,6 +284,11 @@
               Ich freue mich auf neue Möglichkeiten, bin begeistert, mehr zu lernen und habe Vertrauen in
               meine Fähigkeiten, Probleme durch Code und Forschung zu lösen.
             </p>
+
+            <p>
+              Zusätzlich zum Programmieren und Erstellen dieser Website trinke ich gerne Kaffee und mag scharfes Essen (besonders mexikanisches). 
+              Manchmal spiele ich Gitarre oder Schach. Ich genieße es, Vögeln zuzuschauen/-hören.
+            </p>
           </section>
 
           <section v-show="languageButtonText === 'Language: English'"
@@ -714,8 +719,6 @@ export default {
   background-attachment: fixed;
 }
 
-
-
 .section-title {
   margin-bottom: 0em;
   color: #ffffff;
@@ -852,7 +855,7 @@ textarea {
 }
 
 .width-container {
-  background: rgba(22, 22, 22, .6);
+  /*background: rgba(22, 22, 22, .6); */
   width: 100%;
   /* was 80em, but 100% looks more polished */
 }
