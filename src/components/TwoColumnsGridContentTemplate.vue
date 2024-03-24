@@ -14,8 +14,8 @@
           <caption class="photo-caption">{{ setPhotoCaption }}</caption>
         </div>
 
-        <div class="grid-item-text" :style="{ background: bgColor }">
-          <h2 v-html="titleText"></h2>
+        <div class="grid-item-text" :style="{ background: bgColor, color: textColor }">
+          <h2 :style="{'font-size': titleTextSize}" v-html="titleText"></h2>
           <p v-html="contentText">           
           </p>
         </div>
@@ -36,6 +36,9 @@ export default {
       type: String,
       default: 'This is the default text for the title.',
     },
+    titleTextSize: {
+      type: String,      
+    },
     contentText: {
       type: String,
       default: 'This is the default text for the prop, anything can be added here in the parent component.',
@@ -47,6 +50,10 @@ export default {
     bgColor: {
       type: String,
       default: 'rgba(0, 0, 0, 0.5)'
+    },
+    textColor: {
+      type: String,
+      default: '#ffffff',
     },
     imgWidth: {
       type: Number || String,

@@ -1,12 +1,13 @@
 <template>
   <div id="about-background">
     <div class="center-content-within">
-      <div>
-        <twoColumnsGridContentTemplate class="top-component-adjustment" :imageWidth="imageWidth" :titleText="titleText"
-          :content-text="contentText" :content-image="birdPicture"
-          :set-photo-link="'https://de.wikipedia.org/wiki/Kohlmeise'"
-          :set-photo-caption="'Tübingen, Germany. Kohlmeise / Great Tit'" />
-      </div>
+
+      <two-columns-grid-content-template class="top-top-component-adjustment" :imageWidth="imageWidth"
+        :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(18, 18, 18)'"
+        :bg-color="'rgb(255,255,255,0)'" :contentText="contentText" :contentImage="birdPicture"
+        :setPhotoLink="'https://de.wikipedia.org/wiki/Kohlmeise'"
+        :setPhotoCaption="'Tübingen, Germany. Kohlmeise / Great Tit'" />
+
     </div>
     <div class="language-container">
       <span class="language-arrow-text tooltip">{{ arrowText }}
@@ -23,8 +24,8 @@
         </div>
       </div>
       <div class="tooltipTwo"><button @click="language();" class="language-button" role="button">{{
-          languageButtonText
-        }}</button>
+        languageButtonText
+      }}</button>
         <div class="tooltiptextTwo">
           <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
           Change the main text language between English and German with this button.
@@ -54,11 +55,7 @@
                 Now is a fullstack website and runs on a VPS (Virtual Private Server), the code is at
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
-              <li>
-                This website does not use any cookies. Why does this matter? They track users, and <a class="text-links"
-                  href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
-                  says</a> they are "taking a responsible approach to phasing out third-party cookies in Chrome"
-              </li>
+
               <li>
                 <u>Back end</u> running <a class="text-links"
                   href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
@@ -90,6 +87,11 @@
                   class="text-links" href="https://astro.build/">Astro</a> framework. A <a class="text-links"
                   href='https://search-wordle-words.netlify.app/'>Wordle helper in Nuxt.js</a>
               </li>
+              <li>
+                This website does not use any cookies. Why does this matter? They track users, and <a class="text-links"
+                  href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
+                  says</a> they are "taking a responsible approach to phasing out third-party cookies in Chrome"
+              </li>
             </ul>
           </section>
           <!-- German Section -->
@@ -109,13 +111,7 @@
                 sich auf
                 <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
               </li>
-              <li>
-                Diese Website verwendet keine Cookies. Warum ist das wichtig? Cookies verfolgen Benutzer, und <a
-                  class="text-links"
-                  href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
-                  sagt</a>, dass sie gerade dabei sind "taking a responsible approach to phasing out third-party cookies
-                in Chrome"
-              </li>
+
               <li>
                 <u>Backend</u> läuft mit <a class="text-links"
                   href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
@@ -144,6 +140,13 @@
                 Nebenprojekt <a class="text-links"
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a
                   class="text-links" href="https://astro.build/">Astro</a> framework verwendet
+              </li>
+              <li>
+                Diese Website verwendet keine Cookies. Warum ist das wichtig? Cookies verfolgen Benutzer, und <a
+                  class="text-links"
+                  href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
+                  sagt</a>, dass sie gerade dabei sind "taking a responsible approach to phasing out third-party cookies
+                in Chrome"
               </li>
 
             </ul>
@@ -286,7 +289,8 @@
             </p>
 
             <p>
-              Zusätzlich zum Programmieren und Erstellen dieser Website trinke ich gerne Kaffee und mag scharfes Essen (besonders mexikanisches). 
+              Zusätzlich zum Programmieren und Erstellen dieser Website trinke ich gerne Kaffee und mag scharfes Essen
+              (besonders mexikanisches).
               Manchmal spiele ich Gitarre oder Schach. Ich genieße es, Vögeln zuzuschauen/-hören.
             </p>
           </section>
@@ -333,27 +337,13 @@
               <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">
                 Ihre Nachricht wurde erfolgreich übermittelt! Vielen Dank für Ihre Nachricht.</p>
             </div>
-            <ul style="margin-left: 2rem;">
-              <li>
-                All message data is validated, then sent securely via https
-              </li>
-              <li>
-                The only data recorded is: Name, Email, Message, and a Timestamp
-              </li>
-              <li>
-                Only used for contacting purposes, and will not be shared with any 3rd parties,
-                please do not share sensitive personal information
-              </li>
-              <li>
-                Data is only used as long as needed for contact purposes.
-                If a message was sent in error, please reference the message and contact for removal
-              </li>
-            </ul>
+
             <label class="check-box-label" for="acceptCheckBoxDeutsch">
-              <span class="about-check-box-font">Agree to terms</span>
+              <span class="about-check-box-font">Zustimmen</span>
               <input id="acceptCheckBoxDeutsch" class="check-box" type="checkbox" name="myCheckBox"
                 v-model="checkBoxValue">
             </label>
+            <router-link class="text-links no-decoration" :to="{ path: '/privacy' }">Privacy Policy</router-link>
 
           </section>
         </div>
@@ -465,7 +455,7 @@ export default {
       languageButtonText: "Sprache: Deutsch",
       arrowText: "Deutsch",
 
-      titleText: "Thank you for visiting!<br>",
+      titleText: "Thanks for visiting!<br>",
       contentText: "Welcome to the personal and professional website of Conrad.\
       Everything here is always changing.\
       Maybe you will find something interesting on your visit!",
@@ -770,6 +760,16 @@ p:last-child {
   width: 100%;
 }
 
+.top-top-component-adjustment {
+  max-width: 80rem;
+  width: 100%;
+  height: 55rem;
+  background: none;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  color: black;
+}
+
 .top-component-adjustment {
   max-width: 80rem;
   width: 100%;
@@ -852,10 +852,20 @@ textarea {
   justify-content: center;
   z-index: 1;
   position: relative;
+
+  background:
+    linear-gradient(10deg, rgb(0, 0, 0) 20%, transparent 90%) -0px 0,
+    linear-gradient(-10deg, rgb(0, 0, 0) 20%, transparent 90%) -0px 0,
+    linear-gradient(10deg, transparent 75%, rgb(0, 0, 0) 75%) 0px 0,
+    linear-gradient(-10deg, transparent 75%, black 75%) 0px 0;
+  background-size: 75% 800px;
+  background-color: white;
 }
 
+
+
 .width-container {
-  /*background: rgba(22, 22, 22, .6); */
+  background: rgba(22, 22, 22, .9);
   width: 100%;
   /* was 80em, but 100% looks more polished */
 }
@@ -929,8 +939,8 @@ textarea {
 }
 
 .arrow .curve {
-  border: 4px solid #ff5959;
-  border-color: transparent transparent transparent #ff5959;
+  border: 4px solid rgb(255, 255, 255);
+  border-color: transparent transparent transparent rgb(255, 255, 255);
   height: 366px;
   width: 200px;
   /* Adjust the width as needed */
@@ -946,7 +956,7 @@ textarea {
 
 .arrow .point:before,
 .arrow .point:after {
-  border: 2px solid #ff5959;
+  border: 2px solid rgb(255, 255, 255);
   height: 25px;
   content: "";
   position: absolute;
@@ -992,8 +1002,7 @@ textarea {
   font-weight: bold;
   text-transform: uppercase;
   transition: all 0.1s ease-in-out;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+
   letter-spacing: -0.06rem;
 }
 

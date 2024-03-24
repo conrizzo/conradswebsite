@@ -162,7 +162,7 @@ h2 {
   grid-template-columns: .75fr 1fr;
   justify-items: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   column-gap: 1rem;
 }
 

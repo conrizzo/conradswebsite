@@ -5,15 +5,24 @@
                 <div style="align-self: flex-start;">
                     <h1>Cosine similarity with sentence transformers using Frontend website inputs to run backend Python
                     </h1>
-                    <p>Made 12th February, 2024</p>
+                    <p>
+                        Made 12th February, 2024
+                        <br><br>
+                        The goal of this page was initially to just setup frontend website code to run backend Python.
+                        Python offers a lot of libraries and is simpler to write. Having the ability to use backend code 
+                        makes web development far more interesting. Will probably build on this page as an area to try 
+                        NLP stuff on a website.
+
+                    </p>
                     <p>What is <a class='text-links'
                             href='https://en.wikipedia.org/wiki/Natural_language_processing'>NLP</a>?<br>
                         What is <a class="text-links" href="https://en.wikipedia.org/wiki/Cosine_similarity">Cosine
                             Similarity</a>?<br>
                         What are <a class="text-links" href="https://www.sbert.net/">Sentence Transformers</a>?<br>
                         What model is this using? <a class="text-links"
-                            href="https://huggingface.co/sentence-transformers/multi-qa-mpnet-base-dot-v1">multi-qa-mpnet-base-dot-v1</a>
-                    </p>
+                            href="https://huggingface.co/sentence-transformers/multi-qa-mpnet-base-dot-v1">multi-qa-mpnet-base-dot-v1</a><br>
+                        Some potential issues with cosign similarity in this March, 2024 paper by researchers at <a class="text-links" href='https://arxiv.org/html/2403.05440v1'>Netflix</a>.
+                        </p>
 
                 </div>
                 <div class="form-container">
@@ -102,9 +111,9 @@
                         to
                         return the answer.<br>
                         (Note: All messages are sent securely via https to the backend server, processed, then returned
-                        here
-                        to
-                        the user.</p>
+                        here to the user. It is a Stateless API request, which is a core part of 
+                        <a class="text-links" href="https://en.wikipedia.org/wiki/REST#:~:text=REST%20(representational%20state%20transfer)%20is,as%20the%20Web%2C%20should%20behave.">REST</a>
+                        architecture)</p>
                 </div>
 
 
