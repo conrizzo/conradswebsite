@@ -216,7 +216,7 @@ const routes = [
       },
 
       {
-        path: 'country_music_experiment',
+        path: 'country-music-generator',
         name: 'countrymusicexperiment',
         component: CountryMusicExperimentView,
       },

@@ -27,6 +27,10 @@
                 <li>
                     This website <u>currently</u> uses no cookies, this is by design.
                 </li>
+                <li>
+                    The exception is my new Country Music Generator project that shows some embedded YouTube videos,
+                    and therefore uses 3rd party cookies from Google/Youtube.
+                </li>
             </ul>
         </div>
     </div>

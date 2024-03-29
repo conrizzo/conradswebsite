@@ -16,7 +16,7 @@
 
         <div class="grid-item-text" :style="{ background: bgColor, color: textColor }">
           <h2 :style="{'font-size': titleTextSize}" v-html="titleText"></h2>
-          <p v-html="contentText">           
+          <p :style="{'font-size': contentTextSize}" v-html="contentText">           
           </p>
         </div>
 
@@ -42,6 +42,9 @@ export default {
     contentText: {
       type: String,
       default: 'This is the default text for the prop, anything can be added here in the parent component.',
+    },
+    contentTextSize: {
+      type: String,      
     },
     contentImage: {
       type: String,

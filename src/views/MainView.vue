@@ -10,16 +10,12 @@
         <div class="main-text-container">
           <ul class="main-text-ul">
             <li>
-              <span>Welcome to <a class="home-text-links list-links-text-decoration"
-                  href="https://github.com/conrizzo">Conrad's</a> Website</span>
+              Scroll down to see projects!
             </li>
-            <li>
-              <span><router-link class="home-text-links list-links-text-decoration" to="/about">About</router-link> this
-                website.</span>
-            </li>
+            
             <li>
               <span>Crafted under
-                the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration"
+                the influence of 1-2 cups of strong <a class="home-text-links list-links-text-decoration"
                   href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
                 per day.
                 <br>

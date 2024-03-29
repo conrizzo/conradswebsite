@@ -2,9 +2,13 @@
 <template>
   <header :class="headerClass">
     <!-- create a nav bar on every page-->
-    <div v-if="this.$route.path === '/' && removeTopBanner !== true" class="headline"
-      style="display: flex; justify-content: center; position: relative;">
-      <router-link class="text-links" style="color: #fff;" to="/about">Thank you for visiting!</router-link>
+    <div v-if="(this.$route.path === '/' || this.$route.path === '/about') && removeTopBanner !== true"
+      class="headline center-with-flex" style="position: relative;">
+      
+      <p style="max-width: 100%; margin-right: 3rem;">Please visit the&nbsp;<router-link class="text-links"
+          style="color: #fff;" to="/my-projects"><span style="color: rgb(163, 255, 0)">My Projects</span>
+        </router-link>&nbsp;page, <span style="color: rgba(255,255,255,0.33);">or you are <i
+            style="color:#fff;">missing</i> the actual website!</span></p>
 
       <svg @click="removeBanner" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
         fill="none" style="position: absolute; right: 1rem; cursor: pointer;">
@@ -15,16 +19,16 @@
 
     <nav class="nav-menu-class">
       <div style="display: flex; align-items: center;">
-        <router-link to="/" class="only-show-home-svg-at-mobile-size">
+        <router-link to="/my-projects" class="only-show-home-svg-at-mobile-size">
           <!-- self made SVG image -->
           <img src="@/images/icons/house.svg" alt="House Icon">
         </router-link>
-        <router-link style="padding: 0;" to="/">
+        <router-link style="padding: 0;" to="/my-projects">
           <div class="header-h2">ConradsWebsite.com</div>
         </router-link>
       </div>
 
-      <div class="navigation-menu">
+      <div v-if="showNav" class="navigation-menu">
         <ul class="no-bullet" style="list-style-type: none;
             display: flex;
             justify-content: space-between;">
@@ -75,13 +79,16 @@
 <script>
 // import the dropdown menu into the nav bar
 import DropDownMenu from "@/components/Navigation/DropDownMenu.vue";
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { useRoute } from 'vue-router';
 export default {
   name: 'MainHeader',
   components: {
     DropDownMenu
   },
   setup() {
+    const route = useRoute();
+
     const headerClass = ref('header-visible');
     let lastScrollPosition = 0;
     let removeTopBanner = ref(false);
@@ -114,10 +121,17 @@ export default {
       window.removeEventListener('scroll', checkScroll);
     });
 
+    const showNav = computed(() => {
+      // Check if the current route is not the home route
+      return route.path !== '/';
+    });
+
+
     return {
       headerClass,
       removeBanner,
-      removeTopBanner
+      removeTopBanner,
+      showNav
     };
   }
 };

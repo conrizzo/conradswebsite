@@ -15,13 +15,14 @@ export default [
   { id: 2, text: 'Cowculator', to: '/projects/cowculator',caption:"A real calculator that does parsing to solve calculations and shows the binary tree of the calculations", imageSrc: "" },
   { id: 3, text: 'Weather', to: '/projects/weather',caption:"Weather in Tuebingen, Germany", imageSrc: "" },
   { id: 4, text: 'Coffee Data', to: '/projects/datasets',caption:"Some miscellaneous data about coffee consumption", imageSrc: "" },
-  { id: 5, text: 'Game', to: '/projects/cowgame',caption:"A game made using Vue.js and TypeScript", imageSrc: "" },
+  { id: 5, text: 'Cow Food Game', to: '/projects/cowgame',caption:"A game made using Vue.js and TypeScript", imageSrc: "" },
   { id: 6, text: 'Sorting Algorithms', to: '/projects/sortingalgorithms',caption:"Made for fun to test some sorting algorithm outputs", imageSrc: "" },
   { id: 7, text: 'Skat Game', to: '/projects/cards',caption:"An attempt to build a card game, got lost figuring out the rules so it's still a prototype...", imageSrc: "" },
   { id: 8, text: 'Fetch Data', to: '/projects/fetchdata',caption:"A simple experimental page that fetches api data and formats it", imageSrc: "" },
   { id: 9, text: 'Search Wordle Words', to: '/projects/search-assistant-to-help-find-words-for-the-wordle-game',caption:"Search Wordle words with TypeScript", imageSrc: "" },
   { id: 10, text: 'Cosine Similarity', to: '/projects/compare-cosine-similarity',caption:"Compare words/sentences semantic cosine scores with sentence transformers", imageSrc: "" },
-  { id: 11, text: '404 Page', to: '/12315fge45',caption:"Go to the 404 page for fun!", imageSrc: "" },
+  { id: 10, text: 'Country Music Generator', to: '/projects/country-music-generator',caption:"Classic Country music and natural language processing (under construction)", imageSrc: "" },
+  //{ id: 11, text: '404 Page', to: '/12315fge45',caption:"Go to the 404 page for fun!", imageSrc: "" },
   
   
 ].map((link, index) => ({ ...link, imageSrc: images[index] }));

@@ -48,7 +48,8 @@
 
                         <ul style="margin-left: 2rem; text-align: center;">
                             <li>
-                                <router-link class="text-links link-customization" to="/my-projects">My
+                                <span style="color: #fff;">&rarrhk;</span>&nbsp;<router-link style="color: rgb(163, 255, 0); margin-right: 2rem;" class="text-links link-customization"
+                                    to="/my-projects">My
                                     Projects</router-link>
                             </li>
                             <li>
@@ -64,11 +65,12 @@
                                         <path
                                             d="m24,12.5c0,.828-.671,1.5-1.5,1.5h-1.5c-1.221,0-2.37-.649-2.999-1.695l-.552-.917-1.332,3.247,2.614,1.486c1.091.62,1.769,1.786,1.769,3.042v3.337c0,.828-.671,1.5-1.5,1.5s-1.5-.672-1.5-1.5v-3.337c0-.18-.097-.346-.252-.435l-4.081-2.322c-1.498-.947-2.073-2.749-1.428-4.322l1.265-3.084h-1.268c-.19,0-.362.105-.447.276l-1.447,2.895c-.371.741-1.271,1.041-2.013.671-.741-.371-1.041-1.271-.671-2.013l1.447-2.895c.597-1.193,1.796-1.935,3.13-1.935h3.993c1.221,0,2.37.649,3,1.695l1.843,3.062c.091.151,.251.242,.428.242h1.5c.829,0,1.5.672,1.5,1.5Zm-12.442,4.351c-.771-.309-1.642.066-1.95.835-.077.191-.259.314-.464.314h-4.143c-.552,0-1-.448-1-1s.448-1,1-1h.826c.111-1.253,.174-2.595,.174-4C6,5.373,4.657,0,3,0S0,5.373,0,12s1.343,12,3,12c.76,0,1.453-1.134,1.981-3h4.162c1.439,0,2.715-.863,3.25-2.199.308-.77-.066-1.643-.835-1.95Zm6.442-11.851c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5-2.5,1.119-2.5,2.5,1.119,2.5,2.5,2.5Z" />
                                     </svg>
+
                                 </a>
                             </li>
                         </ul>
 
-                        <p style="margin-bottom: -2rem; ">
+                        <p>
                             Background photo by Conrad Lundberg. © 2023<br>
                             Plants at <a class="text-links link-customization"
                                 href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
@@ -79,6 +81,7 @@
                                 <a class="text-links font-override-white-color"
                                     href="https://www.flaticon.com/uicons">Flaticon</a></span>
                         </p>
+
                     </div>
                 </transition>
             </div>
@@ -104,8 +107,8 @@ const width = movementStrength / window.innerWidth;
 const handleMouseMove = (e: MouseEvent) => {
     const pageX = e.pageX - (window.innerWidth / 2);
     const pageY = e.pageY - (window.innerHeight / 2);
-    const newvalueX = width * pageX * + -1;
-    const newvalueY = height * pageY * -1;
+    const newvalueX = width * pageX * - 1;
+    const newvalueY = height * pageY * - 1;
     (e.target as HTMLElement).style.backgroundPosition = `${newvalueX}px ${newvalueY}px`;
 };
 
@@ -197,22 +200,21 @@ onMounted(() => {
 #top-image {
     background: url('@/images/jungle/2880-1620.jpg') center;
     background-size: cover;
+    /* Increase this value to scale the image up */
     background-attachment: fixed;
     z-index: 0;
+    background-repeat: no-repeat;
+    background-color: rgb(18, 18, 18);
 }
 
 #top-image::before {
-    content: "";
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.33) 1%,
-            transparent 1%,
-            transparent 99%, rgba(0, 0, 0, .33) 99%);
-    filter: blur(3px);
+
+    background: url('@/images/jungle/2880-1620.jpg') center;
+    background-size: 130%;
+    background-attachment: fixed;
+    z-index: 0;
+    background-repeat: no-repeat;
 }
 
 .font-override-white-color {
@@ -263,10 +265,12 @@ h2 {
 }
 
 .attention-notice-container {
-    color: rgb(42, 42, 42);
-    background: rgba(255, 165, 69, 0.8);
+    color: rgb(0, 0, 0);
+    background: rgb(255, 176, 72, 0.75);
     width: fit-content;
-    padding: 0.5rem;
+    padding: 0.25rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
     margin-bottom: 1rem;
 }
 
@@ -274,10 +278,14 @@ h2 {
     padding-left: .5rem;
     padding-top: 0.2rem;
     font-size: 1.1rem;
+
 }
 
 .center-area-padding {
     padding: 2rem;
+    padding-bottom: 0rem;
+    padding-top: 1rem;
+    
 }
 
 .h1-span-one {
@@ -295,11 +303,13 @@ h2 {
     font-size: 7rem;
     letter-spacing: 3px;
     padding: 5px;
+
 }
 
 .h1-fade-in-letters {
     opacity: 0;
     animation: fadeIn .5s forwards;
+
 }
 
 @keyframes fadeIn {

@@ -4,7 +4,7 @@
 
   <!-- conflict with "firebase": "^10.0.0", security-->
   <!-- tried downgrading to "firebase": "9.0.2" -->
-  <CookieAccept />
+  <!---<CookieAccept />-->
 
   <div style="background: rgb(255, 255, 255); padding-bottom: 2em; padding-top: 2.7em;">
     <div style="justify-content: center;">
@@ -132,12 +132,12 @@ import "@/assets/globalCSS.css";
 //import { signOut } from 'firebase/auth'
 
 
-import CookieAccept from "@/components/CookieAccept.vue";
+//import CookieAccept from "@/components/CookieAccept.vue";
 
 
 export default {
 
-  components: { SignUpPage, LoginPage, CookieAccept },
+  components: { SignUpPage, LoginPage, },
 
   data() {
     return {

@@ -1,11 +1,13 @@
 <template>
   <div id="about-background">
     <div class="center-content-within">
+      <div class="left-area-title">
 
+      </div>
       <two-columns-grid-content-template class="top-top-component-adjustment" :imageWidth="imageWidth"
-        :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(18, 18, 18)'"
-        :bg-color="'rgb(255,255,255,0)'" :contentText="contentText" :contentImage="birdPicture"
-        :setPhotoLink="'https://de.wikipedia.org/wiki/Kohlmeise'"
+        :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(255, 255, 255)'"
+        :content-text-size="'1.4rem'" :bg-color="'rgb(0, 0, 0, 0)'" :contentText="contentText"
+        :contentImage="birdPicture" :setPhotoLink="'https://de.wikipedia.org/wiki/Kohlmeise'"
         :setPhotoCaption="'Tübingen, Germany. Kohlmeise / Great Tit'" />
 
     </div>
@@ -198,9 +200,13 @@
               <span class="error-color">{{ errorMessage }}</span>
               <div class="flex-start">
                 <h2 class="section-title-three">Contact</h2>
-                <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
+                <button style="margin-bottom: 0.95rem; margin-left: 1rem; margin-top: 1.2rem;" class="clean-button"
                   @click="testBackEnd()">Test Backend</button>
               </div>
+              <p>Must check <b style="color: rgb(67, 255, 149);">"Agree to terms"</b> checkbox to submit message. Name
+                and
+                message are required fields. Email is
+                not required.</p>
               <form @submit.prevent="leaveMessage" class="form">
                 <ul class="no-bullet">
                   <li>
@@ -210,7 +216,7 @@
                   </li>
                   <li>
                     <label for="email" class="include-label-text">Email:</label>
-                    <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitSubject"
+                    <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitEmail"
                       placeholder="name@####.com" />
                   </li>
                   <li>
@@ -220,7 +226,8 @@
                   </textarea>
                   </li>
                   <li class="button">
-                    <button class="clean-button" type="submit">Send your message</button>
+                    <button :class="{ 'not-allowed-cursor-change': !checkBoxValue }" class="clean-button"
+                      type="submit">Send your message</button>
                   </li>
                 </ul>
               </form>
@@ -308,7 +315,10 @@
                   @click="testBackEnd()">Backend testen
                 </button>
               </div>
-
+              <p>Muss das Kontrollkästchen <b style="color: rgb(67, 255, 149);">„Zustimmen“</b> aktivieren werden, um
+                die
+                Nachricht abzusenden.
+                Name und Nachricht sind Pflichtfelder. Die E-Mail ist nicht erforderlich.</p>
               <form @submit.prevent="leaveMessage" class="form">
                 <ul class="no-bullet">
                   <li>
@@ -318,7 +328,7 @@
                   </li>
                   <li>
                     <label for="email" class="include-label-text">Email:</label>
-                    <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitSubject"
+                    <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitEmail"
                       placeholder="name@####.com" />
                   </li>
                   <li>
@@ -347,7 +357,7 @@
 
           </section>
         </div>
-
+        <!-- images and text section -->
         <div class="center-content-within text-with-photos-max-width">
           <div>
             <!-- 1st text image component -->
@@ -398,7 +408,7 @@
             </div>
           </div>
         </div>
-
+        <!--
         <div class="center-with-flex">
           <div style="overflow-x: hidden; width: 425px; padding-top: 1rem;">
             <h3
@@ -424,6 +434,7 @@
             </div>
           </div>
         </div>
+      -->
       </div>
     </main>
   </div>
@@ -436,7 +447,6 @@ import twoColumnsReversedGrid from "@/components/TwoColumnsReversedGrid.vue";
 import twoColumnsGridContentTemplate from "@/components/TwoColumnsGridContentTemplate.vue";
 import Prism from "prismjs";
 import "@/assets/globalCSS.css";
-
 
 export default {
   name: "HomeView",
@@ -456,9 +466,7 @@ export default {
       arrowText: "Deutsch",
 
       titleText: "Thanks for visiting!<br>",
-      contentText: "Welcome to the personal and professional website of Conrad.\
-      Everything here is always changing.\
-      Maybe you will find something interesting on your visit!",
+      contentText: "Made by Conrad. This website started as a blank page. Experience some projects, maybe find something interesting!",
 
       clickCount: 0,
       firstClick: null,
@@ -468,8 +476,9 @@ export default {
       time: 10000,
 
       submitName: "",
-      submitSubject: "",
+      submitEmail: "",
       submitMessage: "",
+
       submitMessageSuccess: false,
       canSubmit: true,
       errorMessage: "",
@@ -532,9 +541,9 @@ export default {
       optimizationTextDeutsch: "Viele der Seiten dieser Website wurden im Hinblick auf Leistung und Best Practices optimiert.\
       Beispielsweise ist der Google Lighthouse-Score für diese Website perfekt.",
       lightHouseCaptionDeutsch: "Google Lighthouse Score für diese Seite.",
-
     }
   },
+
   watch: {
     isMobile(newVal) {
       this.imageWidth = newVal ? 15 : 20;
@@ -545,21 +554,6 @@ export default {
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.updateViewport);
-  },
-
-  downloadPDF() {
-    const url = 'https://raw.githubusercontent.com/username/repo/branch/path/to/file.pdf';
-
-    fetch(url)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'my-document.pdf');
-        document.body.appendChild(link);
-        link.click();
-      });
   },
 
   mounted() {
@@ -615,8 +609,13 @@ export default {
         return;
       }
 
+      if (this.submitMessage.length < 1 || this.submitName.length < 1) {
+        this.errorMessage = 'Please fill out all fields.';
+        return;
+      }
+
       const name = this.submitName;
-      const subject = this.submitSubject;
+      const subject = this.submitEmail;
       const message = this.submitMessage;
 
       try {
@@ -626,7 +625,6 @@ export default {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ name: name, subject: subject, message: message }),
-
         });
 
         if (!response.ok) {
@@ -640,7 +638,7 @@ export default {
         if (data.message === 'Form submission successful') {
           // reset all the fields
           this.submitName = '';
-          this.submitSubject = '';
+          this.submitEmail = '';
           this.submitMessage = '';
           // show the success message
           this.submitMessageSuccess = true;
@@ -653,12 +651,10 @@ export default {
             this.canSubmit = true;
           }, 30000); // disallow messages for 30 seconds
         }
-
       } catch (error) {
         console.error('Error:', error);
       }
     },
-
     language() {
       if (this.languageButtonText == "Sprache: Deutsch") {
         this.languageButtonText = "Language: English";
@@ -669,9 +665,9 @@ export default {
       }
     }
   }
-
 };
 </script>
+
 
 
 <style scoped>
@@ -736,12 +732,6 @@ export default {
   text-decoration-color: #43ff95;
 }
 
-
-
-
-
-
-
 h2 {
   text-align: left;
 }
@@ -761,10 +751,9 @@ p:last-child {
 }
 
 .top-top-component-adjustment {
-  max-width: 80rem;
-  width: 100%;
+  max-width: 100rem;
   height: 55rem;
-  background: none;
+  background: rgba(0, 0, 0, 0.5);
   padding-right: 1rem;
   padding-left: 1rem;
   color: black;
@@ -813,8 +802,9 @@ textarea {
   display: flex;
   align-items: flex-start;
   margin-bottom: -0.5rem;
-  color: rgb(220, 220, 220);
+  color: rgb(255, 255, 255);
   cursor: auto;
+  font-size: 1.1rem;
 }
 
 .input-field-style {
@@ -829,12 +819,20 @@ textarea {
   width: 100%;
 }
 
+.clean-button {
+  background: transparent;
+  border: 1px white solid;
+  color: white;
+  font-size: 1rem;
+}
+
 .clean-button:hover {
-  background: rgb(4, 242, 194);
+  background: rgb(67, 255, 149);
+  color: #000;
 }
 
 .clean-button:active {
-  background-color: rgba(4, 242, 194, 0.75);
+  background-color: rgba(67, 255, 149, 0.75);
   color: #fff;
 }
 
@@ -1082,7 +1080,7 @@ input[type='checkbox'] {
 
 .about-check-box-font {
   font-size: 1.1rem;
-  color: #ffffff;
+  color: rgb(67, 255, 149);
   margin-right: 0.2rem;
 }
 
@@ -1104,8 +1102,18 @@ input[type='checkbox'] {
   margin: 0 auto;
 }
 
+.left-area-title {
+  width: 50%;
+}
+
+.not-allowed-cursor-change {
+  cursor: not-allowed;
+}
 
 @media screen and (max-width: 70rem) {
+  .left-area-title {
+    display: none;
+  }
 
   .each-section {
     padding-left: 1.5rem;
