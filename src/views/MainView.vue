@@ -15,9 +15,9 @@
             
             <li>
               <span>Crafted under
-                the influence of 1-2 cups of strong <a class="home-text-links list-links-text-decoration"
+                the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration"
                   href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-                per day.
+                per day. Whole bean + quality grinder = best taste
                 <br>
               </span>
             </li>

@@ -30,26 +30,17 @@
                 </div>
             </div>
 
-            <div style="display: flex; align-items: center; justify-content: center; height: 24rem;">
+            <div style="display: flex; align-items: center; justify-content: center; height: 20rem;">
                 <transition>
                     <div v-if="showMainContent" class="container-80-em white center-area-padding"
-                        style="background: rgba(0,0,0,.7);">
+                        style="background: rgba(0,0,0,.6);">
 
-                        <div class="center-with-flex attention-notice-container">
-                            <!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32"
-                                fill="white">
-                                <path
-                                    d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
-                            </svg>
-                            <span class="attention-message">
-                                Attention: this website is continually being updated!</span>
-                        </div>
 
                         <ul style="margin-left: 2rem; text-align: center;">
                             <li>
-                                <span style="color: #fff;">&rarrhk;</span>&nbsp;<router-link style="color: rgb(163, 255, 0); margin-right: 2rem;" class="text-links link-customization"
-                                    to="/my-projects">My
+                                <span style="color: #fff;">&rarrhk;</span>&nbsp;<router-link
+                                    style=" margin-right: 2rem; font-size: 2.3rem;"
+                                    class="text-links link-customization" to="/my-projects">My
                                     Projects</router-link>
                             </li>
                             <li>
@@ -59,7 +50,8 @@
                                 <a class="text-links link-customization exit-link"
                                     href="https://en.wikipedia.org/wiki/Exit_sign">
                                     <span style="margin-right: 10px;">Exit</span>
-                                    <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution -->
+                                    <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution
+                                    https://www.flaticon.com/free-icon-font/portal-exit_10506900 -->
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" id="Layer_1" data-name="Layer 1"
                                         viewBox="0 0 24 24" width="32" height="32">
                                         <path
@@ -75,11 +67,12 @@
                             Plants at <a class="text-links link-customization"
                                 href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
                                 botanical garden</a><br>
-                            <span style="font-size: 12px;">Attention Icon by <a
-                                    class="text-links font-override-white-color"
-                                    href="https://fontawesome.com/license/free">Font Awesome</a>, Exit Icon by
+                            <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution 
+                            https://www.flaticon.com/free-icon-font/portal-exit_10506900 -->
+                            <span style="font-size: 12px;">Exit UIcon by
                                 <a class="text-links font-override-white-color"
-                                    href="https://www.flaticon.com/uicons">Flaticon</a></span>
+                                    href="https://www.flaticon.com/uicons">Flaticon</a>
+                            </span>
                         </p>
 
                     </div>
@@ -269,8 +262,8 @@ h2 {
     background: rgb(255, 176, 72, 0.75);
     width: fit-content;
     padding: 0.25rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding-right: .5rem;
+    padding-left: .5rem;
     margin-bottom: 1rem;
 }
 
@@ -285,7 +278,7 @@ h2 {
     padding: 2rem;
     padding-bottom: 0rem;
     padding-top: 1rem;
-    
+
 }
 
 .h1-span-one {
