@@ -41,7 +41,7 @@
     <div class="center-with-flex">
 
         <div class="grid-container">
-
+<!--
             <div style="text-align: left; padding-bottom: 2rem;" v-for="song in songList" :key="song.id">
                 <iframe width="420" height="315" :src="formatSong(song.YOUTUBE_URL_ID)">
                 </iframe>
@@ -53,7 +53,7 @@
                 <div>{{ song.genre }}</div>
 
             </div>
-
+        -->
 
         </div>
 
