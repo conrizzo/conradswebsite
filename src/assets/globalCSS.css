@@ -168,6 +168,11 @@ h1 {
   display: flex;
   justify-content: center;
 }
+.align-justify-center-flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
 
 .top-most-paragraph-space {
   padding-top: 1em;
@@ -193,6 +198,11 @@ h1 {
 
 .container-80-em {
   max-width: 80em;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+.container-75-em {
+  max-width: 50em;
   margin: 0 auto;
   padding: 0 1em;
 }

@@ -17,7 +17,7 @@
               <span>Crafted under
                 the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration"
                   href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-                per day. Whole bean + quality grinder = best taste
+                per day.
                 <br>
               </span>
             </li>

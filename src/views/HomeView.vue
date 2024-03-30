@@ -2,14 +2,12 @@
     <!-- The plant image on this page is explicity copyrighted -->
     <!-- Photo by Conrad Lundberg - the owner of this website -->
     <!-- <div style="height: 100svh;" :class="['jungle-image', imageClass]"> -->
-    <div @mousemove="handleMouseMove" id="top-image" style="display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */    
+    <div @mousemove="handleMouseMove" id="top-image" class="center-with-flex" style="align-items: center; 
+    box-sizing: border-box; 
     height: 88vh;">
 
         <div class="title-container">
-            <div class="container-80-em white center-with-flex title-text-spacing">
+            <div class="white center-with-flex title-text-spacing">
                 <div>
                     <h1>
                         <span class="h1-span-one">
@@ -30,37 +28,36 @@
                 </div>
             </div>
 
-            <div style="display: flex; align-items: center; justify-content: center; height: 20rem;">
+            <div style="height: 20rem;">
                 <transition>
-                    <div v-if="showMainContent" class="container-80-em white center-area-padding"
-                        style="background: rgba(0,0,0,.6);">
+                    <div v-if="showMainContent" class="white center-area-padding" style="background: rgba(0,0,0,.6);">
 
-
-                        <ul style="margin-left: 2rem; text-align: center;">
-                            <li>
-                                <span style="color: #fff;">&rarrhk;</span>&nbsp;<router-link
-                                    style=" margin-right: 2rem; font-size: 2.3rem;"
-                                    class="text-links link-customization" to="/my-projects">My
-                                    Projects</router-link>
-                            </li>
-                            <li>
-                                <router-link class="text-links link-customization" to="/about">About</router-link>
-                            </li>
-                            <li>
-                                <a class="text-links link-customization exit-link"
-                                    href="https://en.wikipedia.org/wiki/Exit_sign">
-                                    <span style="margin-right: 10px;">Exit</span>
-                                    <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution
+                        <div class="center-with-flex" style="margin-right: 3rem;">
+                            <ul>
+                                <li>
+                                    <router-link style="text-decoration: underline rgb(163, 255, 0);"                                        
+                                        class="text-links link-customization" to="/my-projects">&rarrhk;&nbsp;My
+                                        Projects</router-link>
+                                </li>
+                                <li>
+                                    <router-link style="margin-left: 3rem;" class="text-links link-customization"
+                                        to="/about">About&nbsp;&larrhk;</router-link>
+                                </li>
+                                <li>
+                                    <a class="text-links link-customization exit-link"
+                                        href="https://en.wikipedia.org/wiki/Exit_sign">
+                                        <span style="margin-right: 10px;">&rarrhk;&nbsp;Exit</span>
+                                        <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution
                                     https://www.flaticon.com/free-icon-font/portal-exit_10506900 -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" id="Layer_1" data-name="Layer 1"
-                                        viewBox="0 0 24 24" width="32" height="32">
-                                        <path
-                                            d="m24,12.5c0,.828-.671,1.5-1.5,1.5h-1.5c-1.221,0-2.37-.649-2.999-1.695l-.552-.917-1.332,3.247,2.614,1.486c1.091.62,1.769,1.786,1.769,3.042v3.337c0,.828-.671,1.5-1.5,1.5s-1.5-.672-1.5-1.5v-3.337c0-.18-.097-.346-.252-.435l-4.081-2.322c-1.498-.947-2.073-2.749-1.428-4.322l1.265-3.084h-1.268c-.19,0-.362.105-.447.276l-1.447,2.895c-.371.741-1.271,1.041-2.013.671-.741-.371-1.041-1.271-.671-2.013l1.447-2.895c.597-1.193,1.796-1.935,3.13-1.935h3.993c1.221,0,2.37.649,3,1.695l1.843,3.062c.091.151,.251.242,.428.242h1.5c.829,0,1.5.672,1.5,1.5Zm-12.442,4.351c-.771-.309-1.642.066-1.95.835-.077.191-.259.314-.464.314h-4.143c-.552,0-1-.448-1-1s.448-1,1-1h.826c.111-1.253,.174-2.595,.174-4C6,5.373,4.657,0,3,0S0,5.373,0,12s1.343,12,3,12c.76,0,1.453-1.134,1.981-3h4.162c1.439,0,2.715-.863,3.25-2.199.308-.77-.066-1.643-.835-1.95Zm6.442-11.851c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5-2.5,1.119-2.5,2.5,1.119,2.5,2.5,2.5Z" />
-                                    </svg>
-
-                                </a>
-                            </li>
-                        </ul>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" id="Layer_1"
+                                            data-name="Layer 1" viewBox="0 0 24 24" width="32" height="32">
+                                            <path
+                                                d="m24,12.5c0,.828-.671,1.5-1.5,1.5h-1.5c-1.221,0-2.37-.649-2.999-1.695l-.552-.917-1.332,3.247,2.614,1.486c1.091.62,1.769,1.786,1.769,3.042v3.337c0,.828-.671,1.5-1.5,1.5s-1.5-.672-1.5-1.5v-3.337c0-.18-.097-.346-.252-.435l-4.081-2.322c-1.498-.947-2.073-2.749-1.428-4.322l1.265-3.084h-1.268c-.19,0-.362.105-.447.276l-1.447,2.895c-.371.741-1.271,1.041-2.013.671-.741-.371-1.041-1.271-.671-2.013l1.447-2.895c.597-1.193,1.796-1.935,3.13-1.935h3.993c1.221,0,2.37.649,3,1.695l1.843,3.062c.091.151,.251.242,.428.242h1.5c.829,0,1.5.672,1.5,1.5Zm-12.442,4.351c-.771-.309-1.642.066-1.95.835-.077.191-.259.314-.464.314h-4.143c-.552,0-1-.448-1-1s.448-1,1-1h.826c.111-1.253,.174-2.595,.174-4C6,5.373,4.657,0,3,0S0,5.373,0,12s1.343,12,3,12c.76,0,1.453-1.134,1.981-3h4.162c1.439,0,2.715-.863,3.25-2.199.308-.77-.066-1.643-.835-1.95Zm6.442-11.851c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5-2.5,1.119-2.5,2.5,1.119,2.5,2.5,2.5Z" />
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
                         <p>
                             Background photo by Conrad Lundberg. © 2023<br>
@@ -233,13 +230,19 @@ ul {
     list-style-type: none;
 }
 
+li {
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    margin-bottom: .25rem;
+}
+
 li:last-child {
     margin-bottom: 1rem;
 }
 
 .title-text-spacing {
     padding-top: 0rem;
-    margin-bottom: 0;
+    margin-bottom: 2rem; 
 }
 
 h1 {
@@ -282,9 +285,9 @@ h2 {
 }
 
 .h1-span-one {
-    font-size: 3rem;
-
-}
+    font-size: 3rem;     
+    
+   }
 
 .h1-span-two {
     font-size: 5rem;
@@ -293,7 +296,7 @@ h2 {
 }
 
 .h1-span-three {
-    font-size: 7rem;
+    font-size: 6rem;
     letter-spacing: 3px;
     padding: 5px;
 
@@ -315,13 +318,16 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: fit-content;
     margin: 0 auto;
+    width: fit-content;
+    
+    color: rgb(255, 255, 255);
+    margin-left: 6rem; 
 }
 
 @media only screen and (max-width: 50rem) {
     .h1-span-one {
-        font-size: 2rem;
+        font-size: 2.4rem;        
     }
 
     .h1-span-two {
@@ -329,7 +335,7 @@ h2 {
     }
 
     .h1-span-three {
-        font-size: 6rem;
+        font-size: 5rem;
     }
 
     .title-text-spacing {
