@@ -30,27 +30,25 @@
 
             <div style="height: 20rem;">
                 <transition>
-                    <div v-if="showMainContent" class="center-area-padding"
-                        style="background: rgba(0,0,0,.8); text-align: l">
+                    <div v-if="showMainContent" class="" style="background: rgba(0,0,0,.8); padding: 0.5rem;">
 
                         <div class="center-with-flex">
-                            <ul style="text-align: left; height: 12rem;">
-
+                            <ul class="ul-formatting">
                                 <li>
-                                    <router-link class="text-links link-customization" to="/my-projects">
+                                    <router-link style="background: rgba(255,255,255,.2);"
+                                        class="text-links link-customization" to="/my-projects">
                                         My Projects
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link class="text-links link-customization" to="/about">About
+                                    <router-link style="color: lightblue" class="text-links link-customization" to="/about">About
                                     </router-link>
                                 </li>
                                 <li>
                                     <a class="text-links link-customization"
                                         href="https://en.wikipedia.org/wiki/Exit_sign">
                                         <span style="margin-right: 10px;">Exit</span>
-
-
+                                        <span class="exit-link"></span>
                                     </a>
                                 </li>
                             </ul>
@@ -61,6 +59,8 @@
                             Plants at <a class="text-links font-override-white-color"
                                 href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
                                 botanical garden</a><br>
+                            Exit portal UIcon by <a class="text-links font-override-white-color"
+                                href="https://www.flaticon.com/uicons">Flaticon</a>
                             <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution 
                             https://www.flaticon.com/free-icon-font/portal-exit_10506900 -->
                             <!--<span style="font-size: 12px;">Exit UIcon by
@@ -234,6 +234,13 @@ ul {
     list-style-type: none;
 }
 
+.ul-formatting {
+    text-align: left;
+    height: 12rem;
+    width: 25rem;
+    margin-left: 2.5rem;
+}
+
 li {
     text-transform: uppercase;
     margin-bottom: .25rem;
@@ -265,7 +272,7 @@ h2 {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    margin-left: -2rem;
+    margin-left: -1.5rem;
     background: rgba(255, 255, 255, 0.05);
     padding-left: 1rem;
     padding-right: 1rem;
@@ -273,7 +280,9 @@ h2 {
 
 .link-customization:hover {
     text-decoration: none;
-    color: rgb(61, 191, 238);
+    color: rgb(0, 255, 204);
+    margin-left: 0rem;
+    transition: .3s ease-in-out;
 }
 
 .link-customization::before {
@@ -283,15 +292,15 @@ h2 {
     left: 0;
     height: 100%;
     width: 0;
-    background: rgb(61, 191, 238);
+    background: rgb(0, 255, 204);
     transition: width .1s ease-in-out;
     z-index: 0;
-    margin-left: -2.35rem;
+    margin-left: -1.5rem;
 }
 
 .link-customization:hover::before {
     width: 1rem;
-    margin-left: -2.35rem;
+    margin-left: -1.45rem;
 
 }
 
@@ -354,15 +363,14 @@ h2 {
 }
 
 .exit-link {
-    display: flex;
-    width: fit-content;
     color: rgb(255, 255, 255);
-
+    margin-left: -.5rem;
 }
 
 /* Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution
      https://www.flaticon.com/free-icon-font/portal-exit_10506900  */
 .exit-link::after {
+    margin-left: .5rem; 
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23fff" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="32" height="32"><path d="m24,12.5c0,.828-.671,1.5-1.5,1.5h-1.5c-1.221,0-2.37-.649-2.999-1.695l-.552-.917-1.332,3.247,2.614,1.486c1.091.62,1.769,1.786,1.769,3.042v3.337c0,.828-.671,1.5-1.5,1.5s-1.5-.672-1.5-1.5v-3.337c0-.18-.097-.346-.252-.435l-4.081-2.322c-1.498-.947-2.073-2.749-1.428-4.322l1.265-3.084h-1.268c-.19,0-.362.105-.447.276l-1.447,2.895c-.371.741-1.271,1.041-2.013.671-.741-.371-1.041-1.271-.671-2.013l1.447-2.895c.597-1.193,1.796-1.935,3.13-1.935h3.993c1.221,0,2.37.649,3,1.695l1.843,3.062c.091.151,.251.242,.428.242h1.5c.829,0,1.5.672,1.5,1.5Zm-12.442,4.351c-.771-.309-1.642.066-1.95.835-.077.191-.259.314-.464.314h-4.143c-.552,0-1-.448-1-1s.448-1,1-1h.826c.111-1.253,.174-2.595,.174-4C6,5.373,4.657,0,3,0S0,5.373,0,12s1.343,12,3,12c.76,0,1.453-1.134,1.981-3h4.162c1.439,0,2.715-.863,3.25-2.199.308-.77-.066-1.643-.835-1.95Zm6.442-11.851c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5-2.5,1.119-2.5,2.5,1.119,2.5,2.5,2.5Z" /></svg>');
     /* Other styles go here */
 }
@@ -392,6 +400,14 @@ h2 {
                 transparent .5%,
                 transparent 99.5%, rgba(0, 0, 0, 0.5) 99.5%);
         filter: blur(3px);
+    }
+
+    .ul-formatting {
+        text-align: left;
+        height: 9rem;
+        width: 18rem;
+        margin-left: 1.9rem;
+        font-size: 1.8rem;
     }
 
 }

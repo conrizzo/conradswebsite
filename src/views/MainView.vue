@@ -65,7 +65,7 @@ export default {
       birdDrawing: require("@/images/BlueSkyBird.jpg"),
       aCoffee: require("@/images/cup_of_coffee.jpg"),      
 
-      inputString: "_ Hello,",
+      inputString: "_ Projects",
       name: "",
       inputStringShuffled: "",
 
@@ -124,10 +124,10 @@ export default {
         else {
           clearInterval(intervalId);
           setTimeout(() => {
-            this.inputStringShuffled = "Hello,";
+            this.inputStringShuffled = "Projects";
           }, 1000);
         }
-      }, 200);
+      }, 125);
     },
   },
 

@@ -1,47 +1,60 @@
 <template>
-    <div class="main-container-width">
-        <div class="center-with-flex">
-            <div id="about-background">
-                <h1>Country Music Generator <br>(under construction)</h1>
-                <p>Project started March 27th, 2024
-                </p>
-                <div class="top-paragraph-formatting">
-                    <p>Country music plus Natural Language Processing in the same place!
-                        Not an easy combination to find. The Frontend on this is
-                        pretty crude at the moment, the main work is in designing queries for this in backend. I have
-                        the lyrics in dictionaries
-                        in a python file for a few songs. Essentially the goal is to help a user find a good country
-                        song based on some inputs. Sentiment analysis
-                        based on the themes of the country music lyrics is an idea as well. Based on a users selection
-                        embedded youtube videos will be
-                        shown based on input queries using NLP.
-
+    <div style="background: black;">
+        <div class="main-container-width">
+            <div class="center-with-flex">
+                <div id="about-background">
+                    <h1>Country Music Generator <br>(under construction)</h1>
+                    <p>Project started March 27th, 2024
                     </p>
+                    <div class="top-paragraph-formatting">
+                        <p>Country music plus Natural Language Processing in the same place!
+                            Not an easy combination to find. The Frontend on this is
+                            pretty crude at the moment, the main work is in designing queries for this in backend. I
+                            have
+                            the lyrics in dictionaries
+                            in a python file for a few songs. Essentially the goal is to help a user find a good country
+                            song based on some inputs. Sentiment analysis
+                            based on the themes of the country music lyrics is an idea as well. Based on a users
+                            selection
+                            embedded youtube videos will be
+                            shown based on input queries using NLP.
 
-                    <p>At the moment lyrics are stored in a python file. Since this is showing embedded YouTube videos
-                        this page uses
-                        3rd party cookies from Google/Youtube.
-                    </p>
+                        </p>
 
+                        <p>At the moment lyrics are stored in a python file. Since this is showing embedded YouTube
+                            videos
+                            this page uses
+                            3rd party cookies from Google/Youtube.
+                        </p>
+                        <br>
+                        <p>
+                            All the checkboxes are generated with a loop and their respective css properties and
+                            reactivity are
+                            attached to each looped element.
+                        </p>
+
+                    </div>
+                    <div>
+                        <button style="margin: 1rem;" class="clean-button">Generate</button>
+                    </div>
+                    <div style="padding-right: 1rem;">
+                        <div class="checkbox-item" v-for="(value, index) in checkBoxValues" :key="index">
+                            <label :for="'acceptCheckBox' + index" class="check-box-label">
+                                <span class="about-check-box-font">{{ value.label }}</span>
+                                <input :id="'acceptCheckBox' + index" class="check-box" type="checkbox"
+                                    name="myCheckBox" v-model="value.checked">
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <button style="margin: 1rem;" class="clean-button">Generate</button>
-
-                <label class="check-box-label" v-for="(value, index) in checkBoxValues" :key="index"
-                    :for="'acceptCheckBox' + index">
-                    <span class="about-check-box-font">{{ value.label }}</span>
-                    <input :id="'acceptCheckBox' + index" class="check-box" type="checkbox" name="myCheckBox"
-                        v-model="value.checked">
-                </label>
-
             </div>
         </div>
-    </div>
 
 
-    <div class="center-with-flex">
+        <div class="center-with-flex">
 
-        <div class="grid-container">
-<!--
+            <div class="grid-container">
+                <!--
             <div style="text-align: left; padding-bottom: 2rem;" v-for="song in songList" :key="song.id">
                 <iframe width="420" height="315" :src="formatSong(song.YOUTUBE_URL_ID)">
                 </iframe>
@@ -55,18 +68,20 @@
             </div>
         -->
 
+            </div>
+
         </div>
-
+        <div class="query-array">
+            Query that is sent to the backend to filter with python code: {{ checkedLabels }}
+        </div>
+        <div style="height: 40rem;"></div>
+        <CookieAccept />
+        <!--<button class="clean-button">Show</button>-->
     </div>
-
-
-
-    <CookieAccept />
-    <!--<button class="clean-button">Show</button>-->
 </template>
 
 <script lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 
 import CookieAccept from "@/components/CookieAccept.vue";
 import { songList } from './countrySongs';
@@ -82,14 +97,14 @@ export default {
             { label: 'Happy', checked: false },
             { label: 'Beer', checked: false },
             { label: 'Trucks', checked: false },
-            { label: 'Sad', checked: false },
             { label: 'Alligators', checked: false },
             { label: 'Texas', checked: false },
-            { label: 'Gambling', checked: false },
             { label: 'German', checked: false },
+            { label: 'Gambling', checked: false },
+            { label: 'Sad', checked: false },
         ]);
 
-
+        const checkedLabels = computed(() => checkBoxValues.value.filter(item => item.checked).map(item => item.label));
 
         onMounted(() => {
             // Your code here
@@ -103,7 +118,8 @@ export default {
             data,
             songList,
             formatSong,
-            checkBoxValues
+            checkBoxValues,
+            checkedLabels
         };
     }
 };
@@ -119,8 +135,12 @@ h1 {
     color: rgb(18, 18, 18);
 }
 
+.query-array {
+    color: rgb(255, 255, 255);
+}
+
 .main-container-width {
-    width: 80rem;
+    max-width: 80rem;
     margin: 0 auto;
 }
 
@@ -149,12 +169,28 @@ iframe {
     /* Change as needed */
 }
 
-.check-box-label {
+.checkbox-item {
+    display: inline-block;   
+    margin: 0.25rem;
 
+}
+
+.check-box-label {
+    user-select: none;
+    cursor: pointer;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    padding-left: 1rem;
+
     color: rgb(18, 18, 18);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    
+    box-sizing: border-box;
+
+}
+
+.check-box-label:hover {
+    background: rgb(255, 221, 135);
 }
 
 .check-box {

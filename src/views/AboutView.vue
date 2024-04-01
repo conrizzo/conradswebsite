@@ -583,8 +583,8 @@ export default {
           /* const response = await fetch('/backend/api/data'); */
           /* const response = await fetch('https://conradswebsite.com/backend/api/data'); */
           /* must use actual web address for localhost or from another webserver 
-          const response = await fetch('https://conradswebsite.com/backend/api/data');*/
-          const response = await fetch('https://conradswebsite.com/backend/api/data');
+          const response = await fetch('https://conradswebsite.com/backend/api/data'); */
+          const response = await fetch('/backend/api/data');
           const data = await response.json();
           //console.log(data);
           this.backEndQuery = data.message;
@@ -619,7 +619,7 @@ export default {
       const message = this.submitMessage;
 
       try {
-        const response = await fetch('https://conradswebsite.com/backend/api/leave_message', {
+        const response = await fetch('/backend/api/leave_message', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1122,6 +1122,10 @@ input[type='checkbox'] {
 }
 
 @media screen and (max-width: 40rem) {
+
+  .top-top-component-adjustment {
+    background: rgba(0, 0, 0, 0);
+  }
 
   .top-component-adjustment {
     height: fit-content;

@@ -144,7 +144,7 @@ async function testCosine(sentenceOne, sentenceTwo) {
     isLoading.value = true;
 
     try {
-        const response = await fetch('https://conradswebsite.com/backend/api/cosine', {
+        const response = await fetch('/backend/api/cosine', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
