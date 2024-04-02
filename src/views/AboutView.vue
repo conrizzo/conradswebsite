@@ -210,24 +210,32 @@
               <form @submit.prevent="leaveMessage" class="form">
                 <ul class="no-bullet">
                   <li>
-                    <label for="name" class="include-label-text">Name:</label>
+                    <label for="name" class="include-label-text">Name*</label>
                     <input id="name" autocomplete="given-name" class="input-field-style" type="text"
                       v-model="submitName" placeholder="Enter your name" />
                   </li>
                   <li>
-                    <label for="email" class="include-label-text">Email:</label>
+                    <label for="email" class="include-label-text">Email</label>
                     <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitEmail"
                       placeholder="name@####.com" />
                   </li>
                   <li>
-                    <label for="userMessage" class="include-label-text">Message:</label>
+                    <label for="userMessage" class="include-label-text">Message*</label>
                     <textarea id="userMessage" class="input-field-style" type="text" v-model="submitMessage"
                       placeholder="Message">
                   </textarea>
                   </li>
                   <li class="button">
-                    <button :class="{ 'not-allowed-cursor-change': !checkBoxValue }" class="clean-button"
+                    <button :class="{ 'not-allowed-cursor-change': !isFormValid }" class="clean-button"
                       type="submit">Send your message</button>
+                    <div>
+                      <div style="font-size: 0.8rem; margin-top: 1rem;">
+                        <p>The cursor on this button above will be a
+                          'not-allowed' icon (a circle with a diagonal line through it) if required fields are
+                          missing! The 'Send your message' button can be pressed to help find out what is missing.</p>
+                        </div>
+                      
+                    </div>
                   </li>
                 </ul>
               </form>
@@ -322,17 +330,17 @@
               <form @submit.prevent="leaveMessage" class="form">
                 <ul class="no-bullet">
                   <li>
-                    <label for="nameD" class="include-label-text">Name:</label>
+                    <label for="nameD" class="include-label-text">Name*</label>
                     <input id="nameD" autocomplete="given-name" class="input-field-style" type="text"
                       v-model="submitName" placeholder="Name" />
                   </li>
                   <li>
-                    <label for="email" class="include-label-text">Email:</label>
+                    <label for="email" class="include-label-text">Email</label>
                     <input autocomplete="off" class="input-field-style" id="email" type="email" v-model="submitEmail"
                       placeholder="name@####.com" />
                   </li>
                   <li>
-                    <label for="userMessageD" class="include-label-text">Nachricht:</label>
+                    <label for="userMessageD" class="include-label-text">Nachricht*</label>
                     <textarea id="userMessageD" class="input-field-style" type="text" v-model="submitMessage"
                       placeholder="Nachricht">
                   </textarea>
@@ -483,6 +491,7 @@ export default {
       canSubmit: true,
       errorMessage: "",
       checkBoxValue: false,
+      validateFormFieldsCheck: false,
 
       imageWidth: 20,  // Initial height
       isMobile: window.innerWidth <= 800, // initial check
@@ -543,6 +552,12 @@ export default {
       lightHouseCaptionDeutsch: "Google Lighthouse Score für diese Seite.",
     }
   },
+  computed: {
+    isFormValid() {
+      return this.submitName.length >= 1 && this.submitMessage.length >= 1 && this.checkBoxValue;
+    },
+  },
+
 
   watch: {
     isMobile(newVal) {
@@ -597,22 +612,39 @@ export default {
         this.backEndQuery = `Error: The backend is currently down (likely for updates). Please try again later.`;
       }
     },
-    async leaveMessage() {
+    validateFormFields() {
 
       if (this.checkBoxValue === false) {
         this.errorMessage = 'Error: Please click "Agree to terms" checkbox to send a message';
-        return;
+        return false;
       }
 
       if (!this.canSubmit) {
         this.errorMessage = 'Error: Please wait, only 1 message per 30 seconds allowed!';
+        return false;
+      }
+
+      if (this.submitMessage.length < 1) {
+        this.errorMessage = "Please fill out the 'Message' field";
+        return false;
+      }
+
+      if (this.submitName.length < 1) {
+        this.errorMessage = "Please fill out the 'Name' field";
+        return false;
+      }
+      this.errorMessage = "";
+      // If all conditions are met, return true
+      return true;
+
+    },
+    async leaveMessage() {
+
+      if (this.validateFormFields() === false) {
         return;
       }
 
-      if (this.submitMessage.length < 1 || this.submitName.length < 1) {
-        this.errorMessage = 'Please fill out all fields.';
-        return;
-      }
+      this.submitName.length < 1
 
       const name = this.submitName;
       const subject = this.submitEmail;

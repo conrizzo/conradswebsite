@@ -7,6 +7,8 @@
                     <p>Project started March 27th, 2024
                     </p>
                     <div class="top-paragraph-formatting">
+                        <h2>Documenting steps and approach</h2>
+                        <br>
                         <p>Country music plus Natural Language Processing in the same place!
                             Not an easy combination to find. The Frontend on this is
                             pretty crude at the moment, the main work is in designing queries for this in backend. I
@@ -18,7 +20,6 @@
                             selection
                             embedded youtube videos will be
                             shown based on input queries using NLP.
-
                         </p>
 
                         <p>At the moment lyrics are stored in a python file. Since this is showing embedded YouTube
@@ -27,17 +28,33 @@
                             3rd party cookies from Google/Youtube.
                         </p>
                         <br>
+                        <p>Here is a sample of tokenizing the lyrics for the country song Amos Moses by Jerry Reed.
+                            Removing stopwords, common pronouns, and punctuation. The objective is to focus on
+                            only words that carry higher information content. There may be some errors here.
+                            This is an educational/research project to use Frontend, backend, and NLP.</p>
+                        <p>
+                            [('amos', 9), ('louisiana', 8), ('alligator', 7), ('man', 6), ('swamp', 5), ('called', 5),
+                            ('well', 5), ('moses', 4), ('lived', 4), ('get', 3), ('boy', 3), ('forty-five', 3),
+                            ('minutes', 3), ('southeast', 3), ('thibodaux', 3), ('doc', 3), ('millsap', 3), ('pretty',
+                            3), ('wife', 3), ('hannah', 3), ('son', 3), ('could',
+                            3), ('yeah', 2), ("'d", 2), ('gon', 2)]
+                        </p>
+                        <p>Using <a class="text-links white-text" href="https://github.com/nltk/nltk">NLTK</a> for much
+                            of the text processing.</p>
+                        <br>
                         <p>
                             All the checkboxes are generated with a loop and their respective css properties and
                             reactivity are
-                            attached to each looped element.
+                            attached to each looped element. This is made with Vue
+                            <a class="text-links white-text"
+                                href="https://vuejs.org/guide/extras/composition-api-faq.html">composition API</a>.
                         </p>
 
                     </div>
-                    <div>
-                        <button style="margin: 1rem;" class="clean-button">Generate</button>
-                    </div>
-                    <div style="padding-right: 1rem;">
+
+                    <div style="">
+
+
                         <div class="checkbox-item" v-for="(value, index) in checkBoxValues" :key="index">
                             <label :for="'acceptCheckBox' + index" class="check-box-label">
                                 <span class="about-check-box-font">{{ value.label }}</span>
@@ -45,6 +62,10 @@
                                     name="myCheckBox" v-model="value.checked">
                             </label>
                         </div>
+                        <div>
+                            <button @click="fetchData" style="margin: 1rem;" class="clean-button">Generate</button>
+                        </div>
+                        Post Response: {{ postResponseData }}
                     </div>
                 </div>
             </div>
@@ -72,57 +93,61 @@
 
         </div>
         <div class="query-array">
-            Query that is sent to the backend to filter with python code: {{ checkedLabels }}
+            Query that is sent to the backend to run in Python code: {{ checkedLabels }}
         </div>
         <div style="height: 40rem;"></div>
         <CookieAccept />
         <!--<button class="clean-button">Show</button>-->
     </div>
 </template>
-
-<script lang="ts">
+<!-- 
+sometimes these file imports glitch red in vs code editor, have to reload editor 
+I suppose this is normal when 3 or more editors are open using vs code insiders? 
+-->
+<script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
-
-import CookieAccept from "@/components/CookieAccept.vue";
+import {postDataAndGetResponse} from './getBackend';
 import { songList } from './countrySongs';
+import CookieAccept from "@/components/CookieAccept.vue";
+console.log(songList);
+const checkBoxValues = ref([
+    { label: 'Happy', checked: false },
+    { label: 'Beer', checked: false },
+    { label: 'Trucks', checked: false },
+    { label: 'Texas', checked: false },
+    { label: 'Alligators', checked: false },
+    { label: 'German', checked: false },
+    { label: 'Gambling', checked: false },
+    { label: 'Sad', checked: false },
+]);
 
-export default {
-    name: 'CountryMusicView',
-    components: {
-        CookieAccept
-    },
-    setup() {
-        const data = ref(null);
-        const checkBoxValues = ref([
-            { label: 'Happy', checked: false },
-            { label: 'Beer', checked: false },
-            { label: 'Trucks', checked: false },
-            { label: 'Alligators', checked: false },
-            { label: 'Texas', checked: false },
-            { label: 'German', checked: false },
-            { label: 'Gambling', checked: false },
-            { label: 'Sad', checked: false },
-        ]);
+const checkedLabels = computed(() => checkBoxValues.value.filter(item => item.checked).map(item => item.label));
 
-        const checkedLabels = computed(() => checkBoxValues.value.filter(item => item.checked).map(item => item.label));
 
-        onMounted(() => {
-            // Your code here
-        });
+let postResponseData: any = ref();
 
-        const formatSong = (key: string) => {
-            return 'https://www.youtube.com/embed/' + key;
-        };
+const fetchData = async () => {
 
-        return {
-            data,
-            songList,
-            formatSong,
-            checkBoxValues,
-            checkedLabels
-        };
+    const url = '/backend/api/country_music_generator';
+
+    console.log("click button");
+    console.log(checkedLabels.value);
+    console.log(url)
+    try {
+        postResponseData.value = await postDataAndGetResponse(url, checkedLabels.value);
+        console.log(postResponseData.value);
+    } catch (error) {
+        console.error('Error:', error);
     }
 };
+
+const formatSong = (key: string) => {
+    return 'https://www.youtube.com/embed/' + key;
+};
+
+onMounted(() => {
+    // Any code you want to run when the component is mounted
+});
 </script>
 
 
@@ -133,6 +158,10 @@ h1 {
     text-align: left;
     background: rgb(255, 209, 93);
     color: rgb(18, 18, 18);
+}
+
+.white-text {
+    color: white;
 }
 
 .query-array {
@@ -170,9 +199,9 @@ iframe {
 }
 
 .checkbox-item {
-    display: inline-block;   
-    margin: 0.25rem;
-
+    display: inline-block;
+    margin-left: 0.25rem;
+    margin-bottom: 1rem;
 }
 
 .check-box-label {
@@ -182,9 +211,9 @@ iframe {
     margin-bottom: 0.5rem;
 
     color: rgb(18, 18, 18);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 0.5rem;
-    
+
     box-sizing: border-box;
 
 }
@@ -218,5 +247,11 @@ input[type='checkbox'] {
     background-attachment: fixed;
     z-index: 0;
     text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 3rem;
+    }
 }
 </style>

@@ -1,26 +1,23 @@
-let cachedData: any = null;
 
-export async function fetchData() {
 
-    if (cachedData) {
-        return cachedData;
-    }
+export async function postDataAndGetResponse(url: string, songLabels: string[]) {
 
     try {
-        const response = await fetch('https://conradswebsite.com/api/country-music-generator');
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({countryMusicLabels: songLabels})
+        });
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
-        cachedData = data;
-
-        return data;
-
+        const jsonData = await response.json();
+        return jsonData;
     } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-        return { message: 'There was a problem with the fetch operation:', error: error };
+        console.error('Error:', error);
     }
-
 }

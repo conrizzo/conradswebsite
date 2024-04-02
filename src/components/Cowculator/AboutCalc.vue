@@ -6,14 +6,21 @@
       <h1 style="padding-top: 0.5em; color: rgb(66, 184, 147);"><span v-html="title"></span>, why?</h1>
 
       <p class="about-modal-text">
-        The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. This is not some simple calculator
+        The Cowculator was made by Conrad in Tübingen, Germany, and built using Vue 3. This is not some simple
+        calculator
         tutorial
         people write. It uses real parsing.
-        It displays a binary tree of the output, correctly follows the order of operations, and displays the current math
-        operation node being performed.
-        The Cowculator does not use the JavaScript eval() function, as it is considered insecure and bad practice.
+        It displays a binary tree of the output, correctly follows the order of operations, and displays the current
+        math
+        operation node being performed. Try entering 2 incorrect math operations e.g. <b>"×÷"</b> in a row and it will
+        auto correct it.
+        Keyboard keys also work for entry and removal.
+        The Cowculator does not use the JavaScript eval() function, as it is considered insecure (it is generally only
+        used for testing purposes?).
         The current left node, math operator node, and right node in the tree are shown as calculations are entered.
         This has mostly been a learning project so there are some extra unused functions and comments.
+        <br>
+        Now get Cowculating!
       </p>
 
 
