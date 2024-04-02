@@ -230,9 +230,9 @@
                       type="submit">Send your message</button>
                     <div>
                       <div style="font-size: 0.8rem; margin-top: 1rem;">
-                        <p>The cursor on this button above will be a
+                        <p>The cursor on the 'Send your message' button above will be a
                           'not-allowed' icon (a circle with a diagonal line through it) if required fields are
-                          missing! The 'Send your message' button can be pressed to help find out what is missing.</p>
+                          missing! The button can be pressed to help find out what is missing.</p>
                         </div>
                       
                     </div>
