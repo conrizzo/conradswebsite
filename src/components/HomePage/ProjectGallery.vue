@@ -1,39 +1,52 @@
 <template>
-  <div class="gallery-header">
-    <h1 class="gallery-styling-h1-span">
-      <span> Projects
-        <span class="title-arrow-symbol">↷</span></span>
-    </h1>
-  </div>
-  <div class="centerAll">
-    <div class="image-gallery">
-      <!--
-      <div class="is-item-loaded-text-display"><i>Load on Scroll: </i> 
-        <div v-for="(item, index) in displayArray" :key="item" style="display: inline-block;">
-          <div v-if="displayArray.length">
-            {{item}}<span v-if="index !== displayArray.length - 1">,&nbsp;
-            </span>
+  <div>
+
+
+    <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
+    <div class="gallery-header">
+      <h1 class="gallery-styling-h1-span">
+        <span> Projects
+          <span class="title-arrow-symbol">↷</span></span>
+      </h1>
+    </div>
+
+    <div class="centerAll">
+
+      <div class="image-gallery">
+        <div :class="{ 'open': isMenuOpen }" class="side-menu">
+
+          <!-- to make appear on same line use display: inline-block; -->
+          <div class="is-item-loaded-text-display"><i>Load on Scroll: </i>
+            <div v-for="(item, index) in displayArray" :key="item" style=" font-size: 1.5rem; text-align: left;">
+
+              <div v-if="displayArray.length">
+
+                {{ item }}<span v-if="index !== displayArray.length - 1"><!-- ,&nbsp; -->
+                </span>
+              </div>
+            </div>
+            <br>
           </div>
+
         </div>
-        <br>
-      </div> -->
-      <main class="image-gallery-grid-container">
-        <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
-          :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
-          <router-link class="no-router-link-decorations" :to="item.to">
-            <div class="img-wrapper">
-              <!-- add in lazy loading to test this 
+        <main class="image-gallery-grid-container">
+          <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
+            :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
+            <router-link class="no-router-link-decorations" :to="item.to">
+              <div class="img-wrapper">
+                <!-- add in lazy loading to test this 
                             <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
                             -->
-              <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
-            </div>
-            <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
-            <figcaption>
-              <p>{{ item.caption }}</p>
-            </figcaption>
-          </router-link>
-        </div>
-      </main>
+                <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
+              </div>
+              <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
+              <figcaption>
+                <p>{{ item.caption }}</p>
+              </figcaption>
+            </router-link>
+          </div>
+        </main>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +66,7 @@ export default {
       imageArrayChoice: ProjectLinks,
 
       displayArray: [],
+      isMenuOpen: false
     };
   },
   mounted() {
@@ -77,6 +91,9 @@ export default {
       const oddIndices = [0, 2, 5, 7]; // 1, 3, 6, 8 in 1-based indexing
       const modIndex = index % 8; // Repeat the pattern every 8 items
       return oddIndices.includes(modIndex);
+    },
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
     },
     handleIntersection(entries) {
       entries.forEach(entry => {
@@ -106,6 +123,36 @@ export default {
 
 
 <style scoped>
+.side-menu {
+  position: absolute;
+  margin-top: -3rem;
+  height: calc(100% + 3rem);
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 18rem;
+  /* Adjust as needed */
+
+  background: #333;
+  /* Adjust as needed */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+  /* Adjust timing as needed */
+
+}
+
+.side-menu.open {
+  transform: translateX(0);
+
+}
+
+.toggle-button {
+  margin: 0.5rem;
+  margin-left: 0rem;
+}
+
+
+
 .hidden {
   opacity: 0;
   transition: all .75s;
@@ -179,6 +226,7 @@ h2 {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 1rem;
+  z-index: 1;
 }
 
 .grid-item {

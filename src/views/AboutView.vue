@@ -192,12 +192,21 @@
 
           <section v-show="languageButtonText === 'Sprache: Deutsch'"
             class="each-section form-section last-section-bottom-padding">
-            <div class="form-container">
+            <div class="">
 
-              <div v-show="backEndQuery !== null" class="backend-message">
+              <div v-show="backEndQuery !== null" class="backend-message center-with-flex">
                 ConradsWebsite says: "{{ backEndQuery }}"
               </div>
-              <span class="error-color">{{ errorMessage }}</span>
+              <div v-if="errorMessage !== ''" class="error-message-color center-with-flex">
+
+                <!-- License below refers to the svg icon only -->
+                <!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32" fill="#ff5959">
+                  <path
+                    d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+                </svg><span class="error-message-span-text">{{ errorMessage }}</span>
+
+              </div>
               <div class="flex-start">
                 <h2 class="section-title-three">Contact</h2>
                 <button style="margin-bottom: 0.95rem; margin-left: 1rem; margin-top: 1.2rem;" class="clean-button"
@@ -233,8 +242,8 @@
                         <p>The cursor on the 'Send your message' button above will be a
                           'not-allowed' icon (a circle with a diagonal line through it) if required fields are
                           missing! The button can be pressed to help find out what is missing.</p>
-                        </div>
-                      
+                      </div>
+
                     </div>
                   </li>
                 </ul>
@@ -312,11 +321,20 @@
 
           <section v-show="languageButtonText === 'Language: English'"
             class="each-section form-section last-section-bottom-padding">
-            <div class="form-container">
+            <div class="">
               <div v-show="backEndQuery !== null" class="backend-message">
                 ConradsWebsite says: "{{ backEndQuery }}"
               </div>
-              <span class="error-color">{{ errorMessage }}</span>
+              <div v-if="errorMessage !== ''" class="error-message-color center-with-flex">
+
+                <!-- License below refers to the svg icon only -->
+                <!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32" fill="#ff5959">
+                  <path
+                    d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+                </svg><span class="error-message-span-text">{{ errorMessage }}</span>
+
+              </div>
               <div class="flex-start">
                 <h2 class="section-title-three">Kontakt</h2>
                 <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
@@ -684,7 +702,7 @@ export default {
           }, 30000); // disallow messages for 30 seconds
         }
       } catch (error) {
-        console.error('Error:', error);
+        this.errorMessage = `Error: It's likely the backend server is down (likely for updates). Please try again later.`;
       }
     },
     language() {
@@ -1116,8 +1134,13 @@ input[type='checkbox'] {
   margin-right: 0.2rem;
 }
 
-.error-color {
+.error-message-color {
   color: #ff5959;
+}
+
+.error-message-span-text{
+  margin-left: 0.5rem;
+  margin-top: 0.1rem;
 }
 
 .last-section-bottom-padding {

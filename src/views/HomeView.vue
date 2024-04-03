@@ -2,7 +2,7 @@
     <!-- The plant image on this page is explicity copyrighted -->
     <!-- Photo by Conrad Lundberg - the owner of this website -->
     <!-- <div style="height: 100svh;" :class="['jungle-image', imageClass]"> -->
-    <div @mousemove="handleMouseMove" id="top-image" class="center-with-flex" style="align-items: center; 
+    <div @mousemove="handleMouseMove" id="top-image" class="top-image-flex" style="align-items: center; 
     box-sizing: border-box; 
     height: 88vh;">
 
@@ -36,7 +36,8 @@
                             <ul class="ul-formatting">
                                 <li>
                                     <router-link style="background: rgba(255,255,255,.2);"
-                                        class="text-links link-customization" to="/my-projects">
+                                        class="text-links link-customization my-projects-text-animation"
+                                        to="/my-projects">
                                         My Projects
                                     </router-link>
                                 </li>
@@ -185,10 +186,14 @@ onMounted(() => {
 
 }
 */
+.top-image-flex {
+    display: flex;
+    padding-left: 10%;
+}
+
 #top-image {
     background: url('@/images/jungle/2880-1620.jpg') center;
     background-size: cover;
-    /* Increase this value to scale the image up */
     background-attachment: fixed;
     z-index: 0;
     background-repeat: no-repeat;
@@ -197,9 +202,8 @@ onMounted(() => {
 
 #top-image::before {
     position: absolute;
-
     background: url('@/images/jungle/2880-1620.jpg') center;
-    background-size: 130%;
+    background-size: 100%;
     background-attachment: fixed;
     z-index: 0;
     background-repeat: no-repeat;
@@ -277,6 +281,10 @@ h2 {
 }
 */
 
+.my-projects-text-animation {
+    animation: pulse 5s;    
+}
+
 .link-customization {
     color: white;
     position: relative;
@@ -294,6 +302,7 @@ h2 {
     margin-left: 0rem;
     transition: .3s ease-in-out;
 }
+
 
 .link-customization::before {
     content: "";
@@ -372,6 +381,32 @@ h2 {
     }
 }
 
+/* text animation glow */
+@keyframes pulse {
+    0% {
+        text-shadow: 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #000000, 0 0 60px #000000;
+        color: rgb(255, 255, 255);
+    }
+
+
+    25% {
+        text-shadow: 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58;
+        color: #00ffcc;
+    }
+
+    50% {
+        text-shadow: 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #000000, 0 0 60px #000000;
+        color: rgb(255, 255, 255);
+    }
+
+    100% {
+        text-shadow: 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58;
+        color: #00ffcc;
+    }
+
+
+}
+
 .exit-link {
     color: rgb(255, 255, 255);
     margin-left: -.5rem;
@@ -386,6 +421,12 @@ h2 {
 }
 
 @media only screen and (max-width: 50rem) {
+
+    .top-image-flex {
+        padding-left: 0%;
+        justify-content: center;
+    }
+
     .h1-span-one {
         font-size: 2.4rem;
     }

@@ -1,13 +1,13 @@
 <template>
-    <div style="background: black;">
+    <div id="about-background">
         <div class="main-container-width">
             <div class="center-with-flex">
-                <div id="about-background">
+                <div style="background: #fff;">
                     <h1>Country Music Generator <br>(under construction)</h1>
-                    <p>Project started March 27th, 2024
-                    </p>
+                    
                     <div class="top-paragraph-formatting">
                         <h2>Documenting steps and approach</h2>
+                        <p>Project started March 27th, 2024</p>
                         <br>
                         <p>Country music plus Natural Language Processing in the same place!
                             Not an easy combination to find. The Frontend on this is
@@ -39,14 +39,17 @@
                             3), ('wife', 3), ('hannah', 3), ('son', 3), ('could',
                             3), ('yeah', 2), ("'d", 2), ('gon', 2)]
                         </p>
-                        <p>Using <a class="text-links white-text" href="https://github.com/nltk/nltk">NLTK</a> for much
+                        <p>Using <a class="text-links purple-text" href="https://github.com/nltk/nltk">NLTK</a> for much
                             of the text processing.</p>
                         <br>
+                        <p>The difficult part about this is thinking of some creative way to search the songs. If all it does is matches
+                            words it's kind of boring - this is why NLP tools and creative approaches make it interesting.
+                        </p>
                         <p>
                             All the checkboxes are generated with a loop and their respective css properties and
                             reactivity are
                             attached to each looped element. This is made with Vue
-                            <a class="text-links white-text"
+                            <a class="text-links purple-text"
                                 href="https://vuejs.org/guide/extras/composition-api-faq.html">composition API</a>.
                         </p>
 
@@ -159,13 +162,18 @@ h1 {
     background: rgb(255, 209, 93);
     color: rgb(18, 18, 18);
 }
+h2{
+    font-size: 2rem;
+}
 
-.white-text {
-    color: white;
+.purple-text {
+    color: rgb(156, 64, 242);
 }
 
 .query-array {
     color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 1.25rem;
 }
 
 .main-container-width {
@@ -229,7 +237,7 @@ iframe {
 }
 
 input[type='checkbox'] {
-    accent-color: #ffb662;
+    accent-color: rgb(255, 209, 93);
 }
 
 #about-background {
@@ -241,8 +249,8 @@ input[type='checkbox'] {
             40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
     background: linear-gradient(-2deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9),
             40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%),
-        linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5),
-            rgb(139, 114, 188) 100%);
+        linear-gradient(45deg, rgba(201, 253, 255, 0.9), 40%, rgb(173, 252, 255), rgba(0, 195, 255, 0.5),
+            rgb(255, 255, 255) 100%);
     background-size: 100% 100%;
     background-attachment: fixed;
     z-index: 0;
