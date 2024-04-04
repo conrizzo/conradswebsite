@@ -69,7 +69,7 @@ export default {
       name: "",
       inputStringShuffled: "",
 
-      // image hover over project links
+      
       isHovered: false,
       hoveredImage: "",
 

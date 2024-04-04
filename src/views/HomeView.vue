@@ -282,7 +282,7 @@ h2 {
 */
 
 .my-projects-text-animation {
-    animation: pulse 5s;    
+    animation: pulse 8s;
 }
 
 .link-customization {
@@ -383,17 +383,19 @@ h2 {
 
 /* text animation glow */
 @keyframes pulse {
+
     0% {
-        text-shadow: 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #000000, 0 0 60px #000000;
-        color: rgb(255, 255, 255);
-    }
-
-
-    25% {
         text-shadow: 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58;
         color: #00ffcc;
     }
 
+
+    100% {
+        text-shadow: 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #000000, 0 0 60px #000000;
+        color: rgb(255, 255, 255);
+    }
+
+    /*
     50% {
         text-shadow: 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #000000, 0 0 60px #000000;
         color: rgb(255, 255, 255);
@@ -403,7 +405,7 @@ h2 {
         text-shadow: 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58;
         color: #00ffcc;
     }
-
+    */
 
 }
 
@@ -421,6 +423,11 @@ h2 {
 }
 
 @media only screen and (max-width: 50rem) {
+
+    /* Remove animation on low resolution, so phone device doesnt lag */
+    .my-projects-text-animation {
+        animation: none;
+    }
 
     .top-image-flex {
         padding-left: 0%;

@@ -67,10 +67,12 @@
                 It also uses
                 <a class="text-links" href="https://en.wikipedia.org/wiki/HTTP/2">http/2</a> for faster
                 loading. Runs <a class="text-links" href="https://redis.io/">Redis</a> for data
-                cache/storage. Redis runs in its own <a class="text-links"
+                cache/storage and rate limiting backend requests. Redis runs in its own <a class="text-links"
                   href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>
                 image container on a Docker network, Gunicorn and Flask run in a separate Docker python image container
-                on the same Docker network.
+                on the same Docker network. Also uses ubuntu firewall rules, and
+                <a class="text-links" href="https://github.com/fail2ban/fail2ban">fail2ban</a> to block malicious IPs
+                and bots and such.
               </li>
               <li>
                 <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
@@ -120,12 +122,13 @@
                 und Python mit Gunicorn und wird über einen Reverse-Proxy auf <a class="text-links"
                   href="https://www.nginx.com/">Nginx</a> aufgerufen. Es verwendet außerdem <a class="text-links"
                   href="https://de.wikipedia.org/wiki/HTTP/2">HTTP/2</a> für schnelleres Laden.
-                Es läuft jetzt <a class="text-links" href="https://redis.io/">Redis</a> für Datencache/Speicherung
-                ausgeführt.
+                Es läuft jetzt <a class="text-links" href="https://redis.io/">Redis</a> für Daten Cache/Speicherung und
+                raten begrenzende Backend-Anfragen.
                 Backend läuft in <a class="text-links" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>.
                 Im selben Docker-Netzwerk läuft Redis in einem eigenen Docker-Image-Container.
                 Gunicorn und Flask hingegen befinden sich in einem separaten Docker-Python-Image-Container auf demselben
-                Netzwerk.
+                Netzwerk. Auch Ubuntu verwendet Firewall-Regeln und Fail2ban, um bösartige IPs und Bots zu blockieren
+                und ähnliches
               </li>
               <li>
                 <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet
@@ -1138,7 +1141,7 @@ input[type='checkbox'] {
   color: #ff5959;
 }
 
-.error-message-span-text{
+.error-message-span-text {
   margin-left: 0.5rem;
   margin-top: 0.1rem;
 }

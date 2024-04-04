@@ -66,7 +66,7 @@ export default {
       imageArrayChoice: ProjectLinks,
 
       displayArray: [],
-      isMenuOpen: false
+      isMenuOpen: true,
     };
   },
   mounted() {
@@ -130,14 +130,12 @@ export default {
   top: 0;
   left: 0;
   z-index: -1;
-  width: 18rem;
-  /* Adjust as needed */
+  width: 18rem; 
 
   background: #333;
-  /* Adjust as needed */
   transform: translateX(-100%);
   transition: transform 0.3s ease-out;
-  /* Adjust timing as needed */
+ 
 
 }
 
@@ -149,6 +147,10 @@ export default {
 .toggle-button {
   margin: 0.5rem;
   margin-left: 0rem;
+  border-radius: 0;
+  background: rgb(51, 51, 51);
+  box-shadow: none;
+  color: #fff;
 }
 
 
