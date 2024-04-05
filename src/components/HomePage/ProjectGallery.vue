@@ -16,12 +16,12 @@
         <div :class="{ 'open': !isMenuOpen }" class="side-menu">
 
           <!-- to make appear on same line use display: inline-block; -->
-          <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="hidden side-links-background"
-            :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
+          <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text"
+            class="side-links-background">
             <router-link class="no-router-link-decorations" :to="item.to">
-              
-              <h2 style=" border-bottom: 1px solid #fff;"  class="">{{ item.text }}</h2>
-             
+
+              <h2 style=" border-bottom: 1px solid #fff;" class="">{{ item.text }}</h2>
+
             </router-link>
           </div>
 
@@ -138,10 +138,15 @@ export default {
 .side-menu.open {
   transform: translateX(0);
 }
-.side-links-background:hover{
-  background: rgb(0, 102, 255);
-  transition: transform 0s ease-out;
- 
+
+
+.side-links-background:hover {
+  background: rgb(55, 0, 255); 
+  opacity: 1;
+  transition-delay: 0s;
+}
+.side-links-background:not(:hover) {
+  transition-delay: 0.125s;
 }
 
 .toggle-button {
