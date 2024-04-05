@@ -13,19 +13,16 @@
     <div class="centerAll">
 
       <div class="image-gallery">
-        <div :class="{ 'open': isMenuOpen }" class="side-menu">
+        <div :class="{ 'open': !isMenuOpen }" class="side-menu">
 
           <!-- to make appear on same line use display: inline-block; -->
-          <div class="is-item-loaded-text-display"><i>Load on Scroll: </i>
-            <div v-for="(item, index) in displayArray" :key="item" style=" font-size: 1.5rem; text-align: left;">
-
-              <div v-if="displayArray.length">
-
-                {{ item }}<span v-if="index !== displayArray.length - 1"><!-- ,&nbsp; -->
-                </span>
-              </div>
-            </div>
-            <br>
+          <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="hidden side-links-background"
+            :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
+            <router-link class="no-router-link-decorations" :to="item.to">
+              
+              <h2 style=" border-bottom: 1px solid #fff;"  class="">{{ item.text }}</h2>
+             
+            </router-link>
           </div>
 
         </div>
@@ -130,18 +127,21 @@ export default {
   top: 0;
   left: 0;
   z-index: -1;
-  width: 18rem; 
+  width: 18rem;
 
   background: #333;
   transform: translateX(-100%);
   transition: transform 0.3s ease-out;
- 
 
 }
 
 .side-menu.open {
   transform: translateX(0);
-
+}
+.side-links-background:hover{
+  background: rgb(0, 102, 255);
+  transition: transform 0s ease-out;
+ 
 }
 
 .toggle-button {
@@ -188,7 +188,7 @@ h2 {
 .gallery-styling-h1-span {
   text-transform: uppercase;
   color: rgb(255, 255, 255);
-  background: rgb(40, 40, 40);
+  background: rgba(40, 40, 40, .9);
   width: 100%;
   font-size: 2rem;
   padding-left: 4rem;
@@ -274,13 +274,14 @@ figcaption {
 .grid-title {
   border-radius: 6px;
   width: fit-content;
-  border: 2px solid orange;
+  /* border: 2px solid rgb(200, 200, 200); */
+  border: 1px solid rgb(255, 193, 77);
 }
 
 
 .grid-title.odd {
   color: rgb(255, 255, 255);
-  border: 2px solid rgb(64, 163, 255);
+  border: 1px solid rgb(107, 188, 255);
 }
 
 .gallery-component-image {

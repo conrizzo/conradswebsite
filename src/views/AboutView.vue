@@ -70,7 +70,7 @@
                 cache/storage and rate limiting backend requests. Redis runs in its own <a class="text-links"
                   href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>
                 image container on a Docker network, Gunicorn and Flask run in a separate Docker python image container
-                on the same Docker network. Also uses ubuntu firewall rules, and
+                on the same Docker network. Also uses Ubuntu ufw - Uncomplicated Firewall, and
                 <a class="text-links" href="https://github.com/fail2ban/fail2ban">fail2ban</a> to block malicious IPs
                 and bots and such.
               </li>
@@ -127,8 +127,8 @@
                 Backend läuft in <a class="text-links" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>.
                 Im selben Docker-Netzwerk läuft Redis in einem eigenen Docker-Image-Container.
                 Gunicorn und Flask hingegen befinden sich in einem separaten Docker-Python-Image-Container auf demselben
-                Netzwerk. Auch Ubuntu verwendet Firewall-Regeln und Fail2ban, um bösartige IPs und Bots zu blockieren
-                und ähnliches
+                Netzwerk. Nutzt auch Ubuntu ufw - Uncomplicated Firewall und Fail2ban, um bösartige IPs und Bots zu blockieren
+                und ähnliches.
               </li>
               <li>
                 <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet

@@ -1,46 +1,46 @@
 
 interface songList {
-    id: number;
-    title: string;
-    artist: string;
-    YOUTUBE_URL_ID: string;
-    genre: string;
-    year: number;
-    image: string;
+  id: number;
+  title: string;
+  artist: string;
+  YOUTUBE_URL_ID: string;
+  genre: string;
+  year: number;
+  image: string;
 }
 
 
 
 export const songList = [
-    {
-      id: 1,
-      title: "Amos Moses",
-      artist: "Jerry Reed",
-      YOUTUBE_URL_ID: "n7GyLr7Cz2g",
-      genre: "Country",
-      year: 1970,
-      image: ""
-    },
-    // other songs...
-    {
-      id: 2,
-      title: "The letter that Johnny Walker read",
-      artist: "Asleep at the Wheel",
-      YOUTUBE_URL_ID: "qbyXBUEOy5A",
-      genre: "Country",
-      year: 1975,
-      image: ""
-    },
-    {
-      id: 3,
-      title: "Mamma Don't Let Your Babies Grow Up to Be Cowboys",
-      artist: "Ed Bruce",
-      YOUTUBE_URL_ID: "yX4v2kdtMC4",
-      genre: "Country",
-      year: 1975,
-      image: ""
-    },
-  
+  {
+    id: 1,
+    title: "Amos Moses",
+    artist: "Jerry Reed",
+    YOUTUBE_URL_ID: "n7GyLr7Cz2g",
+    genre: "Country",
+    year: 1970,
+    image: ""
+  },
+  {
+    id: 2,
+    title: "Diggin' Up Bones",
+    artist: "Randy Travis",
+    YOUTUBE_URL_ID: "6JVIUaqC0gM",
+    genre: "Country",
+    year: 1986,
+    image: ""
+  },
+
+  {
+    id: 3,
+    title: "Mamma Don't Let Your Babies Grow Up to Be Cowboys",
+    artist: "Ed Bruce",
+    YOUTUBE_URL_ID: "yX4v2kdtMC4",
+    genre: "Country",
+    year: 1975,
+    image: ""
+  },
+  /*
     {
       id: 4,
       title: "C.W. McCall - Convoy",
@@ -63,11 +63,11 @@ export const songList = [
   
     {
       id: 6,
-      title: "Diggin' Up Bones",
-      artist: "Randy Travis",
-      YOUTUBE_URL_ID: "6JVIUaqC0gM",
+      title: "The letter that Johnny Walker read",
+      artist: "Asleep at the Wheel",
+      YOUTUBE_URL_ID: "qbyXBUEOy5A",
       genre: "Country",
-      year: 1986,
+      year: 1975,
       image: ""
     },
  
@@ -89,5 +89,5 @@ export const songList = [
       year: 1974,
       image: ""
     }
-
-  ];
+*/
+];

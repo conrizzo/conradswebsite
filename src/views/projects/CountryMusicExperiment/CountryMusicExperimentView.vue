@@ -4,7 +4,7 @@
             <div class="center-with-flex">
                 <div style="background: #fff;">
                     <h1>Country Music Generator <br>(under construction)</h1>
-                    
+
                     <div class="top-paragraph-formatting">
                         <h2>Documenting steps and approach</h2>
                         <p>Project started March 27th, 2024</p>
@@ -19,31 +19,60 @@
                             based on the themes of the country music lyrics is an idea as well. Based on a users
                             selection
                             embedded youtube videos will be
-                            shown based on input queries using NLP.
+                            shown.
                         </p>
 
-                        <p>At the moment lyrics are stored in a python file. Since this is showing embedded YouTube
+                        <p>
+                            At the moment lyrics are stored in a python file. Since this is showing embedded YouTube
                             videos
                             this page uses
                             3rd party cookies from Google/Youtube.
                         </p>
                         <br>
-                        <p>Here is a sample of tokenizing the lyrics for the country song Amos Moses by Jerry Reed.
-                            Removing stopwords, common pronouns, and punctuation. The objective is to focus on
-                            only words that carry higher information content. There may be some errors here.
-                            This is an educational/research project to use Frontend, backend, and NLP.</p>
                         <p>
+                            Here is a sample of tokenizing the lyrics for the current Country songs.
+                            This is after Removing <a class="text-links"
+                                href="https://en.wikipedia.org/wiki/Stop_word">stopwords</a>, common pronouns, and
+                            punctuation. The objective is to
+                            focus on
+                            only words that carry higher information content. There may be some errors here.
+                            This is an educational/research project to use Frontend, backend, and NLP.
+                        </p>
+                        <span style="background: lightyellow; padding: 0.25rem;">
+                            Funny thing about some song lyrics is the most frequently used words in the lyrics often
+                            match the title of the song.
+                            This means if the actual title words are also removed from the lyrics it's hard to even
+                            figure out what the song is about
+                            after removing all but unique repeated words.
+                        </span>
+                        <p>
+                            <b>Amos Moses:</b><br>
                             [('amos', 9), ('louisiana', 8), ('alligator', 7), ('man', 6), ('swamp', 5), ('called', 5),
-                            ('well', 5), ('moses', 4), ('lived', 4), ('get', 3), ('boy', 3), ('forty-five', 3),
-                            ('minutes', 3), ('southeast', 3), ('thibodaux', 3), ('doc', 3), ('millsap', 3), ('pretty',
-                            3), ('wife', 3), ('hannah', 3), ('son', 3), ('could',
-                            3), ('yeah', 2), ("'d", 2), ('gon', 2)]
+                            ('moses', 4), ('lived', 4), ('boy', 3), ('forty-five', 3), ('minutes', 3), ('southeast', 3),
+                            ('thibodaux', 3), ('doc', 3), ('millsap', 3), ('pretty', 3), ('wife', 3), ('hannah', 3),
+                            ('son', 3), ('gon', 2)]
+                            <br>
+                            <b>Diggin' Up Bones: </b><br>
+                            [('diggin', 22), ('bones', 22), ('alone', 12), ('sittin', 8), ('tonight', 7), ('love', 6),
+                            ('resurrectin', 5), ('memories', 5), ('dead', 5), ('gone', 5), ('exhumin', 4), ('left', 4),
+                            ('old', 2), ('went', 2), ('found', 2), ('night', 1), ('dug', 1), ('picture', 1), ('dresser',
+                            1), ('drawer', 1)]
+                            <br>
+                            <b>Mamma Don't Let Your Babies Grow Up to Be Cowboys:</b><br>
+                            [('mamas', 6), ('babies', 6), ('grow', 6), ('cowboys', 6), ('old', 4), ('love', 4), ('pick',
+                            3), ('guitars', 3), ('drive', 3), ('trucks', 3), ('doctors', 3), ('lawyers', 3), ('never',
+                            3), ('stay', 3), ('home', 3), ('always', 3), ('alone', 3), ('even', 3), ('someone', 3),
+                            ('wo', 3)]
                         </p>
                         <p>Using <a class="text-links purple-text" href="https://github.com/nltk/nltk">NLTK</a> for much
                             of the text processing.</p>
                         <br>
-                        <p>The difficult part about this is thinking of some creative way to search the songs. If all it does is matches
-                            words it's kind of boring - this is why NLP tools and creative approaches make it interesting.
+
+
+                        <p>The difficult part about this is thinking of some creative way to search the songs. If all it
+                            does is matches
+                            words it's kind of boring - this is why NLP tools and creative approaches make it
+                            interesting.
                         </p>
                         <p>
                             All the checkboxes are generated with a loop and their respective css properties and
@@ -55,50 +84,63 @@
 
                     </div>
 
-                    <div style="">
-
-
+                    <div class="sentiment-label-padding">
+                        <h4>Sentiments</h4>
+                        <div class="checkbox-item" v-for="(value, index) in sentimentCheckBox" :key="index">
+                            <label :for="'sentimentCheckBox' + index" class="check-box-label">
+                                <span class="about-check-box-font">{{ value.label }}</span>
+                                <input :id="'sentimentCheckBox' + index" class="check-box" type="checkbox"
+                                    name="sentimentCheckBox" v-model="value.checked">
+                            </label>
+                        </div>
+                        <br>
+                        <h4>Labels</h4>
                         <div class="checkbox-item" v-for="(value, index) in checkBoxValues" :key="index">
                             <label :for="'acceptCheckBox' + index" class="check-box-label">
                                 <span class="about-check-box-font">{{ value.label }}</span>
                                 <input :id="'acceptCheckBox' + index" class="check-box" type="checkbox"
-                                    name="myCheckBox" v-model="value.checked">
+                                    name="labelsCheckBox" v-model="value.checked">
                             </label>
                         </div>
+                        <h4>Entity</h4>
                         <div>
-                            <button @click="fetchData" style="margin: 1rem;" class="clean-button">Generate</button>
+                            <button @click="fetchData, generateButtonClicked()" style="margin: 1rem;"
+                                class="clean-button">Generate</button>
                         </div>
                         Post Response: {{ postResponseData }}
+                        <p>These are just some sample videos displayed - will match videos based on inputs with backend
+                            code</p>
                     </div>
                 </div>
             </div>
         </div>
 
-
-        <div class="center-with-flex">
-
-            <div class="grid-container">
-                <!--
-            <div style="text-align: left; padding-bottom: 2rem;" v-for="song in songList" :key="song.id">
-                <iframe width="420" height="315" :src="formatSong(song.YOUTUBE_URL_ID)">
-                </iframe>
-                <div>{{ song.id }}</div>
-                <div>{{ song.title }}</div>
-                <div>{{ formatSong(song.YOUTUBE_URL_ID) }}</div>
-                <div>{{ song.artist }}</div>
-                <div>{{ song.year }}</div>
-                <div>{{ song.genre }}</div>
-
-            </div>
-        -->
-
-            </div>
-
-        </div>
         <div class="query-array">
-            Query that is sent to the backend to run in Python code: {{ checkedLabels }}
+            Query that is sent to the backend to run in Python code: <br>
+            Sentiments: {{ checkedSentiment }}<br>
+            Labels: {{ checkedLabels }}
+            Entity type: {{ checkedLabels }}
         </div>
-        <div style="height: 40rem;"></div>
+        <div v-if="generateButton" class="center-with-flex">
+            <div class="grid-container video-area-width">
+
+                <div style="margin: 0 auto; padding: 2rem;" v-for="song in songList" :key="song.id">
+                    <iframe width="372" height="280" :src="formatSong(song.YOUTUBE_URL_ID)">
+                    </iframe>
+                    <div>{{ song.id }}</div>
+                    <div>{{ song.title }}</div>
+                    <div>{{ formatSong(song.YOUTUBE_URL_ID) }}</div>
+                    <div>{{ song.artist }}</div>
+                    <div>{{ song.year }}</div>
+                    <div>{{ song.genre }}</div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
         <CookieAccept />
         <!--<button class="clean-button">Show</button>-->
     </div>
@@ -109,23 +151,26 @@ I suppose this is normal when 3 or more editors are open using vs code insiders?
 -->
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
-import {postDataAndGetResponse} from './getBackend';
+import { postDataAndGetResponse } from './getBackend';
 import { songList } from './countrySongs';
 import CookieAccept from "@/components/CookieAccept.vue";
 console.log(songList);
-const checkBoxValues = ref([
+const sentimentCheckBox = ref([
     { label: 'Happy', checked: false },
+    { label: 'Sad', checked: false },
+]);
+const checkBoxValues = ref([
     { label: 'Beer', checked: false },
     { label: 'Trucks', checked: false },
     { label: 'Texas', checked: false },
-    { label: 'Alligators', checked: false },
+    { label: 'Alligator', checked: false },
     { label: 'German', checked: false },
     { label: 'Gambling', checked: false },
-    { label: 'Sad', checked: false },
 ]);
+let generateButton = ref(false);
 
 const checkedLabels = computed(() => checkBoxValues.value.filter(item => item.checked).map(item => item.label));
-
+const checkedSentiment = computed(() => sentimentCheckBox.value.filter(item => item.checked).map(item => item.label));
 
 let postResponseData: any = ref();
 
@@ -137,7 +182,7 @@ const fetchData = async () => {
     console.log(checkedLabels.value);
     console.log(url)
     try {
-        postResponseData.value = await postDataAndGetResponse(url, checkedLabels.value);
+        postResponseData.value = await postDataAndGetResponse(url, checkedLabels.value, checkedSentiment.value);
         console.log(postResponseData.value);
     } catch (error) {
         console.error('Error:', error);
@@ -148,13 +193,21 @@ const formatSong = (key: string) => {
     return 'https://www.youtube.com/embed/' + key;
 };
 
+const generateButtonClicked = () => {
+    generateButton.value = true;
+};
+
 onMounted(() => {
-    // Any code you want to run when the component is mounted
+
 });
 </script>
 
 
 <style scoped>
+p {
+    padding-bottom: 1rem;
+}
+
 h1 {
     font-size: 4rem;
     padding: 2rem;
@@ -162,8 +215,19 @@ h1 {
     background: rgb(255, 209, 93);
     color: rgb(18, 18, 18);
 }
-h2{
+
+h2 {
     font-size: 2rem;
+}
+
+h4 {
+
+    font-size: 1.5rem;
+    color: rgb(255, 106, 0);
+}
+
+.sentiment-label-padding {
+    padding: 1rem;
 }
 
 .purple-text {
@@ -196,9 +260,10 @@ h2{
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: (360px, auto);
     background-color: rgb(255, 221, 135);
-    padding: 10px;
+
 }
 
 iframe {
@@ -208,7 +273,7 @@ iframe {
 
 .checkbox-item {
     display: inline-block;
-    margin-left: 0.25rem;
+    margin-left: 0rem;
     margin-bottom: 1rem;
 }
 
@@ -257,9 +322,22 @@ input[type='checkbox'] {
     text-align: left;
 }
 
+.video-area-width {
+    width: 80rem;
+
+
+}
+
 @media screen and (max-width: 600px) {
     h1 {
         font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 60rem) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+
     }
 }
 </style>

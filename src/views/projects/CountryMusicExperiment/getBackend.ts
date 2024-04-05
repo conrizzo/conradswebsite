@@ -1,6 +1,6 @@
 
 
-export async function postDataAndGetResponse(url: string, songLabels: string[]) {
+export async function postDataAndGetResponse(url: string, songLabels: string[], songSentiment: string[]) {
 
     try {
         const response = await fetch(url, {
@@ -8,7 +8,7 @@ export async function postDataAndGetResponse(url: string, songLabels: string[]) 
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({countryMusicLabels: songLabels})
+            body: JSON.stringify({labels: songLabels, sentimentLabels: songSentiment})
         });
 
         if (!response.ok) {

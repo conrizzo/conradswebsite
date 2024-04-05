@@ -284,6 +284,9 @@ h2 {
 .my-projects-text-animation {
     animation: pulse 8s;
 }
+.my-projects-text-animation:hover {   
+    color: rgb(0, 255, 204) !important;  
+}
 
 .link-customization {
     color: white;
