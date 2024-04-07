@@ -190,6 +190,11 @@ header {
   margin-left: 0.5rem;
   padding-left: 0.5rem;
   padding-right: .75rem;
+  /* This is done to fill in all the space so full area is clickable :) */
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding-top: 0.32rem;
 }
 
 nav a.router-link-exact-active:not(.active):hover {

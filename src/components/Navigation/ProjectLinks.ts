@@ -21,7 +21,7 @@ export default [
   { id: 8, text: 'Fetch Data', to: '/projects/fetchdata',caption:"A simple experimental page that fetches api data and formats it", imageSrc: "" },
   { id: 9, text: 'Search Wordle Words', to: '/projects/search-assistant-to-help-find-words-for-the-wordle-game',caption:"Search Wordle words with TypeScript", imageSrc: "" },
   { id: 10, text: 'Cosine Similarity', to: '/projects/compare-cosine-similarity',caption:"Compare words/sentences semantic cosine scores with sentence transformers", imageSrc: "" },
-  { id: 10, text: 'Country Music Generator', to: '/projects/country-music-generator',caption:"Classic Country music and natural language processing (under construction)", imageSrc: "" },
+  { id: 11, text: 'Country Music Generator', to: '/projects/country-music-generator',caption:"Classic Country music and natural language processing (under construction)", imageSrc: "" },
   //{ id: 11, text: '404 Page', to: '/12315fge45',caption:"Go to the 404 page for fun!", imageSrc: "" },
   
   

@@ -119,7 +119,7 @@
             Query that is sent to the backend to run in Python code: <br>
             Sentiments: {{ checkedSentiment }}<br>
             Labels: {{ checkedLabels }}
-            Entity type: {{ checkedLabels }}
+            Entity type: 
         </div>
         <div v-if="generateButton" class="center-with-flex">
             <div class="grid-container video-area-width">

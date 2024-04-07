@@ -1,8 +1,8 @@
 <template>
   <div>
-
-
-    <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
+    <div style='text-align: left;'>
+      <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
+    </div>
     <div class="gallery-header">
       <h1 class="gallery-styling-h1-span">
         <span> Projects
@@ -16,11 +16,10 @@
         <div :class="{ 'open': !isMenuOpen }" class="side-menu">
 
           <!-- to make appear on same line use display: inline-block; -->
-          <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text"
-            class="side-links-background">
+          <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
             <router-link class="no-router-link-decorations" :to="item.to">
 
-              <h2 style=" border-bottom: 1px solid #fff;" class="">{{ item.text }}</h2>
+              <h2 class="">{{ item.text }}</h2>
 
             </router-link>
           </div>
@@ -128,25 +127,26 @@ export default {
   left: 0;
   z-index: -1;
   width: 18rem;
-
-  background: #333;
+  background: rgb(30, 30, 40);
   transform: translateX(-100%);
   transition: transform 0.3s ease-out;
-
 }
 
 .side-menu.open {
   transform: translateX(0);
 }
 
-
 .side-links-background:hover {
-  background: rgb(55, 0, 255); 
-  opacity: 1;
+  background: rgb(46, 50, 55);
   transition-delay: 0s;
 }
+
+.side-links-background:hover h2 {
+  text-decoration: underline;
+}
+
 .side-links-background:not(:hover) {
-  transition-delay: 0.125s;
+  transition-delay: 0.06s;
 }
 
 .toggle-button {
@@ -156,6 +156,9 @@ export default {
   background: rgb(51, 51, 51);
   box-shadow: none;
   color: #fff;
+}
+.toggle-button:hover{
+  text-decoration: underline;
 }
 
 
@@ -172,6 +175,7 @@ export default {
 .no-router-link-decorations {
   text-decoration: none;
 }
+
 
 h1 {
   font-size: 1.5em;
@@ -328,6 +332,15 @@ img:hover {
 }
 
 @media screen and (max-width: 70rem) {
+  
+  .side-menu{
+    display: none;
+  }
+  .toggle-button{
+    display: none;
+  }
+
+
   .image-gallery-grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

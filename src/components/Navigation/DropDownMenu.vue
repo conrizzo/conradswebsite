@@ -83,7 +83,7 @@ export default {
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
 
     padding-left: .75rem;
-    padding-right: .25rem;    
+    padding-right: .25rem;
     color: rgb(240, 240, 240);
     background-color: rgb(24, 26, 27);
     font-weight: normal;
@@ -105,6 +105,7 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
     position: relative;
     display: inline-block;
     z-index: 5;
+    height: 2rem; /* fix the jumping issue that is minor only when zooming in our out 75% 125% etc. */
 }
 
 .dropdown-content {
@@ -115,7 +116,7 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
     padding: 0.15em;
     margin-top: 0rem;
     width: 10.4em;
-    background-color: rgb(33, 35, 36);    
+    background-color: rgb(33, 35, 36);
     box-shadow: 0px -2px 8px rgba(0, 0, 0, 1);
     transition: all 0.35s ease-in-out;
     border-radius: .33rem;
@@ -154,7 +155,7 @@ nav a.router-link-exact-active {
 
 /* #00b3ff; */
 .dropdown-content a:hover:not(.active) {
-    background-color: none;    
+    background-color: none;
     background-color: rgb(70, 70, 70);
 }
 
@@ -171,6 +172,7 @@ nav a.router-link-exact-active {
     cursor: pointer;
     border-bottom: 2px solid #fff;
     margin-bottom: -2px;
+    
 }
 
 .horizontal-align-elements {

@@ -293,8 +293,8 @@ export default {
   .center-bottom-main-area-box {
     display: flex;
     justify-content: center;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
     padding-bottom: 10rem;
   }
 
