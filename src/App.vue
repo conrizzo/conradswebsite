@@ -35,11 +35,11 @@ export default {
 
     setTimeout(() => {
       this.showHeader = true;
-    }, 200);
+    }, 0);
 
     setTimeout(() => {
       this.showFooter = true;
-    }, 500);
+    }, 0);
   },  
   computed: {
     showNav() {

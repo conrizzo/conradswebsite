@@ -10,7 +10,7 @@
       <div class="image-gallery-grid-container">
         <div v-for="(item, index) in slicedProductInventoryArray" :key="item.id" class="grid-item">
           <router-link
-            :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price } }">
+            :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name } }">
             <div class="img-wrapper">
               <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
             </div>

@@ -8,38 +8,45 @@
 
     <CheckOut :showGoToCheckOutButton="false">
     </CheckOut>
-
+    <h3 style="padding: 2rem; padding-bottom: 0rem;">User cart reference for testing:</h3>
+    <div style="padding: 1rem;">
+      <div v-for="(item, index) in cart" :key="index" style="text-align: left;">
+        <b>Item:</b> {{ item }}
+      </div>
+    </div>
   </div>
-</template>  
+</template>
 <script>
 
 import "@/assets/globalCSS.css";
 import CheckOut from "@/components/Store/CheckOut.vue";
-
+import { useCartStore } from '@/components/Store/useCounterStore.js';
 
 export default {
   // Component options
   components: {
     CheckOut
   },
+  created() {
+    const cartStore = useCartStore();
+    this.cart = cartStore.cart;
+  },
 
   data() {
     return {
       //userCart: [],
-      
+
     };
   },
 
-  
+
   mounted() {
   }
 
 }
 </script>
-  
+
 <style scoped>
-
-
 .main-banner {
   background: linear-gradient(to right, orange, red, pink);
   color: white;

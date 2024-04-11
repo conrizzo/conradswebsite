@@ -180,7 +180,7 @@ const routes = [
         props: true // Allows passing props via route parameters
       },
       {
-        path: 'store/product/:id/:name/:image/:price',
+        path: 'store/product/:id/:name/',  //:image/:price',
         name: 'ProductPageView',
         component: ProductPageView,
         props: true,

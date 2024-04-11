@@ -32,7 +32,7 @@
                         <div class="each-item-area-formatting">
                             <div class="cart-image-container">
                                 <router-link
-                                    :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name, image: item.imageSrc, price: item.price } }">
+                                    :to="{ name: 'ProductPageView', params: { id: item.id, name: item.name } }">
 
                                     <img class="each-item-in-cart-image" :src="item.imageSrc" :alt="item.imageSrc"
                                         width="128" height="128">

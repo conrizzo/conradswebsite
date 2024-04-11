@@ -5,18 +5,32 @@
       <button class="close" @click.self="closeModal"></button>
 
       <h2>Diagram of how this project works</h2>
-      <div style="text-align: left; padding-left: 1rem;">
-        <p><b>CheckOut.vue</b> is the main part of this application.</p>
+      <div style="text-align: left; font-size: 1rem; padding-left: 1rem;">
+        <p><b>April 11th 2024 Review:</b> After some review there are many ways to have made this better, but it was a build
+          from scratch learning project to learn and
+          make a
+          store prototype. A major change I made was changing cookies to a store and using <a class="text-links"
+            href='https://pinia.vuejs.org/'>Pinea</a> to manage the cart.
+          This means I can get rid of all the special url params and just put a name or ID to each product - and all
+          that's needed is to
+          fetch that name or id from a database to get all the details of that product e.g. price, image for product,
+          etc. Everything works as is, and fixing this would take a bit of time
+          to implement, but after this it is 'pretty professionally' setup. Partly fixed this -<br>
+          <a class="text-links"
+            href="https://github.com/conrizzo/conradswebsite/blob/master/src/components/Store/CheckOut.vue">CheckOut.vue</a>
+          is the main part of this application.
+        </p>
         <a class="text-links" href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/Store">
           Component and TypeScript source code on GitHub</a><br>
         <a class="text-links"
-          href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/store/StoreView.vue">Store page
+          href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/store/StoreView.vue">Store
+          page
           view</a><br>
         <a class="text-links"
           href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/store/StoreCheckOutView.vue">Checkout
           page view</a>
         <p>
-          Update: This does not use cookies anymore, it uses <a class="text-links" href='https://pinia.vuejs.org/'>Pinea</a> to manage the cart.
+
         </p>
       </div>
       <div class="diagram-image-container">
@@ -30,7 +44,7 @@
     </div>
   </div>
 </template>
- 
+
 <script>
 //import ProjectDiagramSVG from "@/images/store/project_diagram.svg";
 export default {
@@ -42,9 +56,9 @@ export default {
   },
 };
 </script>
- 
- 
- <!-- scoped applies to only this component -->
+
+
+<!-- scoped applies to only this component -->
 <style scoped>
 h1 {
   color: rgb(105, 105, 198);
@@ -160,4 +174,5 @@ li+li {
     width: calc(100% - 4%);
     margin-left: 2%;
   }
-}</style>
+}
+</style>

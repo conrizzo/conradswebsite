@@ -4,10 +4,11 @@
             <div class="grid-container">
                 <div class="product-image-container">
                     <div class="left-align-back-link">
-                        <RouterLink class="links-black" to="/projects/store/store-prototype-made-in-vuejs-and-typescript">
+                        <RouterLink class="links-black"
+                            to="/projects/store/store-prototype-made-in-vuejs-and-typescript">
                             Back to product selection</RouterLink>
                     </div>
-                    <img class="gallery-component-image" :src="itemImageSrc" :alt="itemName">
+                    <img class="gallery-component-image" :src="getImage()" :alt="itemName">
                 </div>
                 <div class="product-details">
                     <h1>{{ itemName }}</h1>
@@ -22,7 +23,7 @@
                         </li>
                         <li>
                             <span class="product-subtitle-font">Price:</span> €{{
-                                searchInventoryById(itemIdentificationNumber).price }}
+                        searchInventoryById(itemIdentificationNumber).price }}
                         </li>
                         <br>
                         <li>
@@ -39,6 +40,11 @@
             </div>
         </div>
         <CheckOut :propProductPageAddItemToCart="choiceId"></CheckOut>
+        <!-- 
+            {{ getImage().imageSrc }}
+            {{ cart }} 
+        -->
+
     </div>
 </template>
 
@@ -48,6 +54,7 @@ import CheckOut from "@/components/Store/CheckOut.vue";
 import { productInventory } from '@/components/Store/productInventoryOptionsData.ts';
 
 import { useCartStore } from '@/components/Store/useCounterStore.js';
+
 
 export default {
 
@@ -59,7 +66,7 @@ export default {
         return {
             choiceId: [],
             buttonCounter: 0,
-            itemIdentificationNumber: parseInt(this.$route.params.id),
+            itemIdentificationNumber: parseInt(this.$route.params.id), // the id is a string
 
             cart: [],
         };
@@ -67,6 +74,15 @@ export default {
     created() {
         const cartStore = useCartStore();
         this.cart = cartStore.cart;
+
+    },
+    watch: {
+        cart: {
+            immediate: true,
+            handler() {
+                this.itemIdentificationNumber = parseInt(this.$route.params.id);
+            },
+        },
     },
     computed: {
 
@@ -76,15 +92,34 @@ export default {
         itemName() {
             return this.$route.params.name;
         },
+        /*
         itemImageSrc() {
             return this.$route.params.image;
         },
         itemPrice() {
             return this.$route.params.price;
         },
+        */
+
     },
 
+
     methods: {
+
+        getImage() {
+            console.log(this.productId);
+            const productName = this.itemName;
+            const product = this.productId;
+            console.log(this.cart);
+            //let product = this.cart.find(item => item.name === productName);
+            let product2 = productInventory.find(item => item.id === parseInt(product));
+            console.log("test", product2);
+
+            let imageSrc = product2 ? product2.imageSrc : '';
+            console.log(imageSrc);
+
+            return imageSrc;
+        },
 
         goBackOnePage() {
             this.$router.go(-1); // Navigate back to the previous page
@@ -212,4 +247,5 @@ h1 {
         padding-top: 1em;
     }
 
-}</style>
+}
+</style>
