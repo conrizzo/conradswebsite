@@ -8,10 +8,7 @@
           </span>
         </h1>
         <div class="main-text-container">
-          <ul class="main-text-ul">
-            <li>
-              Scroll down to see projects!
-            </li>
+          <ul class="main-text-ul">            
             
             <li>
               <span>Crafted under
@@ -20,6 +17,9 @@
                 per day.
                 <br>
               </span>
+            </li>
+            <li>
+              Lastest project is the <router-link class="home-text-links list-links-text-decoration" to="/projects/country-music-generator">Country Music Generator </router-link>
             </li>
           </ul>
           <div class="center-image">
@@ -236,7 +236,7 @@ export default {
 
 .home-text-links:is(:hover, :focus) {
   background: rgb(0, 255, 204);
-  color: rgb(18, 18, 18);
+  color: rgb(40, 40, 40);
   border-bottom: none;
 }
 

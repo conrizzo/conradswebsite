@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div style='text-align: left;'>
+    <!--<div style='text-align: left;'>
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
-    </div>
+    </div>-->
     <div class="gallery-header">
       <h1 class="gallery-styling-h1-span">
         <span> Projects
@@ -11,10 +11,15 @@
     </div>
 
     <div class="centerAll">
-
+      
       <div class="image-gallery">
+        
         <div :class="{ 'open': !isMenuOpen }" class="side-menu">
-
+          <svg @click="toggleMenu" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+        fill="none" style="position: absolute; left: 15.5rem; top: 0.5rem; cursor: pointer;">
+        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12">
+        </path>
+      </svg>
           <!-- to make appear on same line use display: inline-block; -->
           <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
             <router-link class="no-router-link-decorations" :to="item.to">
@@ -122,27 +127,43 @@ export default {
 .side-menu {
   position: absolute;
   margin-top: -3rem;
+  padding-top: 2.5rem;
   height: calc(100% + 3rem);
   top: 0;
   left: 0;
   z-index: -1;
   width: 18rem;
-  background: rgb(30, 30, 40);
+  background: rgb(44, 44, 44);
   transform: translateX(-100%);
-  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  opacity: 1;
 }
 
 .side-menu.open {
   transform: translateX(0);
+  opacity: 0;
+}
+
+
+.side-links-background{
+  margin-left: 1rem; margin-right: 1rem;  
+
 }
 
 .side-links-background:hover {
   background: rgb(46, 50, 55);
+  border-radius: 0.25rem;
+  margin-left: 1rem; margin-right: 1rem;
   transition-delay: 0s;
+}
+
+.side-links-background h2{
+  color: rgb(225, 225, 225);
 }
 
 .side-links-background:hover h2 {
   text-decoration: underline;
+
 }
 
 .side-links-background:not(:hover) {
@@ -277,7 +298,7 @@ figcaption {
   background: rgba(0, 0, 0, 0);
   font-size: 1rem;
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: rgb(245, 245, 245);
 }
 
 .grid-title {
@@ -285,11 +306,12 @@ figcaption {
   width: fit-content;
   /* border: 2px solid rgb(200, 200, 200); */
   border: 1px solid rgb(255, 193, 77);
+  color: rgb(245, 245, 245);
 }
 
 
 .grid-title.odd {
-  color: rgb(255, 255, 255);
+  color: rgb(245, 245, 245);
   border: 1px solid rgb(107, 188, 255);
 }
 

@@ -181,8 +181,6 @@
                 N/A
               </template>
             </td>
-
-           
             
             <!-- 7 -->
             <td data-label="Wind Speed">
@@ -441,7 +439,8 @@ tr:nth-child(even) {
   padding: 0.5em;
   width: 5em;
   margin: 0 auto;
-  margin-top: 2em;
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 
 
@@ -581,13 +580,14 @@ button:focus {
 input:focus {
   outline: none !important;
   border: 1px solid #545454;
-  box-shadow: 0 0 30px rgb(178, 214, 86);
+  box-shadow: 0 0 30px rgb(77, 90, 102);
 }
 
 .description-area {
   border-radius: 1em;
   margin: 0.5em;
-  margin-bottom: 20em;
+  margin-bottom: 1em;
+  margin-top: 15em;
   background: #fff;
   opacity: 0.9;
   display: inline-block;

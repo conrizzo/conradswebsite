@@ -40,7 +40,7 @@
 
 
         <div class="center-content-within">
-          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section">
+          <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section">
 
             <div class="flex-start">
               <h1 class="section-title">About the website</h1>
@@ -55,7 +55,9 @@
               </li>
               <li>
                 Now is a fullstack website and runs on a VPS (Virtual Private Server), the code is at
-                <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
+                <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>.
+                I set up the VPS twice, after deciding to switch server hosts.
+
               </li>
 
               <li>
@@ -99,7 +101,7 @@
             </ul>
           </section>
           <!-- German Section -->
-          <section v-show="languageButtonText === 'Language: English'" class="each-section">
+          <section v-if="languageButtonText === 'Language: English'" class="each-section">
 
             <div class="flex-start">
               <h1 class='section-title'>Über die Website</h1>
@@ -113,7 +115,9 @@
               <li>
                 Jetzt ist eine Fullstack Website und Läuft auf einem VPS (Virtual Private Server). Der Code befindet
                 sich auf
-                <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>
+                <a class="text-links" href="https://github.com/conrizzo/conradswebsite">GitHub</a>.
+                Ich habe den VPS zweimal eingerichtet, nachdem ich mich entschieden hatte, den Server-Host zu wechseln.
+
               </li>
 
               <li>
@@ -127,7 +131,8 @@
                 Backend läuft in <a class="text-links" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>.
                 Im selben Docker-Netzwerk läuft Redis in einem eigenen Docker-Image-Container.
                 Gunicorn und Flask hingegen befinden sich in einem separaten Docker-Python-Image-Container auf demselben
-                Netzwerk. Nutzt auch Ubuntu ufw - Uncomplicated Firewall und Fail2ban, um bösartige IPs und Bots zu blockieren
+                Netzwerk. Nutzt auch Ubuntu ufw - Uncomplicated Firewall und Fail2ban, um bösartige IPs und Bots zu
+                blockieren
                 und ähnliches.
               </li>
               <li>
@@ -159,7 +164,7 @@
         </div>
 
         <div class="center-content-within" style="flex-direction: column;">
-          <section v-show="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
+          <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
 
             <div class="flex-start">
               <h1 class="section-title-two">About me</h1>
@@ -193,11 +198,11 @@
               Enjoy watching/listening to the birds.</p>
           </section>
 
-          <section v-show="languageButtonText === 'Sprache: Deutsch'"
+          <section v-if="languageButtonText === 'Sprache: Deutsch'"
             class="each-section form-section last-section-bottom-padding">
             <div class="">
 
-              <div v-show="backEndQuery !== null" class="backend-message center-with-flex">
+              <div v-if="backEndQuery !== null" class="backend-message center-with-flex">
                 ConradsWebsite says: "{{ backEndQuery }}"
               </div>
               <div v-if="errorMessage !== ''" class="error-message-color center-with-flex">
@@ -252,7 +257,7 @@
                 </ul>
               </form>
 
-              <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">Message sent successfully! Thank
+              <p v-if="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">Message sent successfully! Thank
                 you
                 for your message!</p>
             </div>
@@ -282,7 +287,7 @@
 
           </section>
           <!-- German Section -->
-          <section v-show="languageButtonText === 'Language: English'" class="each-section form-section">
+          <section v-if="languageButtonText === 'Language: English'" class="each-section form-section">
             <div class="flex-start">
               <h1 class="section-title-two">Über mich</h1>
             </div>
@@ -321,11 +326,11 @@
               Manchmal spiele ich Gitarre oder Schach. Ich genieße es, Vögeln zuzuschauen/-hören.
             </p>
           </section>
-
-          <section v-show="languageButtonText === 'Language: English'"
+          <section v-if="languageButtonText === 'Language: English'"
             class="each-section form-section last-section-bottom-padding">
             <div class="">
-              <div v-show="backEndQuery !== null" class="backend-message">
+
+              <div v-if="backEndQuery !== null" class="backend-message center-with-flex">
                 ConradsWebsite says: "{{ backEndQuery }}"
               </div>
               <div v-if="errorMessage !== ''" class="error-message-color center-with-flex">
@@ -340,9 +345,8 @@
               </div>
               <div class="flex-start">
                 <h2 class="section-title-three">Kontakt</h2>
-                <button style="margin-bottom: 0.95rem; margin-left: 2rem; margin-top: 1.2rem;" class="clean-button"
-                  @click="testBackEnd()">Backend testen
-                </button>
+                <button style="margin-bottom: 0.95rem; margin-left: 1rem; margin-top: 1.2rem;" class="clean-button"
+                  @click="testBackEnd()">Backend Testen</button>
               </div>
               <p>Muss das Kontrollkästchen <b style="color: rgb(67, 255, 149);">„Zustimmen“</b> aktivieren werden, um
                 die
@@ -353,7 +357,7 @@
                   <li>
                     <label for="nameD" class="include-label-text">Name*</label>
                     <input id="nameD" autocomplete="given-name" class="input-field-style" type="text"
-                      v-model="submitName" placeholder="Name" />
+                      v-model="submitName" placeholder="Enter your name" />
                   </li>
                   <li>
                     <label for="email" class="include-label-text">Email</label>
@@ -363,28 +367,42 @@
                   <li>
                     <label for="userMessageD" class="include-label-text">Nachricht*</label>
                     <textarea id="userMessageD" class="input-field-style" type="text" v-model="submitMessage"
-                      placeholder="Nachricht">
+                      placeholder="Message">
                   </textarea>
                   </li>
                   <li class="button">
-                    <button class="clean-button" type="submit">Nachricht senden
-                    </button>
+                    <button :class="{ 'not-allowed-cursor-change': !isFormValid }" class="clean-button"
+                      type="submit">Nachricht senden</button>
+
+                    <div>
+                      <div style="font-size: 0.8rem; margin-top: 1rem;">
+                        <p>Der Cursor auf dem Button 'Nachricht senden' oben wird ein 'nicht erlaubt'-Symbol (ein Kreis
+                          mit einer diagonalen Linie durch) sein,
+                          wenn erforderliche Felder fehlen! Der Button kann gedrückt werden, um herauszufinden, was
+                          fehlt.</p>
+                      </div>
+
+                    </div>
                   </li>
                 </ul>
               </form>
 
-              <p v-show="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">
+              <p v-if="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">
                 Ihre Nachricht wurde erfolgreich übermittelt! Vielen Dank für Ihre Nachricht.</p>
             </div>
 
-            <label class="check-box-label" for="acceptCheckBoxDeutsch">
+            <label class="check-box-label" for="acceptCheckBoxEnglish">
               <span class="about-check-box-font">Zustimmen</span>
-              <input id="acceptCheckBoxDeutsch" class="check-box" type="checkbox" name="myCheckBox"
+              <input id="acceptCheckBoxEnglish" class="check-box" type="checkbox" name="myCheckBox"
                 v-model="checkBoxValue">
             </label>
-            <router-link class="text-links no-decoration" :to="{ path: '/privacy' }">Privacy Policy</router-link>
+            <router-link class="text-links no-decoration" :to="{ path: '/privacy' }">Datenschutzerklärung</router-link>
+
+
 
           </section>
+
+
         </div>
         <!-- images and text section -->
         <div class="center-content-within text-with-photos-max-width">
@@ -1058,8 +1076,8 @@ textarea {
 }
 
 .language-button:hover {
-  background: rgb(255, 255, 255);
-  color: #000;
+  background: rgba(255, 255, 255, 0.8);
+  color: rgb(55, 55, 55);
 }
 
 .language-button:active {
@@ -1072,6 +1090,7 @@ textarea {
 .tooltipTwo {
   position: relative;
   display: inline-block;
+  z-index: 4;
 }
 
 .tooltipTwo:before {
@@ -1080,19 +1099,18 @@ textarea {
   position: absolute;
   height: 0px;
   width: 0px;
-  top: -.5rem;
+  top: 3.2rem;
   left: 4.5rem;
   /* 1px buffer for zooming problems while rendering*/
   border-width: 0.66em;
   border-color: transparent #42b883 transparent transparent;
   border-style: solid;
-  transform: rotate(270deg);
+  transform: rotate(90deg);
 }
 
 .tooltipTwo .tooltiptextTwo {
   text-align: left;
   visibility: hidden;
-  width: 200px;
   background-color: #42b883;
   color: #fff;
   border-radius: 6px;
@@ -1100,9 +1118,7 @@ textarea {
   font-size: 0.6em;
   /* Position the tooltip */
   position: absolute;
-  z-index: 1;
-  top: -5.5rem;
-
+  top: 5.1rem;
 }
 
 .tooltipTwo:hover:before {
