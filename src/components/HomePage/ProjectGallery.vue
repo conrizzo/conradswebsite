@@ -4,28 +4,34 @@
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
     <div class="gallery-header">
+      <!--
       <h1 class="gallery-styling-h1-span">
         <span> Projects
           <span class="title-arrow-symbol">↷</span></span>
-      </h1>
+      </h1>-->
     </div>
 
     <div class="centerAll">
-      
+
       <div class="image-gallery">
-        
+
         <div :class="{ 'open': !isMenuOpen }" class="side-menu">
+          <div>
+            <h3>Projects</h3>
           <svg @click="toggleMenu" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-        fill="none" style="position: absolute; left: 15.5rem; top: 0.5rem; cursor: pointer;">
-        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12">
-        </path>
-      </svg>
+            fill="none" style="position: absolute; left: 15.5rem; top: 0.5rem; cursor: pointer;">
+            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M18 6 6 18M6 6l12 12">
+            </path>
+          </svg>
           <!-- to make appear on same line use display: inline-block; -->
+      
+        </div>
           <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
-            <router-link class="no-router-link-decorations" :to="item.to">
-
-              <h2 class="">{{ item.text }}</h2>
-
+            <router-link class="no-router-link-decorations align-text-left" :to="item.to">
+              <div class="projects-side-menu-items">
+                <span>{{ item.text }}</span>
+              </div>
             </router-link>
           </div>
 
@@ -126,9 +132,13 @@ export default {
 <style scoped>
 .side-menu {
   position: absolute;
+
+  padding-top: .9rem;
+  /*
   margin-top: -3rem;
-  padding-top: 2.5rem;
-  height: calc(100% + 3rem);
+  */
+  height: calc(100%);
+
   top: 0;
   left: 0;
   z-index: -1;
@@ -145,30 +155,28 @@ export default {
 }
 
 
-.side-links-background{
-  margin-left: 1rem; margin-right: 1rem;  
-
+.side-links-background {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .side-links-background:hover {
   background: rgb(46, 50, 55);
   border-radius: 0.25rem;
-  margin-left: 1rem; margin-right: 1rem;
-  transition-delay: 0s;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  transition-delay: 0s;  
 }
 
-.side-links-background h2{
+.side-links-background h2 {
   color: rgb(225, 225, 225);
 }
 
 .side-links-background:hover h2 {
-  text-decoration: underline;
+  text-decoration: underline;  
 
 }
 
-.side-links-background:not(:hover) {
-  transition-delay: 0.06s;
-}
 
 .toggle-button {
   margin: 0.5rem;
@@ -178,7 +186,8 @@ export default {
   box-shadow: none;
   color: #fff;
 }
-.toggle-button:hover{
+
+.toggle-button:hover {
   text-decoration: underline;
 }
 
@@ -195,6 +204,9 @@ export default {
 
 .no-router-link-decorations {
   text-decoration: none;
+}
+.align-text-left{
+  text-align: left;
 }
 
 
@@ -214,6 +226,30 @@ h2 {
   padding-bottom: 0rem;
   margin-bottom: 0rem;
 }
+h3{
+  font-size: 1.1rem;
+  color: rgb(160, 160, 160);
+  text-align: left;
+  padding-left: .7em;
+}
+
+.projects-side-menu-items {
+  color: rgb(255, 255, 255);
+  
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  
+  padding-bottom: 0.2rem;
+  font-size: 1.25rem;
+  
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+}
+.projects-side-menu-items:hover{
+  
+  color: rgb(68, 185, 244);
+}
+
 
 .gallery-styling-h1-span {
   text-transform: uppercase;
@@ -305,14 +341,18 @@ figcaption {
   border-radius: 6px;
   width: fit-content;
   /* border: 2px solid rgb(200, 200, 200); */
-  border: 1px solid rgb(255, 193, 77);
-  color: rgb(245, 245, 245);
+
+  color: rgb(225, 225, 225);
+  border: 1px solid rgb(50, 177, 255);
+ 
+
+  
 }
 
 
 .grid-title.odd {
-  color: rgb(245, 245, 245);
-  border: 1px solid rgb(107, 188, 255);
+  color: rgb(225, 225, 225);
+  border: 1px solid rgb(188, 229, 255);
 }
 
 .gallery-component-image {
@@ -354,11 +394,12 @@ img:hover {
 }
 
 @media screen and (max-width: 70rem) {
-  
-  .side-menu{
+
+  .side-menu {
     display: none;
   }
-  .toggle-button{
+
+  .toggle-button {
     display: none;
   }
 

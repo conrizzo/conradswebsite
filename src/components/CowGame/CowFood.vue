@@ -119,7 +119,7 @@ export default defineComponent({
     padding-top: 40px;
     opacity: 1;
     border-radius: 4px;
-
+    cursor: pointer;
 }
 
 .moving-grass {
@@ -131,13 +131,21 @@ export default defineComponent({
 
 .peanut-butter {
     background-color: #7e5d02;
-    color: #fff;
+    color: #fff;     
+
+    display: flex;
+    align-items: center;   
+    padding-bottom: 1.7rem;
 }
 
 .moving-peanut-butter {
     background-color: #7e5d02;
     color: #fff;
     filter: brightness(120%);
+
+    display: flex;
+    align-items: center;   
+    padding-bottom: 1.7rem;
 
 }
 

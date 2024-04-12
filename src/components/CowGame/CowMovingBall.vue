@@ -82,13 +82,13 @@
   
   <style scoped>
   .ball {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
-    background-color: #ff5959;
+    background-color: rgb(255, 136, 0);
     position: absolute;
     filter: blur(5px);
-    box-shadow: 0 0 20px 20px rgb(255, 136, 0);
+    box-shadow: 0 0 10px 10px rgb(255, 150, 29);
   }
 
   .ball-text {
