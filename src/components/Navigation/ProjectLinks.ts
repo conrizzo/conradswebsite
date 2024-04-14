@@ -22,6 +22,7 @@ export default [
   { id: 9, text: 'Search Wordle Words', to: '/projects/search-assistant-to-help-find-words-for-the-wordle-game',caption:"Search Wordle words with TypeScript", imageSrc: "" },
   { id: 10, text: 'Cosine Similarity', to: '/projects/compare-cosine-similarity',caption:"Compare words/sentences semantic cosine scores with sentence transformers", imageSrc: "" },
   { id: 11, text: 'Country Music Generator', to: '/projects/country-music-generator',caption:"Classic Country music and natural language processing (under construction)", imageSrc: "" },
+  { id: 12, text: 'Drag and Drop Stuff', to: '/projects/drag-and-drop-stuff',caption:"Small experiment to generate + drag and drop stuff", imageSrc: "" },
   //{ id: 11, text: '404 Page', to: '/12315fge45',caption:"Go to the 404 page for fun!", imageSrc: "" },
   
   

@@ -8,10 +8,8 @@
         :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(255, 255, 255)'"
         :content-text-size="'1.4rem'" :bg-color="'rgb(0, 0, 0, 0)'" :contentText="contentText"
         :contentImage="birdPicture" :setPhotoLink="'https://de.wikipedia.org/wiki/Kohlmeise'"
-        :setPhotoCaption="'Tübingen, Germany. Kohlmeise / Great Tit'" />
-
-    </div>
-    <div class="language-container">
+        :setPhotoCaption="'Tübingen, Germany. Kohlmeise / Great Tit'">
+        <div class="language-container">
       <span class="language-arrow-text tooltip">{{ arrowText }}
         <span class="tooltiptext">
           CSS and Vue.js, not an image or drawn arrow!
@@ -34,6 +32,10 @@
         </div>
       </div>
     </div>
+    </two-columns-grid-content-template>
+      
+    </div>
+    
 
     <main class="text-container">
       <div class="width-container">
@@ -966,6 +968,7 @@ textarea {
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
+  margin-top: 3rem;
 }
 
 .language-arrow-text {
@@ -1193,9 +1196,17 @@ input[type='checkbox'] {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+
+  
+
 }
 
 @media screen and (max-width: 40rem) {
+
+  .language-container{
+    margin-top: 0rem;
+    margin-bottom: 8rem;
+  }
 
   .top-top-component-adjustment {
     background: rgba(0, 0, 0, 0);

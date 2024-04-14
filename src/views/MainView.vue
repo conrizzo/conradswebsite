@@ -278,12 +278,12 @@ export default {
 .top-home-content-section {
   z-index: 4;
   padding-top: 2rem;
-  max-width: 75rem;
+  max-width: 71rem;
 }
 
 .website-text-boxes {
   z-index: 4;
-  width: 75rem;
+  width: 71rem;
   background: rgb(40, 40, 40);
   margin-top: 4rem;
   margin-bottom: 4rem;

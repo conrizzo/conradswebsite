@@ -4,27 +4,31 @@
       <!-- div to show/hide items within on scroll -->
       <div class="second-area-grid-container">
 
-        <div class="grid-item-coffee" v-if="setPhotoLink===''">        
-            <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">    
+        <div class="grid-item-coffee" v-if="setPhotoLink === ''">
+          <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">
+
         </div>
         <div class="grid-item-coffee" v-else>
           <a :href="setPhotoLink">
-            <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">            
+            <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">
+
           </a>
           <caption class="photo-caption">{{ setPhotoCaption }}</caption>
+
         </div>
 
         <div class="grid-item-text" :style="{ background: bgColor, color: textColor }">
-          <h2 :style="{'font-size': titleTextSize}" v-html="titleText"></h2>
-          <p :style="{'font-size': contentTextSize}" v-html="contentText">           
+          <h2 :style="{ 'font-size': titleTextSize }" v-html="titleText"></h2>
+          <p :style="{ 'font-size': contentTextSize }" v-html="contentText">
           </p>
         </div>
 
       </div>
+      <slot></slot> <!-- slot here to add anything else under it -->
     </div>
   </div>
 </template>
-    
+
 <script>
 import coffee_image from '@/images/generated_cup_of_coffee.jpg';
 
@@ -37,14 +41,14 @@ export default {
       default: 'This is the default text for the title.',
     },
     titleTextSize: {
-      type: String,      
+      type: String,
     },
     contentText: {
       type: String,
       default: 'This is the default text for the prop, anything can be added here in the parent component.',
     },
     contentTextSize: {
-      type: String,      
+      type: String,
     },
     contentImage: {
       type: String,
@@ -96,14 +100,14 @@ export default {
           if (entry.target === this.$refs.content) {
             this.isContentVisible = true;
             this.observer.unobserve(this.$refs.content);
-          } 
+          }
         }
       });
     },
   },
 }
-</script>   
-  
+</script>
+
 
 <style scoped>
 /* CSS for the home page */
@@ -133,10 +137,10 @@ h2 {
   color: #ffffff;
   background: rgba(0, 0, 0, 0.5);
   width: fit-content;
-  text-align: left;  
+  text-align: left;
   display: block;
   padding-left: 0.5em;
-  padding-right: 0.5em; 
+  padding-right: 0.5em;
   margin-left: auto;
   margin-top: 0.2rem;
   border-radius: 0.25em;
@@ -191,11 +195,11 @@ h2 {
   grid-column: 2;
   grid-row: 1;
   color: #ffffff;
-  font-size: 1.5em;  
+  font-size: 1.5em;
 }
 
 .coffee-image {
-  border-radius: .75rem; 
+  border-radius: .75rem;
   margin: 0 auto;
 }
 
