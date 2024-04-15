@@ -170,7 +170,7 @@ export default {
 
 .custom-background-home-page {
   background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.1);
   background-blend-mode: multiply;
   background-size: 100% 100%;
   background-attachment: fixed;
@@ -185,7 +185,7 @@ export default {
   padding-top: 2rem;
   padding-bottom: 2rem;
   background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, .1);
   background-blend-mode: multiply;
   background-size: 100% 100%;
   background-attachment: fixed;

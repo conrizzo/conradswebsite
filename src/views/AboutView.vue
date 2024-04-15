@@ -2,40 +2,42 @@
   <div id="about-background">
     <div class="center-content-within">
       <div class="left-area-title">
-
+       
       </div>
+
       <two-columns-grid-content-template class="top-top-component-adjustment" :imageWidth="imageWidth"
         :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(255, 255, 255)'"
         :content-text-size="'1.4rem'" :bg-color="'rgb(0, 0, 0, 0)'" :contentText="contentText"
         :contentImage="birdPicture" :setPhotoLink="'https://de.wikipedia.org/wiki/Kohlmeise'"
         :setPhotoCaption="'Tübingen, Germany. Kohlmeise / Great Tit'">
         <div class="language-container">
-      <span class="language-arrow-text tooltip">{{ arrowText }}
-        <span class="tooltiptext">
-          CSS and Vue.js, not an image or drawn arrow!
-        </span>
-      </span>
-      <div style="transform: rotate(-55deg);">
-        <div class="arrow-container">
-          <div class="arrow">
-            <div class="curve"></div>
-            <div class="point"></div>
+          <span class="language-arrow-text tooltip">{{ arrowText }}
+            <span class="tooltiptext">
+              CSS and Vue.js, not an image or drawn arrow!
+            </span>
+          </span>
+          <div style="transform: rotate(-55deg);">
+            <div class="arrow-container">
+              <div class="arrow">
+                <div class="curve"></div>
+                <div class="point"></div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="tooltipTwo"><button @click="language();" class="language-button" role="button">{{
+          <div class="tooltipTwo"><button @click="language();" class="language-button" role="button">{{
         languageButtonText
       }}</button>
-        <div class="tooltiptextTwo">
-          <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
-          Change the main text language between English and German with this button.
+            <div class="tooltiptextTwo">
+              <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
+              Change the main text language between English and German with this button.
+            </div>
+          </div>
         </div>
-      </div>
+      </two-columns-grid-content-template>
+
     </div>
-    </two-columns-grid-content-template>
-      
+    <div class="parallelogram">
     </div>
-    
 
     <main class="text-container">
       <div class="width-container">
@@ -819,16 +821,19 @@ p:last-child {
 }
 
 .form-section {
-
   width: 100%;
 }
+
+
 
 .top-top-component-adjustment {
   max-width: 100rem;
   height: 55rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.66);
   padding-right: 1rem;
   padding-left: 1rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
   color: black;
 }
 
@@ -1187,6 +1192,7 @@ input[type='checkbox'] {
   cursor: not-allowed;
 }
 
+
 @media screen and (max-width: 70rem) {
   .left-area-title {
     display: none;
@@ -1197,16 +1203,24 @@ input[type='checkbox'] {
     padding-right: 1.5rem;
   }
 
-  
+}
+
+@media screen and (max-width: 45rem) {
+  .language-container {
+    margin-top: 0rem;
+    margin-bottom: 8rem;
+  }
+
+  .top-top-component-adjustment {
+    /* keep top image from overflowing off screen, center  */
+    margin-top: 8rem;
+    margin-bottom: 2.5rem;
+  }
 
 }
 
 @media screen and (max-width: 40rem) {
 
-  .language-container{
-    margin-top: 0rem;
-    margin-bottom: 8rem;
-  }
 
   .top-top-component-adjustment {
     background: rgba(0, 0, 0, 0);

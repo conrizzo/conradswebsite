@@ -277,7 +277,7 @@ h3{
   justify-content: center;
   display: flex;
   height: fit-content;
-  background: rgba(40, 40, 40, .9);
+  background: rgb(55, 55, 55);
 }
 
 .image-gallery {
@@ -291,7 +291,7 @@ h3{
 
 .image-gallery-grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 1rem;
   z-index: 1;
@@ -307,7 +307,7 @@ h3{
 
 
 
-.grid-item:nth-child(-n+4) {
+.grid-item:nth-child(-n+3) {
   /* remove top padding from first row */
   padding-top: 0rem;
 }
@@ -334,16 +334,18 @@ figcaption {
   background: rgba(0, 0, 0, 0);
   font-size: 1rem;
   font-weight: bold;
-  color: rgb(245, 245, 245);
+  color: rgb(250, 250, 250);
 }
 
 .grid-title {
-  border-radius: 6px;
+  
   width: fit-content;
   /* border: 2px solid rgb(200, 200, 200); */
 
   color: rgb(225, 225, 225);
-  border: 1px solid rgb(50, 177, 255);
+  border-left: 2px solid rgb(50, 177, 255);
+  
+ 
  
 
   
@@ -352,18 +354,19 @@ figcaption {
 
 .grid-title.odd {
   color: rgb(225, 225, 225);
-  border: 1px solid rgb(188, 229, 255);
+
+  border-left: 2px solid rgb(255, 225, 156);
 }
 
 .gallery-component-image {
-  border-radius: .6rem;
+  border-radius: .2rem;
 }
 
 /* Does image zoom effect - start */
 .img-wrapper {
   display: inline-block;
   overflow: hidden;
-  border-radius: .6rem;
+  border-radius: .2rem;
 }
 
 .img-wrapper img {

@@ -1,20 +1,26 @@
 <template>
-    <div class="center-with-flex outter-padding-and-margins" style="min-height: 90vh;">
+    <div class="center-with-flex outter-padding-and-margins" style="min-height: 96vh;">
 
         <div>
             <div>
                 <div class="unselectable">
-                    <h1>Experiment to drag stuff around on the screen</h1>
-                    <div class="center-with-flex">
-                        <p>Click the button to generate a green square, then try dragging it! Not setup to drag on touch
+                    <h1>Ongoing experiment to drag stuff around on the screen</h1>
+                    <div class="center-with-flex" style="text-align: left;">
+                        <p>Click the button to generate a blue square, then try dragging it! Not setup to drag on touch
                             or
                             mobile
                             devices. This is using many key features in vue.js, emitting an event, using a slot, using
                             props,
-                            a component in a parent view. The green squares are draggable. The location is monitored.
-                            When objects are generated in the DOM by default with vue.js at least the z-index is
-                            increased for each
-                            new object.
+                            a component in a parent view. The blue squares are draggable.
+                            Each generated object has a unique ID and The location is monitored.
+                            As these objects are generated, when two positioned elements overlap without a z-index
+                            specified,
+                            the element that comes later in the HTML (generated in a later button push) is on top.
+                            If a z-index is specified, then the element with the higher z-index is on top.
+
+                            This view is written using the composition API <br>&lt;script setup lang=&quot;ts&quot;&gt;
+                            and using a
+                            separate component to create each draggable square.
                         </p>
                     </div>
                 </div>
@@ -38,15 +44,15 @@
                         <ItemToDrag v-for="item in items" :key="item.id" :initialPosition="item.position"
                             @rect-updated="handleRectUpdated(item.id, $event)">
                             <span style="z-index: 5;">{{ item.id }}</span><br>
-                            <span style="font-size: 0.6rem; line-height: 1;" v-if="lastUpdatedRect && item.id === currentDraggingId">
+                            <span style="font-size: 0.6rem; line-height: 1;"
+                                v-if="lastUpdatedRect && item.id === currentDraggingId">
                                 <!--ID: {{ currentDraggingId }}, -->
-                                left: {{ lastUpdatedRect.left }}<br>
-                                top: {{ lastUpdatedRect.top }}
+                                {{ lastUpdatedRect.left }},{{ lastUpdatedRect.top }}
                             </span>
                         </ItemToDrag>
                     </div>
 
-                    <div v-if="mouseDown && lastUpdatedRect">
+                    <div v-if="mouseDown && lastUpdatedRect" style="height: 50px;">
                         <span>Currently object location:</span><br>
                         left: {{ lastUpdatedRect.left }}, top: {{ lastUpdatedRect.top }}
                     </div>
