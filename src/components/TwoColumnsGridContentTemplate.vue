@@ -5,12 +5,12 @@
       <div class="second-area-grid-container">
 
         <div class="grid-item-coffee" v-if="setPhotoLink === ''">
-          <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">
+          <img :style="{ width: imgWidth + 'rem' }" class="coffee-image" v-lazy="contentImage" alt="Image">
 
         </div>
         <div class="grid-item-coffee" v-else>
           <a :href="setPhotoLink">
-            <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">
+            <img :style="{ width: imgWidth + 'rem' }" class="coffee-image" v-lazy="contentImage" alt="Image">
 
           </a>
           <caption class="photo-caption">{{ setPhotoCaption }}</caption>
@@ -64,7 +64,7 @@ export default {
     },
     imgWidth: {
       type: Number || String,
-      default: 100,
+      default: 10,
     },
     setPhotoLink: {  // creates a prop to set a link for the image, combined with v-else
       type: String,  // it will do no link if not set

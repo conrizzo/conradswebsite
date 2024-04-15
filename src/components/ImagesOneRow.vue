@@ -185,7 +185,7 @@
   }
   
   .gallery-component-image {
-    border-radius: 1em;
+    border-radius: .5rem;
     padding: 0em;
     margin: 0em;
     background-color: #ffffff;

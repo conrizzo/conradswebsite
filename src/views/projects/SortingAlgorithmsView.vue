@@ -182,7 +182,7 @@
             on the cpu speed, resources available, etc. What is also interesting is that the time it takes to sort these
             1000 random integers is slightly slower on the Firefox Browser than Chrome.
             For general use no one will ever notice, but Firefox with the same computer takes about 0.751ms to sort 1000
-            arrays of 1000 random integers between 1-100 using Quicksort.
+            random integers between 1-100 using Quicksort.
             Resetting the variables after already running the sorting algorithm removes this initial lag time! The
             browser
             already knows what code to run so the first iterations immediately run fast.
@@ -200,9 +200,11 @@
               href="https://www.cs.auckland.ac.nz/software/AlgAnim/qsort1a.html">https://www.cs.auckland.ac.nz/software/AlgAnim/qsort1a.html</a>
           </p>
 
-          <p class="paragraph-text">A further project would be to run sorting algorithms in parallel. JavaScript only allows a single thread,
+          <p class="paragraph-text">A further project would be to run sorting algorithms in parallel. JavaScript only
+            allows a single thread,
             but browsers have ways
-            to allow scripts to be run in the background and what is needed can be brought in/used as necessary on that single threaded stack.
+            to allow scripts to be run in the background and what is needed can be brought in/used as necessary on that
+            single threaded stack.
           </p>
         </div>
 

@@ -96,7 +96,7 @@ const width = movementStrength / window.innerWidth;
 const handleMouseMove = (e: MouseEvent) => {
     const pageX = e.pageX - (window.innerWidth / 2);
     const pageY = e.pageY - (window.innerHeight / 2);
-    const newvalueX = width * pageX * - 1;
+    const newvalueX = width * pageX+50 * - 1;
     const newvalueY = height * pageY * - 1;
     (e.target as HTMLElement).style.backgroundPosition = `${newvalueX}px ${newvalueY}px`;
 };
@@ -167,7 +167,6 @@ onMounted(() => {
 .jungle-image {
     position: relative;
     overflow: hidden;
-
 }
 
 /*
@@ -188,12 +187,13 @@ onMounted(() => {
 */
 .top-image-flex {
     display: flex;
-    padding-left: 10%;
+    
 }
 
 #top-image {
     background: url('@/images/jungle/2880-1620.jpg') center;
-    background-size: cover;
+    background-size: 105%;
+    padding-left: 20rem;
     background-attachment: fixed;
     z-index: 0;
     background-repeat: no-repeat;
@@ -203,7 +203,8 @@ onMounted(() => {
 #top-image::before {
     position: absolute;
     background: url('@/images/jungle/2880-1620.jpg') center;
-    background-size: 100%;
+    background-size: 105%;
+    padding-left: 20rem;
     background-attachment: fixed;
     z-index: 0;
     background-repeat: no-repeat;
@@ -211,7 +212,6 @@ onMounted(() => {
 
 .projects-underline-color-hover:hover {
     text-decoration: underline rgb(163, 255, 0);
-
 
 }
 
@@ -284,8 +284,9 @@ h2 {
 .my-projects-text-animation {
     animation: pulse 8s;
 }
-.my-projects-text-animation:hover {   
-    color: rgb(0, 255, 204) !important;  
+
+.my-projects-text-animation:hover {
+    color: rgb(0, 255, 204) !important;
 }
 
 .link-customization {

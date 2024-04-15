@@ -2,10 +2,10 @@
   <div id="about-background">
     <div class="center-content-within">
       <div class="left-area-title">
-       
+
       </div>
 
-      <two-columns-grid-content-template class="top-top-component-adjustment" :imageWidth="imageWidth"
+      <two-columns-grid-content-template class="top-top-component-adjustment" :imgWidth="imageWidth"
         :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(255, 255, 255)'"
         :content-text-size="'1.4rem'" :bg-color="'rgb(0, 0, 0, 0)'" :contentText="contentText"
         :contentImage="birdPicture" :setPhotoLink="'https://de.wikipedia.org/wiki/Kohlmeise'"
@@ -36,13 +36,9 @@
       </two-columns-grid-content-template>
 
     </div>
-    <div class="parallelogram">
-    </div>
 
     <main class="text-container">
       <div class="width-container">
-
-
         <div class="center-content-within">
           <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section">
 
@@ -413,10 +409,10 @@
           <div>
             <!-- 1st text image component -->
             <div v-if="arrowText === 'Deutsch'">
-              <two-columns-grid-content-template :titleText="objectiveTitle" :content-text="objectiveText" />
+              <two-columns-grid-content-template :imgWidth="26" :titleText="objectiveTitle" :content-text="objectiveText" />
             </div>
             <div v-else>
-              <two-columns-grid-content-template :titleText="objectiveTitleDeutsch"
+              <two-columns-grid-content-template :imgWidth="26" :titleText="objectiveTitleDeutsch"
                 :content-text="objectiveTextDeutsch" />
             </div>
             <!-- 2nd text image component -->
@@ -426,18 +422,18 @@
                   :content-text="approachText" :content-image="birdGenerated" />
               </div>
               <div v-else>
-                <two-columns-reversed-grid class="top-component-adjustment" :titleText="approachTitleDeutsch"
+                <two-columns-reversed-grid class="top-component-adjustment"  :titleText="approachTitleDeutsch"
                   :content-text="approachTextDeutsch" :content-image="birdGenerated" />
               </div>
             </div>
             <!-- 3rd text image component -->
             <div v-if="arrowText === 'Deutsch'">
-              <two-columns-grid-content-template :titleText="updatesTitle" :content-text="updatesText"
+              <two-columns-grid-content-template :imgWidth="26"  :titleText="updatesTitle" :content-text="updatesText"
                 :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
                 :set-photo-caption="languagesCaptionText" />
             </div>
             <div v-else>
-              <two-columns-grid-content-template :titleText="updatesTitleDeutsch" :content-text="updatesTextDeutsch"
+              <two-columns-grid-content-template :imgWidth="26"  :titleText="updatesTitleDeutsch" :content-text="updatesTextDeutsch"
                 :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
                 :set-photo-caption="languagesCaptionTextDeutsch" />
             </div>
@@ -536,7 +532,7 @@ export default {
       checkBoxValue: false,
       validateFormFieldsCheck: false,
 
-      imageWidth: 20,  // Initial height
+      imageWidth: 20,  // Initial width
       isMobile: window.innerWidth <= 800, // initial check
 
       objectiveTitle: "objective",

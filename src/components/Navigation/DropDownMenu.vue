@@ -111,11 +111,11 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
 .dropdown-content {
     /* this removes it when not over it */
     position: absolute;
-    margin-left: -2.1em;
+    margin-left: -3.1em;
     text-align: left;
     padding: 0.15em;
     margin-top: 0rem;
-    width: 10.4em;
+    width: 12.4em;
     background-color: rgb(33, 35, 36);
     box-shadow: 0px -2px 8px rgba(0, 0, 0, 1);
     transition: all 0.35s ease-in-out;
