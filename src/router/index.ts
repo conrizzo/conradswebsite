@@ -9,12 +9,13 @@ import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const HomeView = () => import('../views/HomeView.vue');
-const MainView = () => import('../views/MainView.vue');
+const MainPageToListProjects = () => import('../views/MainPageToListProjects.vue');
 
 const AboutView = () => import('../views/AboutView.vue');
 const PrivacyView = () => import('../views/PrivacyView.vue');
 const AuthorizedView = () => import('../views/AuthorizedView.vue');
 
+// Projects
 const ProjectsView = () => import('../views/projects/ProjectsView.vue');
 const CowculatorView = () => import('../views/projects/CowculatorView.vue');
 const DatasetsView = () => import('../views/projects/DatasetsView.vue');
@@ -57,8 +58,8 @@ const routes = [
 
   {
     path: '/my-projects',
-    name: 'MainView',
-    component: MainView,
+    name: 'MainPageToListProjects',
+    component: MainPageToListProjects,
     meta: {
       title: 'ConradsWebsite.com',
       description: 'Main page of ConradsWebsite.com for Projects'
@@ -222,8 +223,8 @@ const routes = [
         component: CountryMusicExperimentView,
       },
       {
-        path: 'drag-and-drop-stuff',
-        name: 'gridDragExperiment',
+        path: 'drag-and-drop-stuff', 
+        name: 'gridDragExperiment', 
         component: GridDragView,
       }
       /*

@@ -1,10 +1,10 @@
 <!-- This page mostly just sets the default values across the whole website, and whether to omit nav bar such as on the cow game -->
 <template>
   <div>
-      <!-- Don't show header or footer on CowGame -->
-      <TheMainHeader v-show="showHeader" v-if="showNav"></TheMainHeader>  
-      <router-view/> <!-- main code of a page -->  
-      <TheMainFooter v-show="showFooter" v-if="showNav"></TheMainFooter>
+    <!-- Don't show header or footer on CowGame -->
+    <TheMainHeader v-show="showHeader" v-if="showNav"></TheMainHeader>
+    <router-view /> <!-- main code of a page -->
+    <TheMainFooter v-show="showFooter" v-if="showNav"></TheMainFooter>
   </div>
 </template>
 
@@ -19,8 +19,8 @@ export default {
   name: "App",
   components: {
     TheMainHeader, TheMainFooter  /*CookieAccept,*/
-  }, 
-  data(){
+  },
+  data() {
     return {
       showHeader: false,
       showFooter: false,
@@ -35,12 +35,12 @@ export default {
 
     setTimeout(() => {
       this.showHeader = true;
-    }, 0);
+    }, 250);
 
     setTimeout(() => {
       this.showFooter = true;
-    }, 0);
-  },  
+    }, 500);
+  },
   computed: {
     showNav() {
       // Check if the current route is not the cowGame route
@@ -52,11 +52,9 @@ export default {
 
 
 <style>
-
-#app {  
+#app {
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;   
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-
 </style>

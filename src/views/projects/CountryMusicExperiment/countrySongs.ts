@@ -11,6 +11,35 @@ interface songList {
 
 
 
+
+export class SongList2 {
+  songList: songList[];
+
+  constructor() {
+    this.songList = songList;
+  }
+
+  getSongList() {
+    return this.songList;
+  }
+
+  getSongByTitle(title: string) {
+    return this.songList.find(song => song.title === title);
+  }
+
+  getSongByYear(year: number) {
+    return this.songList.find(song => song.year === year);
+  }
+
+
+  
+}
+
+//const songList2 = new SongList2();
+//console.log(songList2.getSongList());
+
+
+
 export const songList = [
   {
     id: 1,
@@ -40,6 +69,15 @@ export const songList = [
     year: 1975,
     image: ""
   },
+  {
+    id: 8,
+    title: "Hey Boss, ich brauch mehr geld",
+    artist: "Gunter Gabriel",
+    YOUTUBE_URL_ID: "4jdSsljFgGo",
+    genre: "Country",
+    year: 1974,
+    image: ""
+  }
   /*
     {
       id: 4,

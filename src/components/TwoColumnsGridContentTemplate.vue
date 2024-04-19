@@ -146,9 +146,15 @@ h2 {
   border-radius: 0.25em;
 }
 
+
+
 .second-main-area {
-  background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, 0.1);
+  background: -webkit-linear-gradient(-3deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9),
+      40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%);
+  background: linear-gradient(-2deg, rgb(27, 10, 15), 1%, rgb(54, 23, 34), 15%, rgba(161, 71, 78, 0.9),
+      40%, rgb(251, 237, 215) 60%, rgba(185, 134, 193, 0.5) 80%, rgb(139, 114, 188) 100%),
+    linear-gradient(45deg, rgba(161, 71, 78, 0.9), 40%, rgb(251, 237, 215), rgba(185, 134, 193, 0.5),
+      rgb(139, 114, 188) 100%);
   background-blend-mode: multiply;
   background-attachment: fixed;
   position: relative;

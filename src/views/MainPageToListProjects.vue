@@ -1,75 +1,33 @@
 <template>
   <div id="body">
-    <section class="center-top-main-area-box">
-      <div class="website-text-boxes">
-        <h1 class="title">
-          <span class="top-string-slice-of-title">
-            <span>{{ inputStringShuffled }}</span>
-          </span>
-        </h1>
-        <div class="main-text-container">
-          <ul class="main-text-ul">            
-            
-            <li>
-              <span>Crafted under
-                the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration"
-                  href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-                per day.
-                <br>
-              </span>
-            </li>
-            <li>
-              Lastest project is the <router-link class="home-text-links list-links-text-decoration" to="/projects/country-music-generator">Country Music Generator </router-link>
-            </li>
-          </ul>
-          <div class="center-image">
-            <img style="height: 9rem; padding-right: 1rem;" class="bird-image" :src="birdDrawing" alt="Bird Drawing">
-            <img style="height: 9rem;" :src="aCoffee" alt="Coffee image">
-          </div>
+    <topArea />
+    <div class="custom-background-home-page center-with-flex">
+      <section class="looped-project-section">
+        <div class='under-title-caption'>
         </div>
-      </div>
-    </section>
-    <div class="custom-background-home-page">
-      <div class="center-bottom-main-area-box">
-        <section class="top-home-content-section">
-          <div class='under-title-caption'>
-          </div>
-          <ProjectGallery />
-        </section>
-      </div>
+        <ProjectGallery />
+      </section>
     </div>
-    <imagesOneRow />    
+    <imagesOneRow :backgroundColor="backgroundImage" />
   </div>
 </template>
 
 <script>
 import Prism from "prismjs";
 import "@/assets/globalCSS.css";
-
-import init, { main } from "@/rust_web_assembly/hello_wasm.js";
-
 import imagesOneRow from "@/components/ImagesOneRow.vue";
-
-import ProjectGallery from "@/components/HomePage/ProjectGallery.vue";
-
+import ProjectGallery from "@/components/MainProjectPage/ProjectGallery.vue";
+import topArea from "@/components/MainProjectPage/TheTopArea.vue";
 
 export default {
-  name: "MainPageView",
+  name: "MainPageToListProjects",
   components: {
-    imagesOneRow, ProjectGallery,
+    imagesOneRow, ProjectGallery, topArea
   },
 
   data() {
     return {
       itemsLength: 0,
-      birdDrawing: require("@/images/BlueSkyBird.jpg"),
-      aCoffee: require("@/images/cup_of_coffee.jpg"),      
-
-      inputString: "_ Projects",
-      name: "",
-      inputStringShuffled: "",
-
-      
       isHovered: false,
       hoveredImage: "",
 
@@ -79,16 +37,14 @@ export default {
         "This code won't work!",
         "Fixed.",
         ":)"
-      ],     
-      
+      ],
+
     };
   },
   computed: {
-
     projectLinks() {
       return this.links; // Assuming `links` is the array of project links
     },
-    
   },
   methods: {
 
@@ -103,37 +59,10 @@ export default {
       this.isHovered = false;
       this.hoveredImage = "";
     },
-
-    runRustArrayRandomizer() {
-      init().then(() => {
-        const arr = this.name.split(" ");
-        let mainFunction = main(arr);
-        mainFunction = mainFunction.join(" ");
-        this.inputStringShuffled = mainFunction;
-      });
-    },
-
-    addLettersIntoInput() {
-      let i = 0;
-      const intervalId = setInterval(() => {
-        if (i < this.inputString.length) {
-          this.name += this.inputString[i];
-          this.runRustArrayRandomizer();
-          i++;
-        }
-        else {
-          clearInterval(intervalId);
-          setTimeout(() => {
-            this.inputStringShuffled = "Projects";
-          }, 1000);
-        }
-      }, 125);
-    },
   },
 
   mounted() {
     Prism.highlightAll();
-    this.addLettersIntoInput();
   },
 };
 </script>
@@ -168,15 +97,7 @@ export default {
 
 /* end arrow css */
 
-.custom-background-home-page {
-  background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, 0.1);
-  background-blend-mode: multiply;
-  background-size: 100% 100%;
-  background-attachment: fixed;
-  position: relative;
-  
-}
+
 
 
 .center-top-main-area-box {
@@ -185,11 +106,21 @@ export default {
   padding-top: 2rem;
   padding-bottom: 2rem;
   background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
   background-blend-mode: multiply;
   background-size: 100% 100%;
   background-attachment: fixed;
   position: relative;
+}
+
+.custom-background-home-page {
+
+  background-color: rgb(55, 55, 55);
+  background-blend-mode: multiply;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  position: relative;
+
 }
 
 
@@ -205,7 +136,7 @@ export default {
       transparent 80%, rgba(0, 0, 0, .1) 80%), linear-gradient(100deg, rgba(0, 0, 0, .1) 10%,
       transparent 10%, transparent 90%, rgba(0, 0, 0, .1) 90%);
       filter: blur(3px);*/
-      /*
+/*
       background-image: linear-gradient(5deg, rgba(0, 0, 0, .1) 20%, transparent 20%,
       transparent 80%, rgba(0, 0, 0, .1) 80%), linear-gradient(70deg, rgba(0, 0, 0, .1) 10%,
       transparent 5%, transparent 90%, rgba(0, 0, 0, .1) 90%);
@@ -269,16 +200,11 @@ export default {
   padding-top: 2.5rem;
 }
 
-.first-aside-home-page {
-  background: rgb(18, 18, 18);
-  z-index: 1;
-  padding: 1em;
-}
 
-.top-home-content-section {
+.looped-project-section {
   z-index: 4;
-  padding-top: 2rem;
   max-width: 71rem;
+  margin: 1rem 0 1rem 0;
 }
 
 .website-text-boxes {
@@ -289,19 +215,7 @@ export default {
   margin-bottom: 4rem;
 }
 
-@media only screen and (max-width: 100rem) {
-  .center-bottom-main-area-box {
-    display: flex;
-    justify-content: center;
-    padding-left: 0rem;
-    padding-right: 0rem;
-    padding-bottom: 10rem;
-  }
-
-  .center-bottom-main-area-box {
-    padding-bottom: 2rem;
-  }
-}
+@media only screen and (max-width: 100rem) {}
 
 @media only screen and (max-width: 60rem) {
   .main-text-container {
@@ -310,14 +224,10 @@ export default {
 }
 
 @media only screen and (max-width: 50rem) {
-  .center-bottom-main-area-box {
-    margin-top: 0em;
-    padding-left: 0rem;
-    padding-right: 0rem;
-  }
 
-  .top-home-content-section {
+
+  .looped-project-section {
     z-index: 4;
   }
-}</style>
-
+}
+</style>

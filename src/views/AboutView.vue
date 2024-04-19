@@ -7,7 +7,7 @@
 
       <two-columns-grid-content-template class="top-top-component-adjustment" :imgWidth="imageWidth"
         :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(255, 255, 255)'"
-        :content-text-size="'1.4rem'" :bg-color="'rgb(0, 0, 0, 0)'" :contentText="contentText"
+        :content-text-size="'1.4rem'" :bg-color="'rgba(0, 0, 0, 0)'" :contentText="contentText"
         :contentImage="birdPicture" :setPhotoLink="'https://de.wikipedia.org/wiki/Kohlmeise'"
         :setPhotoCaption="'Tübingen, Germany. Kohlmeise / Great Tit'">
         <div class="language-container">
@@ -78,7 +78,7 @@
               </li>
               <li>
                 <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
-                  HTML, CSS, Rust into Web Assembly,</span> and soon more projects in other languages such as Angular,
+                  HTML, CSS (no CSS frameworks), Rust into Web Assembly,</span> and soon more projects in other languages such as Angular,
                 Wordpress, <a class='text-links' href="https://nuxt.com/">Nuxt.js</a>,
                 <a class="text-links" href="https://astro.build/">Astro</a>.
               </li>
@@ -139,7 +139,7 @@
                 <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet
                 habe,
                 sind
-                <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS und Rust für Web Assembly.</span>
+                <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS (keine CSS-Frameworks), und Rust für Web Assembly.</span>
                 In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
               </li>
               <li>
@@ -825,11 +825,10 @@ p:last-child {
 .top-top-component-adjustment {
   max-width: 100rem;
   height: 55rem;
-  background: rgba(0, 0, 0, 0.66);
+  background: rgba(0, 0, 0, 0.75);
   padding-right: 1rem;
   padding-left: 1rem;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+
   color: black;
 }
 

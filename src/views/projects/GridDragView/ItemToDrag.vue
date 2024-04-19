@@ -1,6 +1,11 @@
 <template>
+    <!-- dragstart.prevent should prevent the black cross symbol appearing? -->
     <div ref="dragItem" class="movable-object unselectable"
-        :style="{ top: position.top + 'px', left: position.left + 'px' }" @mousedown="startDrag">
+        :style="{ top: position.top + 'px', left: position.left + 'px' }" 
+        @mousedown="startDrag"
+        @dragstart.prevent
+        >
+
         <!-- the above style only needs to be top: position.top +'px', left: position.left +'px' - TESTING TOUCHSCREENS  -->
         <!-- :style="{ top: isTouchscreen ? y + 'px' : position.top + 'px', left: isTouchscreen ? x + 'px' : position.left + 'px' }"  -->
         <span class="unselectable" style="pointer-events: none; font-size: 0.9rem; color: #000;">

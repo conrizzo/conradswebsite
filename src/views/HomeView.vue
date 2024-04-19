@@ -282,7 +282,7 @@ h2 {
 */
 
 .my-projects-text-animation {
-    animation: pulse 8s;
+    animation: pulse 4s;
 }
 
 .my-projects-text-animation:hover {
@@ -353,7 +353,7 @@ h2 {
 
 .h1-span-one {
     font-size: 3rem;
-
+    
 }
 
 .h1-span-two {
@@ -378,6 +378,7 @@ h2 {
 .title-caption-color {
     color: rgb(255, 255, 255);
 }
+
 
 @keyframes fadeIn {
     to {
@@ -470,6 +471,11 @@ h2 {
         width: 18rem;
         margin-left: 1.9rem;
         font-size: 1.8rem;
+    }
+
+    #top-image {
+        padding-left: 0rem;
+        background-size: cover;
     }
 
 }

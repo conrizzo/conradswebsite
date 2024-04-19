@@ -246,8 +246,8 @@ h3{
   margin-bottom: 0rem;
 }
 .projects-side-menu-items:hover{
+  text-decoration: underline;
   
-  color: rgb(68, 185, 244);
 }
 
 
@@ -277,7 +277,9 @@ h3{
   justify-content: center;
   display: flex;
   height: fit-content;
-  background: rgb(55, 55, 55);
+  background: rgb(65, 65, 65);
+  
+  
 }
 
 .image-gallery {

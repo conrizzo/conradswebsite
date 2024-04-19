@@ -5,9 +5,9 @@
     <div v-if="(this.$route.path === '/' || this.$route.path === '/about') && removeTopBanner !== true"
       class="headline center-with-flex" style="position: relative;">
 
-      <p style="max-width: 100%; margin-right: 3rem;">Please visit the&nbsp;<router-link class="text-links"
+      <p style="max-width: 100%; margin-right: 3rem;">Visit the&nbsp;<router-link class="text-links"
           style="color: #fff;" to="/my-projects"><span style="color: rgb(12, 216, 175);">My Projects</span>
-        </router-link>&nbsp;page. <span style="color: rgba(255,255,255,0.33);">Thank you for visiting!</span></p>
+        </router-link>&nbsp;page. <span style="color: rgba(255,255,255,0.6);">Thank you for visiting</span></p>
 
       <svg @click="removeBanner" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
         fill="none" style="position: absolute; right: 1rem; cursor: pointer;">

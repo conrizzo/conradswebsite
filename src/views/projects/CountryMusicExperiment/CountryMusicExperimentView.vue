@@ -119,20 +119,25 @@
             Query that is sent to the backend to run in Python code: <br>
             Sentiments: {{ checkedSentiment }}<br>
             Labels: {{ checkedLabels }}
-            Entity type: 
+            Entity type:
         </div>
         <div v-if="generateButton" class="center-with-flex">
             <div class="grid-container video-area-width">
 
-                <div style="margin: 0 auto; padding: 2rem;" v-for="song in songList" :key="song.id">
-                    <iframe width="372" height="280" :src="formatSong(song.YOUTUBE_URL_ID)">
-                    </iframe>
-                    <div>{{ song.id }}</div>
-                    <div>{{ song.title }}</div>
-                    <div>{{ formatSong(song.YOUTUBE_URL_ID) }}</div>
-                    <div>{{ song.artist }}</div>
-                    <div>{{ song.year }}</div>
-                    <div>{{ song.genre }}</div>
+                <div v-for="song in songList" :key="song.id" style="height: 30rem;">
+
+                    <div class="each-iframe">
+                        <iframe :src="formatSong(song.YOUTUBE_URL_ID)">
+                        </iframe>
+                    </div>
+                    <div class="song-description-area">
+                        <div>{{ song.id }}</div>
+                        <div>{{ song.title }}</div>
+                        <div>{{ formatSong(song.YOUTUBE_URL_ID) }}</div>
+                        <div>{{ song.artist }}</div>
+                        <div>{{ song.year }}</div>
+                        <div>{{ song.genre }}</div>
+                    </div>
 
                 </div>
 
@@ -142,7 +147,8 @@
 
 
         <CookieAccept />
-        <!--<button class="clean-button">Show</button>-->
+        <button class="clean-button">Show</button>
+       
     </div>
 </template>
 <!-- 
@@ -153,8 +159,9 @@ I suppose this is normal when 3 or more editors are open using vs code insiders?
 import { ref, onMounted, computed } from 'vue';
 import { postDataAndGetResponse } from './getBackend';
 import { songList } from './countrySongs';
+import { SongList2 } from './countrySongs';
 import CookieAccept from "@/components/CookieAccept.vue";
-console.log(songList);
+console.log(SongList2);
 const sentimentCheckBox = ref([
     { label: 'Happy', checked: false },
     { label: 'Sad', checked: false },
@@ -241,6 +248,7 @@ h4 {
 }
 
 .main-container-width {
+    padding-top: 3rem;
     max-width: 80rem;
     margin: 0 auto;
 }
@@ -263,6 +271,7 @@ h4 {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: (360px, auto);
     background-color: rgb(255, 221, 135);
+    margin-bottom: 4rem;
 
 }
 
@@ -326,6 +335,31 @@ input[type='checkbox'] {
     width: 80rem;
 
 
+}
+
+.each-iframe {
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    width: 100%;
+    height: 50%;
+
+}
+
+.each-iframe iframe {
+    position: absolute;
+    width: 90%;
+    margin-left: 5%;
+
+    height: 95%;
+    margin-top: 5%;
+    left: 0;
+    top: 0;
+
+}
+
+.song-description-area {
+    padding: 1.5rem;
 }
 
 @media screen and (max-width: 600px) {
