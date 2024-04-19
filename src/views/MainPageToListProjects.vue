@@ -1,19 +1,21 @@
 <template>
-  <div id="body">
-    <topArea />
-    <div class="custom-background-home-page center-with-flex">
-      <section class="looped-project-section">
-        <div class='under-title-caption'>
-        </div>
-        <ProjectGallery />
-      </section>
-    </div>
-    <imagesOneRow :backgroundColor="backgroundImage" />
+
+  <topArea />
+
+  <div class="custom-background-home-page center-with-flex">
+    <section class="looped-project-section">
+      <div class='under-title-caption'>
+      </div>
+      <ProjectGallery />
+    </section>
   </div>
+
+  <imagesOneRow :backgroundColor="backgroundImage" />
+
 </template>
 
 <script>
-import Prism from "prismjs";
+
 import "@/assets/globalCSS.css";
 import imagesOneRow from "@/components/ImagesOneRow.vue";
 import ProjectGallery from "@/components/MainProjectPage/ProjectGallery.vue";
@@ -60,69 +62,18 @@ export default {
       this.hoveredImage = "";
     },
   },
-
-  mounted() {
-    Prism.highlightAll();
-  },
 };
 </script>
 
 
 <style scoped>
-/* CSS for the home page */
-#body {
-  background-size: 100% 100%;
-  background-attachment: fixed;
-}
-
-.title {
-  text-align: left;
-  position: relative;
-  line-height: 1;
-  height: 2em;
-  padding: 1em 0.25em 3em 2rem;
-  color: rgb(255, 255, 255);
-  font-size: 2em;
-  z-index: 1;
-  background: linear-gradient(to right, orange, red, pink);
-}
-
-.capText {
-  text-transform: capitalize;
-}
-
-.top-string-slice-of-title {
-  font-size: 2em;
-}
-
-/* end arrow css */
-
-
-
-
-.center-top-main-area-box {
-  display: flex;
-  justify-content: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, 0.1);
-  background-blend-mode: multiply;
-  background-size: 100% 100%;
-  background-attachment: fixed;
-  position: relative;
-}
-
 .custom-background-home-page {
-
   background-color: rgb(55, 55, 55);
   background-blend-mode: multiply;
   background-size: 100% 100%;
   background-attachment: fixed;
   position: relative;
-
 }
-
 
 /*
 .center-top-main-area-box::before {

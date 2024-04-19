@@ -1,5 +1,4 @@
 <template>
-
     <section class="center-top-main-area-box">
         <div class="website-text-boxes">
             <h1 class="title">
@@ -52,7 +51,6 @@
             </div>
         </div>
     </section>
-
 </template>
 
 <script setup lang="ts">
@@ -66,19 +64,17 @@ const birdDrawingUrl = ref(birdDrawing) as Ref<string>;
 const aCoffeeUrl = ref(aCoffee) as Ref<string>;
 
 
-const name = ref(''); // Assuming 'name' is a reactive state you're manipulating
-const inputString = ref("_ Projects"); // Define initial state for inputString
+const name = ref('');
+const inputString = ref("_ Projects"); 
 const inputStringShuffled = ref('');
 
-// Converted from runRustArrayRandomizer
 const runRustArrayRandomizer = async () => {
     await init();
     const arr = name.value.split(" ");
-    let mainFunction: string = main(arr).join(" "); 
+    let mainFunction: string = main(arr).join(" ");
     inputStringShuffled.value = mainFunction;
 };
 
-// Converted from addLettersIntoInput
 const addLettersIntoInput = () => {
     let i = 0;
     const intervalId = setInterval(() => {
@@ -95,7 +91,7 @@ const addLettersIntoInput = () => {
     }, 125);
 };
 
-// Converted onMounted lifecycle hook
+
 onMounted(() => {
     addLettersIntoInput();
 });
@@ -103,12 +99,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* CSS for the home page */
-#body {
-    background-size: 100% 100%;
-    background-attachment: fixed;
-}
-
 .title {
     text-align: left;
     position: relative;
@@ -129,11 +119,6 @@ onMounted(() => {
     font-size: 2em;
 }
 
-/* end arrow css */
-
-
-
-
 .center-top-main-area-box {
     display: flex;
     justify-content: center;
@@ -147,17 +132,6 @@ onMounted(() => {
     background-attachment: fixed;
     position: relative;
 }
-
-.custom-background-home-page {
-
-    background-color: rgb(55, 55, 55);
-    background-blend-mode: multiply;
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    position: relative;
-
-}
-
 
 /*
 .center-top-main-area-box::before {
@@ -236,12 +210,10 @@ onMounted(() => {
     padding-top: 2.5rem;
 }
 
-
-
 .website-text-boxes {
     z-index: 4;
     width: 71rem;
-    background: rgb(40, 40, 40);
+    background: rgb(44, 44, 44);
     margin-top: 4rem;
     margin-bottom: 4rem;
 }

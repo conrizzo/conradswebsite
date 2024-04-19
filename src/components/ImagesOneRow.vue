@@ -219,7 +219,7 @@ h2 {
 
 
   .image-gallery {
-    max-height: 26rem;
+    max-height: 27rem;
     /* Adjust the maximum height as needed */
     overflow-x: auto;
     overflow-y: none;
