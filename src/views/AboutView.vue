@@ -2,9 +2,7 @@
   <div id="about-background">
     <div class="center-content-within">
       <div class="left-area-title">
-
       </div>
-
       <two-columns-grid-content-template class="top-top-component-adjustment" :imgWidth="imageWidth"
         :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(255, 255, 255)'"
         :content-text-size="'1.4rem'" :bg-color="'rgba(0, 0, 0, 0)'" :contentText="contentText"
@@ -34,7 +32,6 @@
           </div>
         </div>
       </two-columns-grid-content-template>
-
     </div>
 
     <main class="text-container">

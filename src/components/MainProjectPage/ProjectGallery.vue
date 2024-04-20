@@ -12,12 +12,9 @@
     </div>
 
     <div class="centerAll">
-
-      <div class="image-gallery">
-
-        <div :class="{ 'open': !isMenuOpen }" class="side-menu">
-          <div>
-            <h3>Projects</h3>
+      <div :class="{ 'open': !isMenuOpen }" class="side-menu">
+        <div>
+          <h3>Projects</h3>
           <svg @click="toggleMenu" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
             fill="none" style="position: absolute; left: 15.5rem; top: 0.5rem; cursor: pointer;">
             <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -25,17 +22,19 @@
             </path>
           </svg>
           <!-- to make appear on same line use display: inline-block; -->
-      
         </div>
-          <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
-            <router-link class="no-router-link-decorations align-text-left" :to="item.to">
-              <div class="projects-side-menu-items">
-                <span>{{ item.text }}</span>
-              </div>
-            </router-link>
-          </div>
+        <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
+          <router-link class="no-router-link-decorations align-text-left" :to="item.to">
+            <div class="projects-side-menu-items">
+              <span>{{ item.text }}</span>
+            </div>
+          </router-link>
+        </div>
 
-        </div>
+      </div>
+      <div class="image-gallery">
+
+
         <main class="image-gallery-grid-container">
           <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
             :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
@@ -132,7 +131,7 @@ export default {
 <style scoped>
 .side-menu {
   position: absolute;
-
+  
   padding-top: .9rem;
   /*
   margin-top: -3rem;
@@ -144,13 +143,17 @@ export default {
   z-index: -1;
   width: 18rem;
   background: rgb(44, 44, 44);
-  transform: translateX(-100%);
+  transform: translateX(0);
+  /* 
+  transform: translateX(-100%); if this element sidemenu is 
+    put inside the imageGallery div then it will slide inside the middle when closed
+  */
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   opacity: 1;
 }
 
 .side-menu.open {
-  transform: translateX(0);
+  transform: translateX(-100%);
   opacity: 0;
 }
 
@@ -165,7 +168,7 @@ export default {
   border-radius: 0.25rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  transition-delay: 0s;  
+  transition-delay: 0s;
 }
 
 .side-links-background h2 {
@@ -173,7 +176,7 @@ export default {
 }
 
 .side-links-background:hover h2 {
-  text-decoration: underline;  
+  text-decoration: underline;
 
 }
 
@@ -205,7 +208,8 @@ export default {
 .no-router-link-decorations {
   text-decoration: none;
 }
-.align-text-left{
+
+.align-text-left {
   text-align: left;
 }
 
@@ -226,7 +230,8 @@ h2 {
   padding-bottom: 0rem;
   margin-bottom: 0rem;
 }
-h3{
+
+h3 {
   font-size: 1.1rem;
   color: rgb(160, 160, 160);
   text-align: left;
@@ -235,19 +240,20 @@ h3{
 
 .projects-side-menu-items {
   color: rgb(255, 255, 255);
-  
+
   padding-left: 0.5em;
   padding-right: 0.5em;
-  
+
   padding-bottom: 0.2rem;
   font-size: 1.25rem;
-  
+
   padding-bottom: 0rem;
   margin-bottom: 0rem;
 }
-.projects-side-menu-items:hover{
+
+.projects-side-menu-items:hover {
   text-decoration: underline;
-  
+
 }
 
 
@@ -278,8 +284,8 @@ h3{
   display: flex;
   height: fit-content;
   background: rgb(65, 65, 65);
-  
-  
+
+
 }
 
 .image-gallery {
@@ -340,17 +346,17 @@ figcaption {
 }
 
 .grid-title {
-  
+
   width: fit-content;
   /* border: 2px solid rgb(200, 200, 200); */
 
   color: rgb(225, 225, 225);
   border-left: 2px solid rgb(50, 177, 255);
-  
- 
- 
 
-  
+
+
+
+
 }
 
 

@@ -18,7 +18,7 @@
                         </span>
                     </li>
                     <li>
-                        Lastest ongoing 'big' project is the<br> <router-link
+                        Lastest ongoing project is the<br> <router-link
                             class="home-text-links list-links-text-decoration"
                             to="/projects/country-music-generator">Country Music Generator </router-link>
                     </li>
@@ -63,9 +63,12 @@ import init, { main } from "@/rust_web_assembly/hello_wasm.js";
 const birdDrawingUrl = ref(birdDrawing) as Ref<string>;
 const aCoffeeUrl = ref(aCoffee) as Ref<string>;
 
+import { computed } from 'vue';
+const isProduction = computed(() => process.env.NODE_ENV === 'production');
+console.log(isProduction.value); // check if in producton mode
 
 const name = ref('');
-const inputString = ref("_ Projects"); 
+const inputString = ref("_ Projects");
 const inputStringShuffled = ref('');
 
 const runRustArrayRandomizer = async () => {

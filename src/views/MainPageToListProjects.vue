@@ -1,6 +1,6 @@
 <template>
 
-  <topArea />
+  <TopArea />
 
   <div class="custom-background-home-page center-with-flex">
     <section class="looped-project-section">
@@ -9,30 +9,30 @@
       <ProjectGallery />
     </section>
   </div>
-
-  <imagesOneRow :backgroundColor="backgroundImage" />
+  <!-- :backgroundImageUrl=""   fix this - add in the image with prop -->
+  <ImagesOneRow :theBackground="linkToImage" />
 
 </template>
 
 <script>
 
 import "@/assets/globalCSS.css";
-import imagesOneRow from "@/components/ImagesOneRow.vue";
+import ImagesOneRow from "@/components/ImagesOneRow.vue";
 import ProjectGallery from "@/components/MainProjectPage/ProjectGallery.vue";
-import topArea from "@/components/MainProjectPage/TheTopArea.vue";
+import TopArea from "@/components/MainProjectPage/TheTopArea.vue";
+
 
 export default {
   name: "MainPageToListProjects",
   components: {
-    imagesOneRow, ProjectGallery, topArea
+    ImagesOneRow, ProjectGallery, TopArea
   },
 
   data() {
     return {
       itemsLength: 0,
-      isHovered: false,
-      hoveredImage: "",
 
+      linkToImage: require('@/images/blue_sky2.jpg'), // pass image from parent to prop in ImagesOneRow
       messages: [
         "I'm having a bad day :(",
         "Why is that?",
@@ -50,17 +50,7 @@ export default {
   },
   methods: {
 
-    capitalizeFirstLetter(string) {
-      let capitalizedTitle = string.split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-      return capitalizedTitle
-    },
 
-    hideImage() {
-      this.isHovered = false;
-      this.hoveredImage = "";
-    },
   },
 };
 </script>

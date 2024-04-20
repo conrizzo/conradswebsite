@@ -1,22 +1,25 @@
 <template>
-  <div class="centerAll" :style="{ backgroundImage: 'url(' + backgroundColor + ')' }">
+  <div class="center-with-flex custom-background" :style="{ backgroundImage: 'url(' + theBackground + ')' }">
 
     <div class="image-gallery">
-      <!-- 
-          This is an education thing to write about the h1 tag directly below this! 
-          Doing inline block to underline only the text in a span, then aligning the outside text to the left works nicely!
-      -->
-      <h2><span class='gallery-styling-h1-span'>make an activity selection</span></h2>
-      <div class="gallery-button-left" @click="changeImageArray('left')">&lt;</div>
+      <h3>
+        <span class='gallery-styling-h1-span'>make an activity selection</span>
+      </h3>
+
       <div class="image-gallery-grid-container">
+        <button class="gallery-button-left" @click="changeImageArray('left')">&lt;</button>
         <div v-for="item in imageArrayChoice" :key="item.id" class="grid-item">
-
-          <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.altText">
+          <!-- 
+            optionally can use v-lazy here v-lazy="item.imageSrc" :src="item.imageSrc" 
+            The advantage of v-lazy is it only loads images when in viewport
+            The disadvantage with this specific code is there is a blank spot temporarily if a user
+            clicks through these quickly.          
+          -->
+          <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
           <figcaption>{{ item.caption }}</figcaption>
-
         </div>
+        <button class="gallery-button-right" @click="changeImageArray('right')">></button>
       </div>
-      <div class="gallery-button-right" @click="changeImageArray('right')">></div>
     </div>
 
   </div>
@@ -26,14 +29,15 @@
 
 
 export default {
-  name: 'ImageGallery',
-  compontents: {
+  name: 'ClickableImageGalleryOfImagesOnMainPageAtBottom',
+  components: {
 
   },
   props: {
-    backgroundColor: {
+    theBackground: {
       type: String,
-      default: 'rgb(40, 40, 40)'
+
+      default: '../images/blue_sky2.jpg'
     },
   },
   data() {
@@ -41,63 +45,48 @@ export default {
     const pizzaFood = require('@/images/store/products/5_self-made-pizza.jpg');
     const diffusionBird = require('@/images/diffBird.jpg');
     return {
-      imageArrayChoice: null,
-      imgArrayOfArrays: [
+      currentIndex: 0, // Use an index to track the current batch
+      imageBatches: [
         [
           { id: 1, imageSrc: pizzaFood, altText: "Image 1", caption: "Eat food!" },
           { id: 2, imageSrc: coffeeImage, altText: "Image 2", caption: "Have coffee!" },
           { id: 3, imageSrc: diffusionBird, altText: "Image 3", caption: "Watch the birds!" },
           { id: 4, imageSrc: coffeeImage, altText: "Image 4", caption: "Time for more coffee!" },
-
-          // Add more items as needed :)
         ],
+        [
+          { id: 5, imageSrc: diffusionBird, altText: "Image 3", caption: "Watch the birds!" },
+          { id: 6, imageSrc: diffusionBird, altText: "Image 3", caption: "Watch the birds!" },
+          { id: 7, imageSrc: diffusionBird, altText: "Image 3", caption: "Watch the birds!" },
+          { id: 8, imageSrc: diffusionBird, altText: "Image 3", caption: "Watch the birds!" },
+        ]
       ]
-
-
     };
   },
   mounted() {
-    // Set the initioanl image array to the galleryItems array
-    this.imageArrayChoice = this.imgArrayOfArrays[0]
-
+    this.imageArrayChoice = this.imageBatches[this.currentIndex];
   },
-  methods: {
-    // This method will change the image array to the one passed in
-    changeImageArray(choice) {
-
-      const lastIndex = this.imgArrayOfArrays.length - 1;
-      const currentIndex = this.imgArrayOfArrays.indexOf(this.imageArrayChoice);
-
-      function arraymove(arr, fromIndex, toIndex) {
-        let element = arr[fromIndex];
-        arr.splice(fromIndex, 1);
-        arr.splice(toIndex, 0, element);
-        return arr;
-      }
-
-      if (choice === 'left') {
-        arraymove(this.imgArrayOfArrays[currentIndex], 0, this.imgArrayOfArrays[currentIndex].length);
-        if (currentIndex === 0) {
-          this.imageArrayChoice = this.imgArrayOfArrays[lastIndex];
-        } else {
-          this.imageArrayChoice = this.imgArrayOfArrays[currentIndex - 1];
-        }
-      } else if (choice === 'right') {
-        arraymove(this.imgArrayOfArrays[currentIndex], this.imgArrayOfArrays[currentIndex].length - 1, 0);
-        if (currentIndex === lastIndex) {
-          this.imageArrayChoice = this.imgArrayOfArrays[0];
-        } else {
-          this.imageArrayChoice = this.imgArrayOfArrays[currentIndex + 1];
-        }
-      }
+  computed: {
+    // Directly use imageArrayChoice for rendering in template
+    imageArrayChoice() {
+      return this.imageBatches[this.currentIndex];
     }
   },
-  // Component logic goes here
-}
+  methods: {
+    changeImageArray(direction) {
+      const numBatches = this.imageBatches.length;
+      if (direction === 'left') {
+        this.currentIndex = (this.currentIndex - 1 + numBatches) % numBatches;
+      } else if (direction === 'right') {
+        this.currentIndex = (this.currentIndex + 1) % numBatches;
+      }
+      // No need to manually adjust the array elements
+    }
+  },
+};
 </script>
 
 <style scoped>
-h2 {
+h3 {
   font-size: 0.9em;
   text-align: left;
 }
@@ -114,14 +103,12 @@ h2 {
   text-transform: uppercase;
 }
 
-
-
-.centerAll {
-  justify-content: center;
-  display: flex;
-  background: rgb(40, 40, 40);
-
+/*
+.custom-background {  
+  background-image: url('../images/blue_sky2.jpg') !important;
+  background-color: rgba(0, 0, 0, 0.1);
 }
+*/
 
 .gallery-button-left {
   position: absolute;
@@ -136,7 +123,7 @@ h2 {
   width: 1em;
   border: 1px solid rgb(255, 255, 255);
   border-right: none;
-
+  height: 7rem;
 }
 
 .gallery-button-right {
@@ -152,7 +139,7 @@ h2 {
   width: 1em;
   border: 1px solid rgb(255, 255, 255);
   border-left: none;
-
+  height: 7rem;
 }
 
 .gallery-button-right:hover {
@@ -167,9 +154,6 @@ h2 {
   margin: 0 auto;
   position: relative;
   background: rgba(255, 255, 255, 0);
-  padding: 0em;
-
-
 }
 
 .image-gallery-grid-container {
@@ -178,13 +162,18 @@ h2 {
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 1em;
   margin-bottom: 1em;
+
 }
 
 .grid-item {
-
-
   background-color: rgba(0, 0, 0, 0);
   z-index: 2;
+}
+
+
+
+.grid-item:last-child>div {
+  margin-right: 1rem;
 }
 
 .grid-item:hover {
@@ -193,7 +182,6 @@ h2 {
 
 .gallery-component-image {
   border-radius: .5rem;
-  
   padding: 0em;
   margin: 0em;
   background-color: #ffffff;
@@ -205,6 +193,16 @@ h2 {
   filter: brightness(90%);
 }
 
+figcaption {
+  text-align: center;
+  padding: 0.5em;
+  margin: 0em;
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  background-color: rgb(55, 55, 55);
+
+}
 
 @media (max-width: 88rem) {
 
@@ -217,14 +215,21 @@ h2 {
 
 @media (max-width: 84rem) {
 
+  /* this is a good thing to know how to use */
+  .grid-item:last-of-type {
+    padding-right: 1rem;
+  }
+
+
 
   .image-gallery {
-    max-height: 27rem;
+    max-height: 30rem;
     /* Adjust the maximum height as needed */
     overflow-x: auto;
-    overflow-y: none;
+    overflow-y: hidden;
     padding-left: 1em;
-
+    padding-bottom: 1.8rem;
+    padding-right: 1rem;
   }
 
   .image-gallery-grid-container {
@@ -236,25 +241,8 @@ h2 {
 
 @media (max-width: 40rem) {
 
-
   .grid-item {
     width: fit-content;
   }
-
-}
-
-
-figcaption {
-  text-align: center;
-  padding: 0.5em;
-  margin: 0em;
-  
-
-
-  font-size: 1rem;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
- background-color: rgb(55, 55, 55);
-
 }
 </style>
