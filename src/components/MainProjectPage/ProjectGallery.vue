@@ -12,46 +12,47 @@
     </div>
 
     <div class="centerAll">
-      <div :class="{ 'open': !isMenuOpen }" class="side-menu">
-        <div>
-          <h3>Projects</h3>
-          <svg @click="toggleMenu" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-            fill="none" style="position: absolute; left: 15.5rem; top: 0.5rem; cursor: pointer;">
-            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M18 6 6 18M6 6l12 12">
-            </path>
-          </svg>
-          <!-- to make appear on same line use display: inline-block; -->
-        </div>
-        <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
-          <router-link class="no-router-link-decorations align-text-left" :to="item.to">
-            <div class="projects-side-menu-items">
-              <span>{{ item.text }}</span>
+      <div class="second-grid" :class="{'active-grid-style': isSecondGridActive}">
+        <div :class="{ 'open': !isMenuOpen }" class="side-menu">
+            <div style="display: flex; justify-content: space-between;">
+              <h3>Projects</h3>
+              <svg @click="toggleMenu(), toggleGridStyle()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                fill="none" style="display: inline-block; cursor: pointer; margin-right: 0.5rem;">
+                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M18 6 6 18M6 6l12 12">
+                </path>
+              </svg>
+              <!-- to make appear on same line use display: inline-block; -->
             </div>
-          </router-link>
-        </div>
+            <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
+              <router-link class="no-router-link-decorations align-text-left" :to="item.to">
+                <div class="projects-side-menu-items">
+                  <span>{{ item.text }}</span>
+                </div>
+              </router-link>
+            </div>
+          </div>
+        <div class="image-gallery">
+          
 
-      </div>
-      <div class="image-gallery">
-
-
-        <main class="image-gallery-grid-container">
-          <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
-            :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
-            <router-link class="no-router-link-decorations" :to="item.to">
-              <div class="img-wrapper">
-                <!-- add in lazy loading to test this 
+          <main class="image-gallery-grid-container">
+            <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
+              :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
+              <router-link class="no-router-link-decorations" :to="item.to">
+                <div class="img-wrapper">
+                  <!-- add in lazy loading to test this 
                             <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
                             -->
-                <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
-              </div>
-              <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
-              <figcaption>
-                <p>{{ item.caption }}</p>
-              </figcaption>
-            </router-link>
-          </div>
-        </main>
+                  <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
+                </div>
+                <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
+                <figcaption>
+                  <p>{{ item.caption }}</p>
+                </figcaption>
+              </router-link>
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   </div>
@@ -73,6 +74,7 @@ export default {
 
       displayArray: [],
       isMenuOpen: true,
+      isSecondGridActive: false,
     };
   },
   mounted() {
@@ -93,6 +95,9 @@ export default {
     });
   },
   methods: {
+    toggleGridStyle() {      
+      this.isSecondGridActive = !this.isSecondGridActive;
+    },
     gridColorAlternation(index) {
       const oddIndices = [0, 2, 5, 7]; // 1, 3, 6, 8 in 1-based indexing
       const modIndex = index % 8; // Repeat the pattern every 8 items
@@ -130,30 +135,30 @@ export default {
 
 <style scoped>
 .side-menu {
-  position: absolute;
-  
+
+
   padding-top: .9rem;
   /*
   margin-top: -3rem;
   */
   height: calc(100%);
 
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 18rem;
-  background: rgb(44, 44, 44);
   transform: translateX(0);
+  z-index: 1;
+
+  background: rgb(44, 44, 44);
+  
   /* 
   transform: translateX(-100%); if this element sidemenu is 
     put inside the imageGallery div then it will slide inside the middle when closed
   */
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transition: transform 1s ease-out, opacity 1s ease-out;
   opacity: 1;
 }
 
 .side-menu.open {
   transform: translateX(-100%);
+  height: 0rem;
   opacity: 0;
 }
 
@@ -194,7 +199,11 @@ export default {
   text-decoration: underline;
 }
 
+.second-grid {
+  display: grid;
+  grid-template-columns: 18rem 53rem;
 
+}
 
 .hidden {
   opacity: 0;
@@ -404,7 +413,17 @@ img:hover {
   padding-bottom: 0.75rem;
 }
 
+.active-grid-style{
+  grid-template-columns: 1fr; 
+}
+
 @media screen and (max-width: 70rem) {
+
+  
+    .second-grid {
+      grid-template-columns: 1fr;
+    }
+  
 
   .side-menu {
     display: none;
