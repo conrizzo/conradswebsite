@@ -12,28 +12,28 @@
     </div>
 
     <div class="centerAll">
-      <div class="second-grid" :class="{'active-grid-style': isSecondGridActive}">
-        <div :class="{ 'open': !isMenuOpen }" class="side-menu">
-            <div style="display: flex; justify-content: space-between;">
-              <h3>Projects</h3>
-              <svg @click="toggleMenu(), toggleGridStyle()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                fill="none" style="display: inline-block; cursor: pointer; margin-right: 0.5rem;">
-                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M18 6 6 18M6 6l12 12">
-                </path>
-              </svg>
-              <!-- to make appear on same line use display: inline-block; -->
-            </div>
-            <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
-              <router-link class="no-router-link-decorations align-text-left" :to="item.to">
-                <div class="projects-side-menu-items">
-                  <span>{{ item.text }}</span>
-                </div>
-              </router-link>
-            </div>
+      <div class="second-grid" :class="{ 'active-grid-style': isSecondGridActive }">
+        <div :class="['side-menu', menuClassState]" class="side-menu">
+          <div style="display: flex; justify-content: space-between;">
+            <h3>Projects</h3>
+            <svg @click="toggleMenu(), toggleGridStyle()" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+              viewBox="0 0 24 24" fill="none" style="display: inline-block; cursor: pointer; margin-right: 0.5rem;">
+              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M18 6 6 18M6 6l12 12">
+              </path>
+            </svg>
+            <!-- to make appear on same line use display: inline-block; -->
           </div>
+          <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
+            <router-link class="no-router-link-decorations align-text-left" :to="item.to">
+              <div class="projects-side-menu-items">
+                <span>{{ item.text }}</span>
+              </div>
+            </router-link>
+          </div>
+        </div>
         <div class="image-gallery">
-          
+
 
           <main class="image-gallery-grid-container">
             <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
@@ -75,6 +75,9 @@ export default {
       displayArray: [],
       isMenuOpen: true,
       isSecondGridActive: false,
+
+
+      currentMenuState: 0,
     };
   },
   mounted() {
@@ -94,8 +97,22 @@ export default {
       });
     });
   },
+  computed: {
+    menuClassState() {
+      switch (this.currentMenuState) {
+        case 0: return ''; // Replace 'class1' with your actual class name
+        case 1: return 'open'; // Replace 'class2' with your actual class name
+        case 2: return 'closed'; // Replace 'class3' with your actual class name
+        default: return ''; // Default case if needed
+      }
+    },
+  },
   methods: {
-    toggleGridStyle() {      
+    toggleGridStyle() {
+
+      if (this.currentMenuState === 0 || this.currentMenuState === 2) {
+        return;
+      }
       this.isSecondGridActive = !this.isSecondGridActive;
     },
     gridColorAlternation(index) {
@@ -104,7 +121,9 @@ export default {
       return oddIndices.includes(modIndex);
     },
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
+      //this.isMenuOpen = !this.isMenuOpen;
+      this.currentMenuState = (this.currentMenuState + 1) % 3;
+
     },
     handleIntersection(entries) {
       entries.forEach(entry => {
@@ -147,20 +166,29 @@ export default {
   z-index: 1;
 
   background: rgb(44, 44, 44);
-  
+
   /* 
   transform: translateX(-100%); if this element sidemenu is 
     put inside the imageGallery div then it will slide inside the middle when closed
   */
-  transition: transform 1s ease-out, opacity 1s ease-out;
+  transition: transform .75s ease-out, opacity .75s ease-out;
   opacity: 1;
 }
 
 .side-menu.open {
   transform: translateX(-100%);
   height: 0rem;
-  opacity: 0;
+  z-index: -4;
+  width: 18rem;
+  background: rgba(0, 0, 0, 0);
 }
+
+.side-menu.closed {
+
+  display: none;
+
+}
+
 
 
 .side-links-background {
@@ -413,17 +441,17 @@ img:hover {
   padding-bottom: 0.75rem;
 }
 
-.active-grid-style{
-  grid-template-columns: 1fr; 
+.active-grid-style {
+  grid-template-columns: 1fr;
 }
 
 @media screen and (max-width: 70rem) {
 
-  
-    .second-grid {
-      grid-template-columns: 1fr;
-    }
-  
+
+  .second-grid {
+    grid-template-columns: 1fr;
+  }
+
 
   .side-menu {
     display: none;

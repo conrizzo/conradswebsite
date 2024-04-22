@@ -143,12 +143,7 @@
 
             </div>
         </div>
-
-
-
         <CookieAccept />
-        <button class="clean-button">Show</button>
-       
     </div>
 </template>
 <!-- 

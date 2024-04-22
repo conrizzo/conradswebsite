@@ -28,9 +28,29 @@
                     This website <u>currently</u> uses no cookies, this is by design.
                 </li>
                 <li>
-                    The exception is my new Country Music Generator project that shows some embedded YouTube videos,
-                    and therefore uses 3rd party cookies from Google/Youtube.
+                    The exception is any content that shows embedded YouTube videos,
+                    and therefore uses 3rd party cookies from Google/Youtube. All these pages
+                    should have a notice.
                 </li>
+
+            </ul>
+            <h2>Under Development</h2>
+            <ul style="margin-left: 2rem; text-align: left;">
+                <li>
+                    This site is under development and is, at times, rapidly changing. If there are errors or something
+                    is done incorrectly,
+                    it could be a development mistake of quickly putting things together and is not intentional.
+                    There are endless things to polish and improve when it comes to web development, and as I learn more, the sheer amount of details to
+                    track
+                    continually grows. Everytime I scan through the site I find something to improve! Major companies with 
+                    some of the best software developers have bugs and issues in production code, so
+                    one person developing a website will have them too.
+                    Please send a message to the contact page if there is an issue!
+                </li>
+                <li>
+
+                </li>
+
             </ul>
         </div>
     </div>

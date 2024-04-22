@@ -7,7 +7,7 @@
     height: 88vh;">
 
         <div class="title-container">
-            <div class="white center-with-flex title-text-spacing">
+            <div class="white title-text-spacing">
                 <div>
                     <h1>
                         <span class="h1-span-one">
@@ -372,7 +372,7 @@ h2 {
 .h1-fade-in-letters {
     opacity: 0;
     animation: fadeIn .5s forwards;
-
+    
 }
 
 .title-caption-color {
