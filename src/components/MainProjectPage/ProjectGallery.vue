@@ -13,24 +13,30 @@
 
     <div class="centerAll">
       <div class="second-grid" :class="{ 'active-grid-style': isSecondGridActive }">
-        <div :class="['side-menu', menuClassState]" class="side-menu">
-          <div style="display: flex; justify-content: space-between;">
-            <h3>Projects</h3>
-            <svg @click="toggleMenu(), toggleGridStyle()" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-              viewBox="0 0 24 24" fill="none" style="display: inline-block; cursor: pointer; margin-right: 0.5rem;">
-              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M18 6 6 18M6 6l12 12">
-              </path>
-            </svg>
-            <!-- to make appear on same line use display: inline-block; -->
-          </div>
-          <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text"
-            class="side-links-background">
-            <router-link class="no-router-link-decorations align-text-left" :to="item.to">
-              <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
-                <span>{{ item.text }}</span>
-              </div>
-            </router-link>
+      
+          <div :class="['side-menu', menuClassState]" class="side-menu">
+            <div class="left-column-content">
+            <div style="display: flex; justify-content: space-between;">
+              <h3>Projects</h3>
+
+              <svg @click="toggleMenu(), toggleGridStyle()" class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg"
+                width="32" height="32" viewBox="0 0 24 24" fill="none"
+                style="display: inline-block; cursor: pointer; margin-right: 0.5rem;">
+                <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" d="M18 6 6 18M6 6l12 12">
+                </path>
+              </svg>
+
+              <!-- to make appear on same line use display: inline-block; -->
+            </div>
+            <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text"
+              class="side-links-background">
+              <router-link class="no-router-link-decorations align-text-left" :to="item.to">
+                <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
+                  <span>{{ item.text }}</span>
+                </div>
+              </router-link>
+            </div>
           </div>
         </div>
         <div class="image-gallery">
@@ -40,7 +46,7 @@
             <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
               :ref="`item-${index}`" :class="{ 'show': isContentVisible[index], 'hovered': hoveredIndex === index }"
               @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
-              <router-link class="no-router-link-decorations" :to="item.to">
+              <router-link class="no-router-link-decorations h2-color" :to="item.to">
                 <div class="img-wrapper">
                   <!-- add in lazy loading to test this 
                             <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
@@ -164,7 +170,9 @@ export default {
 
 <style scoped>
 .side-menu {
-
+  position: sticky;
+  top: 100px;
+  /* Adjust this value as needed */
 
   padding-top: .9rem;
   /*
@@ -214,14 +222,12 @@ export default {
   transition-delay: 0s;
 }
 
-.side-links-background h2 {
-  color: rgb(225, 225, 225);
-}
 
-.side-links-background:hover h2 {
-  text-decoration: underline;
+.h2-color:hover h2 {
+  color: rgb(255, 255, 255);
 
 }
+
 
 
 .toggle-button {
@@ -240,7 +246,11 @@ export default {
 .second-grid {
   display: grid;
   grid-template-columns: 18rem 53rem;
+}
 
+.left-column-content {
+  position: sticky;
+  top: 100px;
 }
 
 .hidden {
@@ -286,7 +296,7 @@ h3 {
 }
 
 .projects-side-menu-items {
-  color: rgb(255, 255, 255);
+  color: rgb(225, 225, 225);
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;
@@ -297,7 +307,7 @@ h3 {
 
 .projects-side-menu-items:hover {
   text-decoration: underline;
-
+  color: rgb(255, 255, 255);
 }
 
 
@@ -312,6 +322,7 @@ h3 {
 
 .hover-effect {
   background: rgb(46, 50, 55);
+  color: rgb(255, 255, 255);
   transition-delay: .5s ease;
   text-decoration: underline;
 }
@@ -401,7 +412,9 @@ figcaption {
   /* border: 2px solid rgb(200, 200, 200); */
   color: rgb(225, 225, 225);
   border-left: 2px solid rgb(175, 224, 255);
-  background: rgb(44, 44, 44);
+  /* background: rgb(46, 50, 55); */
+  background-color: rgb(46, 50, 55);
+
 }
 
 
@@ -409,7 +422,7 @@ figcaption {
   color: rgb(225, 225, 225);
 
   border-left: 2px solid rgb(255, 225, 156);
-  background: rgb(44, 44, 44);
+  background-color: rgb(46, 50, 55);
 }
 
 .gallery-component-image {
@@ -452,6 +465,17 @@ img:hover {
 
 .active-grid-style {
   grid-template-columns: 1fr;
+}
+
+.svg-x-hover-color-highlight {
+  stroke: rgb(65, 65, 65);
+  transition: stroke 0.3s ease;
+  /* Adjust the duration and timing function as needed */
+}
+
+.svg-x-wrapper:hover .svg-x-hover-color-highlight {
+  stroke: #ffffff;
+  /* Your desired hover color */
 }
 
 @media screen and (max-width: 70rem) {

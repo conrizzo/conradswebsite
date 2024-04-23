@@ -1,5 +1,5 @@
 <template>
-    <div style="background: rgb(49, 51, 56);">
+    <div style="background: rgb(49, 51, 56); min-height: 100svh;">
         <div class="container-80-em white">
             <!-- Your HTML here -->
             <h1 class="title-padding">Privacy Policy</h1>
