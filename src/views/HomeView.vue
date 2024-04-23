@@ -2,7 +2,7 @@
     <!-- The plant image on this page is explicity copyrighted -->
     <!-- Photo by Conrad Lundberg - the owner of this website -->
     <!-- <div style="height: 100svh;" :class="['jungle-image', imageClass]"> -->
-    <div @mousemove="handleMouseMove" id="top-image" class="top-image-flex" style="align-items: center; 
+    <div @mousemove="handleMouseMove" id="top-image" class="top-image-flex" style=" 
     box-sizing: border-box; 
     height: 88vh;">
 
@@ -111,7 +111,7 @@ onMounted(() => {
     }, 500); // start transition 100ms after component is mounted
     setTimeout(() => {
         showMainContent.value = true;
-    }, 500); // start transition 100ms after component is mounted
+    }, 0); // start transition 100ms after component is mounted
 
 });
 
@@ -121,7 +121,7 @@ onMounted(() => {
 /* transition div in */
 .v-enter-active,
 .v-leave-active {
-    transition: opacity 1s ease;
+    transition: opacity .5s ease;
 }
 
 .v-enter-from,
@@ -186,7 +186,8 @@ onMounted(() => {
 }
 */
 .top-image-flex {
-    display: flex;
+    display: flex;     
+    align-items: center;
     
 }
 
@@ -435,8 +436,8 @@ h2 {
     }
 
     .top-image-flex {
-        padding-left: 0%;
-        justify-content: center;
+        padding-left: 10%;
+        /*justify-content: center; */
     }
 
     .h1-span-one {
@@ -474,9 +475,12 @@ h2 {
     }
 
     #top-image {
+        justify-content: center;
         padding-left: 0rem;
         background-size: cover;
     }
+
+    
 
 }
 </style>

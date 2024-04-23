@@ -24,9 +24,10 @@
             </svg>
             <!-- to make appear on same line use display: inline-block; -->
           </div>
-          <div v-for="(item) in imageArrayChoice" :key="item.id" :title="item.text" class="side-links-background">
+          <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text"
+            class="side-links-background">
             <router-link class="no-router-link-decorations align-text-left" :to="item.to">
-              <div class="projects-side-menu-items">
+              <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
                 <span>{{ item.text }}</span>
               </div>
             </router-link>
@@ -37,7 +38,8 @@
 
           <main class="image-gallery-grid-container">
             <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
-              :ref="`item-${index}`" :class="{ 'show': isContentVisible[index] }">
+              :ref="`item-${index}`" :class="{ 'show': isContentVisible[index], 'hovered': hoveredIndex === index }"
+              @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
               <router-link class="no-router-link-decorations" :to="item.to">
                 <div class="img-wrapper">
                   <!-- add in lazy loading to test this 
@@ -78,6 +80,8 @@ export default {
 
 
       currentMenuState: 0,
+
+      hoveredIndex: null,
     };
   },
   mounted() {
@@ -98,6 +102,12 @@ export default {
     });
   },
   computed: {
+    hoverClassStates() {
+      return this.imageArrayChoice.map((_, index) => {
+        // Example logic: highlight the next item in the list
+        return { 'next-hovered': this.hoveredIndex !== null && this.hoveredIndex + 1 === index };
+      });
+    },
     menuClassState() {
       switch (this.currentMenuState) {
         case 0: return ''; // Replace 'class1' with your actual class name
@@ -116,8 +126,8 @@ export default {
       this.isSecondGridActive = !this.isSecondGridActive;
     },
     gridColorAlternation(index) {
-      const oddIndices = [0, 2, 5, 7]; // 1, 3, 6, 8 in 1-based indexing
-      const modIndex = index % 8; // Repeat the pattern every 8 items
+      const oddIndices = [0, 2];
+      const modIndex = index % 2; // Repeat the pattern
       return oddIndices.includes(modIndex);
     },
     toggleMenu() {
@@ -178,7 +188,7 @@ export default {
 .side-menu.open {
   transform: translateX(-100%);
   height: 0rem;
-  z-index: -4;
+  padding-top: 0rem;
   width: 18rem;
   background: rgba(0, 0, 0, 0);
 }
@@ -277,13 +287,10 @@ h3 {
 
 .projects-side-menu-items {
   color: rgb(255, 255, 255);
-
   padding-left: 0.5em;
   padding-right: 0.5em;
-
   padding-bottom: 0.2rem;
   font-size: 1.25rem;
-
   padding-bottom: 0rem;
   margin-bottom: 0rem;
 }
@@ -301,6 +308,12 @@ h3 {
   width: 100%;
   font-size: 2rem;
   padding-left: 4rem;
+}
+
+.hover-effect {
+  background: rgb(46, 50, 55);
+  transition-delay: .5s ease;
+  text-decoration: underline;
 }
 
 .title-arrow-symbol {
@@ -386,14 +399,9 @@ figcaption {
 
   width: fit-content;
   /* border: 2px solid rgb(200, 200, 200); */
-
   color: rgb(225, 225, 225);
-  border-left: 2px solid rgb(50, 177, 255);
-
-
-
-
-
+  border-left: 2px solid rgb(175, 224, 255);
+  background: rgb(44, 44, 44);
 }
 
 
@@ -401,6 +409,7 @@ figcaption {
   color: rgb(225, 225, 225);
 
   border-left: 2px solid rgb(255, 225, 156);
+  background: rgb(44, 44, 44);
 }
 
 .gallery-component-image {

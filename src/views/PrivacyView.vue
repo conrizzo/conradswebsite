@@ -1,5 +1,5 @@
 <template>
-    <div style="background: rgb(49, 51, 56); height: 100svh;">
+    <div style="background: rgb(49, 51, 56);">
         <div class="container-80-em white">
             <!-- Your HTML here -->
             <h1 class="title-padding">Privacy Policy</h1>
@@ -47,9 +47,7 @@
                     one person developing a website will have them too.
                     Please send a message to the contact page if there is an issue!
                 </li>
-                <li>
-
-                </li>
+                
 
             </ul>
         </div>

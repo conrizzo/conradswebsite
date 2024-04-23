@@ -160,7 +160,7 @@ export default {
 .header-hidden {
   /* visibility: hidden; */
   transform: translateY(-100%);
-  transition: transform 0s ease;
+  transition: transform .4s ease;
 }
 
 /* Instant change class at the top 90-100px or so to prevent empty background from being seen underneath header */
