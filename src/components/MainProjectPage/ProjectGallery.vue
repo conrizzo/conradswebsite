@@ -267,9 +267,10 @@ export default {
 
 }
 
+/* this adjusts the transition time of hovering over each project grid-item  */
 .hidden {
   opacity: 0;
-  transition: all .75s;
+  transition: all .5s;
 }
 
 .show {
@@ -471,7 +472,8 @@ figcaption {
   vertical-align: middle;
 }
 
-img:hover {
+/* zoom image on grid item hover */
+.h2-color:hover img {
   transform: scale(1.03);
   -ms-transform: scale(1.03);
   /* IE 9 */
@@ -498,7 +500,7 @@ img:hover {
 }
 
 .svg-x-hover-color-highlight {
-  stroke: rgb(65, 65, 65);
+  stroke: rgb(200, 200, 200);
   transition: stroke 0.3s ease;
   /* Adjust the duration and timing function as needed */
 }

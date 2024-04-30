@@ -272,7 +272,7 @@ h2 {
 }
 
 .text-gradient-color {
-    color: rgb(254, 214, 144);
+    color: rgb(255, 255, 255);
     text-shadow:
         -1px -1px 0 rgba(0, 0, 0, .2),
         1px -1px 0 rgba(0, 0, 0, .2),
