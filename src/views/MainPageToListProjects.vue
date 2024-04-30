@@ -57,10 +57,11 @@ export default {
 
 
 <style scoped>
+
 .custom-background-home-page {
-  background-color: rgb(55, 55, 55);
+  background-color: rgb(56, 56, 56);
   background-blend-mode: multiply;
-  background-size: 100% 100%;
+  background-size: 50% 100%;
   background-attachment: fixed;
   position: relative;
 }

@@ -69,7 +69,7 @@ console.log(isProduction.value); // check if in producton mode
 
 const name = ref('');
 const inputString = ref("_ Projects");
-const inputStringShuffled = ref('');
+const inputStringShuffled = ref<string>('');
 
 const runRustArrayRandomizer = async () => {
     await init();
@@ -88,10 +88,10 @@ const addLettersIntoInput = () => {
         } else {
             clearInterval(intervalId);
             setTimeout(() => {
-                inputStringShuffled.value = "Projects";
+                inputStringShuffled.value = 'Projects';
             }, 1000);
         }
-    }, 125);
+    }, 100);
 };
 
 
@@ -106,8 +106,8 @@ onMounted(() => {
     text-align: left;
     position: relative;
     line-height: 1;
-    height: 2em;
-    padding: 1em 0.25em 3em 2rem;
+
+    padding: 1em 0.25em 1em 2rem;
     color: rgb(255, 255, 255);
     font-size: 2em;
     z-index: 1;
@@ -201,7 +201,7 @@ onMounted(() => {
     grid-template-columns: repeat(2, 1fr);
     gap: 0rem;
     color: #ffffff;
-    font-size: 1.6em;
+    font-size: 1.5em;
     text-align: left;
 }
 
@@ -226,6 +226,18 @@ onMounted(() => {
 @media only screen and (max-width: 60rem) {
     .main-text-container {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .title {
+
+        font-size: 1rem;
+
+    }
+
+    .main-text-container {
+
+        font-size: 1.3em;
+
     }
 }
 

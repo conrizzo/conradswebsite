@@ -7,30 +7,36 @@
     height: 88vh;">
 
         <div class="title-container">
-            <div class="white title-text-spacing">
-                <div>
-                    <h1>
-                        <span class="h1-span-one">
-                            <span v-for="(letter, index) in 'Welcome To'" :key="index" class="h1-fade-in-letters"
-                                :style="{ 'animation-delay': index * 0.05 + 's' }">{{ letter }}</span>
-                        </span>
-                        <br>
-                        <span class="h1-span-two">
-                            <span v-for="(letter, index) in 'Conrad\'s'" :key="index" class="h1-fade-in-letters"
-                                :style="{ 'animation-delay': index * 0.05 + 's' }">{{ letter }}</span>
-                        </span>
-                        <br>
-                        <span class="h1-span-three">
-                            <span v-for="(letter, index) in 'Website'" :key="index" class="h1-fade-in-letters"
-                                :style="{ 'animation-delay': index * 0.1 + 's' }">{{ letter }}</span>
-                        </span>
-                    </h1>
-                </div>
-            </div>
 
             <div style="height: 20rem;">
+                <div class="title-text-spacing center-with-flex">
+                    <div>
+                        <h1>
+                            <div class="h1-span-one">
+                                <span v-for="(letter, index) in 'Welcome to'" :key="index"
+                                    class="h1-fade-in-letters text-gradient-color"
+                                    :style="{ 'animation-delay': index * 0.05 + 's' }">{{ letter }}</span>
+                            </div>
+
+                            <span class="h1-span-two">
+                                <span v-for="(letter, index) in 'Conrad\'s'" :key="index"
+                                    class="h1-fade-in-letters text-gradient-color"
+                                    :style="{ 'animation-delay': index * 0.05 + 's' }">{{ letter }}</span>
+                            </span>
+
+                            <span class="h1-span-three">
+                                <span v-for="(letter, index) in ' Website'" :key="index"
+                                    class="h1-fade-in-letters text-gradient-color"
+                                    :style="{ 'animation-delay': index * 0.1 + 's' }">{{ letter }}</span>
+                            </span>
+                        </h1>
+
+                    </div>
+                </div>
                 <transition>
-                    <div v-if="showMainContent" class="" style="background: rgba(0,0,0,.8); padding: 0.5rem;">
+                    <div v-if="showMainContent" class=""
+                        style="background: rgba(0,0,0,.8); padding: 0.5rem; border-radius: .75rem;">
+
 
                         <div class="center-with-flex">
                             <ul class="ul-formatting">
@@ -54,22 +60,22 @@
                                 </li>
                             </ul>
                         </div>
-
-                        <p class="title-caption-color">
-                            Background photo by Conrad Lundberg © 2023<br>
-                            Plants at <a class="text-links font-override-white-color"
-                                href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
-                                botanical garden</a><br>
-                            Exit portal UIcon by <a class="text-links font-override-white-color"
-                                href="https://www.flaticon.com/uicons">Flaticon</a>
-                            <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution 
+                        <div class="center-with-flex">
+                            <p class="title-caption-color">
+                                Background photo by Conrad Lundberg © 2023<br>
+                                Plants at <a class="text-links font-override-white-color"
+                                    href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
+                                    botanical garden</a><br>
+                                Exit portal UIcon by <a class="text-links font-override-white-color"
+                                    href="https://www.flaticon.com/uicons">Flaticon</a>
+                                <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution 
                             https://www.flaticon.com/free-icon-font/portal-exit_10506900 -->
-                            <!--<span style="font-size: 12px;">Exit UIcon by
+                                <!--<span style="font-size: 12px;">Exit UIcon by
                                 <a class="text-links font-override-white-color"
                                     href="https://www.flaticon.com/uicons">Flaticon</a>
                             </span>-->
-                        </p>
-
+                            </p>
+                        </div>
                     </div>
                 </transition>
             </div>
@@ -96,7 +102,7 @@ const width = movementStrength / window.innerWidth;
 const handleMouseMove = (e: MouseEvent) => {
     const pageX = e.pageX - (window.innerWidth / 2);
     const pageY = e.pageY - (window.innerHeight / 2);
-    const newvalueX = width * pageX+50 * - 1;
+    const newvalueX = width * pageX + 50 * - 1;
     const newvalueY = height * pageY * - 1;
     (e.target as HTMLElement).style.backgroundPosition = `${newvalueX}px ${newvalueY}px`;
 };
@@ -154,7 +160,7 @@ onMounted(() => {
 */
 .title-padding {
     padding-top: 1rem;
-    padding-bottom: 1rem;
+
     font-size: 3rem;
 }
 
@@ -186,9 +192,9 @@ onMounted(() => {
 }
 */
 .top-image-flex {
-    display: flex;     
+    display: flex;
     align-items: center;
-    
+
 }
 
 #top-image {
@@ -211,10 +217,7 @@ onMounted(() => {
     background-repeat: no-repeat;
 }
 
-.projects-underline-color-hover:hover {
-    text-decoration: underline rgb(163, 255, 0);
 
-}
 
 .font-override-white-color {
     color: white !important;
@@ -241,36 +244,44 @@ ul {
 
 .ul-formatting {
     text-align: left;
-    height: 12rem;
+    height: 11rem;
     width: 25rem;
     margin-left: 2.5rem;
 }
 
 li {
     text-transform: uppercase;
-    margin-bottom: .25rem;
 }
 
 
 li:last-child {
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
 }
 
-.title-text-spacing {
-    padding-top: 0rem;
-    margin-bottom: 2rem;
-}
+.title-text-spacing {}
 
 h1 {
     line-height: 0.9;
     text-align: left;
-    padding-bottom: 1rem;
-    color: rgb(255, 255, 255);
+    padding-bottom: 0.5rem;
+    color: rgb(255, 212, 147);
 }
 
 h2 {
     text-align: left;
 }
+
+.text-gradient-color {
+    color: rgb(254, 214, 144);
+    text-shadow:
+        -1px -1px 0 rgba(0, 0, 0, .2),
+        1px -1px 0 rgba(0, 0, 0, .2),
+        -1px 1px 0 rgba(0, 0, 0, .2),
+        1px 1px 0 rgba(0, 0, 0, .2),
+        4px 4px 8px rgba(0, 0, 0, 0.66);
+    /* Fallback for non-webkit browsers */
+}
+
 
 /*
 .about-color {
@@ -287,7 +298,7 @@ h2 {
 }
 
 .my-projects-text-animation:hover {
-    color: rgb(0, 255, 204) !important;
+    color: rgb(254, 205, 150) !important;
 }
 
 .link-customization {
@@ -303,9 +314,9 @@ h2 {
 
 .link-customization:hover {
     text-decoration: none;
-    color: rgb(0, 255, 204);
+    color: rgb(254, 205, 150);
     margin-left: 0rem;
-    transition: .3s ease-in-out;
+    transition: .33s ease-in-out;
 }
 
 
@@ -316,7 +327,7 @@ h2 {
     left: 0;
     height: 100%;
     width: 0;
-    background: rgb(0, 255, 204);
+    background: rgb(242, 171, 165);
     transition: width .1s ease-in-out;
     z-index: 0;
     margin-left: -1.5rem;
@@ -325,7 +336,7 @@ h2 {
 .link-customization:hover::before {
     width: 1rem;
     margin-left: -1.45rem;
-
+    background: rgb(254, 205, 150);
 }
 
 .attention-notice-container {
@@ -353,31 +364,32 @@ h2 {
 }
 
 .h1-span-one {
-    font-size: 3rem;
-    
+    font-size: 2rem;
 }
 
 .h1-span-two {
-    font-size: 5rem;
-    letter-spacing: -3px;
+    font-size: 3rem;
+
+    margin-left: 0px;
 
 }
 
 .h1-span-three {
-    font-size: 6rem;
-    letter-spacing: 3px;
-    padding: 5px;
+    font-size: 3rem;
+
 
 }
 
 .h1-fade-in-letters {
     opacity: 0;
     animation: fadeIn .5s forwards;
-    
+
 }
 
 .title-caption-color {
     color: rgb(255, 255, 255);
+    text-align: left;
+    font-size: .9rem;
 }
 
 
@@ -391,8 +403,8 @@ h2 {
 @keyframes pulse {
 
     0% {
-        text-shadow: 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58, 0 0 1px #126a58;
-        color: #00ffcc;
+        text-shadow: 0 0 1px #434343, 0 0 1px #434343, 0 0 1px #434343, 0 0 1px #434343;
+        color: rgb(254, 205, 150);
     }
 
 
@@ -430,6 +442,11 @@ h2 {
 
 @media only screen and (max-width: 50rem) {
 
+    .title-caption-color {
+        font-size: 0.8rem;
+    }
+
+
     /* Remove animation on low resolution, so phone device doesnt lag */
     .my-projects-text-animation {
         animation: none;
@@ -441,21 +458,24 @@ h2 {
     }
 
     .h1-span-one {
-        font-size: 2.4rem;
+        font-size: 1.5rem;
+
     }
 
     .h1-span-two {
-        font-size: 4rem;
+        font-size: 2.5rem;
+
+        margin-left: -3px;
+
     }
 
     .h1-span-three {
-        font-size: 5rem;
+        font-size: 2.5rem;
+
+
     }
 
-    .title-text-spacing {
-        padding-top: 2rem;
-    }
-
+    /*
     .title-container::before {
         background-image: linear-gradient(180deg, rgba(0, 0, 0, .5) 1%,
                 transparent 1%,
@@ -465,7 +485,7 @@ h2 {
                 transparent 99.5%, rgba(0, 0, 0, 0.5) 99.5%);
         filter: blur(3px);
     }
-
+*/
     .ul-formatting {
         text-align: left;
         height: 9rem;
@@ -480,7 +500,7 @@ h2 {
         background-size: cover;
     }
 
-    
+
 
 }
 </style>

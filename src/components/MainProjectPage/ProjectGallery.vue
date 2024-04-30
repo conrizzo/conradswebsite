@@ -13,9 +13,9 @@
 
     <div class="centerAll">
       <div class="second-grid" :class="{ 'active-grid-style': isSecondGridActive }">
-      
-          <div :class="['side-menu', menuClassState]" class="side-menu">
-            <div class="left-column-content">
+        <!-- Grid column 1 side menu -->
+        <div :class="['side-menu', menuClassState]" class="side-menu">
+          <div class="left-column-content">
             <div style="display: flex; justify-content: space-between;">
               <h3>Projects</h3>
 
@@ -29,6 +29,7 @@
 
               <!-- to make appear on same line use display: inline-block; -->
             </div>
+
             <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text"
               class="side-links-background">
               <router-link class="no-router-link-decorations align-text-left" :to="item.to">
@@ -36,16 +37,22 @@
                   <span>{{ item.text }}</span>
                 </div>
               </router-link>
+
             </div>
           </div>
         </div>
-        <div class="image-gallery">
-
-
+        <!-- Grid column 2 main projects -->
+        <div class="image-gallery" :style="addNegativeMarginToTopProjectsToCompensateForLeftMenu">
           <main class="image-gallery-grid-container">
-            <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
-              :ref="`item-${index}`" :class="{ 'show': isContentVisible[index], 'hovered': hoveredIndex === index }"
-              @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
+            <div v-for="(item, index) in imageArrayChoice" 
+            :key="item.id" 
+            :title="item.text" class="grid-item hidden"
+            :ref="`item-${index}`" :class="{
+            'show': isContentVisible[index],
+            'hovered': hoveredIndex === index,
+            'odd': gridColorAlternation(index)
+            }" @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
+
               <router-link class="no-router-link-decorations h2-color" :to="item.to">
                 <div class="img-wrapper">
                   <!-- add in lazy loading to test this 
@@ -116,10 +123,10 @@ export default {
     },
     menuClassState() {
       switch (this.currentMenuState) {
-        case 0: return ''; // Replace 'class1' with your actual class name
-        case 1: return 'open'; // Replace 'class2' with your actual class name
-        case 2: return 'closed'; // Replace 'class3' with your actual class name
-        default: return ''; // Default case if needed
+        case 0: return '';
+        case 1: return 'open';
+        case 2: return 'closed';
+        default: return '';
       }
     },
   },
@@ -127,8 +134,10 @@ export default {
     toggleGridStyle() {
 
       if (this.currentMenuState === 0 || this.currentMenuState === 2) {
+        this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: 0rem;' // set back to 0 on close
         return;
       }
+      this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: -25.5rem;';
       this.isSecondGridActive = !this.isSecondGridActive;
     },
     gridColorAlternation(index) {
@@ -171,7 +180,8 @@ export default {
 <style scoped>
 .side-menu {
   position: sticky;
-  top: 100px;
+  top: 4.5rem;
+
   /* Adjust this value as needed */
 
   padding-top: .9rem;
@@ -195,10 +205,12 @@ export default {
 
 .side-menu.open {
   transform: translateX(-100%);
-  height: 0rem;
   padding-top: 0rem;
+  height: 0rem;
   width: 18rem;
   background: rgba(0, 0, 0, 0);
+  margin-bottom: 25rem;
+  padding-bottom: .5rem;
 }
 
 .side-menu.closed {
@@ -215,18 +227,19 @@ export default {
 }
 
 .side-links-background:hover {
-  background: rgb(46, 50, 55);
+  background: rgb(50, 50, 50);
   border-radius: 0.25rem;
   margin-left: 1rem;
   margin-right: 1rem;
   transition-delay: 0s;
 }
 
-
+/*
 .h2-color:hover h2 {
-  color: rgb(255, 255, 255);
-
+  color: #fff;
 }
+
+*/
 
 
 
@@ -250,7 +263,8 @@ export default {
 
 .left-column-content {
   position: sticky;
-  top: 100px;
+  top: 4.5rem;
+
 }
 
 .hidden {
@@ -296,7 +310,7 @@ h3 {
 }
 
 .projects-side-menu-items {
-  color: rgb(225, 225, 225);
+  color: rgb(245, 245, 245);
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;
@@ -321,7 +335,7 @@ h3 {
 }
 
 .hover-effect {
-  background: rgb(46, 50, 55);
+  background: rgb(50, 50, 50);
   color: rgb(255, 255, 255);
   transition-delay: .5s ease;
   text-decoration: underline;
@@ -344,9 +358,7 @@ h3 {
   justify-content: center;
   display: flex;
   height: fit-content;
-  background: rgb(65, 65, 65);
-
-
+  background: rgb(50, 50, 50);
 }
 
 .image-gallery {
@@ -371,14 +383,33 @@ h3 {
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
   border-radius: 0.33em;
-  padding-top: 3rem;
+  margin-top: 3rem;
+  
 }
 
+.grid-item.odd:hover {
+ 
+  background: rgba(255, 225, 156, 0.6);  
+}
+
+
+.grid-item:hover h2{
+  color: rgb(255, 255, 255);
+}
+/*
+.grid-item:hover figcaption{
+  color: rgb(50, 50, 50);
+}
+*/
+
+.grid-item:hover{
+  background: rgba(175, 224, 255, 0.6);
+}
 
 
 .grid-item:nth-child(-n+3) {
   /* remove top padding from first row */
-  padding-top: 0rem;
+  margin-top: 0rem;
 }
 
 .gallery-component-image {
@@ -413,7 +444,6 @@ figcaption {
   color: rgb(225, 225, 225);
   border-left: 2px solid rgb(175, 224, 255);
   /* background: rgb(46, 50, 55); */
-  background-color: rgb(46, 50, 55);
 
 }
 
@@ -422,18 +452,18 @@ figcaption {
   color: rgb(225, 225, 225);
 
   border-left: 2px solid rgb(255, 225, 156);
-  background-color: rgb(46, 50, 55);
+
 }
 
 .gallery-component-image {
-  border-radius: .2rem;
+  border-radius: .5rem;
 }
 
 /* Does image zoom effect - start */
 .img-wrapper {
   display: inline-block;
   overflow: hidden;
-  border-radius: .2rem;
+  border-radius: -0.25rem;
 }
 
 .img-wrapper img {
@@ -479,6 +509,15 @@ img:hover {
 }
 
 @media screen and (max-width: 70rem) {
+
+
+  /* Notice: image-gallery --- 
+  This overrides the this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: -25rem;'; 
+  in the toggleGridStyle method. This way when the grid layout shifts it doesnt have a giant negative margin  
+  */
+  .image-gallery {
+    margin-top: 0rem !important;
+  }
 
 
   .second-grid {

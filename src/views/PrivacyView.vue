@@ -45,7 +45,8 @@
                     continually grows. Everytime I scan through the site I find something to improve! Major companies with 
                     some of the best software developers have bugs and issues in production code, so
                     one person developing a website will have them too.
-                    Please send a message to the contact page if there is an issue!
+                    Please send a message to the <router-link class="text-links link-color"
+          :to="{ path: '/about', hash: '#contact-form-section' }">contact</router-link> page if there is an issue!
                 </li>
                 
 
@@ -70,5 +71,9 @@ const data = ref(null);
 
 h2 {
     text-align: left;
+}
+
+.link-color {
+    color: rgb(120, 255, 61);
 }
 </style>
