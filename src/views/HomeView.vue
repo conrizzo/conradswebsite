@@ -41,8 +41,7 @@
                         <div class="center-with-flex">
                             <ul class="ul-formatting">
                                 <li>
-                                    <router-link style="background: rgba(255,255,255,.2);"
-                                        class="text-links link-customization my-projects-text-animation"
+                                    <router-link class="text-links link-customization my-projects-text-animation"
                                         to="/my-projects">
                                         My Projects
                                     </router-link>
@@ -52,30 +51,29 @@
                                     </router-link>
                                 </li>
                                 <li>
+
                                     <a class="text-links link-customization"
                                         href="https://en.wikipedia.org/wiki/Exit_sign">
                                         <span style="margin-right: 10px;">Exit</span>
-                                        <span class="exit-link"></span>
+                                        <span class="svg-resizing">
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px"
+                                                y="0px" width="100%" height="100%" viewBox="0 0 560 560"
+                                                transform="scale(-1, 1)" xml:space="preserve">
+                                                <path fill="rgb(255,255,255)"
+                                                    d="M 490.00847,426.30353 476.01016,389.202 c -6.29359,-15.40393 -20.29754,-25.90277 -37.80672,-25.90277 h -6.29359 V 43.395188 H 128.10708 V 220.49813 h 39.90082 l 45.50014,-56.705 c 9.10455,-10.49319 23.09721,-17.50371 38.49535,-17.50371 h 97.30516 c 15.39814,0 28.69653,8.39343 35.69568,21.70324 l 28.70782,54.59395 c 1.39983,2.09977 2.0941,4.9051 2.0941,8.40471 0,9.79327 -8.39898,18.19234 -18.20344,18.19234 -7.69907,0 -13.29275,-3.49397 -16.80361,-9.79327 l -25.89123,-49.70013 h -42.00056 l 32.1961,80.50236 9.80446,102.89424 h 83.28993 c 13.30968,0 23.80841,8.40471 28.70782,19.60911 l 9.0989,23.79736 H 333.19921 c -10.48744,0 -19.59763,-7.6935 -20.2919,-18.19798 l -9.80446,-90.30128 -76.99069,159.59924 c -4.20513,9.10464 -14.00395,15.40394 -25.20259,15.40394 h -37.1068 l 94.5055,-195.30657 -29.3908,-73.4975 -28.0079,34.30185 c -6.99351,9.10463 -18.90901,15.39829 -31.50184,15.39829 h -41.295 v 231.00261 l 65.79768,65.09843 H 0 V 0 h 560 v 559.99436 h -63.00367 l -65.09212,-65.09843 v -68.5924 z M 228.20627,64.39286 c 21.70302,0 39.89517,18.203626 39.89517,39.90122 0,21.70324 -18.19215,39.2013 -39.89517,39.2013 -21.70302,0 -39.20655,-17.49806 -39.20655,-39.2013 0,-21.697594 17.50353,-39.90122 39.20655,-39.90122 M 245.70979,509.59994 296.10934,560 h -60.90957 l -65.79768,-65.10407 h 39.19526 c 14.00959,0 27.30798,5.60502 37.11244,14.70401" />
+                                            </svg>
+                                        </span>
                                     </a>
+
+
+
+
                                 </li>
+
                             </ul>
+
                         </div>
-                        <div class="center-with-flex">
-                            <p class="title-caption-color">
-                                Background photo by Conrad Lundberg © 2023<br>
-                                Plants at <a class="text-links font-override-white-color"
-                                    href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
-                                    botanical garden</a><br>
-                                Exit portal UIcon by <a class="text-links font-override-white-color"
-                                    href="https://www.flaticon.com/uicons">Flaticon</a>
-                                <!-- Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution 
-                            https://www.flaticon.com/free-icon-font/portal-exit_10506900 -->
-                                <!--<span style="font-size: 12px;">Exit UIcon by
-                                <a class="text-links font-override-white-color"
-                                    href="https://www.flaticon.com/uicons">Flaticon</a>
-                            </span>-->
-                            </p>
-                        </div>
+                        <references />
                     </div>
                 </transition>
             </div>
@@ -86,7 +84,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-
+import references from "@/components/References/HomePageFooterReferencesView.vue";
 const data = ref(null);
 
 //const jungleImage = ref(require('@/images/jungle/2880-1620.jpg'));
@@ -251,6 +249,7 @@ ul {
 
 li {
     text-transform: uppercase;
+
 }
 
 
@@ -298,7 +297,7 @@ h2 {
 }
 
 .my-projects-text-animation:hover {
-    color: rgb(254, 205, 150) !important;
+    color: rgb(112, 169, 247) !important;
 }
 
 .link-customization {
@@ -306,16 +305,17 @@ h2 {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    margin-left: -1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     padding-left: 1rem;
     padding-right: 1rem;
+
 }
 
 .link-customization:hover {
     text-decoration: none;
-    color: rgb(254, 205, 150);
+    color: rgb(112, 169, 247);
     margin-left: 0rem;
+
     transition: .33s ease-in-out;
 }
 
@@ -330,12 +330,13 @@ h2 {
     background: rgb(242, 171, 165);
     transition: width .1s ease-in-out;
     z-index: 0;
-    margin-left: -1.5rem;
+    margin-left: -1rem;
+
 }
 
 .link-customization:hover::before {
     width: 1rem;
-    margin-left: -1.45rem;
+    margin-left: -1rem;
     background: rgb(254, 205, 150);
 }
 
@@ -361,6 +362,13 @@ h2 {
     padding-bottom: 0rem;
     padding-top: 1rem;
 
+}
+
+.svg-resizing {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    margin-top: .75rem;
 }
 
 .h1-span-one {
@@ -434,13 +442,17 @@ h2 {
 
 /* Exit icon Copyright https://www.flaticon.com/uicons free to use with attribution
      https://www.flaticon.com/free-icon-font/portal-exit_10506900  */
-.exit-link::after {
-    margin-left: .5rem;
-    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23fff" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="32" height="32"><path d="m24,12.5c0,.828-.671,1.5-1.5,1.5h-1.5c-1.221,0-2.37-.649-2.999-1.695l-.552-.917-1.332,3.247,2.614,1.486c1.091.62,1.769,1.786,1.769,3.042v3.337c0,.828-.671,1.5-1.5,1.5s-1.5-.672-1.5-1.5v-3.337c0-.18-.097-.346-.252-.435l-4.081-2.322c-1.498-.947-2.073-2.749-1.428-4.322l1.265-3.084h-1.268c-.19,0-.362.105-.447.276l-1.447,2.895c-.371.741-1.271,1.041-2.013.671-.741-.371-1.041-1.271-.671-2.013l1.447-2.895c.597-1.193,1.796-1.935,3.13-1.935h3.993c1.221,0,2.37.649,3,1.695l1.843,3.062c.091.151,.251.242,.428.242h1.5c.829,0,1.5.672,1.5,1.5Zm-12.442,4.351c-.771-.309-1.642.066-1.95.835-.077.191-.259.314-.464.314h-4.143c-.552,0-1-.448-1-1s.448-1,1-1h.826c.111-1.253,.174-2.595,.174-4C6,5.373,4.657,0,3,0S0,5.373,0,12s1.343,12,3,12c.76,0,1.453-1.134,1.981-3h4.162c1.439,0,2.715-.863,3.25-2.199.308-.77-.066-1.643-.835-1.95Zm6.442-11.851c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5-2.5,1.119-2.5,2.5,1.119,2.5,2.5,2.5Z" /></svg>');
-    /* Other styles go here */
-}
+
 
 @media only screen and (max-width: 50rem) {
+
+    .svg-resizing {
+        position: absolute;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-top: .69rem;
+    }
+
 
     .title-caption-color {
         font-size: 0.8rem;

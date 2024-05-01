@@ -4,9 +4,14 @@
     <div class="aboutDiagram">
       <button class="close" @click.self="closeModal"></button>
 
-      <h2>Diagram of how this project works</h2>
-      <div style="text-align: left; font-size: 1rem; padding-left: 1rem;">
-        <p><b>April 11th 2024 Review:</b> After some review there are many ways to have made this better, but it was a build
+      <h2>Diagram</h2>
+      <div class="diagram-image-container">
+        <img src="@/images/store/project_diagram.svg" alt="Diagram of how this project works"
+          style="max-width: 98%; max-height: 400px;">
+      </div>
+      <div style="text-align: left; padding-left: 1rem;">
+        <p><b>April 11th 2024 Review:</b> After some review there are many ways to have made this better, but it was a
+          build
           from scratch learning project to learn and
           make a
           store prototype. A major change I made was changing cookies to a store and using <a class="text-links"
@@ -29,14 +34,8 @@
         <a class="text-links"
           href="https://github.com/conrizzo/conradswebsite/blob/master/src/views/projects/store/StoreCheckOutView.vue">Checkout
           page view</a>
-        <p>
+      </div>
 
-        </p>
-      </div>
-      <div class="diagram-image-container">
-        <img src="@/images/store/project_diagram.svg" alt="Diagram of how this project works"
-          style="max-width: 98%; max-height: 100%;">
-      </div>
 
       <p>Diagram made using <a class="text-links" href='https://app.diagrams.net/'>
           https://app.diagrams.net/
@@ -70,12 +69,11 @@ h1 {
   width: calc(100% - 60%);
   margin-left: 30%;
   margin-top: 8svh;
-
   background: rgb(255, 255, 255);
   border-radius: 2em;
   position: relative;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-
+  font-size: 0.9rem;
 }
 
 .backdrop {
@@ -99,13 +97,15 @@ ul {
   list-style: none;
 }
 
-
-
+p {
+  max-width: 100%;
+  padding-right: 0.5rem;
+}
 
 h2 {
   color: rgb(16, 16, 16);
   padding: 1em;
-
+  padding-top: 0em;
   padding-bottom: 0em;
   font-size: 2.25em;
   text-align: center;
