@@ -74,7 +74,8 @@
                 cache/storage and rate limiting backend requests. Redis runs in its own <a class="text-links"
                   href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>
                 image container on a Docker network, Gunicorn and Flask run in a separate Docker python image container
-                on the same Docker network. Added in a PostgreSQL docker container, and also SQLite as well to setup
+                on the same Docker network. Added in a <a class="text-links"
+                  href="https://www.postgresql.org/">PostgreSQL</a> docker container, and also SQLite as well to setup
                 some basic database
                 functionalities. Also uses Ubuntu ufw - Uncomplicated Firewall, and
                 <a class="text-links" href="https://github.com/fail2ban/fail2ban">fail2ban</a> to block malicious IPs
@@ -135,7 +136,9 @@
                 Backend läuft in <a class="text-links" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>.
                 Im selben Docker-Netzwerk läuft Redis in einem eigenen Docker-Image-Container.
                 Gunicorn und Flask hingegen befinden sich in einem separaten Docker-Python-Image-Container auf demselben
-                Netzwerk. Hinzugefügt wurde ein PostgreSQL-Docker-Container sowie auch SQLite, um einige grundlegende
+                Netzwerk. Hinzugefügt wurde ein <a class="text-links"
+                  href="https://www.postgresql.org/">PostgreSQL</a>-Docker-Container sowie auch SQLite, um einige
+                grundlegende
                 Datenbankfunktionalitäten einzurichten.
                 Nutzt auch Ubuntu ufw - Uncomplicated Firewall und Fail2ban, um bösartige IPs und Bots zu blockieren
                 und ähnliches.

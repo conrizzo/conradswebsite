@@ -22,14 +22,14 @@
         </div>
         <button style="margin: 0.5em; margin-top: 1rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
           }}</button>
-        <div v-if="signUpError" style="color: red;">{{ signUpError }}</div>
+        <div style="color: red;">{{ signUpError }}</div>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-
+import axios from 'axios';
 /*
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '@/firebase/init.js' */
@@ -74,29 +74,22 @@ export default {
           username: this.userName,
           password: this.password
         };
-        //console.log(JSON.stringify(userData));
-        // Send a POST request to the Flask backend
-        const response = await fetch('/backend/api/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userData),
-        });
+        // Send a POST request to the Flask backend using Axios
+        const response = await axios.post('/backend/api/register', userData);
 
-        if (!response.ok) {
-          throw new Error('Failed to register');
-        }
-
-        const result = await response.json();
-        // Assuming the backend returns the username on successful registration,
-        // you can emit the loggedIn event here
-        this.$emit('loggedIn', this.userName);
         // Handle success response
-        console.log(result.message);
+        console.log(response.data.message);
+        // Optionally, emit an event for successful registration
+        // I have this turned off for the sign up for now
+        // user must login after signing up
+        // this.$emit('registrationSuccessful', response.data.username);
       } catch (error) {
-        // Handle errors, e.g., display an error message
-        this.signUpError = `Error: ${error.message}`;
+        if (error.response && error.response.data) {
+          this.signUpError = `Error: ${error.response.data.message}`;
+        } else {
+          // Handle errors that don't have a response (e.g., network errors)
+          this.signUpError = `Error: ${error.message}`;
+        }
       } finally {
         this.isSigningUp = false;
       }

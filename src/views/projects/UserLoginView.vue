@@ -25,7 +25,7 @@
       <!-- login -->
       <template v-if="showLogin">
         <!-- listen for event -->
-        <LoginPage @loggedIn="handleLogin" />
+        <LoginPage @loginSuccessful="handleLoginSuccess" />
         <div style="justify-content: center; display: flex;">
           <span class="login-information" style="padding: 1em;">No account yet?
             <br>
@@ -36,7 +36,7 @@
       <!-- or register -->
       <template v-else>
         <!-- listen for event -->
-        <SignUpPage @loggedIn="handleLogin" />
+        <SignUpPage @registrationSuccessful="handleLoginSuccess" />
         <div style="justify-content: center; display: flex;">
           <span class="login-information" style="padding: 1em;">Already registered?
             <br>
@@ -136,6 +136,7 @@ import SignUpPage from '@/components/Login/SignUpPage.vue'
 import LoginPage from '@/components/Login/LoginPage.vue'
 import "@/assets/globalCSS.css";
 
+
 // Import the Firebase database instance and the Firestore collection and addDoc functions
 //import db from '@/firebase/init.js'
 //import { collection, addDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
@@ -196,82 +197,20 @@ export default {
     }
   },
   methods: {
-    async createUser() {
-      try {
-        // if no name entered throw error
-        if (this.name == '') {
-          this.errorMessage = "Please enter a subject!"
-          throw new Error("Please enter a subject!")
-        }
-        // if no message entered throw error
-        if (this.message == '') {
-          this.errorMessage = "Please enter a message!"
-          throw new Error("Please enter a message!")
-        }
 
-        // this.displayName = auth.currentUser
-        if (this.isLoggedIn) {
-          this.sendMessage();
-        }
-        else {
-          alert("You must be logged in to submit a message!")
-        }
-
-      } catch (err) {
-        console.error("Error adding document!: ", err);
-      }
-    },
-    /*
-    async sendMessage() {
-
-      // Get the current time in milliseconds
-      const currentTime = new Date().getTime();
-      console.log(currentTime)
-      // Calculate the time elapsed since the last message was sent
-      this.timeElapsed = currentTime - this.lastMessageSentTime;
-      console.log(this.timeElapsed)
-
-      // If less than 5 seconds have elapsed, do not send the message
-      if (this.timeElapsed < 10000) {
-        console.log('Please wait at least 10 seconds before sending another message.');
-        alert('Please wait at least 10 seconds before sending another message.');
-        return;
-      }
-      console.log("message sent")
-      // this effectively uses the last message sent to find the time between them
-      this.lastMessageSentTime = currentTime;
-
-
-      // Get a reference to the 'items' collection in the database
-      const colRef = collection(db, 'submissions')
-      // Create an object with the data for the new item
-      const dataObj = {
-        name: this.name,
-        userName: this.userName,
-        message: this.message,
-        timestamp: serverTimestamp(),
-      }
-      // Add the new item to the 'items' collection and get a reference to the new document          
-      const docRef = await addDoc(colRef, dataObj)
-      console.log("Document written with ID: ", docRef.id);
-    },
-    */
-    handleLogin() {
+    handleLoginSuccess() {
       // set login to true to confirm a user logged in
       this.isLoggedIn = true;
-      //document.cookie = 'isLoggedIn=true; SameSite=Strict';
+
       localStorage.setItem('isLoggedIn', 'true'); // store the authentication state in local storage
 
-      //document.cookie = `userName=${this.userName}; SameSite=Strict`; // store the username in a cookie
-      localStorage.setItem('userName', this.userName); // store the username in local storage        
+
+      localStorage.setItem('userName', this.userName); // store the username in local storage    
+      console.log("User logged in: ", this.isLoggedIn);
     },
     // needs to be invoked from firebase - this is why it said signOut function didnt exist before
     signOut() {
-      try {
-        signOut(auth);
-      } catch (err) {
-        console.error("Error signing out user: ", err);
-      }
+      return "work on this";
     },
     handleLogout() {
       this.signOut();

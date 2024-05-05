@@ -1,12 +1,18 @@
 <template>
   <div class="login-form-container">
     <div class="login-form-styling">
-      <form @submit.prevent="login">
+      <form @submit.prevent="userLogin">
         <h2 style="padding: 0.5em; color: rgb(18,18,18);">Log in</h2>
-
+        <!--
         <div style="display: flex; flex-direction: column;">
           <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
           <input name="email" type="email" placeholder="Email" required v-model="email" autocomplete="email" v-focus>
+        </div>
+      -->
+        <div style="display: flex; flex-direction: column;">
+          <label for="username" style="align-self: flex-start; padding-left: 0.25em;">Username:</label>
+          <input name="username" type="text" placeholder="Username" required v-model="userName" autocomplete="username"
+            v-focus>
         </div>
 
         <div style="display: flex; flex-direction: column; ">
@@ -28,6 +34,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 /* import { signInWithEmailAndPassword } from 'firebase/auth' 
 import { auth } from '@/firebase/init.js' */
 
@@ -47,48 +54,41 @@ export default {
       email: '',
       password: '',
       errorMessage: '',
+      userName: '',
     }
   },
   methods: {
-    async login() {
+    async userLogin() {
+      console.log('Logging in...')
       try {
-        // Prepare the login data
-        const loginData = {
-          username: this.userName, // Make sure you have a userName data property
+        // Prepare the user data
+        const userData = {
+          username: this.userName,
           password: this.password
         };
-        // Send a POST request to the Flask backend for login
-        const response = await fetch('/backend/api/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(loginData),
-        });
+        // Send a POST request to the Flask backend using Axios
+        const response = await axios.post('/backend/api/login', userData);
+        console.log(response.data.message);
 
-        const result = await response.json();
+        // Storing the JWT received from the backend
+        localStorage.setItem('userToken', response.data.access_token);
 
-        if (!response.ok) {
-          // Handle HTTP error responses from your backend
-          throw new Error(result.message || 'Failed to login');
-        }
+        // Optionally, set the token as a default header for all Axios requests
+        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
 
-        // Login successful
-        this.$emit('loggedIn', this.userName);
-        console.log(result.message); // Optionally log the success message
+        // Update login state or redirect user
+        this.$emit('loginSuccessful');
+        // Redirect to a protected route or update UI state
+        console.log('logging in...');
       } catch (error) {
-        // Handle errors based on the backend response
-        this.errorMessage = `Error: ${error.message}`;
+        this.errorMessage = error.response.data.message || 'Login failed. Please try again.';
       }
     }
   }
 }
 </script>
-<style scoped>
-.button-35 {
-  
-}
 
+<style scoped>
 .button-35:hover {
   box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;
 }
