@@ -211,11 +211,12 @@ p {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 3rem;
     padding: 2rem;
     text-align: left;
     background: rgb(255, 209, 93);
     color: rgb(18, 18, 18);
+    line-height: 1.1;
 }
 
 h2 {
@@ -357,16 +358,14 @@ input[type='checkbox'] {
     padding: 1.5rem;
 }
 
-@media screen and (max-width: 600px) {
-    h1 {
-        font-size: 3rem;
-    }
-}
 
 @media screen and (max-width: 60rem) {
     .grid-container {
         grid-template-columns: repeat(1, 1fr);
 
+    }
+    h1{
+        font-size: 2rem;
     }
 }
 </style>

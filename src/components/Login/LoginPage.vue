@@ -14,7 +14,7 @@
           <input name="password" type="password" placeholder="Password" required v-model="password">
         </div>
 
-        <button style="margin-top: 2em;" class="button-35">
+        <button style="margin-top: 1rem;" class="button-35">
           Log in
         </button>
 
@@ -52,25 +52,33 @@ export default {
   methods: {
     async login() {
       try {
-        // login user
-        await signInWithEmailAndPassword(auth, this.email, this.password)
-        // emit event for member area
-        this.$emit('loggedIn', this.userName)
-      } catch (error) {
-        switch (error.code) {
-          case 'auth/wrong-password':
-            this.errorMessage = 'Error: Invalid password.';
-            break;
-          case 'auth/user-not-found':
-            this.errorMessage = 'Error: User not found.';
-            break;
-          case 'auth/invalid-email':
-            this.errorMessage = 'Error: Invalid email.';
-            break;
-          default:
-            this.errorMessage = error.message;
-            break;
+        // Prepare the login data
+        const loginData = {
+          username: this.userName, // Make sure you have a userName data property
+          password: this.password
+        };
+        // Send a POST request to the Flask backend for login
+        const response = await fetch('/backend/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(loginData),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          // Handle HTTP error responses from your backend
+          throw new Error(result.message || 'Failed to login');
         }
+
+        // Login successful
+        this.$emit('loggedIn', this.userName);
+        console.log(result.message); // Optionally log the success message
+      } catch (error) {
+        // Handle errors based on the backend response
+        this.errorMessage = `Error: ${error.message}`;
       }
     }
   }
@@ -78,7 +86,7 @@ export default {
 </script>
 <style scoped>
 .button-35 {
-  background-color: rgb(130, 130, 130);
+  
 }
 
 .button-35:hover {
@@ -99,11 +107,6 @@ button {
   margin: auto
 }
 
-form {
-  margin: auto;
-  border-radius: 1em;
-  padding: 0 1em 0em 1em;
-}
 
 input {
   margin: 0.1em;
@@ -116,7 +119,7 @@ input:focus {
 .login-form-container {
   display: flex;
   justify-content: center;
-  height: 375px;
+  height: 20.5rem;
 }
 
 .login-form-styling {

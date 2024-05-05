@@ -44,7 +44,6 @@
             </div>
 
             <ul class="about-me-list">
-
               <li>
                 This website is made by me (Conrad) completely from a blank slate. It is a Single Page Application (SPA)
                 made in <a href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>. It's
@@ -56,7 +55,13 @@
                 I set up the VPS twice, after deciding to switch server hosts.
 
               </li>
-
+              <li>
+                <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
+                  HTML, CSS (no CSS frameworks), Rust into Web Assembly,</span> and soon more projects in other
+                languages such as Angular,
+                Wordpress, <a class='text-links' href="https://nuxt.com/">Nuxt.js</a>,
+                <a class="text-links" href="https://astro.build/">Astro</a>.
+              </li>
               <li>
                 <u>Back end</u> running <a class="text-links"
                   href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
@@ -69,17 +74,12 @@
                 cache/storage and rate limiting backend requests. Redis runs in its own <a class="text-links"
                   href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>
                 image container on a Docker network, Gunicorn and Flask run in a separate Docker python image container
-                on the same Docker network. Also uses Ubuntu ufw - Uncomplicated Firewall, and
+                on the same Docker network. Added in a PostgreSQL docker container, and also SQLite as well to setup
+                some basic database
+                functionalities. Also uses Ubuntu ufw - Uncomplicated Firewall, and
                 <a class="text-links" href="https://github.com/fail2ban/fail2ban">fail2ban</a> to block malicious IPs
                 and bots and such.
               </li>
-              <li>
-                <u>Front end</u> made with <span class="languages-used">Vue.js, JavaScript, TypeScript,
-                  HTML, CSS (no CSS frameworks), Rust into Web Assembly,</span> and soon more projects in other languages such as Angular,
-                Wordpress, <a class='text-links' href="https://nuxt.com/">Nuxt.js</a>,
-                <a class="text-links" href="https://astro.build/">Astro</a>.
-              </li>
-
               <li>
                 I started learning about Vue.js when I worked on the Bioinformatics Toolkit at Max-Planck-Institut für
                 Biologie in Tübingen, Germany
@@ -116,7 +116,14 @@
                 Ich habe den VPS zweimal eingerichtet, nachdem ich mich entschieden hatte, den Server-Host zu wechseln.
 
               </li>
-
+              <li>
+                <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet
+                habe,
+                sind
+                <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS (keine CSS-Frameworks), und Rust
+                  für Web Assembly.</span>
+                In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
+              </li>
               <li>
                 <u>Backend</u> läuft mit <a class="text-links"
                   href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a>
@@ -128,16 +135,10 @@
                 Backend läuft in <a class="text-links" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>.
                 Im selben Docker-Netzwerk läuft Redis in einem eigenen Docker-Image-Container.
                 Gunicorn und Flask hingegen befinden sich in einem separaten Docker-Python-Image-Container auf demselben
-                Netzwerk. Nutzt auch Ubuntu ufw - Uncomplicated Firewall und Fail2ban, um bösartige IPs und Bots zu
-                blockieren
+                Netzwerk. Hinzugefügt wurde ein PostgreSQL-Docker-Container sowie auch SQLite, um einige grundlegende
+                Datenbankfunktionalitäten einzurichten.
+                Nutzt auch Ubuntu ufw - Uncomplicated Firewall und Fail2ban, um bösartige IPs und Bots zu blockieren
                 und ähnliches.
-              </li>
-              <li>
-                <u>Frontend</u> Programmiersprachen/Frameworks, die ich für die Erstellung dieser Website verwendet
-                habe,
-                sind
-                <span class="languages-used">Vue.js, JavaScript, TypeScript, HTML, CSS (keine CSS-Frameworks), und Rust für Web Assembly.</span>
-                In Zukunft plane ich, weitere Projekte in anderen Sprachen wie Angular, Wordpress und Astro umzusetzen
               </li>
               <li>
                 Ich habe damit begonnen, Vue.js zu lernen, als ich am Bioinformatik-Toolkit am Max-Planck-Institut für
@@ -406,7 +407,8 @@
           <div>
             <!-- 1st text image component -->
             <div v-if="arrowText === 'Deutsch'">
-              <two-columns-grid-content-template :imgWidth="26" :titleText="objectiveTitle" :content-text="objectiveText" />
+              <two-columns-grid-content-template :imgWidth="26" :titleText="objectiveTitle"
+                :content-text="objectiveText" />
             </div>
             <div v-else>
               <two-columns-grid-content-template :imgWidth="26" :titleText="objectiveTitleDeutsch"
@@ -419,19 +421,20 @@
                   :content-text="approachText" :content-image="birdGenerated" />
               </div>
               <div v-else>
-                <two-columns-reversed-grid class="top-component-adjustment"  :titleText="approachTitleDeutsch"
+                <two-columns-reversed-grid class="top-component-adjustment" :titleText="approachTitleDeutsch"
                   :content-text="approachTextDeutsch" :content-image="birdGenerated" />
               </div>
             </div>
             <!-- 3rd text image component -->
             <div v-if="arrowText === 'Deutsch'">
-              <two-columns-grid-content-template :imgWidth="26"  :titleText="updatesTitle" :content-text="updatesText"
+              <two-columns-grid-content-template :imgWidth="26" :titleText="updatesTitle" :content-text="updatesText"
                 :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
                 :set-photo-caption="languagesCaptionText" />
             </div>
             <div v-else>
-              <two-columns-grid-content-template :imgWidth="26"  :titleText="updatesTitleDeutsch" :content-text="updatesTextDeutsch"
-                :content-image="gitLanguages" :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
+              <two-columns-grid-content-template :imgWidth="26" :titleText="updatesTitleDeutsch"
+                :content-text="updatesTextDeutsch" :content-image="gitLanguages"
+                :setPhotoLink="'https://github.com/conrizzo/conradswebsite'"
                 :set-photo-caption="languagesCaptionTextDeutsch" />
             </div>
             <!-- 4th text image component -->
@@ -509,8 +512,8 @@ export default {
       languageButtonText: "Sprache: Deutsch",
       arrowText: "Deutsch",
 
-      titleText: "Thanks for visiting!<br>",
-      contentText: "Made by Conrad. This website started as a blank page. Experience some projects, maybe find something interesting!",
+      titleText: "Hello,<br>",
+      contentText: "Made by Conrad. Experience some projects and discover some fun experimental stuff here!",
 
       clickCount: 0,
       firstClick: null,

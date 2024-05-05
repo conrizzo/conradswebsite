@@ -1,27 +1,31 @@
 <template>
-  <form @submit.prevent="signUp">
+  <div class="signup-form-container">
+    <div class='signup-form-styling'>
+      <form @submit.prevent="signUp">
 
-    <h2 style="padding: 0.5em;">Sign Up</h2>
+        <h2 style="padding: 0.5em;">Sign Up</h2>
 
-    <div style="display: flex; flex-direction: column;">
-      <label class="label-title-styling" for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a
-        Username:</label>
-      <input name="text" type="text" placeholder="User Name" required v-model="userName" maxlength="20" v-focus>
+        <div style="display: flex; flex-direction: column;">
+          <label class="label-title-styling" for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a
+            Username:</label>
+          <input name="text" type="text" placeholder="User Name" required v-model="userName" maxlength="20" v-focus>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <label class="label-title-styling" for="email" style="align-self: flex-start; padding-left: 0.25em;">Enter an
+            email:</label>
+          <input name="email" type="email" placeholder="Email" required v-model="email">
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <label class="label-title-styling" for="password"
+            style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
+          <input name="password" type="password" placeholder="Password" required v-model="password">
+        </div>
+        <button style="margin: 0.5em; margin-top: 1rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
+          }}</button>
+        <div v-if="signUpError" style="color: red;">{{ signUpError }}</div>
+      </form>
     </div>
-    <div style="display: flex; flex-direction: column;">
-      <label class="label-title-styling" for="email" style="align-self: flex-start; padding-left: 0.25em;">Enter an
-        email:</label>
-      <input name="email" type="email" placeholder="Email" required v-model="email">
-    </div>
-    <div style="display: flex; flex-direction: column;">
-      <label class="label-title-styling" for="password"
-        style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
-      <input name="password" type="password" placeholder="Password" required v-model="password">
-    </div>
-    <button style="margin: 0.5em; margin-top: 2rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
-      }}</button>
-    <div v-if="signUpError" style="color: red;">{{ signUpError }}</div>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -65,23 +69,34 @@ export default {
       }
       this.isSigningUp = true;
       try {
-        // register and login user
-        await createUserWithEmailAndPassword(auth, this.email, this.password);
-        // update 'displayName'
-        await updateProfile(auth.currentUser, {
-          displayName: this.userName
+        // Prepare the user data
+        const userData = {
+          username: this.userName,
+          password: this.password
+        };
+        //console.log(JSON.stringify(userData));
+        // Send a POST request to the Flask backend
+        const response = await fetch('/backend/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
         });
-        // emit event
-        this.$emit('loggedIn', this.userName);
-      } catch (error) {
-        switch (error.code) {
-          case 'auth/email-already-in-use':
-            this.signUpError = 'Error: Email already in use.';
-            break;
-          default:
-            this.signUpError = error.message;
-            break;
+
+        if (!response.ok) {
+          throw new Error('Failed to register');
         }
+
+        const result = await response.json();
+        // Assuming the backend returns the username on successful registration,
+        // you can emit the loggedIn event here
+        this.$emit('loggedIn', this.userName);
+        // Handle success response
+        console.log(result.message);
+      } catch (error) {
+        // Handle errors, e.g., display an error message
+        this.signUpError = `Error: ${error.message}`;
       } finally {
         this.isSigningUp = false;
       }
@@ -118,14 +133,18 @@ button {
   margin: auto
 }
 
-form {
-  width: 20em;
-  margin: auto;
-  color: #fff;
-  border: 1px solid #cecece;
-  border-radius: 1em;
-  padding: 0 1em 0em 1em;
-  height: 375px;
+.signup-form-container {
+  display: flex;
+  justify-content: center;
+  height: 24.5rem;
+}
+
+.signup-form-styling {
+  padding: 1em;
   background: rgb(245, 245, 245);
+  width: fit-content;
+  border-radius: 1em;
+  margin-top: 2em;
+  border: 1px solid #cecece;
 }
 </style>

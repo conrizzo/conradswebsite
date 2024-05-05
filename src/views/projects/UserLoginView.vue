@@ -6,7 +6,7 @@
   <!-- tried downgrading to "firebase": "9.0.2" -->
   <!---<CookieAccept />-->
 
-  <div style="background: rgb(255, 255, 255); padding-bottom: 2em; padding-top: 2.7em;">
+  <div style="background: rgb(255, 255, 255); padding-bottom: 2em;height: 100svh;">
     <div style="justify-content: center;">
       <button v-if="isLoggedIn" class="button-35">
         <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
@@ -57,6 +57,7 @@
     </div>
 
     <div style="padding-top: 2em;">
+      <!--
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
         <div class="error-message"> {{ errorMessage }} </div>
 
@@ -84,6 +85,7 @@
 
         <button @click="createUser" class="button-35">Add Entry</button>
       </form>
+      -->
 
       <!-- message area -->
       <!--
@@ -107,11 +109,20 @@
       </div>
 
   -->
-      <div class="center-with-flex">
-        <p>This page was setup with <a href="https://firebase.google.com/">Firebase</a>. I currently have this disabled.
-          Everything worked for user logins + message posting. Deciding what kind of backend system I want to do with
-          users
-          and logins, why, what the goal is, etc.</p>
+      <div class="center-with-flex" style="text-align: left; padding: 1rem;">
+        <div>
+
+          <p>
+            * Now connects to PostgreSQL database and allows user registration (sign up).
+          </p>
+
+
+          <p>
+            This page was previously setup with <a href="https://firebase.google.com/">Firebase</a> and
+            allowed logins, user sessions, message posting.
+          </p>
+
+        </div>
       </div>
     </div>
 

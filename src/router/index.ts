@@ -23,7 +23,7 @@ const WeatherView = () => import('../views/projects/WeatherView.vue');
 const LinksView = () => import('../views/projects/LinksView.vue');
 const CowGameView = () => import('../views/projects/CowGameView.vue');
 const ProjectDetailsView = () => import('../views/projects/ProjectDetailsView.vue');
-const FirebaseTestView = () => import('../views/projects/FirebaseTestView.vue');
+const UserLoginView = () => import('../views/projects/UserLoginView.vue');
 const SortingAlgorithmsView = () => import('../views/projects/SortingAlgorithmsView.vue');
 const RustWebAssemblyView = () => import('../views/projects/RustWebAssemblyView.vue');
 const CardsView = () => import('../views/projects/CardsView.vue');
@@ -142,8 +142,8 @@ const routes = [
       },
       {
         path: 'login',
-        name: 'FirebaseTestView',
-        component: FirebaseTestView,
+        name: 'UserLoginView',
+        component: UserLoginView,
       },
       {
         path: 'sortingAlgorithms',

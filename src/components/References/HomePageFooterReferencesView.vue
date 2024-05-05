@@ -45,6 +45,6 @@ export default {
 }
 
 .white-text {
-    color: rgb(255, 108, 108);
+    color: rgb(226, 171, 127);
 }
 </style>

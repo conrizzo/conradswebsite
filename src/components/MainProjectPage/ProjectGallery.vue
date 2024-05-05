@@ -390,12 +390,17 @@ h3 {
 
 .grid-item.odd:hover {
  
-  background: rgba(255, 225, 156, 0.6);  
+  background: rgba(73, 67, 52, 0.75);  
+
 }
 
+.grid-item:hover{
+  background: rgba(55, 73, 85, 0.75);
+}
 
 .grid-item:hover h2{
   color: rgb(255, 255, 255);
+  
 }
 /*
 .grid-item:hover figcaption{
@@ -403,9 +408,7 @@ h3 {
 }
 */
 
-.grid-item:hover{
-  background: rgba(175, 224, 255, 0.6);
-}
+
 
 
 .grid-item:nth-child(-n+3) {
