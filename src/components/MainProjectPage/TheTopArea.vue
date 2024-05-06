@@ -17,11 +17,6 @@
                             <br>
                         </span>
                     </li>
-                    <li>
-                        Lastest ongoing project is the<br> <router-link
-                            class="home-text-links list-links-text-decoration"
-                            to="/projects/country-music-generator">Country Music Generator </router-link>
-                    </li>
 
                 </ul>
                 <div class="center-image">
@@ -38,6 +33,16 @@
 
 
                     <ul style="font-size: 1rem; text-align: left; color: #fff; padding: 0.5rem; padding-left: 2rem;">
+                        <li>
+                            Lastest ongoing project is <router-link class="home-text-links list-links-text-decoration"
+                                to="/projects/login">User logins</router-link> with my
+                            PostgreSQL database.
+                            The <router-link class="home-text-links list-links-text-decoration"
+                                to="/projects/country-music-generator">Country Music Generator</router-link> will
+                            probably
+                            use
+                            some PostgreSQL database connections to store song data when I get back to this.
+                        </li>
 
                         <li>
                             SQL and database guides + doing side project in raw

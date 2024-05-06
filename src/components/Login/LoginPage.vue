@@ -77,11 +77,16 @@ export default {
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
 
         // Update login state or redirect user
-        this.$emit('loginSuccessful');
+        this.$emit('loginSuccessful', this.userName);
         // Redirect to a protected route or update UI state
-        console.log('logging in...');
+        console.log('login successful!');
       } catch (error) {
-        this.errorMessage = error.response.data.message || 'Login failed. Please try again.';
+        if (error.response && error.response.data) {
+          this.errorMessage = `Error: ${error.response.data.message}`;
+        } else {
+          // Handle errors that don't have a response (e.g., network errors)
+          this.errorMessage = `Error: ${error.message}`;
+        }
       }
     }
   }

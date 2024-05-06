@@ -22,7 +22,7 @@
         </div>
         <button style="margin: 0.5em; margin-top: 1rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
           }}</button>
-        <div style="color: red;">{{ signUpError }}</div>
+        <div style="color: red;">{{ signUpMessage }}</div>
       </form>
     </div>
   </div>
@@ -51,7 +51,7 @@ export default {
       email: '',
       password: '',
       isSigningUp: false,
-      signUpError: null
+      signUpMessage: null
     }
   },
   computed: {
@@ -67,7 +67,8 @@ export default {
       if (!this.isFormValid || this.userName.trim() === '' || this.email.trim() === '' || this.password.trim() === '') {
         return;
       }
-      this.isSigningUp = true;
+      this.signUpMessage = null; // reset the message
+      this.isSigningUp = true; // this functions as a loading spinner
       try {
         // Prepare the user data
         const userData = {
@@ -83,12 +84,13 @@ export default {
         // I have this turned off for the sign up for now
         // user must login after signing up
         // this.$emit('registrationSuccessful', response.data.username);
+        this.signUpMessage = response.data.message;
       } catch (error) {
         if (error.response && error.response.data) {
-          this.signUpError = `Error: ${error.response.data.message}`;
+          this.signUpMessage = `Error: ${error.response.data.message}`;
         } else {
           // Handle errors that don't have a response (e.g., network errors)
-          this.signUpError = `Error: ${error.message}`;
+          this.signUpMessage = `Error: ${error.message}`;
         }
       } finally {
         this.isSigningUp = false;

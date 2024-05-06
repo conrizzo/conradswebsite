@@ -7,24 +7,29 @@
   <!---<CookieAccept />-->
 
   <div style="background: rgb(255, 255, 255); padding-bottom: 2em;height: 100svh;">
-    <div style="justify-content: center;">
-      <button v-if="isLoggedIn" class="button-35">
-        <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
-          Enter authorized user page
-        </router-link>
-      </button>
-
-    </div>
 
     <!-- If not logged in -->
     <!-- <span v-if="!isLoggedIn" class="not-logged-in">You are not logged in!</span> -->
 
-
+    <div v-if="isLoggedIn" class="center-with-flex">
+      <div style="padding-top: 2rem;">
+        <button class="button-35">
+          <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
+            Enter authorized user page
+          </router-link>
+        </button>
+        <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; margin-top: 2em; font-weight: bold;">
+          <span>Welcome, {{ userName }}!<br>
+            <span style="font-size: 0.75em; color: #c4c4c4;">You are logged in.</span></span><br>
+          <button class="button-35" style='margin-top: 1rem;' @click="handleLogout">Logout
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isLoggedIn">
       <!-- login -->
       <template v-if="showLogin">
-        <!-- listen for event -->
         <LoginPage @loginSuccessful="handleLoginSuccess" />
         <div style="justify-content: center; display: flex;">
           <span class="login-information" style="padding: 1em;">No account yet?
@@ -33,9 +38,7 @@
           </span>
         </div>
       </template>
-      <!-- or register -->
       <template v-else>
-        <!-- listen for event -->
         <SignUpPage @registrationSuccessful="handleLoginSuccess" />
         <div style="justify-content: center; display: flex;">
           <span class="login-information" style="padding: 1em;">Already registered?
@@ -43,21 +46,9 @@
             <a class="login-sign-up" style="cursor: pointer;" @click="showLogin = true">Log in</a></span>
         </div>
       </template>
-
-    </div>
-    <!-- is logged in -->
-    <div v-else>
-      <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; margin-top: 2em; font-weight: bold;">
-        <span>Welcome, {{ displayName }}!<button class="button-35" style="float: inline-block; margin-left: 4em;"
-            @click="handleLogout">Logout</button><br>
-          <span style="font-size: 0.75em; color: #c4c4c4;">You are logged in.</span></span>
-
-      </div>
-
     </div>
 
-    <div style="padding-top: 2em;">
-      <!--
+    <!--
       <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
         <div class="error-message"> {{ errorMessage }} </div>
 
@@ -87,8 +78,8 @@
       </form>
       -->
 
-      <!-- message area -->
-      <!--
+    <!-- message area -->
+    <!--
       <div class="submission-container">
         <h3 style="color: rgb(0, 227, 227);">Messages will appear publicly here.</h3>
         <ul style="list-style: none;">
@@ -109,14 +100,18 @@
       </div>
 
   -->
+    <div style="padding-top: 2em;">
       <div class="center-with-flex" style="text-align: left; padding: 1rem;">
         <div>
 
           <p>
-            * Now connects to PostgreSQL database and allows user registration (sign up).
+            Now connects to self-made PostgreSQL database and allows user registration (sign up / sign in).<br>
+            Stores sequre sessions with Axios and JWT tokens.<br>
+            This login is a custom setup with Vue.js on Nginx &rarr; Flask/Gunicorn/Python(Docker) &rarr; PostgreSQL(Docker).<br>
+            For security the user made passwords are stored as hashes in the database, and the password is never stored anywhere.
           </p>
 
-
+          <br>
           <p>
             This page was previously setup with <a href="https://firebase.google.com/">Firebase</a> and
             allowed logins, user sessions, message posting.
@@ -142,10 +137,7 @@ import "@/assets/globalCSS.css";
 //import { collection, addDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
 //import { auth } from '@/firebase/init.js'
 //import { signOut } from 'firebase/auth'
-
-
 //import CookieAccept from "@/components/CookieAccept.vue";
-
 
 export default {
 
@@ -155,7 +147,7 @@ export default {
     return {
       isLoggedIn: false,
       showLogin: true,
-      userName: this.displayName,
+      userName: '',
       name: '',
       message: '',
       messageLength: 50,
@@ -164,6 +156,16 @@ export default {
       lastMessageSentTime: 0,
       timeElapsed: 0,
       errorMessage: '',
+    }
+  },
+  mounted() {
+    // userName in local storage, set logged in true - for if user already logged in, came back to page
+    if (localStorage.getItem('userName')) {
+      this.isLoggedIn = true; // 
+
+      // set localstorage username to displayed username
+      const userName = localStorage.getItem('userName');
+      this.userName = userName;
     }
   },
   computed: {
@@ -198,27 +200,35 @@ export default {
   },
   methods: {
 
-    handleLoginSuccess() {
+    handleLoginSuccess(userName) {
       // set login to true to confirm a user logged in
+      console.log(userName);
       this.isLoggedIn = true;
 
       localStorage.setItem('isLoggedIn', 'true'); // store the authentication state in local storage
 
 
-      localStorage.setItem('userName', this.userName); // store the username in local storage    
+      localStorage.setItem('userName', userName); // store the username in local storage    
       console.log("User logged in: ", this.isLoggedIn);
+      this.userName = localStorage.getItem('userName');
     },
     // needs to be invoked from firebase - this is why it said signOut function didnt exist before
     signOut() {
-      return "work on this";
+      this.isLoggedIn = false;
+      localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
+      localStorage.removeItem('userName'); // remove the authentication state from local storage
+
+      // Remove the token from Axios default headers
+      if (axios.defaults.headers.common['Authorization']) {
+        delete axios.defaults.headers.common['Authorization'];
+      }
+
+      console.log("User logged out");
     },
     handleLogout() {
       this.signOut();
-      this.isLoggedIn = false;
       //document.cookie = 'isLoggedIn=false; SameSite=Strict';
-      //document.cookie = `userName=${""}; SameSite=Strict`;
-      localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
-      localStorage.removeItem('userName'); // remove the authentication state from local storage
+      //document.cookie = `userName=${""}; SameSite=Strict`;     
     },
 
   }, // add a closing curly brace here
@@ -258,12 +268,11 @@ h2 {
   line-height: 1.4em;
 }
 
-
-
-p.login-information {
-  color: rgb(18, 18, 18);
-  font-size: 1.2em;
+p{
+  max-width: 80rem;
 }
+
+
 
 .top-text-sub-container {
   max-width: calc(100% - 20em);
