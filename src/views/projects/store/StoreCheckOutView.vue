@@ -34,14 +34,21 @@ export default {
 
   data() {
     return {
-      //userCart: [],
+
 
     };
   },
+  computed: { 
+    // this way the empty button clears the cart when clicked on the checkout page
+    // it becomes reactive by adding cart to computed
+    cart() {
+      const cartStore = useCartStore();
+      return cartStore.cart;
+    }
+  },
 
 
-  mounted() {
-  }
+
 
 }
 </script>

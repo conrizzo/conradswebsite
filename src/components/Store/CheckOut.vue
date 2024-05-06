@@ -6,19 +6,21 @@
                 <div class="shopping-cart-title" :style="cartTitleStyle">
                     <div v-if="runningTotal === 0" class="center-element">
                         <h2>No items selected</h2>
-                        <svg style="width: 32px; height: 32px; transition: transform 0.5s;" viewBox="0 0 32 32" fill="none"
-                            stroke="rgb(244, 67, 54)" stroke-width="2">
+                        <svg style="width: 32px; height: 32px; transition: transform 0.5s;" viewBox="0 0 32 32"
+                            fill="none" stroke="rgb(244, 67, 54)" stroke-width="2">
                             <polyline points="8 12 16 20 24 12" />
                         </svg>
                     </div>
                     <div class="shopping-cart-border" v-else-if="showLastAddedItem !== ''">
                         <h2>Shopping Cart</h2>
-                        
+
 
                         <div>
-                            <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to your
+                            <span>Last added <span style="color: rgb(244, 67, 54);">{{ showLastAddedItem }}</span> to
+                                your
                                 cart!</span><br>
-                            Product ID: {{ propProductIndexInGallery }} Item Position: {{ propProductIdentificationNumber }}
+                            Product ID: {{ propProductIndexInGallery }} Item Position: {{
+                    propProductIdentificationNumber }}
                         </div>
 
                     </div>
@@ -61,7 +63,7 @@
 
                                 <br>
                                 Item Subtotal ({{ item.quantity }} items): €{{ Math.abs((item.quantity *
-                                    item.price).toFixed(2)) }}<br>
+                    item.price).toFixed(2)) }}<br>
                                 <button @click="removeItem(index)"
                                     class="clean-button shopping-modified-clean-button">Delete</button>
                             </div>
@@ -74,7 +76,8 @@
 
                     <h2>Special Offer!</h2>
                     <div>
-                        <p style="text-align: left;" v-if="totalQuantity >= 5">With 5 or more items in the shopping basket a
+                        <p style="text-align: left;" v-if="totalQuantity >= 5">With 5 or more items in the shopping
+                            basket a
                             10% discount has been applied!</p>
                         <p v-else>Buy 5 or more items and get 10% off!</p>
                     </div>
@@ -87,9 +90,9 @@
             <div style="margin: 0 auto;">
                 <div :class="['total-cost-area', { 'lower-height-total-cost-area': totalQuantity < 5 }]">
                     <span v-if="totalQuantity < 5"><b>Subtotal ({{ totalQuantity }} items): €{{
-                        Math.abs(runningTotal.toFixed(2)) }} </b></span>
+                    Math.abs(runningTotal.toFixed(2)) }} </b></span>
                     <span v-else-if="totalQuantity > 4"><b>Subtotal ({{ totalQuantity }} items): <s>€{{
-                        Math.abs(runningTotal.toFixed(2)) }}</s></b></span>
+                    Math.abs(runningTotal.toFixed(2)) }}</s></b></span>
                     <transition>
                         <div class="discount-text" v-if="totalQuantity >= 5">With 10% discount: ({{ totalQuantity }}
                             items):
@@ -125,7 +128,7 @@
             </div>
         </div>
     </div>
-</template>  
+</template>
 
 <script>
 // import ProductGallery from "@/components/Store/ProductGallery.vue";
@@ -239,14 +242,14 @@ export default {
                 cartStore.setCart(newCart);
 
             },
-        },
+        },       
     },
     computed: {
         cartTitleStyle() {
             if (this.showLastAddedItem !== '') {
-            return {};
+                return {};
             } else {
-            return { paddingBottom: '0rem', minHeight: '3rem' };
+                return { paddingBottom: '0rem', minHeight: '3rem' };
             }
         },
         itemTotal() {
@@ -399,7 +402,7 @@ export default {
         }
     }
 }
-</script>  
+</script>
 
 <style scoped>
 h1 {
@@ -460,7 +463,7 @@ h1 {
 }
 
 .shopping-cart-title {
-    text-align: left;    
+    text-align: left;
     padding-left: 1em;
     padding-right: 1em;
     min-height: 7rem;
@@ -468,8 +471,10 @@ h1 {
     padding-bottom: 2rem;
     border-bottom: 1px solid #f44336;
 }
-.center-element{
-    display: flex; align-items: center;
+
+.center-element {
+    display: flex;
+    align-items: center;
 }
 
 .each-item-in-cart-image {

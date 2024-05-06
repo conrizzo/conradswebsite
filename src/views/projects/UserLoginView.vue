@@ -107,8 +107,10 @@
           <p>
             Now connects to self-made PostgreSQL database and allows user registration (sign up / sign in).<br>
             Stores sequre sessions with Axios and JWT tokens.<br>
-            This login is a custom setup with Vue.js on Nginx &rarr; Flask/Gunicorn/Python(Docker) &rarr; PostgreSQL(Docker).<br>
-            For security the user made passwords are stored as hashes in the database, and the password is never stored anywhere.
+            This login is a custom setup with Vue.js on Nginx &rarr; Flask/Gunicorn/Python(Docker) &rarr;
+            PostgreSQL(Docker).<br>
+            For security the user made passwords are stored as hashes in the database, and the password is never stored
+            anywhere.
           </p>
 
           <br>
@@ -129,8 +131,8 @@
 
 import SignUpPage from '@/components/Login/SignUpPage.vue'
 import LoginPage from '@/components/Login/LoginPage.vue'
-import "@/assets/globalCSS.css";
-
+//import "@/assets/globalCSS.css";
+import axios from 'axios';
 
 // Import the Firebase database instance and the Firestore collection and addDoc functions
 //import db from '@/firebase/init.js'
@@ -222,6 +224,10 @@ export default {
       if (axios.defaults.headers.common['Authorization']) {
         delete axios.defaults.headers.common['Authorization'];
       }
+      // Remove the userToken from local storage
+        localStorage.removeItem('userToken');
+
+      // Can further redirect the user to the main page, or something... 
 
       console.log("User logged out");
     },
@@ -268,7 +274,7 @@ h2 {
   line-height: 1.4em;
 }
 
-p{
+p {
   max-width: 80rem;
 }
 

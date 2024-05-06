@@ -515,8 +515,9 @@ export default {
       languageButtonText: "Sprache: Deutsch",
       arrowText: "Deutsch",
 
-      titleText: "Hello,<br>",
-      contentText: "Made by Conrad. Experience some projects and discover some fun experimental stuff here!",
+      titleText: "information about the website and me<br>",
+      contentText: "Experience some projects and discover some experimental stuff here!\
+      Read in English or Deutsch.",
 
       clickCount: 0,
       firstClick: null,
