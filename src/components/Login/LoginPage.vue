@@ -68,10 +68,11 @@ export default {
         };
         // Send a POST request to the Flask backend using Axios
         const response = await axios.post('/backend/api/login', userData);
-        console.log(response.data.message);
+        console.log("response data message:", response.data.message);
 
-        // Storing the JWT received from the backend
+        // Storing the JWT and refresh token received from the backend
         localStorage.setItem('userToken', response.data.access_token);
+        localStorage.setItem('refreshToken', response.data.refresh_token);
 
         // Optionally, set the token as a default header for all Axios requests
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;

@@ -21,6 +21,7 @@
         <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; margin-top: 2em; font-weight: bold;">
           <span>Welcome, {{ userName }}!<br>
             <span style="font-size: 0.75em; color: #c4c4c4;">You are logged in.</span></span><br>
+
           <button class="button-35" style='margin-top: 1rem;' @click="handleLogout">Logout
           </button>
         </div>
@@ -39,7 +40,8 @@
         </div>
       </template>
       <template v-else>
-        <SignUpPage @registrationSuccessful="handleLoginSuccess" />
+        <!-- <SignUpPage @registrationSuccessful="handleLoginSuccess" /> -->
+        <SignUpPage />
         <div style="justify-content: center; display: flex;">
           <span class="login-information" style="padding: 1em;">Already registered?
             <br>
@@ -106,7 +108,7 @@
 
           <p>
             Now connects to self-made PostgreSQL database and allows user registration (sign up / sign in).<br>
-            Stores sequre sessions with Axios and JWT tokens.<br>
+            Stores secure sessions with Axios and JWT tokens.<br>
             This login is a custom setup with Vue.js on Nginx &rarr; Flask/Gunicorn/Python(Docker) &rarr;
             PostgreSQL(Docker).<br>
             For security the user made passwords are stored as hashes in the database, and the password is never stored
@@ -181,31 +183,15 @@ export default {
     },
   },
 
-  watch: {
-    name(newName) {
-      if (newName.length >= this.messageLength) {
-        this.errorMessage = "Subject cannot be longer than " + this.messageLength + " characters!";
-        this.name = newName.slice(0, this.messageLength);
-      } else if (newName.length == 0) {
-        // change color back to red if the user deletes all the text
-        this.textStyle.color = '#ff6b6b';
-      }
-    },
-    // this references the subject field by default if a user is logged in
-    isLoggedIn() {
-      if (this.isLoggedIn) {
-        this.$nextTick(() => {
-          this.$refs.subjectInput.focus();
-        });
-      }
-    }
-  },
+
+
   methods: {
 
     handleLoginSuccess(userName) {
       // set login to true to confirm a user logged in
       console.log(userName);
       this.isLoggedIn = true;
+      this.showLogin = false;
 
       localStorage.setItem('isLoggedIn', 'true'); // store the authentication state in local storage
 
@@ -214,9 +200,11 @@ export default {
       console.log("User logged in: ", this.isLoggedIn);
       this.userName = localStorage.getItem('userName');
     },
-    // needs to be invoked from firebase - this is why it said signOut function didnt exist before
+
     signOut() {
+      
       this.isLoggedIn = false;
+      this.showLogin = true;
       localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
       localStorage.removeItem('userName'); // remove the authentication state from local storage
 
@@ -225,9 +213,11 @@ export default {
         delete axios.defaults.headers.common['Authorization'];
       }
       // Remove the userToken from local storage
-        localStorage.removeItem('userToken');
-
+      localStorage.removeItem('userToken');
+      localStorage.removeItem('refreshToken');
       // Can further redirect the user to the main page, or something... 
+
+      this.$router.push('/projects/login'); // Use this.$router to access the router instance
 
       console.log("User logged out");
     },
@@ -252,7 +242,7 @@ export default {
       submissions.sort((a, b) => a.timestamp.toMillis() - b.timestamp.toMillis())
       this.submissions = submissions
     })
-
+ 
     // retrieve the authentication state from local storage
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn === 'true') {
@@ -261,6 +251,7 @@ export default {
   },
   */
 }
+
 </script>
 
 <style scoped>

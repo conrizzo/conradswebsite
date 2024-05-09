@@ -1,32 +1,31 @@
-
 <template>
   <div class="coffee-data-background">
 
     <h1>Coffee Consumers by country</h1>
-    
+
     <div class="container-for-svg-graph">
-      <div id="chartContainer" >        
+      <div id="chartContainer">
       </div>
     </div>
-    
-    <h4 style="margin-top: 0.3em; text-align: left; margin-left: 0.5em; margin-right: 0.5em; color: #fff;">
-      <b style="color: #ce5f7b;">Note:</b> Click on the column titles in the table below for each column to sort data
+
+    <h4 style="margin-top: 0.3em; text-align: left; margin-left: 0.5em; margin-right: 0.5em; color: #000;">
+      Click on the column titles in the table below for each column to sort data
       numerically/alphabetically. The graph will update to the sorted values.
       All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
 
     <table class="table-area">
       <thead>
         <tr>
-          <th style="cursor: pointer;" @click="sortData('country')">Country</th>
-          <th class="table-column-buttons" style="cursor: pointer;"
+          <th class="table-column-buttons" @click="sortData('country')">Country</th>
+          <th class="table-column-buttons"
             @click="removeZeros('perCapitaCons2016'), sortData('perCapitaCons2016'), barChart('perCapitaCons2016', 'Coffee Consumption Per Capita 2016 (kg)')">
             Coffee Consumption per Capita 2016 (kg)</th>
-          <th class="table-column-buttons" style="cursor: pointer;"
+          <th class="table-column-buttons"
             @click="removeZeros('totCons2019'), sortData('totCons2019'), barChart('totCons2019', 'Dry coffee beans 2019 (kg)')">
             Dry coffee beans 2019 (kg)</th>
           <th style="cursor: pointer;" @click="sortData('region')">Region</th>
-          <th class="table-column-buttons" style="cursor: pointer;"
-            @click="sortData('pop2023'), barChart('pop2023', 'Population 2023')">Population 2023</th>
+          <th class="table-column-buttons" @click="sortData('pop2023'), barChart('pop2023', 'Population 2023')">
+            Population 2023</th>
         </tr>
       </thead>
       <tbody>
@@ -41,15 +40,15 @@
         </tr>
       </tbody>
     </table>
-    
-   
+
+
 
 
   </div>
 
-  <FastQuickSort ref="fastQuickSort"/>
-  
-  
+  <FastQuickSort ref="fastQuickSort" />
+
+
 </template>
 
 <script>
@@ -135,7 +134,7 @@ export default {
     this.sortedData = this.jsonData;
   },
   methods: {
-    quickSort(columnName){
+    quickSort(columnName) {
       //console.log(columnName);
       const columnA = [columnName];
       //console.log(columnA);
@@ -143,7 +142,7 @@ export default {
       // set a reference to the component FastQuickSort
       const fastQuickSort = this.$refs.fastQuickSort;
       // Invoke the function from the component FastQuickSort
-      this.quickSortedArray = fastQuickSort.invoke([...array], 0, array.length - 1);  
+      this.quickSortedArray = fastQuickSort.invoke([...array], 0, array.length - 1);
       //console.log(this.quickSortedArray)  
     },
     // this sorts the data by a specific column
@@ -169,7 +168,7 @@ export default {
         if (columnB === null) return -1;
 
         // Handle numeric and non-numeric values
-        if (typeof columnA === "number" && typeof columnB === "number") {          
+        if (typeof columnA === "number" && typeof columnB === "number") {
           const result = columnB - columnA;
           return this.sortDirection ? result : -result; // Reverse sorting if necessary
 
@@ -214,7 +213,7 @@ export default {
       });
 
       const svgWidth = window.innerWidth * 0.9; // Set the width to 90% of the viewport width
-      const barHeight = 20;
+      const barHeight = 30;
       const barSpacing = 4;
       const maxValue = Math.max(...data.map((item) => item.value));
       const scaleFactor = svgWidth / maxValue;
@@ -224,7 +223,7 @@ export default {
 
       // Draw the title
       svg += `<text x="${svgWidth / 2
-        }" y="15" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">${title}</text>`;
+        }" y="15" text-anchor="middle" font-size="1.1rem" font-weight="bold" fill="#000">${title}</text>`;
 
       // Draw the bars and labels
       let startY = 30;
@@ -232,8 +231,8 @@ export default {
         const item = data[i];
         const barWidth = item.value * scaleFactor;
 
-        svg += `<rect x="0" y="${startY}" width="${barWidth}" height="${barHeight}" fill="rgb(233, 233, 233)" />`;
-        svg += `<text x="5" y="${startY + barHeight / 2 + 6}" font-size="17">${item.label
+        svg += `<rect x="0" y="${startY}" width="${barWidth}" height="${barHeight}" fill="rgb(173, 247, 255)" />`;
+        svg += `<text x="5" y="${startY + barHeight / 2 + 6}" font-size="1rem">${item.label
           }</text>`;
 
         startY += barHeight + barSpacing;
@@ -251,46 +250,45 @@ export default {
 </script>
 
 <style scoped>
-
-.coffee-data-background{
-  padding-top: 3em;   
-  background-color: rgb(84, 109, 166);
+.coffee-data-background {
+  padding-top: 3em;
+  background-color: rgb(255, 255, 255);
   padding-bottom: 1em;
-  
   background-blend-mode: multiply;
-
-  background-attachment: fixed; 
-  position: relative;  
+  background-attachment: fixed;
+  position: relative;
   background-size: cover;
   /* Free to use Image Source:
   https://unsplash.com/photos/coffee-beans-are-growing-on-a-tree-branch-3p8U2e7kAiM */
- 
 }
 
-.coffee-data-background::before{  
+.coffee-data-background::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 95svh;  
+  height: 95svh;
   z-index: 1;
 }
 
-.table-area{
-  
-  position: relative; /* Add this line */
-  z-index: 2; /* Add this line */
+.table-area {
+
+  position: relative;
+  /* Add this line */
+  z-index: 2;
+  /* Add this line */
   margin-top: 1em;
 }
 
 
-h1{
-  font-size: 4rem; 
-  color:rgb(255, 255, 255);
+h1 {
+  font-size: 4rem;
+  color: rgb(18, 18, 18);
   padding-top: 0.5em;
   font-weight: 400;
 }
+
 /* Table */
 table {
   width: calc(100% - 1em);
@@ -298,13 +296,13 @@ table {
   margin-left: 0.5em;
   margin-right: 0.5em;
   border-collapse: collapse;
-  
+
 }
 
 /* Table Header */
 thead {
-  background-color: #e9e9e9;
- 
+  background-color: #ffc400;
+
 }
 
 th {
@@ -317,35 +315,48 @@ th {
   border-right: 1px solid #000000;
 }
 
+/* no border on last element */
+th:last-child {
+  border-right: none;
+}
+
 /* Table Body */
 tbody {
-  background-color: rgb(84, 109, 166);
-  color: #ffffff;
+  background-color: #fffaf1;
+  color: #000000;
 }
 
 td {
   text-align: left;
-  border-bottom: 1px solid #000000;
-  border-right: 1px solid #000000;
+  border-bottom: 1px solid #b5b5b5;
   padding-left: 0.5em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
 
+/* remove border at the last row of the table */
+tr:last-child td {
+  border-bottom: none;
+}
+
 /* Alternate Row Color */
 tr:nth-child(even) {
-  background-color: rgb(58, 84, 145);
+  background-color: #fff3de;
 }
+
+
 
 .table-column-buttons {
-  background-color: #edd78b;
+  cursor: pointer;
 }
 
+/*
 .table-column-buttons:hover {
   background-color: #94ddee;
 }
+*/
 
-.container-for-svg-graph{  
+.container-for-svg-graph {
   margin: 1rem .5rem 1rem .5rem;
 }
 
@@ -354,11 +365,11 @@ tr:nth-child(even) {
     font-size: 0.8em;
     padding: 0.25em;
   }
-  h1{
-  font-size:1.25em; 
-  margin-top: 1em; 
-}
-  
-}
 
+  h1 {
+    font-size: 2rem;
+    margin-top: 1em;
+  }
+
+}
 </style>
