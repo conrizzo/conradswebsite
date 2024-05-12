@@ -42,11 +42,20 @@ instance.interceptors.response.use(undefined, async error => {
         // Refresh token has expired, try to refresh it
         try {
             const csrfToken = getCsrfToken();
-            await instance.post('/backend/api/refresh', {}, {
+            const response = await instance.post('/backend/api/refresh', {}, {
                 headers: {
-                    'X-CSRF-TOKEN': csrfToken
+                    'Authorization': `Bearer ${getCsrfToken()}`
                 }
             });
+
+            // Get the new token from the response
+            // const newToken = response.data.access_token;
+            const newToken = response.data.access_token;
+
+            // Update the axios instance and the original request with the new token
+            instance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+            error.config.headers['Authorization'] = `Bearer ${newToken}`;
+
             // Retry the original request
             return instance.request(error.config);
         } catch (refreshError) {
