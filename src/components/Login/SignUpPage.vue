@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from '@/axiosInstance';
 /*
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '@/firebase/init.js' */
@@ -76,7 +76,7 @@ export default {
           password: this.password
         };
         // Send a POST request to the Flask backend using Axios
-        const response = await axios.post('/backend/api/register', userData);
+        const response = await axiosInstance.post('/backend/api/register', userData);
 
         // Handle success response
         console.log(response.data.message);

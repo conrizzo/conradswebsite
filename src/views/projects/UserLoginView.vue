@@ -6,28 +6,30 @@
   <!-- tried downgrading to "firebase": "9.0.2" -->
   <!---<CookieAccept />-->
 
-  <div style="background: rgb(255, 255, 255); padding-bottom: 2em;height: 100svh;">
-
+  <div style="background: rgb(255, 255, 255); padding-bottom: 2em;height: 80svh;">
     <!-- If not logged in -->
     <!-- <span v-if="!isLoggedIn" class="not-logged-in">You are not logged in!</span> -->
-
     <div v-if="isLoggedIn" class="center-with-flex">
       <div style="padding-top: 2rem;">
-        <button class="button-35">
-          <router-link class="text-links" style="text-decoration: none; color: white;" to="/authorized">
-            Enter authorized user page
-          </router-link>
-        </button>
+
         <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; margin-top: 2em; font-weight: bold;">
           <span>Welcome, {{ userName }}!<br>
             <span style="font-size: 0.75em; color: #c4c4c4;">You are logged in.</span></span><br>
+          <div>
+            <div class="logged-in-button-container">
+              <!-- button router link to authorized page -->
+              <button class="button-35" @click="$router.push('/authorized')"
+                style="text-decoration: none; color: white;">
+                Enter User Area
+              </button>
+              <button class="button-35" style='margin-top: 1rem;' @click="handleLogout">Logout
+              </button>
+            </div>
+          </div>
 
-          <button class="button-35" style='margin-top: 1rem;' @click="handleLogout">Logout
-          </button>
         </div>
       </div>
     </div>
-
     <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isLoggedIn">
       <!-- login -->
       <template v-if="showLogin">
@@ -108,7 +110,7 @@
 
           <p>
             Now connects to self-made PostgreSQL database and allows user registration (sign up / sign in).<br>
-            Stores secure sessions with Axios and JWT tokens.<br>
+            Stores secure sessions with Axios and JWT http cookies.<br>
             This login is a custom setup with Vue.js on Nginx &rarr; Flask/Gunicorn/Python(Docker) &rarr;
             PostgreSQL(Docker).<br>
             For security the user made passwords are stored as hashes in the database, and the password is never stored
@@ -134,7 +136,7 @@
 import SignUpPage from '@/components/Login/SignUpPage.vue'
 import LoginPage from '@/components/Login/LoginPage.vue'
 //import "@/assets/globalCSS.css";
-import axios from 'axios';
+import axiosInstance from '@/axiosInstance';
 
 // Import the Firebase database instance and the Firestore collection and addDoc functions
 //import db from '@/firebase/init.js'
@@ -201,25 +203,29 @@ export default {
       this.userName = localStorage.getItem('userName');
     },
 
-    signOut() {
-      
-      this.isLoggedIn = false;
-      this.showLogin = true;
-      localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
-      localStorage.removeItem('userName'); // remove the authentication state from local storage
+    async signOut() {
+      try {
+        // Send a POST request to the /logout endpoint
+        await axiosInstance.post('/backend/api/logout', {}, { withCredentials: true });
 
-      // Remove the token from Axios default headers
-      if (axios.defaults.headers.common['Authorization']) {
-        delete axios.defaults.headers.common['Authorization'];
+        this.isLoggedIn = false;
+        this.showLogin = true;
+        localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
+        localStorage.removeItem('userName'); // remove the authentication state from local storage
+
+        // Remove the token from Axios default headers
+        if (axiosInstance.defaults.headers.common['Authorization']) {
+          delete axiosInstance.defaults.headers.common['Authorization'];
+        }
+
+        // No need to remove the tokens from local storage, as they are stored in HttpOnly cookies
+
+        this.$router.push('/projects/login'); // Use this.$router to access the router instance
+
+        console.log("User logged out");
+      } catch (error) {
+        console.error('Error logging out:', error);
       }
-      // Remove the userToken from local storage
-      localStorage.removeItem('userToken');
-      localStorage.removeItem('refreshToken');
-      // Can further redirect the user to the main page, or something... 
-
-      this.$router.push('/projects/login'); // Use this.$router to access the router instance
-
-      console.log("User logged out");
     },
     handleLogout() {
       this.signOut();
@@ -283,6 +289,11 @@ p {
   color: #fff;
   border-bottom: 1px solid rgb(218, 220, 224);
   padding-bottom: 2em;
+}
+
+.logged-in-button-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .button-35 {

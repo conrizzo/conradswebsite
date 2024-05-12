@@ -8,7 +8,7 @@ import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 // create router
 import { createRouter, createWebHistory } from 'vue-router';
 
-import axios from 'axios';
+import axiosInstance from '@/axiosInstance';
 
 const HomeView = () => import('../views/HomeView.vue');
 const MainPageToListProjects = () => import('../views/MainPageToListProjects.vue');
@@ -285,7 +285,8 @@ const router = createRouter({
   },
 });
 
-// for Axios 404 authenticationrefreshToken
+// for Axios 404 authenticationrefreshToken - can delete this to edit protected routes in local code and add it back
+/*
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const token = localStorage.getItem('userToken');
@@ -293,9 +294,13 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
   if (requiresAuth && !token) {
     try {
       const refreshToken = localStorage.getItem('refreshToken');
-      const response = await axios.post('/backend/api/refresh', { refresh_token: refreshToken });
+      const response = await axiosInstance.post('/backend/api/refresh', {}, {
+        headers: {
+          'Authorization': `Bearer ${refreshToken}`
+        }
+      });
       localStorage.setItem('userToken', response.data.access_token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
       next();
     } catch (error) {
       next('/projects/login'); // Redirect to login page if refresh fails
@@ -304,7 +309,7 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
     next(); // Make sure to always call next()!
   }
 });
-
+*/
 // this should fix it invoking the next() function multiple times.
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   //const requiresAuth = to.matched.some(record => record.meta.requiresAuth);

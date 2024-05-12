@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import axios from 'axios';
+/* import axios from 'axios'; */
 /* import { signInWithEmailAndPassword } from 'firebase/auth' 
 import { auth } from '@/firebase/init.js' */
-
+import axiosInstance from '@/axiosInstance';
 
 // focus directive to the email input
 const focus = {
@@ -57,6 +57,7 @@ export default {
       userName: '',
     }
   },
+
   methods: {
     async userLogin() {
       console.log('Logging in...')
@@ -67,15 +68,11 @@ export default {
           password: this.password
         };
         // Send a POST request to the Flask backend using Axios
-        const response = await axios.post('/backend/api/login', userData);
+        const response = await axiosInstance.post('/backend/api/login', userData, { withCredentials: true });
         console.log("response data message:", response.data.message);
 
-        // Storing the JWT and refresh token received from the backend
-        localStorage.setItem('userToken', response.data.access_token);
-        localStorage.setItem('refreshToken', response.data.refresh_token);
-
-        // Optionally, set the token as a default header for all Axios requests
-        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
+        // The server should set the JWT and refresh token as HttpOnly cookies,
+        // so there's no need to store them in local storage or set the Authorization header here.
 
         // Update login state or redirect user
         this.$emit('loginSuccessful', this.userName);
@@ -92,6 +89,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
