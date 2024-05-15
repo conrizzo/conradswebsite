@@ -8,7 +8,7 @@ import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 // create router
 import { createRouter, createWebHistory } from 'vue-router';
 
-import axiosInstance from '@/axiosInstance';
+//import axiosInstance from '@/axios';
 
 const HomeView = () => import('../views/HomeView.vue');
 const MainPageToListProjects = () => import('../views/MainPageToListProjects.vue');

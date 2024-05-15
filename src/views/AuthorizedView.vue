@@ -24,7 +24,11 @@
 </template>
 
 <script>
-import axiosInstance from '@/axiosInstance';
+import axiosInstance from '@/axios';
+import Cookies from 'js-cookie';
+
+//import { startTokenRefresh, stopTokenRefresh } from '@/tokenRefresher';
+import { useUserStore } from '@/userStore/store.js';
 
 export default {
   data() {
@@ -34,6 +38,7 @@ export default {
       saveMessageToBackEnd: "",
       showQueryResponse: false,
       queryResponse: null,
+      userStore: useUserStore(),
     };
   },
   computed: {
@@ -42,7 +47,12 @@ export default {
     }
   },
   created() {
-    this.currentUser = localStorage.getItem('userName');
+
+    this.currentUser = this.userStore.userName;
+    //startTokenRefresh();
+  },
+  beforeUnmount() {
+    //stopTokenRefresh();
   },
   watch: {
     queryResponse(newVal) {
@@ -56,27 +66,20 @@ export default {
     },
   },
   methods: {
+
     submitMessage() {
       this.saveAccountData(this.saveMessageToBackEnd);
     },
     async saveAccountData(data) {
       try {
-        // Submit the data
-        const response = await axiosInstance.post('/backend/api/account_data', { data: data }, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-      },
-    });
-
+        const submitResponse =
+          await axiosInstance.post('/backend/api/account_data',
+            { data: data },
+          );
         this.queryResponse = "Submission successful!";
       } catch (error) {
-        if (error.response && error.response.status === 401) {
-          this.queryResponse = "Submission failed due to unauthorized access!";
-        } else {
-          this.queryResponse = "Submission failed!";
-          console.error("The error", error);
-        }
+        this.queryResponse = "Submission failed!";
+        console.error("The error", error);
       }
     },
   },
@@ -138,4 +141,4 @@ h2 {
 .message-field:focus {
   outline: 1px solid #3a3a3a
 }
-</style>
+</style>@/axiosinstance

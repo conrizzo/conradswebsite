@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axiosInstance from '@/axiosInstance';
+import axiosInstance from '@/axios';
 /*
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '@/firebase/init.js' */
@@ -142,4 +142,4 @@ button {
   margin-top: 2em;
   border: 1px solid #cecece;
 }
-</style>
+</style>@/axiosinstance

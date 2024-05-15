@@ -77,7 +77,8 @@
                 on the same Docker network. Added in a <a class="text-links"
                   href="https://www.postgresql.org/">PostgreSQL</a> docker container, and also SQLite as well to setup
                 some basic database
-                functionalities. Also uses Ubuntu ufw - Uncomplicated Firewall, and
+                functionalities. The user login now uses the PostgreSQL to create password hashes and user sessions
+                with secure http cookies. Allows reading and writing to PostgreSQL from the frontend. Also uses Ubuntu ufw - Uncomplicated Firewall, and
                 <a class="text-links" href="https://github.com/fail2ban/fail2ban">fail2ban</a> to block malicious IPs
                 and bots and such.
               </li>

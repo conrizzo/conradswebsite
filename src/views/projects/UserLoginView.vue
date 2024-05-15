@@ -6,7 +6,7 @@
   <!-- tried downgrading to "firebase": "9.0.2" -->
   <!---<CookieAccept />-->
 
-  <div style="background: rgb(255, 255, 255); padding-bottom: 2em;height: 80svh;">
+  <div style="background: rgb(255, 255, 255); padding-bottom: 2em;height: 100svh;">
     <!-- If not logged in -->
     <!-- <span v-if="!isLoggedIn" class="not-logged-in">You are not logged in!</span> -->
     <div v-if="isLoggedIn" class="center-with-flex">
@@ -136,7 +136,8 @@
 import SignUpPage from '@/components/Login/SignUpPage.vue'
 import LoginPage from '@/components/Login/LoginPage.vue'
 //import "@/assets/globalCSS.css";
-import axiosInstance from '@/axiosInstance';
+import axiosInstance from '@/axios';
+import { useUserStore } from '@/userStore/store.js';
 
 // Import the Firebase database instance and the Firestore collection and addDoc functions
 //import db from '@/firebase/init.js'
@@ -146,15 +147,12 @@ import axiosInstance from '@/axiosInstance';
 //import CookieAccept from "@/components/CookieAccept.vue";
 
 export default {
-
   components: { SignUpPage, LoginPage, },
-
   data() {
     return {
       isLoggedIn: false,
       showLogin: true,
       userName: '',
-      name: '',
       message: '',
       messageLength: 50,
       submissions: [],
@@ -162,66 +160,37 @@ export default {
       lastMessageSentTime: 0,
       timeElapsed: 0,
       errorMessage: '',
+      userStore: useUserStore(),
     }
   },
   mounted() {
-    // userName in local storage, set logged in true - for if user already logged in, came back to page
-    if (localStorage.getItem('userName')) {
-      this.isLoggedIn = true; // 
-
-      // set localstorage username to displayed username
-      const userName = localStorage.getItem('userName');
-      this.userName = userName;
+    this.userStore.initializeStore();
+    if (this.userStore.isUserLoggedIn) {
+      console.log("User logged in: ", this.userStore.isUserLoggedIn);
+      console.log("Username: ", this.userStore.userName);
+      this.userName = this.userStore.userName;
+      this.isLoggedIn = this.userStore.isUserLoggedIn;
     }
   },
-  computed: {
-    textStyle() {
-      return {
-        color: this.name.length > 0 ? '#000' : 'red'
-      }
-    },
-    inputLength() {
-      return `${this.name.length}/${this.messageLength}`;
-    },
-  },
-
-
-
   methods: {
-
     handleLoginSuccess(userName) {
-      // set login to true to confirm a user logged in
-      console.log(userName);
-      this.isLoggedIn = true;
+      this.userStore.loginSuccess(userName);
       this.showLogin = false;
-
-      localStorage.setItem('isLoggedIn', 'true'); // store the authentication state in local storage
-
-
-      localStorage.setItem('userName', userName); // store the username in local storage    
-      console.log("User logged in: ", this.isLoggedIn);
-      this.userName = localStorage.getItem('userName');
+      this.isLoggedIn = true;
+      console.log(this.userStore.isUserLoggedIn);
+      this.userName = this.userStore.userName;
+      console.log("User logged in: ", this.userStore.isUserLoggedIn);
     },
-
     async signOut() {
       try {
-        // Send a POST request to the /logout endpoint
         await axiosInstance.post('/backend/api/logout', {}, { withCredentials: true });
-
         this.isLoggedIn = false;
         this.showLogin = true;
-        localStorage.removeItem('isLoggedIn'); // remove the authentication state from local storage
-        localStorage.removeItem('userName'); // remove the authentication state from local storage
-
-        // Remove the token from Axios default headers
+        this.userStore.logout();
         if (axiosInstance.defaults.headers.common['Authorization']) {
           delete axiosInstance.defaults.headers.common['Authorization'];
         }
-
-        // No need to remove the tokens from local storage, as they are stored in HttpOnly cookies
-
-        this.$router.push('/projects/login'); // Use this.$router to access the router instance
-
+        this.$router.push('/projects/login');
         console.log("User logged out");
       } catch (error) {
         console.error('Error logging out:', error);
@@ -231,9 +200,11 @@ export default {
       this.signOut();
       //document.cookie = 'isLoggedIn=false; SameSite=Strict';
       //document.cookie = `userName=${""}; SameSite=Strict`;     
-    },
+    }
+  }
+}
 
-  }, // add a closing curly brace here
+
   /*
   created() {
     const colRef = collection(db, 'submissions')
@@ -248,7 +219,6 @@ export default {
       submissions.sort((a, b) => a.timestamp.toMillis() - b.timestamp.toMillis())
       this.submissions = submissions
     })
- 
     // retrieve the authentication state from local storage
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn === 'true') {
@@ -256,7 +226,7 @@ export default {
     }
   },
   */
-}
+
 
 </script>
 
@@ -436,4 +406,4 @@ textarea:focus {
 
 
 }
-</style>
+</style>@/axiosinstance

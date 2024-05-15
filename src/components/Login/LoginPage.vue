@@ -37,7 +37,7 @@
 /* import axios from 'axios'; */
 /* import { signInWithEmailAndPassword } from 'firebase/auth' 
 import { auth } from '@/firebase/init.js' */
-import axiosInstance from '@/axiosInstance';
+import axiosInstance from '@/axios';
 
 // focus directive to the email input
 const focus = {
@@ -134,4 +134,4 @@ input:focus {
   margin-top: 2em;
   border: 1px solid #cecece;
 }
-</style>
+</style>@/axiosinstance
