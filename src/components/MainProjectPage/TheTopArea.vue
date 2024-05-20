@@ -35,7 +35,7 @@
                     <ul style="font-size: 1rem; text-align: left; color: #fff; padding: 0.5rem; padding-left: 2rem;">
                         <li>
                             Lastest ongoing project is <router-link class="home-text-links list-links-text-decoration"
-                                to="/projects/login">User logins</router-link> with my
+                                to="/UserSignIn">User logins</router-link> with my
                             PostgreSQL database.
                             The <router-link class="home-text-links list-links-text-decoration"
                                 to="/projects/country-music-generator">Country Music Generator</router-link> will

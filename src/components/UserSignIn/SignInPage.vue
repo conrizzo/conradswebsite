@@ -1,8 +1,8 @@
 <template>
-  <div class="login-form-container">
-    <div class="login-form-styling">
-      <form @submit.prevent="userLogin">
-        <h2 style="padding: 0.5em; color: rgb(18,18,18);">Log in</h2>
+  <div class="signIn-form-container">
+    <div class="signIn-form-styling">
+      <form @submit.prevent="userSignIn">
+        <h2 style="padding: 0.5em; color: rgb(18,18,18);">Sign In</h2>
         <!--
         <div style="display: flex; flex-direction: column;">
           <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
@@ -21,7 +21,7 @@
         </div>
 
         <button style="margin-top: 1rem;" class="button-35">
-          Log in
+          Sign In
         </button>
 
         <div style="margin-top: 1em;">
@@ -45,7 +45,7 @@ const focus = {
 }
 
 export default {
-  emits: ["loggedIn"], // declare the loggedIn event here
+  emits: ["SignedIn"], // declare the SignedIn event here
   directives: {
     focus
   },
@@ -59,8 +59,8 @@ export default {
   },
 
   methods: {
-    async userLogin() {
-      console.log('Logging in...')
+    async userSignIn() {
+      console.log('Signing in...')
       try {
         // Prepare the user data
         const userData = {
@@ -68,16 +68,16 @@ export default {
           password: this.password
         };
         // Send a POST request to the Flask backend using Axios
-        const response = await axiosInstance.post('/backend/api/login', userData, { withCredentials: true });
+        const response = await axiosInstance.post('/backend/api/sign_in', userData, { withCredentials: true });
         console.log("response data message:", response.data.message);
 
         // The server should set the JWT and refresh token as HttpOnly cookies,
         // so there's no need to store them in local storage or set the Authorization header here.
 
-        // Update login state or redirect user
-        this.$emit('loginSuccessful', this.userName);
+        // Update signIn state or redirect user
+        this.$emit('signInSuccessful', this.userName);
         // Redirect to a protected route or update UI state
-        console.log('login successful!');
+        console.log('sign In successful!');
       } catch (error) {
         if (error.response && error.response.data) {
           this.errorMessage = `Error: ${error.response.data.message}`;
@@ -120,13 +120,13 @@ input:focus {
   border-color: rgb(17, 255, 180);
 }
 
-.login-form-container {
+.signIn-form-container {
   display: flex;
   justify-content: center;
   height: 20.5rem;
 }
 
-.login-form-styling {
+.signIn-form-styling {
   padding: 1em;
   background: rgb(245, 245, 245);
   width: fit-content;
@@ -134,4 +134,4 @@ input:focus {
   margin-top: 2em;
   border: 1px solid #cecece;
 }
-</style>@/axiosinstance
+</style>

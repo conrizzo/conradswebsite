@@ -6,10 +6,10 @@
   <!-- tried downgrading to "firebase": "9.0.2" -->
   <!---<CookieAccept />-->
 
-  <div style="background: rgb(255, 255, 255); padding-bottom: 2em;height: 100svh;">
+  <div style="background: rgb(255, 255, 255); padding-bottom: 2em; min-height: 100svh;">
     <!-- If not logged in -->
-    <!-- <span v-if="!isLoggedIn" class="not-logged-in">You are not logged in!</span> -->
-    <div v-if="isLoggedIn" class="center-with-flex">
+    <!-- <span v-if="!isSignedIn" class="not-logged-in">You are not logged in!</span> -->
+    <div v-if="isSignedIn" class="center-with-flex">
       <div style="padding-top: 2rem;">
 
         <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; margin-top: 2em; font-weight: bold;">
@@ -18,11 +18,11 @@
           <div>
             <div class="logged-in-button-container">
               <!-- button router link to authorized page -->
-              <button class="button-35" @click="$router.push('/authorized')"
-                style="text-decoration: none; color: white;">
+              <button class="clean-button highlight-green" @click="$router.push('/authorized')"
+                style="margin-right: 0.5rem;">
                 Enter User Area
               </button>
-              <button class="button-35" style='margin-top: 1rem;' @click="handleLogout">Logout
+              <button class="clean-button highlight-red" @click="handleSignOut">Sign Out
               </button>
             </div>
           </div>
@@ -30,24 +30,24 @@
         </div>
       </div>
     </div>
-    <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isLoggedIn">
-      <!-- login -->
-      <template v-if="showLogin">
-        <LoginPage @loginSuccessful="handleLoginSuccess" />
+    <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isSignedIn">
+      <!-- Sign in -->
+      <template v-if="showSignIn">
+        <SignInPage @signInSuccessful="handleSignInSuccess" />
         <div style="justify-content: center; display: flex;">
-          <span class="login-information" style="padding: 1em;">No account yet?
+          <span class="signIn-information" style="padding: 1em;">No account yet?
             <br>
-            <a class="login-sign-up" @click="showLogin = false">Sign up</a>
+            <a class="signIn-sign-up" @click="showSignIn = false">Sign up</a>
           </span>
         </div>
       </template>
       <template v-else>
-        <!-- <SignUpPage @registrationSuccessful="handleLoginSuccess" /> -->
+        <!-- <SignUpPage @registrationSuccessful="handlesignInSuccess" /> -->
         <SignUpPage />
         <div style="justify-content: center; display: flex;">
-          <span class="login-information" style="padding: 1em;">Already registered?
+          <span class="signIn-information" style="padding: 1em;">Already registered?
             <br>
-            <a class="login-sign-up" style="cursor: pointer;" @click="showLogin = true">Log in</a></span>
+            <a class="signIn-sign-up" style="cursor: pointer;" @click="showSignIn = true">Sign In</a></span>
         </div>
       </template>
     </div>
@@ -110,17 +110,21 @@
 
           <p>
             Now connects to self-made PostgreSQL database and allows user registration (sign up / sign in).<br>
-            Stores secure sessions with Axios and JWT http cookies.<br>
-            This login is a custom setup with Vue.js on Nginx &rarr; Flask/Gunicorn/Python(Docker) &rarr;
+            Stores secure sessions with Axios and JWT http cookies and CSRF tokens for access, and implicitly +
+            explicitly refreshing the access cookies for user sessions.<br>
+            This 'sign in' is a custom self-made setup with Vue.js on Nginx &rarr; Flask/Gunicorn/Python(Docker) &rarr;
             PostgreSQL(Docker).<br>
             For security the user made passwords are stored as hashes in the database, and the password is never stored
             anywhere.
           </p>
-
-          <br>
+          <p>
+            This is fully functional now, but still under development! At the moment all data and users will be deleted
+            periodically as
+            more testing occurs, so there isn't any long term data storage here.
+          </p>
           <p>
             This page was previously setup with <a href="https://firebase.google.com/">Firebase</a> and
-            allowed logins, user sessions, message posting.
+            allowed sign in, user sessions, message posting.
           </p>
 
         </div>
@@ -133,8 +137,8 @@
 <script>
 
 
-import SignUpPage from '@/components/Login/SignUpPage.vue'
-import LoginPage from '@/components/Login/LoginPage.vue'
+import SignUpPage from '@/components/UserSignIn/SignUpPage.vue'
+import SignInPage from '@/components/UserSignIn/SignInPage.vue'
 //import "@/assets/globalCSS.css";
 import axiosInstance from '@/axios';
 import { useUserStore } from '@/userStore/store.js';
@@ -147,11 +151,11 @@ import { useUserStore } from '@/userStore/store.js';
 //import CookieAccept from "@/components/CookieAccept.vue";
 
 export default {
-  components: { SignUpPage, LoginPage, },
+  components: { SignUpPage, SignInPage, },
   data() {
     return {
-      isLoggedIn: false,
-      showLogin: true,
+      isSignedIn: false,
+      showSignIn: true,
       userName: '',
       message: '',
       messageLength: 50,
@@ -165,67 +169,67 @@ export default {
   },
   mounted() {
     this.userStore.initializeStore();
-    if (this.userStore.isUserLoggedIn) {
-      console.log("User logged in: ", this.userStore.isUserLoggedIn);
+    if (this.userStore.isUserSignedIn) {
+      console.log("User logged in: ", this.userStore.isUserSignedIn);
       console.log("Username: ", this.userStore.userName);
       this.userName = this.userStore.userName;
-      this.isLoggedIn = this.userStore.isUserLoggedIn;
+      this.isSignedIn = this.userStore.isUserSignedIn;
     }
   },
   methods: {
-    handleLoginSuccess(userName) {
-      this.userStore.loginSuccess(userName);
-      this.showLogin = false;
-      this.isLoggedIn = true;
-      console.log(this.userStore.isUserLoggedIn);
+    handleSignInSuccess(userName) {
+      this.userStore.signInSuccess(userName);
+      this.showSignIn = false;
+      this.isSignedIn = true;
+      console.log(this.userStore.isUserSignedIn);
       this.userName = this.userStore.userName;
-      console.log("User logged in: ", this.userStore.isUserLoggedIn);
+      console.log("User logged in: ", this.userStore.isUserSignedIn);
     },
     async signOut() {
       try {
-        await axiosInstance.post('/backend/api/logout', {}, { withCredentials: true });
-        this.isLoggedIn = false;
-        this.showLogin = true;
-        this.userStore.logout();
+        await axiosInstance.post('/backend/api/sign_out', {}, { withCredentials: true });
+        this.isSignedIn = false;
+        this.showSignIn = true;
+        this.userStore.signOut();
         if (axiosInstance.defaults.headers.common['Authorization']) {
           delete axiosInstance.defaults.headers.common['Authorization'];
         }
-        this.$router.push('/projects/login');
+        this.$router.push('/UserSignIn');
         console.log("User logged out");
       } catch (error) {
         console.error('Error logging out:', error);
       }
     },
-    handleLogout() {
+    handleSignOut() {
       this.signOut();
-      //document.cookie = 'isLoggedIn=false; SameSite=Strict';
+      //document.cookie = 'isSignedIn=false; SameSite=Strict';
       //document.cookie = `userName=${""}; SameSite=Strict`;     
     }
   }
 }
 
 
-  /*
-  created() {
-    const colRef = collection(db, 'submissions')
-    onSnapshot(colRef, (querySnapshot) => {
-      const submissions = []
-      querySnapshot.forEach((doc) => {
-        const submission = { id: doc.id, ...doc.data() }
-        if (submission.timestamp) {
-          submissions.push(submission)
-        }
-      })
-      submissions.sort((a, b) => a.timestamp.toMillis() - b.timestamp.toMillis())
-      this.submissions = submissions
+/*
+created() {
+  const colRef = collection(db, 'submissions')
+  onSnapshot(colRef, (querySnapshot) => {
+    const submissions = []
+    querySnapshot.forEach((doc) => {
+      const submission = { id: doc.id, ...doc.data() }
+      if (submission.timestamp) {
+        submissions.push(submission)
+      }
     })
-    // retrieve the authentication state from local storage
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-      this.isLoggedIn = true;
-    }
-  },
-  */
+    submissions.sort((a, b) => a.timestamp.toMillis() - b.timestamp.toMillis())
+    this.submissions = submissions
+  })
+  // retrieve the authentication state from local storage
+  const isSignedIn = localStorage.getItem('isSignedIn');
+  if (isSignedIn === 'true') {
+    this.isSignedIn = true;
+  }
+},
+*/
 
 
 </script>
@@ -243,9 +247,8 @@ h2 {
 
 p {
   max-width: 80rem;
+  padding-bottom: 1rem;
 }
-
-
 
 .top-text-sub-container {
   max-width: calc(100% - 20em);
@@ -263,15 +266,16 @@ p {
 
 .logged-in-button-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
 }
 
-.button-35 {
-  background-color: rgb(130, 130, 130);
-}
 
-.button-35:hover {
+.highlight-green:hover {
   box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;
+}
+
+.highlight-red:hover {
+  box-shadow: #ff4a4a 0 0 0 2px, transparent 0 0 0 0;
 }
 
 .error-message {
@@ -368,16 +372,15 @@ button {
   padding: 2rem;
   border-radius: 1em;
   border: 1px solid #fcfcfc;
-
 }
 
-.login-sign-up {
+.signIn-sign-up {
   color: rgb(11, 87, 208);
   cursor: pointer;
   font-size: 1.25rem;
 }
 
-.login-sign-up:hover {
+.signIn-sign-up:hover {
   text-decoration: underline;
 
 }
@@ -402,8 +405,5 @@ textarea:focus {
     padding: 1em;
   }
 
-
-
-
 }
-</style>@/axiosinstance
+</style>

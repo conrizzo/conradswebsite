@@ -4,26 +4,34 @@ import { defineStore } from 'pinia';
 export const useUserStore = defineStore({
     id: 'user',
     state: () => ({
-        isUserLoggedIn: false,
+        isUserSignedIn: false,
         userName: null,
     }),
     actions: {
-        loginSuccess(userName) {
-            this.isUserLoggedIn = true;
+        signInSuccess(userName) {
+            this.isUserSignedIn = true;
             this.userName = userName;
-            localStorage.setItem('user', JSON.stringify({ isUserLoggedIn: true, userName }));
+            localStorage.setItem('user', JSON.stringify({ isUserSignedIn: true, userName }));
         },
-        logout() {
-            this.isUserLoggedIn = false;
+        signOut() {
+            this.isUserSignedIn = false;
             this.userName = null;
             localStorage.removeItem('user');
         },
         initializeStore() {
+            /*
+            const user = localStorage.getItem('user');
+            if (user) {
+                this.isUserSignedIn = user.isUserSignedIn;
+                this.userName = user;
+            }
+           */
             const user = JSON.parse(localStorage.getItem('user'));
             if (user) {
-                this.isUserLoggedIn = user.isUserLoggedIn;
+                this.isUserSignedIn = user.isUserSignedIn;
                 this.userName = user.userName;
             }
+
         },
     },
 });

@@ -50,12 +50,13 @@
                                     <router-link class="text-links link-customization about-color" to="/about">About
                                     </router-link>
                                 </li>
-                                <!--
+
                                 <li>
-                                    <a class="text-links link-customization about-color" href="https://project.conradswebsite.com/">test area
-                                    </a>
+                                    <router-link class="text-links link-customization about-color" to="/UserSignIn">Sign
+                                        in
+                                    </router-link>
                                 </li>
-                                -->
+
                                 <li>
 
                                     <a class="text-links link-customization exit-padding"
@@ -248,7 +249,7 @@ ul {
 
 .ul-formatting {
     text-align: left;
-    height: 11rem;
+    height: 14.5rem;
     width: 25rem;
     margin-left: 2.5rem;
 }
@@ -263,7 +264,6 @@ li:last-child {
     margin-bottom: 0rem;
 }
 
-.title-text-spacing {}
 
 h1 {
     line-height: 0.9;
@@ -520,7 +520,7 @@ h2 {
 */
     .ul-formatting {
         text-align: left;
-        height: 9rem;
+        height: 11.5rem;
         width: 18rem;
         margin-left: 1.9rem;
         font-size: 1.8rem;

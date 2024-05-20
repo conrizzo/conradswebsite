@@ -25,7 +25,7 @@ const WeatherView = () => import('../views/projects/WeatherView.vue');
 const LinksView = () => import('../views/projects/LinksView.vue');
 const CowGameView = () => import('../views/projects/CowGameView.vue');
 const ProjectDetailsView = () => import('../views/projects/ProjectDetailsView.vue');
-const UserLoginView = () => import('../views/projects/UserLoginView.vue');
+const UserSignInView = () => import('../views/UserSignInView.vue');
 const SortingAlgorithmsView = () => import('../views/projects/SortingAlgorithmsView.vue');
 const RustWebAssemblyView = () => import('../views/projects/RustWebAssemblyView.vue');
 const CardsView = () => import('../views/projects/CardsView.vue');
@@ -89,6 +89,12 @@ const routes = [
   },
 
   {
+    path: '/UserSignIn',
+    name: 'UserSignInView',
+    component: UserSignInView,
+  },
+
+  {
     path: '/projects',
     name: 'projects',
     component: ProjectsView,
@@ -142,11 +148,7 @@ const routes = [
           description: 'A basic game where the user can drag and drop food to feed the cows. Made with Vue.js and TypeScript.',
         },
       },
-      {
-        path: 'login',
-        name: 'UserLoginView',
-        component: UserLoginView,
-      },
+
       {
         path: 'sortingAlgorithms',
         name: 'SortingAlgorithmsView',
@@ -303,7 +305,7 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
       axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
       next();
     } catch (error) {
-      next('/projects/login'); // Redirect to login page if refresh fails
+      next('/UserSignIn'); // Redirect to login page if refresh fails
     }
   } else {
     next(); // Make sure to always call next()!

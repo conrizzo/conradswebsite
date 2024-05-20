@@ -43,13 +43,13 @@
       </div>
 
       <div class="small-resolution-h2">
-        <router-link to="/projects/login">
+        <router-link to="/UserSignIn">
           Sign In
         </router-link>
       </div>
 
       <div style="display: flex; align-items: center;">
-        <router-link class="hide-sign-in-text-at-low-res" to="/projects/login">Sign In</router-link>
+        <router-link class="hide-sign-in-text-at-low-res" to="/UserSignIn">Sign In</router-link>
         <!--
         <div>
           <div class="header-logo-container">

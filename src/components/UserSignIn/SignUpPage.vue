@@ -7,17 +7,18 @@
 
         <div style="display: flex; flex-direction: column;">
           <label class="label-title-styling" for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a
-            Username:</label>
+            Username</label>
           <input name="text" type="text" placeholder="User Name" required v-model="userName" maxlength="20" v-focus>
         </div>
         <div style="display: flex; flex-direction: column;">
-          <label class="label-title-styling" for="email" style="align-self: flex-start; padding-left: 0.25em;">Enter an
-            email:</label>
-          <input name="email" type="email" placeholder="Email" required v-model="email">
+          <label class="label-title-styling" for="email" style="align-self: flex-start; padding-left: 0.25em;">
+            Email (Not Required)</label>
+          <!-- Note: required attribute removed for email - does not need it -->
+          <input name="email" type="email" placeholder="Email" v-model="email">
         </div>
         <div style="display: flex; flex-direction: column;">
           <label class="label-title-styling" for="password"
-            style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
+            style="align-self: flex-start; padding-left: 0.25em;">Password</label>
           <input name="password" type="password" placeholder="Password" required v-model="password">
         </div>
         <button style="margin: 0.5em; margin-top: 1rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
@@ -41,7 +42,7 @@ const focus = {
 
 export default {
   // register event to emit
-  emits: ['loggedIn'],
+  emits: ['SignedIn'],
   directives: {
     focus
   },
@@ -59,12 +60,12 @@ export default {
       return this.isSigningUp ? 'Signing Up...' : 'Sign Up';
     },
     isFormValid() {
-      return this.userName && this.email && this.password;
+      return this.userName && this.password;
     }
   },
   methods: {
     async signUp() {
-      if (!this.isFormValid || this.userName.trim() === '' || this.email.trim() === '' || this.password.trim() === '') {
+      if (!this.isFormValid || this.userName.trim() === '' || this.password.trim() === '') {
         return;
       }
       this.signUpMessage = null; // reset the message
@@ -142,4 +143,4 @@ button {
   margin-top: 2em;
   border: 1px solid #cecece;
 }
-</style>@/axiosinstance
+</style>
