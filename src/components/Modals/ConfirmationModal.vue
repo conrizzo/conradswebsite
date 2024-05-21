@@ -143,9 +143,6 @@ li+li {
     font-size: 1.25em;
   }
 
-  .modalParameters {
-    width: calc(100% - 4%);
-    margin-left: 2%;
-  }
+  
 }
 </style>

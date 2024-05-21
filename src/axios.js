@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://conradswebsite.com/',  
+  baseURL: 'https://conradswebsite.com/',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -10,7 +10,7 @@ const instance = axios.create({
 });
 
 const refreshInstance = axios.create({
-  baseURL: 'https://conradswebsite.com/',  
+  baseURL: 'https://conradswebsite.com/',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -33,15 +33,15 @@ function getCsrfRefreshToken() {
 
 instance.interceptors.request.use(config => {
   let csrfToken = getCsrfAccessToken(); // Default to CSRF access token
-  
+
   if (config.url === '/backend/api/refresh') {
     csrfToken = getCsrfRefreshToken(); // Use CSRF refresh token for refresh route
   }
-  
+
   if (csrfToken) {
     config.headers['X-CSRF-TOKEN'] = csrfToken;
   }
-  
+
   return config;
 });
 

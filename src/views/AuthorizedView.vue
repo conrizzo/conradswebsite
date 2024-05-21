@@ -2,6 +2,7 @@
   <div class="container">
     <div class="inner-container-for-width">
 
+      <!-- Modal for confirmation-->
       <div v-if="confirmationCheck">
         <confirmationModal @close="toggleModalToConfirmEntryDeletion()">
           <div>
@@ -10,85 +11,85 @@
             <button class="clean-button" @click="toggleModalToConfirmEntryDeletion()">No</button>
           </div>
         </confirmationModal>
-
       </div>
-      <h1 style="color: rgb(245, 53, 147);">{{ pageTitle }}</h1>
 
+      <!-- Modal for rate limit error -->
+      <div v-if="showQueryResponse">
+        <confirmationModal @close="toggleModalToConfirmEntryDeletion()">
+          <div>
+            {{ queryResponse }}
+          </div>
+        </confirmationModal>
+      </div>
+
+      <!-- Main form -->
+      <h1 style="color: rgb(245, 53, 147);">{{ pageTitle }}</h1>
       <form class="authorized-form" @submit.prevent="submitMessage">
         <h2>Save a message:</h2>
         <textarea class="message-field" v-model="saveMessageToBackEnd" rows="5"
           placeholder="Send a message to PostgreSQL" required></textarea><br>
-        <button style="display: block; margin-left: 0;" class="clean-button" type="submit">Submit</button>
-      </form>
-      <div style="height: 1rem;">
-        <div v-if="showQueryResponse">
-          <p>{{ queryResponse }}</p>
-        </div>
-      </div>
-      <div style="color: rgb(83, 21, 23); text-align: left;">
-        <div style="padding: 1rem;">
-          <p>{{ pageContent }}</p>
+        <div style="display: flex; align-items: center;">
+          <button style="display: block; margin-left: 0; margin-right: 0.5rem;" class="clean-button"
+            type="submit">Submit</button>
 
+        </div>
+      </form>
+
+      <!-- Message area -->
+      <div class="message-if-else-area">
+        <div>
+          <p>{{ pageContent }}</p>
           <p v-if="userName !== null">You are logged in as {{ userName }}</p>
           <p v-else>Loading...</p>
-        </div>
-
-        <button class="clean-button" style="margin-left: 1rem; margin-bottom: .5rem;"
-          @click='viewAllMessages = !viewAllMessages'>
-          <span v-if="viewAllMessages === false">View All</span>
-          <span v-else>View last 5</span>
-        </button>
-
-        <!-- Show last 5 messages by default, show all messages with button click -->
-        <div v-if="viewAllMessages === false">
-          <h3>Last 5 messages sent:</h3>
-
-          <div class="get-message-left-margin">
-            <ul>
-              <li v-for="(message, index) in userMessagesFromBackEnd.slice(-5)" :key="message.id"
-                class="li-flex-wrapper">
-                <span style="margin-top: 0.2rem;">{{ message }}</span>
-                <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
-                  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                  style="display: inline-block; cursor: pointer; flex-shrink: 0;">
-                  <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" d="M18 6 6 18M6 6l12 12">
-                  </path>
-                </svg>
-
-              </li>
-            </ul>
-          </div>
-
-        </div>
-        <div v-else> <!-- show all messages-->
-          <h3>All messages sent:</h3>
-          <div class="get-message-left-margin">
-            <ul>
-              <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id" class="li-flex-wrapper">
-
-
-                <span style="margin-top: 0.2rem;">{{ message }}</span>
-                <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
-                  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                  style="display: inline-block; cursor: pointer; flex-shrink: 0;">
-                  <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" d="M18 6 6 18M6 6l12 12">
-                  </path>
-                </svg>
-              </li>
-            </ul>
+          <button class="clean-button" style="margin-bottom: .5rem;" @click='viewAllMessages = !viewAllMessages'>
+            <span v-if="viewAllMessages === false">View All</span>
+            <span v-else>View last 5</span>
+          </button>
+          <div>
+            <!-- Show last 5 messages by default, show all messages with button click -->
+            <div v-if="viewAllMessages === false">
+              <h3>Last 5 messages sent:</h3>
+              <div class="get-message-left-margin">
+                <ul>
+                  <li v-for="(message, index) in userMessagesFromBackEnd.slice(-5)" :key="message.id"
+                    class="li-flex-wrapper">
+                    <span style="margin-top: 0.2rem;">{{ message }}</span>
+                    <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
+                      xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                      style="display: inline-block; cursor: pointer; flex-shrink: 0;">
+                      <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" d="M18 6 6 18M6 6l12 12">
+                      </path>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div v-else> <!-- show all messages-->
+              <h3>All messages sent:</h3>
+              <div class="get-message-left-margin">
+                <ul>
+                  <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id" class="li-flex-wrapper">
+                    <span style="margin-top: 0.2rem;">{{ message }}</span>
+                    <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
+                      xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                      style="display: inline-block; cursor: pointer; flex-shrink: 0;">
+                      <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" d="M18 6 6 18M6 6l12 12">
+                      </path>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
-
 import axiosInstance from '@/axios';
 import { useUserStore } from '@/userStore/store.js';
 import confirmationModal from '@/components/Modals/ConfirmationModal.vue';
@@ -103,7 +104,7 @@ export default {
       saveMessageToBackEnd: "",
       showQueryResponse: false,
       queryResponse: null,
-      userMessagesFromBackEnd: ['asdfassf a sdfa dfas dfasdf asdfasdfdf', 'asdfassf a sdfa dfas dfasdf asdfasdfdf', 'asdfassf a sdfa dfas dfasdf asdfasdfdf', 'asdfassf a sdfa dfas dfasdf asdfasdfdf'],
+      userMessagesFromBackEnd: [],
       userName: '',
       userStore: useUserStore(),
       viewAllMessages: false,
@@ -135,11 +136,9 @@ export default {
     },
   },
   methods: {
-
     submitMessage() {
       this.saveAccountData(this.saveMessageToBackEnd);
     },
-
     async saveAccountData(data) {
       try {
         const submitResponse =
@@ -150,15 +149,20 @@ export default {
         this.queryResponse = "Submission successful!";
       }
       catch (error) {
-        this.queryResponse = "Submission failed! Likely rate limit, or try signing in again.";
-        // Set stored user data to default values. 
-        // Sign out the user. Set username to empty string.
-        //this.userStore.isUserSignedIn = false;
-        //this.userStore.userName = '';
-        // Redirect to login page if unauthorized after 1 second - so error message can be seen briefly
+
+        // Too many requests error handling
+        if (error.response && error.response.status === 429) {
+          this.queryResponse = "Too many requests, please try again in 10 seconds.";
+          return
+        }
+
+        // Redirect to login page if user session ended and it's not a rate limiting error
         setTimeout(() => {
+          this.userStore.isUserSignedIn = false;
+          this.userStore.userName = '';
+          this.userStore.signOut();
           this.$router.push('/UserSignIn');
-        }, 1000);
+        }, 3000);
         console.error("The error", error);
       }
     },
@@ -198,10 +202,11 @@ export default {
     toggleModalToConfirmEntryDeletion(select_item) {
       this.confirmationCheck = !this.confirmationCheck;
       this.selectedItemToDelete = select_item;
-      console.log("selectedItemToDelete:", this.selectedItemToDelete);
+      //console.log("selectedItemToDelete:", this.selectedItemToDelete);
     },
+
     deleteAccountDataConfirmation() {
-      
+
       //this.confirmationCheck = !this.confirmationCheck;
       this.deleteAccountData(this.selectedItemToDelete);
       this.toggleModalToConfirmEntryDeletion();
@@ -209,8 +214,9 @@ export default {
 
   },
 };
-
 </script>
+
+
 
 <style scoped>
 h1 {
@@ -221,12 +227,15 @@ h1 {
 
 h2 {
   color: rgb(255, 255, 255);
-
 }
 
 h1,
 h2 {
   text-align: left;
+}
+
+p {
+  padding-bottom: 1rem;
 }
 
 .container {
@@ -248,7 +257,7 @@ h2 {
   max-width: 40rem;
   resize: none;
   padding: 1rem;
-
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   border-radius: 0.5rem;
   background: linear-gradient(to right, orange, red);
 }
@@ -268,13 +277,19 @@ h2 {
   outline: none;
 }
 
-
 .get-message-left-margin ul {
-
   list-style-type: none;
   width: auto;
 }
 
+.message-if-else-area {
+  text-align: left;
+  background: white;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
 
 .svg-x-hover-color-highlight {
@@ -284,8 +299,7 @@ h2 {
 }
 
 .svg-x-wrapper:hover .svg-x-hover-color-highlight {
-  stroke: rgb(245, 53, 147);
-  /* Your desired hover color */
+  stroke: rgb(245, 53, 147);  
   fill: green !important;
   background: green !important;
 }
@@ -294,6 +308,5 @@ h2 {
   display: flex;
   justify-content: space-between;
   width: calc(100%);
-
 }
 </style>
