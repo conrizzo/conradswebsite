@@ -86,7 +86,7 @@
               <li>
                 15 May 2024 - After extensive debugging, the backend now correctly uses http secure access cookies and
                 refresh cookies with CSRF tokens for user sign in and user sessions. These
-                user sessions expire after 10 minutes, sign ins use hashed passwords from my own Docker postgreSQL
+                user sessions expire after 30 minutes, sign ins use hashed passwords from my own Docker postgreSQL
                 database.
                 The refresh cookies both explicitly and implicitly refresh the access cookies.
                 If the usersession is not expired, interactions will extend the session, and if the session is expired,
@@ -162,7 +162,7 @@
                 und Aktualisierungscookies mit CSRF-Token für Benutzeranmeldung und Benutzersitzungen. Diese
                 Benutzersitzungen
                 dauern
-                10 Minuten, Anmeldungen verwenden gehashte Passwörter aus meiner eigenen Docker-PostgreSQL-Datenbank.
+                30 Minuten, Anmeldungen verwenden gehashte Passwörter aus meiner eigenen Docker-PostgreSQL-Datenbank.
                 Die Aktualisierungscookies aktualisieren sowohl explizit als auch implizit die Zugriffscookies.
                 Wenn die Benutzersitzung nicht abgelaufen ist, werden Interaktionen die Sitzung verlängern, und wenn die
                 Sitzung abgelaufen ist,

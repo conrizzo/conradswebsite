@@ -3,14 +3,8 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="modalParameters">
       <button class="close" @click.self="closeModal"></button>
-
-      <div style="text-align: left; padding: .5rem;">
-        <p>Are you sure you want to delete this?</p>
-      </div>
-
       <!-- Button to confirm -->
       <slot></slot>
-
     </div>
   </div>
 </template>
@@ -18,7 +12,7 @@
 <script>
 //import ProjectDiagramSVG from "@/images/store/project_diagram.svg";
 export default {
- 
+
   methods: {
     closeModal() {
       this.$emit("close");
@@ -40,12 +34,16 @@ h1 {
   width: 20rem;
   background: rgb(255, 255, 255);
   border-radius: 1rem;
-  position: fixed; /* Changed from relative to fixed */
+  position: fixed;
+  /* Changed from relative to fixed */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
   font-size: 0.9rem;
-  top: 50%; /* Position the top edge of the element at the middle of the screen */
-  left: 50%; /* Position the left edge of the element at the middle of the screen */
-  transform: translate(-50%, -50%); /* Shift the element back by half of its width and height */
+  top: 50%;
+  /* Position the top edge of the element at the middle of the screen */
+  left: 50%;
+  /* Position the left edge of the element at the middle of the screen */
+  transform: translate(-50%, -50%);
+  /* Shift the element back by half of its width and height */
   padding: 0.5rem;
 }
 
@@ -143,6 +141,6 @@ li+li {
     font-size: 1.25em;
   }
 
-  
+
 }
 </style>

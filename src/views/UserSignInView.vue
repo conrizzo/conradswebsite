@@ -122,10 +122,7 @@
             periodically as
             more testing occurs, so there isn't any long term data storage here.
           </p>
-          <p>
-            This page was previously setup with <a href="https://firebase.google.com/">Firebase</a> and
-            allowed sign in, user sessions, message posting.
-          </p>
+
 
         </div>
       </div>

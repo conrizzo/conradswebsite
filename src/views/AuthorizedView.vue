@@ -1,40 +1,37 @@
 <template>
+  <!-- Modal for confirmation-->
+  <div v-if="confirmationCheck">
+    <confirmationModal @close="toggleModalToConfirmEntryDeletion()">
+      <div style="text-align: center; padding: .5rem; padding-top: 2rem;">
+        <p style="padding-bottom: 0rem;">Are you sure you want to delete this?</p>
+      </div>
+      <div>
+        <button style="margin-right: .5rem;" class="clean-button" @click="deleteAccountDataConfirmation()">Yes</button>
+        <button class="clean-button" @click="toggleModalToConfirmEntryDeletion()">No</button>
+      </div>
+    </confirmationModal>
+  </div>
+  <!-- Modal for rate limit error -->
+  <div v-if="showQueryResponse">
+    <confirmationModal @close="toggleQueryModal()">
+      <div style="text-align: center; padding: .5rem; padding-top: 3rem; font-size: 1.1rem; padding-bottom: 2.5rem;">
+        {{ queryResponse }}
+      </div>
+    </confirmationModal>
+  </div>
   <div class="container">
     <div class="inner-container-for-width">
-
-      <!-- Modal for confirmation-->
-      <div v-if="confirmationCheck">
-        <confirmationModal @close="toggleModalToConfirmEntryDeletion()">
-          <div>
-            <button style="margin-right: .5rem;" class="clean-button"
-              @click="deleteAccountDataConfirmation()">Yes</button>
-            <button class="clean-button" @click="toggleModalToConfirmEntryDeletion()">No</button>
-          </div>
-        </confirmationModal>
-      </div>
-
-      <!-- Modal for rate limit error -->
-      <div v-if="showQueryResponse">
-        <confirmationModal @close="toggleModalToConfirmEntryDeletion()">
-          <div>
-            {{ queryResponse }}
-          </div>
-        </confirmationModal>
-      </div>
-
       <!-- Main form -->
-      <h1 style="color: rgb(245, 53, 147);">{{ pageTitle }}</h1>
+      <h1>{{ pageTitle }}</h1>
       <form class="authorized-form" @submit.prevent="submitMessage">
-        <h2>Save a message:</h2>
+        <h2>Message:</h2>
         <textarea class="message-field" v-model="saveMessageToBackEnd" rows="5"
           placeholder="Send a message to PostgreSQL" required></textarea><br>
         <div style="display: flex; align-items: center;">
           <button style="display: block; margin-left: 0; margin-right: 0.5rem;" class="clean-button"
             type="submit">Submit</button>
-
         </div>
       </form>
-
       <!-- Message area -->
       <div class="message-if-else-area">
         <div>
@@ -43,24 +40,28 @@
           <p v-else>Loading...</p>
           <button class="clean-button" style="margin-bottom: .5rem;" @click='viewAllMessages = !viewAllMessages'>
             <span v-if="viewAllMessages === false">View All</span>
-            <span v-else>View last 5</span>
+            <span v-else>View last 5 Messages</span>
           </button>
           <div>
             <!-- Show last 5 messages by default, show all messages with button click -->
             <div v-if="viewAllMessages === false">
-              <h3>Last 5 messages sent:</h3>
+              <h3>Last 5 Messages sent:</h3>
               <div class="get-message-left-margin">
                 <ul>
-                  <li v-for="(message, index) in userMessagesFromBackEnd.slice(-5)" :key="message.id"
-                    class="li-flex-wrapper">
-                    <span style="margin-top: 0.2rem;">{{ message }}</span>
-                    <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
-                      xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                      style="display: inline-block; cursor: pointer; flex-shrink: 0;">
-                      <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" d="M18 6 6 18M6 6l12 12">
-                      </path>
-                    </svg>
+                  <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id">
+                    <div v-if="index >= userMessagesFromBackEnd.length - 5" class="li-flex-wrapper">
+                      <div>
+                        <span style="margin-top: 0.2rem; display: block;">{{ message.createdAt }}</span>
+                        <span v-html="checkIfLink(message.data)" style="margin-top: 0.2rem; display: block;"></span>
+                      </div>
+                      <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
+                        xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        style="display: inline-block; cursor: pointer; flex-shrink: 0;">
+                        <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" d="M18 6 6 18M6 6l12 12">
+                        </path>
+                      </svg>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -70,7 +71,10 @@
               <div class="get-message-left-margin">
                 <ul>
                   <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id" class="li-flex-wrapper">
-                    <span style="margin-top: 0.2rem;">{{ message }}</span>
+                    <div>
+                      <span style="margin-top: 0.2rem; display: block;">{{ message.createdAt }}</span>
+                      <span v-html="checkIfLink(message.data)" style="margin-top: 0.2rem; display: block;"></span>
+                    </div>
                     <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
                       xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                       style="display: inline-block; cursor: pointer; flex-shrink: 0;">
@@ -90,9 +94,11 @@
 </template>
 
 <script>
-import axiosInstance from '@/axios';
+
 import { useUserStore } from '@/userStore/store.js';
 import confirmationModal from '@/components/Modals/ConfirmationModal.vue';
+import DOMPurify from 'dompurify';
+import UserService from './projects/UserAccount/user.ts';
 
 export default {
   components: {
@@ -100,11 +106,19 @@ export default {
   },
   data() {
     return {
-      pageContent: "This is a user only area. You can save messages to the backend, and delete them. Data is rate limited to a few requests per 10 seconds.",
+      pageContent: "This is a user only area. You can save messages to the backend, and delete them. Data is rate limited to 6 requests per 10 seconds.\
+      Note, that when deleting or submitting data, it has to both post the data, and get the new updated data which means this is 2 requests.\
+      As long as this isn't happening more than 3 times per 10 seconds, there won't be any rate limit issue.",
       saveMessageToBackEnd: "",
       showQueryResponse: false,
       queryResponse: null,
       userMessagesFromBackEnd: [],
+      // For testing
+      /*userMessagesFromBackEnd: [{
+        "data": "Some more account data",
+        "createdAt": "2022-01-02T00:00:00"
+      },],
+      */
       userName: '',
       userStore: useUserStore(),
       viewAllMessages: false,
@@ -112,18 +126,19 @@ export default {
       selectedItemToDelete: null,
     };
   },
-  created() {
-    this.getAccountData();
-  },
+
   mounted() {
     this.userStore.initializeStore();
     this.userName = this.userStore.userName;
+    this.loadUserServiceData(); // loads data into reactive variable
   },
+
   computed: {
     pageTitle() {
-      return "Hello, " + this.userName + ", you are in a user only area!";
+      return "Welcome, " + this.userName;
     },
   },
+
   watch: {
     queryResponse(newVal) {
       if (newVal !== null) {
@@ -131,72 +146,32 @@ export default {
         setTimeout(() => {
           this.showQueryResponse = false;
           this.queryResponse = null;
-        }, 3000);
+        }, 1500);
       }
     },
   },
+
   methods: {
-    submitMessage() {
-      this.saveAccountData(this.saveMessageToBackEnd);
+
+    async loadUserServiceData() {
+      //const result = await UserService.getAccountData();
+      this.userMessagesFromBackEnd = await UserService.getAccountData();
+      
     },
-    async saveAccountData(data) {
+
+    async submitMessage() {
+      //this.saveAccountData(this.saveMessageToBackEnd);
       try {
-        const submitResponse =
-          await axiosInstance.post('/backend/api/account_data',
-            { data: data },
-          );
-        this.getAccountData(); // Update the messages displayed
+        await UserService.postAccountData(this.saveMessageToBackEnd);
+        await this.loadUserServiceData();
         this.queryResponse = "Submission successful!";
-      }
-      catch (error) {
-
-        // Too many requests error handling
-        if (error.response && error.response.status === 429) {
-          this.queryResponse = "Too many requests, please try again in 10 seconds.";
-          return
-        }
-
-        // Redirect to login page if user session ended and it's not a rate limiting error
-        setTimeout(() => {
-          this.userStore.isUserSignedIn = false;
-          this.userStore.userName = '';
-          this.userStore.signOut();
-          this.$router.push('/UserSignIn');
-        }, 3000);
-        console.error("The error", error);
-      }
-    },
-
-    async getAccountData() {
-      try {
-        const response = await axiosInstance.get('/backend/api/account_data');
-        console.log("response data:", response.data);
-        this.userMessagesFromBackEnd = response.data.account_data.map(item => item.data);
       } catch (error) {
         console.error("The error", error);
       }
     },
 
-    async deleteAccountData(select_item) {
-
-      // for now require input to be an integer number (0 through infinite will delete a specific post)
-      // NOTE: A negative number will DELETE ALL POSTS in the backend database for this user
-
-      if (!Number.isInteger(select_item)) {
-        console.error("Invalid input: select_item is not an integer");
-        return;
-      }
-      this.confirmationCheck = true;
-
-      try {
-        const response = await axiosInstance.delete(`/backend/api/account_data/${select_item}`);
-        this.getAccountData(); // Update the data displayed
-        this.queryResponse = "Deletion successful!";
-      }
-      catch (error) {
-        this.queryResponse = "Deletion failed!";
-        console.error("The error", error);
-      }
+    toggleQueryModal() {
+      this.showQueryResponse = !this.showQueryResponse;
     },
 
     toggleModalToConfirmEntryDeletion(select_item) {
@@ -205,13 +180,24 @@ export default {
       //console.log("selectedItemToDelete:", this.selectedItemToDelete);
     },
 
-    deleteAccountDataConfirmation() {
-
+    async deleteAccountDataConfirmation() {
       //this.confirmationCheck = !this.confirmationCheck;
-      this.deleteAccountData(this.selectedItemToDelete);
+      //this.deleteAccountData(this.selectedItemToDelete);
+      this.confirmationCheck = true;
+      await UserService.deleteAccountData(this.selectedItemToDelete);
+      //UserService.getAccountData();
+      await this.loadUserServiceData(); // Update the messages displayed
       this.toggleModalToConfirmEntryDeletion();
     },
 
+    // All the rendered user messages from backend PostgreSQL are sanitized
+    checkIfLink(message) {
+      const urlPattern = /(https?:\/\/[^\s]+)/g;
+      const sanitizedMessage = DOMPurify.sanitize(message);
+      return urlPattern.test(sanitizedMessage)
+        ? sanitizedMessage.replace(urlPattern, '<a href="$1" target="_blank">$1</a>')
+        : sanitizedMessage;
+    }
   },
 };
 </script>
@@ -223,6 +209,12 @@ h1 {
   font-size: 3rem;
   text-transform: uppercase;
   line-height: 1;
+  color: rgb(0, 170, 222);
+  background: white;
+  max-width: 80rem;
+  padding: 1rem;
+  border-radius: .5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -232,6 +224,12 @@ h2 {
 h1,
 h2 {
   text-align: left;
+}
+
+h3 {
+  color: rgb(0, 170, 222);
+
+
 }
 
 p {
@@ -248,7 +246,8 @@ p {
 }
 
 .inner-container-for-width {
-  max-width: 40rem;
+  max-width: 80rem;
+  width: 100%;
   padding: 0.5rem;
 }
 
@@ -257,7 +256,7 @@ p {
   max-width: 40rem;
   resize: none;
   padding: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
   border-radius: 0.5rem;
   background: linear-gradient(to right, orange, red);
 }
@@ -288,7 +287,7 @@ p {
   margin-top: 1rem;
   border-radius: 1rem;
   padding: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -299,7 +298,7 @@ p {
 }
 
 .svg-x-wrapper:hover .svg-x-hover-color-highlight {
-  stroke: rgb(245, 53, 147);  
+  stroke: rgb(245, 53, 147);
   fill: green !important;
   background: green !important;
 }
@@ -308,5 +307,9 @@ p {
   display: flex;
   justify-content: space-between;
   width: calc(100%);
+  border-top: 1px solid rgb(225, 225, 225);
+  overflow-wrap: break-word;
+  /* word wrap for long urls or things that overflow */
+  word-break: break-all;
 }
 </style>

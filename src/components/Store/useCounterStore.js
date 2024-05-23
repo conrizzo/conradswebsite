@@ -3,6 +3,7 @@
 // useCounterStore.js
 import { defineStore } from 'pinia';
 
+/*
 export const useCounterStore = defineStore('counter', {
     state: () => ({ count: 0, name: 'Eduardo' }),
     getters: {
@@ -14,6 +15,7 @@ export const useCounterStore = defineStore('counter', {
         },
     },
 });
+*/
 
 import { productInventory } from '@/components/Store/productInventoryOptionsData.ts';
 export const useCartStore = defineStore('cart', {
@@ -27,11 +29,11 @@ export const useCartStore = defineStore('cart', {
             localStorage.setItem('cart', JSON.stringify(this.cart));
         },
         addToCart(productId) { // this method isnt being used
-            
+
             const setProductID = Number(productId);
             const product = productInventory.find(product => product.id === setProductID);
-            
-            if (product) { return}
+
+            if (product) { return }
             /*
             if (product) {
                 this.cart.push(product);

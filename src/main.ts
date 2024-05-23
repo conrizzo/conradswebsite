@@ -9,7 +9,7 @@ import VueLazyload from 'vue-lazyload'
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import  App  from './App.vue';
+import App from './App.vue';
 import router from './router';
 
 import './assets/globalCSS.css';
@@ -18,6 +18,7 @@ import 'prismjs';
 
 const app = createApp(App);
 const pinia = createPinia(); // vue store state management
+
 app.component('font-awesome-icon', FontAwesomeIcon) // font awesome
 
 app.use(pinia);
