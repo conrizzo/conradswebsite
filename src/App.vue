@@ -43,8 +43,10 @@ export default {
   },
   computed: {
     showNav() {
-      // Check if the current route is not the cowGame route
-      return this.$route.path !== '/projects/cowgame';
+      // Array of routes where you don't want to show the footer
+      const noFooterRoutes = ['/projects/cowgame', '/UserSignIn', '/porkchops-otherroute'];
+      // Check if the current route is in the array
+      return !noFooterRoutes.includes(this.$route.path);
     }
   }
 };

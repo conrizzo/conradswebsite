@@ -19,8 +19,11 @@
       </div>
     </confirmationModal>
   </div>
+
   <div class="container">
+
     <div class="inner-container-for-width">
+
       <!-- Main form -->
       <h1>{{ pageTitle }}</h1>
       <form class="authorized-form" @submit.prevent="submitMessage">
@@ -38,10 +41,12 @@
           <p>{{ pageContent }}</p>
           <p v-if="userName !== null">You are logged in as {{ userName }}</p>
           <p v-else>Loading...</p>
-          <button class="clean-button" style="margin-bottom: .5rem;" @click='viewAllMessages = !viewAllMessages'>
+          <button class="clean-button" style="margin-right: .5rem;" @click='viewAllMessages = !viewAllMessages'>
             <span v-if="viewAllMessages === false">View All</span>
             <span v-else>View last 5 Messages</span>
+
           </button>
+
           <div>
             <!-- Show last 5 messages by default, show all messages with button click -->
             <div v-if="viewAllMessages === false">
@@ -54,13 +59,14 @@
                         <span style="margin-top: 0.2rem; display: block;">{{ message.createdAt }}</span>
                         <span v-html="checkIfLink(message.data)" style="margin-top: 0.2rem; display: block;"></span>
                       </div>
-                      <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
-                        xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                        style="display: inline-block; cursor: pointer; flex-shrink: 0;">
-                        <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" d="M18 6 6 18M6 6l12 12">
-                        </path>
-                      </svg>
+                      <div @click="toggleModalToConfirmEntryDeletion(index)" class="svg-container">
+                        <svg class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                          viewBox="0 0 24 24" fill="none" style="display: inline-block; flex-shrink: 0;">
+                          <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" d="M18 6 6 18M6 6l12 12">
+                          </path>
+                        </svg>
+                      </div>
                     </div>
                   </li>
                 </ul>
@@ -75,13 +81,14 @@
                       <span style="margin-top: 0.2rem; display: block;">{{ message.createdAt }}</span>
                       <span v-html="checkIfLink(message.data)" style="margin-top: 0.2rem; display: block;"></span>
                     </div>
-                    <svg @click="toggleModalToConfirmEntryDeletion(index)" class="svg-x-wrapper"
-                      xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                      style="display: inline-block; cursor: pointer; flex-shrink: 0;">
-                      <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" d="M18 6 6 18M6 6l12 12">
-                      </path>
-                    </svg>
+                    <div @click="toggleModalToConfirmEntryDeletion(index)" class="svg-container">
+                      <svg class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                        viewBox="0 0 24 24" fill="none" style="display: inline-block; flex-shrink: 0;">
+                        <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" d="M18 6 6 18M6 6l12 12">
+                        </path>
+                      </svg>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -112,13 +119,13 @@ export default {
       saveMessageToBackEnd: "",
       showQueryResponse: false,
       queryResponse: null,
-      userMessagesFromBackEnd: [],
+      //userMessagesFromBackEnd: [],
       // For testing
-      /*userMessagesFromBackEnd: [{
+      userMessagesFromBackEnd: [{
         "data": "Some more account data",
         "createdAt": "2022-01-02T00:00:00"
       },],
-      */
+
       userName: '',
       userStore: useUserStore(),
       viewAllMessages: false,
@@ -137,8 +144,9 @@ export default {
     pageTitle() {
       return "Welcome, " + this.userName;
     },
-  },
 
+  },
+  /*
   watch: {
     queryResponse(newVal) {
       if (newVal !== null) {
@@ -150,45 +158,65 @@ export default {
       }
     },
   },
-
+ */
   methods: {
 
     async loadUserServiceData() {
       //const result = await UserService.getAccountData();
       this.userMessagesFromBackEnd = await UserService.getAccountData();
-      
+      this.userMessagesFromBackEnd.sort((a, b) => {
+        // Compare by date
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        if (dateA < dateB) return -1;
+        if (dateA > dateB) return 1;
+
+        // If the dates are the same, compare by some other field
+        // Replace 'someField' with the actual field name
+        if (a.someField < b.someField) return -1;
+        if (a.someField > b.someField) return 1;
+
+        return 0;
+      });
     },
 
     async submitMessage() {
-      //this.saveAccountData(this.saveMessageToBackEnd);
       try {
-        await UserService.postAccountData(this.saveMessageToBackEnd);
-        await this.loadUserServiceData();
-        this.queryResponse = "Submission successful!";
+
+        /*
+        1. Send data to PostgreSQL, 
+        2. if true response, then show 'success message', and show the modal 
+         */
+
+        if (await UserService.postAccountData(this.saveMessageToBackEnd)) {
+          this.queryResponse = "Submission successful!"; // set modal message
+          this.toggleQueryModal();
+          await this.loadUserServiceData();
+        }
       } catch (error) {
         console.error("The error", error);
       }
     },
 
+
     toggleQueryModal() {
       this.showQueryResponse = !this.showQueryResponse;
     },
 
+
     toggleModalToConfirmEntryDeletion(select_item) {
       this.confirmationCheck = !this.confirmationCheck;
       this.selectedItemToDelete = select_item;
-      //console.log("selectedItemToDelete:", this.selectedItemToDelete);
     },
 
+
     async deleteAccountDataConfirmation() {
-      //this.confirmationCheck = !this.confirmationCheck;
-      //this.deleteAccountData(this.selectedItemToDelete);
       this.confirmationCheck = true;
       await UserService.deleteAccountData(this.selectedItemToDelete);
-      //UserService.getAccountData();
-      await this.loadUserServiceData(); // Update the messages displayed
+      await this.loadUserServiceData();
       this.toggleModalToConfirmEntryDeletion();
     },
+
 
     // All the rendered user messages from backend PostgreSQL are sanitized
     checkIfLink(message) {
@@ -297,11 +325,24 @@ p {
   /* Adjust the duration and timing function as needed */
 }
 
+/*
 .svg-x-wrapper:hover .svg-x-hover-color-highlight {
-  stroke: rgb(245, 53, 147);
-  fill: green !important;
-  background: green !important;
+  stroke: rgb(245, 53, 147); 
 }
+*/
+.svg-container {
+  height: 2rem;
+}
+
+.svg-container:hover {
+  background-color: rgb(200, 200, 200);
+  cursor: pointer;
+}
+
+.svg-container:hover .svg-x-hover-color-highlight {
+  stroke: rgb(0, 0, 0);
+}
+
 
 .li-flex-wrapper {
   display: flex;

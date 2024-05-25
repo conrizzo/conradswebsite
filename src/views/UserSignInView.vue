@@ -6,108 +6,55 @@
   <!-- tried downgrading to "firebase": "9.0.2" -->
   <!---<CookieAccept />-->
 
-  <div style="background: rgb(255, 255, 255); padding-bottom: 2em; min-height: 100svh;">
+  <div class="main-container">
     <!-- If not logged in -->
     <!-- <span v-if="!isSignedIn" class="not-logged-in">You are not logged in!</span> -->
-    <div v-if="isSignedIn" class="center-with-flex">
-      <div style="padding-top: 2rem;">
+    <div v-if="isSignedIn" class=""
+      style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; cursor: auto; color: rgb(30, 144, 255); font-size: 1.5em; font-weight: bold;">
 
-        <div style="cursor: auto; color: #c4c4c4;  font-size: 1.5em; margin-top: 2em; font-weight: bold;">
-          <span>Welcome, {{ userName }}!<br>
-            <span style="font-size: 0.75em; color: #c4c4c4;">You are logged in.</span></span><br>
-          <div>
-            <div class="logged-in-button-container">
-              <!-- button router link to authorized page -->
-              <button class="clean-button highlight-green" @click="$router.push('/authorized')"
-                style="margin-right: 0.5rem;">
-                Enter User Area
-              </button>
-              <button class="clean-button highlight-red" @click="handleSignOut">Sign Out
-              </button>
-            </div>
-          </div>
-
+      <span>Welcome, {{ userName }}!
+        <span style="font-size: 0.75em; color: rgb(30, 144, 255);">This is the user navigation area.</span></span><br>
+      <div>
+        <div class="logged-in-button-container">
+          <button class="clean-button highlight-green" @click="$router.push('/authorized')"
+            style="margin-right: 0.5rem;">
+            Continue to User Area
+          </button>
+          <button class="clean-button highlight-red" @click="handleSignOut">Sign Out
+          </button>
         </div>
       </div>
     </div>
-    <div style="color: rgb(18,18,18); border: 2px rgb(218, 220, 224);" v-if="!isSignedIn">
+
+    <div class="signed-in-or-not" v-if="!isSignedIn">
       <!-- Sign in -->
       <template v-if="showSignIn">
-        <SignInPage @signInSuccessful="handleSignInSuccess" />
-        <div style="justify-content: center; display: flex;">
-          <span class="signIn-information" style="padding: 1em;">No account yet?
-            <br>
-            <a class="signIn-sign-up" @click="showSignIn = false">Sign up</a>
-          </span>
+        <div class="center-sign-in">
+          <SignInPage @signInSuccessful="handleSignInSuccess" />
+          <div class="center-with-flex">
+            <span class="signIn-information" style="padding: 1em;">No account yet?
+              <br>
+              <a class="signIn-sign-up" @click="showSignIn = false">Sign up</a>
+            </span>
+          </div>
         </div>
       </template>
       <template v-else>
         <!-- <SignUpPage @registrationSuccessful="handlesignInSuccess" /> -->
-        <SignUpPage />
-        <div style="justify-content: center; display: flex;">
-          <span class="signIn-information" style="padding: 1em;">Already registered?
-            <br>
-            <a class="signIn-sign-up" style="cursor: pointer;" @click="showSignIn = true">Sign In</a></span>
+        <div class="center-sign-in">
+          <SignUpPage />
+          <div class="center-with-flex">
+            <span class="signIn-information" style="padding: 1em;">Already registered? <br>
+              <a class="signIn-sign-up" style="cursor: pointer;" @click="showSignIn = true">Sign In</a></span>
+          </div>
         </div>
       </template>
     </div>
 
-    <!--
-      <form name="sendMessage" class="addinput-form" @submit.prevent="createSubmission">
-        <div class="error-message"> {{ errorMessage }} </div>
 
-
-
-        <div class="input-container">
-          <div class="input-group">
-            <div style="text-align: left;">
-              <label for="Subject" class="label">Subject:</label>
-              <span :style="textStyle">({{ inputLength }})</span>
-            </div>
-            <div class="input-flex">
-
-              <input id="Subject" class="input" type="text" placeholder="Subject" required v-model="name"
-                name="submissionName" :maxlength="messageLength" ref="subjectInput">
-
-            </div>
-          </div>
-        </div>
-        <div class="input-group">
-          <label for="Message" class="label">Message:</label>
-          <textarea id="Message" class="textarea" type="text" placeholder="Message" required v-model="message"
-            name="submissionMessage" cols="50" rows="10"></textarea>
-        </div>
-
-        <button @click="createUser" class="button-35">Add Entry</button>
-      </form>
-      -->
-
-    <!-- message area -->
-    <!--
-      <div class="submission-container">
-        <h3 style="color: rgb(0, 227, 227);">Messages will appear publicly here.</h3>
-        <ul style="list-style: none;">
-          <li v-for="submission in submissions" :key="submission.id">
-            <div>
-              <span
-                style="font-weight: bold; font-size: 1em; color: #87ff7a; display: inline-block; padding: 0.25em 0 0.25em 0;">{{
-        submission.userName }} <br><span style="color: #d8d8d8; font-size: 0.9em;">Subject:</span> <span
-                  style='color:#ffffff;'>{{ submission.name }}</span> </span>
-              <p style="padding-left: 0.5em; font-size: 0.8em; color: #ffffff; display: inline-block;"
-                v-if="submission.timestamp">{{ submission.timestamp.toDate().toLocaleString() }}</p>
-            </div>
-            <p class="break-text" style="background-color: white; 
-            display: inline-block; padding: 0.5em; margin-bottom: 0.5em; 
-            border-radius: 0.5em;">{{ submission.message }}</p>
-          </li>
-        </ul>
-      </div>
-
-  -->
     <div style="padding-top: 2em;">
       <div class="center-with-flex" style="text-align: left; padding: 1rem;">
         <div>
-
           <p>
             Now connects to self-made PostgreSQL database and allows user registration (sign up / sign in).<br>
             Stores secure sessions with Axios and JWT http cookies and CSRF tokens for access, and implicitly +
@@ -122,8 +69,6 @@
             periodically as
             more testing occurs, so there isn't any long term data storage here.
           </p>
-
-
         </div>
       </div>
     </div>
@@ -137,8 +82,12 @@
 import SignUpPage from '@/components/UserSignIn/SignUpPage.vue'
 import SignInPage from '@/components/UserSignIn/SignInPage.vue'
 //import "@/assets/globalCSS.css";
-import axiosInstance from '@/axios';
+//import axiosInstance from '@/axios';
+import UserService from './projects/UserAccount/user.ts';
 import { useUserStore } from '@/userStore/store.js';
+import router from '@/router';
+
+
 
 // Import the Firebase database instance and the Firestore collection and addDoc functions
 //import db from '@/firebase/init.js'
@@ -153,6 +102,7 @@ export default {
     return {
       isSignedIn: false,
       showSignIn: true,
+
       userName: '',
       message: '',
       messageLength: 50,
@@ -181,7 +131,18 @@ export default {
       console.log(this.userStore.isUserSignedIn);
       this.userName = this.userStore.userName;
       console.log("User logged in: ", this.userStore.isUserSignedIn);
+      router.push('/authorized');
     },
+    async newSignOut() {
+      //this.userStore.signOut();
+      await UserService.signOut();
+
+      this.isSignedIn = false;
+      this.showSignIn = true;
+      //this.userName = '';
+    
+    },
+    // deprecated in my application - but using for guidance
     async signOut() {
       try {
         await axiosInstance.post('/backend/api/sign_out', {}, { withCredentials: true });
@@ -198,37 +159,12 @@ export default {
       }
     },
     handleSignOut() {
-      this.signOut();
+      this.newSignOut();
       //document.cookie = 'isSignedIn=false; SameSite=Strict';
       //document.cookie = `userName=${""}; SameSite=Strict`;     
     }
   }
 }
-
-
-/*
-created() {
-  const colRef = collection(db, 'submissions')
-  onSnapshot(colRef, (querySnapshot) => {
-    const submissions = []
-    querySnapshot.forEach((doc) => {
-      const submission = { id: doc.id, ...doc.data() }
-      if (submission.timestamp) {
-        submissions.push(submission)
-      }
-    })
-    submissions.sort((a, b) => a.timestamp.toMillis() - b.timestamp.toMillis())
-    this.submissions = submissions
-  })
-  // retrieve the authentication state from local storage
-  const isSignedIn = localStorage.getItem('isSignedIn');
-  if (isSignedIn === 'true') {
-    this.isSignedIn = true;
-  }
-},
-*/
-
-
 </script>
 
 <style scoped>
@@ -253,6 +189,20 @@ p {
   text-align: left;
 }
 
+.main-container {
+  background: linear-gradient(to right, rgba(173, 216, 230, 0.3), pink);
+  height: 100vh;
+}
+
+.signed-in-or-not {
+  color: rgb(18, 18, 18);
+  border: 2px rgb(218, 220, 224);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .top-text-container {
   display: flex;
   justify-content: center;
@@ -263,7 +213,8 @@ p {
 
 .logged-in-button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -321,7 +272,6 @@ p {
   width: 100%;
 }
 
-
 .addinput-form {
   display: flex;
   flex-direction: column;
@@ -342,34 +292,13 @@ input {
   padding: 0.25em;
 }
 
-textarea {
-  background-color: rgb(255, 255, 255);
-  font-size: 1.5em;
-  border-radius: 0.25em;
-  border-width: 1px;
-  outline: none;
-  border: 1px solid rgb(218, 220, 224);
-  padding: 0.25em;
-
-}
 
 button {
   width: fit-content;
   margin: auto
 }
 
-.submission-container {
-  background-color: #4e4e4e;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
-  width: 41rem;
-  margin: 0 auto;
-  padding: 2rem;
-  border-radius: 1em;
-  border: 1px solid #fcfcfc;
-}
+
 
 .signIn-sign-up {
   color: rgb(11, 87, 208);
@@ -390,12 +319,14 @@ textarea:focus {
   border-color: rgb(17, 255, 180);
 }
 
+.center-sign-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media only screen and (max-width: 800px) {
-  .submission-container {
-    width: 90%;
-    padding-right: 1em;
-    padding-left: 1em;
-  }
+
 
   .top-text-sub-container {
     max-width: none;

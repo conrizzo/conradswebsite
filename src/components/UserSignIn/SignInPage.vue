@@ -1,7 +1,7 @@
 <template>
   <div class="signIn-form-container">
     <div class="signIn-form-styling">
-      <form @submit.prevent="userSignIn">
+      <form @submit.prevent="newSignIn">
         <h2 style="padding: 0.5em; color: rgb(18,18,18);">Sign In</h2>
         <!--
         <div style="display: flex; flex-direction: column;">
@@ -39,16 +39,21 @@
 import { auth } from '@/firebase/init.js' */
 import axiosInstance from '@/axios';
 
+
+import UserService from '../../views/projects/UserAccount/user.ts';
+
 // focus directive to the email input
 const focus = {
   mounted: (el) => el.focus()
 }
 
 export default {
-  emits: ["SignedIn"], // declare the SignedIn event here
+  emits: ["signInSuccessful"], // Declare the SignedIn event here
+
   directives: {
     focus
   },
+
   data() {
     return {
       email: '',
@@ -59,34 +64,24 @@ export default {
   },
 
   methods: {
-    async userSignIn() {
-      console.log('Signing in...')
+
+    async newSignIn() {
+
+      const userData = {
+        username: this.userName,
+        password: this.password
+      };
+
       try {
-        // Prepare the user data
-        const userData = {
-          username: this.userName,
-          password: this.password
-        };
-        // Send a POST request to the Flask backend using Axios
-        const response = await axiosInstance.post('/backend/api/sign_in', userData, { withCredentials: true });
-        console.log("response data message:", response.data.message);
-
-        // The server should set the JWT and refresh token as HttpOnly cookies,
-        // so there's no need to store them in local storage or set the Authorization header here.
-
-        // Update signIn state or redirect user
-        this.$emit('signInSuccessful', this.userName);
-        // Redirect to a protected route or update UI state
-        console.log('sign In successful!');
-      } catch (error) {
-        if (error.response && error.response.data) {
-          this.errorMessage = `Error: ${error.response.data.message}`;
-        } else {
-          // Handle errors that don't have a response (e.g., network errors)
-          this.errorMessage = `Error: ${error.message}`;
+        let signInResult = await UserService.signIn(userData);
+        if (signInResult) {
+          this.$emit('signInSuccessful', this.userName);          
         }
       }
-    }
+      catch (error) {
+        console.error('Error signing in:', error);
+      }
+    },
   }
 }
 
