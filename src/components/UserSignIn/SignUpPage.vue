@@ -3,27 +3,28 @@
     <div class='signup-form-styling'>
       <form @submit.prevent="signUp">
 
-        <h2 style="padding: 0.5em;">Sign Up</h2>
+        <h2 style="padding: 0.5em;">Create an Account</h2>
 
         <div style="display: flex; flex-direction: column;">
-          <label class="label-title-styling" for="text" style="align-self: flex-start; padding-left: 0.25em;">Make a
+          <label class="label-title-styling" for="text">Make a
             Username</label>
           <input name="text" type="text" placeholder="User Name" required v-model="userName" maxlength="20" v-focus>
         </div>
         <div style="display: flex; flex-direction: column;">
-          <label class="label-title-styling" for="email" style="align-self: flex-start; padding-left: 0.25em;">
+          <label class="label-title-styling" for="email">
             Email (Not Required)</label>
           <!-- Note: required attribute removed for email - does not need it -->
           <input name="email" type="email" placeholder="Email" v-model="email">
         </div>
         <div style="display: flex; flex-direction: column;">
-          <label class="label-title-styling" for="password"
-            style="align-self: flex-start; padding-left: 0.25em;">Password</label>
+          <label class="label-title-styling" for="password">Password</label>
           <input name="password" type="password" placeholder="Password" required v-model="password">
         </div>
-        <button style="margin: 0.5em; margin-top: 1rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
+        <button style="margin-top: 1rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
           }}</button>
-        <div style="color: red;">{{ signUpMessage }}</div>
+        <div style="margin-top: 0.5rem;">
+          <span style="color: red;">{{ errorMessage }}</span>
+        </div>
       </form>
     </div>
   </div>
@@ -110,8 +111,12 @@ input:focus {
   border-color: rgb(17, 255, 180);
 }
 
+.button-35:hover {
+  background: rgb(140, 140, 140);
+}
+
 input {
-  font-size: 1.25em;
+  font-size: 1.5rem;
   border-radius: 0.25em;
   border-width: 1px;
   outline: none;
@@ -122,6 +127,11 @@ input {
 
 .label-title-styling {
   color: rgb(18, 18, 18);
+  font-size: 1.1rem;
+  align-self: flex-start;
+  padding-left: 0.25em;
+  margin-bottom: -.33rem; 
+
 }
 
 button {
@@ -132,15 +142,15 @@ button {
 .signup-form-container {
   display: flex;
   justify-content: center;
-  height: 24.5rem;
+
 }
 
 .signup-form-styling {
-  padding: 1em;
-  background: rgb(245, 245, 245);
+  padding: 1rem;
+  background: rgb(255, 255, 255);
   width: fit-content;
   border-radius: 1em;
-  margin-top: 2em;
+  margin-top: 2rem;
   border: 1px solid #cecece;
 }
 </style>

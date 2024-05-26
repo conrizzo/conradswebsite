@@ -1,6 +1,6 @@
 <template>
-  <div class="signIn-form-container">
-    <div class="signIn-form-styling">
+  <div class="sign-in-form-container">
+    <div class="sign-in-form-styling">
       <form @submit.prevent="newSignIn">
         <h2 style="padding: 0.5em; color: rgb(18,18,18);">Sign In</h2>
         <!--
@@ -10,13 +10,13 @@
         </div>
       -->
         <div style="display: flex; flex-direction: column;">
-          <label for="username" style="align-self: flex-start; padding-left: 0.25em;">Username:</label>
+          <label class="label-title-styling" for="username">Username</label>
           <input name="username" type="text" placeholder="Username" required v-model="userName" autocomplete="username"
             v-focus>
         </div>
 
         <div style="display: flex; flex-direction: column; ">
-          <label for="password" style="align-self: flex-start; padding-left: 0.25em;">Password:</label>
+          <label class="label-title-styling" for="password">Password</label>
           <input name="password" type="password" placeholder="Password" required v-model="password">
         </div>
 
@@ -24,7 +24,7 @@
           Sign In
         </button>
 
-        <div style="margin-top: 1em;">
+        <div style="margin-top: .5rem;">
           <span style="color: red;">{{ errorMessage }}</span>
         </div>
 
@@ -75,7 +75,7 @@ export default {
       try {
         let signInResult = await UserService.signIn(userData);
         if (signInResult) {
-          this.$emit('signInSuccessful', this.userName);          
+          this.$emit('signInSuccessful', this.userName);
         }
       }
       catch (error) {
@@ -89,11 +89,11 @@ export default {
 
 <style scoped>
 .button-35:hover {
-  box-shadow: rgb(17, 255, 180) 0 0 0 2px, transparent 0 0 0 0;
+  background: rgb(140, 140, 140);
 }
 
 input {
-  font-size: 1.25em;
+  font-size: 1.5rem;
   border-radius: 0.25em;
   border-width: 1px;
   outline: none;
@@ -115,18 +115,26 @@ input:focus {
   border-color: rgb(17, 255, 180);
 }
 
-.signIn-form-container {
+.sign-in-form-container {
   display: flex;
   justify-content: center;
-  height: 20.5rem;
+
 }
 
-.signIn-form-styling {
-  padding: 1em;
-  background: rgb(245, 245, 245);
+.label-title-styling {
+  color: rgb(18, 18, 18);
+  font-size: 1.1rem;
+  align-self: flex-start;
+  padding-left: 0.25em;
+  margin-bottom: -.33rem;
+}
+
+.sign-in-form-styling {
+  padding: 1rem;
+  background: rgb(255, 255, 255);
   width: fit-content;
   border-radius: 1em;
-  margin-top: 2em;
+  margin-top: 2rem;
   border: 1px solid #cecece;
 }
 </style>

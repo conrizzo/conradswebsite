@@ -1,13 +1,10 @@
 <template>
-
   <!---<CookieAccept />-->
-
   <div class="main-container">
-    <!-- If not logged in -->
 
+    <!-- Show a simple navigation area if the user is logged in -->
     <div v-if="isSignedIn" class=""
       style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; cursor: auto; color: rgb(30, 144, 255); font-size: 1.5em; font-weight: bold;">
-
       <span>Welcome, {{ userName }}!
         <span style="font-size: 0.75em; color: rgb(30, 144, 255);">This is the user navigation area.</span></span><br>
       <div>
@@ -22,32 +19,33 @@
       </div>
     </div>
 
+    <!-- Show Sign In with option for user to select Sign Up to make an account -->
     <div class="signed-in-or-not" v-if="!isSignedIn">
       <!-- Sign in -->
       <template v-if="showSignIn">
         <div class="center-sign-in">
           <SignInPage @signInSuccessful="handleSignInSuccess" />
-          <div class="center-with-flex">
-            <span class="signIn-information" style="padding: 1em;">No account yet?
-              <br>
-              <a class="sign-in-sign-up" @click="showSignIn = false">Sign up</a>
-            </span>
-          </div>
+
+          <span class="signIn-information" style="padding: 1em;">No account yet?
+
+            <a class="sign-in-sign-up" @click="showSignIn = false">Create an Account</a>
+          </span>
+
         </div>
       </template>
       <template v-else>
-        <!-- <SignUpPage @registrationSuccessful="handlesignInSuccess" /> -->
+        <!-- Sign up -->
         <div class="center-sign-in">
           <SignUpPage />
           <div class="center-with-flex">
-            <span class="signIn-information" style="padding: 1em;">Already registered? <br>
+            <span class="signIn-information" style="padding: 1em;">Already registered?
               <a class="sign-in-sign-up" style="cursor: pointer;" @click="showSignIn = true">Sign In</a></span>
           </div>
         </div>
       </template>
     </div>
 
-
+    <!-- information about the page -->
     <div style="padding-top: 2em;">
       <div class="center-with-flex" style="text-align: left; padding: 1rem;">
         <div>
@@ -68,17 +66,12 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-
-
 import SignUpPage from '@/components/UserSignIn/SignUpPage.vue'
 import SignInPage from '@/components/UserSignIn/SignInPage.vue'
-//import "@/assets/globalCSS.css";
-//import axiosInstance from '@/axios';
 import UserService from './projects/UserAccount/user.ts';
 import { useUserStore } from '@/userStore/store.js';
 import router from '@/router';

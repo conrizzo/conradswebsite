@@ -218,10 +218,10 @@ h1 {
 /* CSS */
 .button-35 {
   align-items: center;
-  background-color: #515151;
+  background-color: #7e7e7e;
   border-radius: 12px;
   box-sizing: border-box;
-  color: #d2d2d2;
+  color: #ffffff;
   display: inline-flex;
   flex: 1 1 auto;
   font-family: Inter, sans-serif;
@@ -243,11 +243,11 @@ h1 {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
+/*
 .button-35:hover {
   box-shadow: rgb(0, 227, 227) 0 0 0 2px, transparent 0 0 0 0;
 }
-
+*/
 .box {
   padding: 80px 0;
   width: 300px;
