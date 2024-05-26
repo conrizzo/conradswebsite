@@ -108,7 +108,7 @@ export default {
 
         getImage() {
             console.log(this.productId);
-            const productName = this.itemName;
+            //const productName = this.itemName;
             const product = this.productId;
             console.log(this.cart);
             //let product = this.cart.find(item => item.name === productName);

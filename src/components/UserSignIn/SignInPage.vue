@@ -37,7 +37,7 @@
 /* import axios from 'axios'; */
 /* import { signInWithEmailAndPassword } from 'firebase/auth' 
 import { auth } from '@/firebase/init.js' */
-import axiosInstance from '@/axios';
+
 
 
 import UserService from '../../views/projects/UserAccount/user.ts';

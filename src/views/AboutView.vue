@@ -47,7 +47,7 @@
               <li>
                 This website is made by me (Conrad) completely from a blank slate. It is a Single Page Application (SPA)
                 made in <a href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>. It's
-                open-source and has been a continuous project
+                open-source and has been a continuous project to do web development and make projects.
               </li>
               <li>
                 Now is a fullstack website and runs on a VPS (Virtual Private Server), the code is at
@@ -105,7 +105,8 @@
                   href='https://search-wordle-words.netlify.app/'>Wordle helper in Nuxt.js</a>
               </li>
               <li>
-                This website does not use any cookies. Why does this matter? They track users, and <a class="text-links"
+                This website only uses 1st party http cookies for user authentication. Why does this matter?
+                Browsers end up amassing thousands of 3rd party cookies which track users, and <a class="text-links"
                   href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
                   says</a> they are "taking a responsible approach to phasing out third-party cookies in Chrome"
               </li>
@@ -121,7 +122,8 @@
               <li>
                 Diese Website wurde von mir (Conrad) komplett selbst erstellt. Es ist in Single Page Application (SPA)
                 in <a href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>
-                gemacht. Es ist Open-Source und wird kontinuierlich weiterentwickelt.
+                gemacht. Es ist Open-Source und ist ein kontinuierliches Projekt zur Webentwicklung und Durchführung von
+                Projekten.
               </li>
               <li>
                 Jetzt ist eine Fullstack Website und Läuft auf einem VPS (Virtual Private Server). Der Code befindet
@@ -180,8 +182,9 @@
                   class="text-links" href="https://astro.build/">Astro</a> framework verwendet
               </li>
               <li>
-                Diese Website verwendet keine Cookies. Warum ist das wichtig? Cookies verfolgen Benutzer, und <a
-                  class="text-links"
+                Diese Website verwendet nur First-Party-HTTP-Cookies zur Benutzerauthentifizierung. Warum ist das
+                wichtig? Browser sammeln am Ende
+                Tausende von Drittanbieter-Cookies, die Benutzer verfolgen, und <a class="text-links"
                   href="https://blog.google/products/chrome/privacy-sandbox-tracking-protection/?trk=article-ssr-frontend-pulse_little-text-block">Google
                   sagt</a>, dass sie gerade dabei sind "taking a responsible approach to phasing out third-party cookies
                 in Chrome"

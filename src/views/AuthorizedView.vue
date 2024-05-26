@@ -24,27 +24,17 @@
 
     <div class="inner-container-for-width">
 
-      <!-- Main form -->
       <h1>{{ pageTitle }}</h1>
-      <form class="authorized-form" @submit.prevent="submitMessage">
-        <h2>Message:</h2>
-        <textarea class="message-field" v-model="saveMessageToBackEnd" rows="5"
-          placeholder="Send a message to PostgreSQL" required></textarea><br>
-        <div style="display: flex; align-items: center;">
-          <button style="display: block; margin-left: 0; margin-right: 0.5rem;" class="clean-button"
-            type="submit">Submit</button>
-        </div>
-      </form>
       <!-- Message area -->
       <div class="message-if-else-area">
         <div>
           <p>{{ pageContent }}</p>
           <p v-if="userName !== null">You are logged in as {{ userName }}</p>
           <p v-else>Loading...</p>
-          <button class="clean-button" style="margin-right: .5rem;" @click='viewAllMessages = !viewAllMessages'>
+          <button class="clean-button" style="margin-right: .5rem; margin-bottom: 1rem;"
+            @click='viewAllMessages = !viewAllMessages'>
             <span v-if="viewAllMessages === false">View All</span>
             <span v-else>View last 5 Messages</span>
-
           </button>
 
           <div>
@@ -61,7 +51,7 @@
                       </div>
                       <div @click="toggleModalToConfirmEntryDeletion(index)" class="svg-container">
                         <svg class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                          viewBox="0 0 24 24" fill="none" style="display: inline-block; flex-shrink: 0;">
+                          viewBox="0 0 24 24" fill="none">
                           <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" d="M18 6 6 18M6 6l12 12">
                           </path>
@@ -83,7 +73,7 @@
                     </div>
                     <div @click="toggleModalToConfirmEntryDeletion(index)" class="svg-container">
                       <svg class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                        viewBox="0 0 24 24" fill="none" style="display: inline-block; flex-shrink: 0;">
+                        viewBox="0 0 24 24" fill="none">
                         <path class="svg-x-hover-color-highlight" stroke-linecap="round" stroke-linejoin="round"
                           stroke-width="2" d="M18 6 6 18M6 6l12 12">
                         </path>
@@ -96,6 +86,17 @@
           </div>
         </div>
       </div>
+      <!-- Main form -->
+
+      <form class="authorized-form" @submit.prevent="submitMessage">
+        <h2>Message:</h2>
+        <textarea class="message-field" v-model="saveMessageToBackEnd" rows="5"
+          placeholder="Send a message to PostgreSQL" required></textarea><br>
+        <div style="display: flex; align-items: center;">
+          <button style="display: block; margin-left: 0; margin-right: 0.5rem;" class="clean-button"
+            type="submit">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -122,7 +123,7 @@ export default {
       //userMessagesFromBackEnd: [],
       // For testing
       userMessagesFromBackEnd: [{
-        "data": "Some more account data",
+        "data": "Default message for testing - this should not show up in production.",
         "createdAt": "2022-01-02T00:00:00"
       },],
 
@@ -137,7 +138,7 @@ export default {
   mounted() {
     this.userStore.initializeStore();
     this.userName = this.userStore.userName;
-    this.loadUserServiceData(); // loads data into reactive variable
+    this.loadUserServiceData(); // loads data into reactive variable - comment out for testing locally
   },
 
   computed: {
@@ -307,6 +308,10 @@ p {
 .get-message-left-margin ul {
   list-style-type: none;
   width: auto;
+  border-top: 1px solid rgb(225, 225, 225);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
 }
 
 .message-if-else-area {
@@ -319,8 +324,9 @@ p {
 }
 
 
+
 .svg-x-hover-color-highlight {
-  stroke: rgb(200, 200, 200);
+  stroke: rgb(210, 210, 210);
   transition: stroke 0.3s ease;
   /* Adjust the duration and timing function as needed */
 }
@@ -332,15 +338,22 @@ p {
 */
 .svg-container {
   height: 2rem;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .svg-container:hover {
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(225, 225, 225);
   cursor: pointer;
+  border-bottom-left-radius: 50%;
+  border-top-right-radius: 10px;
+
+
 }
 
 .svg-container:hover .svg-x-hover-color-highlight {
-  stroke: rgb(0, 0, 0);
+  stroke: rgb(255, 255, 255);
+
 }
 
 
@@ -348,9 +361,16 @@ p {
   display: flex;
   justify-content: space-between;
   width: calc(100%);
-  border-top: 1px solid rgb(225, 225, 225);
+
   overflow-wrap: break-word;
   /* word wrap for long urls or things that overflow */
   word-break: break-all;
+  padding-left: 1rem;
+}
+
+.li-flex-wrapper:hover {
+  background: rgb(250, 250, 250);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 </style>
