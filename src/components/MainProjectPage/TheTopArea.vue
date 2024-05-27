@@ -34,14 +34,16 @@
 
                     <ul style="font-size: 1rem; text-align: left; color: #fff; padding: 0.5rem; padding-left: 2rem;">
                         <li>
-                            Lastest ongoing project is <router-link class="home-text-links list-links-text-decoration"
-                                to="/UserSignIn">User logins</router-link> with my
-                            PostgreSQL database.
-                            The <router-link class="home-text-links list-links-text-decoration"
-                                to="/projects/country-music-generator">Country Music Generator</router-link> will
-                            probably
-                            use
-                            some PostgreSQL database connections to store song data when I get back to this.
+                            Lastest ongoing project has been <router-link
+                                class="home-text-links list-links-text-decoration" to="/UserSignIn">User
+                                logins</router-link> with my
+                            PostgreSQL database. User login allows secure sessions with Axios, JWT http cookies, and
+                            CSRF tokens.
+                        </li>
+
+                        <li>
+                            Started to read through some <a class="home-text-links list-links-text-decoration"
+                                href='https://legacy.reactjs.org/tutorial/tutorial.html'>React.js</a> documentation
                         </li>
 
                         <li>
@@ -178,7 +180,7 @@ onMounted(() => {
 
 .home-text-links {
     color: rgb(255, 255, 255);
-    font-weight: 500;
+    font-weight: bold;
     border-bottom: 3px solid rgb(0, 171, 137);
     text-decoration: none;
 }
@@ -187,6 +189,7 @@ onMounted(() => {
     background: rgb(0, 255, 204);
     color: rgb(40, 40, 40);
     border-bottom: none;
+    font-weight: bold;
 }
 
 .home-text-links:active {

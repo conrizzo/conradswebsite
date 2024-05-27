@@ -86,8 +86,22 @@
           </div>
         </div>
       </div>
-      <!-- Main form -->
+      <!-- special area to test -->
+      <div v-if="userName === 'conrad'" style="background: #fff; text-align: left; padding: 1rem;">
+        <div>
+          <h3>Special area for testing</h3>
+          <p>Special area for testing</p>
+          <button class="clean-button" @click="querySpecialAreaAccess">Load About Page user messages</button>
+        </div>
+        <div v-for="(item, index) in specialMessages" :key="index">
+          <span style="display: block;">Date: {{ item.date }}</span>
+          <span style="display: block;">Name: {{ item.name }}</span>
+          <span style="display: block;">Subject: {{ item.subject }}</span>
+          <p>Message: {{ item.message }}</p>
+        </div>
+      </div>
 
+      <!-- Main form -->
       <form class="authorized-form" @submit.prevent="submitMessage">
         <h2>Message:</h2>
         <textarea class="message-field" v-model="saveMessageToBackEnd" rows="5"
@@ -117,13 +131,13 @@ export default {
       pageContent: "This is a user only area. You can save messages to the backend, and delete them. Data is rate limited to 6 requests per 10 seconds.\
       Note, that when deleting or submitting data, it has to both post the data, and get the new updated data which means this is 2 requests.\
       As long as this isn't happening more than 3 times per 10 seconds, there won't be any rate limit issue.",
-      saveMessageToBackEnd: "",
+
       showQueryResponse: false,
       queryResponse: null,
       //userMessagesFromBackEnd: [],
-      // For testing
+      // For testing - it's okay if this is in production since it loads a replacement and wont show this
       userMessagesFromBackEnd: [{
-        "data": "Default message for testing - this should not show up in production.",
+        "data": "Default message for testing - this is an error if you see this in production",
         "createdAt": "2022-01-02T00:00:00"
       },],
 
@@ -132,6 +146,9 @@ export default {
       viewAllMessages: false,
       confirmationCheck: false,
       selectedItemToDelete: null,
+      saveMessageToBackEnd: "",
+
+      specialMessages: [],
     };
   },
 
@@ -226,6 +243,13 @@ export default {
       return urlPattern.test(sanitizedMessage)
         ? sanitizedMessage.replace(urlPattern, '<a href="$1" target="_blank">$1</a>')
         : sanitizedMessage;
+    },
+
+    async querySpecialAreaAccess() {
+      this.specialMessages = await UserService.specialAreaAccess();
+      console.log(this.specialMessages);
+
+      console.log(JSON.stringify(specialMessages, null, 2));
     }
   },
 };

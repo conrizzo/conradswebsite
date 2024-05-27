@@ -133,11 +133,23 @@ class UserService {
         console.log('Signing in...')
         try {
             const response = await axiosInstance.post('/backend/api/sign_in', userData, { withCredentials: true });
-            console.log("response data message:", response.data.message);               
+            console.log("response data message:", response.data.message);
             return true;
         } catch (error: any) {
             console.log('Error signing in:', error);
         }
+    }
+
+    async specialAreaAccess() {
+
+        try {
+            const response = await axiosInstance.get('/backend/api/special_area');
+            
+            return response.data;
+        } catch (error: any) {
+            console.log('Error getting special user data:', error);
+        }
+
     }
 
 
