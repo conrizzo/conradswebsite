@@ -25,12 +25,18 @@
     <div class="inner-container-for-width">
 
       <h1>{{ pageTitle }}</h1>
+
       <!-- Message area -->
       <div class="message-if-else-area">
+        <button class="clean-button" style="margin-right: .5rem; margin-bottom: 1rem;"
+          @click="$router.push('/UserSignIn')">User Menu</button>
         <div>
           <p>{{ pageContent }}</p>
           <p v-if="userName !== null">You are logged in as {{ userName }}</p>
           <p v-else>Loading...</p>
+
+
+
           <button class="clean-button" style="margin-right: .5rem; margin-bottom: 1rem;"
             @click='viewAllMessages = !viewAllMessages'>
             <span v-if="viewAllMessages === false">View All</span>
@@ -44,7 +50,8 @@
               <div class="get-message-left-margin">
                 <ul>
                   <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id">
-                    <div v-if="index >= userMessagesFromBackEnd.length - 5" class="li-flex-wrapper">
+                    <div v-if="index >= userMessagesFromBackEnd.length - 5" :style="{ '--color': getRandomColor() }"
+                      class="li-flex-wrapper">
                       <div>
                         <span style="margin-top: 0.2rem; display: block;">{{ message.createdAt }}</span>
                         <span v-html="checkIfLink(message.data)" style="margin-top: 0.2rem; display: block;"></span>
@@ -66,7 +73,8 @@
               <h3>All messages sent:</h3>
               <div class="get-message-left-margin">
                 <ul>
-                  <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id" class="li-flex-wrapper">
+                  <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id"
+                    :style="{ '--color': getRandomColor() }" class="li-flex-wrapper">
                     <div>
                       <span style="margin-top: 0.2rem; display: block;">{{ message.createdAt }}</span>
                       <span v-html="checkIfLink(message.data)" style="margin-top: 0.2rem; display: block;"></span>
@@ -87,8 +95,9 @@
         </div>
       </div>
       <!-- special area to test -->
-      <div v-if="userName === 'conrad'" style="background: #fff; text-align: left; padding: 1rem;">
-        <div>
+      <div v-if="userName === 'conrad'"
+        style="background: #fff; text-align: left; padding: 1rem; margin-top: 1rem; border-radius: 1rem;">
+        <div style="margin-bottom: .5rem;">
           <h3>Special area for testing</h3>
           <p>Special area for testing</p>
           <button class="clean-button" @click="querySpecialAreaAccess">Load About Page user messages</button>
@@ -102,7 +111,7 @@
       </div>
 
       <!-- Main form -->
-      <form class="authorized-form" @submit.prevent="submitMessage">
+      <form class="authorized-form" @submit.prevent="postMessage">
         <h2>Message:</h2>
         <textarea class="message-field" v-model="saveMessageToBackEnd" rows="5"
           placeholder="Send a message to PostgreSQL" required></textarea><br>
@@ -139,6 +148,9 @@ export default {
       userMessagesFromBackEnd: [{
         "data": "Default message for testing - this is an error if you see this in production",
         "createdAt": "2022-01-02T00:00:00"
+      }, {
+        "data": "Default message for testing - this is an error if you see this in production",
+        "createdAt": "2022-01-02T00:00:00"
       },],
 
       userName: '',
@@ -162,7 +174,6 @@ export default {
     pageTitle() {
       return "Welcome, " + this.userName;
     },
-
   },
   /*
   watch: {
@@ -179,9 +190,30 @@ export default {
  */
   methods: {
 
+    getRandomColor() {
+      const red = Math.floor(Math.random() * 256);
+      const green = Math.floor(Math.random() * 256);
+      const blue = Math.floor(Math.random() * 256);
+      return `rgb(${red}, ${green}, ${blue})`;
+    },
+
     async loadUserServiceData() {
       //const result = await UserService.getAccountData();
-      this.userMessagesFromBackEnd = await UserService.getAccountData();
+      const getAccountData = await UserService.getAccountData();
+
+
+      /* Guard Statement:       
+       Show modal error message and exit with return - don't update messages on frontend */
+      if (getAccountData[0] && getAccountData[0].error === true) {
+        this.queryResponse = getAccountData[0].data;
+        this.toggleQueryModal();
+        return;
+      }
+
+      // Update messages on frontend
+      this.userMessagesFromBackEnd = getAccountData;
+
+      // sort Messages by date, newest on bottom
       this.userMessagesFromBackEnd.sort((a, b) => {
         // Compare by date
         const dateA = new Date(a.createdAt);
@@ -189,7 +221,7 @@ export default {
         if (dateA < dateB) return -1;
         if (dateA > dateB) return 1;
 
-        // If the dates are the same, compare by some other field
+        // Optionally: if the dates are the same, compare by some other field
         // Replace 'someField' with the actual field name
         if (a.someField < b.someField) return -1;
         if (a.someField > b.someField) return 1;
@@ -198,29 +230,37 @@ export default {
       });
     },
 
-    async submitMessage() {
-      try {
+    async postMessage() {
 
-        /*
+      /*
         1. Send data to PostgreSQL, 
         2. if true response, then show 'success message', and show the modal 
-         */
+      */
 
-        if (await UserService.postAccountData(this.saveMessageToBackEnd)) {
-          this.queryResponse = "Submission successful!"; // set modal message
+      try {
+        const response = await UserService.postAccountData(this.saveMessageToBackEnd);
+
+        if (response.success) {
+          this.queryResponse = response.message; // set modal message
           this.toggleQueryModal();
           await this.loadUserServiceData();
         }
+        else {
+          this.queryResponse = response.message;
+          this.toggleQueryModal();
+        }
       } catch (error) {
-        console.error("The error", error);
+        this.toggleQueryModal();
+        this.queryResponse = "Other error has occured ", error;
       }
     },
 
-
     toggleQueryModal() {
-      this.showQueryResponse = !this.showQueryResponse;
+      this.showQueryResponse = true;
+      setTimeout(() => {
+        this.showQueryResponse = false;
+      }, 500);
     },
-
 
     toggleModalToConfirmEntryDeletion(select_item) {
       this.confirmationCheck = !this.confirmationCheck;
@@ -231,8 +271,8 @@ export default {
     async deleteAccountDataConfirmation() {
       this.confirmationCheck = true;
       await UserService.deleteAccountData(this.selectedItemToDelete);
-      await this.loadUserServiceData();
       this.toggleModalToConfirmEntryDeletion();
+      await this.loadUserServiceData();
     },
 
 
@@ -319,7 +359,7 @@ p {
   width: 100%;
   resize: none;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0rem;
   padding: 5px;
   font-size: 1rem;
 }
@@ -332,10 +372,7 @@ p {
 .get-message-left-margin ul {
   list-style-type: none;
   width: auto;
-  border-top: 1px solid rgb(225, 225, 225);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-
+  border-top: 2px solid rgb(225, 225, 225);
 }
 
 .message-if-else-area {
@@ -382,19 +419,32 @@ p {
 
 
 .li-flex-wrapper {
+  position: relative;
   display: flex;
   justify-content: space-between;
   width: calc(100%);
-
   overflow-wrap: break-word;
   /* word wrap for long urls or things that overflow */
   word-break: break-all;
   padding-left: 1rem;
+
+  padding-top: 1rem;
+}
+
+
+.li-flex-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5%;
+  /* to center the border, adjust as needed */
+  height: 90%;
+  /* border-left: 3px solid red; */
+  border-left: 3px solid var(--color);
 }
 
 .li-flex-wrapper:hover {
   background: rgb(250, 250, 250);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+
 }
 </style>

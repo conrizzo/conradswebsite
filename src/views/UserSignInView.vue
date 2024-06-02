@@ -3,20 +3,39 @@
   <div class="main-container">
 
     <!-- Show a simple navigation area if the user is logged in -->
-    <div v-if="isSignedIn" class=""
-      style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; cursor: auto; color: rgb(30, 144, 255); font-size: 1.5em; font-weight: bold;">
-      <span>Welcome, {{ userName }}!
-        <span style="font-size: 0.75em; color: rgb(30, 144, 255);">This is the user navigation area.</span></span><br>
-      <div>
-        <div class="logged-in-button-container">
-          <button class="clean-button highlight-green" @click="$router.push('/authorized')"
-            style="margin-right: 0.5rem;">
-            Continue to User Area
-          </button>
-          <button class="clean-button highlight-red" @click="signUserOut">Sign Out
-          </button>
+    <div v-if="isSignedIn" class="center-area-horizontally-and-vertically">
+
+      <div class="user-signed-in-console">
+
+        <span>Welcome, {{ userName }}!
+          This is the user navigation area.</span>
+
+        <div class="user-signed-in-button-area">
+          <div>
+            <button class="clean-button highlight-green" @click="$router.push('/authorized')"
+              style="margin-right: 0.5rem; margin-top: .5rem;">
+              Continue to User Area
+            </button>
+          </div>
+          <div>
+            <button class="clean-button highlight-green" style="margin-top: .5rem;"
+              @click="showChangePasswordMenu = !showChangePasswordMenu">
+              Change Password
+            </button>
+          </div>
+          <div>
+            <button class="clean-button highlight-red" style="margin-top: .5rem;" @click="signUserOut">
+              Sign Out
+            </button>
+          </div>
         </div>
+
+        <div v-if="showChangePasswordMenu === true" style="margin-top: .5rem;">
+          <ChangePassword />
+        </div>
+
       </div>
+
     </div>
 
     <!-- Show Sign In with option for user to select Sign Up to make an account -->
@@ -36,7 +55,7 @@
       <template v-else>
         <!-- Sign up -->
         <div class="center-sign-in">
-          <SignUpPage />
+          <SignUpPage @signUpSuccessful="handleSignUpSuccess" />
           <div class="center-with-flex">
             <span class="signIn-information" style="padding: 1em;">Already registered?
               <a class="sign-in-sign-up" style="cursor: pointer;" @click="showSignIn = true">Sign In</a></span>
@@ -72,6 +91,7 @@
 <script>
 import SignUpPage from '@/components/UserSignIn/SignUpPage.vue'
 import SignInPage from '@/components/UserSignIn/SignInPage.vue'
+import ChangePassword from '@/components/UserSignIn/ChangePassword.vue'
 import UserService from './projects/UserAccount/user.ts';
 import { useUserStore } from '@/userStore/store.js';
 import router from '@/router';
@@ -87,7 +107,7 @@ import router from '@/router';
 
 export default {
 
-  components: { SignUpPage, SignInPage, },
+  components: { SignUpPage, SignInPage, ChangePassword },
 
   data() {
     return {
@@ -102,6 +122,7 @@ export default {
       lastMessageSentTime: 0,
       timeElapsed: 0,
       errorMessage: '',
+      showChangePasswordMenu: false,
       userStore: useUserStore(),
     }
   },
@@ -117,13 +138,16 @@ export default {
   },
 
   methods: {
+    handleSignUpSuccess() {
+      this.showSignIn = true; // show the sign in form
+    },
 
     handleSignInSuccess(userName) {
       this.userStore.signInSuccess(userName);
       this.showSignIn = false;
       this.isSignedIn = true;
       this.userName = this.userStore.userName;
-      router.push('/authorized');
+      router.push('/authorized'); // go to authorized user area
     },
 
     async signUserOut() {
@@ -165,6 +189,14 @@ p {
   height: 100vh;
 }
 
+.center-area-horizontally-and-vertically {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+}
+
 .signed-in-or-not {
   color: rgb(18, 18, 18);
   border: 2px rgb(218, 220, 224);
@@ -172,6 +204,22 @@ p {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.user-signed-in-console {
+  flex-direction: column;
+  align-items: flex-start;
+  display: flex;
+  cursor: auto;
+  color: rgb(30, 144, 255);
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.user-signed-in-button-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .logged-in-button-container {

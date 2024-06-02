@@ -42,8 +42,10 @@
                         </li>
 
                         <li>
-                            Started to read through some <a class="home-text-links list-links-text-decoration"
-                                href='https://legacy.reactjs.org/tutorial/tutorial.html'>React.js</a> documentation
+                            This whole site is written in Vue.js. I've started to read through some <a
+                                class="home-text-links list-links-text-decoration"
+                                href='https://react.dev/blog/2023/03/16/introducing-react-dev'>React.js</a>
+                            documentation to compare+learn.
                         </li>
 
                         <li>

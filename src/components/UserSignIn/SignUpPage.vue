@@ -23,7 +23,7 @@
         <button style="margin-top: 1rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
           }}</button>
         <div style="margin-top: 0.5rem;">
-          <span style="color: red;">{{ errorMessage }}</span>
+          <span style="color: red;">{{ signUpMessage }}</span>
         </div>
       </form>
     </div>
@@ -32,6 +32,7 @@
 
 <script>
 import axiosInstance from '@/axios';
+
 /*
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '@/firebase/init.js' */
@@ -43,7 +44,7 @@ const focus = {
 
 export default {
   // register event to emit
-  emits: ['SignedIn'],
+  emits: ['signUpSuccessful'],
   directives: {
     focus
   },
@@ -53,7 +54,7 @@ export default {
       email: '',
       password: '',
       isSigningUp: false,
-      signUpMessage: null
+      signUpMessage: null,
     }
   },
   computed: {
@@ -82,11 +83,11 @@ export default {
 
         // Handle success response
         console.log(response.data.message);
-        // Optionally, emit an event for successful registration
-        // I have this turned off for the sign up for now
-        // user must login after signing up
-        // this.$emit('registrationSuccessful', response.data.username);
+
         this.signUpMessage = response.data.message;
+        setTimeout(() => {
+          this.$emit('signUpSuccessful');
+        }, 1500);
       } catch (error) {
         if (error.response && error.response.data) {
           this.signUpMessage = `Error: ${error.response.data.message}`;
@@ -130,7 +131,7 @@ input {
   font-size: 1.1rem;
   align-self: flex-start;
   padding-left: 0.25em;
-  margin-bottom: -.33rem; 
+  margin-bottom: -.33rem;
 
 }
 
