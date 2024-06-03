@@ -40,7 +40,7 @@
 <script>
 
 import { ref, computed, onMounted } from 'vue';
-import { productInventory } from '../Store/productInventoryOptionsData';
+import { productInventory } from '../StorePrototype/productInventoryOptionsData';
 import { Trie } from './MakeTrie';
 
 export default {
@@ -244,3 +244,4 @@ Uses new in 2023 Anchor CSS feature
   box-shadow: none;
 }
 </style>
+./productInventoryOptionsData

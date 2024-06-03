@@ -50,10 +50,10 @@
 
 <script>
 import "@/assets/globalCSS.css";
-import CheckOut from "@/components/Store/CheckOut.vue";
-import { productInventory } from '@/components/Store/productInventoryOptionsData.ts';
+import CheckOut from "@/components/StorePrototype/CheckOut.vue";
+import { productInventory } from '@/components/StorePrototype/productInventoryOptionsData.ts';
 
-import { useCartStore } from '@/components/Store/useCounterStore.js';
+import { useCartStore } from '@/components/StorePrototype/useCounterStore.js';
 
 
 export default {
@@ -248,4 +248,4 @@ h1 {
     }
 
 }
-</style>
+</style>@/components/StorePrototype/productInventoryOptionsData@/components/StorePrototype/useCounterStore.js

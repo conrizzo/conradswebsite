@@ -131,9 +131,9 @@
 </template>
 
 <script>
-// import ProductGallery from "@/components/Store/ProductGallery.vue";
-import { Inventory } from "@/components/Store/InventoryData.ts";
-import { productInventory } from '@/components/Store/productInventoryOptionsData';
+// import ProductGallery from "@/components/StorePrototype/ProductGallery.vue";
+import { Inventory } from "@/components/StorePrototype/InventoryData.ts";
+import { productInventory } from '@/components/StorePrototype/productInventoryOptionsData';
 
 import { useCounterStore } from './useCounterStore.js';
 import { useCartStore } from './useCounterStore.js';
@@ -629,4 +629,4 @@ h1 {
 }
 
 /* Your styles here */
-</style>
+</style>@/components/StorePrototype/InventoryData.js@/components/StorePrototype/productInventoryOptionsData.js

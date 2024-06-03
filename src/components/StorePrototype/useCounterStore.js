@@ -1,6 +1,6 @@
 
 import { defineStore } from 'pinia';
-import { productInventory } from '@/components/Store/productInventoryOptionsData.ts';
+import { productInventory } from '@/components/StorePrototype/productInventoryOptionsData';
 
 
 

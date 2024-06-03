@@ -19,8 +19,8 @@
 <script>
 
 import "@/assets/globalCSS.css";
-import CheckOut from "@/components/Store/CheckOut.vue";
-import { useCartStore } from '@/components/Store/useCounterStore.js';
+import CheckOut from "@/components/StorePrototype/CheckOut.vue";
+import { useCartStore } from '@/components/StorePrototype/useCounterStore.js';
 
 export default {
   // Component options
@@ -79,4 +79,4 @@ export default {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%,
       transparent 25%, transparent 70%, rgba(255, 255, 255, 0.1) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%, transparent);
 }
-</style>
+</style>@/components/StorePrototype/useCounterStore.js

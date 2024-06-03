@@ -10,19 +10,17 @@
           style="max-width: 98%; max-height: 400px;">
       </div>
       <div style="text-align: left; padding-left: 1rem;">
-        <p><b>April 11th 2024 Review:</b> After some review there are many ways to have made this better, but it was a
-          build
-          from scratch learning project to learn and
-          make a
+        <p>This was built from scratch using Vue.js and TypeScript in a week or two. The main goal was to create a
           store prototype. A major change I made was changing cookies to a store and using <a class="text-links"
             href='https://pinia.vuejs.org/'>Pinea</a> to manage the cart.
-          This means I can get rid of all the special url params and just put a name or ID to each product - and all
+          This means I could get rid of all the special url params and just put a name or ID to each product - and all
           that's needed is to
           fetch that name or id from a database to get all the details of that product e.g. price, image for product,
-          etc. Everything works as is, and fixing this would take a bit of time
-          to implement, but after this it is 'pretty professionally' setup. Partly fixed this -<br>
+          etc. This is all updated now and should be pretty close to professionally made. The next update would be connecting 
+          an actual payment system with backend code which should be fairly quick to do, but I dont sell bird food, cake, and pizza 
+          so I haven't really found a need to do this yet!<br>
           <a class="text-links"
-            href="https://github.com/conrizzo/conradswebsite/blob/master/src/components/Store/CheckOut.vue">CheckOut.vue</a>
+            href="https://github.com/conrizzo/conradswebsite/blob/master/src/components/StorePrototype/CheckOut.vue">CheckOut.vue</a>
           is the main part of this application.
         </p>
         <a class="text-links" href="https://github.com/conrizzo/conradswebsite/tree/master/src/components/Store">

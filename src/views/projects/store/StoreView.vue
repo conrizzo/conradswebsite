@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import ProductGallery from "@/components/Store/ProductGallery.vue";
+import ProductGallery from "@/components/StorePrototype/ProductGallery.vue";
 import "@/assets/globalCSS.css";
-import CheckOut from "@/components/Store/CheckOut.vue";
-import DiagramModal from "@/components/Store/DiagramModal.vue";
-import SearchFunction from "@/components/Store/SearchFunction.vue";
-//import ThreeWideGrid from "@/components/Store/ThreeWideGridProducts.vue";
+import CheckOut from "@/components/StorePrototype/CheckOut.vue";
+import DiagramModal from "@/components/StorePrototype/DiagramModal.vue";
+import SearchFunction from "@/components/StorePrototype/SearchFunction.vue";
+//import ThreeWideGrid from "@/components/StorePrototype/ThreeWideGridProducts.vue";
 
 export default {
   name: "StorePrototype",

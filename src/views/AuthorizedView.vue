@@ -50,7 +50,7 @@
               <div class="get-message-left-margin">
                 <ul>
                   <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id">
-                    <div v-if="index >= userMessagesFromBackEnd.length - 5" :style="{ '--color': getRandomColor() }"
+                    <div v-if="index >= userMessagesFromBackEnd.length - 5" :style="{ '--color': colors[index] }"
                       class="li-flex-wrapper">
                       <div>
                         <span style="margin-top: 0.2rem; display: block;">{{ message.createdAt }}</span>
@@ -74,7 +74,7 @@
               <div class="get-message-left-margin">
                 <ul>
                   <li v-for="(message, index) in userMessagesFromBackEnd" :key="message.id"
-                    :style="{ '--color': getRandomColor() }" class="li-flex-wrapper">
+                    :style="{ '--color': colors[index] }" class="li-flex-wrapper">
                     <div>
                       <span style="margin-top: 0.2rem; display: block;">{{ message.createdAt }}</span>
                       <span v-html="checkIfLink(message.data)" style="margin-top: 0.2rem; display: block;"></span>
@@ -163,6 +163,9 @@ export default {
       specialMessages: [],
     };
   },
+  created() {
+    this.colors = this.userMessagesFromBackEnd.map(() => this.getRandomColor());
+  },
 
   mounted() {
     this.userStore.initializeStore();
@@ -188,6 +191,13 @@ export default {
     },
   },
  */
+  watch: {
+    userMessagesFromBackEnd(newMessages, oldMessages) {
+      if (newMessages.length !== oldMessages.length) {
+        this.colors = newMessages.map(() => this.getRandomColor());
+      }
+    },
+  },
   methods: {
 
     getRandomColor() {
@@ -428,7 +438,7 @@ p {
   word-break: break-all;
   padding-left: 1rem;
 
-  padding-top: 1rem;
+  margin-top: 1rem;
 }
 
 
@@ -437,7 +447,6 @@ p {
   position: absolute;
   left: 0;
   top: 5%;
-  /* to center the border, adjust as needed */
   height: 90%;
   /* border-left: 3px solid red; */
   border-left: 3px solid var(--color);
