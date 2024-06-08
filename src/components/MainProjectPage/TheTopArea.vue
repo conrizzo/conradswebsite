@@ -36,7 +36,7 @@
                         <li>
                             Lastest ongoing project has been <router-link
                                 class="home-text-links list-links-text-decoration" to="/UserSignIn">User
-                                logins</router-link> with my
+                                logins</router-link> with my own Docker
                             PostgreSQL database. User login allows secure sessions with Axios, JWT http cookies, and
                             CSRF tokens.
                         </li>
@@ -45,7 +45,8 @@
                             This whole site is written in Vue.js. I've started to read through some <a
                                 class="home-text-links list-links-text-decoration"
                                 href='https://react.dev/blog/2023/03/16/introducing-react-dev'>React.js</a>
-                            documentation to compare+learn.
+                            documentation to compare+learn <a class="home-text-links list-links-text-decoration"
+                                href="https://next.conradswebsite.com/">here</a> using React and Next.js
                         </li>
 
                         <li>

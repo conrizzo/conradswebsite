@@ -53,12 +53,12 @@
                                 Quantity:
                                 <div style="display: flex;">
                                     <button @click="handlePlusMinusIncrementDecrementButtons(item, -1)"
-                                        style="font-size: 1.25rem; margin-right: 0.1rem; width: 1.7rem; cursor: pointer;">-</button>
+                                        class="minus-button-item-in-cart">-</button>
                                     <input type="number" v-model="item.quantity" min="0" max="100" step="1"
                                         @input="updateQuantityInCart(item)"
-                                        style="width: 3.2rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px;">
+                                        style="width: 3rem; font-size: 1.25rem; border-radius: 0.25rem; border-width: 1px; padding-left: 3px;">
                                     <button @click="handlePlusMinusIncrementDecrementButtons(item, 1)"
-                                        style="font-size: 1.25rem; margin-left: 0.1rem; width: 1.7rem; cursor: pointer;">+</button>
+                                        class="plus-button-item-in-cart">+</button>
                                 </div>
 
                                 <br>
@@ -558,6 +558,32 @@ h1 {
 .button-at-bottom-right-space {
     margin-right: 1rem;
 }
+
+input[type="number"] {
+  -webkit-appearance: textfield; /* This will remove the spinner in Webkit browsers (Safari, Chrome) */
+  -moz-appearance: textfield; /* This will remove the spinner in Firefox */
+  appearance: textfield; /* Future-proofing: this will remove the spinner if a future version of CSS enables it */  
+ border: 1px solid rgb(255, 149, 149);
+}
+input[type="number"]:focus {
+  outline: 1px solid red;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button, /* This will remove the inner spinner in Webkit browsers */
+input[type="number"]::-webkit-outer-spin-button { /* This will remove the outer spinner in Webkit browsers */
+  -webkit-appearance: none; /* This will remove the spinner in Webkit browsers */
+  margin: 0; /* This will remove the spinner in Webkit browsers */
+}
+
+.minus-button-item-in-cart{
+    font-size: 1.5rem; margin-right: 0.1rem; width: 33px; height: 33px; cursor: pointer;
+}
+
+.plus-button-item-in-cart{
+    font-size: 1.5rem; margin-left: 0.1rem; width: 33px; height: 33px; cursor: pointer;
+}
+
 
 @media screen and (max-width: 65rem) {
     .grid-shopping-cart {

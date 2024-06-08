@@ -99,7 +99,8 @@
                 Biologie in Tübingen, Germany
               </li>
               <li>
-                Side project <a class="text-links"
+                Side project to learn React/Next.js <a class="text-links"
+                  href="https://next.conradswebsite.com/">next.conradswebsite.com</a> and also <a class="text-links"
                   href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> to try out the <a
                   class="text-links" href="https://astro.build/">Astro</a> framework. A <a class="text-links"
                   href='https://search-wordle-words.netlify.app/'>Wordle helper in Nuxt.js</a>
@@ -177,9 +178,10 @@
                 Biologie in Tübingen, Deutschland, gearbeitet habe
               </li>
               <li>
-                Nebenprojekt <a class="text-links"
-                  href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das <a
-                  class="text-links" href="https://astro.build/">Astro</a> framework verwendet
+                Nebenprojekt zu React/Next.js lernen <a class="text-links"
+                  href="https://next.conradswebsite.com/">https://next.conradswebsite.com</a> und auch <a
+                  class="text-links" href="https://blog.conradswebsite.com">https://blog.conradswebsite.com</a> die das
+                <a class="text-links" href="https://astro.build/">Astro</a> framework verwendet
               </li>
               <li>
                 Diese Website verwendet nur First-Party-HTTP-Cookies zur Benutzerauthentifizierung. Warum ist das

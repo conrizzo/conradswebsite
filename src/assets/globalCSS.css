@@ -1,10 +1,12 @@
 :root {
+  font-size: 1em; /* 16px is the default CSS does, all the em, rem are based off this */
   --fs-300: 0.9rem;
   --fs-400: 1rem;
   --fs-500: 1.1rem;
   --fs-600: 1.2rem;
   --fs-700: 1.3rem;
   --fs-800: 2rem;
+  --default-background-color: #ffffff;
 }
 
 body {
@@ -13,7 +15,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
-  background: linear-gradient(var(--gray-gradient)) no-repeat;
+  background: linear-gradient(var(--default-background-color)) no-repeat;
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: rgb(var(--gray-dark));
@@ -146,7 +148,6 @@ svg,
 video {
   max-width: 100%;
   display: block;
-
 }
 
 p {
@@ -214,7 +215,6 @@ h1 {
   color: rgb(18,18,18);
 }
 
-
 /* CSS */
 .button-35 {
   align-items: center;
@@ -260,6 +260,7 @@ h1 {
 .no-decoration {
   text-decoration: none !important;
 }
+
 .no-decoration:hover {
   text-decoration: underline !important;
 }
@@ -317,7 +318,6 @@ h1 {
 .links-black:active {
   color: rgb(18, 18, 18);
 }
-
 
 /* make elements unselectable */
 .unselectable {
@@ -388,9 +388,6 @@ h1 {
 .clean-button:-webkit-details-marker {
   display: none;
 }
-
-
-
 
 @media only screen and (max-width: 70rem) {
   .paragraph-text {

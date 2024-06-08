@@ -11,7 +11,7 @@ const images = requireContext.keys().map(requireContext);
 
 
 export default [
-  { id: 1, text: 'Store Design', to: '/projects/store/store-prototype-made-in-vuejs-and-typescript', caption:"A store prototype made with Vue.js and Typescript", imageSrc: "" },
+  { id: 1, text: 'Store Prototype', to: '/projects/store/store-prototype-made-in-vuejs-and-typescript', caption:"A store prototype made with Vue.js and Typescript", imageSrc: "" },
   { id: 2, text: 'Cowculator', to: '/projects/cowculator',caption:"A real calculator that does parsing to solve calculations and shows the binary tree of the calculations. Moo × Moo = Moooo", imageSrc: "" },
   { id: 3, text: 'Weather', to: '/projects/weather',caption:"Weather in Tuebingen, Germany", imageSrc: "" },
   { id: 4, text: 'Coffee Consumption', to: '/projects/datasets',caption:"Some miscellaneous data about coffee consumption", imageSrc: "" },
