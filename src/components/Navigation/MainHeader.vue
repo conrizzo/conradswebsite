@@ -282,14 +282,18 @@ nav a.router-link-exact-active {
 }
 
 .hide-sign-in-text-at-low-res {
-  margin-right: 0.5em;
-  padding-right: 0.4em;
+  margin-right: 0.6rem;
+  padding-right: 0.6rem;
   font-size: 1em;
   padding-left: 0.5em;
+  color: rgb(0, 255, 204);
 }
 
 .hide-sign-in-text-at-low-res:hover {
-  color: #ff5959;
+background: rgb(60, 60, 60);
+padding-top: 0.5rem;
+padding-bottom: .5rem;
+border-radius: .25rem;
 }
 
 .only-show-home-svg-at-mobile-size {

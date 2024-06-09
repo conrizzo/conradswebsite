@@ -1,7 +1,4 @@
 <template>
-
-  <TopArea />
-
   <div class="custom-background-home-page center-with-flex">
     <section class="looped-project-section">
       <div class='under-title-caption'>
@@ -10,7 +7,8 @@
     </section>
   </div>
   <!-- :backgroundImageUrl=""   fix this - add in the image with prop -->
-  <ImagesOneRow :theBackground="linkToImage" />
+  <TopArea />
+  <ImagesOneRow :theBackground="'#000'" />
 
 </template>
 
@@ -63,7 +61,7 @@ export default {
   background-blend-mode: multiply;
   background-size: 50% 100%;
   background-attachment: fixed;
-  position: relative;
+  position: relative;  
 }
 
 /*

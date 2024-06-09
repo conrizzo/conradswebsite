@@ -1,21 +1,16 @@
 <template>
     <section class="center-top-main-area-box">
         <div class="website-text-boxes">
-            <h1 class="title">
+            <h2 class="title">
                 <span class="top-string-slice-of-title">
-                    <span>{{ inputStringShuffled }}</span>
+                    <span>Updates</span>
                 </span>
-            </h1>
+            </h2>
             <div class="main-text-container">
                 <ul class="main-text-ul">
 
                     <li>
-                        <span>Crafted under
-                            the influence of 1-2 cups of <a class="home-text-links list-links-text-decoration"
-                                href="https://en.wikipedia.org/wiki/Coffee">Coffee</a>
-                            per day.
-                            <br>
-                        </span>
+                       Powered by coffee and birds flying around my windows all day
                     </li>
 
                 </ul>
@@ -29,31 +24,32 @@
             </div>
             <div class="center-with-flex">
                 <div style="padding: 1rem;">
-                    <h3 style="font-size: 1rem; text-align: left; color: #fff;">Current learning focus:</h3>
+                    <h3 style="font-size: 1rem; text-align: left; color: #fff;"></h3>
 
 
                     <ul style="font-size: 1rem; text-align: left; color: #fff; padding: 0.5rem; padding-left: 2rem;">
-                        <li>
-                            Lastest ongoing project has been <router-link
-                                class="home-text-links list-links-text-decoration" to="/UserSignIn">User
-                                logins</router-link> with my own Docker
-                            PostgreSQL database. User login allows secure sessions with Axios, JWT http cookies, and
-                            CSRF tokens.
-                        </li>
 
                         <li>
-                            This whole site is written in Vue.js. I've started to read through some <a
+                            June, 2024 - I've started to build a project in <a
                                 class="home-text-links list-links-text-decoration"
                                 href='https://react.dev/blog/2023/03/16/introducing-react-dev'>React.js</a>
-                            documentation to compare+learn <a class="home-text-links list-links-text-decoration"
-                                href="https://next.conradswebsite.com/">here</a> using React and Next.js
+                            to compare+learn <a class="home-text-links list-links-text-decoration"
+                                href="https://next.conradswebsite.com/">https://next.conradswebsite.com/</a> using React and Next.js
                         </li>
 
                         <li>
-                            SQL and database guides + doing side project in raw
+                            May, 2024 - Set up <router-link class="home-text-links list-links-text-decoration"
+                                to="/UserSignIn">User
+                                logins</router-link> with my own Docker
+                            PostgreSQL database. User login allows secure sessions with Axios, JWT http cookies, and
+                            CSRF tokens that implicitly and explicitly refresh the user sessions.
+                        </li>
+
+                        <li>
+                            SQL and database usage + doing side project in raw
                             JavaScript/TypeScript to learn more about other fundamentals of the language itself (no
                             frameworks).<br>
-                            <a class="text-links" style="color: #fff;"
+                            <a class="home-text-links list-links-text-decoration"
                                 href="https://project.conradswebsite.com">project.conradswebsite.com</a>
                         </li>
                     </ul>

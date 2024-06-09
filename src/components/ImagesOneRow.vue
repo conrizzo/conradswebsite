@@ -1,5 +1,5 @@
 <template>
-  <div class="center-with-flex custom-background" :style="{ backgroundImage: 'url(' + theBackground + ')' }">
+  <div class="center-with-flex custom-background" :style="{ background: theBackground }">
 
     <div class="image-gallery">
       <h3>
@@ -37,7 +37,7 @@ export default {
     theBackground: {
       type: String,
 
-      default: '../images/blue_sky2.jpg'
+      default: '#ffffff'
     },
   },
   data() {

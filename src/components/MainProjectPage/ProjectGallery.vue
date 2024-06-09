@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="outer-padding">
     <!--<div style='text-align: left;'>
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
@@ -178,23 +178,22 @@ export default {
 
 
 <style scoped>
+.outer-padding{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .side-menu {
   position: sticky;
   top: 4.5rem;
-
-  /* Adjust this value as needed */
-
   padding-top: .9rem;
   /*
   margin-top: -3rem;
   */
   height: calc(100%);
-
   transform: translateX(0);
   z-index: 1;
-
   background: rgb(44, 44, 44);
-
   /* 
   transform: translateX(-100%); if this element sidemenu is 
     put inside the imageGallery div then it will slide inside the middle when closed
@@ -214,9 +213,7 @@ export default {
 }
 
 .side-menu.closed {
-
   display: none;
-
 }
 
 
@@ -264,7 +261,7 @@ export default {
 .left-column-content {
   position: sticky;
   top: 4.5rem;
-
+  padding-bottom: 2rem;
 }
 
 /* this adjusts the transition time of hovering over each project grid-item  */
@@ -305,7 +302,7 @@ h2 {
 
 h3 {
   font-size: 1.1rem;
-  color: rgb(160, 160, 160);
+  color: rgb(202, 165, 255);
   text-align: left;
   padding-left: .7em;
 }
