@@ -9,6 +9,7 @@
     </div>
 
     <h4 style="margin-top: 0.3em; text-align: left; margin-left: 0.5em; margin-right: 0.5em; color: #000;">
+      Coffee consumption data based off (International Coffee Organization 2016).
       Click on the column titles in the table below for each column to sort data
       numerically/alphabetically. The graph will update to the sorted values.
       All 0 values are removed for the column that is sorted. The graph now uses an SVG format output.</h4>
@@ -46,7 +47,7 @@
 
   </div>
 
-  <FastQuickSort ref="fastQuickSort" />
+  <!-- <FastQuickSort ref="fastQuickSort" /> -->
 
 
 </template>
@@ -63,7 +64,7 @@ import "@/assets/globalCSS.css";
 export default {
   name: "DatasetsView",
   components: {
-    FastQuickSort
+
   },
   data() {
     return {

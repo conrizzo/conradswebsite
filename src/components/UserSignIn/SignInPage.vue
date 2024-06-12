@@ -9,15 +9,23 @@
           <input name="email" type="email" placeholder="Email" required v-model="email" autocomplete="email" v-focus>
         </div>
       -->
-        <div style="display: flex; flex-direction: column;">
+        <div class="format-label-input">
           <label class="label-title-styling" for="username">Username</label>
           <input name="username" type="text" placeholder="Username" required v-model="userName" autocomplete="username"
             v-focus>
         </div>
 
-        <div style="display: flex; flex-direction: column; ">
+        <div class="format-label-input">
           <label class="label-title-styling" for="password">Password</label>
-          <input name="password" type="password" placeholder="Password" required v-model="password">
+          <div class="password-input">
+            <input name="password" :type="passwordVisible ? 'text' : 'password'" placeholder="Password" required
+              v-model="password">
+            <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <font-awesome-icon class="spacing-icon" :icon="passwordVisible ? 'eye-slash' : 'eye'"
+              @click="passwordVisible = !passwordVisible" />
+
+          </div>
+
         </div>
 
         <button style="margin-top: 1rem;" class="button-35">
@@ -60,6 +68,7 @@ export default {
       password: '',
       errorMessage: '',
       userName: '',
+      passwordVisible: false,
     }
   },
 
@@ -111,6 +120,17 @@ input {
   margin: 0.1em;
 }
 
+.password-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.format-label-input {
+  display: flex;
+  flex-direction: column;
+}
+
 input:focus {
   border-color: rgb(17, 255, 180);
 }
@@ -118,7 +138,6 @@ input:focus {
 .sign-in-form-container {
   display: flex;
   justify-content: center;
-
 }
 
 .label-title-styling {
@@ -130,11 +149,17 @@ input:focus {
 }
 
 .sign-in-form-styling {
-  padding: 1rem;
+  padding: 2rem;
   background: rgb(255, 255, 255);
   width: fit-content;
   border-radius: 1em;
   margin-top: 2rem;
   border: 1px solid #cecece;
+}
+
+.spacing-icon {
+  margin-right: -1.25rem;
+  padding-left: .25rem;
+  width: 1rem;
 }
 </style>

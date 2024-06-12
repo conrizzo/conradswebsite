@@ -1,6 +1,7 @@
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+library.add(faSearch, faEye, faEyeSlash)
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faSearch)
 

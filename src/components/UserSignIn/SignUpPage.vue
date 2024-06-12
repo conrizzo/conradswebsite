@@ -2,23 +2,29 @@
   <div class="signup-form-container">
     <div class='signup-form-styling'>
       <form @submit.prevent="signUp">
-
         <h2 style="padding: 0.5em;">Create an Account</h2>
 
-        <div style="display: flex; flex-direction: column;">
+        <div class="format-label-input">
           <label class="label-title-styling" for="text">Make a
             Username</label>
           <input name="text" type="text" placeholder="User Name" required v-model="userName" maxlength="20" v-focus>
         </div>
-        <div style="display: flex; flex-direction: column;">
+        <div class="format-label-input">
           <label class="label-title-styling" for="email">
             Email (Not Required)</label>
           <!-- Note: required attribute removed for email - does not need it -->
           <input name="email" type="email" placeholder="Email" v-model="email">
         </div>
-        <div style="display: flex; flex-direction: column;">
+        <div class="format-label-input">
           <label class="label-title-styling" for="password">Password</label>
-          <input name="password" type="password" placeholder="Password" required v-model="password">
+          <div class="password-input">
+            <input name="password" :type="passwordVisible ? 'text' : 'password'" placeholder="Password" required
+              v-model="password">
+            <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <font-awesome-icon class="spacing-icon" :icon="passwordVisible ? 'eye-slash' : 'eye'"
+              @click="passwordVisible = !passwordVisible" />
+
+          </div>
         </div>
         <button style="margin-top: 1rem;" class="button-35" :disabled="isSigningUp">{{ signUpButtonText
           }}</button>
@@ -32,11 +38,9 @@
 
 <script>
 import axiosInstance from '@/axios';
-
 /*
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '@/firebase/init.js' */
-
 // focus directive to the user input
 const focus = {
   mounted: (el) => el.focus()
@@ -55,6 +59,7 @@ export default {
       password: '',
       isSigningUp: false,
       signUpMessage: null,
+      passwordVisible: false,
     }
   },
   computed: {
@@ -80,10 +85,8 @@ export default {
         };
         // Send a POST request to the Flask backend using Axios
         const response = await axiosInstance.post('/backend/api/register', userData);
-
         // Handle success response
         console.log(response.data.message);
-
         this.signUpMessage = response.data.message;
         setTimeout(() => {
           this.$emit('signUpSuccessful');
@@ -132,7 +135,6 @@ input {
   align-self: flex-start;
   padding-left: 0.25em;
   margin-bottom: -.33rem;
-
 }
 
 button {
@@ -143,15 +145,25 @@ button {
 .signup-form-container {
   display: flex;
   justify-content: center;
-
 }
 
 .signup-form-styling {
-  padding: 1rem;
+  padding: 2rem;
   background: rgb(255, 255, 255);
   width: fit-content;
   border-radius: 1em;
   margin-top: 2rem;
   border: 1px solid #cecece;
+}
+
+.spacing-icon {
+  margin-right: -1.25rem;
+  padding-left: .25rem;
+  width: 1rem;
+}
+
+.format-label-input {
+  display: flex;
+  flex-direction: column;
 }
 </style>

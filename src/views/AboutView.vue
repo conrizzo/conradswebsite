@@ -37,6 +37,40 @@
     <main class="text-container">
       <div class="width-container">
         <div class="center-content-within">
+
+          <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section">
+
+            <div class="flex-start">
+              <h2 class="section-title-fun">Why is developing this website fun?</h2>
+            </div>
+            <p>
+              As one learns more, and learns more of the tools available, the creative possiblities also increase.
+              There is always something to work on or learn. Having the ability to continually improve with this
+              and
+              have this accessibility to the world is fun. I've always
+              appreciated clean user friendly applications, whether it's Websites, Games, or any other software. The creative
+              artistic aspect of just putting stuff together on the frontend is fun, and on the backend connecting and learning
+              how the web actually works behind the scenes is also fun.
+            </p>
+            <p>
+              When designing something it's supposed to fulfill some purpose, and having the ability to build more
+              advanced applications
+              that are clean and simple opens more creative possiblities.
+            </p>
+
+
+          </section>
+          <!-- German Section -->
+          <section v-if="languageButtonText === 'Language: English'" class="each-section">
+
+            <div class="flex-start">
+              <h1 class='section-title'></h1>
+            </div>
+
+          </section>
+        </div>
+        <div class="center-content-within">
+
           <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section">
 
             <div class="flex-start">
@@ -809,6 +843,17 @@ export default {
   filter: blur(20px);
   z-index: 0;
   background-attachment: fixed;
+}
+
+.section-title-fun {
+  margin-bottom: 0em;
+  color: #ffffff;
+  font-size: 3rem;
+  border-radius: 0.2em;
+  text-decoration: underline;
+  text-decoration-color: #d059ff;
+  line-height: 1.25;
+
 }
 
 .section-title {

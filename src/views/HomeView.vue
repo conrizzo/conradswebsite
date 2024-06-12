@@ -199,7 +199,6 @@ onMounted(() => {
 .top-image-flex {
     display: flex;
     align-items: center;
-
 }
 
 #top-image {
@@ -256,7 +255,6 @@ ul {
 
 li {
     text-transform: uppercase;
-
 }
 
 
@@ -314,14 +312,12 @@ h2 {
     background: rgba(255, 255, 255, 0.1);
     padding-left: 1rem;
     padding-right: 1rem;
-
 }
 
 .link-customization:hover {
     text-decoration: none;
     color: rgb(12, 216, 175);
     margin-left: 0rem;
-
     transition: .33s ease-in-out;
 }
 
@@ -333,7 +329,7 @@ h2 {
     left: 0;
     height: 100%;
     width: 0;
-    background: rgb(242, 171, 165);
+    background: rgb(0, 255, 204);
     transition: width .1s ease-in-out;
     z-index: 0;
     margin-left: -1rem;
@@ -343,7 +339,7 @@ h2 {
 .link-customization:hover::before {
     width: 1rem;
     margin-left: -1rem;
-    background: rgb(254, 205, 150);
+    background: rgb(0, 255, 204);
 }
 
 .attention-notice-container {
@@ -367,7 +363,6 @@ h2 {
     padding: 2rem;
     padding-bottom: 0rem;
     padding-top: 1rem;
-
 }
 
 .svg-resizing {
@@ -390,14 +385,11 @@ h2 {
 
 .h1-span-three {
     font-size: 3rem;
-
-
 }
 
 .h1-fade-in-letters {
     opacity: 0;
     animation: fadeIn .5s forwards;
-
 }
 
 .title-caption-color {
@@ -473,11 +465,9 @@ h2 {
         padding-right: 2.6rem;
     }
 
-
     .title-caption-color {
         font-size: 0.8rem;
     }
-
 
     /* Remove animation on low resolution, so phone device doesnt lag */
     .my-projects-text-animation {
@@ -491,20 +481,15 @@ h2 {
 
     .h1-span-one {
         font-size: 1.5rem;
-
     }
 
     .h1-span-two {
         font-size: 2.5rem;
-
         margin-left: -3px;
-
     }
 
     .h1-span-three {
         font-size: 2.5rem;
-
-
     }
 
     /*
