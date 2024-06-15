@@ -4,11 +4,11 @@
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
     <div class="gallery-header">
-      <!--
+
       <h1 class="gallery-styling-h1-span">
         <span> Projects
           <span class="title-arrow-symbol">↷</span></span>
-      </h1>-->
+      </h1>
     </div>
 
     <div class="centerAll">
@@ -44,14 +44,12 @@
         <!-- Grid column 2 main projects -->
         <div class="image-gallery" :style="addNegativeMarginToTopProjectsToCompensateForLeftMenu">
           <main class="image-gallery-grid-container">
-            <div v-for="(item, index) in imageArrayChoice" 
-            :key="item.id" 
-            :title="item.text" class="grid-item hidden"
-            :ref="`item-${index}`" :class="{
-            'show': isContentVisible[index],
-            'hovered': hoveredIndex === index,
-            'odd': gridColorAlternation(index)
-            }" @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
+            <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
+              :ref="`item-${index}`" :class="{
+        'show': isContentVisible[index],
+        'hovered': hoveredIndex === index,
+        'odd': gridColorAlternation(index)
+      }" @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
 
               <router-link class="no-router-link-decorations h2-color" :to="item.to">
                 <div class="img-wrapper">
@@ -86,14 +84,10 @@ export default {
       images,
       isContentVisible: [],
       imageArrayChoice: ProjectLinks,
-
       displayArray: [],
       isMenuOpen: true,
       isSecondGridActive: false,
-
-
       currentMenuState: 0,
-
       hoveredIndex: null,
     };
   },
@@ -178,7 +172,7 @@ export default {
 
 
 <style scoped>
-.outer-padding{
+.outer-padding {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -308,7 +302,7 @@ h3 {
 }
 
 .projects-side-menu-items {
-  color: rgb(245, 245, 245);
+  color: rgba(44, 49, 54, 0);
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;
@@ -323,14 +317,7 @@ h3 {
 }
 
 
-.gallery-styling-h1-span {
-  text-transform: uppercase;
-  color: rgb(255, 255, 255);
-  background: rgba(40, 40, 40, .9);
-  width: 100%;
-  font-size: 2rem;
-  padding-left: 4rem;
-}
+
 
 .hover-effect {
   background: rgb(50, 50, 50);
@@ -339,14 +326,7 @@ h3 {
   text-decoration: underline;
 }
 
-.title-arrow-symbol {
-  font-size: 1.5em;
-  position: absolute;
-  margin-top: 0em;
-  margin-left: -0.2em;
-  transform: rotate(80deg);
-  display: inline-block;
-}
+
 
 .gallery-header {
   text-align: left;
@@ -381,24 +361,24 @@ h3 {
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
   border-radius: 0.33em;
-  margin-top: 3rem;
-  
+  margin-top: 0rem; /* This fixed the 4th item having extra padding on top*/
 }
 
 .grid-item.odd:hover {
- 
-  background: rgba(73, 67, 52, 0.75);  
+
+  background: rgba(73, 67, 52, 0.75);
 
 }
 
-.grid-item:hover{
+.grid-item:hover {
   background: rgba(55, 73, 85, 0.75);
 }
 
-.grid-item:hover h2{
+.grid-item:hover h2 {
   color: rgb(255, 255, 255);
-  
+
 }
+
 /*
 .grid-item:hover figcaption{
   color: rgb(50, 50, 50);
@@ -510,7 +490,29 @@ figcaption {
   /* Your desired hover color */
 }
 
+.gallery-styling-h1-span {
+  display: none;
+}
+
 @media screen and (max-width: 70rem) {
+
+  .gallery-styling-h1-span {
+    
+    font-size: 1.1rem;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    padding-left: 1rem;
+    display: block;
+  }
+
+  .title-arrow-symbol {
+    font-size: 1.5em;
+    position: absolute;
+    margin-top: 0em;
+    margin-left: 0rem;    
+    transform: rotate(30deg);
+    display: inline-block;
+  }
 
 
   /* Notice: image-gallery --- 
@@ -585,7 +587,7 @@ figcaption {
   }
 
   .grid-item:first-child {
-    padding-top: 1.5rem;
+    padding-top: 0rem;
   }
 
   .grid-item::after {

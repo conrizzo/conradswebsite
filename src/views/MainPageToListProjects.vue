@@ -57,9 +57,8 @@ export default {
 <style scoped>
 
 .custom-background-home-page {
-  background-color: rgb(56, 56, 56);
-  background-blend-mode: multiply;
-  background-size: 50% 100%;
+  background: linear-gradient(to bottom right, rgb(0, 145, 207), rgb(118, 111, 209) 60%); 
+  background-size: 100% 100%;
   background-attachment: fixed;
   position: relative;  
 }
