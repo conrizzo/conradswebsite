@@ -4,9 +4,8 @@
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
     <div class="gallery-header">
-
       <h1 class="gallery-styling-h1-span">
-        <span> Projects
+        <span> Fun Projects
           <span class="title-arrow-symbol">↷</span></span>
       </h1>
     </div>
@@ -17,7 +16,7 @@
         <div :class="['side-menu', menuClassState]" class="side-menu">
           <div class="left-column-content">
             <div style="display: flex; justify-content: space-between;">
-              <h3>Projects</h3>
+              <h3>Fun Projects</h3>
 
               <svg @click="toggleMenu(), toggleGridStyle()" class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg"
                 width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -131,7 +130,7 @@ export default {
         this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: 0rem;' // set back to 0 on close
         return;
       }
-      this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: -25.5rem;';
+      this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: -26.5rem;';
       this.isSecondGridActive = !this.isSecondGridActive;
     },
     gridColorAlternation(index) {
@@ -187,7 +186,7 @@ export default {
   height: calc(100%);
   transform: translateX(0);
   z-index: 1;
-  background: rgb(44, 44, 44);
+  background: rgb(255, 255, 255);
   /* 
   transform: translateX(-100%); if this element sidemenu is 
     put inside the imageGallery div then it will slide inside the middle when closed
@@ -198,18 +197,18 @@ export default {
 
 .side-menu.open {
   transform: translateX(-100%);
-  padding-top: 0rem;
+  padding-top: .9rem;
   height: 0rem;
   width: 18rem;
-  background: rgba(0, 0, 0, 0);
+  background: rgba(255, 255, 255);
   margin-bottom: 25rem;
   padding-bottom: .5rem;
+
 }
 
 .side-menu.closed {
   display: none;
 }
-
 
 
 .side-links-background {
@@ -231,8 +230,6 @@ export default {
 }
 
 */
-
-
 
 .toggle-button {
   margin: 0.5rem;
@@ -256,6 +253,7 @@ export default {
   position: sticky;
   top: 4.5rem;
   padding-bottom: 2rem;
+  background: rgb(255, 255, 255);
 }
 
 /* this adjusts the transition time of hovering over each project grid-item  */
@@ -276,7 +274,6 @@ export default {
   text-align: left;
 }
 
-
 h1 {
   font-size: 1.5em;
 }
@@ -296,13 +293,14 @@ h2 {
 
 h3 {
   font-size: 1.1rem;
-  color: rgb(202, 165, 255);
+  color: rgb(200, 200, 200);
   text-align: left;
   padding-left: .7em;
 }
 
 .projects-side-menu-items {
-  color: rgba(44, 49, 54, 0);
+  color: rgba(44, 49, 54);
+  background: rgb(255, 255, 255);
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;
@@ -313,19 +311,15 @@ h3 {
 
 .projects-side-menu-items:hover {
   text-decoration: underline;
-  color: rgb(255, 255, 255);
+  /*color: rgb(255, 255, 255);*/
 }
 
-
-
-
 .hover-effect {
-  background: rgb(50, 50, 50);
-  color: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
+  color: rgb(50, 50, 50);
   transition-delay: .5s ease;
   text-decoration: underline;
 }
-
 
 
 .gallery-header {
@@ -361,7 +355,8 @@ h3 {
   border-top-right-radius: 0.33em;
   border-top-left-radius: 0.33em;
   border-radius: 0.33em;
-  margin-top: 0rem; /* This fixed the 4th item having extra padding on top*/
+  margin-top: 0rem;
+  /* This fixed the 4th item having extra padding on top*/
 }
 
 .grid-item.odd:hover {
@@ -384,9 +379,6 @@ h3 {
   color: rgb(50, 50, 50);
 }
 */
-
-
-
 
 .grid-item:nth-child(-n+3) {
   /* remove top padding from first row */
@@ -486,7 +478,7 @@ figcaption {
 }
 
 .svg-x-wrapper:hover .svg-x-hover-color-highlight {
-  stroke: #ffffff;
+  stroke: #323232;
   /* Your desired hover color */
 }
 
@@ -494,10 +486,10 @@ figcaption {
   display: none;
 }
 
-@media screen and (max-width: 70rem) {
-
+/* Disable hover since mobile devices dont use pointer fine, and alter the the grid layout */
+/* (hover: hover) and (pointer: fine) */
+@media (max-width: 70rem) {
   .gallery-styling-h1-span {
-    
     font-size: 1.1rem;
     color: rgb(255, 255, 255);
     text-align: left;
@@ -509,11 +501,10 @@ figcaption {
     font-size: 1.5em;
     position: absolute;
     margin-top: 0em;
-    margin-left: 0rem;    
+    margin-left: 0rem;
     transform: rotate(30deg);
     display: inline-block;
   }
-
 
   /* Notice: image-gallery --- 
   This overrides the this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: -25rem;'; 
@@ -523,11 +514,9 @@ figcaption {
     margin-top: 0rem !important;
   }
 
-
   .second-grid {
     grid-template-columns: 1fr;
   }
-
 
   .side-menu {
     display: none;
@@ -536,7 +525,6 @@ figcaption {
   .toggle-button {
     display: none;
   }
-
 
   .image-gallery-grid-container {
     display: grid;
@@ -570,9 +558,10 @@ figcaption {
     grid-template-columns: repeat(1, 1fr);
   }
 
+  /* adjust this to set the image size at low resolutions */
   .gallery-component-image {
     aspect-ratio: 16/9;
-    max-height: 25rem;
+    max-height: 15rem;
   }
 
   .grid-item {
@@ -602,7 +591,7 @@ figcaption {
   /* 
   Fancy code that makes the last item in the grid not have a line after it
   by telling all other elements to have a border line. of course this could be
-  written without the not statement and reverse the border value set -- but this is interesting.
+  written without the not statement and reverse the border value set as well, so 2 ways to do this same operation
   */
   .grid-item:not(:last-child)::after {
     border-top: 1px solid rgba(0, 0, 0, 0.5);

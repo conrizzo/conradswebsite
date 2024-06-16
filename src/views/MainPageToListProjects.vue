@@ -1,6 +1,11 @@
 <template>
+
   <div class="custom-background-home-page center-with-flex">
+
     <section class="looped-project-section">
+
+      <SearchProjects />
+
       <div class='under-title-caption'>
       </div>
       <ProjectGallery />
@@ -16,6 +21,7 @@
 
 import "@/assets/globalCSS.css";
 import ImagesOneRow from "@/components/ImagesOneRow.vue";
+import SearchProjects from "@/components/MainProjectPage/SearchProjects.vue";
 import ProjectGallery from "@/components/MainProjectPage/ProjectGallery.vue";
 import TopArea from "@/components/MainProjectPage/TheTopArea.vue";
 
@@ -23,7 +29,7 @@ import TopArea from "@/components/MainProjectPage/TheTopArea.vue";
 export default {
   name: "MainPageToListProjects",
   components: {
-    ImagesOneRow, ProjectGallery, TopArea
+    ImagesOneRow, ProjectGallery, TopArea, SearchProjects
   },
 
   data() {
@@ -55,12 +61,12 @@ export default {
 
 
 <style scoped>
-
 .custom-background-home-page {
-  background: linear-gradient(to bottom right, rgb(0, 145, 207), rgb(118, 111, 209) 60%); 
+  /* background: linear-gradient(to bottom right, rgb(0, 145, 207), rgb(118, 111, 209) 60%); */
+  background: rgb(50, 50, 50);
   background-size: 100% 100%;
   background-attachment: fixed;
-  position: relative;  
+  position: relative;
 }
 
 /*

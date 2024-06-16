@@ -21,7 +21,7 @@
             <input name="password" :type="passwordVisible ? 'text' : 'password'" placeholder="Password" required
               v-model="password">
             <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <font-awesome-icon class="spacing-icon" :icon="passwordVisible ? 'eye-slash' : 'eye'"
+            <font-awesome-icon class="spacing-icon" :icon="passwordVisible ? 'eye' : 'eye-slash'"
               @click="passwordVisible = !passwordVisible" />
 
           </div>

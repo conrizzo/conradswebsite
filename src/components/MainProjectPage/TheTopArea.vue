@@ -10,7 +10,7 @@
                 <ul class="main-text-ul">
 
                     <li>
-                       Updates further empowered by coffee while birds fly around the windows all day
+                       Updates empowered by coffee while birds fly around the windows all day
                     </li>
 
                 </ul>
