@@ -1,14 +1,9 @@
 
 
-
-
 // require.context is a webpack feature that allows us to get all the files in a directory
 // false means don't look in subdirectories (only check this directory)
 const requireContext = require.context('@/images/projects', false, /\.jpg$/);
 const images = requireContext.keys().map(requireContext);
-
-
-
 
 export default [
   { id: 1, text: 'Store Prototype', to: '/projects/store/store-prototype-made-in-vuejs-and-typescript', caption:"A store prototype made with Vue.js and Typescript", imageSrc: "" },
@@ -22,7 +17,7 @@ export default [
   { id: 9, text: 'Tool to find Wordle answer', to: '/projects/search-assistant-to-help-find-words-for-the-wordle-game',caption:"Search Wordle words with TypeScript", imageSrc: "" },
   { id: 10, text: 'Cosine Similarity example', to: '/projects/compare-cosine-similarity',caption:"Compare words/sentences semantic cosine scores with backend sentence transformers", imageSrc: "" },
   { id: 11, text: 'Country Music Search Generator', to: '/projects/country-music-generator',caption:"Classic Country music and natural language processing (under construction)", imageSrc: "" },
-  { id: 12, text: 'Drag and Drop Objects', to: '/projects/drag-and-drop-stuff',caption:"Small experiment to generate + drag and drop stuff", imageSrc: "" },
+  { id: 12, text: 'Drag and Drop Objects', to: '/projects/drag-and-drop-stuff',caption:"Small experiment to generate + drag and drop stuff", imageSrc: "" }
   //{ id: 11, text: '404 Page', to: '/12315fge45',caption:"Go to the 404 page for fun!", imageSrc: "" },
   
   

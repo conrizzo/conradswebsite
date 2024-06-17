@@ -4,7 +4,7 @@
     <div class="dropdown"> <!-- @mouseleave="closeDropdown" -->
         <div class="dropbtn unselectable" @click="toggleDropdown">
             <div class="horizontal-align-elements">
-                Projects
+                My Projects
                 <svg style="width: 32px; height: 32px; transition: transform 0.25s;" viewBox="0 0 32 32" fill="none"
                     stroke="#ffffff" stroke-width="2" :class="{ 'rotate': isRotated }">
                     <polyline points="8 12 16 20 24 12" />
@@ -25,17 +25,15 @@
 
 <script>
 
-import ProjectLinks from '@/components/Navigation/ProjectLinks.ts'
+import DropDownMenuLinks from '@/components/Navigation/DropDownMenuLinks.ts'
 
 export default {
     name: "DropdownMenu",
     components: {
-
     },
-
     data() {
         return {
-            links: ProjectLinks, // make the project links available to the template dynamically
+            links: DropDownMenuLinks, // make the project links available to the template dynamically
 
             isDropdownOpen: false, // Initialize as closed
             openTimeout: null, // Variable to store the timeout    
@@ -52,6 +50,7 @@ export default {
         window.removeEventListener('click', this.closeDropdown);
         window.removeEventListener('scroll', this.closeDropdownOnScroll);
     },
+
     methods: {
         // if the dropdown is closed, then open it with a tiny delay
         // otherwise no added extra delay here
@@ -59,13 +58,11 @@ export default {
             this.isDropdownOpen = !this.isDropdownOpen;
             this.isRotated = !this.isRotated;
         },
-
         // function the event listeners target if click outside the menu
         closeDropdown(event) {
             // if event not in the dropdown menu, then close it
             if (!this.$el.contains(event.target)) {
                 this.isDropdownOpen = false;
-
             }
         },
 
@@ -81,7 +78,6 @@ export default {
 <style scoped>
 .dropbtn {
     /* padding: 0.72em 0.6em 0.72em 0.6em; */
-
     padding-left: .75rem;
     padding-right: .25rem;
     color: rgb(240, 240, 240);
@@ -111,7 +107,7 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
 .dropdown-content {
     /* this removes it when not over it */
     position: absolute;
-    margin-left: -3.1em;
+    margin-left: -3rem;
     text-align: left;
     padding: 0.15em;
     margin-top: 0rem;
@@ -171,8 +167,7 @@ nav a.router-link-exact-active {
     background-color: none;
     cursor: pointer;
     border-bottom: 2px solid #fff;
-    margin-bottom: -2px;
-    
+    margin-bottom: -2px;    
 }
 
 .horizontal-align-elements {

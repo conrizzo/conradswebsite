@@ -48,14 +48,27 @@
               There is always something to work on or learn. Having the ability to continually improve with this
               and
               have this accessibility to the world is fun. I've always
-              appreciated clean user friendly applications, whether it's Websites, Games, or any other software. The creative
-              artistic aspect of just putting stuff together on the frontend is fun, and on the backend connecting and learning
+              appreciated clean user friendly applications, whether it's Websites, Games, or any other software. The
+              creative
+              artistic aspect of just putting stuff together on the frontend is fun, and on the backend connecting and
+              learning
               how the web actually works behind the scenes is also fun.
             </p>
             <p>
               When designing something it's supposed to fulfill some purpose, and having the ability to build more
               advanced applications
               that are clean and simple opens more creative possiblities.
+            </p>
+            <h3>What is my approach to learning?</h3>
+            <p>I generally work on a few projects concurrently. Sometimes stopping one, or coming back to it after
+              I learn skills from another project. If there isn't an exact end goal of what I am trying to make I may
+              pause a project or find something interesting I want to learn how to implement, and if I find objectives
+              to projects, or feel as
+              though there is a lot to learn by working on them, I'll come back and complete them. Usually, it's a
+              combination of working on some projects, polishing
+              anything on my website, refactoring, polishing, and continually learning. One of my main goals is often
+              to make sure I understand why I am doing something, why it makes sense, how it works, and now instead of
+              just making stuff I think of how to make components that focus on specific tasks of the whole project.
             </p>
 
 
