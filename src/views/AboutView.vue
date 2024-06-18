@@ -1,13 +1,16 @@
 <template>
   <div id="about-background">
     <div class="center-content-within">
+
       <div class="left-area-title">
       </div>
+
       <two-columns-grid-content-template class="top-top-component-adjustment" :imgWidth="imageWidth"
         :titleText="titleText" :titleTextSize="'3.5rem'" :text-color="'rgb(255, 255, 255)'"
         :content-text-size="'1.4rem'" :bg-color="'rgba(0, 0, 0, 0)'" :contentText="contentText"
         :contentImage="birdPicture" :setPhotoLink="'https://de.wikipedia.org/wiki/Kohlmeise'"
         :setPhotoCaption="'Tübingen, Germany. Kohlmeise / Great Tit'">
+        <!-- Slot content below-->
         <div class="language-container">
           <span class="language-arrow-text tooltip">{{ arrowText }}
             <span class="tooltiptext">
@@ -31,35 +34,37 @@
             </div>
           </div>
         </div>
+
       </two-columns-grid-content-template>
     </div>
 
     <main class="text-container">
       <div class="width-container">
         <div class="center-content-within">
-
           <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section">
-
             <div class="flex-start">
-              <h2 class="section-title-fun">Why is developing this website fun?</h2>
+              <h2 class="section-title-fun">What Makes Development Fun?</h2>
             </div>
             <p>
-              As one learns more, and learns more of the tools available, the creative possiblities also increase.
-              There is always something to work on or learn. Having the ability to continually improve with this
+              In building something with code as one learns more, and learns more of the tools, libraries, tricks, all
+              the creative possiblities also increase. One has to seek out new challenges.
+              On the side there is always something to work on or learn. Having the ability to continually improve
               and
-              have this accessibility to the world is fun. I've always
+              have this accessibility to make computers do stuff with the internet worldwide is fun. I've always
               appreciated clean user friendly applications, whether it's Websites, Games, or any other software. The
               creative
-              artistic aspect of just putting stuff together on the frontend is fun, and on the backend connecting and
-              learning
-              how the web actually works behind the scenes is also fun.
+              and artistic aspect of designing something from scratch on the frontend is fun. I find backend web
+              developement
+              fascinating since it allows running any language one wants (Python, Rust, Java, etc) on a server to create
+              responses. After completing
+              multiple
+              university courses in Java, and a few more exclusively using Python, just having the ability to have a
+              website I made query a server of mine, and
+              actually run things in the languages I've written many assignments and exercises in makes programming
+              feel more interactive and useful. 
             </p>
-            <p>
-              When designing something it's supposed to fulfill some purpose, and having the ability to build more
-              advanced applications
-              that are clean and simple opens more creative possiblities.
-            </p>
-            <h3>What is my approach to learning?</h3>
+
+            <h3>What is my approach to learning all this website stuff?</h3>
             <p>I generally work on a few projects concurrently. Sometimes stopping one, or coming back to it after
               I learn skills from another project. If there isn't an exact end goal of what I am trying to make I may
               pause a project or find something interesting I want to learn how to implement, and if I find objectives
@@ -68,24 +73,19 @@
               combination of working on some projects, polishing
               anything on my website, refactoring, polishing, and continually learning. One of my main goals is often
               to make sure I understand why I am doing something, why it makes sense, how it works, and now instead of
-              just making stuff I think of how to make components that focus on specific tasks of the whole project.
+              just making stuff I think of how to make components that focus on specific tasks that are combined
+              together.
             </p>
-
-
           </section>
           <!-- German Section -->
           <section v-if="languageButtonText === 'Language: English'" class="each-section">
-
             <div class="flex-start">
               <h1 class='section-title'></h1>
             </div>
-
           </section>
         </div>
         <div class="center-content-within">
-
           <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section">
-
             <div class="flex-start">
               <h1 class="section-title">About the website</h1>
             </div>
@@ -160,6 +160,7 @@
               </li>
             </ul>
           </section>
+
           <!-- German Section -->
           <section v-if="languageButtonText === 'Language: English'" class="each-section">
 
@@ -247,7 +248,7 @@
           <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
 
             <div class="flex-start">
-              <h1 class="section-title-two">About me</h1>
+              <h2 class="section-title-two">About me</h2>
             </div>
 
             <p>
@@ -331,7 +332,6 @@
                           'not-allowed' icon (a circle with a diagonal line through it) if required fields are
                           missing! The button can be pressed to help find out what is missing.</p>
                       </div>
-
                     </div>
                   </li>
                 </ul>
@@ -364,12 +364,11 @@
             <a href="https://docs.google.com/document/d/13StVIl-t67L-FviOjpdy9sIrOZ4Zxy9jFD7kTfcwpyc/edit?usp=sharing"
               target="_blank" rel="noopener noreferrer" class="text-links">Shared Google Document - For testing</a>
               -->
-
           </section>
           <!-- German Section -->
           <section v-if="languageButtonText === 'Language: English'" class="each-section form-section">
             <div class="flex-start">
-              <h1 class="section-title-two">Über mich</h1>
+              <h2 class="section-title-two">Über mich</h2>
             </div>
             <p>
               In 2022 habe ich ein Studium der Computerlinguistik an der Universität Tübingen in Deutschland
@@ -453,7 +452,6 @@
                   <li class="button">
                     <button :class="{ 'not-allowed-cursor-change': !isFormValid }" class="clean-button"
                       type="submit">Nachricht senden</button>
-
                     <div>
                       <div style="font-size: 0.8rem; margin-top: 1rem;">
                         <p>Der Cursor auf dem Button 'Nachricht senden' oben wird ein 'nicht erlaubt'-Symbol (ein Kreis
@@ -466,7 +464,6 @@
                   </li>
                 </ul>
               </form>
-
               <p v-if="submitMessageSuccess" style="color: #fff; font-size: 1.5rem;">
                 Ihre Nachricht wurde erfolgreich übermittelt! Vielen Dank für Ihre Nachricht.</p>
             </div>
@@ -477,12 +474,7 @@
                 v-model="checkBoxValue">
             </label>
             <router-link class="text-links no-decoration" :to="{ path: '/privacy' }">Datenschutzerklärung</router-link>
-
-
-
           </section>
-
-
         </div>
         <!-- images and text section -->
         <div class="center-content-within text-with-photos-max-width">
@@ -568,7 +560,6 @@
     </main>
   </div>
 
-  <!-- Deutsch -->
 </template>
 
 <script>
@@ -877,6 +868,7 @@ export default {
   text-decoration: underline;
   text-decoration-color: #ff5959;
   line-height: 1.25;
+  text-transform: capitalize;
 }
 
 .section-title-two {
@@ -898,6 +890,7 @@ export default {
 
 h2 {
   text-align: left;
+  text-transform: capitalize;
 }
 
 p {
@@ -921,7 +914,6 @@ p:last-child {
   background: rgba(0, 0, 0, 0.75);
   padding-right: 1rem;
   padding-left: 1rem;
-
   color: black;
 }
 
