@@ -561,7 +561,7 @@ figcaption {
   /* adjust this to set the image size at low resolutions */
   .gallery-component-image {
     aspect-ratio: 16/9;
-    max-height: 15rem;
+    max-height: 19rem;
   }
 
   .grid-item {

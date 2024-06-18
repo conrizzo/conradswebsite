@@ -14,7 +14,7 @@ The combination of these 2 makes the search icon pop up and widens the container
                 click.stop prevents clicking outside the search input propogating to divs outside this 
                 Hence, it allows the dropdown to close when clicking anywhere in class .input-area or .outside-div
             -->
-            <div @click.stop class="search-container" :class="{ 'widen-container': inputFocused }">
+            <div @click.stop class="search-container" :class="{ 'widen-container': inputFocused || dropdownOpen }">
                 <div class="input-container">
                     <svg v-show="inputFocused" class="input-icon" xmlns="http://www.w3.org/2000/svg" height="16"
                         width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">
@@ -27,10 +27,15 @@ The combination of these 2 makes the search icon pop up and widens the container
             }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus" @blur="handleSearchBlur"
                         placeholder="Search projects...">
                 </div>
-                <RouterLink  v-show="dropdownOpen" :to="item.to" class="format-search-links"
-                   
+                <RouterLink v-show="dropdownOpen" :to="item.to" class="format-search-links"
                     v-for="item in filteredItems" :key="item.id">
+                    
                     <div v-if="searchTerm.length > 0">
+                        <svg style="display: inline-block; margin-right: 2rem;" xmlns="http://www.w3.org/2000/svg" height="16"
+                        width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">
+                        <path
+                            d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                    </svg>
                         {{ item.text }}
                     </div>
                 </RouterLink>
@@ -104,9 +109,8 @@ const filteredItems = computed(() => {
     display: flex;
     align-items: center;
     justify-content: right;
-    margin-top: 1rem;
+   
     margin-bottom: 1rem;
-
 }
 
 .format-search-links {
@@ -116,12 +120,13 @@ const filteredItems = computed(() => {
     text-decoration: none;
     cursor: pointer;
     width: 100%;
-    padding-left: 3rem;
+    padding-left: 10px;
     z-index: 10;
     /* put search results in front of all other content on the screen */
 }
 
-.format-search-links:first-of-type {    
+.format-search-links:first-of-type {
+    margin-top: 2px;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
 }
@@ -134,7 +139,6 @@ const filteredItems = computed(() => {
 .format-search-links:hover {
     background: rgb(233, 233, 234);
 }
-
 
 .search-container {
     display: flex;
@@ -149,11 +153,16 @@ const filteredItems = computed(() => {
     width: calc(100% - 40rem);
     margin-right: 1rem;
 }
+
 /*
 .widen-container {
     width: calc(100% - 38rem);
 }
     */
+
+.widen-container {
+    width: calc(100% - 38rem);
+}
 
 .format-search-links:visited {
     color: rgb(18, 18, 18);
@@ -174,7 +183,7 @@ input {
     width: 100%;
 }
 
-.remove-bottom-border-radius { 
+.remove-bottom-border-radius {
     border-bottom: none;
 }
 
@@ -182,7 +191,6 @@ input {
 .add-bottom-radius {
     border-bottom-right-radius: 1rem;
     border-bottom-left-radius: 1rem;
-   
 }
 
 select:focus,
@@ -197,15 +205,10 @@ input:focus {
 }
 
 /* tooltip-searchs on hover of anchors 
-
 https://www.w3.org/TR/css-anchor-position-1/  https://www.w3.org/TR/css-anchor-position-1/
 
 Uses new in 2023 Anchor CSS feature
 */
-
-
-
-
 
 /* input field icon */
 .input-container {
@@ -222,7 +225,7 @@ Uses new in 2023 Anchor CSS feature
     transform: translateY(-50%);
 }
 
-.input-container input { 
+.input-container input {
     padding-left: 1rem;
     box-shadow: none;
 }
@@ -234,8 +237,20 @@ Uses new in 2023 Anchor CSS feature
 
 @media (max-width: 70rem) {
     .search-container {
-        margin-right: 2rem;
-        width: calc(100% - 4rem);
+        width: 100%;
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+
+    .format-search-links:first-of-type {
+        margin-top: 2px;
+        border-top-right-radius: 0rem;
+        border-top-left-radius: 0rem;
+    }
+
+    .format-search-links:last-child {
+        border-bottom-right-radius: 0rem;
+        border-bottom-left-radius: 0rem;
     }
 }
 </style>

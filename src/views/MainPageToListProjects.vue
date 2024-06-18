@@ -1,10 +1,14 @@
 <template>
-
+  <div style="display: flex; justify-content:center; background: rgb(50, 50, 50);">
+    <div style=" width: 71rem; padding-top: 1rem;">
+      <SearchProjects />
+    </div>
+  </div>
   <div class="custom-background-home-page center-with-flex">
 
     <section class="looped-project-section">
 
-      <SearchProjects />
+
 
       <div class='under-title-caption'>
       </div>
