@@ -27,8 +27,8 @@ The combination of these 2 makes the search icon pop up and widens the container
             }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus" @blur="handleSearchBlur"
                         placeholder="Search projects...">
                 </div>
-                <RouterLink v-show="dropdownOpen" :to="item.to"
-                    :class="{ 'format-search-links': inputFocused, 'format-search-links-close': !inputFocused }"
+                <RouterLink  v-show="dropdownOpen" :to="item.to" class="format-search-links"
+                   
                     v-for="item in filteredItems" :key="item.id">
                     <div v-if="searchTerm.length > 0">
                         {{ item.text }}
@@ -81,7 +81,7 @@ function closeDropdown(event: MouseEvent) {
 function handleSearchFocus() {
     dropdownOpen.value = true;
     inputFocused.value = true;
-    searchInputMarginLeft.value = "40px";
+    searchInputMarginLeft.value = "0px";
 }
 const handleSearchBlur = () => {
     inputFocused.value = false;
@@ -121,6 +121,11 @@ const filteredItems = computed(() => {
     /* put search results in front of all other content on the screen */
 }
 
+.format-search-links:first-of-type {    
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+
 .format-search-links:last-child {
     border-bottom-right-radius: 1rem;
     border-bottom-left-radius: 1rem;
@@ -130,12 +135,6 @@ const filteredItems = computed(() => {
     background: rgb(233, 233, 234);
 }
 
-.format-search-links-close {
-    background: #fff;
-    width: 100%;
-    padding-left: 3rem;
-    display: none;
-}
 
 .search-container {
     display: flex;
@@ -150,10 +149,11 @@ const filteredItems = computed(() => {
     width: calc(100% - 40rem);
     margin-right: 1rem;
 }
-
+/*
 .widen-container {
     width: calc(100% - 38rem);
 }
+    */
 
 .format-search-links:visited {
     color: rgb(18, 18, 18);
@@ -174,18 +174,15 @@ input {
     width: 100%;
 }
 
-.remove-bottom-border-radius {
-    border-bottom-right-radius: 0rem;
-    border-bottom-left-radius: 0rem;
+.remove-bottom-border-radius { 
     border-bottom: none;
-
 }
-
 
 
 .add-bottom-radius {
     border-bottom-right-radius: 1rem;
     border-bottom-left-radius: 1rem;
+   
 }
 
 select:focus,
@@ -225,7 +222,7 @@ Uses new in 2023 Anchor CSS feature
     transform: translateY(-50%);
 }
 
-.input-container input {
+.input-container input { 
     padding-left: 1rem;
     box-shadow: none;
 }
