@@ -46,7 +46,7 @@
               <h2 class="section-title-fun">What Makes Development Fun?</h2>
             </div>
             <p>
-              In building something with code as one learns more, and learns more of the tools, libraries, tricks, all
+              I've used the internet a lot in life, and to actually be able to build it feels rewarding. In building something with code as one learns more, and learns more of the tools, libraries, tricks, all
               the creative possiblities also increase. One has to seek out new challenges.
               On the side there is always something to work on or learn. Having the ability to continually improve
               and
@@ -92,7 +92,7 @@
 
             <ul class="about-me-list">
               <li>
-                This website is made by me (Conrad) completely from a blank slate. It is a Single Page Application (SPA)
+                This website is made by me (Conrad) completely from a blank slate, and is 100% self-made. It is a Single Page Application (SPA)
                 made in <a href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>. It's
                 open-source and has been a continuous project to do web development and make projects.
               </li>

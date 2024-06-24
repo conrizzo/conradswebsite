@@ -8,17 +8,9 @@
       <br>
       <div style="background-color: rgba(0,0,0,0.5); padding: 0.5em; padding-top: 1.5em; max-width: auto;">
 
-        <p style="color: #fff;" class="paragraph-text">This project was started <b>20/11/2023</b>...
-          <br><span style="margin-left: 1em; display: inline-block;">Made with Vue.js, JavaScript, TypeScript and
-            Object-oriented programming</span>
-          <br><span style="margin-left: 2em; display: inline-block;">Will be a <a class="text-links"
-              href="https://en.wikipedia.org/wiki/Skat_(card_game)">Skat</a> game when finished?</span>
-        </p>
+        <h1 style="color: #fff;">Idea here was to make a Skat, game but will probably make my own card game.</h1>
 
-        <p style="color: #fff;" class="paragraph-text">
-
-
-        </p>
+        
       </div>
     </div>
 

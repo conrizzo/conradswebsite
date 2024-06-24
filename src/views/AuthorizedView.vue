@@ -252,7 +252,7 @@ export default {
 
         if (response.success) {
           this.queryResponse = response.message; // set modal message
-          this.toggleQueryModal();
+          //this.toggleQueryModal(); -- Hide modal for now
           await this.loadUserServiceData();
         }
         else {

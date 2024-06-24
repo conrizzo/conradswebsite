@@ -17,7 +17,8 @@ export default [
   { id: 9, text: 'Tool to find Wordle answer', to: '/projects/search-assistant-to-help-find-words-for-the-wordle-game',caption:"Search Wordle words with TypeScript", imageSrc: "" },
   { id: 10, text: 'Cosine Similarity example', to: '/projects/compare-cosine-similarity',caption:"Compare words/sentences semantic cosine scores with backend sentence transformers", imageSrc: "" },
   { id: 11, text: 'Country Music Search Generator', to: '/projects/country-music-generator',caption:"Classic Country music and natural language processing (under construction)", imageSrc: "" },
-  { id: 12, text: 'Drag and Drop Objects', to: '/projects/drag-and-drop-stuff',caption:"Small experiment to generate + drag and drop stuff", imageSrc: "" }
+  { id: 12, text: 'Drag and Drop Objects', to: '/projects/drag-and-drop-stuff',caption:"Small experiment to generate + drag and drop stuff", imageSrc: "" },
+  { id: 13, text: 'Are you sure you are sure?', to: 'https://next.conradswebsite.com/agree-to-terms',caption:"Uses React.js and Next.js to make a funny authorization page", imageSrc: "" }
   //{ id: 11, text: '404 Page', to: '/12315fge45',caption:"Go to the 404 page for fun!", imageSrc: "" },
   
   

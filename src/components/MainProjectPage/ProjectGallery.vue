@@ -49,8 +49,21 @@
         'hovered': hoveredIndex === index,
         'odd': gridColorAlternation(index)
       }" @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
-
-              <router-link class="no-router-link-decorations h2-color" :to="item.to">
+              <!-- This first checks IF links are https -->
+              <a v-if="isExternal(item.to)" class="no-router-link-decorations h2-color" :href="item.to" target="_blank" rel="noopener noreferrer">
+                <div class="img-wrapper">
+                  <!-- add in lazy loading to test this 
+                            <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
+                            -->
+                  <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
+                </div>
+                <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
+                <figcaption>
+                  <p>{{ item.caption }}</p>
+                </figcaption>
+              </a>
+               <!-- ELSE it's a router link the vue.js  -->
+              <router-link v-else class="no-router-link-decorations h2-color" :to="item.to">
                 <div class="img-wrapper">
                   <!-- add in lazy loading to test this 
                             <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
@@ -124,6 +137,9 @@ export default {
     },
   },
   methods: {
+    isExternal(path) {
+      return /^(https?:|mailto:|tel:)/.test(path);
+    },
     toggleGridStyle() {
 
       if (this.currentMenuState === 0 || this.currentMenuState === 2) {
@@ -186,7 +202,7 @@ export default {
   height: calc(100%);
   transform: translateX(0);
   z-index: 1;
-  background: rgb(255, 255, 255);
+  background: rgb(67, 76, 90);
   /* 
   transform: translateX(-100%); if this element sidemenu is 
     put inside the imageGallery div then it will slide inside the middle when closed
@@ -200,7 +216,7 @@ export default {
   padding-top: .9rem;
   height: 0rem;
   width: 18rem;
-  background: rgba(255, 255, 255);
+  background: rgb(67, 76, 90);
   margin-bottom: 25rem;
   padding-bottom: .5rem;
 
@@ -214,6 +230,7 @@ export default {
 .side-links-background {
   margin-left: 1rem;
   margin-right: 1rem;
+
 }
 
 .side-links-background:hover {
@@ -253,7 +270,7 @@ export default {
   position: sticky;
   top: 4.5rem;
   padding-bottom: 2rem;
-  background: rgb(255, 255, 255);
+  background: rgb(67, 76, 90);
 }
 
 /* this adjusts the transition time of hovering over each project grid-item  */
@@ -299,8 +316,8 @@ h3 {
 }
 
 .projects-side-menu-items {
-  color: rgba(44, 49, 54);
-  background: rgb(255, 255, 255);
+  color: rgb(225, 225, 225);
+  background: rgb(67, 76, 90);
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;
@@ -315,8 +332,8 @@ h3 {
 }
 
 .hover-effect {
-  background: rgb(255, 255, 255);
-  color: rgb(50, 50, 50);
+  background: rgb(67, 76, 90);
+
   transition-delay: .5s ease;
   text-decoration: underline;
 }
