@@ -21,24 +21,41 @@ The combination of these 2 makes the search icon pop up and widens the container
                         <path
                             d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
                     </svg>
-                    <!-- dropdownOpen and length requirement for string or no class activation to remove the bottom border -->
+
                     <input :class="{
                 'remove-bottom-border-radius': searchTerm.length > 0 && filteredItems.length > 0 && dropdownOpen
             }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus" @blur="handleSearchBlur"
                         placeholder="Search projects...">
                 </div>
-                <RouterLink v-show="dropdownOpen" :to="item.to" class="format-search-links"
-                    v-for="item in filteredItems" :key="item.id">
-                    
-                    <div v-if="searchTerm.length > 0">
-                        <svg style="display: inline-block; margin-right: 2rem;" xmlns="http://www.w3.org/2000/svg" height="16"
-                        width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">
-                        <path
-                            d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-                    </svg>
-                        {{ item.text }}
-                    </div>
-                </RouterLink>
+                <!-- This template creates the dropdown menu -->
+                <!-- This first checks IF links are https -->
+                <template v-for="item in filteredItems" :key="item.id">
+                    <!-- Check if the link is an HTTPS external link -->
+                    <a v-if="isExternalLink(item.to)" :href="item.to" class="format-search-links" target="_blank"
+                        rel="noopener noreferrer">
+                        <div v-if="searchTerm.length > 0">
+                            <!-- SVG and item text here for external links -->
+                            <svg style="display: inline-block; margin-right: 2rem;" xmlns="http://www.w3.org/2000/svg"
+                                height="16" width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">
+                                <path
+                                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                            </svg>
+                            {{ item.text }}
+                        </div>
+                    </a>
+                    <!-- Use RouterLink for internal paths -->
+                    <RouterLink v-else :to="item.to" class="format-search-links">
+                        <div v-if="searchTerm.length > 0">
+                            <!-- SVG and item text here for internal links -->
+                            <svg style="display: inline-block; margin-right: 2rem;" xmlns="http://www.w3.org/2000/svg"
+                                height="16" width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">
+                                <path
+                                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                            </svg>
+                            {{ item.text }}
+                        </div>
+                    </RouterLink>
+                </template>
             </div>
 
         </div>
@@ -94,6 +111,10 @@ const handleSearchBlur = () => {
 
 };
 
+function isExternalLink(url: string) {
+    return /^(https?:|mailto:|tel:)/.test(url);
+}
+
 const filteredItems = computed(() => {
     if (!searchTerm.value) {
         return items.value;
@@ -109,7 +130,7 @@ const filteredItems = computed(() => {
     display: flex;
     align-items: center;
     justify-content: right;
-   
+
     margin-bottom: 1rem;
 }
 
