@@ -22,12 +22,13 @@
     "postcss": "^8.4.38",
     "prismjs": "^1.29.0",
     "protobufjs": "^7.2.4",
-    "vue": "^3.4.21",
+    "vue": "^3.4.30",
     "vue-class-component": "^8.0.0-0",
     "vue-cookie": "^1.1.4",
     "vue-cookies": "^1.8.3",
+    "vue-demi": "^0.14.8",
     "vue-lazyload": "^3.0.0",
-    "vue-router": "^4.2.5",
+    "vue-router": "^4.4.0",
     "word-wrap": "^1.2.3"
   },
   "devDependencies": {
@@ -40,6 +41,7 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "^5.0.8",
     "@vue/cli-service": "~5.0.0",
+    "@vue/devtools-api": "^6.6.3",
     "@vue/eslint-config-typescript": "^12.0.0",
     "eslint": "^8.32.0",
     "eslint-plugin-vue": "^9.0.3",
