@@ -204,7 +204,9 @@ onMounted(() => {
 
 #top-image::before {
     position: absolute;
-    background: url('@/images/jungle/2880-1620.jpg') center;
+    /* background: url('@/images/jungle/2880-1620.jpg') center; */
+    /* testing hosting images on vercel network - using my domain */
+    background: url('https://next.conradswebsite.com/images/conradswebsite_images/title_page/2880-1620.jpg') center;
     background-size: 105%;
     padding-left: 20rem;
     background-attachment: fixed;
