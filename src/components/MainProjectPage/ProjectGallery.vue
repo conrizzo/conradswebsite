@@ -31,11 +31,19 @@
 
             <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text"
               class="side-links-background">
-              <router-link class="no-router-link-decorations align-text-left" :to="item.to">
-                <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
-                  <span>{{ item.text }}</span>
-                </div>
-              </router-link>
+
+                <!-- this v-if v-else is only here to allow using router links and https links -->
+                <a v-if="isExternalHTTPSLink(item.to)" :href="item.to" class="no-router-link-decorations align-text-left">
+                  <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
+                    <span>{{ item.text }}</span>
+                  </div>
+                </a>
+                 <!-- if it's not an https link then use vue router -->
+                <router-link v-else class="no-router-link-decorations align-text-left" :to="item.to" :href="item.to">
+                  <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
+                    <span>{{ item.text }}</span>
+                  </div>
+                </router-link>
 
             </div>
           </div>
@@ -50,7 +58,8 @@
         'odd': gridColorAlternation(index)
       }" @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
               <!-- This first checks IF links are https -->
-              <a v-if="isExternal(item.to)" class="no-router-link-decorations h2-color" :href="item.to" target="_blank" rel="noopener noreferrer">
+              <a v-if="isExternalHTTPSLink(item.to)" class="no-router-link-decorations h2-color" :href="item.to"
+                target="_blank" rel="noopener noreferrer">
                 <div class="img-wrapper">
                   <!-- add in lazy loading to test this 
                             <img class="gallery-component-image" :src="item.imageSrc" :alt="item.text">
@@ -62,7 +71,7 @@
                   <p>{{ item.caption }}</p>
                 </figcaption>
               </a>
-               <!-- ELSE it's a router link the vue.js  -->
+              <!-- ELSE it's a router link the vue.js  -->
               <router-link v-else class="no-router-link-decorations h2-color" :to="item.to">
                 <div class="img-wrapper">
                   <!-- add in lazy loading to test this 
@@ -137,7 +146,7 @@ export default {
     },
   },
   methods: {
-    isExternal(path) {
+    isExternalHTTPSLink(path) {
       return /^(https?:|mailto:|tel:)/.test(path);
     },
     toggleGridStyle() {

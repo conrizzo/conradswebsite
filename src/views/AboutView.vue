@@ -14,7 +14,7 @@
         <div class="language-container">
           <span class="language-arrow-text tooltip">{{ arrowText }}
             <span class="tooltiptext">
-              CSS and Vue.js, not an image or drawn arrow!
+              This page can switch between English and German
             </span>
           </span>
           <div style="transform: rotate(-55deg);">
@@ -25,14 +25,13 @@
               </div>
             </div>
           </div>
-          <div class="tooltipTwo"><button @click="language();" class="language-button" role="button">{{
+         
+          <button @click="language();" class="language-button" role="button">{{
         languageButtonText
-      }}</button>
-            <div class="tooltiptextTwo">
+      }}</button>        
               <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
-              Change the main text language between English and German with this button.
-            </div>
-          </div>
+                  
+       
         </div>
 
       </two-columns-grid-content-template>

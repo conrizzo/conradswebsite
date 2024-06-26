@@ -1,6 +1,6 @@
 <template>
-  <div style="display: flex; justify-content:center; background: rgb(50, 50, 50);">
-    <div style=" width: 71rem; padding-top: 1rem;">
+  <div class="search-projects-container">
+    <div style="width: 71rem; padding-top: 1rem;">
       <SearchProjects />
     </div>
   </div>
@@ -35,6 +35,12 @@ export default {
   components: {
     ImagesOneRow, ProjectGallery, TopArea, SearchProjects
   },
+  props: {
+    theBackground: {
+      type: String,
+      required: false,
+    }
+  },
 
   data() {
     return {
@@ -51,11 +57,7 @@ export default {
 
     };
   },
-  computed: {
-    projectLinks() {
-      return this.links; // Assuming `links` is the array of project links
-    },
-  },
+
   methods: {
 
 
@@ -73,25 +75,6 @@ export default {
   position: relative;
 }
 
-/*
-.center-top-main-area-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /*background-image: linear-gradient(5deg, rgba(0, 0, 0, .1) 20%, transparent 20%,
-      transparent 80%, rgba(0, 0, 0, .1) 80%), linear-gradient(100deg, rgba(0, 0, 0, .1) 10%,
-      transparent 10%, transparent 90%, rgba(0, 0, 0, .1) 90%);
-      filter: blur(3px);*/
-/*
-      background-image: linear-gradient(5deg, rgba(0, 0, 0, .1) 20%, transparent 20%,
-      transparent 80%, rgba(0, 0, 0, .1) 80%), linear-gradient(70deg, rgba(0, 0, 0, .1) 10%,
-      transparent 5%, transparent 90%, rgba(0, 0, 0, .1) 90%);
-      filter: blur(3px);
-}
-*/
 .center-bottom-main-area-box {
   display: flex;
   justify-content: center;
@@ -105,6 +88,12 @@ export default {
   padding-bottom: 1rem;
   padding-top: 1rem;
   background: rgb(18, 18, 18);
+}
+
+.search-projects-container {
+  display: flex;
+  justify-content: center;
+  background: rgb(50, 50, 50);
 }
 
 .home-text-links {
@@ -132,7 +121,7 @@ export default {
 .main-text-container {
   display: flex;
   justify-content: left;
-  /*max-width: 40rem; */
+
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0rem;
