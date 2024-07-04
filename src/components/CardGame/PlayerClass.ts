@@ -1,4 +1,6 @@
 
+
+
 export interface Player {
   name: string;
   cards: any[];
@@ -38,14 +40,27 @@ export class DeckOfCards {
   constructor(theDeckOfCards: any[]) {
     this.theDeckOfCards = theDeckOfCards;
   }
-  // This is set up as the traditional German card game Skat!
+
   createCards() {
     const suits = ["hearts", "diamonds", "spades", "clubs"]
     const cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"]
     for (let i = 0; i < suits.length; i++) {
-      for (let j = 5; j < cards.length; j++) {
+      for (let j = 0; j < cards.length; j++) {
         this.theDeckOfCards.push([cards[j], suits[i]]);
       }
+    }
+  }
+
+  async testBackEnd() {
+    try {
+
+      const response = await fetch('/backend/api/blackjack');
+      const data = await response.json();
+
+    }
+
+    catch (error) {
+      console.log(error)
     }
   }
 
@@ -66,3 +81,6 @@ export class DeckOfCards {
   }
 
 }
+
+
+

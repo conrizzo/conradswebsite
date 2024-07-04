@@ -32,18 +32,19 @@
             <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text"
               class="side-links-background">
 
-                <!-- this v-if v-else is only here to allow using router links and https links -->
-                <a v-if="isExternalHTTPSLink(item.to)" :href="item.to" class="no-router-link-decorations align-text-left">
-                  <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
-                    <span>{{ item.text }}</span>
-                  </div>
-                </a>
-                 <!-- if it's not an https link then use vue router -->
-                <router-link v-else class="no-router-link-decorations align-text-left" :to="item.to" :href="item.to">
-                  <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
-                    <span>{{ item.text }}</span>
-                  </div>
-                </router-link>
+              <!-- this v-if v-else is only here to allow using router links and https links -->
+              <a v-if="isExternalHTTPSLink(item.to)" :href="item.to" class="no-router-link-decorations align-text-left"
+                target="_blank" rel="noopener noreferrer">
+                <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
+                  <span>{{ item.text }}</span>
+                </div>
+              </a>
+              <!-- if it's not an https link then use vue router -->
+              <router-link v-else class="no-router-link-decorations align-text-left" :to="item.to" :href="item.to">
+                <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
+                  <span>{{ item.text }}</span>
+                </div>
+              </router-link>
 
             </div>
           </div>

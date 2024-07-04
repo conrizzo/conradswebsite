@@ -1,19 +1,32 @@
-
-
 <template>
   <div id="body">
     <!-- Your HTML goes here -->
     <div>
-      <h1 class="title">Skat</h1>
+      <h1 class="title">Blackjack Game</h1>
       <br>
       <div style="background-color: rgba(0,0,0,0.5); padding: 0.5em; padding-top: 1.5em; max-width: auto;">
 
-        <h1 style="color: #fff;">Idea here was to make a Skat, game but will probably make my own card game.</h1>
+        <h1 style="color: #fff;">This is now running a game in backend code.</h1>
 
-        
+        <span style="color: #fff;"></span>
       </div>
     </div>
+    <div class="cards">
 
+      <div class="card-container">
+
+        <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
+        <div v-for="(svgFile, index) in houseCards" :key="svgFile" class="card-item"
+          :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
+          <img :src="svgFile" alt="" />
+          <!-- alt="" for now so after clicking it is empty -->
+
+        </div>
+
+
+      </div>
+
+    </div>
 
 
 
@@ -30,11 +43,15 @@
           <input class="custom-input" type="text" id="inputField" v-model="this.player1.bid" :disabled="winningBid"
             placeholder="0" />
 
-
-          <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;" @click="placeBid()">{{
-            submitButtonText }}</button>
-          <button type="button" class="button-35"
-            style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">Pass</button>
+          <button @click="start()"></button>
+          <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
+            @click="placeBid()">{{
+          submitButtonText }}</button>
+          <br>
+          <button @click="stay()" type="button" class="button-35"
+            style="margin-left: 0.25em; height: 0.5em; margin-top: 0.25em;">Stay</button>
+          <button @click="hit()" type="button" class="button-35"
+            style="margin-left: 0.25em; height: 0.5em; margin-top: 0.25em;">Hit</button>
           <!--<button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
           @click="passBid()">Pass</button>-->
 
@@ -92,13 +109,7 @@
         <img class="saloon-image" :src="saloonImage" alt="Saloon Image" />
 
         <div class="card-info" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.33);">
-          <div v-if="dealer === 1"><b>(Dealer) Player 2</b> is holding {{ player2.cards.length }} cards.</div>
-          <div v-else><b>Player 2</b> is holding {{ player2.cards.length }} cards.</div>
-          <br>
-          <div v-if="dealer === 2"><b>(Dealer) Player 3</b> is holding {{ player2.cards.length }} cards.</div>
-          <div v-else><b>Player 3</b> is holding {{ player3.cards.length }} cards.</div>
-          <br>
-          <b>Skat cards:</b> Unbekannt! Unknown! {{ skat.length }} cards
+
 
         </div>
 
@@ -112,8 +123,8 @@
       <div class="card-container">
 
         <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
-        <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" @click="removeImage(index)" class="card-item"
-          :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
+        <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" @click="removeImage(index)"
+          class="card-item" :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
           <img :src="svgFile" alt="" />
           <!-- alt="" for now so after clicking it is empty -->
 
@@ -139,10 +150,10 @@
 
   </div>
 </template>
-  
+
 <script>
 
-import { Player, DeckOfCards } from "@/components/CardGame/PlayerClass.ts";
+import { Player, DeckOfCards, CardDeck } from "@/components/CardGame/PlayerClass.ts";
 import "@/assets/globalCSS.css";
 
 import saloonImage from '@/components/CardGame/decoration_images/Saloon.jpg';
@@ -174,7 +185,7 @@ export default {
       // Your data properties go here
       cat: "meow",
       // messages
-      submitButtonText: "Submit this bid",
+      submitButtonText: "Bet",
       biddingMessage: "You have been outbidded, do you want to enter a higher bid? or stop bidding?",
       informationMessage: "You won the bid! Take Skat cards and add them to your hand? or pass?",
 
@@ -186,8 +197,8 @@ export default {
       // player actions
       // initialize an empty hand for the object to begin with
       player1: { cards: [], bid: 0 },
-      player2: { cards: [] },
-      player3: { cards: [] },
+      houseCards: { cards: [] },
+
 
 
 
@@ -235,6 +246,20 @@ export default {
     }
   },
   methods: {
+    async start() {
+
+
+      const response = await fetch('/backend/api/blackjack', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: 'start' })
+      });
+      const data = await response.json();
+      console.log(data);
+
+    },
     removeImage(index) {
 
       //console.log('------------', this.imagesOfCardsInhand[index].slice(0, -13).slice(5));
@@ -249,25 +274,6 @@ export default {
       // remove actual visual card from the screen
       this.imagesOfCardsInhand.splice(index, 1);
 
-      //console.log(this.imagesOfCardsInhand);
-      /*
-      for (let i = 0; i < this.imagesOfCardsInhand.length; i++) {
-        
-        let holder = this.imagesOfCardsInhand[index].slice(0, -13).slice(5);
-        this.imagesOfCardsInhand[index].slice(0, -13).slice(5);
-        console.log(holder)
-        if (this.player1.cards && this.player1.cards[i] && (holder.includes(this.player1.cards[i][0]) && holder.includes(this.player1.cards[i][1]))){
-          console.log(holder, this.player1.cards[i][0], this.player1.cards[i][1])
-          
-          
-          //this.player1.cards.slice(i, 1);
-          console.log("TEST", this.player1.cards[i][0], this.player1.cards[i][1], this.player1.cards[i])
-          this.player1.cards.splice(i, 1);
-        }
-        
-      }
-      console.log(this.player1.cards)
-      */
     },
     increaseMarginLeft(symbol) {
       const currentMarginLeft = parseFloat(this.marginLeft);
@@ -279,20 +285,29 @@ export default {
         this.marginLeft = `${newMarginLeft}em`;
       }
     },
-    updateCards() {
+
+    updateCards(user, who = 'player') {
       // for now set the associated image values for each card in hand to empty and update all the image values below
-      this.imagesOfCardsInhand = [];
+      let arrayToUse = [];
+
 
       this.svgFiles.forEach(svgFile => {
         const fileName = svgFile.slice(0, -13);  // Remove the last 12 characters 'iwoeruwru.svg' (including the dot)
-
-        this.player1.cards.forEach(card => {
-          if (fileName.includes(card[0]) && fileName.includes(card[1]) && !fileName.includes('2')) {
+        console.log(fileName);
+        user.forEach(card => {
+          if (fileName.includes(card[0]) && fileName.includes(card[1])) {
             //console.log(svgFile);
-            this.imagesOfCardsInhand.push(svgFile);
+            arrayToUse.push(svgFile);
           }
         })
       });
+
+      if (who === 'player') {
+        this.imagesOfCardsInhand = arrayToUse;
+      } else if (who === 'house') {
+        this.houseCards = arrayToUse;
+      }
+
     },
 
 
@@ -329,36 +344,7 @@ export default {
       const randomBoolean = Math.random() < 0.5; // Generates random true or false
       return randomBoolean;
     },
-    opponent(player) {
-      //console.log(player)
 
-      // player 2 is the computer
-      // player 3 is the computer
-
-      let randomBoolean = this.generateRandomBoolean();
-
-      let highestBid = Math.max(this.player1.bid, this.player2.bid, this.player3.bid);
-
-      //console.log("Random", randomBoolean)
-      if (randomBoolean === true && this.player2.bid !== "Pass!") {
-        this.player2.bid = this.bidsAllowed.find(bid => bid > highestBid);
-      } else {
-        this.player2.pass = true;
-
-      }
-
-      randomBoolean = this.generateRandomBoolean();
-      if (randomBoolean === true && this.player3.bid !== "Pass!") {
-        this.player3.bid = this.bidsAllowed.find(bid => bid > highestBid);
-      } else {
-        this.player3.pass = true;
-      }
-
-      if (this.player2.pass === true && this.player3.pass === true) {
-        this.winningBid = true;
-      }
-
-    },
     takeCardsOrPass() {
       // if they take the cards, add them to their hand
       // if user presses button more than once when there are no skat cards does nothing else
@@ -366,13 +352,13 @@ export default {
         this.informationMessage = "You took the SKAT cards! They are the [" + this.skat[0][0] + " of " + this.skat[0][1] +
           "] and the [" + this.skat[1][0] + " of " + this.skat[1][1] + "]";
         this.player1.cards = this.player1.cards.concat(this.skat);
-        this.updateCards();
+
         this.skat = [];
       }
 
     },
 
-    
+
     displayInfo(p, c, v) {
       console.log('Player Information: \n' + `Player: ${p}\nCards: ${c}\nValues: ${v}`);
 
@@ -386,21 +372,25 @@ export default {
 
       this.DeckOfCards = new DeckOfCards([]);
 
+
       this.DeckOfCards.createCards()
       this.DeckOfCards.shuffle();
 
       this.dealer = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
       this.player1 = new Player("Conrad", this.player1Cards, 0);
-      this.player2 = new Player("Alice", this.player2Cards, 0);
+      this.house = new Player("House", this.houseCards, 0);
       this.player3 = new Player("Bob", this.player3Cards, 0);
       this.players.push(this.player1, this.player2, this.player3);
 
-      this.player1.cards = this.DeckOfCards.theDeckOfCards.splice(0, 10);
-      this.player2.cards = this.DeckOfCards.theDeckOfCards.splice(0, 10);
-      this.player3.cards = this.DeckOfCards.theDeckOfCards.splice(0, 10);
+      this.player1.cards = this.DeckOfCards.theDeckOfCards.splice(0, 2);
+      this.house.cards = this.DeckOfCards.theDeckOfCards.splice(0, 2);
+
       this.skat = this.DeckOfCards.theDeckOfCards.splice(0, 2);
 
-      this.updateCards();
+
+      this.updateCards(this.player1.cards, 'player');
+      this.updateCards(this.house.cards, 'house');
+
       this.displayInfo(this.player1.name, this.player1.cards, this.player1.card_values);
     },
   },
@@ -440,7 +430,8 @@ export default {
 
     //this.player1.displayInfo();
 
-    this.updateCards();
+    //this.updateCards(player);
+    //this.updateCards(house);
 
 
 
@@ -452,7 +443,7 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
 .title {
   padding-top: 1.5em;
@@ -488,10 +479,10 @@ export default {
 }
 
 .custom-input {
-  width: 3em;
+  width: 6em;
   font-size: 1.5em;
   border-radius: 0.25em;
-  margin-right: 1em;
+
   border: none;
   outline: none;
   padding-left: 1em;
@@ -511,7 +502,7 @@ export default {
   /* Align the content to the left */
   align-items: center;
   z-index: 4;
-  
+
   position: relative;
   transform: scale(0.8);
 }
@@ -537,7 +528,7 @@ export default {
 .card-info {
   border: 0.1em solid #ccc;
   /* Add border around the content */
- 
+
   border-radius: 0.5em;
   padding: 1em;
   /* Add padding to create space between the content and the border */
@@ -550,8 +541,10 @@ export default {
   z-index: 2;
 }
 
-.grid-container{
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 .paragraph-text {
@@ -566,7 +559,7 @@ export default {
   margin: 0 auto;
   padding: 0.5em;
   border-radius: 1em;
-  
+
 
 
 
@@ -609,12 +602,12 @@ export default {
 
 @media screen and (max-width: 77rem) {
 
-  #body {
-  
-  }
+  #body {}
 
-  .grid-container{
-    display: grid; grid-template-columns: 1fr; gap: 1rem;
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .paragraph-text {
@@ -647,7 +640,7 @@ export default {
   .input-container {
     z-index: 4;
 
-    
+
   }
 
   .footer-space-vertical {
@@ -662,8 +655,8 @@ export default {
   }
 
   .card-info {
-    
-   
+
+
     display: grid;
     place-items: center;
     left: initial;
@@ -676,4 +669,5 @@ export default {
     top: 170vh;
     z-index: 5;
   }
-}</style>
+}
+</style>

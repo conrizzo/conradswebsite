@@ -45,7 +45,7 @@
               <h2 class="section-title-fun">What Makes Development Fun?</h2>
             </div>
             <p>
-              I've used the internet a lot in life, and to actually be able to build it feels rewarding. In building something with code as one learns more, and learns more of the tools, libraries, tricks, all
+              I've used the internet a lot in life, and to actually be able to build it feels rewarding. Building something with code as one learns more, and learns more of the tools, libraries, tricks, all
               the creative possiblities also increase. One has to seek out new challenges.
               On the side there is always something to work on or learn. Having the ability to continually improve
               and
