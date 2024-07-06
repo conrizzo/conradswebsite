@@ -3,34 +3,30 @@
     <!-- Your HTML goes here -->
     <div>
       <h1 class="title">Blackjack Game</h1>
+      <span class="title">(Shamokin, Pennsylvania Alpha Edition)</span>
       <br>
       <div style="background-color: rgba(0,0,0,0.5); padding: 0.5em; padding-top: 1.5em; max-width: auto;">
-
         <h1 style="color: #fff;">This is now running a game in backend code.</h1>
-
-        <span style="color: #fff;"></span>
-      </div>
-    </div>
-    <div class="cards">
-
-      <div class="card-container">
-
-        <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
-        <div v-for="(svgFile, index) in houseCards" :key="svgFile" class="card-item"
-          :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
-          <img :src="svgFile" alt="" />
-          <!-- alt="" for now so after clicking it is empty -->
-
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <p style="color: #fff;">Press 'DEAL' to begin. Note: debugging this for final polishing so won't fully work
+            for a bit. July 2024 -
+            This now is a fullstack game that uses a gamestate in a Redis database.
+            It initializes the class for the game action the frontend sends, and all the actual game logic runs in
+            backend Python code,
+            then returns the gamestate to the frontend. 100% of the game logic is run serverside in python.
+          </p>
         </div>
-
-
       </div>
-
     </div>
-
-
-
-
+    <div class="cards-dealer">
+      <div class="card-container">
+        <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
+        <div v-for="(svgFile, index) in filteredDealerHand" :key="svgFile" class="card-item"
+          :style="{ 'margin-left': marginLeft, ...cardStyles[index], zIndex: index + 1 }">
+          <img :src="svgFile" alt="" />
+        </div>
+      </div>
+    </div>
     <br>
     <br>
     <!-- The card point values: {{ cardValues }} --> <!-- cardValues['K'] -->
@@ -38,132 +34,74 @@
     <br>
     <div class="grid-container">
       <div class="input-container">
+        <span style="color: #fff; font-size: 2rem;">Result: {{ currentMessage }}</span>
+        <span style="color: #fff; font-size: 2rem;">Chips: {{ playerChips }}</span>
+        <span style="color: #fff; font-size: 2rem;">Bet: {{ playerBetInputAmount }}</span>
+
+        <span v-if="this.showAllDealerCards">
+          Dealer cards: {{ dealerHand }}
+        </span>
+
+        <span>Player cards: {{ playerHand }}</span>
         <div>
-          <label style="margin-right: 0.3em;" for="inputField"><b>Make your bid:</b></label>
-          <input class="custom-input" type="text" id="inputField" v-model="this.player1.bid" :disabled="winningBid"
+          <label style="margin-right: 0.3em;" for="inputField"><b>Amount to Bet:</b></label>
+          <input class="custom-input" type="text" id="inputField" v-model.number="playerBetInputAmount"
             placeholder="0" />
 
-          <button @click="start()"></button>
-          <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
-            @click="placeBid()">{{
+          <button class="button-35" @click="Start()"
+            style="margin-left: 0.25em; height: 0.5em; margin-top: 0.25em;">DEAL</button>
+          <button class="button-35" @click="Reset()"
+            style="margin-left: 0.25em; height: 0.5em; margin-top: 0.25em;">Reset</button>
+          <button class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;" @click="Bet()">{{
           submitButtonText }}</button>
           <br>
-          <button @click="stay()" type="button" class="button-35"
+          <button @click="Stay()" type="button" class="button-35"
             style="margin-left: 0.25em; height: 0.5em; margin-top: 0.25em;">Stay</button>
-          <button @click="hit()" type="button" class="button-35"
+          <button @click="Hit()" type="button" class="button-35"
             style="margin-left: 0.25em; height: 0.5em; margin-top: 0.25em;">Hit</button>
           <!--<button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;"
           @click="passBid()">Pass</button>-->
-
         </div>
         <br>
         <br>
-        <div v-if="winningBid"
-          style="color: #ffffff; background-color: rgb(198, 111, 58); border-radius: 1em; padding-top: 0.5em; margin-bottom: 0.5em;">
-          <b> {{ informationMessage }} </b>
-          <br>
-
-          <button type="button" @click="takeCardsOrPass();" class="button-35"
-            style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Take cards</button>
-          <button type="button" class="button-35"
-            style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">Pass, don't take
-            cards</button>
-
-        </div>
-        <div v-if="validBid">You submitted a valid bid of:
-          <b>{{ this.player1.bid }}</b>
-          <br>
-          <br>
-          <div v-if="this.player2.pass === false">
-            Player 2 bids: <b>{{ this.player2.bid }}</b>
-          </div>
-          <div v-else> Player 2: Pass</div>
-          <br>
-          <br>
-          <div v-if="this.player3.pass === false">
-            Player 3 bids: <b>{{ this.player2.bid }}</b>
-          </div>
-          <div v-else> Player 3: Pass</div>
-          <br>
-          <br>
-
-        </div>
-        <div v-if="winningBid">Your bid of {{ this.player1.bid }} wins!</div>
-        <div v-else-if="this.player1.pass !== true || this.player2.pass !== true">
-          {{ biddingMessage }}
-          <button type="button" class="button-35" style="margin-left: 0.25em; height: 0.5em;"
-            @click="this.stopBid();">Stop bidding</button>
-        </div>
-        <br>
-        <div v-if="dealer === 0"><b>(Dealer) Your cards:</b></div>
-        <div v-else><b>Your cards:</b></div>
-        <br>
-
-        <div><b>{{ player1.cards.length }} cards are in your hand.</b>
-          <br>
-          {{ this.player1.cards }}
-        </div>
-
-      </div>
-      <div class='interactions'>
-        <img class="saloon-image" :src="saloonImage" alt="Saloon Image" />
-
-        <div class="card-info" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.33);">
-
-
-        </div>
-
-
-
       </div>
     </div>
-
     <div class="cards">
-
       <div class="card-container">
-
         <!-- by using computed for cardStyles when this only changes styles when cards are changed, not when other things are interacted with -->
         <div v-for="(svgFile, index) in imagesOfCardsInhand" :key="svgFile" @click="removeImage(index)"
           class="card-item" :style="{ 'margin-left': marginLeft, ...cardStyles[index] }">
           <img :src="svgFile" alt="" />
           <!-- alt="" for now so after clicking it is empty -->
-
         </div>
-
-
       </div>
-
     </div>
-    <div class=select-options>
-      <h2><u>Options</u></h2>
-      <div class="button-container">
-        <button type="button" @click="increaseMarginLeft('+');" class="button-35"
-          style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">+ spacing</button>
-        <button type="button" @click="increaseMarginLeft('-');" class="button-35"
-          style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">- spacing</button>
-      </div>
-      <button type="button" @click="dealCards()" class="button-35"
-        style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">Deal new cards</button>
+    <div class='interactions'>
+      <img class="saloon-image" :src="saloonImage" alt="Saloon Image" />
     </div>
+  </div>
 
 
-
+  <div class=select-options>
+    <h2><u>Options</u></h2>
+    <div class="button-container">
+      <button type="button" @click="increaseMarginLeft('+');" class="button-35"
+        style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">+ spacing</button>
+      <button type="button" @click="increaseMarginLeft('-');" class="button-35"
+        style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">- spacing</button>
+    </div>
+    <!-- <button type="button" @click="dealCards()" class="button-35"
+      style="margin-left: 0.25em; height: 0.5em; margin-top: 0.5em;">Deal new cards</button> -->
   </div>
 </template>
 
 <script>
-
 import { Player, DeckOfCards, CardDeck } from "@/components/CardGame/PlayerClass.ts";
 import "@/assets/globalCSS.css";
-
 import saloonImage from '@/components/CardGame/decoration_images/Saloon.jpg';
 
-
-
-
-
 export default {
-  name: 'SkatGame',
+  name: 'FullStack BlackJack Game',
 
   components: {
 
@@ -172,14 +110,17 @@ export default {
   data() {
     return {
       marginLeft: '-7.5rem',
-
-
+      theResponse: [],
+      currentMessage: '',
+      showAllDealerCards: false,
+      playerChips: 0,
+      playerBetInputAmount: 0,
       saloonImage: saloonImage,
 
 
       svgFiles: [],
       imagesOfCardsInhand: [],
-
+      dealerHandImages: [],
       players: [],
 
       // Your data properties go here
@@ -198,8 +139,8 @@ export default {
       // initialize an empty hand for the object to begin with
       player1: { cards: [], bid: 0 },
       houseCards: { cards: [] },
-
-
+      playerHand: [],
+      dealerHand: [],
 
 
       dealer: 0,
@@ -208,7 +149,6 @@ export default {
 
       lastBid: -1,
       validBid: false,
-
 
       winningBid: false,
 
@@ -232,42 +172,88 @@ export default {
         ['7', 0]
       ]),
 
-
     };
   },
   computed: {
-    cardStyles()
-    // '_' as a placeholder to indicate never used
-    {
+
+    cardStyles() {
+      // '_' as a placeholder to indicate never used
+
       return this.imagesOfCardsInhand.map((_, index) => ({
         marginTop: `${index * (Math.random() - 0.1) * 0.1}em`,
         transform: `rotate(${(index - 4) * 3}deg)`
       }));
-    }
-  },
-  methods: {
-    async start() {
-
-
-      const response = await fetch('/backend/api/blackjack', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name: 'start' })
-      });
-      const data = await response.json();
-      console.log(data);
 
     },
-    removeImage(index) {
+    filteredDealerHand() {
+      // If showAllDealerCards is true, return the whole dealerHand array
+      // Otherwise, return an array containing only the first element
+      return this.showAllDealerCards ? this.dealerHandImages : this.dealerHandImages.slice(0, 1);
+    },
+  },
+  methods: {
+    updateGameState(e) {
 
+      // Check if e is a string and parse it if necessary
+      if (typeof e === 'string') {
+        e = JSON.parse(e);
+      }
+
+      this.theResponse = e;
+
+      this.playerHand = this.theResponse.player_hand; // Changed from playerHand to player_hand
+      this.dealerHand = this.theResponse.dealer_hand; // Changed from dealerHand to dealer_hand
+      this.playerChips = this.theResponse.player_chips;
+      this.playerBet = this.theResponse.bet;
+      for (let key in this.theResponse) {
+        console.log(key + ": " + JSON.stringify(this.theResponse[key]));
+      }
+
+      this.updateCards(this.dealerHand, 'dealer');
+      this.updateCards(this.playerHand, 'player');
+      this.currentMessage = this.theResponse.message;
+
+    },
+    async Start() {
+      this.showAllDealerCards = false;
+      this.Reset(); // Reset the game before starting a new one
+      try {
+        const response = await fetch('/backend/api/blackjack', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ action: 'start' })
+        });
+        let e = await response.json();
+        this.updateGameState(e);
+
+      } catch (error) {
+        console.error("Error during fetch: ", error);
+      }
+    },
+    async Reset() {
+      try {
+        const response = await fetch('/backend/api/blackjack/reset', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+          // body property removed
+        });
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    removeImage(index) {
       //console.log('------------', this.imagesOfCardsInhand[index].slice(0, -13).slice(5));
       // Removes element at the index of the array of images
       //this.imagesOfCardsInhand.splice(index, 1);
 
       const holder = this.imagesOfCardsInhand[index].slice(0, -13).slice(5);
-      this.player1.cards = this.player1.cards.filter(card => {
+      this.playerHand = this.playerHand.filter(card => {
         return !(holder.includes(card[0]) && holder.includes(card[1]));
       });
 
@@ -290,10 +276,10 @@ export default {
       // for now set the associated image values for each card in hand to empty and update all the image values below
       let arrayToUse = [];
 
-
+      //user = [['10', 'diamonds'],['5', 'diamonds']]
       this.svgFiles.forEach(svgFile => {
         const fileName = svgFile.slice(0, -13);  // Remove the last 12 characters 'iwoeruwru.svg' (including the dot)
-        console.log(fileName);
+        // console.log(fileName);
         user.forEach(card => {
           if (fileName.includes(card[0]) && fileName.includes(card[1])) {
             //console.log(svgFile);
@@ -301,44 +287,62 @@ export default {
           }
         })
       });
-
+      console.log(arrayToUse);
       if (who === 'player') {
         this.imagesOfCardsInhand = arrayToUse;
-      } else if (who === 'house') {
-        this.houseCards = arrayToUse;
+      } else if (who === 'dealer') {
+        this.dealerHandImages = arrayToUse;
       }
-
     },
 
-
-
-    passBid() {
-      this.player1Pass = true;
-
-      let isSixtyIncluded = this.currentOpponentBids.includes(60);
-      // opponenet computers bid until one wins or passes
-      while ((this.opponentBid !== 'pass' || this.opponentTwoBid !== 'pass') || isSixtyIncluded) {
-        this.opponent();
+    async Bet() {
+      try {
+        const response = await fetch('/backend/api/blackjack', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ "bet_amount": this.playerBetInputAmount, "action": "bet" })
+        });
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
       }
-
-
     },
-    placeBid() {
-      //console.log(this.player1.bid)
-      if (this.bidsAllowed.includes(parseInt(this.player1.bid)) && (this.player1.bid > this.lastBid)) {
-        // reveals more information for step 2 of the game
-        this.validBid = true;
-        this.lastBid = this.player1.bid;
-        // run logic for opponents bid
-        this.opponent(2);
-        // logic to make bid
+    async Hit() {
+      try {
+        const response = await fetch('/backend/api/blackjack', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ "bet_amount": this.playerBetInputAmount, "action": "hit" })
+        });
+        let e = await response.json();
 
-      } else if (this.bid <= this.lastBid) {
-        alert("You need to enter a higher valid bid, it can't be the same number, or lower than the opponents bid: " + this.bidsAllowed)
-      } else {
-        alert("Please enter a valid bid, they are: " + this.bidsAllowed)
+
+        this.updateGameState(e);
+      } catch (error) {
+        console.error(error);
       }
+    },
+    async Stay() {
+      try {
+        const response = await fetch('/backend/api/blackjack', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ "bet_amount": this.playerBetInputAmount, "action": "stay" })
+        });
+        let e = await response.json();
 
+        this.updateGameState(e);
+        this.showAllDealerCards = true;
+      } catch (error) {
+        console.error(error);
+      }
     },
     generateRandomBoolean() {
       const randomBoolean = Math.random() < 0.5; // Generates random true or false
@@ -358,10 +362,8 @@ export default {
 
     },
 
-
     displayInfo(p, c, v) {
       console.log('Player Information: \n' + `Player: ${p}\nCards: ${c}\nValues: ${v}`);
-
     },
 
     stopBid() {
@@ -384,9 +386,10 @@ export default {
 
       this.player1.cards = this.DeckOfCards.theDeckOfCards.splice(0, 2);
       this.house.cards = this.DeckOfCards.theDeckOfCards.splice(0, 2);
+      //console.log(this.player1.cards);
+      //console.log(this.house.cards);
 
       this.skat = this.DeckOfCards.theDeckOfCards.splice(0, 2);
-
 
       this.updateCards(this.player1.cards, 'player');
       this.updateCards(this.house.cards, 'house');
@@ -395,51 +398,13 @@ export default {
     },
   },
 
+
   mounted() {
-    document.title = "Skat"; // Set the document title to the value of the `title` property
+    document.title = "Fullstack Blackjack Game"; // Set the document title to the value of the `title` property
 
     const svgContext = require.context("@/components/CardGame/card_images", false, /\.svg$/);
     this.svgFiles = svgContext.keys().map(svgContext);
-
-
-    //console.log(this.svgFiles.map(svgFile => svgFile.match(/\/([^/]+)\./)[1]));
-
     this.dealCards();
-
-
-
-
-    // Code to run when the component is mounted goes here
-
-
-
-
-
-    // Deal the cards
-    //this.player1Cards = this.firstCardDeck.splice(0, 10);
-    //this.player2Cards = this.firstCardDeck.splice(0, 10);
-    //this.player3Cards = this.firstCardDeck.splice(0, 10);
-    //this.skat = this.firstCardDeck.splice(0, 2);
-
-
-    //console.log(this.players)
-
-
-
-
-
-    //this.player1.displayInfo();
-
-    //this.updateCards(player);
-    //this.updateCards(house);
-
-
-
-
-
-
-
-
   },
 };
 </script>
@@ -496,6 +461,18 @@ export default {
 
 /* Your CSS goes here */
 .cards {
+  padding-left: 7em;
+  display: flex;
+  justify-content: center;
+  /* Align the content to the left */
+  align-items: center;
+  z-index: 4;
+
+  position: relative;
+  transform: scale(0.8);
+}
+
+.cards-dealer {
   padding-left: 7em;
   display: flex;
   justify-content: center;
@@ -602,7 +579,7 @@ export default {
 
 @media screen and (max-width: 77rem) {
 
-  #body {}
+
 
   .grid-container {
     display: grid;
@@ -621,6 +598,23 @@ export default {
   }
 
   .cards {
+    top: 150vh;
+    width: 130%;
+    left: -17vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+    position: absolute;
+    overflow: hidden;
+
+    /*min-width: calc(100% + 10em); */
+
+  }
+
+  .cards-dealer {
     top: 130vh;
     width: 130%;
     left: -17vw;
