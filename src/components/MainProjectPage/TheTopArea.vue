@@ -29,15 +29,20 @@
 
                     <ul style="font-size: 1rem; text-align: left; color: #fff; padding: 0.5rem; padding-left: 2rem;">
                         <li>
-                            June, 2024 - Other project is to learn how to use <a class="home-text-links list-links-text-decoration"
+                            July, 2024 - Made a Fullstack Blackjack game. Game runs in Python. <router-link
+                                to="/projects/cards" class="home-text-links list-links-text-decoration"
+                                >Blackjack Game</router-link>
+                        </li>
+                        <li>
+                            June, 2024 - Other project is to learn how to use <a
+                                class="home-text-links list-links-text-decoration"
                                 href='https://socket.io/docs/v4/'>https://socket.io/docs/v4/</a>
                             to
                             create realtime updates to the server.
                         </li>
 
                         <li>
-                            I've started to build a project in <a
-                                class="home-text-links list-links-text-decoration"
+                            I've started to build a project in <a class="home-text-links list-links-text-decoration"
                                 href='https://react.dev/blog/2023/03/16/introducing-react-dev'>React.js</a>
                             to compare+learn <a class="home-text-links list-links-text-decoration"
                                 href="https://next.conradswebsite.com/">https://next.conradswebsite.com/</a> using React

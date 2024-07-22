@@ -212,7 +212,9 @@ export default {
   height: calc(100%);
   transform: translateX(0);
   z-index: 1;
-  background: rgb(67, 76, 90);
+  background: rgb(53, 213, 238);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: .5rem;
   /* 
   transform: translateX(-100%); if this element sidemenu is 
     put inside the imageGallery div then it will slide inside the middle when closed
@@ -226,7 +228,7 @@ export default {
   padding-top: .9rem;
   height: 0rem;
   width: 18rem;
-  background: rgb(67, 76, 90);
+  background: rgb(53, 213, 238);
   margin-bottom: 25rem;
   padding-bottom: .5rem;
 
@@ -280,7 +282,7 @@ export default {
   position: sticky;
   top: 4.5rem;
   padding-bottom: 2rem;
-  background: rgb(67, 76, 90);
+  background: rgb(53, 213, 238);
 }
 
 /* this adjusts the transition time of hovering over each project grid-item  */
@@ -320,14 +322,14 @@ h2 {
 
 h3 {
   font-size: 1.1rem;
-  color: rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
   text-align: left;
   padding-left: .7em;
 }
 
 .projects-side-menu-items {
-  color: rgb(225, 225, 225);
-  background: rgb(67, 76, 90);
+  color: rgb(245, 245, 245);
+  background: rgb(53, 213, 238);
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;
@@ -342,10 +344,10 @@ h3 {
 }
 
 .hover-effect {
-  background: rgb(67, 76, 90);
-
+  background: rgba(255, 255, 255,.3);
+  border-radius: 0.5rem;
   transition-delay: .5s ease;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 
@@ -499,7 +501,7 @@ figcaption {
 }
 
 .svg-x-hover-color-highlight {
-  stroke: rgb(200, 200, 200);
+  stroke: rgb(255, 255, 255);
   transition: stroke 0.3s ease;
   /* Adjust the duration and timing function as needed */
 }
