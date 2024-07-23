@@ -30,8 +30,8 @@
                     <ul style="font-size: 1rem; text-align: left; color: #fff; padding: 0.5rem; padding-left: 2rem;">
                         <li>
                             July, 2024 - Made a Fullstack Blackjack game. Game runs in Python. <router-link
-                                to="/projects/cards" class="home-text-links list-links-text-decoration"
-                                >Blackjack Game</router-link>
+                                to="/projects/cards" class="home-text-links list-links-text-decoration">Blackjack
+                                Game</router-link>
                         </li>
                         <li>
                             June, 2024 - Other project is to learn how to use <a
@@ -124,7 +124,6 @@ onMounted(() => {
     text-align: left;
     position: relative;
     line-height: 1;
-
     padding: 1em 0.25em 1em 2rem;
     color: rgb(255, 255, 255);
     font-size: 2em;

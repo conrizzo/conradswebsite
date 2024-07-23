@@ -136,8 +136,6 @@ const filteredItems = computed(() => {
     display: flex;
     align-items: center;
     justify-content: right;
-
-    margin-bottom: 1rem;
 }
 
 .format-search-links {

@@ -12,9 +12,12 @@
 
     <div class="centerAll">
       <div class="second-grid" :class="{ 'active-grid-style': isSecondGridActive }">
+
         <!-- Grid column 1 side menu -->
         <div :class="['side-menu', menuClassState]" class="side-menu">
+
           <div class="left-column-content">
+
             <div style="display: flex; justify-content: space-between;">
               <h3>Fun Projects</h3>
 
@@ -39,6 +42,7 @@
                   <span>{{ item.text }}</span>
                 </div>
               </a>
+
               <!-- if it's not an https link then use vue router -->
               <router-link v-else class="no-router-link-decorations align-text-left" :to="item.to" :href="item.to">
                 <div :class="{ 'hover-effect': hoveredIndex === index }" class="projects-side-menu-items">
@@ -47,7 +51,20 @@
               </router-link>
 
             </div>
+            <div id="cloudOne" style="z-index: 1; margin-left: 2.3em; margin-top: 1em;">
+              <div style="color: rgb(243, 250, 255); margin-left: 3em; position: absolute;" class="cloud"></div>
+              <div style="float: right; margin-right: 2em; position: absolute; opacity: 0.7;" class="cloud"></div>
+              <div style="color: rgb(248, 249, 223); float: right; margin-left: 1em; margin-top: 1em; position: absolute; opacity: 0.5;" class="cloud"></div>
+            </div>
+            <div id="cloudOne"
+              style="z-index: 1; margin-left: 0.2em; padding-bottom: 2.5rem; margin-top: 8em;">
+              <div style="color: rgb(248, 249, 223); margin-left: 3em; position: absolute; opacity: 0.5;" class="cloud"></div>
+              <div style="color: rgb(243, 250, 255); float: right; margin-right: 2em; position: absolute; opacity: 0.8;" class="cloud"></div>
+              <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
+            </div>
           </div>
+
+
         </div>
         <!-- Grid column 2 main projects -->
         <div class="image-gallery" :style="addNegativeMarginToTopProjectsToCompensateForLeftMenu">
@@ -212,8 +229,8 @@ export default {
   height: calc(100%);
   transform: translateX(0);
   z-index: 1;
-  background: rgb(53, 213, 238);
-  border-top-left-radius: 0.5rem;
+  background-size: cover;
+  background: rgb(53, 164, 238);
   border-top-right-radius: .5rem;
   /* 
   transform: translateX(-100%); if this element sidemenu is 
@@ -228,10 +245,10 @@ export default {
   padding-top: .9rem;
   height: 0rem;
   width: 18rem;
-  background: rgb(53, 213, 238);
+  background: rgb(53, 164, 238);
   margin-bottom: 25rem;
   padding-bottom: .5rem;
-
+  border-top-right-radius: 0rem;
 }
 
 .side-menu.closed {
@@ -242,7 +259,6 @@ export default {
 .side-links-background {
   margin-left: 1rem;
   margin-right: 1rem;
-
 }
 
 .side-links-background:hover {
@@ -282,7 +298,7 @@ export default {
   position: sticky;
   top: 4.5rem;
   padding-bottom: 2rem;
-  background: rgb(53, 213, 238);
+  background: linear-gradient(rgb(53, 164, 238), rgb(23, 196, 216));
 }
 
 /* this adjusts the transition time of hovering over each project grid-item  */
@@ -328,8 +344,7 @@ h3 {
 }
 
 .projects-side-menu-items {
-  color: rgb(245, 245, 245);
-  background: rgb(53, 213, 238);
+  color: rgb(245, 245, 245);  
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;
@@ -344,7 +359,7 @@ h3 {
 }
 
 .hover-effect {
-  background: rgba(255, 255, 255,.3);
+  background: rgba(255, 255, 255, .3);
   border-radius: 0.5rem;
   transition-delay: .5s ease;
   text-decoration: none;
@@ -513,6 +528,38 @@ figcaption {
 
 .gallery-styling-h1-span {
   display: none;
+}
+
+/* create clouds */
+.cloud {
+  width: 200px;
+  height: 50px;
+  background: #ececec;
+  border-radius: 100px;
+  position: relative;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1), 0 30px 50px rgba(0, 0, 0, 0.1);
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 100%;
+}
+
+.cloud::before {
+  width: 100px;
+  height: 70px;
+  top: -20px;
+  left: 20px;
+}
+
+.cloud::after {
+  width: 100px;
+  height: 70px;
+  top: -30px;
+  right: 20px;
 }
 
 /* Disable hover since mobile devices dont use pointer fine, and alter the the grid layout */

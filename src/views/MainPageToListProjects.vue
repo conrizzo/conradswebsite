@@ -69,7 +69,9 @@ export default {
 <style scoped>
 .custom-background-home-page {
   /* background: linear-gradient(to bottom right, rgb(0, 145, 207), rgb(118, 111, 209) 60%); */
-  background: rgb(50, 50, 50);
+  background-image: url('../images/blue_sky2.jpg');
+  background-color: rgba(0, 0, 0, 0.1);
+  background-blend-mode: multiply;
   background-size: 100% 100%;
   background-attachment: fixed;
   position: relative;
@@ -94,6 +96,7 @@ export default {
   display: flex;
   justify-content: center;
   background: rgb(50, 50, 50);
+  height: 4.6rem;
 }
 
 .home-text-links {
