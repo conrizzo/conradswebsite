@@ -70,7 +70,7 @@ export default {
 .custom-background-home-page {
   /* background: linear-gradient(to bottom right, rgb(0, 145, 207), rgb(118, 111, 209) 60%); */
   background-image: url('../images/blue_sky2.jpg');
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: multiply;
   background-size: 100% 100%;
   background-attachment: fixed;

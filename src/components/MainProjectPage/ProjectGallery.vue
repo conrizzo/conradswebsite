@@ -51,13 +51,13 @@
               </router-link>
 
             </div>
-            <div id="cloudOne" style="z-index: 1; margin-left: 2.3em; margin-top: 1em;">
+            <div id="cloudOne" style="z-index: 1; margin-left: 2.3em; margin-top: 3em;">
               <div style="color: rgb(243, 250, 255); margin-left: 3em; position: absolute;" class="cloud"></div>
               <div style="float: right; margin-right: 2em; position: absolute; opacity: 0.7;" class="cloud"></div>
               <div style="color: rgb(248, 249, 223); float: right; margin-left: 1em; margin-top: 1em; position: absolute; opacity: 0.5;" class="cloud"></div>
             </div>
             <div id="cloudOne"
-              style="z-index: 1; margin-left: 0.2em; padding-bottom: 2.5rem; margin-top: 8em;">
+              style="z-index: 1; margin-left: 0.2em; padding-bottom: 2.5rem; margin-top: 11em;">
               <div style="color: rgb(248, 249, 223); margin-left: 3em; position: absolute; opacity: 0.5;" class="cloud"></div>
               <div style="color: rgb(243, 250, 255); float: right; margin-right: 2em; position: absolute; opacity: 0.8;" class="cloud"></div>
               <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
@@ -348,9 +348,9 @@ h3 {
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding-bottom: 0rem;
-  margin-bottom: 0rem;
+  margin-bottom: .33rem;
 }
 
 .projects-side-menu-items:hover {
