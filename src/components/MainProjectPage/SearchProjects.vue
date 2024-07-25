@@ -23,8 +23,8 @@ The combination of these 2 makes the search icon pop up and widens the container
                     </svg>
 
                     <input :class="{
-                'remove-bottom-border-radius': searchTerm.length > 0 && filteredItems.length > 0 && dropdownOpen
-            }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus" @blur="handleSearchBlur"
+                        'remove-bottom-border-radius': searchTerm.length > 0 && filteredItems.length > 0 && dropdownOpen
+                    }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus" @blur="handleSearchBlur"
                         placeholder="Search projects...">
                 </div>
                 <!-- This template creates the dropdown menu -->
@@ -36,9 +36,8 @@ The combination of these 2 makes the search icon pop up and widens the container
                         <div v-show="dropdownOpen">
                             <div v-if="searchTerm.length > 0">
                                 <!-- SVG and item text here for external links -->
-                                <svg style="display: inline-block; margin-right: 2rem;"
-                                    xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"
-                                    fill="rgb(218, 220, 224)">
+                                <svg class="inline-svg-right-padding" xmlns="http://www.w3.org/2000/svg" height="16"
+                                    width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">
                                     <path
                                         d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
                                 </svg>
@@ -51,9 +50,8 @@ The combination of these 2 makes the search icon pop up and widens the container
                         <div v-if="searchTerm.length > 0">
                             <div v-show="dropdownOpen">
                                 <!-- SVG and item text here for internal links -->
-                                <svg style="display: inline-block; margin-right: 2rem;"
-                                    xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"
-                                    fill="rgb(218, 220, 224)">
+                                <svg class="inline-svg-right-padding" xmlns="http://www.w3.org/2000/svg" height="16"
+                                    width="16" viewBox="0 0 512 512" fill="rgb(218, 220, 224)">
                                     <path
                                         d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
                                 </svg>
@@ -132,6 +130,13 @@ const filteredItems = computed(() => {
 </script>
 
 <style scoped>
+
+/* Use this to align the SVG icon with the input text */
+.inline-svg-right-padding {
+    display: inline-block;
+    margin-right: .5rem;
+}
+
 .input-area {
     display: flex;
     align-items: center;
@@ -141,7 +146,7 @@ const filteredItems = computed(() => {
 .format-search-links {
     background: #fff;
     color: rgb(18, 18, 18);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     text-decoration: none;
     cursor: pointer;
     width: 100%;
@@ -152,8 +157,8 @@ const filteredItems = computed(() => {
 
 .format-search-links:first-of-type {
     margin-top: 2px;
-    border-top-right-radius: 1rem;
-    border-top-left-radius: 1rem;
+    border-top-right-radius: 0rem;
+    border-top-left-radius: 0rem;
 }
 
 .format-search-links:last-child {
@@ -198,7 +203,7 @@ const filteredItems = computed(() => {
 }
 
 input {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     border-radius: 1rem;
     border-width: 1px;
     outline: none;
@@ -210,6 +215,8 @@ input {
 
 .remove-bottom-border-radius {
     border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 
@@ -248,15 +255,16 @@ Uses new in 2023 Anchor CSS feature
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
+    padding-right: 0rem;
 }
 
 .input-container input {
-    padding-left: 1rem;
+    padding-left: 2.5rem;
     box-shadow: none;
 }
 
 .input-container input:focus {
-    padding-left: 3rem;
+    padding-left: 2.5rem;
     box-shadow: none;
 }
 
@@ -267,6 +275,14 @@ Uses new in 2023 Anchor CSS feature
         margin-right: .5rem;
     }
 
+    input {
+        font-size: 1.6rem;
+    }
+
+    .format-search-links {
+        font-size: 1.6rem;
+    }
+
     .format-search-links:first-of-type {
         margin-top: 2px;
         border-top-right-radius: 0rem;
@@ -274,8 +290,9 @@ Uses new in 2023 Anchor CSS feature
     }
 
     .format-search-links:last-child {
-        border-bottom-right-radius: 0rem;
-        border-bottom-left-radius: 0rem;
+        border-bottom-right-radius: .4rem;
+        border-bottom-left-radius: .4rem;
+
     }
 }
 </style>

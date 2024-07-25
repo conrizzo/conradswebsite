@@ -143,10 +143,12 @@ export default {
   mounted() {
 
     var devicePixelRatio = window.devicePixelRatio;
-    console.log('test', devicePixelRatio);
-    // Check if the device has a high DPI display
-    if (devicePixelRatio > 1) {
-      // Adjust the zoom level of the webpage so high dpi displays dont have it slide off the screen
+    var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    console.log('test', devicePixelRatio, isMobile);
+    
+    // Check if the device has a high DPI display and is not a mobile device
+    if (devicePixelRatio > 1 && !isMobile) {
+      // Adjust the zoom level of the webpage so high dpi displays don't have it slide off the screen
       document.body.style.zoom = 1.66 / devicePixelRatio;
     }
 

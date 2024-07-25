@@ -1,7 +1,7 @@
 <template>
     <div class="center-with-flex">
         <p class="title-caption-color">
-            Background photo by Conrad Lundberg © 2023<br>
+            Background photo by Conrad Lundberg © 2022<br>
             Plants at <a class="text-links white-text"
                 href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
                 botanical garden</a><br>
