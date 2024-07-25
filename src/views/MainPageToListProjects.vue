@@ -57,14 +57,10 @@ export default {
 
     };
   },
-
   methods: {
-
-
   },
 };
 </script>
-
 
 <style scoped>
 .custom-background-home-page {
@@ -141,7 +137,6 @@ export default {
   padding-top: 2.5rem;
 }
 
-
 .looped-project-section {
   z-index: 4;
   max-width: 71rem;
@@ -165,7 +160,6 @@ export default {
 }
 
 @media only screen and (max-width: 50rem) {
-
 
   .looped-project-section {
     z-index: 4;

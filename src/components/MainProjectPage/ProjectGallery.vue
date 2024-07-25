@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-padding">
+  <div class="outer-padding" :style="{ fontSize: baseFontSize }">
     <!--<div style='text-align: left;'>
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
@@ -54,12 +54,15 @@
             <div id="cloudOne" style="z-index: 1; margin-left: 2.3em; margin-top: 3em;">
               <div style="color: rgb(243, 250, 255); margin-left: 3em; position: absolute;" class="cloud"></div>
               <div style="float: right; margin-right: 2em; position: absolute; opacity: 0.7;" class="cloud"></div>
-              <div style="color: rgb(248, 249, 223); float: right; margin-left: 1em; margin-top: 1em; position: absolute; opacity: 0.5;" class="cloud"></div>
+              <div
+                style="color: rgb(248, 249, 223); float: right; margin-left: 1em; margin-top: 1em; position: absolute; opacity: 0.5;"
+                class="cloud"></div>
             </div>
-            <div id="cloudOne"
-              style="z-index: 1; margin-left: 0.2em; padding-bottom: 2.5rem; margin-top: 11em;">
-              <div style="color: rgb(248, 249, 223); margin-left: 3em; position: absolute; opacity: 0.5;" class="cloud"></div>
-              <div style="color: rgb(243, 250, 255); float: right; margin-right: 2em; position: absolute; opacity: 0.8;" class="cloud"></div>
+            <div id="cloudOne" style="z-index: 1; margin-left: 0.2em; padding-bottom: 2.5rem; margin-top: 11em;">
+              <div style="color: rgb(248, 249, 223); margin-left: 3em; position: absolute; opacity: 0.5;" class="cloud">
+              </div>
+              <div style="color: rgb(243, 250, 255); float: right; margin-right: 2em; position: absolute; opacity: 0.8;"
+                class="cloud"></div>
               <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
             </div>
           </div>
@@ -71,10 +74,10 @@
           <main class="image-gallery-grid-container">
             <div v-for="(item, index) in imageArrayChoice" :key="item.id" :title="item.text" class="grid-item hidden"
               :ref="`item-${index}`" :class="{
-        'show': isContentVisible[index],
-        'hovered': hoveredIndex === index,
-        'odd': gridColorAlternation(index)
-      }" @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
+                'show': isContentVisible[index],
+                'hovered': hoveredIndex === index,
+                'odd': gridColorAlternation(index)
+              }" @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
               <!-- This first checks IF links are https -->
               <a v-if="isExternalHTTPSLink(item.to)" class="no-router-link-decorations h2-color" :href="item.to"
                 target="_blank" rel="noopener noreferrer">
@@ -128,9 +131,25 @@ export default {
       isSecondGridActive: false,
       currentMenuState: 0,
       hoveredIndex: null,
+      baseFontSize: '16px',
+      addNegativeMarginToTopProjectsToCompensateForLeftMenu: 'margin-top: 0rem;',
     };
   },
+  beforeUnmount() {
+    // Reset the zoom level for high DPI displays when leaving this page
+    document.body.style.zoom = '';
+  },
+
   mounted() {
+
+    var devicePixelRatio = window.devicePixelRatio;
+    console.log('test', devicePixelRatio);
+    // Check if the device has a high DPI display
+    if (devicePixelRatio > 1) {
+      // Adjust the zoom level of the webpage so high dpi displays dont have it slide off the screen
+      document.body.style.zoom = 1.66 / devicePixelRatio;
+    }
+
     const options = {
       root: null,
       rootMargin: '0px',
@@ -147,6 +166,7 @@ export default {
       });
     });
   },
+
   computed: {
     hoverClassStates() {
       return this.imageArrayChoice.map((_, index) => {
@@ -154,6 +174,7 @@ export default {
         return { 'next-hovered': this.hoveredIndex !== null && this.hoveredIndex + 1 === index };
       });
     },
+
     menuClassState() {
       switch (this.currentMenuState) {
         case 0: return '';
@@ -163,7 +184,9 @@ export default {
       }
     },
   },
+
   methods: {
+
     isExternalHTTPSLink(path) {
       return /^(https?:|mailto:|tel:)/.test(path);
     },
@@ -184,7 +207,6 @@ export default {
     toggleMenu() {
       //this.isMenuOpen = !this.isMenuOpen;
       this.currentMenuState = (this.currentMenuState + 1) % 3;
-
     },
     handleIntersection(entries) {
       entries.forEach(entry => {
@@ -211,7 +233,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .outer-padding {
@@ -273,9 +294,7 @@ export default {
 .h2-color:hover h2 {
   color: #fff;
 }
-
 */
-
 .toggle-button {
   margin: 0.5rem;
   margin-left: 0rem;
@@ -344,7 +363,7 @@ h3 {
 }
 
 .projects-side-menu-items {
-  color: rgb(245, 245, 245);  
+  color: rgb(245, 245, 245);
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2rem;

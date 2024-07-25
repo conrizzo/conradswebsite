@@ -1,5 +1,6 @@
 :root {
-  font-size: 1em; /* 16px is the default CSS does, all the em, rem are based off this */
+  font-size: 1em;
+  /* 16px is the default CSS does, all the em, rem are based off this */
   --fs-300: 0.9rem;
   --fs-400: 1rem;
   --fs-500: 1.1rem;
@@ -46,12 +47,14 @@ a,
 /* Set the width of the scrollbar */
 
 ::-webkit-scrollbar {
-  width: 1rem; /* Adjust the width of the scrollbar */
+  width: 1rem;
+  /* Adjust the width of the scrollbar */
 }
 
 /* Set the color of the scrollbar track */
 ::-webkit-scrollbar-track {
-  margin-top: 1px; margin-bottom: 1px;
+  margin-top: 1px;
+  margin-bottom: 1px;
   background-color: #ffffff;
   width: 0.5em;
   margin-right: 5px;
@@ -60,7 +63,7 @@ a,
 ::-webkit-scrollbar-thumb {
   background: rgb(96, 96, 96);
   border-right: 2px white solid;
- 
+
   background-clip: padding-box;
   /* border-radius: 0.5em; */
 }
@@ -167,6 +170,7 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
 .align-justify-center-flex {
   display: flex;
   justify-content: center;
@@ -200,17 +204,19 @@ h1 {
   margin: 0 auto;
   padding: 0 1em;
 }
+
 .container-75-em {
   max-width: 50em;
   margin: 0 auto;
   padding: 0 1em;
 }
 
-.white{
+.white {
   color: #ffffff;
 }
+
 .almost-black {
-  color: rgb(18,18,18);
+  color: rgb(18, 18, 18);
 }
 
 /* CSS */
@@ -241,6 +247,7 @@ h1 {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 /*
 .button-35:hover {
   box-shadow: rgb(0, 227, 227) 0 0 0 2px, transparent 0 0 0 0;

@@ -101,7 +101,8 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
     position: relative;
     display: inline-block;
     z-index: 5;
-    height: 2rem; /* fix the jumping issue that is minor only when zooming in our out 75% 125% etc. */
+    height: 2rem;
+    /* fix the jumping issue that is minor only when zooming in our out 75% 125% etc. */
 }
 
 .dropdown-content {
@@ -167,12 +168,12 @@ nav a.router-link-exact-active {
     background-color: none;
     cursor: pointer;
     border-bottom: 2px solid #fff;
-    margin-bottom: -2px;    
+    margin-bottom: -2px;
 }
 
 .horizontal-align-elements {
     display: flex;
-    align-items: center;
+    align-items: center; 
 }
 
 .rotate {
