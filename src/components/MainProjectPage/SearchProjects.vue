@@ -152,11 +152,11 @@ const filteredItems = computed(() => {
     width: 100%;
     padding-left: 10px;
     z-index: 10;
+    padding-top: -1rem;
     /* put search results in front of all other content on the screen */
 }
 
-.format-search-links:first-of-type {
-    margin-top: 2px;
+.format-search-links:first-of-type {   
     border-top-right-radius: 0rem;
     border-top-left-radius: 0rem;
 }
@@ -191,7 +191,7 @@ const filteredItems = computed(() => {
     */
 
 .widen-container {
-    width: calc(100% - 38rem);
+    
 }
 
 .format-search-links:visited {
@@ -215,8 +215,8 @@ input {
 
 .remove-bottom-border-radius {
     border-bottom: none;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
 }
 
 
@@ -284,9 +284,9 @@ Uses new in 2023 Anchor CSS feature
     }
 
     .format-search-links:first-of-type {
-        margin-top: 2px;
-        border-top-right-radius: 0rem;
-        border-top-left-radius: 0rem;
+        margin-top: 4px;
+        border-top-right-radius: .5rem;
+        border-top-left-radius: .5rem;
     }
 
     .format-search-links:last-child {

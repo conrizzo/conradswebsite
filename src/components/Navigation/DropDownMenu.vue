@@ -118,6 +118,7 @@ This makes sense I guess, whatever value is set in the child css the parent tag 
     transition: all 0.35s ease-in-out;
     border-radius: .33rem;
     border: 1px solid rgb(70, 70, 70);
+
 }
 
 .fade-leave-to {
@@ -173,7 +174,7 @@ nav a.router-link-exact-active {
 
 .horizontal-align-elements {
     display: flex;
-    align-items: center; 
+    align-items: center;
 }
 
 .rotate {

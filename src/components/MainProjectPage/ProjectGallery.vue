@@ -319,7 +319,7 @@ export default {
   position: sticky;
   top: 4.5rem;
   padding-bottom: 2rem;
-  background: linear-gradient(rgb(53, 164, 238), rgb(23, 196, 216));
+  background: linear-gradient(rgb(53, 164, 238), rgb(23, 196, 216),rgb(53, 164, 238));
 }
 
 /* this adjusts the transition time of hovering over each project grid-item  */
@@ -646,10 +646,12 @@ figcaption {
 @media screen and (max-width: 50rem) {
   .image-gallery {
     padding: 1rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
   }
 }
 
-@media screen and (max-width: 35rem) {
+@media screen and (max-width: 30rem) {
   .image-gallery-grid-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
