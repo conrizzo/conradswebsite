@@ -24,8 +24,8 @@ The combination of these 2 makes the search icon pop up and widens the container
 
                     <input :class="{
                         'remove-bottom-border-radius': searchTerm.length > 0 && filteredItems.length > 0 && dropdownOpen
-                    }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus" @blur="handleSearchBlur"
-                        placeholder="Search projects...">
+                    }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus"
+                        @blur="handleSearchBlur" placeholder="Search projects...">
                 </div>
                 <!-- This template creates the dropdown menu -->
                 <!-- This first checks IF links are https -->
@@ -130,7 +130,6 @@ const filteredItems = computed(() => {
 </script>
 
 <style scoped>
-
 /* Use this to align the SVG icon with the input text */
 .inline-svg-right-padding {
     display: inline-block;
@@ -156,7 +155,7 @@ const filteredItems = computed(() => {
     /* put search results in front of all other content on the screen */
 }
 
-.format-search-links:first-of-type {   
+.format-search-links:first-of-type {
     border-top-right-radius: 0rem;
     border-top-left-radius: 0rem;
 }
@@ -190,9 +189,7 @@ const filteredItems = computed(() => {
 }
     */
 
-.widen-container {
-    
-}
+.widen-container {}
 
 .format-search-links:visited {
     color: rgb(18, 18, 18);
@@ -215,8 +212,8 @@ input {
 
 .remove-bottom-border-radius {
     border-bottom: none;
-    border-bottom-left-radius: .5rem;
-    border-bottom-right-radius: .5rem;
+    border-bottom-right-radius: 0rem;
+    border-bottom-left-radius: 0rem;
 }
 
 
@@ -266,9 +263,16 @@ Uses new in 2023 Anchor CSS feature
 .input-container input:focus {
     padding-left: 2.5rem;
     box-shadow: none;
+
 }
 
 @media (max-width: 70rem) {
+
+    .remove-bottom-border-radius {
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: .5rem;
+    }
+
     .search-container {
         width: 100%;
         margin-left: .5rem;

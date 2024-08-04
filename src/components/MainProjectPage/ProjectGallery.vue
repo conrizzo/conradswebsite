@@ -3,12 +3,7 @@
     <!--<div style='text-align: left;'>
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
-    <div class="gallery-header">
-      <h1 class="gallery-styling-h1-span">
-        <span> Fun Projects
-          <span class="title-arrow-symbol">↷</span></span>
-      </h1>
-    </div>
+    
 
     <div class="centerAll">
       <div class="second-grid" :class="{ 'active-grid-style': isSecondGridActive }">
@@ -609,6 +604,11 @@ figcaption {
   */
   .image-gallery {
     margin-top: 0rem !important;
+    
+    
+    padding-left: .5rem;
+    padding-right: .5rem;
+  
   }
 
   .second-grid {
