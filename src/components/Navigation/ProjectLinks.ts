@@ -23,7 +23,8 @@ export default [
   { id: 11, text: 'Country Music Search Generator', to: '/projects/country-music-generator', caption: "Classic Country music and natural language processing (under construction)", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/b2_country.jpg" },
   { id: 12, text: 'Drag and Drop Objects', to: '/projects/drag-and-drop-stuff', caption: "Small experiment to generate + drag and drop stuff", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/b3_drag_stuff.jpg" },
   { id: 13, text: 'Are you sure you are sure you agree?', to: 'https://next.conradswebsite.com/agree-to-terms', caption: "Made in React.js and Next.js to make a funny authorization page one sees all too often on the internet", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/b4_auth.jpg" },
-  { id: 14, text: 'SQLite React / Next.js Test', to: 'https://next.conradswebsite.com/sql', caption: "Project to test some backend services in React / Next.js", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/SQLite.jpg" }
+  { id: 14, text: 'SQLite React / Next.js Test', to: 'https://next.conradswebsite.com/sql', caption: "Project to test some backend services in React / Next.js", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/SQLite.jpg" },
+  { id: 15, text: '2024 Election States', to: '/projects/Election/election-battleground-states', caption: "Personal Tool To have quick access to election related links", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/SQLite.jpg" }
   //{ id: 11, text: '404 Page', to: '/12315fge45',caption:"Go to the 404 page for fun!", imageSrc: "" },
 
 

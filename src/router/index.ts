@@ -39,6 +39,7 @@ const WordHelperView = () => import('../views/projects/WordHelper/WordHelperView
 const CountryMusicExperimentView = () => import('../views/projects/CountryMusicExperiment/CountryMusicExperimentView.vue');
 const GridDragView = () => import('../views/projects/GridDragView/GridView.vue');
 const NLPView = () => import('../views/projects/NLPView.vue');
+const ElectionView = () => import('../views/projects/Election/ElectionView.vue');
 //const JungleView = () => import('../views/projects/JungleView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');
@@ -230,7 +231,16 @@ const routes = [
         path: 'drag-and-drop-stuff',
         name: 'gridDragExperiment',
         component: GridDragView,
-      }
+      },
+      {
+        path: 'Election/election-battleground-states',
+        name: 'ElectionView',
+        component: ElectionView,
+        meta: {
+          title: 'List of poll aggregates for U.S.A 2024 election',
+          description: '',
+        },
+      },
       /*
       {
           path: 'jungle-page',
