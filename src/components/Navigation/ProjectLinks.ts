@@ -9,6 +9,8 @@
 //const requireContext = require.context('@/images/projects', false, /\.jpg$/);
 //const images = requireContext.keys().map(requireContext);
 
+import svgUsMap from "@/views/projects/Election/us.svg";
+
 export default [
   { id: 1, text: 'Store Prototype', to: '/projects/store/store-prototype-made-in-vuejs-and-typescript', caption: "A store prototype made with Vue.js and Typescript", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/1store.jpg" },
   { id: 2, text: 'Cowculator', to: '/projects/cowculator', caption: "A real calculator that does parsing to solve calculations and shows the binary tree of the calculations. Moo × Moo = Moooo", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/2cowculator.jpg" },
@@ -24,7 +26,7 @@ export default [
   { id: 12, text: 'Drag and Drop Objects', to: '/projects/drag-and-drop-stuff', caption: "Small experiment to generate + drag and drop stuff", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/b3_drag_stuff.jpg" },
   { id: 13, text: 'Are you sure you are sure you agree?', to: 'https://next.conradswebsite.com/agree-to-terms', caption: "Made in React.js and Next.js to make a funny authorization page one sees all too often on the internet", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/b4_auth.jpg" },
   { id: 14, text: 'SQLite React / Next.js Test', to: 'https://next.conradswebsite.com/sql', caption: "Project to test some backend services in React / Next.js", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/SQLite.jpg" },
-  { id: 15, text: '2024 Election States', to: '/projects/Election/election-battleground-states', caption: "Personal Tool To have quick access to election related links", imageSrc: "https://next.conradswebsite.com/images/conradswebsite_images/SQLite.jpg" }
+  { id: 15, text: '2024 U.S Election Links', to: '/projects/election-battleground-states', caption: "Personal tool to have quick access to election related links - made in like 15 minutes", imageSrc: svgUsMap }
   //{ id: 11, text: '404 Page', to: '/12315fge45',caption:"Go to the 404 page for fun!", imageSrc: "" },
 
 

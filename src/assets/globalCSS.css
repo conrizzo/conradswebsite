@@ -161,6 +161,12 @@ a:active {
   user-select: none;
 }
 
+/* stop long url from going outside of page width */
+a{
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 /* buttons and stuff */
 h1 {
   line-height: 1.5;

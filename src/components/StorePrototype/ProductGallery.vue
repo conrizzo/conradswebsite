@@ -150,6 +150,7 @@ h1 {
   position: relative;
   background: rgba(255, 255, 255, 0);
   padding: 0em;
+  padding-bottom: 1rem;
 }
 
 /* IMPORTANT FIX THIS */
@@ -211,11 +212,11 @@ h1 {
 
 @media (max-width: 94.5rem) {
   .image-gallery {
-    max-height: 27rem;
+    max-height: 27.5rem;
     /* Adjust the maximum height as needed */
     overflow-x: auto;
     overflow-y: none;
-    padding-left: 1em;
+    padding-left: .5rem;
   }
 
   .image-gallery-grid-container {

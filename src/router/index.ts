@@ -233,11 +233,11 @@ const routes = [
         component: GridDragView,
       },
       {
-        path: 'Election/election-battleground-states',
+        path: 'election-battleground-states',
         name: 'ElectionView',
         component: ElectionView,
         meta: {
-          title: 'List of poll aggregates for U.S.A 2024 election',
+          title: 'Useful 2024 Election Links (polling etc.)',
           description: '',
         },
       },

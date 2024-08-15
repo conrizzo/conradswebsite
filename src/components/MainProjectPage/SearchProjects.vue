@@ -24,7 +24,7 @@ The combination of these 2 makes the search icon pop up and widens the container
 
                     <input :class="{
                         'remove-bottom-border-radius': searchTerm.length > 0 && filteredItems.length > 0 && dropdownOpen
-                    }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus"
+                    }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus" 
                         @blur="handleSearchBlur" placeholder="Search projects...">
                 </div>
                 <!-- This template creates the dropdown menu -->
@@ -67,7 +67,7 @@ The combination of these 2 makes the search icon pop up and widens the container
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onBeforeUnmount } from 'vue';
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import ProductInventory from '../Navigation/ProjectLinks';
 
 const searchTerm = ref('');
@@ -90,6 +90,13 @@ watch(dropdownOpen, (newValue) => {
         document.addEventListener('click', closeDropdown);
     } else {
         document.removeEventListener('click', closeDropdown);
+    }
+});
+
+onMounted(() => {
+    // verify not null value
+    if (inputField.value) {
+        inputField.value.focus();
     }
 });
 
