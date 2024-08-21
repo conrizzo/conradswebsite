@@ -11,7 +11,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 //import axiosInstance from '@/axios';
 
 const HomeView = () => import('../views/HomeView.vue');
-const MainPageToListProjects = () => import('../views/MainPageToListProjects.vue');
+const MainProjectPageView = () => import('../views/MainProjectPageView.vue');
 
 const AboutView = () => import('../views/AboutView.vue');
 const PrivacyView = () => import('../views/PrivacyView.vue');
@@ -61,10 +61,10 @@ const routes = [
 
   {
     path: '/my-projects',
-    name: 'MainPageToListProjects',
-    component: MainPageToListProjects,
+    name: 'project-page',
+    component: MainProjectPageView,
     meta: {
-      title: 'ConradsWebsite.com',
+      title: 'Projects at ConradsWebsite.com',
       description: 'Main page of ConradsWebsite.com for Projects'
     },
   },

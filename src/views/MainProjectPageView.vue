@@ -1,24 +1,26 @@
 <template>
+
+
   <div class="search-projects-container">
     <div style="width: 71rem; padding-top: 1rem;">
       <SearchProjects />
     </div>
   </div>
-  <div class="custom-background-home-page center-with-flex">
 
-    <section class="looped-project-section">
+  <div id="zoom-adjustment-div" v-bind:class="{ 'zoomed-content': isZoomed }">
+    <div class="custom-background-home-page center-with-flex">
+      <section class="looped-project-section">
+        <div class='under-title-caption'>
+        </div>
+        <ProjectGallery />
+      </section>
+    </div>
 
+    <!-- :backgroundImageUrl=""   fix this - add in the image with prop -->
+    <TopArea />
 
-
-      <div class='under-title-caption'>
-      </div>
-      <ProjectGallery />
-    </section>
+    <ImagesOneRow :theBackground="'#000'" />
   </div>
-  <!-- :backgroundImageUrl=""   fix this - add in the image with prop -->
-  <TopArea />
-  <ImagesOneRow :theBackground="'#000'" />
-
 </template>
 
 <script>
@@ -57,12 +59,31 @@ export default {
 
     };
   },
+
+  beforeUnmount() {
+    // Reset the zoom level for high DPI displays when leaving this page
+    document.body.style.zoom = '';
+  },
+
+  computed: {
+    isZoomed() {
+      const devicePixelRatio = window.devicePixelRatio;
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+      return devicePixelRatio > 1 && !isMobile;
+    }
+  },
+
   methods: {
   },
 };
 </script>
 
 <style scoped>
+/* custom zoom for high resolution screen */
+.zoomed-content {
+  zoom: .8;
+}
+
 .custom-background-home-page {
   /* background: linear-gradient(to bottom right, rgb(0, 145, 207), rgb(118, 111, 209) 60%); */
   background-image: url('../images/blue_sky2.jpg');

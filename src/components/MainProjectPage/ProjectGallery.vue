@@ -130,23 +130,19 @@ export default {
       addNegativeMarginToTopProjectsToCompensateForLeftMenu: 'margin-top: 0rem;',
     };
   },
-  beforeUnmount() {
-    // Reset the zoom level for high DPI displays when leaving this page
-    document.body.style.zoom = '';
-  },
-
+  
   mounted() {
-
+ /*
     var devicePixelRatio = window.devicePixelRatio;
     var isMobile = /Mobi|Android/i.test(navigator.userAgent);
     console.log('test', devicePixelRatio, isMobile);
-    
+     
     // Check if the device has a high DPI display and is not a mobile device
     if (devicePixelRatio > 1 && !isMobile) {
       // Adjust the zoom level of the webpage so high dpi displays don't have it slide off the screen
       document.body.style.zoom = 1.66 / devicePixelRatio;
     }
-
+*/
     const options = {
       root: null,
       rootMargin: '0px',
@@ -165,6 +161,7 @@ export default {
   },
 
   computed: {
+
     hoverClassStates() {
       return this.imageArrayChoice.map((_, index) => {
         // Example logic: highlight the next item in the list
@@ -232,6 +229,10 @@ export default {
 </script>
 
 <style scoped>
+/* custom zoom for high resolution screen */
+
+
+
 .outer-padding {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;

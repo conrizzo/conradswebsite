@@ -69,11 +69,8 @@
 
       <section>
         <h2>270towin</h2>
-        <div class="align-text-left">
-          <p>
-            Convenient click and change map to analyze the U.S election electoral college points
-          </p>
-          <a class="text-links" target="_blank" href="https://www.270towin.com/">https://270towin.com</a>
+        <div class="align-text-left">          
+          <a class="text-links" target="_blank" href="https://www.270towin.com/">https://270towin.com</a> - convenient click and change map to analyze the U.S election electoral college point math
         </div>
       </section>
 
@@ -158,7 +155,7 @@ h2 {
   line-height: 1.25;
   border-bottom: 1px solid gainsboro;
   width: fit-content;
-  margin-bottom: .1rem;
+  margin-bottom: .2rem;
 }
 
 .after-h2-caption {

@@ -356,7 +356,7 @@ p {
 
 .authorized-form {
   margin-top: 1em;
-  max-width: 40rem;
+  
   resize: none;
   padding: 1rem;
 
