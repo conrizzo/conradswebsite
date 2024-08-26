@@ -357,7 +357,7 @@ h2 {
 
 h3 {
   font-size: 1.1rem;
-  color: rgb(255, 255, 255);
+  color: rgb(225, 225, 225);
   text-align: left;
   padding-left: .7em;
 }
@@ -366,27 +366,15 @@ h3 {
   color: rgb(245, 245, 245);
   padding-left: 1em;
   padding-right: 1em;
-  padding-bottom: 0.2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   line-height: 1.5;
-  margin-bottom: .25rem;
-  text-indent: -.75rem; 
-  padding-left: -.75rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 
-.projects-side-menu-items::before {
-  content: "\2022"; /* Unicode for a bullet */
-  margin-right: .3rem; 
-  color: #ffffff;
-}
-
-
-
-.projects-side-menu-items:hover::before {
-  content: "\2022"; /* Unicode for a bullet */
-  margin-right: .3rem; 
-  color: rgb(140, 140, 140);
-  text-decoration: none;
+.projects-side-menu-items:hover {
+  text-decoration: underline;
 }
 
 
@@ -395,7 +383,7 @@ h3 {
   background: rgba(255, 255, 255, .3);
   border-radius: 0.5rem;
   transition-delay: .5s ease;
-  
+
 }
 
 
@@ -437,9 +425,7 @@ h3 {
 }
 
 .grid-item.odd:hover {
-
   background: rgba(73, 67, 52, 0.75);
-
 }
 
 .grid-item:hover {
