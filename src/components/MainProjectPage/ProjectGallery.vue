@@ -3,7 +3,7 @@
     <!--<div style='text-align: left;'>
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
-    
+
 
     <div class="centerAll">
       <div class="second-grid" :class="{ 'active-grid-style': isSecondGridActive }">
@@ -14,7 +14,7 @@
           <div class="left-column-content">
 
             <div style="display: flex; justify-content: space-between;">
-              <h3>Fun Projects</h3>
+              <h3>Projects</h3>
 
               <svg @click="toggleMenu(), toggleGridStyle()" class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg"
                 width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -46,6 +46,7 @@
               </router-link>
 
             </div>
+            <!--
             <div id="cloudOne" style="z-index: 1; margin-left: 2.3em; margin-top: 3em;">
               <div style="color: rgb(243, 250, 255); margin-left: 3em; position: absolute;" class="cloud"></div>
               <div style="float: right; margin-right: 2em; position: absolute; opacity: 0.7;" class="cloud"></div>
@@ -60,6 +61,7 @@
                 class="cloud"></div>
               <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
             </div>
+            -->
           </div>
 
 
@@ -130,19 +132,19 @@ export default {
       addNegativeMarginToTopProjectsToCompensateForLeftMenu: 'margin-top: 0rem;',
     };
   },
-  
+
   mounted() {
- /*
-    var devicePixelRatio = window.devicePixelRatio;
-    var isMobile = /Mobi|Android/i.test(navigator.userAgent);
-    console.log('test', devicePixelRatio, isMobile);
-     
-    // Check if the device has a high DPI display and is not a mobile device
-    if (devicePixelRatio > 1 && !isMobile) {
-      // Adjust the zoom level of the webpage so high dpi displays don't have it slide off the screen
-      document.body.style.zoom = 1.66 / devicePixelRatio;
-    }
-*/
+    /*
+        var devicePixelRatio = window.devicePixelRatio;
+        var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+        console.log('test', devicePixelRatio, isMobile);
+        
+        // Check if the device has a high DPI display and is not a mobile device
+        if (devicePixelRatio > 1 && !isMobile) {
+          // Adjust the zoom level of the webpage so high dpi displays don't have it slide off the screen
+          document.body.style.zoom = 1.66 / devicePixelRatio;
+        }
+    */
     const options = {
       root: null,
       rootMargin: '0px',
@@ -313,9 +315,9 @@ export default {
 
 .left-column-content {
   position: sticky;
-  top: 4.5rem;
+  top: 5rem;
   padding-bottom: 2rem;
-  background: linear-gradient(rgb(53, 164, 238), rgb(23, 196, 216),rgb(53, 164, 238));
+  background: linear-gradient(rgb(53, 164, 238), rgb(23, 196, 216), rgb(53, 164, 238));
 }
 
 /* this adjusts the transition time of hovering over each project grid-item  */
@@ -362,24 +364,38 @@ h3 {
 
 .projects-side-menu-items {
   color: rgb(245, 245, 245);
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
   padding-bottom: 0.2rem;
-  font-size: 1rem;
-  padding-bottom: 0rem;
-  margin-bottom: .33rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: .25rem;
+  text-indent: -.75rem; 
+  padding-left: -.75rem;
 }
 
-.projects-side-menu-items:hover {
-  text-decoration: underline;
-  /*color: rgb(255, 255, 255);*/
+.projects-side-menu-items::before {
+  content: "\2022"; /* Unicode for a bullet */
+  margin-right: .3rem; 
+  color: #ffffff;
 }
+
+
+
+.projects-side-menu-items:hover::before {
+  content: "\2022"; /* Unicode for a bullet */
+  margin-right: .3rem; 
+  color: rgb(140, 140, 140);
+  text-decoration: none;
+}
+
+
 
 .hover-effect {
   background: rgba(255, 255, 255, .3);
   border-radius: 0.5rem;
   transition-delay: .5s ease;
-  text-decoration: none;
+  
 }
 
 
@@ -605,11 +621,11 @@ figcaption {
   */
   .image-gallery {
     margin-top: 0rem !important;
-    
-    
+
+
     padding-left: .5rem;
     padding-right: .5rem;
-  
+
   }
 
   .second-grid {

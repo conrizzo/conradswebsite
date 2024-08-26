@@ -24,7 +24,7 @@ The combination of these 2 makes the search icon pop up and widens the container
 
                     <input :class="{
                         'remove-bottom-border-radius': searchTerm.length > 0 && filteredItems.length > 0 && dropdownOpen
-                    }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus" 
+                    }" ref="inputField" type="text" v-model="searchTerm" @focus="handleSearchFocus"
                         @blur="handleSearchBlur" placeholder="Search projects...">
                 </div>
                 <!-- This template creates the dropdown menu -->
