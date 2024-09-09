@@ -201,6 +201,7 @@ export default {
 
       if (this.theResponse.message === "Insufficient chips") {
         this.currentMessage = "You are betting more chips than you have!";
+        this.getInitialGameStateOnFirstUserLoad();
         return
       }
 
