@@ -1,10 +1,9 @@
 # https://conradswebsite.com to see what this code does
 
 
-### This website was started from a blank slate in 2023.
-### This is a personal website project made from scratch by Conrad Lundberg. Largely written in Vue.js, but now other projects here also use React.js and multiple other frameworks/languages. The backend mainly uses the Flask framework and Python.
-### The point of this website was to practice some development and build some useful web applications and make a nice personal website - all at the same time. If an idea comes up I can add a project here, or test something.
-### Anyone is welcome to use code from this to learn or make their own project. This is encouraged! However, please don't copy any projects directly and declare them as your own idea or something like this.
+### This iteration of the website was started from a blank slate around March of 2023.
+### Mainly is a personal website project made by me, Conrad Lundberg. Largely written in Vue.js, TypeScript. Links to a few small projects in React.js/Next.js as well, as well as some other frameworks/languages. The backend at the moment uses the Flask framework and runs Python.
+### The point of this website has been to have a place to do creative website projects, practice some development, and possibly build some useful web applications. Should a project idea come up I can link it in to this website somewhere.
 
 ## Project setup
 ```

@@ -55,7 +55,7 @@ export class DeckOfCards {
     try {
 
       const response = await fetch('/backend/api/blackjack');
-      const data = await response.json();
+      //const data = await response.json();
 
     }
 

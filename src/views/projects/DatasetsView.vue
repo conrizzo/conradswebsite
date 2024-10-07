@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import FastQuickSort from "@/components/SortingAlgorithms/FastQuickSort.vue"
+// import FastQuickSort from "@/components/SortingAlgorithms/FastQuickSort.vue"
 
 
 

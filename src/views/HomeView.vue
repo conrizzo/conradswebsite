@@ -86,7 +86,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import references from "@/components/References/HomePageFooterReferencesView.vue";
-const data = ref(null);
+//const data = ref(null);
 
 //const jungleImage = ref(require('@/images/jungle/2880-1620.jpg'));
 const imageClass = ref('');

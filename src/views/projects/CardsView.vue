@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import { Player, DeckOfCards, CardDeck } from "@/components/CardGame/PlayerClass.ts";
+
 import "@/assets/globalCSS.css";
 import saloonImage from '@/components/CardGame/decoration_images/Saloon.jpg';
 
@@ -142,7 +142,7 @@ export default {
 
     this.getInitialGameStateOnFirstUserLoad(); // fetch the initial game state - e.g. player chips
   },
-  computed: {
+  computed: {   
 
     cardStyles() {
       // '_' as a placeholder to indicate never used
@@ -302,7 +302,7 @@ export default {
 
     async Reset() {
       try {
-        const response = await fetch('/backend/api/blackjack/reset', {
+        await fetch('/backend/api/blackjack/reset', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -310,7 +310,7 @@ export default {
           // body property removed
         });
 
-        const data = await response.json();
+        // const data = await response.json();
 
       } catch (error) {
         console.error(error);
@@ -347,14 +347,14 @@ export default {
 
     async Bet() {
       try {
-        const response = await fetch('/backend/api/blackjack', {
+        await fetch('/backend/api/blackjack', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ "action": "bet" })
         });
-        const data = await response.json();
+        //const data = await response.json();
 
       } catch (error) {
         console.error(error);
