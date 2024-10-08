@@ -25,13 +25,13 @@
               </div>
             </div>
           </div>
-         
+
           <button @click="language();" class="language-button" role="button">{{
-        languageButtonText
-      }}</button>        
-              <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
-                  
-       
+            languageButtonText
+          }}</button>
+          <!--Mit diesem Knopf wird die Haupttext Sprache auf Deutsch geändert-->
+
+
         </div>
 
       </two-columns-grid-content-template>
@@ -42,39 +42,38 @@
         <div class="center-content-within">
           <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section">
             <div class="flex-start">
-              <h2 class="section-title-fun">What Makes Development Fun?</h2>
+              <h2 class="section-title-fun">What Makes Developing Fun?</h2>
             </div>
             <p>
-              I've used the internet a lot in life, and to actually be able to build it feels rewarding. Building something with code as one learns more, and learns more of the tools, libraries, tricks, all
-              the creative possiblities also increase. One has to seek out new challenges.
-              On the side there is always something to work on or learn. Having the ability to continually improve
-              and
-              have this accessibility to make computers do stuff with the internet worldwide is fun. I've always
+              I never use the internet - says almost no one today. The creative aspect of building something
+              unique makes using code appealing. Developing is sort of like doing art, architecture, engineering all at
+              once.
+              As one gains the ability and confidence to build out a project one is 'mostly' limited by
+              creativity and the tools/languages one is familiar with along with the necessary technologies used and
+              time one has.
+              Large language models have helped to simplify lots of the annoying syntax when developing, and they are
+              really good at
+              building small components and algorithms that
+              can then be modified manually to fit the desired criteria. They still can't build a unique idea
+              that looks nice where everything is polished and aligns as intended, but where they often seem most useful
+              is just asking lots of specific questions
+              from slightly different approaches to understand something, or to find where some unusual error might be.
+            </p>
+            <p>
+              What makes the internet fun is the ability for anyone to just access something anywhere with just a
+              couple
+              clicks depending on the type of information or service desired.
+              Making computers do stuff with the internet makes modern society function. I've also always
               appreciated clean user friendly applications, whether it's Websites, Games, or any other software. The
               creative
-              and artistic aspect of designing something from scratch on the frontend is fun. I find backend web
+              and artistic aspect of designing something from scratch on the frontend is kind of like making ones own
+              art exhibit. I find backend web
               developement
               fascinating since it allows running any language one wants (Python, Rust, Java, etc) on a server to create
-              responses. After completing
-              multiple
-              university courses in Java, and a few more exclusively using Python, just having the ability to have a
-              website I made query a server of mine, and
-              actually run things in the languages I've written many assignments and exercises in makes programming
-              feel more interactive and useful. 
+              responses. Being able to leverage tools like PostgreSQL and databases to create user logins and access ones own database from the 
+              frontend also increases the ability to work with datasets and hold organized data conveniently which opens many possibilities.
             </p>
 
-            <h3>What is my approach to learning all this website stuff?</h3>
-            <p>I generally work on a few projects concurrently. Sometimes stopping one, or coming back to it after
-              I learn skills from another project. If there isn't an exact end goal of what I am trying to make I may
-              pause a project or find something interesting I want to learn how to implement, and if I find objectives
-              to projects, or feel as
-              though there is a lot to learn by working on them, I'll come back and complete them. Usually, it's a
-              combination of working on some projects, polishing
-              anything on my website, refactoring, polishing, and continually learning. One of my main goals is often
-              to make sure I understand why I am doing something, why it makes sense, how it works, and now instead of
-              just making stuff I think of how to make components that focus on specific tasks that are combined
-              together.
-            </p>
           </section>
           <!-- German Section -->
           <section v-if="languageButtonText === 'Language: English'" class="each-section">
@@ -91,7 +90,8 @@
 
             <ul class="about-me-list">
               <li>
-                This website is made by me (Conrad) completely from a blank slate, and is 100% self-made. It is a Single Page Application (SPA)
+                This website is made by me (Conrad) completely from a blank slate, and is 100% self-made. It is a Single
+                Page Application (SPA)
                 made in <a href="https://vuejs.org/" class="text-links" style="color: #42b883;">Vue 3 (Vue.js)</a>. It's
                 open-source and has been a continuous project to do web development and make projects.
               </li>
@@ -584,8 +584,8 @@ export default {
       languageButtonText: "Sprache: Deutsch",
       arrowText: "Deutsch",
 
-      titleText: "hello and welcome,",
-      contentText: "A personal fullstack website to test <br> Projects, Learn, and Experiment. Details are below!",
+      titleText: "Welcome,",
+      contentText: "A fullstack self-made website to test <br> projects, learn, do some experiments. More details below!",
 
       clickCount: 0,
       firstClick: null,

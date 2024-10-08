@@ -75,7 +75,7 @@
                 'hovered': hoveredIndex === index,
                 'odd': gridColorAlternation(index)
               }" @mouseover="hoveredIndex = index" @mouseleave="hoveredIndex = null">
-              <!-- This first checks IF links are https -->
+              <!-- This first checks IF links are https so the array of projects can differentiate between https and vue Router links -->
               <a v-if="isExternalHTTPSLink(item.to)" class="no-router-link-decorations h2-color" :href="item.to"
                 target="_blank" rel="noopener noreferrer">
                 <div class="img-wrapper">
@@ -163,7 +163,6 @@ export default {
   },
 
   computed: {
-
     hoverClassStates() {
       return this.imageArrayChoice.map((_, index) => {
         // Example logic: highlight the next item in the list
@@ -251,7 +250,8 @@ export default {
   transform: translateX(0);
   z-index: 1;
   background-size: cover;
-  background: rgb(53, 164, 238);
+  /*background: rgb(53, 164, 238);*/
+  background: rgb(38, 38, 38);
   border-top-right-radius: .5rem;
   /* 
   transform: translateX(-100%); if this element sidemenu is 
@@ -266,7 +266,8 @@ export default {
   padding-top: .9rem;
   height: 0rem;
   width: 18rem;
-  background: rgb(53, 164, 238);
+  /*background: rgb(53, 164, 238);*/
+  background: rgb(38, 38, 38);
   margin-bottom: 25rem;
   padding-bottom: .5rem;
   border-top-right-radius: 0rem;
@@ -283,7 +284,7 @@ export default {
 }
 
 .side-links-background:hover {
-  background: rgb(50, 50, 50);
+  background: rgba(60, 60, 60);
   border-radius: 0.25rem;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -299,7 +300,7 @@ export default {
   margin: 0.5rem;
   margin-left: 0rem;
   border-radius: 0;
-  background: rgb(51, 51, 51);
+  background: rgba(60, 60, 60);
   box-shadow: none;
   color: #fff;
 }
@@ -317,7 +318,8 @@ export default {
   position: sticky;
   top: 5rem;
   padding-bottom: 2rem;
-  background: linear-gradient(rgb(53, 164, 238), rgb(23, 196, 216), rgb(53, 164, 238));
+  /*background: linear-gradient(rgb(53, 164, 238), rgb(23, 196, 216), rgb(53, 164, 238)); */
+  background: rgb(38, 38, 38);
 }
 
 /* this adjusts the transition time of hovering over each project grid-item  */
@@ -375,17 +377,14 @@ h3 {
 
 .projects-side-menu-items:hover {
   text-decoration: underline;
+  background: rgba(60, 60, 60);
 }
-
-
 
 .hover-effect {
-  background: rgba(255, 255, 255, .3);
+  background: rgba(60, 60, 60);
   border-radius: 0.5rem;
   transition-delay: .5s ease;
-
 }
-
 
 .gallery-header {
   text-align: left;
@@ -434,7 +433,6 @@ h3 {
 
 .grid-item:hover h2 {
   color: rgb(255, 255, 255);
-
 }
 
 /*
@@ -474,21 +472,16 @@ figcaption {
 }
 
 .grid-title {
-
   width: fit-content;
   /* border: 2px solid rgb(200, 200, 200); */
   color: rgb(225, 225, 225);
   border-left: 2px solid rgb(175, 224, 255);
   /* background: rgb(46, 50, 55); */
-
 }
-
 
 .grid-title.odd {
   color: rgb(225, 225, 225);
-
   border-left: 2px solid rgb(255, 225, 156);
-
 }
 
 .gallery-component-image {
@@ -541,7 +534,7 @@ figcaption {
 }
 
 .svg-x-wrapper:hover .svg-x-hover-color-highlight {
-  stroke: #323232;
+  stroke: rgb(60, 60, 60);
   /* Your desired hover color */
 }
 
@@ -607,11 +600,8 @@ figcaption {
   */
   .image-gallery {
     margin-top: 0rem !important;
-
-
     padding-left: .5rem;
     padding-right: .5rem;
-
   }
 
   .second-grid {
@@ -651,13 +641,32 @@ figcaption {
     padding: 1rem;
     padding-left: .5rem;
     padding-right: .5rem;
+   
+  }
+
+  /* lower font sizes a bit */
+  .grid-title{
+    font-size: 1rem;
+  }
+  figcaption{
+    font-size: .8rem;
+  }
+
+}
+
+@media screen and (max-width: 35rem){
+  .grid-title{
+    font-size: .8rem;
   }
 }
 
-@media screen and (max-width: 30rem) {
+@media screen and (max-width: 16rem) {
+
+
+
   .image-gallery-grid-container {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);   
   }
 
   /* adjust this to set the image size at low resolutions */
@@ -672,6 +681,7 @@ figcaption {
     padding-bottom: 1.5rem;
     padding-top: 0rem;
   }
+
 
   .grid-item:nth-child(-n+4) {
     padding-top: 0rem;
