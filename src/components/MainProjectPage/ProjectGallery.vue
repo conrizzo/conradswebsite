@@ -3,8 +3,7 @@
     <!--<div style='text-align: left;'>
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
-
-
+   
     <div class="centerAll">
       <div class="second-grid" :class="{ 'active-grid-style': isSecondGridActive }">
 
@@ -14,7 +13,7 @@
           <div class="left-column-content">
 
             <div style="display: flex; justify-content: space-between;">
-              <h3>Projects</h3>
+              <h3>Random Projects</h3>
 
               <svg @click="toggleMenu(), toggleGridStyle()" class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg"
                 width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -44,24 +43,7 @@
                   <span>{{ item.text }}</span>
                 </div>
               </router-link>
-
             </div>
-            <!--
-            <div id="cloudOne" style="z-index: 1; margin-left: 2.3em; margin-top: 3em;">
-              <div style="color: rgb(243, 250, 255); margin-left: 3em; position: absolute;" class="cloud"></div>
-              <div style="float: right; margin-right: 2em; position: absolute; opacity: 0.7;" class="cloud"></div>
-              <div
-                style="color: rgb(248, 249, 223); float: right; margin-left: 1em; margin-top: 1em; position: absolute; opacity: 0.5;"
-                class="cloud"></div>
-            </div>
-            <div id="cloudOne" style="z-index: 1; margin-left: 0.2em; padding-bottom: 2.5rem; margin-top: 11em;">
-              <div style="color: rgb(248, 249, 223); margin-left: 3em; position: absolute; opacity: 0.5;" class="cloud">
-              </div>
-              <div style="color: rgb(243, 250, 255); float: right; margin-right: 2em; position: absolute; opacity: 0.8;"
-                class="cloud"></div>
-              <div style="float: right; margin-left: 1em; margin-top: 1em; position: absolute;" class="cloud"></div>
-            </div>
-            -->
           </div>
 
 
@@ -185,8 +167,8 @@ export default {
     isExternalHTTPSLink(path) {
       return /^(https?:|mailto:|tel:)/.test(path);
     },
-    toggleGridStyle() {
 
+    toggleGridStyle() {
       if (this.currentMenuState === 0 || this.currentMenuState === 2) {
         this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: 0rem;' // set back to 0 on close
         return;
@@ -194,15 +176,18 @@ export default {
       this.addNegativeMarginToTopProjectsToCompensateForLeftMenu = 'margin-top: -26.5rem;';
       this.isSecondGridActive = !this.isSecondGridActive;
     },
+
     gridColorAlternation(index) {
       const oddIndices = [0, 2];
       const modIndex = index % 2; // Repeat the pattern
       return oddIndices.includes(modIndex);
     },
+
     toggleMenu() {
       //this.isMenuOpen = !this.isMenuOpen;
       this.currentMenuState = (this.currentMenuState + 1) % 3;
     },
+
     handleIntersection(entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -215,6 +200,7 @@ export default {
         }
       });
     },
+
     changeWords() {
       this.displayArray = [];
       for (let i = 0; this.isContentVisible[i] !== false && i < this.isContentVisible.length; i++) {
@@ -277,17 +263,10 @@ export default {
   display: none;
 }
 
-
-.side-links-background {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
 .side-links-background:hover {
   background: rgba(60, 60, 60);
   border-radius: 0.25rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+
   transition-delay: 0s;
 }
 
@@ -641,32 +620,29 @@ figcaption {
     padding: 1rem;
     padding-left: .5rem;
     padding-right: .5rem;
-   
   }
 
   /* lower font sizes a bit */
-  .grid-title{
+  .grid-title {
     font-size: 1rem;
   }
-  figcaption{
+
+  figcaption {
     font-size: .8rem;
   }
-
 }
 
-@media screen and (max-width: 35rem){
-  .grid-title{
+@media screen and (max-width: 35rem) {
+  .grid-title {
     font-size: .8rem;
   }
 }
 
 @media screen and (max-width: 16rem) {
 
-
-
   .image-gallery-grid-container {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);   
+    grid-template-columns: repeat(1, 1fr);
   }
 
   /* adjust this to set the image size at low resolutions */

@@ -1,4 +1,3 @@
-
 <template>
   <div style="
       background: linear-gradient(
@@ -41,6 +40,13 @@
           </figcaption>
         </figure>
       </div>
+      <h3>Miscellaneous Cow Facts</h3>
+      <div class="main-cow-figure">
+        <li class="no-bullet" style="text-align: left; padding: 0 0.5rem 0 0.5rem;">
+          <ul>In 1865, the cow’s carefree existence in America was tragically disrupted by the Civil War.</ul>
+          <ul>The meaning of life? A cow knows. A cow simply exists, unburdened by existential dread.</ul>
+        </li>
+      </div>
 
       <div style="padding-bottom: 1em; margin-left: 0.2em; margin-right: 0.2em">
         <button class="button-35" style="margin-top: 0.25em" @click="toggleAboutCalc">
@@ -56,8 +62,8 @@
     </div>
   </div>
 </template>
-  
-  
+
+
 <script>
 import "@/assets/globalCSS.css";
 
@@ -101,7 +107,7 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
 .button-35:hover {
   box-shadow: rgb(0, 255, 119) 0 0 0 2px, transparent 0 0 0 0;
@@ -152,4 +158,3 @@ h2 {
   }
 }
 </style>
-  

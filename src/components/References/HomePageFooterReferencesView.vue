@@ -1,10 +1,8 @@
 <template>
     <div class="center-with-flex">
         <p class="title-caption-color">
-            Background photo by Conrad Lundberg © 2022<br>
-            Plants at <a class="text-links white-text"
-                href="https://uni-tuebingen.de/en/facilities/central-institutions/welcome-to-the-botanical-garden/the-botanical-garden/greenhouses/">Tübingen
-                botanical garden</a><br>
+            Background photo by Conrad Lundberg © 2024<br>
+            Forest in Uppsala, Sweden
             <!--
                 Exit sign is Post-1982 Japanese exit sign<br>
                 ("running man") designed by Yukio Ota in 1979.

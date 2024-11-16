@@ -3,15 +3,21 @@
         <div class="website-text-boxes">
             <h2 class="title">
                 <span class="top-string-slice-of-title">
-                    <span>Updates</span>
+                    <span></span>
                 </span>
             </h2>
             <div class="main-text-container">
                 <ul class="main-text-ul">
 
                     <li>
+                        Projects here are either to test things, or have fun
+                    </li>
+
+                    <li>
                         Updates empowered by coffee while birds fly around the windows all day
                     </li>
+
+                    
 
                 </ul>
                 <div class="center-image">

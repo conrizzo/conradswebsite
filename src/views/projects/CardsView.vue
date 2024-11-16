@@ -6,12 +6,10 @@
         <span class="title">(Shamokin, Pennsylvania Alpha Edition)</span>
       </div>
       <div style="background-color: rgba(0,0,0,0.5); padding: 0.5em; padding-top: 1.5em; max-width: auto;">
-        <h1 style="color: #fff;">This is now running a game in backend code.</h1>
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <p style="color: #fff; z-index: 10;">Press 'DEAL' to begin. Note: debugging this for final polishing so won't
-            fully work
-            for a bit. July 2024 -
-            This now is a fullstack game that uses a gamestate in a Redis database.
+        
+        <div style="display: flex; justify-content: center; align-items: center; text-align: left;">
+          <p style="color: #fff; z-index: 10;">Press 'DEAL' to begin.
+            This now is a fullstack blackjack game that uses a gamestate in a Redis database. This is 100% self made and all game logic runs in the backend.
             It initializes the class for the game action the frontend sends, and all the actual game logic runs in
             backend Python code,
             then returns the gamestate to the frontend. 100% of the game logic is run serverside in python.

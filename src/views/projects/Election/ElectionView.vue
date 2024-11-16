@@ -4,10 +4,10 @@
       <div class="center-with-flex" style="padding: 1rem; margin-top: 2rem;">
         <div>
 
-        <span>Started August 9, 2024</span>
-        <h1>2024 U.S Election Links</h1>
-        <p class="align-text-left">Small project started for convenience to have quick links<br>
-          to 2024 U.S.A election related items</p>
+          <span>Started August 9, 2024</span>
+          <h1>2024 U.S Election Links</h1>
+          <p class="align-text-left">Small project started for convenience to have quick links<br>
+            to 2024 U.S.A election related items</p>
         </div>
 
       </div>
@@ -17,22 +17,26 @@
         important issues
         like the supreme court repealing Roe v. Wade, and the fact the Republican candidate Donald Trump is
         a convicted felon and undermined
-        democracy in the 2020 election with Jan 6th and violence, and continues to undermine democracy by claiming it's rigged if he loses.
+        democracy in the 2020 election with Jan 6th and violence, and continues to undermine democracy by claiming it's
+        rigged if he loses.
       </p>
       <p class="align-text-left" style="padding: 1rem; ">
         Polling may miss actual voter turnout, especially when these big issues are in play. For example, if
         substantially
-        more women see abortion rights as an issue, and African Americans vote against the racism Trump has regularly pushed, then
+        more women see abortion rights as an issue, and African Americans vote against the racism Trump has regularly
+        pushed, then
         this election will likely not even be close and Kamala Harris may win in a landslide. However, this election
         could be quite close if
         voter turnout of
         groups Kamala Harris needs are lower. This means overall enthusiasm for voters to vote could be a greater
         predictor than
-        just random polling of who people say they will vote for in polls - especially with many polls so close in battleground states.
+        just random polling of who people say they will vote for in polls - especially with many polls so close in
+        battleground states.
         This <a class="text-links" target="_blank" href="https://www.cookpolitical.com/swingometer/2024">Demographic
           Swingometer</a> from the Cook Political
         report is useful to
-        highlight demographics of race and education. Trump does well with white non-college graduates. Uneducated white people make up the
+        highlight demographics of race and education. Trump does well with white non-college graduates. Uneducated white
+        people make up the
         bulk of his supporters.
       </p>
 
@@ -64,6 +68,33 @@
                 href="https://projects.fivethirtyeight.com/polls/president-general/2024/nevada/">Nevada</a></li>
           </div>
         </ul>
+      </section>
+
+
+
+
+      <section>
+        <h2>Target Smart Early Voting Data</h2>
+        <div class="align-text-left">
+
+          <a class="text-links" target="_blank"
+            href="https://targetearly.targetsmart.com/g2024">https://targetearly.targetsmart.com/g2024</a> - as of Oct
+          19th, 2024 just over 11 million people have officially voted.
+
+
+        </div>
+      </section>
+
+      <section>
+        <h2>NyTimes Election Polls</h2>
+        <div class="align-text-left">
+
+          <a class="text-links" target="_blank"
+            href="https://www.nytimes.com/interactive/2024/us/elections/polls-president.html">All polls</a>
+          <br>
+          <a class="text-links" target="_blank"
+            href="https://www.nytimes.com/interactive/2024/us/elections/polls-president-pennsylvania.html">Pennsylvania</a>
+        </div>
       </section>
 
       <section>
@@ -106,20 +137,36 @@
       </section>
 
       <section>
-        <h2>U.S Map of Battleground states</h2>
 
-        <li class="align-text-left" style="padding: 1rem;">
-          <ul><span
-              style="background-color:gainsboro; color: #fff; padding-left: 0.25rem; padding-right: 0.25rem;">Gray</span>
-            highlighted state means it is considered a toss up.</ul>
-          <ul><span
-              style="background-color:#FFCCCB; color: #fff; padding-left: 0.25rem; padding-right: 0.25rem;">Red</span>
-            means leans Republican</ul>
-          <ul><span
-              style="background-color:#ADD8E6; color: #fff; padding-left: 0.25rem; padding-right: 0.25rem;">Blue</span>
-            means leans
-            Democrat.</ul>
-        </li>
+        <h2>Election Updates / Info</h2>
+        <p class="align-text-left">As of Oct 26th, 2024 - The election is a statistical tie based on polling.
+          <br>
+          <b>Some points to keep in mind!</b>
+          <br>
+          According to <a class="text-links"
+            href="https://fivethirtyeight.com/features/2022-election-polling-accuracy/">Fivethirtyeight</a>:
+        </p>
+
+        <blockquote cite="https://fivethirtyeight.com/features/2022-election-polling-accuracy/" class="align-text-left">
+          <q>But candidates leading polls by less than 3 points have won just 55 percent of the time. In other words,
+            races within 3 points in the polls are little better than toss-ups — something we've been shouting from the
+            rooftops for years.</q>
+        </blockquote>
+        <p class="align-text-left">The <a class="text-links"
+            href="https://www.hindustantimes.com/world-news/interview-polling-cant-predict-results-keep-an-open-mind-top-us-pollster-101729927134117.html">Hindustan
+            Times</a> interviewed John Lapinski, a professor of political science.
+          Director of the Penn Program on Opinion Research and Election Studies at the University of Pennsylvania.
+          Lapinski also heads the decision desk that projects election winners for the NBC news network.</p>
+        <blockquote
+          cite="https://www.hindustantimes.com/world-news/interview-polling-cant-predict-results-keep-an-open-mind-top-us-pollster-101729927134117.html"
+          class="align-text-left">
+          <q>Polling is very difficult. Response rates are incredibly low. When you interview, you have got response
+            rates of usually under 1%. And that's crazy. That means that you are having to try to reach out to more than
+            a 100 people to get one person to take your poll. And the question is, is that one person representative?
+            When you start adding them up to the however many people are in your poll, can you make that
+            representative?</q>
+        </blockquote>
+
 
         <p class="align-text-left">As of September 9th, 2024 - one day before the Presidential debate.
           Polls are really too close to get any conclusions as to whether
@@ -147,6 +194,22 @@
             href="https://www.nytimes.com/2024/08/10/us/politics/harris-trump-battleground-polls.html">NyTimes / Siena
             college poll</a> has Kamala Harris +4 Pennsylvania, +4 Michigan, +4 Wisconsin.
         </p>
+      </section>
+        <section>
+        <h2>U.S Map of Battleground states</h2>
+
+        <li class="align-text-left" style="padding: 1rem;">
+          <ul><span
+              style="background-color:gainsboro; color: #fff; padding-left: 0.25rem; padding-right: 0.25rem;">Gray</span>
+            highlighted state means it is considered a toss up.</ul>
+          <ul><span
+              style="background-color:#FFCCCB; color: #fff; padding-left: 0.25rem; padding-right: 0.25rem;">Red</span>
+            means leans Republican</ul>
+          <ul><span
+              style="background-color:#ADD8E6; color: #fff; padding-left: 0.25rem; padding-right: 0.25rem;">Blue</span>
+            means leans
+            Democrat.</ul>
+        </li>
         <img :src="myLogoSrc">
         <div class="image-reference">
           Original svg U.S map template above made by <a class="text-links"
@@ -212,6 +275,12 @@ li {
 p {
   padding-left: 0rem !important;
   padding-top: 0.25rem !important;
+}
+
+blockquote {
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 section {

@@ -70,17 +70,53 @@
               art exhibit. I find backend web
               developement
               fascinating since it allows running any language one wants (Python, Rust, Java, etc) on a server to create
-              responses. Being able to leverage tools like PostgreSQL and databases to create user logins and access ones own database from the 
-              frontend also increases the ability to work with datasets and hold organized data conveniently which opens many possibilities.
+              responses. Being able to leverage tools like PostgreSQL and databases to create user logins and access
+              ones own database from the
+              frontend also increases the ability to work with datasets and hold organized data conveniently which opens
+              many possibilities.
             </p>
+
+
 
           </section>
           <!-- German Section -->
           <section v-if="languageButtonText === 'Language: English'" class="each-section">
             <div class="flex-start">
-              <h1 class='section-title'></h1>
+              <h2 class="section-title-fun">What Makes Developing Fun?</h2>
             </div>
+            <p>
+              I never use the internet - says almost no one today. The creative aspect of building something
+              unique makes using code appealing. Developing is sort of like doing art, architecture, engineering all at
+              once.
+              As one gains the ability and confidence to build out a project one is 'mostly' limited by
+              creativity and the tools/languages one is familiar with along with the necessary technologies used and
+              time one has.
+              Large language models have helped to simplify lots of the annoying syntax when developing, and they are
+              really good at
+              building small components and algorithms that
+              can then be modified manually to fit the desired criteria. They still can't build a unique idea
+              that looks nice where everything is polished and aligns as intended, but where they often seem most useful
+              is just asking lots of specific questions
+              from slightly different approaches to understand something, or to find where some unusual error might be.
+            </p>
+            <p>
+              What makes the internet fun is the ability for anyone to just access something anywhere with just a
+              couple
+              clicks depending on the type of information or service desired.
+              Making computers do stuff with the internet makes modern society function. I've also always
+              appreciated clean user friendly applications, whether it's Websites, Games, or any other software. The
+              creative
+              and artistic aspect of designing something from scratch on the frontend is kind of like making ones own
+              art exhibit. I find backend web
+              developement
+              fascinating since it allows running any language one wants (Python, Rust, Java, etc) on a server to create
+              responses. Being able to leverage tools like PostgreSQL and databases to create user logins and access
+              ones own database from the
+              frontend also increases the ability to work with datasets and hold organized data conveniently which opens
+              many possibilities.
+            </p>
           </section>
+
         </div>
         <div class="center-content-within">
           <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section">
@@ -160,7 +196,7 @@
             </ul>
           </section>
 
-          <!-- German Section -->
+
           <section v-if="languageButtonText === 'Language: English'" class="each-section">
 
             <div class="flex-start">
@@ -276,6 +312,56 @@
             <p>In addition to programming and making this website.
               I drink coffee and like spicy food (especially Mexican food). Sometimes play guitar, chess.
               Enjoy watching/listening to the birds.</p>
+          </section>
+
+
+
+          <section v-if="languageButtonText === 'Sprache: Deutsch'" class="each-section form-section">
+            <div class="flex-start">
+              <h2 class="section-title-two">Commonly asked questions:</h2>
+            </div>
+            <h3>What is Computational Linguistics?</h3>
+            <blockquote cite="https://en.wikipedia.org/wiki/Computational_linguistics">
+              Quoting the first paragraph on Wikipedia <a class="text-links"
+                href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a>
+              <p>
+                <i>"Computational linguistics is an interdisciplinary field concerned with the computational modelling
+                  of
+                  natural language,
+                  as well as the study of appropriate computational approaches to
+                  linguistic questions. In general, computational linguistics draws upon linguistics, computer science,
+                  artificial intelligence,
+                  mathematics, logic, philosophy, cognitive science, cognitive psychology, psycholinguistics,
+                  anthropology
+                  and neuroscience, among others."</i>
+              </p>
+
+            </blockquote>
+            <blockquote>
+              <p>
+                What makes it challenging is it draws heavily from computer science, data analysis, statistics, grammar
+                formalism, parsing,
+                NLP, machine learning, linguistics, philosophy - so one is
+                exposed to a bit of all of this and it can be quite challenging and requires motivation and interest in
+                puzzles/problem solving.
+              </p>
+            </blockquote>
+            <h3>Why study Biology, then study Computational Linguistics, then do Web Development?</h3>
+            <p>
+              What one studies doesn't have to follow a perfect heirarchal path. Biology is interesting because it helps
+              one understand
+              chemistry, nature, the human body, the food one eats. Plants, viruses, bacteria, genetics, understanding
+              healthcare and diseases better.
+              Computational Linguistics sort of focuses on finding patterns and problem solving with language - language
+              is how we all
+              communicate so its importance is self explantory.
+              Websites link us all together and can be <a href="http://" target="_blank"
+                rel="noopener noreferrer"></a>about
+              absolutely anything, and can be as simple or fancy as one wants. Language and websites connect us all with
+              information - hence they are interesting.
+            </p>
+
+
           </section>
 
           <section v-if="languageButtonText === 'Sprache: Deutsch'"
@@ -404,6 +490,42 @@
               Manchmal spiele ich Gitarre oder Schach. Ich genieße es, Vögeln zuzuschauen/-hören.
             </p>
           </section>
+
+          <section v-if="languageButtonText === 'Language: English'" class="each-section form-section">
+            <div class="flex-start">
+              <h2 class="section-title-two">Commonly asked questions:</h2>
+            </div>
+            <h3>What is Computational Linguistics?</h3>
+            <blockquote cite="https://en.wikipedia.org/wiki/Computational_linguistics">
+              Quoting the first paragraph on Wikipedia <a class="text-links"
+                href="https://en.wikipedia.org/wiki/Computational_linguistics">Computational Linguistics</a>
+              <p>
+                <i>"Computational linguistics is an interdisciplinary field concerned with the computational modelling
+                  of
+                  natural language,
+                  as well as the study of appropriate computational approaches to
+                  linguistic questions. In general, computational linguistics draws upon linguistics, computer science,
+                  artificial intelligence,
+                  mathematics, logic, philosophy, cognitive science, cognitive psychology, psycholinguistics,
+                  anthropology
+                  and neuroscience, among others."</i>
+              </p>
+
+            </blockquote>
+            <b>My answer:</b>
+            <blockquote>
+              <p>
+                What makes it challenging is it draws heavily from computer science, data analysis, statistics, grammar
+                formalism, parsing,
+                linguistics, NLP, machine learning - so one is
+                exposed to a bit of all of this and it can be quite challenging and requires motivation and interest in
+                puzzles/problem solving.
+              </p>
+            </blockquote>
+
+
+          </section>
+
           <section v-if="languageButtonText === 'Language: English'"
             class="each-section form-section last-section-bottom-padding">
             <div class="">
@@ -585,7 +707,7 @@ export default {
       arrowText: "Deutsch",
 
       titleText: "Welcome,",
-      contentText: "A fullstack self-made website to test <br> projects, learn, do some experiments. More details below!",
+      contentText: "Conrad's Website is a fullstack self-made website hosted on a barebones Linux VPS <br>  (Virtual Private Server) <br> Objective here is to test projects, learn, do some experiments. More details are below!",
 
       clickCount: 0,
       firstClick: null,
@@ -890,6 +1012,12 @@ export default {
 h2 {
   text-align: left;
   text-transform: capitalize;
+}
+
+blockquote {
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 p {
