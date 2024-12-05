@@ -265,7 +265,7 @@ export default {
 
 .side-links-background:hover {
   background: rgba(60, 60, 60);
-  border-radius: 0.25rem;
+  border-radius: 0rem;
 
   transition-delay: 0s;
 }
@@ -361,7 +361,7 @@ h3 {
 
 .hover-effect {
   background: rgba(60, 60, 60);
-  border-radius: 0.5rem;
+  border-radius: 0rem;
   transition-delay: .5s ease;
 }
 
