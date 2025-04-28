@@ -1,35 +1,37 @@
-
-
 <template>
   <div class="main-content background-color-about-page">
     <!-- Main area -->
 
     <div>
-     
+
       <!--- this title links in from ProjectDetailsView - see there for chaning these values -->
-      
+
       <div style="margin-top: 2em;">
         <h1 style="font-size: 2em; background-color: #000;">
-          <router-link class="text-links-no-underline" :to="'/projects/cowculator'">          
-          
+          <router-link class="text-links-no-underline" :to="'/projects/cowculator'">
+
           </router-link>
         </h1>
       </div>
-      
+
       <router-link class="text-links-no-underline" :to="'/projects/cowculator'">
         <img class="cow-image" :src="cowculatorUserInterface" alt="Cowculator Picture" />
       </router-link>
 
-      <p class="paragraph-text break-text" style="padding-top: 2em;">Rough draft below - this is just an unpolished test example to show the code.</p>
+      <p class="paragraph-text break-text" style="padding-top: 2em;">Rough draft below - this is just an unpolished test
+        example to show the code.</p>
 
-      <p class="paragraph-text break-text" style="padding-top: 2em;">The cowculator is a fully functional calculator! The cowculator has been a project for fun/practice. It uses actual parsing, not the JavaScript eval() function
+      <p class="paragraph-text break-text" style="padding-top: 2em;">The cowculator is a fully functional calculator!
+        The cowculator has been a project for fun/practice. It uses actual parsing, not the JavaScript eval() function
         which is considered insecure and bad practice to use!
         Building it had some challenges, and when undertaking a project like this one has
         to remember how much fine-tuning is involved. One challenge was implementing the parenthesis functionality. This
         was a step by step process thinking
-        about which symbol came before or after another symbol. Some neat features were added into it, such as the ability
+        about which symbol came before or after another symbol. Some neat features were added into it, such as the
+        ability
         to use the keyboard to type in the numbers, and
-        having the numbers highlight the calculator numbers as they are typed, and also highlight them as the numbers are
+        having the numbers highlight the calculator numbers as they are typed, and also highlight them as the numbers
+        are
         removed using the &larr; back arrow.
       </p>
 
@@ -49,7 +51,8 @@
         Adding in the x^y power function was a challenge. The interesting part of how it computes powers is that for an
         expression
         like 2(3)^2^2 it will use the code:
-        <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
+        <!--
+      <pre v-bind:class="'language-JavaScript line-numbers'" class="code-format">
         <code>
         addParenthesisAroundPowerSymbol(input) {
           // Use regular expression to match number^number pattern
@@ -62,9 +65,12 @@
         },
       </code>
         </pre>
+      -->
         This will add parenthesis
         2((3)^2^2) so powers get evaluated
-        correctly. The multiplication symbol and power symbol in this parsing code both have the same precedence so adding in the paranthesis
+        correctly. The multiplication symbol and power symbol in this parsing code both have the same precedence so
+        adding
+        in the paranthesis
         is a quick fix to force the code to first evaluate all exponents before multiplication. As the user, you don't
         see these additional parenthesis, but they are there in the code.
       </p>
@@ -83,7 +89,8 @@
           </figure>
           <figure>
             <img :src="imagePathTwo" alt="Binary Tree example 2" />
-            <figcaption><b>B</b>) Binary Tree example of the left-most example from figure A: <b>5*4-6=14</b>, this comes
+            <figcaption><b>B</b>) Binary Tree example of the left-most example from figure A: <b>5*4-6=14</b>, this
+              comes
               directly from the cowculator output!
 
             </figcaption>
@@ -134,9 +141,9 @@
   </div>
   <!-- testing features END -->
 
- 
+
 </template>
-  
+
 <script>
 
 import CowculatorCode from "@/components/ProjectDescriptions/ProjectText/CowculatorCode.vue";
@@ -187,7 +194,7 @@ export default {
   }
 };
 </script>
-  
+
 <style scoped>
 h4 {
   padding-left: 0em;

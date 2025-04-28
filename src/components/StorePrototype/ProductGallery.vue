@@ -15,7 +15,9 @@
               <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
             </div>
           </router-link>
-          <figcaption>{{ item.name }} €{{ item.price }}</figcaption>
+         
+          <figure-caption>{{ item.name }} €{{ item.price }}</figure-caption>
+       
           <button type="button" @click="showArray(index, item.id);" class="add-to-cart-button">Add to cart</button>
         </div>
       </div>
@@ -261,7 +263,7 @@ h1 {
   }
 }
 
-figcaption {
+figure-caption {
   text-align: center;
   padding: 0.5em;
   margin: 0em;
@@ -269,6 +271,7 @@ figcaption {
   font-size: 1em;
   font-weight: bold;
   color: rgb(18, 18, 18);
+  display: block;
 }
 
 /* Does image zoom effect - start */

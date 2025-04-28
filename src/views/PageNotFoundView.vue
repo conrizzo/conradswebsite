@@ -8,8 +8,8 @@
                     <img src="@/images/BlueSkyBird.jpg" height="200" alt="404 - Page Not Found" />
                 </div>
                 -->
-                <h1>404 - Page Not Found</h1>
-                <p style="color: #ffffff;">Sorry, the page you are looking for does not exist.</p>
+                <h1>404 - Page Not Found!</h1>
+                <p style="color: #ffffff;">Sorry, the page you are looking for does not exist!</p>
                 <RouterLink class="text-links to-home-page" to="/">
                     To Home Page &rarr;
                 </RouterLink>

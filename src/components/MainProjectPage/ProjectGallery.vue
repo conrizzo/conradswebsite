@@ -3,7 +3,7 @@
     <!--<div style='text-align: left;'>
       <button class="clean-button toggle-button" @click="toggleMenu">Experimental Side Menu</button>
     </div>-->
-   
+
     <div class="centerAll">
       <div class="second-grid" :class="{ 'active-grid-style': isSecondGridActive }">
 
@@ -67,9 +67,9 @@
                   <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
                 </div>
                 <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
-                <figcaption>
+                <figure-caption>
                   <p>{{ item.caption }}</p>
-                </figcaption>
+                </figure-caption>
               </a>
               <!-- ELSE it's a router link the vue.js  -->
               <router-link v-else class="no-router-link-decorations h2-color" :to="item.to">
@@ -80,9 +80,9 @@
                   <img class="gallery-component-image" v-lazy="item.imageSrc" :alt="item.text">
                 </div>
                 <h2 class="grid-title" :class="{ 'odd': gridColorAlternation(index) }">{{ item.text }}</h2>
-                <figcaption>
+                <figure-caption>
                   <p>{{ item.caption }}</p>
-                </figcaption>
+                </figure-caption>
               </router-link>
             </div>
           </main>
@@ -415,7 +415,7 @@ h3 {
 }
 
 /*
-.grid-item:hover figcaption{
+.grid-item:hover figure-caption{
   color: rgb(50, 50, 50);
 }
 */
@@ -439,7 +439,7 @@ h3 {
   filter: brightness(90%);
 }
 
-figcaption {
+figure-caption {
   text-align: left;
   padding: 0.5em;
   margin: 0em;
@@ -627,7 +627,7 @@ figcaption {
     font-size: 1rem;
   }
 
-  figcaption {
+  figure-caption {
     font-size: .8rem;
   }
 }

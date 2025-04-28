@@ -16,7 +16,7 @@
             clicks through these quickly.          
           -->
           <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
-          <figcaption>{{ item.caption }}</figcaption>
+          <div class="figcaption">{{ item.caption }}</div> 
         </div>
         <button class="gallery-button-right" @click="changeImageArray('right')">></button>
       </div>
@@ -193,7 +193,7 @@ h3 {
   filter: brightness(90%);
 }
 
-figcaption {
+.figcaption {
   text-align: center;
   padding: 0.5em;
   margin: 0em;

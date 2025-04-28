@@ -11,7 +11,7 @@
           <a :href="setPhotoLink">
             <img :style="{ width: imgWidth + '%' }" class="coffee-image" v-lazy="contentImage" alt="Image">            
           </a>
-          <caption class="photo-caption-style">{{ setPhotoCaption }}</caption>
+          <div class="photo-caption-style">{{ setPhotoCaption }}</div>
         </div>
 
         <div class="grid-item-text" :style="{ background: bgColor }">

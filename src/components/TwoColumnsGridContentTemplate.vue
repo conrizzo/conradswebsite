@@ -13,7 +13,7 @@
             <img :style="{ width: imgWidth + 'rem' }" class="coffee-image" v-lazy="contentImage" alt="Image">
 
           </a>
-          <caption class="photo-caption">{{ setPhotoCaption }}</caption>
+          <div class="photo-caption">{{ setPhotoCaption }}</div>
 
         </div>
 
