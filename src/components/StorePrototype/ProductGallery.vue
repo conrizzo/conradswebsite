@@ -15,9 +15,9 @@
               <img class="gallery-component-image" :src="item.imageSrc" :alt="item.altText">
             </div>
           </router-link>
-         
+      
           <figure-caption>{{ item.name }} €{{ item.price }}</figure-caption>
-       
+    
           <button type="button" @click="showArray(index, item.id);" class="add-to-cart-button">Add to cart</button>
         </div>
       </div>

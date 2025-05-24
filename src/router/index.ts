@@ -232,6 +232,7 @@ const routes = [
         name: 'gridDragExperiment',
         component: GridDragView,
       },
+      /*
       {
         path: 'election-battleground-states',
         name: 'ElectionView',
@@ -241,6 +242,7 @@ const routes = [
           description: '',
         },
       },
+      */
       /*
       {
           path: 'jungle-page',

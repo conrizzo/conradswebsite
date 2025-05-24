@@ -2,9 +2,9 @@
 <!-- 
     
     The function of this file is to hold all the links data!
-     Anything changed in here will be reflected in all the pages that use this component.
-     These pages are the DropdownMenu.vue and the HomeView.vue page, but it could easily be in
-     as many other pages as needed and the data that is changed here will automatically update to all of them. 
+    Anything changed in here will be reflected in all the pages that use this component.
+    These pages are the DropdownMenu.vue and the HomeView.vue page, but it could easily be in
+    as many other pages as needed and the data that is changed here will automatically update to all of them. 
 
 -->
 <template>
