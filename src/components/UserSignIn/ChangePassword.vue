@@ -4,10 +4,10 @@
             <form @submit.prevent="newSignIn">
                 <h2 style="padding: 0.5em; color: rgb(18,18,18);">Change Password</h2>
                 <!--
-          <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; flex-direction: column;">
             <label for="email" style="align-self: flex-start; padding-left: 0.25em;">Email:</label>
             <input name="email" type="email" placeholder="Email" required v-model="email" autocomplete="email" v-focus>
-          </div>
+        </div>
         -->
                 <div style="display: flex; flex-direction: column;">
                     <label class="label-title-styling" for="username">Username</label>

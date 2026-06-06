@@ -148,8 +148,8 @@
                       {{ cityWeather.weather.weather[0].maxtempC }}°C
                       {{ cityWeather.weather.weather[0].mintempC }}°C
 
-                    </span>&nbsp;
-                    <span v-else>
+                    </span>
+                    <span v-else>&nbsp;
                       {{ cityWeather.weather.weather[0].maxtempF }}°F
                       {{ cityWeather.weather.weather[0].mintempF }}°F</span>
                   </div>
@@ -158,8 +158,8 @@
                     <span v-if="temperatureUnit === false">
                       {{ cityWeather.weather.weather[1].maxtempC }}°C
                       {{ cityWeather.weather.weather[1].mintempC }}°C
-                    </span>&nbsp;
-                    <span v-else>
+                    </span>
+                    <span v-else>&nbsp;
                       {{ cityWeather.weather.weather[1].maxtempF }}°F
                       {{ cityWeather.weather.weather[1].mintempF }}°F</span>
                   </div>
@@ -168,8 +168,8 @@
                     <span v-if="temperatureUnit === false">
                       {{ cityWeather.weather.weather[2].maxtempC }}°C
                       {{ cityWeather.weather.weather[2].mintempC }}°C
-                    </span>&nbsp;
-                    <span v-else>
+                    </span>
+                    <span v-else>&nbsp;
                       {{ cityWeather.weather.weather[2].maxtempF }}°F
                       {{ cityWeather.weather.weather[2].mintempF }}°F</span>
                   </div>

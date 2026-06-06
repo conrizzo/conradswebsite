@@ -39,7 +39,8 @@ const WordHelperView = () => import('../views/projects/WordHelper/WordHelperView
 const CountryMusicExperimentView = () => import('../views/projects/CountryMusicExperiment/CountryMusicExperimentView.vue');
 const GridDragView = () => import('../views/projects/GridDragView/GridView.vue');
 const NLPView = () => import('../views/projects/NLPView.vue');
-const ElectionView = () => import('../views/projects/Election/ElectionView.vue');
+
+//const ElectionView = () => import('../views/projects/Election/ElectionView.vue');
 //const JungleView = () => import('../views/projects/JungleView.vue');
 
 const yadhtriByppahView = () => import('../views/yadhtriByppahView.vue');

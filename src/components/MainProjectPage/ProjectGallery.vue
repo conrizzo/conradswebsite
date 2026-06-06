@@ -13,7 +13,7 @@
           <div class="left-column-content">
 
             <div style="display: flex; justify-content: space-between;">
-              <h3>Random Projects</h3>
+              <h3>Projects</h3>
 
               <svg @click="toggleMenu(), toggleGridStyle()" class="svg-x-wrapper" xmlns="http://www.w3.org/2000/svg"
                 width="32" height="32" viewBox="0 0 24 24" fill="none"

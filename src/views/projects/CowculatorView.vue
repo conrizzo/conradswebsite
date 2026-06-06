@@ -43,8 +43,8 @@
       <h3>Miscellaneous Cow Facts</h3>
       <div class="main-cow-figure">
         <li class="no-bullet" style="text-align: left; padding: 0 0.5rem 0 0.5rem;">
-          <ul>In 1865, the cow’s carefree existence in America was tragically disrupted by the Civil War.</ul>
-          <ul>The meaning of life? A cow knows. A cow simply exists, unburdened by existential dread.</ul>
+          <ul>The Cowculator cowculates</ul>
+          
         </li>
       </div>
 
